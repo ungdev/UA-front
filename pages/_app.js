@@ -10,7 +10,7 @@ const App = (props) => {
 			<div>
 				<Head>
 					<meta charset="utf-8" />
-					<link rel="icon" href="/favicon.ico" key="icon" />
+					<link rel="icon" href="static/favicon.ico" key="icon" />
 				</Head>
 
 				<Header />
