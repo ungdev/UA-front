@@ -1,5 +1,3 @@
-const Header = () => {
-	return "Header";
-}
+const Header = () => 'Header';
 
 export default Header;

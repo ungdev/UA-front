@@ -12,12 +12,13 @@ const withProgressBar = require('next-progressbar');
 
 // Dot env config
 require('dotenv').config({
-  path: path.resolve(__dirname, '.env')
+  path: path.resolve(__dirname, '.env'),
 });
 
 // Next config
-const nextConfig = {
-  webpack: (config) => {
+const nextJSConfig = {
+  webpack: (c) => {
+    const config = c;
     config.plugins = config.plugins || [];
 
     config.plugins = [
@@ -25,23 +26,26 @@ const nextConfig = {
 
       new Dotenv({
         path: path.join(__dirname, '.env'),
-        systemvars: true
+        systemvars: true,
       }),
 
       // Cache misery, todo: follow this issue https://github.com/webpack-contrib/mini-css-extract-plugin/issues/250 ?
       new FilterWarningsPlugin({
-        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/
-      })
+        exclude: /mini-css-extract-plugin[^]*Conflicting order between:/,
+      }),
     ];
 
     return config;
-  }
+  },
 };
 
 const progressBarConfig = {
   progressBar: {
-    profile: process.env.NODE_ENV !== 'development'
-  }
+    profile: process.env.NODE_ENV !== 'development',
+  },
 };
 
-module.exports = withPlugins([withCSS, withImages, [withProgressBar, progressBarConfig]], nextConfig);
+module.exports = withPlugins(
+  [withCSS, withImages, [withProgressBar, progressBarConfig]],
+  nextJSConfig,
+);
