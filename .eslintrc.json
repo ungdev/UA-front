@@ -2,7 +2,7 @@
     "env": {
         "browser": true,
 				"es6": true,
-				"node": true,
+				"node": true
     },
     "extends": [
         "airbnb",
@@ -23,8 +23,12 @@
         "react"
     ],
     "rules": {
-        "react/jsx-filename-extension": ["warn", { "extensions": [".js"] }],
+        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+        "brace-style": ["warn", "stroustrup"],
         "react/prop-types": ["off"],
-        "react/jsx-props-no-spreading": ["off"]
+        "react/jsx-props-no-spreading": ["off"],
+        "react/destructuring-assignment": ["off"],
+        "jsx-a11y/click-events-have-key-events": ["off"],
+        "eol-last": ["off"]
     }
 }

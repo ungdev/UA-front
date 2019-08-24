@@ -8,10 +8,12 @@
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "eslint --fix components/** pages/**"
+    "lint": "eslint components/** pages/**",
+    "lint-fix": "eslint --fix components/** pages/**"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
+    "autoprefixer": "^9.6.1",
     "dotenv": "^8.1.0",
     "dotenv-webpack": "^1.7.0",
     "next": "9.0.4",
