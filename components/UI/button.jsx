@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import './button.css';
 
+/**
+ * Displays a button that triggers an action when clicked
+ */
 const Button = (props) => (
   <span className={props.className}>
     <button
@@ -16,22 +19,30 @@ const Button = (props) => (
 );
 
 Button.propTypes = {
-  className: PropTypes.string,
-
+  /**
+   * Whether the button is a primary button or not
+   */
   primary: PropTypes.bool,
 
+  /**
+   * Function called when the user clicks on the button
+   */
   onClick: PropTypes.func.isRequired,
 
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]).isRequired,
+  /**
+   * The button content
+   */
+  children: PropTypes.node.isRequired,
+
+  /**
+   * The class of the button container
+   */
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
-  className: '',
-
   primary: false,
+  className: '',
 };
 
 export default Button;
