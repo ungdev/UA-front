@@ -1,0 +1,23 @@
+.button {
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 0;
+  padding: 8px 20px;
+  margin: 4px;
+  background: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.button.primary {
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);
+}
+
+.button:hover {
+  filter: brightness(0.85);
+}
