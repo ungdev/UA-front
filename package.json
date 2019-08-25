@@ -8,8 +8,8 @@
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "eslint components/** pages/**",
-    "lint-fix": "eslint --fix components/** pages/**"
+    "lint": "eslint components/**.jsx pages/**.js",
+    "lint-fix": "eslint --fix components/**.jsx pages/**.js"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
