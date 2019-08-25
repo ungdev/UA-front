@@ -74,13 +74,17 @@ const Navbar = () => {
         <span />
       </div>
 
-      <a href="/" className="mobile-link">
-        <div className="mobile-logo" />
-      </a>
+      <Link href="/">
+        <a className="mobile-link" onClick={() => setMobileMenuVisible(false)}>
+          <div className="mobile-logo" />
+        </a>
+      </Link>
 
-      <a href="/" className="centered">
-        <div className="desktop-logo" />
-      </a>
+      <Link href="/">
+        <a className="centered">
+          <div className="desktop-logo" />
+        </a>
+      </Link>
 
       <div className="navbar-container">
         <div className="login-button">
