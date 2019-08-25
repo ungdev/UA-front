@@ -17,6 +17,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 img {
@@ -42,9 +43,10 @@ img {
 
 .page-container {
   position: absolute;
+  margin: 2em;
   top: 0;
   left: 280px;
-  width: calc(100% - 280px);
+  width: calc(100% - 280px - 4em);
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
@@ -54,6 +56,6 @@ img {
   .page-container {
     top: 60px;
     left: 0;
-    width: 100%;
+    width: calc(100% - 4em);
   }
 }
