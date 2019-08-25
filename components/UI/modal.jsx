@@ -5,15 +5,29 @@ import Button from './button';
 import './modal.css';
 
 const Modal = (props) => {
-  const footer = typeof props.footer === 'object' ? props.footer : props.footer(props);
+  const footer = props.footer !== ''
+    ? props.footer
+    : (
+      <>
+        <Button onClick={props.onCancel}>Annuler</Button>
+        <Button onClick={props.onOk} primary>Ok</Button>
+      </>
+    );
 
   return (
     <div className={props.className}>
       <div className={`modal ${props.visible ? 'active' : ''}`}>
-        <div className="modal-overlay" onClick={props.onCancel} />
+        <div className="modal-overlay" onClick={() => props.closable && props.onCancel()} />
 
         <div className="modal-container">
           <div className="modal-title">{props.title}</div>
+
+          {props.closable && (
+            <div className="modal-close-button" onClick={props.onCancel}>
+              <span />
+              <span />
+            </div>
+          )}
           <div className="modal-content">{props.children}</div>
           <div className="modal-footer">{footer}</div>
         </div>
@@ -23,41 +37,29 @@ const Modal = (props) => {
 };
 
 Modal.propTypes = {
-  title: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]).isRequired,
+  title: PropTypes.node.isRequired,
 
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
 
-  footer: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.func,
-  ]),
+  footer: PropTypes.node,
 
-  className: PropTypes.string,
+  closable: PropTypes.bool,
 
   visible: PropTypes.bool.isRequired,
 
-  onCancel: PropTypes.func.isRequired,
+  onCancel: PropTypes.func,
 
   onOk: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+
+  className: PropTypes.string,
 };
 
 Modal.defaultProps = {
-  footer: (props) => (
-    <>
-      <Button onClick={props.onCancel}>Annuler</Button>
-      <Button onClick={props.onOk} primary>Ok</Button>
-    </>
-  ),
-
-  className: '',
-
+  footer: '',
+  closable: true,
+  onCancel: () => {},
   onOk: () => {},
+  className: '',
 };
 
 export default Modal;

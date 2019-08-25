@@ -38,7 +38,35 @@
   font-family: 'LemonMilk';
   letter-spacing: 1px;
   font-size: 24px;
-  margin-bottom: 30px;
+  margin: 0 20px 30px 20px;
+}
+
+.modal .modal-close-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.modal .modal-close-button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: #aaa;
+  height: 2px;
+  width: 22px;
+}
+
+.modal .modal-close-button span:nth-child(1) {
+  transform: translate(-50%) rotate(45deg);
+}
+
+.modal .modal-close-button span:nth-child(2) {
+  transform: translate(-50%) rotate(-45deg);
 }
 
 .modal .modal-footer {
