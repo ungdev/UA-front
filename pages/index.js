@@ -1,3 +1,3 @@
-const Home = () => '';
+const Home = () => 'Home';
 
 export default Home;
