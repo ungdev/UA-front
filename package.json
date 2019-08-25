@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start -p 8080",
     "lint": "eslint components/**.jsx pages/**.js",
-    "lint-fix": "eslint --fix components/**.jsx pages/**.js"
+    "lint-fix": "eslint --fix components/**.jsx pages/**.js",
+    "build-docs": "react-docgen components/UI/*.jsx | ./buildDocs.sh"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
@@ -31,6 +32,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.3",
-    "eslint-plugin-react-hooks": "1.7.0"
+    "eslint-plugin-react-hooks": "1.7.0",
+    "react-docgen": "^4.1.1"
   }
 }
