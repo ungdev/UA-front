@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Modal from './UI/modal';
 import './navbar.css';
@@ -35,6 +37,8 @@ const links = [
 ];
 
 const Navbar = () => {
+  const { pathname } = useRouter();
+
   // Is the mobile menu visible ?
   const [visible, setVisible] = useState(false);
 
@@ -43,13 +47,17 @@ const Navbar = () => {
 
   // Create navigation links
   const navLinks = links.map((link) => (
-    <a href={link.href} key={link.href}>
-      <div className="nav-button">{link.title}</div>
-    </a>
+    <Link href={link.href} key={link.href}>
+      <a onClick={() => setVisible(false)}>
+        <div className={`nav-button ${link.href === pathname ? 'active' : ''}`}>{link.title}</div>
+      </a>
+    </Link>
   ));
 
+  // Toggle mobile menu visibility
   const toggleVisible = () => {
     setVisible(!visible);
+
     if (visible) {
       document.getElementsByTagName('html')[0].style.overflow = null;
     }
@@ -95,7 +103,7 @@ const Navbar = () => {
             {' '}
             <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
-            <a href="/legal">Mentions légales</a>
+            <Link href="/legal"><a>Mentions légales</a></Link>
           </div>
         </div>
       </div>
