@@ -48,9 +48,19 @@ const Navbar = () => {
     </a>
   ));
 
+  const toggleVisible = () => {
+    setVisible(!visible);
+    if (visible) {
+      document.getElementsByTagName('html')[0].style.overflow = null;
+    }
+    else {
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+    }
+  };
+
   return (
     <div id="navbar" className={visible ? 'active' : ''}>
-      <div className="navbar-hamburger" onClick={() => Navbar.toggleVisible(visible, setVisible)}>
+      <div className="navbar-hamburger" onClick={toggleVisible}>
         <span />
         <span />
         <span />
@@ -100,17 +110,6 @@ const Navbar = () => {
       </Modal>
     </div>
   );
-};
-
-Navbar.toggleVisible = (visible, setVisible) => {
-  setVisible(!visible);
-
-  if (visible) {
-    document.getElementsByTagName('html')[0].style.overflow = null;
-  }
-  else {
-    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
-  }
 };
 
 export default Navbar;
