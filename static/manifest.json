@@ -1,0 +1,25 @@
+{
+  "short_name": "UTT Arena",
+  "name": "UTT Arena",
+  "icons": [
+    {
+      "src": "/static/favicon.ico",
+      "sizes": "256x256 128x128 64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/static/logo-256.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#202020",
+  "background_color": "#202020"
+}
