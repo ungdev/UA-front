@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './button.css';
+import './Button.css';
 
 /**
  * Displays a button that triggers an action when clicked

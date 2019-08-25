@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from './button';
-import './modal.css';
+import Button from './Button';
+import './Modal.css';
 
 /**
  * Displays a modal window

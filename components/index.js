@@ -1,6 +1,6 @@
-import Navbar from './navbar';
-import Modal from './UI/modal';
-import Button from './UI/button';
+import Navbar from './Navbar';
+import Modal from './UI/Modal';
+import Button from './UI/Button';
 import Title from './UI/Title';
 
 export {
