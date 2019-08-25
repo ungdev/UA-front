@@ -40,23 +40,14 @@ const Navbar = () => {
   const { pathname } = useRouter();
 
   // Is the mobile menu visible ?
-  const [visible, setVisible] = useState(false);
+  const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
 
   // Is the login modal visible ?
   const [loginModalVisible, setLoginModalVisible] = useState(false);
 
-  // Create navigation links
-  const navLinks = links.map((link) => (
-    <Link href={link.href} key={link.href}>
-      <a onClick={() => setVisible(false)}>
-        <div className={`nav-button ${link.href === pathname ? 'active' : ''}`}>{link.title}</div>
-      </a>
-    </Link>
-  ));
-
-  // Toggle mobile menu visibility
-  const toggleVisible = () => {
-    setVisible(!visible);
+  // Set mobile menu visibility
+  const setMobileMenuVisible = (visible) => {
+    _setMobileMenuVisible(visible);
 
     if (visible) {
       document.getElementsByTagName('html')[0].style.overflow = null;
@@ -66,9 +57,18 @@ const Navbar = () => {
     }
   };
 
+  // Create navigation links
+  const navLinks = links.map((link) => (
+    <Link href={link.href} key={link.href}>
+      <a onClick={() => setMobileMenuVisible(false)}>
+        <div className={`nav-button ${link.href === pathname ? 'active' : ''}`}>{link.title}</div>
+      </a>
+    </Link>
+  ));
+
   return (
-    <div id="navbar" className={visible ? 'active' : ''}>
-      <div className="navbar-hamburger" onClick={toggleVisible}>
+    <div id="navbar" className={mobileMenuVisible ? 'active' : ''}>
+      <div className="navbar-hamburger" onClick={() => setMobileMenuVisible(!mobileMenuVisible)}>
         <span />
         <span />
         <span />
@@ -103,7 +103,7 @@ const Navbar = () => {
             {' '}
             <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
-            <Link href="/legal"><a>Mentions légales</a></Link>
+            <Link href="/legal"><a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a></Link>
           </div>
         </div>
       </div>
