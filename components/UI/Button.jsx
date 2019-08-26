@@ -7,15 +7,13 @@ import './Button.css';
  * Displays a button that triggers an action when clicked
  */
 const Button = (props) => (
-  <span className={props.className}>
-    <button
-      type="button"
-      className={`button ${props.primary ? 'primary' : ''}`}
-      onClick={props.onClick}
-    >
-      {props.children}
-    </button>
-  </span>
+  <button
+    type="button"
+    className={`button ${props.className} ${props.primary ? 'primary' : ''}`}
+    onClick={props.onClick}
+  >
+    {props.children}
+  </button>
 );
 
 Button.propTypes = {

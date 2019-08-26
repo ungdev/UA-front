@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import Button from './UI/Button';
 import Modal from './UI/Modal';
 import './Navbar.css';
 
@@ -87,9 +88,9 @@ const Navbar = () => {
       </Link>
 
       <div className="navbar-container">
-        <div className="login-button">
-          <button type="button" onClick={() => setLoginModalVisible(true)}>Connexion</button>
-        </div>
+        <Button primary className="login-button" onClick={() => setLoginModalVisible(true)}>
+          Connexion
+        </Button>
 
         { navLinks }
 
