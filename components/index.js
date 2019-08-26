@@ -3,6 +3,7 @@ import Modal from './UI/Modal';
 import Button from './UI/Button';
 import Title from './UI/Title';
 import Collapse from './UI/Collapse';
+import Table from './UI/Table';
 
 export {
   Navbar,
@@ -10,4 +11,5 @@ export {
   Button,
   Title,
   Collapse,
+  Table,
 };
