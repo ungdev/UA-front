@@ -1,0 +1,23 @@
+language: node_js*
+branches:
+  only:
+  - master
+  - dev
+node_js:
+  - "stable"
+cache:
+  directories:
+    - "node_modules"
+  yarn: true
+script:
+  - yarn lint
+  - yarn build
+notifications:
+  webhooks:
+    urls:
+      - https://oso-master.uttnetgroup.fr/oapi/v1/namespaces/ua/buildconfigs/front-dev/webhooks/975a2565a24e30fb/generic
+    on_success: always
+    on_failure: never
+    on_start:   never
+    on_cancel:  never
+    on_error:   never
