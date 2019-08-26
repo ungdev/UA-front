@@ -23,7 +23,7 @@ const useOutsideAlerter = (ref, setIsFocus) => {
 /**
  * Main component for input
  */
-const InputBase = ({ key, label, placeholder, value, onChange, type, Component }) => {
+const InputBase = ({ id, label, placeholder, value, onChange, type, Component }) => {
   const wrapperRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   useOutsideAlerter(wrapperRef, setIsFocus);
@@ -31,7 +31,7 @@ const InputBase = ({ key, label, placeholder, value, onChange, type, Component }
   return (
     <div className="input-container">
       <label
-        htmlFor={key}
+        htmlFor={id}
         className={`input-label ${isFocus ? 'focus' : ''}`}
         onClick={() => {
           wrapperRef.current.focus();
@@ -45,8 +45,8 @@ const InputBase = ({ key, label, placeholder, value, onChange, type, Component }
           className="input-html"
           ref={wrapperRef}
           type={type}
-          id={key}
-          name={key}
+          id={id}
+          name={id}
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -59,9 +59,9 @@ const InputBase = ({ key, label, placeholder, value, onChange, type, Component }
 
 InputBase.propTypes = {
   /**
-   * Key for the input
+   * id for the input
    */
-  key: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   /**
    * Label to display for the input
    */

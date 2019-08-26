@@ -6,10 +6,11 @@ import InputBase from './InputBase';
 /**
  * Displays a controlled textarea
  */
-const Textarea = ({ key, label, placeholder, value, onChange }) => (
+const Textarea = ({ id, label, placeholder, value, onChange }) => (
   <InputBase
     Component="textarea"
-    key={key}
+    key={id}
+    id={id}
     placeholder={placeholder}
     value={value}
     onChange={onChange}
@@ -19,9 +20,9 @@ const Textarea = ({ key, label, placeholder, value, onChange }) => (
 
 Textarea.propTypes = {
   /**
-   * Key for the input
+   * id for the input
    */
-  key: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   /**
    * Label to display for the input
    */

@@ -6,10 +6,11 @@ import InputBase from './InputBase';
 /**
  * Displays a controlled input
  */
-const Input = ({ key, label, placeholder, value, onChange, type }) => (
+const Input = ({ id, label, placeholder, value, onChange, type }) => (
   <InputBase
     Component="input"
-    key={key}
+    key={id}
+    id={id}
     placeholder={placeholder}
     value={value}
     onChange={onChange}
@@ -20,9 +21,9 @@ const Input = ({ key, label, placeholder, value, onChange, type }) => (
 
 Input.propTypes = {
   /**
-   * Key for the input
+   * id for the input
    */
-  key: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   /**
    * Label to display for the input
    */

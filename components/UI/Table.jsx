@@ -7,26 +7,26 @@ import './Table.css';
  * Displays a data table
  */
 const Table = ({ columns, dataSource }) => {
-  const columnsKey = columns.map((column) => column.key);
+  const columnsList = columns.map((column) => column.key);
   return (
     <table className="table">
       <thead>
-        <tr>
+        <tr id="header">
           {columns.map((column) => (
-            <th>{column.title}</th>
+            <th id={column.key}>{column.title}</th>
           ))}
         </tr>
+        <tr id="divider">
+          <td colSpan={columnsList.length}>
+            <div className="divider" />
+          </td>
+        </tr>
       </thead>
-      <tr>
-        <td colSpan={columnsKey.length}>
-          <div className="divider" />
-        </td>
-      </tr>
       <tbody>
         {dataSource.map((row) => (
-          <tr>
-            {columnsKey.map((key) => (
-              <td colSpan={1}>{row[key]}</td>
+          <tr id={row.key}>
+            {columnsList.map((column) => (
+              <td id={row.key + row[column]}>{row[column]}</td>
             ))}
           </tr>
         ))}
