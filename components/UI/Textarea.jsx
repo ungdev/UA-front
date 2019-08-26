@@ -4,21 +4,20 @@ import PropTypes from 'prop-types';
 import InputBase from './InputBase';
 
 /**
- * Displays a controlled input
+ * Displays a controlled textarea
  */
-const Input = ({ key, label, placeholder, value, onChange, type }) => (
+const Textarea = ({ key, label, placeholder, value, onChange }) => (
   <InputBase
-    Component="input"
+    Component="textarea"
     key={key}
     placeholder={placeholder}
     value={value}
     onChange={onChange}
     label={label}
-    type={type}
   />
 );
 
-Input.propTypes = {
+Textarea.propTypes = {
   /**
    * Key for the input
    */
@@ -39,16 +38,11 @@ Input.propTypes = {
    * onChange function, receive `event`
    */
   onChange: PropTypes.func.isRequired,
-  /**
-   * HTML native input type
-   */
-  type: PropTypes.oneOf(['text', 'password', 'number']),
 };
 
-Input.defaultProps = {
+Textarea.defaultProps = {
   placeholder: '',
   value: '',
-  type: 'text',
 };
 
-export default Input;
+export default Textarea;

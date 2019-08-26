@@ -5,6 +5,7 @@ import Title from './UI/Title';
 import Collapse from './UI/Collapse';
 import Table from './UI/Table';
 import Input from './UI/Input';
+import Textarea from './UI/Textarea';
 
 export {
   Navbar,
@@ -14,4 +15,5 @@ export {
   Collapse,
   Table,
   Input,
+  Textarea,
 };

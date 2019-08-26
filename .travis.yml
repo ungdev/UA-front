@@ -14,6 +14,7 @@ script:
   - yarn lint
   - yarn build
 notifications:
+  slack: uttnetgroup:wIIt6boEZlbKTo6dxPCpm8Ke
   webhooks:
     urls:
       - https://oso-master.uttnetgroup.fr/oapi/v1/namespaces/ua/buildconfigs/front-dev/webhooks/975a2565a24e30fb/generic

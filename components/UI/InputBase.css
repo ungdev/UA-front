@@ -10,15 +10,17 @@
   transition: color 100ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 }
 
-.input-container .input-value input {
+.input-container .input-value .input-html {
   border: 0;
   font-family: 'Roboto', sans-serif;
   color: rgba(0, 0, 0, 0.87);
   font-size: 1em;
   padding: 0.5em 0;
+  width: 100%;
+  resize: none;
 }
 
-.input-container .input-value input:focus {
+.input-container .input-value .input-html:focus {
   outline: none;
 }
 
