@@ -26,7 +26,7 @@ const Table = ({ columns, dataSource }) => {
         {dataSource.map((row) => (
           <tr>
             {columnsKey.map((key) => (
-              <td>{row[key]}</td>
+              <td colSpan={1}>{row[key]}</td>
             ))}
           </tr>
         ))}

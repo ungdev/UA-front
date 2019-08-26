@@ -4,6 +4,7 @@ import Button from './UI/Button';
 import Title from './UI/Title';
 import Collapse from './UI/Collapse';
 import Table from './UI/Table';
+import Input from './UI/Input';
 
 export {
   Navbar,
@@ -12,4 +13,5 @@ export {
   Title,
   Collapse,
   Table,
+  Input,
 };

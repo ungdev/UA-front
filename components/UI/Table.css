@@ -2,6 +2,7 @@
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
+  margin: 1em 0;
 }
 
 .table .divider {
