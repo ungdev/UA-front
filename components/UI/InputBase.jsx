@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './InputBase.css';
 
-const useOutsideAlerter = (ref, setIsFocus) => {
+const useOutside = (ref, setIsFocus) => {
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setIsFocus(false);
@@ -26,7 +26,7 @@ const useOutsideAlerter = (ref, setIsFocus) => {
 const InputBase = ({ id, label, placeholder, value, onChange, type, Component }) => {
   const wrapperRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  useOutsideAlerter(wrapperRef, setIsFocus);
+  useOutside(wrapperRef, setIsFocus);
 
   return (
     <div className="input-container">

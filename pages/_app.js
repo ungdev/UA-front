@@ -16,7 +16,7 @@ const App = (props) => {
         <meta charSet="utf-8" />
 
         <link rel="icon" href="static/favicon.ico" />
-        <link rel="manifest" href="/static/manifest.json" />
+        <link rel="manifest" href="static/manifest.json" />
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
