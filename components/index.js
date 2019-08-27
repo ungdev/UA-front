@@ -6,6 +6,7 @@ import Collapse from './UI/Collapse';
 import Table from './UI/Table';
 import Input from './UI/Input';
 import Textarea from './UI/Textarea';
+import VideoContainer from './UI/VideoContainer';
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   Table,
   Input,
   Textarea,
+  VideoContainer,
 };

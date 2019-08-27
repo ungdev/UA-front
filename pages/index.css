@@ -1,0 +1,7 @@
+#home .home-header .home-logo {
+  width: 256px;
+  height: 256px;
+  margin: 20px auto;
+  background: url('/static/logo-256-notext.png') no-repeat center;
+  background-size: 256px;
+}

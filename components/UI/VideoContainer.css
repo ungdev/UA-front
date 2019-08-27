@@ -1,0 +1,19 @@
+.video-container .video-container-ratio {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.video-container .video-container-full {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.video-container iframe {
+	width: 100%;
+	height: 100%;
+}

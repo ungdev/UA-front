@@ -47,13 +47,15 @@ const Navbar = () => {
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
-    _setMobileMenuVisible(visible);
+    if (window.innerWidth <= 1000) {
+      _setMobileMenuVisible(visible);
 
-    if (visible) {
-      document.getElementsByTagName('html')[0].style.overflow = null;
-    }
-    else {
-      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      if (visible) {
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      }
+      else {
+        document.getElementsByTagName('html')[0].style.overflow = 'auto';
+      }
     }
   };
 
