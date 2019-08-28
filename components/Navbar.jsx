@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SimpleBar from 'simplebar-react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'simplebar/dist/simplebar.min.css';
 import Modal from './UI/Modal';
 import './Navbar.css';
 
@@ -89,12 +92,14 @@ const Navbar = () => {
       </Link>
 
       <div className="navbar-container">
-        <div className="login-button">
-          <button type="button" onClick={() => setLoginModalVisible(true)}>Connexion</button>
-        </div>
+        <SimpleBar style={{ height: '100%' }}>
+          <div className="login-button">
+            <button type="button" onClick={() => setLoginModalVisible(true)}>Connexion</button>
+          </div>
 
-        { navLinks }
+          { navLinks }
 
+        </SimpleBar>
         <div className="footer">
           <div className="social-links">
             <a href="https://www.facebook.com/UTTArena" className="facebook-link"><i className="fab fa-facebook-f" /></a>

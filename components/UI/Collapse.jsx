@@ -30,19 +30,23 @@ const Collapse = ({ title, children, imgSrc }) => {
     <div className="card">
       <div className="title" onClick={() => setContentVisible(!contentVisible)}>
         {title}
-        <div className={`arrow ${contentVisible ? 'open' : ''}`}>
-          <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-          </svg>
-        </div>
+        { children && (
+          <div className={`arrow ${contentVisible ? 'open' : ''}`}>
+            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            </svg>
+          </div>
+        )}
       </div>
       { imgSrc
         && <div className="img lazyload" onClick={() => setContentVisible(!contentVisible)} data-bg={imgSrc} ref={wrapperRef} />}
-      <div className={`content ${contentVisible ? 'open' : ''}`}>
-        <div className="text">
-          {children}
+      { children && (
+        <div className={`content ${contentVisible ? 'open' : ''}`}>
+          <div className="text">
+            {children}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -59,10 +63,11 @@ Collapse.propTypes = {
   /**
    * Content to hide
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 Collapse.defaultProps = {
+  children: undefined,
   imgSrc: undefined,
 };
 

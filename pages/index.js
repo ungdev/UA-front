@@ -1,7 +1,7 @@
 import React from 'react';
 import { Title, VideoContainer, Collapse, Table } from '../components';
 
-import text from './text.json';
+import text from '../assets/text.json';
 import './index.css';
 
 const columns = [
