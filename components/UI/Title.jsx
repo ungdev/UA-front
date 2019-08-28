@@ -8,7 +8,7 @@ import './Title.css';
  */
 const Title = ({ level, children, gutterBottom, align }) => {
   const Component = `h${level}`;
-  return (<Component className={`title ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</Component>);
+  return (<Component className={`title-${level} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</Component>);
 };
 
 Title.propTypes = {

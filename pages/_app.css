@@ -4,7 +4,12 @@
 
 @font-face {
   font-family: 'LemonMilk';
-    src: url('/static/LemonMilk.otf');
+  src: url('/static/LemonMilk.otf');
+}
+
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  src: url('/static/Montserrat-Regular.ttf');
 }
 
 :root {
@@ -17,7 +22,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.87);
+  color: #212121;
   text-align: justify;
 }
 
@@ -44,19 +49,19 @@ img {
 
 .page-container {
   position: absolute;
-  margin: 2em;
   top: 0;
   left: 280px;
-  width: calc(100% - 280px - 4em);
+  width: calc(100% - 280px);
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
+  background-color: whitesmoke;
 }
 
 @media screen and (max-width: 1000px) {
   .page-container {
     top: 60px;
     left: 0;
-    width: calc(100% - 4em);
+    width: calc(100%);
   }
 }

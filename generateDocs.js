@@ -5,7 +5,7 @@ const reactDocgen = require('react-docgen');
 const ReactDocGenMarkdownRenderer = require('react-docgen-markdown-renderer');
 
 /* Add component name in the list */
-const componentsList = ['Button', 'Modal', 'Title', 'Collapse', 'Table', 'Input', 'Textarea'];
+const componentsList = ['Button', 'Modal', 'Title', 'Collapse', 'Table', 'Input', 'Textarea', 'VideoContainer'];
 componentsList.forEach((component) => {
   const componentPath = path.join(__dirname, `components/UI/${component}.jsx`);
   const renderer = new ReactDocGenMarkdownRenderer();

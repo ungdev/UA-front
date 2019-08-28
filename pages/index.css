@@ -1,5 +1,18 @@
 #home .margin-bottom {
-  margin-bottom: 5em;
+  margin-bottom: 3em;
+}
+
+#home .padding {
+  padding: 0 5em;
+}
+
+#home .home-header {
+  height: calc(100vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: url('/static/uabackground.jpg') no-repeat center;
+  background-size: cover;
 }
 
 #home .home-header .home-logo {
@@ -18,11 +31,19 @@
 
 #home .home-toornament .list-toornaments .toornament {
   width: 45%;
-  margin: 0 0.5em;
+}
+
+@media screen and (max-width: 1000px) {
+  #home .home-header {
+    height: calc(100vh - 60px);
+  }
 }
 
 @media screen and (max-width: 650px) {
   #home .home-toornament .list-toornaments .toornament {
     width: 100%;
+  }
+  #home .padding {
+    padding: 0 2em;
   }
 }

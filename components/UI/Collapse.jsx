@@ -19,7 +19,7 @@ const Collapse = ({ title, children, imgSrc }) => {
   const [contentVisible, setContentVisible] = useState(false);
   useEffect(() => {
     document.addEventListener('lazybeforeunveil', updateBackground);
-    if (wrapperRef.current.className.includes('lazyloaded')) {
+    if (wrapperRef.current && wrapperRef.current.className.includes('lazyloaded')) {
       wrapperRef.current.style.backgroundImage = `url(${imgSrc})`;
     }
     return () => {
@@ -53,9 +53,17 @@ Collapse.propTypes = {
    */
   title: PropTypes.any.isRequired,
   /**
+   * Display image below the title
+   */
+  imgSrc: PropTypes.string,
+  /**
    * Content to hide
    */
   children: PropTypes.node.isRequired,
+};
+
+Collapse.defaultProps = {
+  imgSrc: undefined,
 };
 
 export default Collapse;
