@@ -17,7 +17,6 @@
 
 #home .home-header #logo {
   max-height: 50%;
-  filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
   max-width: 75%;
   margin: 0 auto;
 }
@@ -37,19 +36,12 @@
   color: white;
   transform:skew(-15deg);
   margin: 0;
-  font-size: calc(0.032 * calc(100vw - 280px));
+  font-size: calc(0.029 * calc(100vw - 280px));
+  letter-spacing: 1px;
 }
 
 #home .home-header .home-title .main {
-  font-size: calc(0.069 * calc(100vw - 280px));
-}
-
-#home .home-header .home-logo {
-  width: 256px;
-  height: 256px;
-  margin: 20px auto;
-  background: url('/static/logo-256-notext.png') no-repeat center;
-  background-size: 256px;
+  font-size: calc(0.065 * calc(100vw - 280px));
 }
 
 #home .home-toornament .list-toornaments {

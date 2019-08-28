@@ -1,0 +1,43 @@
+.countdown {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.countdown > div {
+  display: block;
+}
+
+.countdown h1, .countdown h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Montserrat', Impact, sans-serif;
+  letter-spacing: 2px;
+}
+
+.countdown h1 {
+  font-size: 90px;
+}
+
+.countdown h2 {
+  color:#ee343a;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .countdown h1 {
+    font-size: 60px;
+  }
+
+  .countdown h2 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .countdown .seconds {
+    display: none;
+  }
+}

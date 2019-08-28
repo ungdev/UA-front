@@ -30,7 +30,7 @@
   height: calc(100vh - 270px);
 }
 
-#navbar .login-button {
+#navbar .login-button button {
   display: block;
   width: min-content;
   margin: 0 auto 40px auto;
@@ -39,6 +39,10 @@
   font-size: 18px;
   letter-spacing: 1px;
   text-transform: uppercase;
+  background: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);
+  color: #fff;
+  border: none;
+  border-radius: 0;
 }
 
 #navbar .navbar-container a {

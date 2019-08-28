@@ -7,6 +7,7 @@ import Table from './UI/Table';
 import Input from './UI/Input';
 import Textarea from './UI/Textarea';
 import VideoContainer from './UI/VideoContainer';
+import Countdown from './UI/Countdown';
 
 export {
   Navbar,
@@ -18,4 +19,5 @@ export {
   Input,
   Textarea,
   VideoContainer,
+  Countdown,
 };
