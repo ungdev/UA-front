@@ -23,7 +23,13 @@ const dataSource = [
 
 const Home = () => (
   <div id="home">
-    <div className="home-header margin-bottom" />
+    <div className="home-header margin-bottom">
+      <img src="/static/2019-logo-notext.svg" alt="logo" id="logo" />
+      <div className="home-title">
+        <p className="main">utt arena</p>
+        <p>6, 7 et 8 décembre 2019</p>
+      </div>
+    </div>
     <div className="home-info margin-bottom padding">
       <Title align="center">INFORMATIONS</Title>
       <Title level={4} align="center">{text.index.information.catchPhrase}</Title>

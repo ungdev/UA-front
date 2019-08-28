@@ -15,6 +15,35 @@
   background-size: cover;
 }
 
+#home .home-header #logo {
+  max-height: 50%;
+  filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
+  max-width: 75%;
+  margin: 0 auto;
+}
+
+#home .home-header .home-title {
+  margin: 1em auto;
+  padding: 1.5em;
+  background-color: var(--dark-color);
+  transform: skew(15deg);
+  filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
+  width: 40%;
+}
+
+#home .home-header .home-title p {
+  font-family: 'LemonMilk';
+  text-align: center;
+  color: white;
+  transform:skew(-15deg);
+  margin: 0;
+  font-size: calc(0.032 * calc(100vw - 280px));
+}
+
+#home .home-header .home-title .main {
+  font-size: calc(0.069 * calc(100vw - 280px));
+}
+
 #home .home-header .home-logo {
   width: 256px;
   height: 256px;
@@ -36,6 +65,24 @@
 @media screen and (max-width: 1000px) {
   #home .home-header {
     height: calc(100vh - 60px);
+  }
+
+  #home .home-header .home-title {
+    margin: 1em 0;
+    padding: 1.5em 0;
+    background-color: var(--dark-color);
+    transform: skew(0deg);
+    filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
+    width: 100vw;
+  }
+
+  #home .home-header .home-title p {
+    transform: skew(0deg);
+    font-size: 5.5vw;
+  }
+
+  #home .home-header .home-title .main {
+    font-size: 12vw;
   }
 }
 
