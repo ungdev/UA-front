@@ -1,9 +1,10 @@
-.title {
+.title-1, .title-2, .title-3, .title-4 {
   margin-top: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .gutterBottom {
-  margin-bottom: 0.35em;
+  margin-bottom: 1em;
 }
 
 .center {
@@ -26,10 +27,31 @@
   text-align: justify;
 }
 
-h1 {
-  font-weight: 300;
-  font-size: 3.75rem;
-  line-height: 1;
+.title-1 {
+  overflow: hidden;
+  color: #ee343a;
+  text-transform: uppercase;
+}
+
+.title-1::before,
+.title-1::after {
+  background: linear-gradient(to right, var(--primary-color) 15%, var(--secondary-color) 85%);
+  content: "";
+  display: inline-block;
+  height: 2px;
+  position: relative;
+  vertical-align: middle;
+  width: 45%;
+}
+
+.title-1::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+.title-1::after {
+  left: 0.5em;
+  margin-right: -50%;
 }
 
 h2 {

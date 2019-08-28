@@ -1,0 +1,22 @@
+#tournaments {
+  padding: 2em 5em;
+}
+
+#tournaments .tournaments-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#tournaments .tournaments-list .tournament {
+  width: 45%;
+}
+
+@media screen and (max-width: 650px) {
+  #tournaments .tournaments-list .tournament {
+    width: 100%;
+  }
+  #tournaments {
+    padding: 2em;
+  }
+}

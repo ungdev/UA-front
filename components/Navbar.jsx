@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
-import Button from './UI/Button';
 import Modal from './UI/Modal';
 import './Navbar.css';
 
@@ -48,13 +49,15 @@ const Navbar = () => {
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
-    _setMobileMenuVisible(visible);
+    if (window.innerWidth <= 1000) {
+      _setMobileMenuVisible(visible);
 
-    if (visible) {
-      document.getElementsByTagName('html')[0].style.overflow = null;
-    }
-    else {
-      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      if (visible) {
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      }
+      else {
+        document.getElementsByTagName('html')[0].style.overflow = 'auto';
+      }
     }
   };
 
@@ -88,11 +91,13 @@ const Navbar = () => {
       </Link>
 
       <div className="navbar-container">
-        <Button primary className="login-button" onClick={() => setLoginModalVisible(true)}>
-          Connexion
-        </Button>
+        <SimpleBar style={{ height: '100%' }}>
+          <div className="login-button">
+            <button type="button" onClick={() => setLoginModalVisible(true)}>Connexion</button>
+          </div>
 
-        { navLinks }
+          { navLinks }
+        </SimpleBar>
 
         <div className="footer">
           <div className="social-links">

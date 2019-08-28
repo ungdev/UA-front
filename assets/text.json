@@ -1,0 +1,48 @@
+{
+  "index": {
+    "information": {
+      "catchPhrase": "VENEZ RETROUVER L'AMBIANCE D'UNE LAN PARTY AUTHENTIQUE AVEC VOTRE ÉQUIPE.",
+      "description": "L'UTT Arena revient pour sa 16ème édition les 6, 7 et 8 décembre 2019. Cette édition aura lieu – comme l'année dernière – dans le cadre du Festival des Jeux au Parc des Expositions de Troyes, le Cube. Au programme 5 tournois sur des incontournables de l'E-sport, du skill, des personnalités et des rencontres, de nombreuses animations, des lots et du cashprize à gagner, qui rendront cette édition plus intense et vibrante que jamais. Pas fan des jeux proposés ? Pas envie d’être dans un cadre compétitif ? L’UTT Arena propose un tournoi libre, composé des jeux que vous choisissez ! Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et viens imposer la domination de ton équipe dans le Cube."
+    },
+    "tournois": {
+      "catchPhrase": "LES QUATRE JEUX À L’UTT ARENA 2019."
+    }
+  },
+  "toornamentList": [
+    {
+      "title": "League of Legend (Pro)",
+      "cashprize": "1250€",
+      "slot": 64,
+      "img": "https://exp.gg/wp-content/uploads/2018/10/fnatic-pickem-768x432.jpg",
+      "link": "/tournaments/lolpro"
+    },
+    {
+      "title": "League of Legend (Amateur)",
+      "cashprize": "1250€",
+      "slot": 64,
+      "img": "https://cdn.mgig.fr/2019/05/mg-2c26d6dc-25f3-4b20-966c-w1000h563-sc.jpg",
+      "link": "/tournaments/lolamateur"
+    },
+    {
+      "title": "Super Smash Bros Ultimate",
+      "cashprize": "1250€",
+      "slot": 64,
+      "img": "https://img.bfmtv.com/c/1256/708/88a/c71b34349143f15d3bc2ed1e4745e.jpeg",
+      "link": "/tournaments/ssbu"
+    },
+    {
+      "title": "Counter Strike : GO",
+      "cashprize": "1250€",
+      "slot": 64,
+      "img": "https://gamewave.fr/static/images/news/headers/cb6e9-meilleurjeu.jpg",
+      "link": "/tournaments/csgo"
+    },
+    {
+      "title": "Fornite",
+      "cashprize": "1250€",
+      "slot": 64,
+      "img": "https://cdn2.unrealengine.com/Fortnite%2Fbattle-royale%2F09BP_Web_GetFornitePage_3UPMain-1920x1000-f8c6eabdf58b43b779e5762693908748572e6cb0.jpg",
+      "link": "/tournaments/fornite"
+    }
+  ]
+}
