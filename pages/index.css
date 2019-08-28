@@ -27,7 +27,7 @@
   background-color: var(--dark-color);
   transform: skew(15deg);
   filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
-  width: 40%;
+  width: 50%;
 }
 
 #home .home-header .home-title p {
@@ -36,12 +36,12 @@
   color: white;
   transform:skew(-15deg);
   margin: 0;
-  font-size: calc(0.029 * calc(100vw - 280px));
+  font-size: calc(0.029 * (100vw - 280px));
   letter-spacing: 1px;
 }
 
 #home .home-header .home-title .main {
-  font-size: calc(0.065 * calc(100vw - 280px));
+  font-size: calc(0.065 * (100vw - 280px));
 }
 
 #home .home-toornament .list-toornaments {

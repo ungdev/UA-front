@@ -7,7 +7,7 @@
 
 .table .divider {
   height: 2px;
-  background: linear-gradient(to right, var(--primary-color) 15%, var(--secondary-color) 85%);
+  background: var(--gradient);
 }
 
 .table thead tr th {

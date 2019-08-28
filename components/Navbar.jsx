@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
+import Button from './UI/Button';
 import Modal from './UI/Modal';
 import './Navbar.css';
 
@@ -92,9 +93,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          <div className="login-button">
-            <button type="button" onClick={() => setLoginModalVisible(true)}>Connexion</button>
-          </div>
+          <Button primary className="login-button" onClick={() => setLoginModalVisible(true)}>Connexion</Button>
 
           { navLinks }
         </SimpleBar>
