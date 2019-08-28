@@ -6,13 +6,13 @@ import './Button.css';
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = (props) => (
+const Button = ({ className, primary, onClick, children }) => (
   <button
     type="button"
-    className={`button ${props.className} ${props.primary ? 'primary' : ''}`}
-    onClick={props.onClick}
+    className={`button ${className} ${primary ? 'primary' : ''}`}
+    onClick={onClick}
   >
-    {props.children}
+    {children}
   </button>
 );
 

@@ -7,32 +7,32 @@ import './Modal.css';
 /**
  * Displays a modal window
  */
-const Modal = (props) => {
-  const footer = props.footer !== ''
-    ? props.footer
+const Modal = ({ title, children, footer, closable, visible, onCancel, onOk, className }) => {
+  const footerContent = footer !== ''
+    ? footer
     : (
       <>
-        <Button onClick={props.onCancel}>Annuler</Button>
-        <Button onClick={props.onOk} primary>Ok</Button>
+        <Button onClick={onCancel}>Annuler</Button>
+        <Button onClick={onOk} primary>Ok</Button>
       </>
     );
 
   return (
-    <div className={props.className}>
-      <div className={`modal ${props.visible ? 'active' : ''}`}>
-        <div className="modal-overlay" onClick={() => props.closable && props.onCancel()} />
+    <div className={className}>
+      <div className={`modal ${visible ? 'active' : ''}`}>
+        <div className="modal-overlay" onClick={() => closable && onCancel()} />
 
         <div className="modal-container">
-          <div className="modal-title">{props.title}</div>
+          <div className="modal-title">{title}</div>
 
-          {props.closable && (
-            <div className="modal-close-button" onClick={props.onCancel}>
+          {closable && (
+            <div className="modal-close-button" onClick={onCancel}>
               <span />
               <span />
             </div>
           )}
-          <div className="modal-content">{props.children}</div>
-          <div className="modal-footer">{footer}</div>
+          <div className="modal-content">{children}</div>
+          <div className="modal-footer">{footerContent}</div>
         </div>
       </div>
     </div>

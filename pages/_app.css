@@ -11,6 +11,7 @@
   --primary-color: #fb560c;
   --secondary-color: #e21562;
   --dark-color: #202020;
+  --gradient: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -32,8 +33,6 @@ img {
 .centered {
   display: block;
   margin: auto;
-  width: -webkit-min-content;
-  width: -moz-min-content;
   width: min-content;
 }
 
@@ -47,8 +46,6 @@ img {
   top: 0;
   left: 280px;
   width: calc(100% - 280px - 4em);
-  height: -webkit-min-content;
-  height: -moz-min-content;
   height: min-content;
 }
 
