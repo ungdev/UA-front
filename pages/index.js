@@ -32,7 +32,7 @@ const Home = () => (
       </div>
     </div>
     <div className="home-countdown margin-bottom padding">
-      <Countdown date={new Date('December 6, 2019 17:00:00')} />
+      <Countdown date={new Date('September 15, 2019 17:00:00')} />
     </div>
     <div className="home-info margin-bottom padding">
       <Title align="center">INFORMATIONS</Title>
