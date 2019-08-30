@@ -40,7 +40,7 @@
 }
 
 .input-container .input-value.focus::after {
-  background: linear-gradient(to right, var(--primary-color) 15%, var(--secondary-color) 85%);
+  background: var(--gradient);
 }
 
 .input-container .input-label.focus {
