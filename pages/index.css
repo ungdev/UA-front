@@ -44,6 +44,11 @@
   font-size: calc(0.065 * calc(100vw - 280px));
 }
 
+#home .home-info span {
+  color: #ee343a;
+  font-weight: 700;
+}
+
 #home .home-toornament .list-toornaments {
   display: flex;
   justify-content: space-between;
