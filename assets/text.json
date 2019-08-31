@@ -10,14 +10,14 @@
   },
   "toornamentList": [
     {
-      "title": "League of Legend (Pro)",
+      "title": "League of Legends (Pro)",
       "cashprize": "1250€",
       "slot": 64,
       "img": "https://exp.gg/wp-content/uploads/2018/10/fnatic-pickem-768x432.jpg",
       "link": "/tournaments/lolpro"
     },
     {
-      "title": "League of Legend (Amateur)",
+      "title": "League of Legends (Amateur)",
       "cashprize": "1250€",
       "slot": 64,
       "img": "https://cdn.mgig.fr/2019/05/mg-2c26d6dc-25f3-4b20-966c-w1000h563-sc.jpg",
@@ -93,5 +93,30 @@
         "text": "Nous mettons à disposition des joueurs des loges communes avec un accès à l'eau et aux douches ! Pensez à ramener vos duvets si vous souhaitez en profiter ! Nous metterons à disposition des tapis pour plus de confort."
       }
     ]
+  },
+  "lolpro": {
+    "title": "League of Legends (Pro)",
+    "format": "16 équipes réparties en 4 poules.<ul><li>BO1 en poule</li><li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li><li>Match en BO1 jusqu'en demi finale du Winner</li><li>Match en BO3 à partir des demies finales du Winner</li></ul>",
+    "cashprize": "2000€ pour les premiers puis lots"
+  },
+  "lolamateur": {
+    "title": "League of Legends (Amateur)",
+    "format": "16 équipes réparties en 4 poules.<ul><li>BO1 en poule</li><li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li><li>Match en BO1 jusqu'en demi finale du Winner</li><li>Match en BO3 à partir des demies finales du Winner</li></ul>",
+    "cashprize": "Lots pour les finalistes"
+  },
+  "fornite": {
+    "title": "Fornite Duo",
+    "format": "48 duos réparties en 4 poules.<ul><li>BO1 en poule</li><li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li><li>Match en BO1 jusqu'en demi finale du Winner</li><li>Match en BO3 à partir des demies finales du Winner</li></ul>",
+    "cashprize": "1000€ pour les premiers puis lots"
+  },
+  "csgo": {
+    "title": "Counter strike : GO",
+    "format": "16 équipes réparties en 4 poules.<ul><li>BO1 en poule</li><li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li><li>Match en BO1 jusqu'en demi finale du Winner</li><li>Match en BO3 à partir des demies finales du Winner</li></ul>",
+    "cashprize": "1000€ pour les premiers puis lots"
+  },
+  "ssbu": {
+    "title": "Super smash bros ultimate",
+    "format": "16 équipes réparties en 4 poules.<ul><li>BO1 en poule</li><li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li><li>Match en BO1 jusqu'en demi finale du Winner</li><li>Match en BO3 à partir des demies finales du Winner</li></ul>",
+    "cashprize": "400€ pour le premier puis lots"
   }
 }

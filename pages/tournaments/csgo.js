@@ -1,3 +1,15 @@
-const Csgo = () => 'CS:GO';
+import React from 'react';
+import { Tournament } from '../../components';
+import text from '../../assets/text.json';
+
+const Csgo = () => (
+  <Tournament
+    bgImg="https://gamewave.fr/static/images/news/headers/cb6e9-meilleurjeu.jpg"
+    logo="http://pluspng.com/img-png/file-counter-strike-global-offensive-logo-png-658.png"
+    text={text.csgo}
+    reglement="https://backoffice.gamers-assembly.net/sites/default/files/tournament/OES-2019%20-%20R%C3%A8glement%20-%20League%20of%20Legends.pdf"
+    dataSource={[]}
+  />
+);
 
 export default Csgo;
