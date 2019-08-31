@@ -42,6 +42,11 @@ img {
   width: min-content;
 }
 
+span {
+  color: #ee343a;
+  font-weight: 700;
+}
+
 /**********************/
 /** _app.js specific **/
 /**********************/

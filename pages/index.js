@@ -11,15 +11,15 @@ const columns = [
 ];
 
 const dataSource = [
-  { key: '1', titre: <b>Format</b>, description: 'Bring Your Own Computer (casque, multiprise et RJ45 à amener)' },
-  { key: '2', titre: <b>Ouverture</b>, description: '6 décembre 2019 - 17h' },
-  { key: '3', titre: <b>Fermeture</b>, description: '8 décembre 2019 - 18h' },
-  { key: '4', titre: <b>Nourriture</b>, description: 'Sur place' },
-  { key: '5', titre: <b>Horaires</b>, description: '24h/24 (nourriture aussi)' },
-  { key: '6', titre: <b>Places</b>, description: '460' },
-  { key: '7', titre: <b>Tarif</b>, description: '15€' },
-  { key: '8', titre: <b>Âge minimum</b>, description: '15 ans' },
-  { key: '9', titre: <b>Tournois</b>, description: '5 (les tournois commencent le samedi à 10h précises)' },
+  { key: '1', titre: <strong>Format</strong>, description: 'Bring Your Own Computer (casque, multiprise et RJ45 à amener)' },
+  { key: '2', titre: <strong>Ouverture</strong>, description: '6 décembre 2019 - 17h' },
+  { key: '3', titre: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
+  { key: '4', titre: <strong>Nourriture</strong>, description: 'Sur place' },
+  { key: '5', titre: <strong>Horaires</strong>, description: '24h/24 (nourriture aussi)' },
+  { key: '6', titre: <strong>Places</strong>, description: '460' },
+  { key: '7', titre: <strong>Tarif</strong>, description: '15€' },
+  { key: '8', titre: <strong>Âge minimum</strong>, description: '15 ans' },
+  { key: '9', titre: <strong>Tournois</strong>, description: '5 (les tournois commencent le samedi à 10h précises)' },
 ];
 
 const Home = () => (

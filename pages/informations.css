@@ -1,0 +1,28 @@
+#info {
+  padding: 2em 5em;
+}
+
+#info .margin-bottom {
+  margin-bottom: 2em;
+}
+
+#info .info-acces {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+#info .info-acces .info-map {
+  width: 45%;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 650px) {
+  #info {
+    padding: 2em;
+  }
+  #info .info-acces .info-map {
+    width: 100%;
+  }
+}
