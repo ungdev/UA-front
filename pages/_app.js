@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import ReactGA from 'react-ga';
 
 import { Navbar } from '../components';
 
 import './_app.css';
 
-const App = (props) => {
-  const { Component, pageProps } = props;
-
+const App = ({ Component, pageProps }) => {
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      if (!window.GA_INITIALIZED) {
+        ReactGA.initialize(process.env.GA_ID);
+        window.GA_INITIALIZED = true;
+      }
+      ReactGA.set({ page: window.location.pathname });
+      ReactGA.pageview(window.location.pathname);
+    }
+  });
   return (
     <div>
       <Head>
