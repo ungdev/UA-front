@@ -42,7 +42,11 @@ const Tournament = ({ bgImg, logo, text, reglement, dataSource }) => (
 );
 
 Tournament.propTypes = {
-
+  bgImg: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
+  reglement: PropTypes.string.isRequired,
+  text: PropTypes.object.isRequired,
+  dataSource: PropTypes.array.isRequired,
 };
 
 export default Tournament;
