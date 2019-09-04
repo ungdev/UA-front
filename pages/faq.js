@@ -1,9 +1,8 @@
 import React from 'react';
-import parse from 'html-react-parser';
 import { Title, Collapse } from '../components';
 
 import './faq.css';
-import faq from '../assets/faq.json';
+import faq from '../assets/faq';
 
 const FAQ = () => (
   <div id="faq">
@@ -14,7 +13,7 @@ const FAQ = () => (
         {category.entries.map((entrie, i) => (
           // eslint-disable-next-line react/no-array-index-key
           <Collapse key={`${category.title}-${i}`} title={entrie.question}>
-            {parse(entrie.answer)}
+            {entrie.answer}
           </Collapse>
         ))}
       </div>

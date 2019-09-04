@@ -9,11 +9,6 @@
   margin-bottom: 1em;
 }
 
-.tournament .tournament-header .tournament-logo {
-  max-width: 50%;
-  margin: 0 auto;
-}
-
 .tournament .tournament-content {
   padding: 0 5em;
 }
@@ -37,6 +32,6 @@
   }
 
   .tournament .tournament-content {
-    padding: 0 2em;
+    padding: 0 1em;
   }
 }

@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import parse from 'html-react-parser';
 
 import Title from './UI/Title';
 import Table from './UI/Table';
 import Button from './UI/Button';
 import './Tournament.css';
 
-const Tournament = ({ bgImg, logo, text, reglement, dataSource }) => (
+const Tournament = ({ bgImg, text, reglement, dataSource }) => (
   <div className="tournament">
-    <div className="tournament-header" style={{ backgroundImage: `url("${bgImg}")` }}>
-      <img src={logo} alt="logo" className="tournament-logo" />
-    </div>
+    <div className="tournament-header" style={{ backgroundImage: `url("${bgImg}")` }} />
     <div className="tournament-content">
       <Title align="center">{text.title}</Title>
       <div className="tournament-signin">
         <Button primary>S&apos;inscrire</Button>
       </div>
       <Title level={2}>Format</Title>
-      <p>{parse(text.format)}</p>
+      <p>{text.format}</p>
       <Title level={2}>Cashprize</Title>
       <p>{text.cashprize}</p>
       <Title level={2}>Réglement</Title>
@@ -43,7 +40,6 @@ const Tournament = ({ bgImg, logo, text, reglement, dataSource }) => (
 
 Tournament.propTypes = {
   bgImg: PropTypes.string.isRequired,
-  logo: PropTypes.string.isRequired,
   reglement: PropTypes.string.isRequired,
   text: PropTypes.object.isRequired,
   dataSource: PropTypes.array.isRequired,

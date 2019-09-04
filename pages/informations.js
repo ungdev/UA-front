@@ -1,27 +1,26 @@
 import React from 'react';
-import parse from 'html-react-parser';
 import { Title, Table } from '../components';
 
 import './informations.css';
-import text from '../assets/text.json';
+import text from '../assets/text';
 
 const columns = [
   { title: '', key: 'type' },
-  { title: 'Vendredi 6', key: 'ven' },
-  { title: 'Samedi 7', key: 'sam' },
-  { title: 'Dimanche 8', key: 'dim' },
+  { title: <>Vendredi&nbsp;6</>, key: 'ven' },
+  { title: <>Samedi&nbsp;7</>, key: 'sam' },
+  { title: <>Dimanche&nbsp;8</>, key: 'dim' },
 ];
 
 const dataSource = [
-  { key: '1', type: 'UTT Arena', ven: '17h - 00h', sam: '00h - 00h', dim: '00h - 18h' },
-  { key: '2', type: 'Festival des jeux', ven: '17h - 21h', sam: '11h - 22h', dim: '11h - 18h' },
+  { key: '1', type: 'UTT Arena', ven: '17h-00h', sam: '00h-00h', dim: '00h-18h' },
+  { key: '2', type: 'Festival des jeux', ven: '17h-21h', sam: '11h-22h', dim: '11h-18h' },
 ];
 
 const Informations = () => (
   <div id="info">
     <Title align="center">présentation</Title>
     <div className="margin-bottom">
-      <p>{parse(text.info.presentation)}</p>
+      <p>{text.info.presentation}</p>
     </div>
     <Title align="center">accès</Title>
     <div>
@@ -72,7 +71,7 @@ const Informations = () => (
     </div>
     <Title align="center">infos joueurs</Title>
     <div className="margin-bottom">
-      <p>{parse(text.info.joueurs.desc)}</p>
+      <p>{text.info.joueurs.desc}</p>
       <Title level={4}>Ce qu&apos;il faut apporter</Title>
       <ul>
         {text.info.joueurs.apporte.map((item) => (

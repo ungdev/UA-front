@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Collapse, Title } from '../../components';
 
-import text from '../../assets/text.json';
+import text from '../../assets/text';
 import './index.css';
 
 const Tournaments = () => (

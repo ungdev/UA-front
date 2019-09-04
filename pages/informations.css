@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 650px) {
   #info {
-    padding: 2em;
+    padding: 1em;
   }
   #info .info-acces .info-map {
     width: 100%;

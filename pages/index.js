@@ -1,8 +1,7 @@
 import React from 'react';
-import parse from 'html-react-parser';
 import { Title, VideoContainer, Collapse, Table, Countdown } from '../components';
 
-import text from '../assets/text.json';
+import text from '../assets/text';
 import './index.css';
 
 const columns = [
@@ -37,7 +36,7 @@ const Home = () => (
     <div className="home-info margin-bottom padding">
       <Title align="center">INFORMATIONS</Title>
       <Title level={4} align="center">{text.index.information.catchPhrase}</Title>
-      <p>{parse(text.index.information.description)}</p>
+      <p>{text.index.information.description}</p>
       <VideoContainer
         src="https://www.youtube.com/embed/YZKiylJWSCM"
         title="Teaser"
