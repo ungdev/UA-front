@@ -1,0 +1,9 @@
+#legal {
+  padding: 2em 5em;
+}
+
+@media screen and (max-width: 650px) {
+  #legal {
+    padding: 1em;
+  }
+}
