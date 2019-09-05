@@ -9,6 +9,8 @@ import Textarea from './UI/Textarea';
 import VideoContainer from './UI/VideoContainer';
 import Countdown from './UI/Countdown';
 import Tournament from './Tournament';
+import Card from './UI/Card';
+import CardsTournaments from './CardsTournaments';
 
 export {
   Navbar,
@@ -22,4 +24,6 @@ export {
   VideoContainer,
   Countdown,
   Tournament,
+  Card,
+  CardsTournaments,
 };

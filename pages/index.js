@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, VideoContainer, Collapse, Table, Countdown } from '../components';
+import { Title, VideoContainer, Table, Countdown, CardsTournaments } from '../components';
 
 import text from '../assets/text';
 import './index.css';
@@ -16,7 +16,7 @@ const dataSource = [
   { key: '4', titre: <strong>Nourriture</strong>, description: 'Sur place' },
   { key: '5', titre: <strong>Horaires</strong>, description: '24h/24 (nourriture aussi)' },
   { key: '6', titre: <strong>Places</strong>, description: '460' },
-  { key: '7', titre: <strong>Tarif</strong>, description: '15€' },
+  { key: '7', titre: <strong>Tarif</strong>, description: '15€ joueur, 6€ accompagnateur' },
   { key: '8', titre: <strong>Âge minimum</strong>, description: '15 ans' },
   { key: '9', titre: <strong>Tournois</strong>, description: '5 (les tournois commencent le samedi à 10h précises)' },
 ];
@@ -45,26 +45,7 @@ const Home = () => (
       <Table columns={columns} dataSource={dataSource} />
     </div>
     <div className="home-toornament margin-bottom padding">
-      <Title align="center">TOURNOIS</Title>
-      <Title level={4} align="center">{text.index.tournois.catchPhrase}</Title>
-      <div className="list-toornaments">
-        { text.toornamentList.map(({ title, cashprize, slot, img }) => (
-          <div className="toornament" key={title}>
-            <Collapse
-              title={(
-                <div>
-                  <p>{title}</p>
-                  <p>{`Cashprize: ${cashprize}`}</p>
-                  <p>{`Slot: 0/${slot}`}</p>
-                </div>
-              )}
-              imgSrc={img}
-            >
-              TEAM
-            </Collapse>
-          </div>
-        ))}
-      </div>
+      <CardsTournaments />
     </div>
     <div className="home-partenaires margin-bottom padding">
       <Title align="center">PARTENAIRES</Title>
