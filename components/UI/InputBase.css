@@ -46,3 +46,13 @@
 .input-container .input-label.focus {
   color: var(--primary-color);
 }
+
+textarea {
+  height: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+  textarea {
+    height: 200px;
+  }
+}
