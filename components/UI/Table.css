@@ -1,23 +1,27 @@
-.table {
+#table {
+  overflow-x: auto;
+}
+
+#table table {
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
-  margin: 1em 0;
+  margin-bottom: 1em;
 }
 
-.table .divider {
+#table table .divider {
   height: 2px;
   background: var(--gradient);
 }
 
-.table thead tr th {
+#table table thead tr th {
   font-size: 1.125rem;
   font-weight: 600;
   padding: 0.5em 0.25em;
   text-align: left;
 }
 
-.table tbody tr td {
+#table table tbody tr td {
   border-bottom: 1px solid rgba(200, 200, 200, 1);
   padding: 0.5em 0.25em;
 }

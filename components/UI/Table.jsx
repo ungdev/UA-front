@@ -9,29 +9,31 @@ import './Table.css';
 const Table = ({ columns, dataSource }) => {
   const columnsList = columns.map((column) => column.key);
   return (
-    <table className="table">
-      <thead>
-        <tr id="table-header">
-          {columns.map((column) => (
-            <th id={column.key}>{column.title}</th>
-          ))}
-        </tr>
-        <tr id="divider">
-          <td colSpan={columnsList.length}>
-            <div className="divider" />
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        {dataSource.map((row) => (
-          <tr id={row.key}>
-            {columnsList.map((column) => (
-              <td id={row.key + row[column]}>{row[column]}</td>
+    <div id="table">
+      <table>
+        <thead>
+          <tr id="table-header">
+            {columns.map((column) => (
+              <th id={column.key}>{column.title}</th>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+          <tr id="divider">
+            <td colSpan={columnsList.length}>
+              <div className="divider" />
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          {dataSource.map((row) => (
+            <tr id={row.key}>
+              {columnsList.map((column) => (
+                <td id={row.key + row[column]}>{row[column]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

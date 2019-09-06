@@ -12,8 +12,8 @@ const columns = [
 ];
 
 const dataSource = [
-  { key: '1', type: 'UTT Arena', ven: '17h-00h', sam: '00h-00h', dim: '00h-18h' },
-  { key: '2', type: 'Festival des jeux', ven: '17h-21h', sam: '11h-22h', dim: '11h-18h' },
+  { key: '1', type: <>UTT&nbsp;Arena</>, ven: '17h - 00h', sam: '00h - 00h', dim: '00h - 18h' },
+  { key: '2', type: <>Festival&nbsp;des&nbsp;jeux</>, ven: '17h - 21h', sam: '11h - 22h', dim: '11h - 18h' },
 ];
 
 const Informations = () => (
