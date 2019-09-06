@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const postToSlack = (firstname, lastname, email, content) => {
-  axios.post('https://hooks.slack.com/services/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',
-    { blocks: [
+  axios.post('https://hooks.slack.com/services/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 ', {
+    blocks: [
       {
         type: 'section',
         text: {
@@ -20,12 +20,11 @@ const postToSlack = (firstname, lastname, email, content) => {
           text: `• Email : ${email}\n• Message : ${content}`,
         },
       },
-    ] },
-    {
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
+    ],
+  },
+  {
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  });
 };
 
 // eslint-disable-next-line import/prefer-default-export
