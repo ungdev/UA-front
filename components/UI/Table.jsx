@@ -11,7 +11,7 @@ const Table = ({ columns, dataSource }) => {
   return (
     <table className="table">
       <thead>
-        <tr id="header">
+        <tr id="table-header">
           {columns.map((column) => (
             <th id={column.key}>{column.title}</th>
           ))}

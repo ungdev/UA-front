@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title, Table } from '../components';
+import { Title, Table, Header } from '../components';
 
 import './informations.css';
 import text from '../assets/text';
@@ -17,85 +17,88 @@ const dataSource = [
 ];
 
 const Informations = () => (
-  <div id="info">
-    <Title align="center">présentation</Title>
-    <div className="margin-bottom">
-      <p>{text.info.presentation}</p>
-    </div>
-    <Title align="center">accès</Title>
-    <div>
-      <Title level={4}>ADRESSE</Title>
-      <p>
-        <strong>UTT Arena</strong>
-        , 20 rue des Gayettes, 10000 Troyes
-      </p>
-      <div className="info-acces">
-        <div className="info-map">
-          <iframe
-            height="320"
-            width="100%"
-            title="Google Maps"
-            src="https://maps.google.com/maps?q=UTT Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            frameBorder="0"
-            scrolling="no"
-            marginHeight="0"
-            marginWidth="0"
-          />
-        </div>
-        <div className="info-map">
-          {text.info.acces.map((moyen) => (
-            <React.Fragment key={moyen.title}>
-              <Title level={4}>{moyen.title}</Title>
-              <p>{moyen.text}</p>
-            </React.Fragment>
-          ))}
+  <div>
+    <Header />
+    <div id="info">
+      <Title align="center">présentation</Title>
+      <div className="margin-bottom">
+        <p>{text.info.presentation}</p>
+      </div>
+      <Title align="center">accès</Title>
+      <div>
+        <Title level={4}>ADRESSE</Title>
+        <p>
+          <strong>UTT Arena</strong>
+          , 20 rue des Gayettes, 10000 Troyes
+        </p>
+        <div className="info-acces">
+          <div className="info-map">
+            <iframe
+              height="320"
+              width="100%"
+              title="Google Maps"
+              src="https://maps.google.com/maps?q=UTT Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight="0"
+              marginWidth="0"
+            />
+          </div>
+          <div className="info-map">
+            {text.info.acces.map((moyen) => (
+              <React.Fragment key={moyen.title}>
+                <Title level={4}>{moyen.title}</Title>
+                <p>{moyen.text}</p>
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-    <Title align="center">horaires</Title>
-    <div className="margin-bottom">
-      <Table columns={columns} dataSource={dataSource} />
-    </div>
-    <Title align="center">billeterie</Title>
-    <div className="margin-bottom">
-      {text.info.billeterie.map((paraph) => (
-        <div>
-          <p>{paraph.text}</p>
-          <ul>
-            {paraph.list.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <Title align="center">infos joueurs</Title>
-    <div className="margin-bottom">
-      <p>{text.info.joueurs.desc}</p>
-      <Title level={4}>Ce qu&apos;il faut apporter</Title>
-      <ul>
-        {text.info.joueurs.apporte.map((item) => (
-          <li>{item}</li>
+      <Title align="center">horaires</Title>
+      <div className="margin-bottom">
+        <Table columns={columns} dataSource={dataSource} />
+      </div>
+      <Title align="center">billeterie</Title>
+      <div className="margin-bottom">
+        {text.info.billeterie.map((paraph) => (
+          <div>
+            <p>{paraph.text}</p>
+            <ul>
+              {paraph.list.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
-      <p>{text.info.joueurs.vente}</p>
-      <Title level={4}>Ce qui est fourni</Title>
-      <ul>
-        {text.info.joueurs.fourni.map((item) => (
-          <li>{item}</li>
+      </div>
+      <Title align="center">infos joueurs</Title>
+      <div className="margin-bottom">
+        <p>{text.info.joueurs.desc}</p>
+        <Title level={4}>Ce qu&apos;il faut apporter</Title>
+        <ul>
+          {text.info.joueurs.apporte.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <p>{text.info.joueurs.vente}</p>
+        <Title level={4}>Ce qui est fourni</Title>
+        <ul>
+          {text.info.joueurs.fourni.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <Title level={4}>Streaming</Title>
+        <p>{text.info.joueurs.streaming}</p>
+      </div>
+      <Title align="center">services</Title>
+      <div className="margin-bottom">
+        {text.info.services.map((service) => (
+          <React.Fragment key={service.title}>
+            <Title level={4}>{service.title}</Title>
+            <p>{service.text}</p>
+          </React.Fragment>
         ))}
-      </ul>
-      <Title level={4}>Streaming</Title>
-      <p>{text.info.joueurs.streaming}</p>
-    </div>
-    <Title align="center">services</Title>
-    <div className="margin-bottom">
-      {text.info.services.map((service) => (
-        <React.Fragment key={service.title}>
-          <Title level={4}>{service.title}</Title>
-          <p>{service.text}</p>
-        </React.Fragment>
-      ))}
+      </div>
     </div>
   </div>
 );

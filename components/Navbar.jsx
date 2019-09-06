@@ -41,7 +41,7 @@ const links = [
 
 const Navbar = () => {
   const { pathname } = useRouter();
-
+  const shortPath = pathname.match(/(\/[a-z]*)/)[0];
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
 
@@ -66,7 +66,7 @@ const Navbar = () => {
   const navLinks = links.map((link) => (
     <Link href={link.href} key={link.href}>
       <a onClick={() => setMobileMenuVisible(false)}>
-        <div className={`nav-button ${link.href === pathname ? 'active' : ''}`}>{link.title}</div>
+        <div className={`nav-button ${link.href === shortPath ? 'active' : ''}`}>{link.title}</div>
       </a>
     </Link>
   ));

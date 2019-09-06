@@ -8,7 +8,7 @@ import './Tournament.css';
 
 const Tournament = ({ bgImg, text, reglement, dataSource }) => (
   <div className="tournament">
-    <div className="tournament-header" style={{ backgroundImage: `url("${bgImg}")` }} />
+    <img className="tournament-header" alt="tournament-img" src={bgImg} />
     <div className="tournament-content">
       <Title align="center">{text.title}</Title>
       <div className="tournament-signin">

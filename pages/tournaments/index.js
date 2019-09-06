@@ -1,11 +1,14 @@
 import React from 'react';
-import { CardsTournaments } from '../../components';
+import { CardsTournaments, Header } from '../../components';
 
 import './index.css';
 
 const Tournaments = () => (
-  <div id="tournaments">
-    <CardsTournaments />
+  <div>
+    <Header />
+    <div id="tournaments">
+      <CardsTournaments />
+    </div>
   </div>
 );
 

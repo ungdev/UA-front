@@ -1,11 +1,7 @@
 .tournament .tournament-header {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  object-fit: cover;
+  height: 40vh;
+  width: 100%;
   margin-bottom: 1em;
 }
 

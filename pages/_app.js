@@ -9,8 +9,6 @@ import './_app.css';
 
 const App = ({ Component, pageProps }) => {
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(process.env.GA_ID);
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(process.env.GA_ID);

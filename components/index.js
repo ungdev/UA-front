@@ -11,6 +11,7 @@ import Countdown from './UI/Countdown';
 import Tournament from './Tournament';
 import Card from './UI/Card';
 import CardsTournaments from './CardsTournaments';
+import Header from './Header';
 
 export {
   Navbar,
@@ -26,4 +27,5 @@ export {
   Tournament,
   Card,
   CardsTournaments,
+  Header,
 };
