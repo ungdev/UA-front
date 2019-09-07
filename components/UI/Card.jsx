@@ -24,7 +24,7 @@ const Card = ({ imgSrc, content, textButton, onClick, link }) => {
 
 Card.propTypes = {
   imgSrc: PropTypes.string,
-  content: PropTypes.array.isRequired,
+  content: PropTypes.object.isRequired,
   textButton: PropTypes.string,
   onClick: PropTypes.func,
   link: PropTypes.string,

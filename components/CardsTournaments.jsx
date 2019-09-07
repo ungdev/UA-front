@@ -11,7 +11,7 @@ const CardsTournaments = () => (
     <Title level={4} align="center">{text.index.tournois.catchPhrase}</Title>
     <div className="cardstournaments-list">
       { text.toornamentList.map(({ title, cashprize, slot, img, link }) => (
-        <div className="tournament">
+        <div className="tournament" key={title}>
           <Card
             content={(
               <div>

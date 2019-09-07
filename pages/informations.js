@@ -61,11 +61,11 @@ const Informations = () => (
       <Title align="center">billeterie</Title>
       <div className="margin-bottom">
         {text.info.billeterie.map((paraph) => (
-          <div>
+          <div key={paraph.text}>
             <p>{paraph.text}</p>
             <ul>
               {paraph.list.map((item) => (
-                <li>{item}</li>
+                <li key={item}>{item}</li>
               ))}
             </ul>
           </div>
@@ -77,14 +77,14 @@ const Informations = () => (
         <Title level={4}>Ce qu&apos;il faut apporter</Title>
         <ul>
           {text.info.joueurs.apporte.map((item) => (
-            <li>{item}</li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
         <p>{text.info.joueurs.vente}</p>
         <Title level={4}>Ce qui est fourni</Title>
         <ul>
           {text.info.joueurs.fourni.map((item) => (
-            <li>{item}</li>
+            <li key={item}>{item}</li>
           ))}
         </ul>
         <Title level={4}>Streaming</Title>

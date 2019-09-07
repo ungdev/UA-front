@@ -14,7 +14,7 @@ const Table = ({ columns, dataSource }) => {
         <thead>
           <tr id="table-header">
             {columns.map((column) => (
-              <th id={column.key}>{column.title}</th>
+              <th key={column.key}>{column.title}</th>
             ))}
           </tr>
           <tr id="divider">
@@ -25,9 +25,9 @@ const Table = ({ columns, dataSource }) => {
         </thead>
         <tbody>
           {dataSource.map((row) => (
-            <tr id={row.key}>
+            <tr key={row.key}>
               {columnsList.map((column) => (
-                <td id={row.key + row[column]}>{row[column]}</td>
+                <td key={row.key + row[column]}>{row[column]}</td>
               ))}
             </tr>
           ))}

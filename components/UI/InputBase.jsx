@@ -54,7 +54,8 @@ const InputBase = ({ id, label, placeholder, value, onChange, type, Component, o
               onChange={(e) => onChange(e.target.value)}
               onClick={() => setIsFocus(true)}
             >
-              { options.map((option) => (<option value={option.value}>{option.label}</option>)) }
+              { options.map((option) => (
+                <option value={option.value} key={option.value}>{option.label}</option>)) }
             </Component>
           )
           : (

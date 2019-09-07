@@ -18,10 +18,10 @@ const Legal = () => (
     <Title level={2}>Conditions générales de vente</Title>
     <div>
       {text.legal.vente.map(({ title, content }) => (
-        <>
+        <React.Fragment key={title}>
           <Title level={3}>{title}</Title>
           <p>{content}</p>
-        </>
+        </React.Fragment>
       ))}
     </div>
   </div>
