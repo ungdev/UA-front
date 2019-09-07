@@ -12,6 +12,7 @@ import Tournament from './Tournament';
 import Card from './UI/Card';
 import CardsTournaments from './CardsTournaments';
 import Header from './Header';
+import Select from './UI/Select';
 
 export {
   Navbar,
@@ -28,4 +29,5 @@ export {
   Card,
   CardsTournaments,
   Header,
+  Select,
 };

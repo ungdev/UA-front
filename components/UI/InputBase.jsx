@@ -23,7 +23,7 @@ const useOutside = (ref, setIsFocus) => {
 /**
  * Main component for input
  */
-const InputBase = ({ id, label, placeholder, value, onChange, type, Component }) => {
+const InputBase = ({ id, label, placeholder, value, onChange, type, Component, options }) => {
   const wrapperRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   useOutside(wrapperRef, setIsFocus);
@@ -41,17 +41,35 @@ const InputBase = ({ id, label, placeholder, value, onChange, type, Component })
         {label}
       </label>
       <div className={`input-value ${isFocus ? 'focus' : ''}`}>
-        <Component
-          className="input-html"
-          ref={wrapperRef}
-          type={type}
-          id={id}
-          name={id}
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onClick={() => setIsFocus(true)}
-        />
+        { Component === 'select'
+          ? (
+            <Component
+              className="input-html"
+              ref={wrapperRef}
+              type={type}
+              id={id}
+              name={id}
+              placeholder={placeholder}
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              onClick={() => setIsFocus(true)}
+            >
+              { options.map((option) => (<option value={option.value}>{option.label}</option>)) }
+            </Component>
+          )
+          : (
+            <Component
+              className="input-html"
+              ref={wrapperRef}
+              type={type}
+              id={id}
+              name={id}
+              placeholder={placeholder}
+              value={value}
+              onChange={(e) => onChange(e.target.value)}
+              onClick={() => setIsFocus(true)}
+            />
+          )}
       </div>
     </div>
   );
@@ -82,12 +100,17 @@ InputBase.propTypes = {
    * HTML native input type
    */
   type: PropTypes.oneOf(['text', 'password', 'number']),
+  /**
+   * Array of option for select
+   */
+  options: PropTypes.array,
 };
 
 InputBase.defaultProps = {
   placeholder: '',
   value: '',
   type: 'text',
+  options: [],
 };
 
 export default InputBase;

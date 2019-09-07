@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const postToSlack = (firstname, lastname, email, content) => {
+const postToSlack = (firstname, lastname, email, subject, content) => {
   axios.post('https://hooks.slack.com/services/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 ', {
     blocks: [
       {
@@ -17,7 +17,7 @@ const postToSlack = (firstname, lastname, email, content) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: `• Email : ${email}\n• Message : ${content}`,
+          text: `• Sujet : ${subject}\n• Email : ${email}\n• Message : ${content}`,
         },
       },
     ],
