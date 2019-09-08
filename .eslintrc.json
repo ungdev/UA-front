@@ -33,6 +33,6 @@
         "jsx-a11y/control-has-associated-label": ["off"],
         "jsx-a11y/anchor-is-valid": ["off"],
         "eol-last": ["off"],
-        "object-curly-newline": ["off"],
+        "object-curly-newline": ["off"]
     }
 }
