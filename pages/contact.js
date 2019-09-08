@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Header, Title, Input, Textarea, Button, Select } from '../components';
 import { postToSlack } from '../utils';
+
 import './contact.css';
 
 const options = [
@@ -22,6 +24,21 @@ const Contact = () => {
   const [email, setEmail] = useState('');
   const [content, setContent] = useState('');
   const [subject, setSubject] = useState('erreur');
+
+  const sendMsg = () => {
+    if (firstname === '' || lastname === '' || email === '' || content === '') {
+      toast.error('Veuillez remplir tous les champs');
+    } else if (!email.includes('@')) {
+      toast.error('Veuillez entrer une adresse mail valide');
+    } else {
+      toast.success('Votre message à bien été envoyé ;)');
+      postToSlack(firstname, lastname, email, subject, content);
+      setFirstname('');
+      setLastname('');
+      setEmail('');
+      setContent('');
+    }
+  };
 
   return (
     <div>
@@ -45,13 +62,7 @@ const Contact = () => {
         <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} id="msg" />
         <Button
           primary
-          onClick={() => {
-            postToSlack(firstname, lastname, email, subject, content);
-            setFirstname('');
-            setLastname('');
-            setEmail('');
-            setContent('');
-          }}
+          onClick={sendMsg}
         >
           Envoyer
         </Button>

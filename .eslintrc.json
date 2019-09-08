@@ -24,7 +24,6 @@
     ],
     "rules": {
         "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-        "brace-style": ["warn", "stroustrup"],
         "react/prop-types": ["off"],
         "react/jsx-props-no-spreading": ["off"],
         "react/destructuring-assignment": ["off"],
@@ -34,6 +33,6 @@
         "jsx-a11y/control-has-associated-label": ["off"],
         "jsx-a11y/anchor-is-valid": ["off"],
         "eol-last": ["off"],
-        "object-curly-newline": ["off"]
+        "object-curly-newline": ["off"],
     }
 }

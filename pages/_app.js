@@ -2,10 +2,19 @@ import React, { useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
+import { toast, Flip } from 'react-toastify';
 
 import { Navbar } from '../components';
 
+import 'react-toastify/dist/ReactToastify.css';
 import './_app.css';
+
+toast.configure({
+  autoClose: 2000,
+  pauseOnHover: false,
+  transition: Flip,
+  hideProgressBar: true,
+});
 
 const App = ({ Component, pageProps }) => {
   useEffect(() => {
