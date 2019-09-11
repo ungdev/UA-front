@@ -44,13 +44,13 @@
   font-size: calc(0.065 * (100vw - 280px));
 }
 
-#home .home-toornament .list-toornaments {
+#home .home-tournament .list-tournaments {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-#home .home-toornament .list-toornaments .toornament {
+#home .home-tournament .list-tournaments .tournament {
   width: 45%;
 }
 
@@ -79,7 +79,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  #home .home-toornament .list-toornaments .toornament {
+  #home .home-tournament .list-tournaments .tournament {
     width: 100%;
   }
   #home .padding {

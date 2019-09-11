@@ -26,7 +26,7 @@ const Home = () => (
     <div className="home-header margin-bottom">
       <img src="/static/2019-logo-notext-whiteshadow.svg" alt="logo" id="logo" />
       <div className="home-title">
-        <p className="main">utt arena</p>
+        <p className="main">UTT ARENA</p>
         <p>6, 7 et 8 décembre 2019</p>
       </div>
     </div>
@@ -44,7 +44,7 @@ const Home = () => (
       />
       <Table columns={columns} dataSource={dataSource} />
     </div>
-    <div className="home-toornament margin-bottom padding">
+    <div className="home-tournament margin-bottom padding">
       <CardsTournaments />
     </div>
     <div className="home-partenaires margin-bottom padding">

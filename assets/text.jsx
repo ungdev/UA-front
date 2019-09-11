@@ -6,13 +6,13 @@ const text = {
   index: {
     information: {
       catchPhrase: "VENEZ RETROUVER L'AMBIANCE D'UNE LAN PARTY AUTHENTIQUE AVEC VOTRE ÉQUIPE.",
-      description: <>L&apos;UTT Arena revient pour sa 17<sup>ème</sup> édition les <span>6, 7 et 8 décembre 2019</span>. Cette édition aura lieu – comme l&apos;année dernière – dans le cadre du <span>Festival des Jeux</span> au Parc des Expositions de Troyes, le Cube. Au programme <span>5 tournois</span> sur des incontournables de l&apos;E-sport, du skill, des personnalités et des rencontres, de nombreuses animations, des <span>lots</span> et du <span>cashprize</span> à gagner, qui rendront cette édition plus intense et vibrante que jamais. Pas fan des jeux proposés ? Pas envie d’être dans un cadre compétitif ? L’UTT Arena propose un <span>tournoi libre</span>, composé des jeux que vous choisissez ! Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et <span>viens imposer la domination de ton équipe dans le Cube</span>.</>,
+      description: <>L'UTT Arena revient pour sa 17<sup>ème</sup> édition les <span>6, 7 et 8 décembre 2019</span>. Cette édition aura lieu – comme l'année dernière – dans le cadre du <span>Festival des Jeux</span> au Parc des Expositions de Troyes, le Cube. Au programme <span>5 tournois</span> sur des incontournables de l'E-sport, du skill, des personnalités et des rencontres, de nombreuses animations, des <span>lots</span> et du <span>cashprize</span> à gagner, qui rendront cette édition plus intense et vibrante que jamais. Pas fan des jeux proposés ? Pas envie d’être dans un cadre compétitif ? L’UTT Arena propose un <span>tournoi libre</span>, composé des jeux que vous choisissez ! Alors récupère ta souris, ton casque et ton câble réseau, branche ton écran et <span>viens imposer la domination de ton équipe dans le Cube</span>.</>,
     },
     tournois: {
       catchPhrase: 'LES QUATRE JEUX À L’UTT ARENA 2019.',
     },
   },
-  toornamentList: [
+  tournamentList: [
     {
       title: 'League of Legends (Pro)',
       cashprize: 'à venir',
@@ -50,7 +50,7 @@ const text = {
     },
   ],
   info: {
-    presentation: <>L&apos;<span>UTT Arena</span> c&apos;est le plus gros événement de l&apos;association <span>UTT Net Group</span> en matière d&apos;e-sport. L’association a été créée en 1998 et avait pour vocation de réunir les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /> L’UA réalise sa <span>16<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d’examen de l’UTT avec une centaine de joueurs.<br /> Puis l&apos;événement a grandi, l’organisation a augmenté à 200 joueurs avec une scène dans la halle sportive de l’UTT.<br /> 2015 arriva, une opportunité unique nous a été offerte par la ville avec la création du Festival des Jeux. Nous avons donc déménagé au Cube et nous sommes depuis dans le format que vous connaissez !<br /> &Agrave; présent l’UTT Arena c’est <span>460 joueurs</span>, <span>5 tournois spotlights</span>, une scène de 70 m² et une centaine de bénévoles.<br /><br /> Et tout cela, c’est grâce à vous, les joueurs, qui nous faites confiance chaque année pour vous organiser un événement de folie, et à nos partenaires qui nous soutiennent chaque année dans l&apos;organisation de la LAN !</>,
+    presentation: (<>L'<span>UTT Arena</span> c'est le plus gros événement de l'association <span>UTT Net Group</span> en matière d'e-sport. L’association a été créée en 1998 et a pour but de réunir les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /> L’UA réalise sa <span>16<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d’examen de l’UTT avec une centaine de joueurs.<br /> Puis l'événement a grandi, l’organisation a augmenté à 200 joueurs avec une scène dans la halle sportive de l’UTT.<br /> 2015 arriva, une opportunité unique nous a été offerte par la ville avec la création du Festival des Jeux. Nous avons donc déménagé au Cube et nous sommes depuis dans le format que vous connaissez !<br /> &Agrave; présent l’UTT Arena c’est <span>460 joueurs</span>, <span>5 tournois spotlights</span>, une scène de 70 m² et une centaine de bénévoles.<br /><br /> Et tout cela, c’est grâce à vous, les joueurs, qui nous faites confiance chaque année pour vous organiser un événement de folie, et à nos partenaires qui nous soutiennent chaque année dans l'organisation de la LAN !</>),
     acces: [
       {
         title: 'Parking',
@@ -84,8 +84,8 @@ const text = {
     joueurs: {
       desc:
   <>
-    <strong>Rappel : l&apos;âge minimum pour participer au tournoi est de 15 ans.</strong><br /><br />
-      Pour les mineurs, une autorisation parentale sera demandée lors de l&apos;événement. <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
+    <strong>Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br /><br />
+      Pour les mineurs, une autorisation parentale sera demandée lors de l'événement. <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
   </>,
       apporte: ['Ton PC', 'Ton casque', 'Une multiprise', 'Un câble ethernet'],
       fourni: ['Une place assise évidemment', 'Un port ethernet', 'Une prise électrique'],
@@ -110,7 +110,7 @@ const text = {
     <ul>
       <li>BO1 en poule</li>
       <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu&apos;en demi finale du Winner</li>
+      <li>Match en BO1 jusqu'en demi finale du Winner</li>
       <li>Match en BO3 à partir des demies finales du Winner</li>
     </ul>
   </>,
@@ -124,7 +124,7 @@ const text = {
     <ul>
       <li>BO1 en poule</li>
       <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu&apos;en demi finale du Winner</li>
+      <li>Match en BO1 jusqu'en demi finale du Winner</li>
       <li>Match en BO3 à partir des demies finales du Winner</li>
     </ul>
   </>,
@@ -138,7 +138,7 @@ const text = {
     <ul>
       <li>BO1 en poule</li>
       <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu&apos;en demi finale du Winner</li>
+      <li>Match en BO1 jusqu'en demi finale du Winner</li>
       <li>Match en BO3 à partir des demies finales du Winner</li>
     </ul>
   </>,
@@ -166,7 +166,7 @@ const text = {
     <ul>
       <li>BO1 en poule</li>
       <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu&apos;en demi finale du Winner</li>
+      <li>Match en BO1 jusqu'en demi finale du Winner</li>
       <li>Match en BO3 à partir des demies finales du Winner</li>
     </ul>
   </>,
@@ -179,7 +179,7 @@ const text = {
     vente: [
       {
         title: 'Préambule',
-        content: <>Les présentes conditions générales de vente s&apos;appliquent à toutes les ventes conclues sur le site internet arena.utt.fr Le site internet arena.utt.fr est un service de :<br />UTT Net Group, association loi 1901<br />N° RNA : W103000699<br />situé au 12 rue Marie Curie 10004 Troyes<br />03 26 40 60 00<br />ung@utt.fr<br />Le site arena.utt.fr commercialise le produit suivant : Place pour la LAN et matériel en prévente ou location. Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la passation de sa commande. La validation de la commande vaut donc acceptation des conditions générales de vente.<br />Le paiement est assuré par le prestataire suivant :<br />BDE UTT, association loi 1901<br />sis au 12, rue Marie Curie, 10000 Troyes<br />SIRET 4483866720001<br /></>,
+        content: <>Les présentes conditions générales de vente s'appliquent à toutes les ventes conclues sur le site internet arena.utt.fr Le site internet arena.utt.fr est un service de :<br />UTT Net Group, association loi 1901<br />N° RNA : W103000699<br />situé au 12 rue Marie Curie 10004 Troyes<br />03 26 40 60 00<br />ung@utt.fr<br />Le site arena.utt.fr commercialise le produit suivant : Place pour la LAN et matériel en prévente ou location. Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la passation de sa commande. La validation de la commande vaut donc acceptation des conditions générales de vente.<br />Le paiement est assuré par le prestataire suivant :<br />BDE UTT, association loi 1901<br />sis au 12, rue Marie Curie, 10000 Troyes<br />SIRET 4483866720001<br /></>,
       },
       {
         title: 'Article I - Principe',
@@ -223,7 +223,7 @@ const text = {
       },
       {
         title: 'Article XI - Droit de rétractation',
-        content: <>Conformément à l&apos;article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l&apos;objet d&apos;un droit de rétractation. Toute commande est ferme et définitive.<br />Toutefois, l&apos;organisateur autorise tout inscrit à demander un remboursement de son inscription, au plus tard 7 jours calendaires avant la date de l&apos;évènement — soit le 30/11/22018 18:00 CET.<br />Toute demande doit être formulée par courriel addressé à arena@utt.fr, précisant le nom d&apos;utilisateur et l&apos;adresse courriel utilisée pour l&apos;inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l&apos;évènement, et interviendra sur la carte bleue ayant servi au paiement. <br />Compte-tenu des frais bancaires endossés, tout remboursement fera l&apos;objet d&apos;une retenue d&apos;un montant 1€ (un euro) sur le montant total à rembourser.</>,
+        content: <>Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit de rétractation. Toute commande est ferme et définitive.<br />Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription, au plus tard 7 jours calendaires avant la date de l'évènement — soit le 30/11/22018 18:00 CET.<br />Toute demande doit être formulée par courriel addressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra sur la carte bleue ayant servi au paiement. <br />Compte-tenu des frais bancaires endossés, tout remboursement fera l'objet d'une retenue d'un montant 1€ (un euro) sur le montant total à rembourser.</>,
       },
       {
         title: 'Article XII - Force majeure',
