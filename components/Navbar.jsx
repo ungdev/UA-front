@@ -116,12 +116,12 @@ const Navbar = () => {
       </div>
 
       <Modal
-        title="Titre"
+        title="Connexion"
         visible={loginModalVisible}
-        onCancel={() => setLoginModalVisible(false)}
-        onOk={() => setLoginModalVisible(false)}
+        footer={<Button primary onClick={() => setLoginModalVisible(false)}>Fermer</Button>}
       >
-        Contenu de la fenêtre
+        Les inscriptions ouvriront bientôt,
+        suivez-nous sur les réseaux sociaux pour connaître la date !
       </Modal>
     </div>
   );
