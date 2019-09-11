@@ -24,7 +24,7 @@ const dataSource = [
 const Home = () => (
   <div id="home">
     <div className="home-header margin-bottom">
-      <img src="/static/2019-logo-notext-whiteshadow.svg" alt="logo" id="logo" />
+      <img src="/static/logo-notext-whiteshadow.svg" alt="logo" id="logo" />
       <div className="home-title">
         <p className="main">UTT ARENA</p>
         <p>6, 7 et 8 décembre 2019</p>

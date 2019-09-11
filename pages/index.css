@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: url('/static/uabackground.jpg') no-repeat center;
+  background: url('/static/background.jpg') no-repeat center;
   background-size: cover;
 }
 
