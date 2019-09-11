@@ -70,12 +70,12 @@ Modal.propTypes = {
    * Function called when the user clicks on "Annuler" default button,
    * or outside the modal, or on the close button
    */
-  onCancel: PropTypes.func,
+  onCancel: PropTypes.func.isRequired,
 
   /**
    * Function called when the user clicks on "Ok" default button
    */
-  onOk: PropTypes.func, // eslint-disable-line react/no-unused-prop-types
+  onOk: PropTypes.func,
 
   /**
    * The class of the modal container
@@ -86,7 +86,6 @@ Modal.propTypes = {
 Modal.defaultProps = {
   footer: '',
   closable: true,
-  onCancel: () => {},
   onOk: () => {},
   className: '',
 };

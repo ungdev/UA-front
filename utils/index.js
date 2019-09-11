@@ -7,7 +7,7 @@ const postToSlack = (firstname, lastname, email, subject, content) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: `Message de *${firstname} ${lastname}*`,
+          text: `• De *${firstname} ${lastname}*\n• Email : ${email}\n• Sujet : ${subject}`,
         },
       },
       {
@@ -16,8 +16,8 @@ const postToSlack = (firstname, lastname, email, subject, content) => {
       {
         type: 'section',
         text: {
-          type: 'mrkdwn',
-          text: `• Sujet : ${subject}\n• Email : ${email}\n• Message : ${content}`,
+          type: 'plain_text',
+          text: content,
         },
       },
     ],

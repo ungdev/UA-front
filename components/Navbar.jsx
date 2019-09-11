@@ -118,6 +118,7 @@ const Navbar = () => {
       <Modal
         title="Connexion"
         visible={loginModalVisible}
+        onCancel={() => setLoginModalVisible(false)}
         footer={<Button primary onClick={() => setLoginModalVisible(false)}>Fermer</Button>}
       >
         Les inscriptions ouvriront bientôt,
