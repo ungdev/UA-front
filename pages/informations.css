@@ -18,6 +18,11 @@
   margin-bottom: 1em;
 }
 
+#info .timetable {
+  max-width: 800px;
+  margin: auto;
+}
+
 @media screen and (max-width: 650px) {
   #info {
     padding: 1em;

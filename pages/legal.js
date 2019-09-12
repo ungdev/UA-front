@@ -6,7 +6,7 @@ import './legal.css';
 
 const Legal = () => (
   <div id="legal">
-    <Title align="center">mentions légales</Title>
+    <Title align="center" uppercase>Mentions légales</Title>
     <Title level={2}>Propriétaire du site</Title>
     {text.legal.ung}
     <Title level={2}>Hébergeur du site</Title>

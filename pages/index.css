@@ -60,6 +60,15 @@
   margin: auto;
 }
 
+#home .home-info .info-button {
+  display: block;
+  margin: 30px auto 0 auto;
+}
+
+#home .home-info .info-button i {
+  margin-left: 8px;
+}
+
 #home .home-tournaments {
   margin-bottom: 3em;
   padding: 0 5em;

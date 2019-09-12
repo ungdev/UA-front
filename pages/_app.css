@@ -42,7 +42,7 @@ img {
   width: min-content;
 }
 
-span {
+.main-color {
   color: #ee343a;
   font-weight: 700;
 }

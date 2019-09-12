@@ -19,14 +19,16 @@ const dataSource = [
 const Informations = () => (
   <div>
     <Header />
+
     <div id="info">
-      <Title align="center">présentation</Title>
+      <Title align="center" uppercase>Présentation</Title>
       <div className="margin-bottom">
         <p>{text.info.presentation}</p>
       </div>
-      <Title align="center">accès</Title>
+
+      <Title align="center" uppercase>Accès</Title>
       <div>
-        <Title level={4}>ADRESSE</Title>
+        <Title level={4} uppercase>Adresse</Title>
         <p>
           <strong>UTT Arena</strong>
           , 20 rue des Gayettes, 10000 Troyes
@@ -37,7 +39,7 @@ const Informations = () => (
               height="320"
               width="100%"
               title="Google Maps"
-              src="https://maps.google.com/maps?q=UTT Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
               frameBorder="0"
               scrolling="no"
               marginHeight="0"
@@ -54,11 +56,13 @@ const Informations = () => (
           </div>
         </div>
       </div>
-      <Title align="center">horaires</Title>
+
+      <Title align="center" uppercase>Horaires</Title>
       <div className="margin-bottom">
-        <Table columns={columns} dataSource={dataSource} />
+        <Table columns={columns} dataSource={dataSource} className="timetable" />
       </div>
-      <Title align="center">billeterie</Title>
+
+      <Title align="center" uppercase>Billetterie</Title>
       <div className="margin-bottom">
         {text.info.billeterie.map((paraph) => (
           <div key={paraph.text}>
@@ -71,7 +75,8 @@ const Informations = () => (
           </div>
         ))}
       </div>
-      <Title align="center">infos joueurs</Title>
+
+      <Title align="center" uppercase>Infos joueurs</Title>
       <div className="margin-bottom">
         <p>{text.info.joueurs.desc}</p>
         <Title level={4}>Ce qu&apos;il faut apporter</Title>
@@ -90,7 +95,8 @@ const Informations = () => (
         <Title level={4}>Streaming</Title>
         <p>{text.info.joueurs.streaming}</p>
       </div>
-      <Title align="center">services</Title>
+
+      <Title align="center" uppercase>Services</Title>
       <div className="margin-bottom">
         {text.info.services.map((service) => (
           <React.Fragment key={service.title}>

@@ -1,22 +1,26 @@
 import React from 'react';
-import { Title, VideoContainer, Table, Countdown, CardsTournaments } from '../components';
+import Link from 'next/link';
+import { Title, VideoContainer, Table, Countdown, CardsTournaments, Button } from '../components';
 
 import text from '../assets/text';
 import './index.css';
 
 const columns = [
-  { title: '', key: 'titre' },
+  { title: '', key: 'title' },
   { title: '', key: 'description' },
 ];
 
 const dataSource = [
-  { titre: <strong>Ouverture</strong>, description: '6 décembre 2019 - 17h' },
-  { titre: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
-  { titre: <strong>Début des tournois</strong>, description: 'Samedi 7 décembre à 10h précises' },
-  { titre: <strong>Tarifs</strong>, description: 'Joueur 20€, Accompagnateur 12€' },
-  { titre: <strong>Places</strong>, description: '460' },
-  { titre: <strong>Nourriture</strong>, description: 'Sur place, pendant tout l\'événement' },
-  { titre: <strong>Âge minimum</strong>, description: '15 ans' },
+  { title: <strong>Format</strong>, description: 'Bring Your Own Stuff (Ramène ton ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum… Bref, tout ce dont tu as besoin pour jouer)'},
+  { title: <strong>Ouverture</strong>, description: '6 décembre 2019 - 17h' },
+  { title: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
+  { title: <strong>Début des tournois</strong>, description: 'Samedi 7 décembre à 10h précises' },
+  { title: <strong>Nourriture</strong>, description: 'Sur place, pendant tout l\'événement' },
+  { title: <strong>Places</strong>, description: '460' },
+  { title: <strong>Tarifs</strong>, description: 'Joueur 20€, Accompagnateur 12€' },
+  { title: <strong>Âge minimum</strong>, description: '15 ans' },
+  { title: <strong>Tournois avec Cashprize</strong>, description: 'LoL Pro, CS:GO, SSBU, Fortnite' },
+  { title: <strong>Tournois sans Cashprize</strong>, description: 'LoL Amateur, tournoi libre (dont osu!)' },
 ];
 
 const Home = () => (
@@ -36,8 +40,8 @@ const Home = () => (
       <Title level={4} align="center" uppercase>{text.index.information.catchPhrase}</Title>
       <p>{text.index.information.description}</p>
       <VideoContainer
-        src="https://www.youtube.com/embed/YZKiylJWSCM"
-        title="Trailer UTT Arena 2018"
+        src="https://www.youtube.com/embed/K_Jchg4MIh0"
+        title="Aftermovie UTT Arena 2018"
         className="video-container"
       />
       <Table
@@ -45,6 +49,12 @@ const Home = () => (
         dataSource={dataSource}
         className="info-table"
       />
+      <Link href="/informations">
+        <Button primary className="info-button">
+          Toutes les informations
+          <i className="fas fa-chevron-right" />
+        </Button>
+      </Link>
     </div>
     <div className="home-tournaments">
       <CardsTournaments />
