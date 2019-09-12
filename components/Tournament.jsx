@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
 import Title from './UI/Title';
 import Table from './UI/Table';
 import Button from './UI/Button';
 
 import './Tournament.css';
-import ConnexionModal from './ConnexionModal';
+import { setVisible } from '../modules/loginModal';
 
 const Tournament = ({ bgImg, text, reglement, dataSource }) => {
-  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const dispatch = useDispatch();
   return (
     <div className="tournament">
       <img className="tournament-header" alt="tournament-img" src={bgImg} />
       <div className="tournament-content">
         <Title align="center">{text.title}</Title>
         <div className="tournament-signin">
-          <Button primary onClick={() => setLoginModalVisible(true)}>S&apos;inscrire</Button>
+          <Button primary onClick={() => dispatch(setVisible(true))}>S&apos;inscrire</Button>
         </div>
         <Title level={2}>Format</Title>
         {text.format}
@@ -39,7 +40,6 @@ const Tournament = ({ bgImg, text, reglement, dataSource }) => {
           dataSource={dataSource}
         />
       </div>
-      <ConnexionModal onClose={() => setLoginModalVisible(false)} isVisible={loginModalVisible} />
     </div>
   );
 };

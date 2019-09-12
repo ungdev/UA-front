@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
 import SimpleBar from 'simplebar-react';
+import { setVisible } from '../modules/loginModal';
 import 'simplebar/dist/simplebar.min.css';
 
 import Button from './UI/Button';
-import ConnexionModal from './ConnexionModal';
 import './Navbar.css';
 
 const links = [
@@ -44,10 +45,7 @@ const Navbar = () => {
   const shortPath = pathname.match(/(\/[a-z]*)/)[0];
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
-
-  // Is the login modal visible ?
-  const [loginModalVisible, setLoginModalVisible] = useState(false);
-
+  const dispatch = useDispatch();
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
     if (window.innerWidth <= 1000) {
@@ -91,7 +89,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          <Button primary className="login-button" onClick={() => setLoginModalVisible(true)}>Connexion</Button>
+          <Button primary className="login-button" onClick={() => dispatch(setVisible(true))}>Connexion</Button>
 
           { navLinks }
         </SimpleBar>
@@ -114,8 +112,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
-      <ConnexionModal onClose={() => setLoginModalVisible(false)} isVisible={loginModalVisible} />
     </div>
   );
 };

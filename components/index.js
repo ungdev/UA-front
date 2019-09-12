@@ -13,6 +13,7 @@ import Card from './UI/Card';
 import CardsTournaments from './CardsTournaments';
 import Header from './Header';
 import Select from './UI/Select';
+import ConnexionModal from './ConnexionModal';
 
 export {
   Navbar,
@@ -30,4 +31,5 @@ export {
   CardsTournaments,
   Header,
   Select,
+  ConnexionModal,
 };
