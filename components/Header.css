@@ -1,5 +1,5 @@
 #header {
-  background: url('/static/uabackground.jpg') center no-repeat;
+  background: url('/static/background.jpg') center no-repeat;
   background-size: cover;
   height: 30vh;
   width: 100%;
@@ -14,14 +14,14 @@
   padding: 1.5em;
   background-color: var(--dark-color);
   transform: skew(15deg);
-  filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
+  filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
 }
 
 #header .home-title p {
   font-family: 'LemonMilk';
   text-align: center;
   color: white;
-  transform:skew(-15deg);
+  transform: skew(-15deg);
   margin: 0;
   font-size: 1.5rem;
   letter-spacing: 1px;

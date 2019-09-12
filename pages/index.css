@@ -1,11 +1,3 @@
-#home .margin-bottom {
-  margin-bottom: 3em;
-}
-
-#home .padding {
-  padding: 0 5em;
-}
-
 #home .home-header {
   height: 100vh;
   display: flex;
@@ -13,6 +5,7 @@
   justify-content: center;
   background: url('/static/background.jpg') no-repeat center;
   background-size: cover;
+  margin-bottom: 3em;
 }
 
 #home .home-header #logo {
@@ -26,15 +19,15 @@
   padding: 1.5em;
   background-color: var(--dark-color);
   transform: skew(15deg);
-  filter: drop-shadow(0 0 0.75rem rgba(255,255,255,0.2));
+  filter: drop-shadow(0 0 .75rem rgba(255, 255, 255, 0.2));
   width: 50%;
 }
 
 #home .home-header .home-title p {
   font-family: 'LemonMilk';
   text-align: center;
-  color: white;
-  transform:skew(-15deg);
+  color: #fff;
+  transform: skew(-15deg);
   margin: 0;
   font-size: calc(0.029 * (100vw - 280px));
   letter-spacing: 1px;
@@ -42,16 +35,39 @@
 
 #home .home-header .home-title .main {
   font-size: calc(0.065 * (100vw - 280px));
+  text-transform: uppercase;
 }
 
-#home .home-tournament .list-tournaments {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+#home .home-countdown {
+  max-width: 1000px;
+  margin: 0 auto 3em auto;
+  padding: 0 5em;
 }
 
-#home .home-tournament .list-tournaments .tournament {
-  width: 45%;
+#home .home-info {
+  margin-bottom: 3em;
+  padding: 0 5em;
+}
+
+#home .home-info .video-container {
+  max-width: 700px;
+  margin: 40px auto 30px auto;
+  background: rgb(218, 218, 218);
+}
+
+#home .home-info .info-table {
+  max-width: 900px;
+  margin: auto;
+}
+
+#home .home-tournaments {
+  margin-bottom: 3em;
+  padding: 0 5em;
+}
+
+#home .home-partners {
+  margin-bottom: 3em;
+  padding: 0 5em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -79,7 +95,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  #home .home-tournament .list-tournaments .tournament {
+  #home .home-tournaments .list-tournaments .tournament {
     width: 100%;
   }
   #home .padding {

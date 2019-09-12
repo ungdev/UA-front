@@ -6,9 +6,9 @@ import './Title.css';
 /**
  * Displays a title
  */
-const Title = ({ level, children, gutterBottom, align }) => {
+const Title = ({ level, children, gutterBottom, align, uppercase }) => {
   const Component = `h${level}`;
-  return (<Component className={`title-${level} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</Component>);
+  return (<Component className={`title title-${level} ${align} ${gutterBottom ? 'gutterBottom' : ''} ${uppercase ? 'uppercase' : ''}`}>{children}</Component>);
 };
 
 Title.propTypes = {
@@ -28,12 +28,17 @@ Title.propTypes = {
    * Set the text-align on the component
    */
   align: PropTypes.oneOf(['inherit', 'center', 'justify', 'left', 'right']),
+  /**
+   * Should the text be uppercase ?
+   */
+  uppercase: PropTypes.bool,
 };
 
 Title.defaultProps = {
   level: 1,
   gutterBottom: true,
   align: 'inherit',
+  uppercase: false,
 };
 
 export default Title;

@@ -6,28 +6,22 @@ import './Table.css';
 /**
  * Displays a data table
  */
-const Table = ({ columns, dataSource }) => {
-  const columnsList = columns.map((column) => column.key);
+const Table = ({ columns, dataSource, className }) => {
   return (
-    <div id="table">
+    <div className={`table ${className}`}>
       <table>
         <thead>
-          <tr id="table-header">
+          <tr className="table-header">
             {columns.map((column) => (
               <th key={column.key}>{column.title}</th>
             ))}
           </tr>
-          <tr id="divider">
-            <td colSpan={columnsList.length}>
-              <div className="divider" />
-            </td>
-          </tr>
         </thead>
         <tbody>
-          {dataSource.map((row) => (
-            <tr key={row.key}>
-              {columnsList.map((column) => (
-                <td key={row.key + row[column]}>{row[column]}</td>
+          {dataSource.map((row, i) => (
+            <tr key={row.key || i}>
+              {columns.map((column) => (
+                <td key={row.key + row[column.key]}>{row[column.key]}</td>
               ))}
             </tr>
           ))}
@@ -49,6 +43,14 @@ Table.propTypes = {
    * Data for each row, must follow the key of each column
    */
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
+  /**
+   * The class to apply to the container
+   */
+  className: PropTypes.string,
+};
+
+Table.defaultProps = {
+  className: '',
 };
 
 export default Table;

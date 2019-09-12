@@ -122,7 +122,7 @@ const Navbar = () => {
         footer={<Button primary onClick={() => setLoginModalVisible(false)}>Fermer</Button>}
       >
         Les inscriptions ouvriront bientôt,
-        suivez-nous sur les réseaux sociaux pour connaître la date !
+        suivez-nous sur les réseaux sociaux pour ne rien rater !
       </Modal>
     </div>
   );

@@ -11,12 +11,12 @@ const Card = ({ imgSrc, content, textButton, onClick, link }) => {
   const button = <Button primary onClick={onClick}>{textButton}</Button>;
   return (
     <div className="card-card">
-      {!!imgSrc && <img className="lazyload card-img" alt="card-img" data-src={imgSrc} />}
+      {imgSrc && <img className="lazyload card-img" alt="card-img" data-src={imgSrc} />}
       <div className="card-content">
         {content}
       </div>
       <div className="card-button">
-        {!!textButton && !!link ? <Link href={link} key={link}>{button}</Link> : button}
+        {textButton && link ? <Link href={link} key={link}>{button}</Link> : button}
       </div>
     </div>
   );

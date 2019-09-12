@@ -1,15 +1,19 @@
-.cardstournaments-list {
+.cardtournaments .tournaments-list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.cardstournaments-list .tournament {
+.cardtournaments .tournament {
   width: 45%;
 }
 
-@media screen and (max-width: 650px) {
-  .cardstournaments-list .tournament {
+.cardtournaments .tournament .right-arrow {
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 1200px) {
+  .cardtournaments .tournament {
     width: 100%;
   }
 }

@@ -1,42 +1,45 @@
-.title-1, .title-2, .title-3, .title-4 {
+.title {
   margin-top: 0;
   font-family: 'Montserrat', sans-serif;
 }
 
-.gutterBottom {
+.title.gutterBottom {
   margin-bottom: 1em;
 }
 
-.center {
+.title.center {
   text-align: center;
 }
 
-.inherit {
+.title.inherit {
   text-align: inherit;
 }
 
-.left {
+.title.left {
   text-align: left;
 }
 
-.right {
+.title.right {
   text-align: right;
 }
 
-.justify {
+.title.justify {
   text-align: justify;
 }
 
-.title-1 {
-  overflow: hidden;
-  color: #ee343a;
+.title.uppercase {
   text-transform: uppercase;
 }
 
-.title-1::before,
-.title-1::after {
+.title.title-1 {
+  overflow: hidden;
+  color: #ee343a;
+}
+
+.title.title-1::before,
+.title.title-1::after {
   background: var(--gradient);
-  content: "";
+  content: '';
   display: inline-block;
   height: 2px;
   position: relative;
@@ -44,27 +47,27 @@
   width: 45%;
 }
 
-.title-1::before {
+.title.title-1::before {
   right: 0.5em;
   margin-left: -50%;
 }
 
-.title-1::after {
+.title.title-1::after {
   left: 0.5em;
   margin-right: -50%;
 }
 
-.title-2 {
+.title.title-2 {
   font-weight: 400;
   font-size: 2rem;
 }
 
-.title-3 {
+.title.title-3 {
   font-weight: 600;
   font-size: 1.5rem;
 }
 
-.title-4 {
+.title.title-4 {
   font-weight: 600;
   font-size: 1.25rem
 }

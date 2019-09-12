@@ -8,8 +8,8 @@ import './VideoContainer.css';
 /**
  * Displays iframe and keep 16:9 ratio
  */
-const VideoContainer = ({ style, title, src }) => (
-  <div className="video-container" style={style}>
+const VideoContainer = ({ className, title, src }) => (
+  <div className={`video-container ${className}`}>
     <div className="video-container-ratio">
       <div className="video-container-full">
         <iframe
@@ -27,9 +27,9 @@ const VideoContainer = ({ style, title, src }) => (
 
 VideoContainer.propTypes = {
   /**
-   * Style to apply in the div container
+   * Class to apply in the div container
    */
-  style: PropTypes.object,
+  className: PropTypes.string,
   /**
    * title for the iframe
    */
@@ -41,7 +41,7 @@ VideoContainer.propTypes = {
 };
 
 VideoContainer.defaultProps = {
-  style: {},
+  className: '',
   title: '',
 };
 
