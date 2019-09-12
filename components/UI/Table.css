@@ -7,12 +7,11 @@
   table-layout: auto;
   border-collapse: collapse;
   margin-bottom: 1em;
+  text-align: left;
 }
 
 .table thead {
   position: relative;
-  display: table-caption;
-  padding-bottom: 2px;
 }
 
 .table thead::after {
