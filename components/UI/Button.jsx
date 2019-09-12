@@ -25,7 +25,7 @@ Button.propTypes = {
   /**
    * Function called when the user clicks on the button
    */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 
   /**
    * The button content
@@ -40,6 +40,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   primary: false,
+  onClick: () => {},
   className: '',
 };
 
