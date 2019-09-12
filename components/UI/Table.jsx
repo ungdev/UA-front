@@ -6,30 +6,28 @@ import './Table.css';
 /**
  * Displays a data table
  */
-const Table = ({ columns, dataSource, className }) => {
-  return (
-    <div className={`table ${className}`}>
-      <table>
-        <thead>
-          <tr className="table-header">
+const Table = ({ columns, dataSource, className }) => (
+  <div className={`table ${className}`}>
+    <table>
+      <thead>
+        <tr className="table-header">
+          {columns.map((column) => (
+            <th key={column.key}>{column.title}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {dataSource.map((row, i) => (
+          <tr key={row.key || i}>
             {columns.map((column) => (
-              <th key={column.key}>{column.title}</th>
+              <td key={row.key + row[column.key]}>{row[column.key]}</td>
             ))}
           </tr>
-        </thead>
-        <tbody>
-          {dataSource.map((row, i) => (
-            <tr key={row.key || i}>
-              {columns.map((column) => (
-                <td key={row.key + row[column.key]}>{row[column.key]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-};
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
 
 Table.propTypes = {
   /**

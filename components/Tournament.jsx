@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import Title from './UI/Title';
 import Table from './UI/Table';
 import Button from './UI/Button';
-import Modal from './UI/Modal';
 
 import './Tournament.css';
+import ConnexionModal from './ConnexionModal';
 
 const Tournament = ({ bgImg, text, reglement, dataSource }) => {
   const [loginModalVisible, setLoginModalVisible] = useState(false);
@@ -39,14 +39,7 @@ const Tournament = ({ bgImg, text, reglement, dataSource }) => {
           dataSource={dataSource}
         />
       </div>
-      <Modal
-        title="Titre"
-        visible={loginModalVisible}
-        onCancel={() => setLoginModalVisible(false)}
-        onOk={() => setLoginModalVisible(false)}
-      >
-        Contenu de la fenêtre
-      </Modal>
+      <ConnexionModal onClose={() => setLoginModalVisible(false)} isVisible={loginModalVisible} />
     </div>
   );
 };

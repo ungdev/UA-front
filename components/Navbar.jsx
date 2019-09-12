@@ -5,7 +5,7 @@ import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
 import Button from './UI/Button';
-import Modal from './UI/Modal';
+import ConnexionModal from './ConnexionModal';
 import './Navbar.css';
 
 const links = [
@@ -115,15 +115,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Modal
-        title="Connexion"
-        visible={loginModalVisible}
-        onCancel={() => setLoginModalVisible(false)}
-        footer={<Button primary onClick={() => setLoginModalVisible(false)}>Fermer</Button>}
-      >
-        Les inscriptions ouvriront bientôt,
-        suivez-nous sur les réseaux sociaux pour ne rien rater !
-      </Modal>
+      <ConnexionModal onClose={() => setLoginModalVisible(false)} isVisible={loginModalVisible} />
     </div>
   );
 };
