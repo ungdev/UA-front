@@ -107,7 +107,10 @@
   #home .home-tournaments .list-tournaments .tournament {
     width: 100%;
   }
-  #home .padding {
+  #home .home-info {
+    padding: 0 1em;
+  }
+  #home .home-countdown {
     padding: 0 1em;
   }
 }

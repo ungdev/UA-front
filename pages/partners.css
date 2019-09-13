@@ -1,0 +1,31 @@
+#partners {
+  padding: 0 5em;
+}
+
+#partners .list-partners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#partners .partner {
+  width: 300px;
+}
+
+#partners .partner  a .white-card {
+  background-color: #fff;
+}
+
+@media screen and (max-width: 650px) {
+  #partners {
+    padding: 0 1em;
+  }
+
+  #partners .partner {
+    width: 150px;
+  }
+
+  #partners .partner  a .partner-img {
+    height: 100px;
+  }
+}
