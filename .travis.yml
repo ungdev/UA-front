@@ -17,9 +17,11 @@ notifications:
   slack: uttnetgroup:wIIt6boEZlbKTo6dxPCpm8Ke
 deploy:
   provider: openshift
-  user: esslingf
-  password:
-    secure: TvDzBp+F3RzYgvGZt9/6WEfoTuJHWvcz5nSKtRUz8eL5zGN8prOx/mEDzXWOLwC8hg94JI0k3kHYyypcOfy+QNHCzu6rNlT6IHvbRTmFPGagH2lCyWIhpHs283BRA93Z4AtMSEgo/0udV7nQiPy8ls9mDHtPOnY6tL1l6hIoe5bYeExHGh+SS2SUlTa4M6B2eSot24T4K98HcWHr07hDe5kuv+xBtumxu6MvhPHwQcP9AUuyM3VhTvGw0dKV/7ioj1Yk9h/XP0pmdsghlm0Cnpv66rKl6Rja6i5BiyJ//cVTVU0yN2SS9l54HsDdQTViL0WZiYe1GwB2LLI/pkbZGzhm7eXaq+73b8ZW514rUqQS0DFgnYJenLhghK2rBwSnYSFQnmICBbKUo/DsO2wW6mbHA2aWffh/xj29A8fkTST1Wzhw9Nddke858h1h9uk7ztEVy0QoxkUfT5/+fU6t6W3PSklQz5G+TTXLJqGzBb3OGFFfu7FCuIWhfIIia0/V4ATNvNkpJXsSyrlQXQ6JA3jOeVlt4R9dSLzDLn05pNCZ+vfAHX4RKR8LcWYJ2zcTEqG7UIzqBo+yyg2HfLAH0R570qoZ4asBWr/R0QtmLu+Ez5jSv6SRNWd+L7cRhb2u+odhO36V+c4CSrM708csk2Dx+ca3MrybJB6/Do4kXPo=
-  app:
-    dev: front-dev
-  domain: https://oso-master.uttnetgroup.fr
+  server: https://oso-master.uttnetgroup.fr
+  project: ua
+  app: front-dev
+  token:
+    secure: zwquMOvf+hZo3d+bu/ZNgiU2/EJvPvkL9mrRZpq0QwdZV1PR+E2gjSPViwdY8vHM7pUgLjk2GTWEOrCB6V2v/Wg8urIBhEKQEjt/KRaa0gNITaf6o9eg0QHNFV7Q1od/WaPTu5+BjJliSZBBF7mVqmMZloZDxmfUempVUBoIVYXas5Mh/ec9iLSKNsCO1EoFeUMjRhIdETIg1bS1sX84JHbxaGGQ1VICWOiWbs4s1KzGY8woxGXN4hOxn85liSTM8VZ0Ui/zQtbURoHFM6B9LK/kwvDK6X3akO7BObc2ar2taUrlddZeqmmhKInCD0FMRiGxihxHRQtPor9pExiJXad1eJSeg16LNCAGhp6o9orfjI58rVOrf7yBJttKSLYIWEv3LwP+PsmWZNaJYdK3mhH3mSFaBCqIFyekUrL8pKrE0j9Zc701O6wEtLiqwOyn6X60uqMhXx2pxRKk7mYN4RcnHE0qejPJS8L5htANdFoOXgNsIdzmuoJ+lh09TaMYbyQyi2PvLCbnWwi/JKavBDwkxTiStzvCjNsmIurBy1h3h1ra28GPT+lTfw8bB/BbkyRJHbRgIN9qvV9XJFWojQhxWid+TlvulR6wPXuo5C5nxeNqqQy8JABJ/aGviWZ92kvxrMTq0OX5GXJa+dE+hZOWh5PgqJ5kds3pfLffT1o=
+  on:
+    branch: dev
+  edge: true
