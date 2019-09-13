@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
-import { setVisible } from '../modules/loginModal';
 import 'simplebar/dist/simplebar.min.css';
 
+import { setVisible } from '../modules/loginModal';
 import Button from './UI/Button';
-import './Navbar.css';
 import ConnexionModal from './ConnexionModal';
+import './Navbar.css';
 
 const links = [
   {
@@ -18,10 +18,6 @@ const links = [
   {
     title: 'Informations',
     href: '/informations',
-  },
-  {
-    title: 'Photos',
-    href: '/photos',
   },
   {
     title: 'Tournois',
