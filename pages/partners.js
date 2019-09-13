@@ -6,7 +6,7 @@ import './partners.css';
 const listPartners = partnersList.map((partner) => (
   <div className="partner" key={partner.link}>
     <a href={partner.link}>
-      <Card imgSrc={partner.img} classNameCard="white-card" classNameImg="partner-img" />
+      <Card imgSrc={partner.img} classNameImg="partner-img" />
     </a>
   </div>
 ));

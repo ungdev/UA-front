@@ -3,22 +3,6 @@ import PropTypes from 'prop-types';
 
 import './InputBase.css';
 
-const useOutside = (ref, setIsFocus) => {
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsFocus(false);
-    }
-  };
-
-  useEffect(() => {
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  });
-};
 
 /**
  * Main component for input
@@ -26,7 +10,19 @@ const useOutside = (ref, setIsFocus) => {
 const InputBase = ({ id, label, placeholder, value, onChange, type, Component, options }) => {
   const wrapperRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
-  useOutside(wrapperRef, setIsFocus);
+  const handleClickOutside = (event) => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      setIsFocus(false);
+    }
+  };
+  useEffect(() => {
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFocus]);
 
   return (
     <div className="input-container">

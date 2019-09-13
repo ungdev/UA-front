@@ -85,16 +85,18 @@
   justify-content: space-evenly;
 }
 
-#home .home-container .home-partners .list-partners .partner {
+#home .home-container .partner {
   width: 100px;
-  padding: 4px;
+  padding: 0 4px;
+  transition: all .3s;
 }
 
-#home .home-container .home-partners  .list-partners .partner  a .white-card {
-  background-color: #fff;
+#home .partner:hover,
+#home .partner:focus {
+  filter: brightness(0.9);
 }
 
-#home .home-container .home-partners  .list-partners .partner  a .partner-img {
+#home .home-container .partner-img {
   height: 66px;
 }
 
@@ -123,7 +125,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  #home .home-container .home-tournaments .list-tournaments .tournament {
+  #home .home-container .tournament {
     width: 100%;
   }
   #home .home-container {
