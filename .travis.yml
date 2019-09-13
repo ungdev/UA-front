@@ -4,22 +4,22 @@ branches:
   - master
   - dev
 node_js:
-  - "stable"
+- stable
 cache:
   directories:
-    - "node_modules"
+  - node_modules
   yarn: true
 script:
-  - yarn
-  - yarn lint
-  - yarn build
+- yarn
+- yarn lint
+- yarn build
 notifications:
   slack: uttnetgroup:wIIt6boEZlbKTo6dxPCpm8Ke
-  webhooks:
-    urls:
-      - $OSO_WEBHOOK
-    on_success: always
-    on_failure: never
-    on_start:   never
-    on_cancel:  never
-    on_error:   never
+deploy:
+  provider: openshift
+  user: esslingf
+  password:
+    secure: TvDzBp+F3RzYgvGZt9/6WEfoTuJHWvcz5nSKtRUz8eL5zGN8prOx/mEDzXWOLwC8hg94JI0k3kHYyypcOfy+QNHCzu6rNlT6IHvbRTmFPGagH2lCyWIhpHs283BRA93Z4AtMSEgo/0udV7nQiPy8ls9mDHtPOnY6tL1l6hIoe5bYeExHGh+SS2SUlTa4M6B2eSot24T4K98HcWHr07hDe5kuv+xBtumxu6MvhPHwQcP9AUuyM3VhTvGw0dKV/7ioj1Yk9h/XP0pmdsghlm0Cnpv66rKl6Rja6i5BiyJ//cVTVU0yN2SS9l54HsDdQTViL0WZiYe1GwB2LLI/pkbZGzhm7eXaq+73b8ZW514rUqQS0DFgnYJenLhghK2rBwSnYSFQnmICBbKUo/DsO2wW6mbHA2aWffh/xj29A8fkTST1Wzhw9Nddke858h1h9uk7ztEVy0QoxkUfT5/+fU6t6W3PSklQz5G+TTXLJqGzBb3OGFFfu7FCuIWhfIIia0/V4ATNvNkpJXsSyrlQXQ6JA3jOeVlt4R9dSLzDLn05pNCZ+vfAHX4RKR8LcWYJ2zcTEqG7UIzqBo+yyg2HfLAH0R570qoZ4asBWr/R0QtmLu+Ez5jSv6SRNWd+L7cRhb2u+odhO36V+c4CSrM708csk2Dx+ca3MrybJB6/Do4kXPo=
+  app:
+    dev: front-dev
+  domain: https://oso-master.uttnetgroup.fr
