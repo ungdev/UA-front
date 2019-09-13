@@ -18,10 +18,6 @@
   filter: brightness(0.9);
 }
 
-#partners .partner a .white-card {
-  background-color: #fff;
-}
-
 @media screen and (max-width: 650px) {
   #partners {
     padding: 0 1em;

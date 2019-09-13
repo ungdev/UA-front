@@ -38,13 +38,14 @@
 
   #header .home-title {
     background: none;
-    filter: none;
+    transform: none;
     margin: 0;
     padding: 0;
   }
 
   #header .home-title p {
     font-size: 1rem;
+    transform: skew(0deg);
   }
 
   #header .home-title .main {
