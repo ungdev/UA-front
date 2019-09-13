@@ -4,8 +4,11 @@ const fs = require('fs');
 const reactDocgen = require('react-docgen');
 const ReactDocGenMarkdownRenderer = require('react-docgen-markdown-renderer');
 
-/* Add component name in the list */
-const componentsList = ['Button', 'Modal', 'Title', 'Collapse', 'Table', 'Input', 'Textarea', 'VideoContainer'];
+// Get all UI components
+const componentsList = fs.readdirSync('./components/UI')
+  .filter((file) => file.substr(-4) === '.jsx')
+  .map((file) => file.substr(0, file.length - 4));
+
 componentsList.forEach((component) => {
   const componentPath = path.join(__dirname, `components/UI/${component}.jsx`);
   const renderer = new ReactDocGenMarkdownRenderer();
