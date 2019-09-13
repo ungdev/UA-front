@@ -38,45 +38,64 @@
   text-transform: uppercase;
 }
 
-#home .home-countdown {
+#home .home-container {
+  padding: 0 5em
+}
+
+#home .home-container .home-countdown {
   max-width: 1000px;
   margin: 0 auto 3em auto;
-  padding: 0 5em;
 }
 
-#home .home-info {
+#home .home-container .home-info {
   margin-bottom: 3em;
-  padding: 0 5em;
 }
 
-#home .home-info .video-container {
+#home .home-container .home-info .video-container {
   max-width: 700px;
   margin: 40px auto 30px auto;
   background: rgb(218, 218, 218);
 }
 
-#home .home-info .info-table {
+#home .home-container .home-info .info-table {
   max-width: 900px;
   margin: auto;
 }
 
-#home .home-info .info-button {
+#home .home-container .home-info .info-button {
   display: block;
   margin: 30px auto 0 auto;
 }
 
-#home .home-info .info-button i {
+#home .home-container .home-info .info-button i {
   margin-left: 8px;
 }
 
-#home .home-tournaments {
+#home .home-container .home-tournaments {
   margin-bottom: 3em;
-  padding: 0 5em;
 }
 
-#home .home-partners {
+#home .home-container .home-partners {
   margin-bottom: 3em;
-  padding: 0 5em;
+}
+
+#home .home-container .home-partners .list-partners {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#home .home-container .home-partners .list-partners .partner {
+  width: 100px;
+  padding: 4px;
+}
+
+#home .home-container .home-partners  .list-partners .partner  a .white-card {
+  background-color: #fff;
+}
+
+#home .home-container .home-partners  .list-partners .partner  a .partner-img {
+  height: 66px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -104,13 +123,10 @@
 }
 
 @media screen and (max-width: 650px) {
-  #home .home-tournaments .list-tournaments .tournament {
+  #home .home-container .home-tournaments .list-tournaments .tournament {
     width: 100%;
   }
-  #home .home-info {
-    padding: 0 1em;
-  }
-  #home .home-countdown {
+  #home .home-container {
     padding: 0 1em;
   }
 }

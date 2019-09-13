@@ -113,7 +113,7 @@ const text = {
     services: [
       {
         title: 'Nourriture',
-        text: 'On sait qu\'un weekend de 48h non-stop ça creuse, nous te proposerons donc sur place : croques-monsieur, crêpes, pizzas, canettes, snack, tout pour te sustenter au mieux ! Et tout cela à un prix abordable.',
+        text: 'On sait qu\'un weekend de 48h non-stop ça creuse, nous te proposerons donc sur place : croque-monsieur, crêpes, pizzas, canettes, snack, tout pour te sustenter au mieux ! Et tout cela à un prix abordable.',
       }, {
         title: 'Couchage',
         text: 'Nous mettons à disposition des joueurs des loges communes avec un accès à l\'eau et aux douches ! Pensez à ramener vos duvets si vous souhaitez en profiter ! Nous metterons à disposition des tapis pour plus de confort.',

@@ -8,7 +8,7 @@
   justify-content: space-evenly;
 }
 
-#partners .partner {
+#partners .list-partners .partner {
   width: 300px;
   transition: all .3s;
 }
@@ -27,7 +27,7 @@
     padding: 0 1em;
   }
 
-  #partners .partner {
+  #partners .list-partners .partner {
     width: 150px;
   }
 

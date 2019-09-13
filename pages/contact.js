@@ -44,7 +44,7 @@ const Contact = () => {
     <div>
       <Header />
       <div id="contact">
-        <Title align="center">contact</Title>
+        <Title align="center" uppercase>contact</Title>
         <p>
           UTT Net Group
           <br />

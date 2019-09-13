@@ -26,41 +26,6 @@ const Informations = () => (
         <p>{text.info.presentation}</p>
       </div>
 
-      <Title align="center" uppercase>Accès</Title>
-      <div>
-        <Title level={4} uppercase>Adresse</Title>
-        <p>
-          <strong>UTT Arena</strong>
-          , 20 rue des Gayettes, 10000 Troyes
-        </p>
-        <div className="info-acces">
-          <div className="info-map">
-            <iframe
-              height="320"
-              width="100%"
-              title="Google Maps"
-              src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              frameBorder="0"
-              scrolling="no"
-              marginHeight="0"
-              marginWidth="0"
-            />
-          </div>
-          <div className="info-map">
-            {text.info.acces.map((moyen) => (
-              <React.Fragment key={moyen.title}>
-                <Title level={4}>{moyen.title}</Title>
-                <p>{moyen.text}</p>
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <Title align="center" uppercase>Horaires</Title>
-      <div className="margin-bottom">
-        <Table columns={columns} dataSource={dataSource} className="timetable" />
-      </div>
 
       <Title align="center" uppercase>Billetterie</Title>
       <div className="margin-bottom">
@@ -104,6 +69,41 @@ const Informations = () => (
             <p>{service.text}</p>
           </React.Fragment>
         ))}
+      </div>
+      <Title align="center" uppercase>Accès</Title>
+      <div>
+        <Title level={4} uppercase>Adresse</Title>
+        <p>
+          <strong>UTT Arena</strong>
+          , 20 rue des Gayettes, 10000 Troyes
+        </p>
+        <div className="info-acces">
+          <div className="info-map">
+            <iframe
+              height="320"
+              width="100%"
+              title="Google Maps"
+              src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              frameBorder="0"
+              scrolling="no"
+              marginHeight="0"
+              marginWidth="0"
+            />
+          </div>
+          <div className="info-map">
+            {text.info.acces.map((moyen) => (
+              <React.Fragment key={moyen.title}>
+                <Title level={4}>{moyen.title}</Title>
+                <p>{moyen.text}</p>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <Title align="center" uppercase>Horaires</Title>
+      <div className="margin-bottom">
+        <Table columns={columns} dataSource={dataSource} className="timetable" />
       </div>
     </div>
   </div>
