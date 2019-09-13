@@ -3,11 +3,9 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
-import { useSelector, useDispatch } from 'react-redux';
-
-import { setVisible } from '../modules/loginModal';
+import { Provider } from 'react-redux';
 import withReduxStore from '../lib/withReduxStore';
-import { Navbar, ConnexionModal } from '../components';
+import { Navbar } from '../components';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './_app.css';
@@ -19,7 +17,7 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, reduxStore }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
@@ -30,8 +28,6 @@ const App = ({ Component, pageProps }) => {
       ReactGA.pageview(window.location.pathname);
     }
   });
-  const isVisible = useSelector((state) => state.loginModal.visibleLoginModal);
-  const dispatch = useDispatch();
   return (
     <div>
       <Head>
@@ -44,12 +40,13 @@ const App = ({ Component, pageProps }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
       </Head>
-      <Navbar />
+      <Provider store={reduxStore}>
+        <Navbar />
 
-      <div className="page-container">
-        <Component {...pageProps} />
-      </div>
-      <ConnexionModal onClose={() => dispatch(setVisible(false))} isVisible={isVisible} />
+        <div className="page-container">
+          <Component {...pageProps} />
+        </div>
+      </Provider>
     </div>
   );
 };

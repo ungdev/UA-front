@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
 import { setVisible } from '../modules/loginModal';
 import 'simplebar/dist/simplebar.min.css';
 
 import Button from './UI/Button';
 import './Navbar.css';
+import ConnexionModal from './ConnexionModal';
 
 const links = [
   {
@@ -46,6 +47,7 @@ const Navbar = () => {
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
   const dispatch = useDispatch();
+  const isVisible = useSelector((state) => state.loginModal.visibleLoginModal);
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
     if (window.innerWidth <= 1000) {
@@ -112,6 +114,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <ConnexionModal onClose={() => dispatch(setVisible(false))} isVisible={isVisible} />
     </div>
   );
 };
