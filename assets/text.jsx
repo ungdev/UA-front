@@ -124,12 +124,9 @@ const text = {
     title: 'League of Legends (Pro)',
     format:
   <>
-    16 équipes réparties en 4 poules.
+    16 équipes de 5 joueurs.
     <ul>
-      <li>BO1 en poule</li>
-      <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu'en demi finale du Winner</li>
-      <li>Match en BO3 à partir des demies finales du Winner</li>
+      <li>Description du déroulement du tournoi à venir. </li>
     </ul>
   </>,
     cashprize: '2000€ pour les premiers puis lots',
@@ -138,12 +135,9 @@ const text = {
     title: 'League of Legends (Amateur)',
     format:
   <>
-    16 équipes réparties en 4 poules.
+    16 équipes de 5 joueurs.
     <ul>
-      <li>BO1 en poule</li>
-      <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu'en demi finale du Winner</li>
-      <li>Match en BO3 à partir des demies finales du Winner</li>
+      <li>Description du déroulement du tournoi à venir. </li>
     </ul>
   </>,
     cashprize: 'Lots pour les finalistes',
@@ -152,12 +146,10 @@ const text = {
     title: 'fortnite Duo',
     format:
   <>
-    48 duos réparties en 4 poules.
+    32 équipes en trio.
     <ul>
-      <li>BO1 en poule</li>
-      <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu'en demi finale du Winner</li>
-      <li>Match en BO3 à partir des demies finales du Winner</li>
+      <li>Le format est susceptible de varier en fonction d’Epic Games.  </li>
+      <li>Description du déroulement du tournoi à venir. </li>
     </ul>
   </>,
     cashprize: '1000€ pour les premiers puis lots',
@@ -166,12 +158,9 @@ const text = {
     title: 'Counter strike : GO',
     format:
   <>
-    16 équipes réparties en 4 poules.
+    16 équipes de 5 joueurs.
     <ul>
-      <li>BO1 en poule</li>
-      <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusquen demi finale du Winner</li>
-      <li>Match en BO3 à partir des demies finales du Winner</li>
+      <li>Description du déroulement du tournoi à venir. </li>
     </ul>
   </>,
     cashprize: '1000€ pour les premiers puis lots',
@@ -180,12 +169,9 @@ const text = {
     title: 'Super smash bros ultimate',
     format:
   <>
-    16 équipes réparties en 4 poules.
+    32 joueurs en solo.
     <ul>
-      <li>BO1 en poule</li>
-      <li>Les 2 premiers de poule en Winner bracket et 2 derniers en Loser Bracket</li>
-      <li>Match en BO1 jusqu'en demi finale du Winner</li>
-      <li>Match en BO3 à partir des demies finales du Winner</li>
+      <li>Description du déroulement du tournoi à venir. </li>
     </ul>
   </>,
     cashprize: '400€ pour le premier puis lots',

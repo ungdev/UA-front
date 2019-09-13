@@ -8,7 +8,7 @@ import Button from './UI/Button';
 import './Tournament.css';
 import { setVisible } from '../modules/loginModal';
 
-const Tournament = ({ bgImg, text, reglement }) => {
+const Tournament = ({ bgImg, text }) => {
   const dispatch = useDispatch();
   return (
     <div className="tournament">
@@ -21,15 +21,17 @@ const Tournament = ({ bgImg, text, reglement }) => {
         <Title level={2}>Format</Title>
         {text.format}
         <Title level={2}>Cashprize</Title>
-        <p>{text.cashprize}</p>
+        <p>Informations à venir.</p>
         <Title level={2}>Réglement</Title>
         <div className="tournament-rules">
           <p>
-            Chaque retard pourra être sanctionné à hauteur d’une perte de manche par
-            tranche de 20 minutes de retard. Cet effet peut se répéter
+            Informations à venir.
           </p>
-          <a href={reglement} target="blank">Réglement complet</a>
         </div>
+        <Title level={2}>Equipes inscrites</Title>
+        <p>
+          Les inscriptions ne sont pas encore ouvertes !
+        </p>
       </div>
     </div>
   );
@@ -37,7 +39,6 @@ const Tournament = ({ bgImg, text, reglement }) => {
 
 Tournament.propTypes = {
   bgImg: PropTypes.string.isRequired,
-  reglement: PropTypes.string.isRequired,
   text: PropTypes.object.isRequired,
 };
 

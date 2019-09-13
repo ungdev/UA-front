@@ -15,7 +15,7 @@ const faq = [
       },
       {
         question: 'Puis-je streamer pendant la LAN ?',
-        answer: "Peut-être. Il faudra dans un premier temps se déclarer auprès des organisateurs. Ensuite, en fonction de l'état du réseau, tu pourras peut-être streamer.",
+        answer: 'Bien-sûr ! Mais il faudra dans un premier temps se déclarer auprès des organisateurs. De plus, l’équipe organisatrice se réserve le droit de te refuser de faire du stream.',
       },
       {
         question: 'Où puis-je trouver des joueurs pour mon équipe ?',
