@@ -15,6 +15,9 @@ const Table = ({ columns, dataSource, className }) => (
             <th key={column.key}>{column.title}</th>
           ))}
         </tr>
+        <tr>
+          <td className="table-divider" colSpan={columns.length} />
+        </tr>
       </thead>
       <tbody>
         {dataSource.map((row, i) => (
