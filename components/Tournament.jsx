@@ -3,19 +3,18 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import Title from './UI/Title';
-import Table from './UI/Table';
 import Button from './UI/Button';
 
 import './Tournament.css';
 import { setVisible } from '../modules/loginModal';
 
-const Tournament = ({ bgImg, text, reglement, dataSource }) => {
+const Tournament = ({ bgImg, text, reglement }) => {
   const dispatch = useDispatch();
   return (
     <div className="tournament">
       <img className="tournament-header" alt="" src={bgImg} />
       <div className="tournament-content">
-        <Title align="center">{text.title}</Title>
+        <Title align="center" uppercase>{text.title}</Title>
         <div className="tournament-signin">
           <Button primary onClick={() => dispatch(setVisible(true))}>S&apos;inscrire</Button>
         </div>
@@ -31,14 +30,6 @@ const Tournament = ({ bgImg, text, reglement, dataSource }) => {
           </p>
           <a href={reglement} target="blank">Réglement complet</a>
         </div>
-        <Title level={2}>Equipes inscrites</Title>
-        <Table
-          columns={[
-            { title: 'Equipe', key: 'team' },
-            { title: 'Joueurs', key: 'players' },
-          ]}
-          dataSource={dataSource}
-        />
       </div>
     </div>
   );
@@ -48,7 +39,6 @@ Tournament.propTypes = {
   bgImg: PropTypes.string.isRequired,
   reglement: PropTypes.string.isRequired,
   text: PropTypes.object.isRequired,
-  dataSource: PropTypes.array.isRequired,
 };
 
 export default Tournament;

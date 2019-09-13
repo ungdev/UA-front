@@ -4,7 +4,7 @@ import text from '../../assets/text';
 
 const Ssbu = () => (
   <Tournament
-    bgImg="https://img.bfmtv.com/c/1256/708/88a/c71b34349143f15d3bc2ed1e4745e.jpeg"
+    bgImg="/static/ssbu.jpg"
     text={text.ssbu}
     reglement="https://backoffice.gamers-assembly.net/sites/default/files/tournament/OES-2019%20-%20R%C3%A8glement%20-%20League%20of%20Legends.pdf"
     dataSource={[]}

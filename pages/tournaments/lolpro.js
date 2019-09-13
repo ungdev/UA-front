@@ -4,7 +4,7 @@ import text from '../../assets/text';
 
 const Lolpro = () => (
   <Tournament
-    bgImg="https://exp.gg/wp-content/uploads/2018/10/fnatic-pickem-768x432.jpg"
+    bgImg="/static/lolpro.jpg"
     text={text.lolpro}
     reglement="https://backoffice.gamers-assembly.net/sites/default/files/tournament/OES-2019%20-%20R%C3%A8glement%20-%20League%20of%20Legends.pdf"
     dataSource={[]}
