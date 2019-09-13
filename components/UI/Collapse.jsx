@@ -11,6 +11,7 @@ const updateBackground = (e) => {
     e.target.style.backgroundImage = `url(${bg})`;
   }
 };
+
 /**
  * Display an extension panel
  */
@@ -55,20 +56,11 @@ Collapse.propTypes = {
   /**
    * Title of the panel
    */
-  title: PropTypes.any.isRequired,
+  title: PropTypes.node.isRequired,
   /**
-   * Display image below the title
+   * Content to display when the user clicks on the title
    */
-  imgSrc: PropTypes.string,
-  /**
-   * Content to hide
-   */
-  children: PropTypes.node,
-};
-
-Collapse.defaultProps = {
-  children: undefined,
-  imgSrc: undefined,
+  children: PropTypes.node.isRequired,
 };
 
 export default Collapse;

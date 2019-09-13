@@ -14,6 +14,7 @@ const CardsTournaments = () => (
       { text.tournamentList.map(({ title, cashprize, slot, img, link }) => (
         <div className="tournament" key={title}>
           <Card
+            dark
             content={(
               <div>
                 <p>{title}</p>
@@ -22,7 +23,7 @@ const CardsTournaments = () => (
               </div>
             )}
             imgSrc={img}
-            link={link}
+            href={link}
             buttonContent={(
               <>
                 Plus d'infos

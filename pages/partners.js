@@ -12,7 +12,7 @@ const partners = () => (
         { partnersList.map((partner) => (
           <div className="partner" key={partner.link}>
             <a href={partner.link}>
-              <Card imgSrc={partner.img} classNameCard="white-card" classNameImg="partner-img" />
+              <Card imgSrc={partner.img} className="white-card" classNameImg="partner-img" />
             </a>
           </div>
         ))}

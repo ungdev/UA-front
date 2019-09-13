@@ -10,9 +10,15 @@
 
 #partners .partner {
   width: 300px;
+  transition: all .3s;
 }
 
-#partners .partner  a .white-card {
+#partners .partner:hover,
+#partners .partner:focus {
+  filter: brightness(0.9);
+}
+
+#partners .partner a .white-card {
   background-color: #fff;
 }
 
@@ -25,7 +31,7 @@
     width: 150px;
   }
 
-  #partners .partner  a .partner-img {
+  #partners .partner a .partner-img {
     height: 100px;
   }
 }

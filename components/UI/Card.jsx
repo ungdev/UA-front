@@ -7,41 +7,78 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 import Button from './Button';
 import './Card.css';
 
-const Card = ({ imgSrc, content, buttonContent, onClick, link, classNameCard, classNameImg }) => {
+/**
+ * Displays a card which can contain an image, a content and a button
+ */
+const Card = ({
+  dark,
+  imgSrc,
+  content,
+  buttonContent,
+  onClick,
+  href,
+  className,
+  classNameImg,
+}) => {
   const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
   return (
-    <div className={`card ${classNameCard}`}>
+    <div className={`card ${className} ${dark ? 'dark' : ''}`}>
       {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
-      { content
-        && (
+      {content && (
         <>
           <div className="card-content">{content}</div>
           <div className="card-button">
-            {buttonContent !== '' && link ? <Link href={link} key={link}>{button}</Link> : button}
+            {buttonContent !== '' && href ? <Link href={href} key={href}>{button}</Link> : button}
           </div>
         </>
-        ) }
+      )}
     </div>
   );
 };
 
 Card.propTypes = {
+  /**
+   * Dark theme
+   */
+  dark: PropTypes.bool,
+  /**
+   * The source of the image to display to the top
+   */
   imgSrc: PropTypes.string,
-  content: PropTypes.object,
+  /**
+   * The content of the card
+   */
+  content: PropTypes.node,
+  /**
+   * The content of the button
+   */
   buttonContent: PropTypes.node,
+  /**
+   * The function triggered when the user clicks on the button
+   */
   onClick: PropTypes.func,
-  link: PropTypes.string,
-  classNameCard: PropTypes.string,
+  /**
+   * The href of the link surrounding the button
+   */
+  href: PropTypes.string,
+  /**
+   * The class to apply to the card
+   */
+  className: PropTypes.string,
+  /**
+   * The class to apply to the image
+   */
   classNameImg: PropTypes.string,
 };
 
 Card.defaultProps = {
-  imgSrc: undefined,
+  dark: false,
+  imgSrc: null,
+  content: null,
   buttonContent: '',
   onClick: () => {},
-  link: undefined,
-  content: undefined,
-  classNameCard: '',
+  href: null,
+  className: '',
   classNameImg: '',
 };
 

@@ -21,17 +21,14 @@ Button.propTypes = {
    * Whether the button is a primary button or not
    */
   primary: PropTypes.bool,
-
   /**
    * Function called when the user clicks on the button
    */
   onClick: PropTypes.func,
-
   /**
    * The button content
    */
   children: PropTypes.node.isRequired,
-
   /**
    * The class of the button container
    */
