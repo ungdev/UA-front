@@ -13,7 +13,7 @@ const Tournament = ({ bgImg, text, reglement, dataSource }) => {
   const dispatch = useDispatch();
   return (
     <div className="tournament">
-      <img className="tournament-header" alt="tournament-img" src={bgImg} />
+      <img className="tournament-header" alt="" src={bgImg} />
       <div className="tournament-content">
         <Title align="center">{text.title}</Title>
         <div className="tournament-signin">
