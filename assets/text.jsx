@@ -12,7 +12,7 @@ const text = {
           Cette édition aura lieu – comme l'année dernière – dans le cadre du <span className="main-color">Festival des Jeux</span> au Parc des Expositions de Troyes, le Cube.
           Au programme, <span className="main-color">5 tournois</span> sur des incontournables de l'esport, du skill, des personnalités et des rencontres, de nombreuses animations, des <span className="main-color">lots</span> et du <span className="main-color">cashprize</span> à gagner, qui rendront cette édition plus intense et vibrante que jamais.
           Pas fan des jeux proposés ? Pas envie d'être dans un cadre compétitif ? L'UTT Arena propose un <span className="main-color">tournoi libre</span>, composé des jeux que vous choisissez ! Alors prends tout ton stuff et <span className="main-color">impose-toi dans l'arène au Cube Troyes Champagne Expo !</span>
-        </>)
+        </>),
     },
     tournois: {
       catchPhrase: 'LES QUATRE JEUX À L\'UTT ARENA 2019',

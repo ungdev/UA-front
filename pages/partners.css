@@ -8,11 +8,11 @@
   justify-content: space-evenly;
 }
 
-#partners .partner {
+#partners .list-partners .partner {
   width: 300px;
 }
 
-#partners .partner  a .white-card {
+#partners .list-partners .partner  a .white-card {
   background-color: #fff;
 }
 
@@ -21,11 +21,11 @@
     padding: 0 1em;
   }
 
-  #partners .partner {
+  #partners .list-partners .partner {
     width: 150px;
   }
 
-  #partners .partner  a .partner-img {
+  #partners .list-partners .partner  a .partner-img {
     height: 100px;
   }
 }
