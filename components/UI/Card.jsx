@@ -10,7 +10,7 @@ import './Card.css';
 const Card = ({ imgSrc, content, buttonContent, onClick, link, classNameCard, classNameImg }) => {
   const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
   return (
-    <div className={`card-card ${classNameCard}`}>
+    <div className={`card ${classNameCard}`}>
       {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
       { content
         && (
