@@ -23,7 +23,7 @@ const CardsTournaments = () => (
             )}
             imgSrc={img}
             link={link}
-            textButton={(
+            buttonContent={(
               <>
                 Plus d'infos
                 <i className="fas fa-chevron-right right-arrow" />

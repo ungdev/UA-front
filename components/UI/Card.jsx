@@ -7,8 +7,8 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 import Button from './Button';
 import './Card.css';
 
-const Card = ({ imgSrc, content, textButton, onClick, link, classNameCard, classNameImg }) => {
-  const button = <Button primary onClick={onClick}>{textButton}</Button>;
+const Card = ({ imgSrc, content, buttonContent, onClick, link, classNameCard, classNameImg }) => {
+  const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
   return (
     <div className={`card-card ${classNameCard}`}>
       {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
@@ -17,7 +17,7 @@ const Card = ({ imgSrc, content, textButton, onClick, link, classNameCard, class
         <>
           <div className="card-content">{content}</div>
           <div className="card-button">
-            {textButton && link ? <Link href={link} key={link}>{button}</Link> : button}
+            {buttonContent !== '' && link ? <Link href={link} key={link}>{button}</Link> : button}
           </div>
         </>
         ) }
@@ -28,7 +28,7 @@ const Card = ({ imgSrc, content, textButton, onClick, link, classNameCard, class
 Card.propTypes = {
   imgSrc: PropTypes.string,
   content: PropTypes.object,
-  textButton: PropTypes.string,
+  buttonContent: PropTypes.node,
   onClick: PropTypes.func,
   link: PropTypes.string,
   classNameCard: PropTypes.string,
@@ -37,7 +37,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   imgSrc: undefined,
-  textButton: undefined,
+  buttonContent: '',
   onClick: () => {},
   link: undefined,
   content: undefined,

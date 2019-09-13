@@ -10,7 +10,7 @@ const partners = () => (
       <Title align="center" uppercase>Partenaires</Title>
       <div className="list-partners">
         { partnersList.map((partner) => (
-          <div className="partner">
+          <div className="partner" key={partner.link}>
             <a href={partner.link}>
               <Card imgSrc={partner.img} classNameCard="white-card" classNameImg="partner-img" />
             </a>
