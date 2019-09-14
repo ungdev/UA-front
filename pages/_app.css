@@ -103,6 +103,7 @@ div.Toastify__toast.Toastify__toast--info {
   width: calc(100% - 280px);
   height: min-content;
   background-color: #f5f5f5;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 1000px) {

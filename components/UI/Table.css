@@ -1,13 +1,12 @@
-#table {
-  overflow-x: auto;
-}
-
 .table table {
+  display: block;
   width: 100%;
+  max-width: 100%;
   table-layout: auto;
   border-collapse: collapse;
   margin-bottom: 1em;
   text-align: left;
+  overflow-x: auto;
 }
 
 .table th {
