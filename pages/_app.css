@@ -93,6 +93,17 @@ div.Toastify__toast.Toastify__toast--info {
   color: #3498db;
   background: #fff;
 }
+
+.page-padding { /* page-padding should be applied to every page except home page */
+  padding: 2em 5em;
+}
+
+@media screen and (max-width: 650px) {
+  .page-padding {
+    padding: 1em;
+  }
+}
+
 /**********************/
 /** _app.js specific **/
 /**********************/

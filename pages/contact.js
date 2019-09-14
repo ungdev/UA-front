@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 import { Header, Title, Input, Textarea, Button, Select } from '../components';
 import { postToSlack } from '../utils';
 
-import './contact.css';
-
 const options = [
   { label: "J'ai eu une erreur sur le site", value: 'erreur' },
   { label: 'Signaler un bug', value: 'bug' },
@@ -41,33 +39,30 @@ const Contact = () => {
   };
 
   return (
-    <div>
+    <>
       <Header />
-      <div id="contact">
+
+      <div id="contact" className="page-padding">
         <Title align="center" uppercase>contact</Title>
         <p>
-          UTT Net Group
-          <br />
-          12 rue Marie Curie 10000 Troyes
-          <br />
-          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a>
-          <br />
+          UTT Net Group<br />
+          12 rue Marie Curie 10000 Troyes<br />
+          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a><br />
           <a href="tel:0325718550">0325718550</a>
         </p>
+
         <Title level={3}>Formulaire</Title>
         <Input label="Prénom" value={firstname} onChange={setFirstname} id="firstname" />
         <Input label="Nom" value={lastname} onChange={setLastname} id="lastname" />
         <Input label="Email" value={email} onChange={setEmail} id="email" />
         <Select label="Sujet" options={options} value={subject} onChange={setSubject} id="subject" />
         <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} id="msg" />
-        <Button
-          primary
-          onClick={sendMsg}
-        >
+
+        <Button primary onClick={sendMsg}>
           Envoyer
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 
