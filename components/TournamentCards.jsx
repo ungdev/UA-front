@@ -2,24 +2,25 @@ import React from 'react';
 
 import Title from './UI/Title';
 import Card from './UI/Card';
-import text from '../assets/text';
+import tournamentCardsText from '../assets/tournamentCards';
 
-import './CardsTournaments.css';
+import './TournamentCards.css';
 
-const CardsTournaments = () => (
-  <div className="cardtournaments">
+const tournamentCards = () => (
+  <div className="tournament-cards">
     <Title align="center" uppercase>Tournois</Title>
-    <Title level={4} align="center">{text.index.tournois.catchPhrase}</Title>
+    <Title level={4} align="center" uppercase>{tournamentCardsText.catchPhrase}</Title>
+
     <div className="tournaments-list">
-      { text.tournamentList.map(({ title, cashprize, players, img, link }) => (
+      { tournamentCardsText.list.map(({ title, cashprize, players, img, link }) => (
         <div className="tournament" key={title}>
           <Card
             dark
             content={(
               <>
                 <div className="tournament-title">{title}</div>
-                <p>{`Places : ${players} joueurs`}</p>
-                <p>{`Cashprize : ${cashprize}`}</p>
+                <p><strong>Places :</strong> {players} joueurs</p>
+                <p><strong>Cashprize :</strong> {cashprize}</p>
               </>
             )}
             imgSrc={img}
@@ -37,4 +38,4 @@ const CardsTournaments = () => (
   </div>
 );
 
-export default CardsTournaments;
+export default tournamentCards;

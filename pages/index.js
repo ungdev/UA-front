@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Title, VideoContainer, Table, Countdown, CardsTournaments, Button, Card } from '../components';
+import { Title, VideoContainer, Table, Countdown, TournamentCards, Button, Card } from '../components';
 
 import indexText from '../assets/index';
 import partnersList from '../assets/partners.json';
@@ -49,7 +49,7 @@ const Home = () => (
         </Link>
       </div>
       <div className="home-tournaments">
-        <CardsTournaments />
+        <TournamentCards />
       </div>
       <div className="home-partners">
         <Title align="center" uppercase>Partenaires</Title>

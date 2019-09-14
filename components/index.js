@@ -10,7 +10,7 @@ import VideoContainer from './UI/VideoContainer';
 import Countdown from './UI/Countdown';
 import Tournament from './Tournament';
 import Card from './UI/Card';
-import CardsTournaments from './CardsTournaments';
+import TournamentCards from './TournamentCards';
 import Header from './Header';
 import Select from './UI/Select';
 import ConnexionModal from './ConnexionModal';
@@ -28,7 +28,7 @@ export {
   Countdown,
   Tournament,
   Card,
-  CardsTournaments,
+  TournamentCards,
   Header,
   Select,
   ConnexionModal,

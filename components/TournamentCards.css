@@ -1,26 +1,26 @@
-.cardtournaments .tournaments-list {
+.tournament-cards .tournaments-list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-.cardtournaments .tournament {
+.tournament-cards .tournament {
   width: 45%;
 }
 
-.cardtournaments .card-img {
+.tournament-cards .card-img {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.cardtournaments .tournament .right-arrow {
+.tournament-cards .tournament .right-arrow {
   margin-left: 8px;
 }
 
-.cardtournaments .tournament .button {
+.tournament-cards .tournament .button {
   margin: 10px 0 10px 0;
 }
 
-.cardtournaments .tournament .tournament-title {
+.tournament-cards .tournament .tournament-title {
   font-family: 'LemonMilk';
   font-size: 1.4em;
   text-align: center;
@@ -29,7 +29,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .cardtournaments .tournament {
+  .tournament-cards .tournament {
     width: 100%;
   }
 }
