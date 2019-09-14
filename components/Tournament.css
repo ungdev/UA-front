@@ -9,13 +9,22 @@
   padding: 0 5em;
 }
 
-.tournament .tournament-content .tournament-signin {
+.tournament .tournament-signin {
   display: flex;
   justify-content: center;
 }
 
-.tournament .tournament-content .tournament-rules {
-  margin-bottom: 1em;
+.tournament .title-2 {
+  color: var(--accent-color);
+}
+
+.tournament .tournament-section {
+  margin: 20px 0 40px;
+}
+
+.tournament .tournament-format {
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 650px) {

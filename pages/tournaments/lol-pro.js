@@ -2,11 +2,11 @@ import React from 'react';
 import { Tournament } from '../../components';
 import text from '../../assets/text';
 
-const Fortnite = () => (
+const LoLpro = () => (
   <Tournament
-    imgSrc="/static/fortnite.webp"
-    text={text.fortnite}
+    imgSrc="/static/lolpro.webp"
+    text={text.lolpro}
   />
 );
 
-export default Fortnite;
+export default LoLpro;

@@ -22,7 +22,7 @@
 }
 
 .countdown h2 {
-  color: #e20007;
+  color: var(--accent-color);
   font-size: 20px;
 }
 

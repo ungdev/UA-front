@@ -28,19 +28,19 @@ const text = {
       cashprize: 'à venir',
       players: 80,
       img: '/static/lolpro.webp',
-      link: '/tournaments/lolpro',
+      link: '/tournaments/lol-pro',
     },
     {
       title: 'League of Legends (Amateur)',
       cashprize: 'à venir',
       players: 80,
       img: '/static/lolamateur.webp',
-      link: '/tournaments/lolamateur',
+      link: '/tournaments/lol-amateur',
     },
     {
       title: 'Super Smash Bros Ultimate',
       cashprize: 'à venir',
-      players: 64,
+      players: 32,
       img: '/static/ssbu.webp',
       link: '/tournaments/ssbu',
     },
@@ -81,17 +81,17 @@ const text = {
         text: 'Gare de Troyes à 10 min à pied du festival',
       }, {
         title: 'Bus',
-        text: 'Lignes 2, 6, 8: arrêt Terrasses ou Ligne 5: arrêt CCI',
+        text: 'Lignes 2, 6, 8 : arrêt Terrasses ou Ligne 5 : arrêt CCI',
       },
     ],
     billeterie: [
       {
         text: 'Il sera possible d\'acheter une place à partir du dimanche 13 octobre.',
         list: [
-          'Il faut d\'abord s\'inscrire',
+          'Il faut d\'abord s\'inscrire (bouton "Connexion" dans la barre de navigation)',
           'Ensuite, il faut payer sa place',
-          'Chaque joueur paye sa place, il n\'y a pas de paiement groupé',
-          'Le paiement se fait uniquement par carte bancaire',
+          'Cette année, le paiement groupé est possible',
+          'Le paiement se fait uniquement par carte bancaire sur le site',
         ],
       }, {
         text: 'Les tarifs sont les suivants :',
@@ -125,59 +125,66 @@ const text = {
   },
   lolpro: {
     title: 'League of Legends (Pro)',
-    format:
-  <>
-    16 équipes de 5 joueurs.
-    <ul>
-      <li>Description du déroulement du tournoi à venir. </li>
-    </ul>
-  </>,
-    cashprize: '2000€ pour les premiers puis lots',
+    format: (
+      <>
+        <div className="tournament-format">16 équipes de 5 joueurs.</div>
+        Description du tournoi à venir.
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
   },
   lolamateur: {
     title: 'League of Legends (Amateur)',
-    format:
-  <>
-    16 équipes de 5 joueurs.
-    <ul>
-      <li>Description du déroulement du tournoi à venir. </li>
-    </ul>
-  </>,
-    cashprize: 'Lots pour les finalistes',
+    format: (
+      <>
+        <div className="tournament-format">16 équipes de 5 joueurs.</div>
+        <ul>
+          <li>Description du déroulement du tournoi à venir.</li>
+        </ul>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
   },
   fortnite: {
     title: 'fortnite Duo',
-    format:
-  <>
-    32 équipes en trio.
-    <ul>
-      <li>Le format est susceptible de varier en fonction d’Epic Games.  </li>
-      <li>Description du déroulement du tournoi à venir. </li>
-    </ul>
-  </>,
-    cashprize: '1000€ pour les premiers puis lots',
+    format: (
+      <>
+        <div className="tournament-format">32 équipes en trio.</div>
+        <ul>
+          <li>Description du déroulement du tournoi à venir.</li>
+        </ul>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
   },
   csgo: {
-    title: 'Counter strike : GO',
-    format:
-  <>
-    16 équipes de 5 joueurs.
-    <ul>
-      <li>Description du déroulement du tournoi à venir. </li>
-    </ul>
-  </>,
-    cashprize: '1000€ pour les premiers puis lots',
+    title: 'Counter-Strike : Global Offensive',
+    format: (
+      <>
+        <div className="tournament-format">16 équipes de 5 joueurs.</div>
+        <ul>
+          <li>Description du déroulement du tournoi à venir.</li>
+        </ul>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
   },
   ssbu: {
-    title: 'Super smash bros ultimate',
-    format:
-  <>
-    32 joueurs en solo.
-    <ul>
-      <li>Description du déroulement du tournoi à venir. </li>
-    </ul>
-  </>,
-    cashprize: '400€ pour le premier puis lots',
+    title: 'Super Smash Bros Ultimate',
+    format: (
+      <>
+        <div className="tournament-format">32 joueurs en solo.</div>
+        <ul>
+          <li>Description du déroulement du tournoi à venir.</li>
+        </ul>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
   },
   legal: {
     ung: <>UTT Net Group, association loi 1901<br />N° RNA : W103000699<br />situé au 12 rue Marie Curie<br />10004 Troyes<br />03 26 40 60 00<br />ung@utt.fr<br /></>,

@@ -33,7 +33,7 @@
 
 .title.title-1 {
   overflow: hidden;
-  color: #e20007;
+  color: var(--accent-color);
   position: relative;
 }
 

@@ -17,6 +17,7 @@
 :root {
   --primary-color: #fb560c;
   --secondary-color: #e21562;
+  --accent-color: #e20007;
   --dark-color: #202020;
   --gradient: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);
   font-family: 'Roboto', sans-serif;
@@ -46,12 +47,12 @@ img {
 }
 
 .main-color {
-  color: #e20007;
+  color: var(--accent-color);
   font-weight: 700;
 }
 
 a {
-  color: #e20007;
+  color: var(--accent-color);
 }
 
 button.Toastify__close-button {
@@ -101,7 +102,7 @@ div.Toastify__toast.Toastify__toast--info {
   top: 0;
   left: 280px;
   width: calc(100% - 280px);
-  height: min-content;
+  min-height: 100vh;
   background-color: #f5f5f5;
   overflow-x: hidden;
 }
