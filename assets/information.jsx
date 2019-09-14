@@ -7,14 +7,14 @@ import { Title } from '../components';
 export default {
   presentation: (
     <>
-      L'<span className="accent">UTT Arena</span> c'est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> en matière d'e-sport.
-      L'association a été créée en 1998 et a pour but de réunir les passionnés d'informatique et des nouvelles technologies de l'Université de Technologie de Troyes (UTT).<br />
-      L'UTT Arena réalise sa <span className="accent">17<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d'examen de l'UTT avec une centaine de joueurs.<br />
-      Puis l'événement a grandi, l'organisation a augmenté à 200 joueurs avec une scène dans la halle sportive de l'UTT.<br />
-      L'année 2015 est arrivée et une opportunité unique nous a été offerte par la ville avec la création du Festival des Jeux.
-      Nous avons donc déménagé au Cube et nous sommes depuis dans le format que vous connaissez !<br />
-      À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de 70 m² et une centaine de bénévoles.<br /><br />
-      Et tout cela, c'est grâce à vous, les joueurs, qui nous faites confiance chaque année pour vous organiser un événement de folie, et à nos partenaires qui nous soutiennent chaque année dans l'organisation de la LAN !
+      L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> (UNG) en matière d'esport.
+      L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles technologies de l'Université de Technologie de Troyes (UTT).<br /><br />
+      L'UTT Arena revient cette année pour sa <span className="accent">17<sup>ème</sup> édition</span> !
+      D'une simple salle d'examen de l'UTT à 1500m² au cœur du Festival des Jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !<br /><br />
+
+      À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus d'une <span className="accent">centaine</span> de bénévoles !
+      Et tout cela, c'est grâce à vous, les joueurs, coachs, visiteurs, qui nous faites confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît !
+      C'est aussi grâce à tous nos partenaires qui nous soutiennent chaque année dans l'organisation de la LAN !
     </>
   ),
   tickets: (
@@ -37,28 +37,32 @@ export default {
   playersInfo: (
     <>
       <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br />
-      <p>Pour les mineurs, une <strong>autorisation parentale</strong> sera demandée lors de l'événement (elle sera bientôt disponible au téléchargement).</p>
+
+      <Title level={4}>Joueur mineur</Title>
+      <p>Une autorisation parentale sera demandée lors de l'événement. Elle sera bientôt disponible sur notre site pour que tu puisses la remplir.</p>
 
       <Title level={4}>Ce qu'il faut apporter</Title>
       <ul>
         <li>Ton PC</li>
         <li>Ton casque</li>
+        <li>Ton écran</li>
+        <li>Ton clavier et ta souris</li>
         <li>Une multiprise</li>
-        <li>Un câble ethernet</li>
+        <li>Un câble ethernet de 5m minimum</li>
       </ul>
-      <p>Nous vendons des multiprises et des câbles RJ45 de 5m et 7m.</p>
+      <p>Nous vendons sur place des multiprises et des câbles RJ45 de 5m et 7m.</p>
 
       <Title level={4}>Ce qui est fourni</Title>
       <ul>
-        <li>Une place assise évidemment</li>
-        <li>Un port ethernet</li>
-        <li>Une prise électrique</li>
+        <li>Une table ainsi qu'une place assise bien évidemment</li>
+        <li>Un port ethernet pour te brancher au réseau de l'UTT Arena</li>
+        <li>Une prise électrique pour y brancher ta multiprise</li>
       </ul>
 
       <Title level={4}>Streaming</Title>
       <p>
-        Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l'événement.
-        Nous nous réservons le droit d'empêcher le stream.
+        Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l'UTT Arena.
+        Même si on te permet de streamer, nous nous réservons le droit d'empêcher le stream lors de l'événement.
       </p>
     </>
   ),
@@ -66,15 +70,15 @@ export default {
     <>
       <Title level={4}>Nourriture</Title>
       <p>
-        On sait qu'un weekend de 48h non-stop ça creuse, nous te proposerons donc sur place :
-        croque-monsieur, crêpes, pizzas, canettes, snack, tout pour te sustenter au mieux !
+        On sait que compétition esport de 48h non-stop ça creuse ! Nous te proposons donc un service de restauration sur place !
+        Des croque-monsieur, crêpes, pizzas, boissons, snack... tout le nécessaire pour te sustenter au mieux !
         Et tout cela à un prix abordable.
       </p>
 
       <Title level={4}>Couchage</Title>
       <p>
         Nous mettons à disposition des joueurs des loges communes avec un accès à l'eau et aux douches !
-        Pensez à ramener vos duvets si vous souhaitez en profiter ! Nous mettrons à disposition des tapis pour plus de confort.
+        Pensez à ramener vos duvets si vous souhaitez vous reposer ! Nous mettrons à disposition des tapis de gym fins pour plus de confort.
       </p>
 
       <Title level={4}>Location de matériel</Title>
