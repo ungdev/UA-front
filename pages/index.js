@@ -2,27 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import { Title, VideoContainer, Table, Countdown, CardsTournaments, Button, Card } from '../components';
 
-import text from '../assets/text';
+import indexText from '../assets/index';
 import partnersList from '../assets/partners.json';
 import './index.css';
-
-const columns = [
-  { title: '', key: 'title' },
-  { title: '', key: 'description' },
-];
-
-const dataSource = [
-  { title: <strong>Format</strong>, description: 'Bring Your Own Stuff (Ramène ton ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum… Bref, tout ce dont tu as besoin pour jouer)' },
-  { title: <strong>Ouverture</strong>, description: '6 décembre 2019 - 17h' },
-  { title: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
-  { title: <strong>Début des tournois</strong>, description: 'Samedi 7 décembre à 10h précises' },
-  { title: <strong>Nourriture</strong>, description: 'Sur place, pendant tout l\'événement' },
-  { title: <strong>Places</strong>, description: '460' },
-  { title: <strong>Tarifs</strong>, description: 'Joueur 20€, Accompagnateur 12€' },
-  { title: <strong>Âge minimum</strong>, description: '15 ans' },
-  { title: <strong>Tournois avec Cashprize</strong>, description: 'LoL Pro, CS:GO, SSBU, Fortnite' },
-  { title: <strong>Tournois sans Cashprize</strong>, description: 'LoL Amateur, tournoi libre (dont osu!)' },
-];
 
 const listPartners = partnersList.map((partner) => (
   <div className="partner" key={partner.link}>
@@ -47,19 +29,19 @@ const Home = () => (
       </div>
       <div className="home-info">
         <Title align="center" uppercase>Informations</Title>
-        <Title level={4} align="center" uppercase>{text.index.information.catchPhrase}</Title>
-        <p>{text.index.information.description}</p>
+        <Title level={4} align="center" uppercase>{indexText.information.catchPhrase}</Title>
+        <p>{indexText.information.description}</p>
         <VideoContainer
           src="https://www.youtube.com/embed/K_Jchg4MIh0"
           title="Aftermovie UTT Arena 2018"
           className="video-container"
         />
         <Table
-          columns={columns}
-          dataSource={dataSource}
+          columns={indexText.information.tableColumns}
+          dataSource={indexText.information.tableRows}
           className="info-table"
         />
-        <Link href="/informations">
+        <Link href="/information">
           <Button primary className="info-button">
             Toutes les informations
             <i className="fas fa-chevron-right" />

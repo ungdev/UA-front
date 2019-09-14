@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { Tournament } from '../../components';
-import text from '../../assets/text';
+import tournamentsText from '../../assets/tournaments';
 
 const CSGO = () => (
   <Tournament
     imgSrc="/static/csgo.webp"
-    text={text.csgo}
+    text={tournamentsText.csgo}
   />
 );
 

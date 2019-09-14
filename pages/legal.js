@@ -1,30 +1,29 @@
 import React from 'react';
-import { Title } from '../components';
 
-import text from '../assets/text';
+import { Title, Header } from '../components';
+import legalText from '../assets/legal';
 import './legal.css';
 
 const Legal = () => (
-  <div id="legal">
-    <Title align="center" uppercase>Mentions légales</Title>
-    <Title level={2}>Propriétaire du site</Title>
-    {text.legal.ung}
-    <Title level={2}>Hébergeur du site</Title>
-    {text.legal.ung}
-    <Title level={2}>Informations relatives aux cookies</Title>
-    <p>{text.legal.cookies}</p>
-    <Title level={2}>Conditions d&apos;accès aux systèmes informatiques</Title>
-    <p>{text.legal.acces}</p>
-    <Title level={2}>Conditions générales de vente</Title>
-    <div>
-      {text.legal.vente.map(({ title, content }) => (
-        <React.Fragment key={title}>
-          <Title level={3}>{title}</Title>
-          <p>{content}</p>
-        </React.Fragment>
-      ))}
+  <>
+    <Header />
+
+    <div id="legal" className="page-padding">
+      <Title align="center" uppercase>Mentions légales</Title>
+
+      <Title level={2}>Propriétaire et hébergeur du site</Title>
+      {legalText.ung}
+
+      <Title level={2}>Informations relatives aux cookies</Title>
+      {legalText.cookies}
+
+      <Title level={2}>Conditions d'accès aux systèmes informatiques</Title>
+      {legalText.access}
+
+      <Title level={2}>Conditions générales de vente</Title>
+      {legalText.sales}
     </div>
-  </div>
+  </>
 );
 
 export default Legal;

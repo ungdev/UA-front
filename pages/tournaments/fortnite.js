@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { Tournament } from '../../components';
-import text from '../../assets/text';
+import tournamentsText from '../../assets/tournaments';
 
 const Fortnite = () => (
   <Tournament
     imgSrc="/static/fortnite.webp"
-    text={text.fortnite}
+    text={tournamentsText.fortnite}
   />
 );
 

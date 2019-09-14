@@ -1,14 +1,10 @@
-#partners {
-  padding: 0 5em;
-}
-
-#partners .list-partners {
+#partners .partners-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-#partners .list-partners .partner {
+#partners .partners-list .partner {
   width: 300px;
   transition: all .3s;
 }
@@ -19,11 +15,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  #partners {
-    padding: 0 1em;
-  }
-
-  #partners .list-partners .partner {
+  #partners .partners-list .partner {
     width: 150px;
   }
 

@@ -10,7 +10,7 @@ import withReduxStore from '../lib/withReduxStore';
 import { Navbar } from '../components';
 
 import './_app.css';
-import text from '../assets/text';
+import headText from '../assets/head';
 
 toast.configure({
   autoClose: 2000,
@@ -33,10 +33,10 @@ const App = ({ Component, pageProps, reduxStore }) => {
   return (
     <div>
       <Head>
-        <title>{text.head.title}</title>
+        <title>{headText.title}</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
-        <meta name="description" content={text.head.description} />
+        <meta name="description" content={headText.description} />
 
         <link rel="icon" href="/static/favicon.ico" />
         <link rel="manifest" href="/static/manifest.json" />

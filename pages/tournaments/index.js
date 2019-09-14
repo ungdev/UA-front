@@ -1,15 +1,15 @@
 import React from 'react';
-import { CardsTournaments, Header } from '../../components';
 
-import './index.css';
+import { TournamentCards, Header } from '../../components';
 
 const Tournaments = () => (
-  <div>
+  <>
     <Header />
-    <div id="tournaments">
-      <CardsTournaments />
+
+    <div id="tournaments" className="page-padding">
+      <TournamentCards />
     </div>
-  </div>
+  </>
 );
 
 export default Tournaments;

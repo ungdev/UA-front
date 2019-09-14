@@ -1,10 +1,11 @@
 import React from 'react';
+
 import { Card, Header, Title } from '../components';
-import partnersList from '../assets/partners.json';
+import partnersList from '../assets/partners';
 import './partners.css';
 
 const Partners = () => {
-  const listPartners = partnersList.map((partner) => (
+  const partners = partnersList.map((partner) => (
     <div className="partner" key={partner.link}>
       <a href={partner.link}>
         <Card imgSrc={partner.img} classNameCard="white-card" classNameImg="partner-img" />
@@ -13,15 +14,16 @@ const Partners = () => {
   ));
 
   return (
-    <div>
+    <>
       <Header />
-      <div id="partners">
+
+      <div id="partners" className="page-padding">
         <Title align="center" uppercase>Partenaires</Title>
-        <div className="list-partners">
-          { listPartners }
+        <div className="partners-list">
+          { partners }
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
