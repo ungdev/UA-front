@@ -11,7 +11,7 @@ const faq = [
       },
       {
         question: 'Puis-je jouer à la manette ?',
-        answer: 'Oui.',
+        answer: 'Oui il est possible de jouer à la manette.',
       },
       {
         question: 'Puis-je streamer pendant la LAN ?',
@@ -19,7 +19,7 @@ const faq = [
       },
       {
         question: 'Où puis-je trouver des joueurs pour mon équipe ?',
-        answer: "Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe. Tu peux trouver le lien du discord en bas du site.",
+        answer: 'Sur le discord de l\'UTT Arena tu trouveras sûrement d\'autres joueurs qui cherchent une équipe. Tu peux trouver le lien du discord dans la barre de navigation.',
       },
     ],
   },
@@ -28,32 +28,34 @@ const faq = [
     entries: [
       {
         question: 'Quelle place doivent acheter les coachs/managers de mon équipe ?',
-        answer: "Les coachs et managers d'équipes doivent acheter une place visiteur.",
+        answer: 'Les coachs et managers d\'équipes doivent acheter une place visiteur.',
       },
       {
         question: 'Combien coûte la LAN pour les joueurs et les accompagnateurs ?',
-        answer: 'La LAN coûte 15€ pour tous les joueurs, avec une réduction de 5€ pour les écoles partenaires. La place accompagnateur/visiteur est à 6€.',
+        answer: 'La LAN coûte 20€ pour tous les joueurs. La place accompagnateur/visiteur est à 12€.',
       },
       {
-        question: "Je me suis inscrit et je n'ai pas reçu mon mail de confirmation",
-        answer:
-  <>
-    Si lors de votre inscription votre adresse e-mail est rejetée, cela peut être dû à trois choses:
-    <ul>
-      <li>On ne peut pas avoir plus d&apos;un compte par mail</li>
-      <li>Cet e-mail a été banni. Contactez les organisateurs afin d&apos;en savoir plus.</li>
-      <li>Vous vous êtes trompé lors de la saisie de votre adresse mail. Contactez les organisateurs grâce au formulaire de contact.</li>
-    </ul>
-  </>,
+        question: 'Je me suis inscrit et je n\'ai pas reçu mon mail de confirmation',
+        answer: (
+          <>
+            Si lors de votre inscription votre adresse e-mail est rejetée, cela peut être dû à trois choses:
+            <ul>
+              <li>On ne peut pas avoir plus d&apos;un compte par mail</li>
+              <li>Cet e-mail a été banni. Contactez les organisateurs afin d&apos;en savoir plus.</li>
+              <li>Vous vous êtes trompé lors de la saisie de votre adresse mail. Contactez les organisateurs grâce au formulaire de contact.</li>
+            </ul>
+          </>
+        ),
       },
       {
-        question: "Quel est l'âge minimum pour la LAN ?",
-        answer:
-  <>
-    15 ans. Pour les mineurs, une autorisation parentale ou du responsable légal sera demandée le jour de la LAN.
-    <br />
-    <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
-  </>,
+        question: 'Quel est l\'âge minimum pour la LAN ?',
+        answer: (
+          <>
+            15 ans. Pour les mineurs, une autorisation parentale ou du responsable légal sera demandée le jour de la LAN.
+            <br />
+            <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
+          </>
+        ),
       },
     ],
   },
@@ -66,11 +68,11 @@ const faq = [
       },
       {
         question: 'Puis-je payer par PayPal ?',
-        answer: 'Non, sur le site, seul le paiement par carte bancaire est disponible.',
+        answer: 'Non, sur le site seul le paiement par carte bancaire est disponible.',
       },
       {
-        question: 'Est ce que je peux payer pour toute mon équipe ?',
-        answer: 'Non, chacun doit payer sa place.',
+        question: 'Puis-je payer pour toute mon équipe ?',
+        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs.',
       },
     ],
   },
@@ -88,11 +90,11 @@ const faq = [
     entries: [
       {
         question: 'Dois-je ramener ma console ?',
-        answer: 'Non, nous fournissons tout le matériel.',
+        answer: 'Non, nous fournissons tout le matériel pour le tournoi SSBU.',
       },
       {
         question: 'Puis-je ramener mon PC ?',
-        answer: "Non, vous n'aurez pas de place attribuée.",
+        answer: 'Non, car vous n\'aurez pas de place attribuée.',
       },
     ],
   },

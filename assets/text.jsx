@@ -93,7 +93,6 @@ const text = {
         text: 'Les tarifs sont les suivants :',
         list: [
           'Joueur : 20€',
-          'Étudiant UTT, UTC, UTBM : 10€',
           'Accompagnateur : 12€ (limité à 40 places)',
         ],
       },
