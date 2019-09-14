@@ -105,13 +105,13 @@ const text = {
       desc: (
         <>
           <strong>Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br /><br />
-          Pour les mineurs, une autorisation parentale sera demandée lors de l'événement. <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
+          Pour les mineurs, une <strong>autorisation parentale</strong> sera demandée lors de l'événement (elle sera bientôt disponible au téléchargement).
         </>
       ),
       apporte: ['Ton PC', 'Ton casque', 'Une multiprise', 'Un câble ethernet'],
       fourni: ['Une place assise évidemment', 'Un port ethernet', 'Une prise électrique'],
-      vente: 'Nous vendons des multiprises et des câbles RJ45 de 5 et 7m.',
-      streaming: 'Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l\'UA, et nous vous autoriserons peut-être à streamer. Nous nous réservons le droit d\'empêcher le stream.',
+      vente: 'Nous vendons des multiprises et des câbles RJ45 de 5m et 7m.',
+      streaming: 'Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l\'UA. Nous nous réservons le droit d\'empêcher le stream.',
     },
     services: [
       {
