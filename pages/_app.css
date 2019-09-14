@@ -4,13 +4,13 @@
 
 @font-face {
   font-family: 'LemonMilk';
-  font-display: fallback;
+  font-display: swap;
   src: url('/static/LemonMilk.otf');
 }
 
 @font-face {
   font-family: 'Montserrat', sans-serif;
-  font-display: fallback;
+  font-display: swap;
   src: url('/static/Montserrat-Regular.ttf');
 }
 

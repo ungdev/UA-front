@@ -4,7 +4,7 @@ import text from '../../assets/text';
 
 const Lolpro = () => (
   <Tournament
-    bgImg="/static/lolpro.jpg"
+    bgImg="/static/lolpro.webp"
     text={text.lolpro}
     reglement="https://backoffice.gamers-assembly.net/sites/default/files/tournament/OES-2019%20-%20R%C3%A8glement%20-%20League%20of%20Legends.pdf"
     dataSource={[]}
