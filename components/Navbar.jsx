@@ -17,7 +17,7 @@ const links = [
   },
   {
     title: 'Informations',
-    href: '/informations',
+    href: '/information',
   },
   {
     title: 'Tournois',
