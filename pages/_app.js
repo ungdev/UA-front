@@ -8,9 +8,9 @@ import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
 import { Navbar } from '../components';
+import headText from '../assets/head';
 
 import './_app.css';
-import headText from '../assets/head';
 
 toast.configure({
   autoClose: 2000,

@@ -40,10 +40,12 @@ const links = [
 const Navbar = () => {
   const { pathname } = useRouter();
   const shortPath = pathname.match(/(\/[a-z]*)/)[0];
+
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visibleLoginModal);
+
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
     if (window.innerWidth <= 1000) {
@@ -102,14 +104,13 @@ const Navbar = () => {
           </div>
 
           <div className="footer-text">
-            © 2019
-            {' '}
-            <a href="https://ung.utt.fr">UTT Net Group</a>
+            © 2019 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal"><a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a></Link>
           </div>
         </div>
       </div>
+
       <ConnexionModal onClose={() => dispatch(setVisible(false))} isVisible={isVisible} />
     </div>
   );
