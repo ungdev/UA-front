@@ -4,11 +4,13 @@
 
 @font-face {
   font-family: 'LemonMilk';
+  font-display: fallback;
   src: url('/static/LemonMilk.otf');
 }
 
 @font-face {
   font-family: 'Montserrat', sans-serif;
+  font-display: fallback;
   src: url('/static/Montserrat-Regular.ttf');
 }
 
@@ -25,6 +27,7 @@ html, body {
   padding: 0;
   color: #212121;
   text-align: justify;
+  overflow-x: hidden;
 }
 
 img {
