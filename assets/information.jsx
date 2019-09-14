@@ -1,18 +1,19 @@
 /* eslint-disable max-len */
 import React from 'react';
+import Link from 'next/link';
 
 import { Title } from '../components';
 
 export default {
   presentation: (
     <>
-      L'<span className="main-color">UTT Arena</span> c'est le plus gros événement de l'association <span className="main-color">UTT Net Group</span> en matière d'e-sport.
+      L'<span className="accent">UTT Arena</span> c'est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> en matière d'e-sport.
       L'association a été créée en 1998 et a pour but de réunir les passionnés d'informatique et des nouvelles technologies de l'Université de Technologie de Troyes (UTT).<br />
-      L'UTT Arena réalise sa <span className="main-color">17<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d'examen de l'UTT avec une centaine de joueurs.<br />
+      L'UTT Arena réalise sa <span className="accent">17<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d'examen de l'UTT avec une centaine de joueurs.<br />
       Puis l'événement a grandi, l'organisation a augmenté à 200 joueurs avec une scène dans la halle sportive de l'UTT.<br />
       L'année 2015 est arrivée et une opportunité unique nous a été offerte par la ville avec la création du Festival des Jeux.
       Nous avons donc déménagé au Cube et nous sommes depuis dans le format que vous connaissez !<br />
-      À présent l'UTT Arena c'est <span className="main-color">460 joueurs</span>, <span className="main-color">5 tournois spotlights</span>, une scène de 70 m² et une centaine de bénévoles.<br /><br />
+      À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de 70 m² et une centaine de bénévoles.<br /><br />
       Et tout cela, c'est grâce à vous, les joueurs, qui nous faites confiance chaque année pour vous organiser un événement de folie, et à nos partenaires qui nous soutiennent chaque année dans l'organisation de la LAN !
     </>
   ),
@@ -35,7 +36,7 @@ export default {
   ),
   playersInfo: (
     <>
-      <strong>Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br />
+      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br />
       <p>Pour les mineurs, une <strong>autorisation parentale</strong> sera demandée lors de l'événement (elle sera bientôt disponible au téléchargement).</p>
 
       <Title level={4}>Ce qu'il faut apporter</Title>
