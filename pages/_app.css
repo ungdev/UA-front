@@ -46,7 +46,7 @@ img {
   width: min-content;
 }
 
-.main-color {
+.accent {
   color: var(--accent-color);
   font-weight: 700;
 }
