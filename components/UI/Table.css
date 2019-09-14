@@ -1,18 +1,21 @@
+.table {
+  overflow-x: auto;
+}
+
 .table table {
-  display: block;
-  width: 100%;
+  display: table;
   max-width: 100%;
   table-layout: auto;
   border-collapse: collapse;
   margin-bottom: 1em;
   text-align: left;
-  overflow-x: auto;
+  margin: auto;
 }
 
 .table th {
   font-size: 1.125rem;
   font-weight: 600;
-  padding: 0.5em 0.25em;
+  padding: .5em;
 }
 
 .table .table-divider {
@@ -24,5 +27,5 @@
 
 .table td {
   border-bottom: 1px solid #c8c8c8;
-  padding: 0.5em 0.25em;
+  padding: .5em;
 }
