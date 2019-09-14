@@ -16,7 +16,7 @@ export default {
   cookies: (
     <>
       Afin d'assurer la fourniture du service à l'utilisateur authentifié, un cookie de session est inscrit sur la navigateur lors de l'authentification sur le site.
-      Celui-ci, identifié par le nom "arena-2019-token" dans la portée "arena.utt.fr" a pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
+      Celui-ci, identifié par le nom "arena-token" dans la portée "arena.utt.fr" a pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
       Il est détruit lors de la déconnexion, ou à son expiration. Conformément à la directive européenne 2009/136/CE, ce cookie est indispensable à la fourniture du service sollicité.
       L'utilisateur peut se dispenser de ce cookie en ne s'inscrivant pas sur le site.
     </>
