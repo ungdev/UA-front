@@ -16,22 +16,24 @@ const Tournament = ({ bgImg, text }) => {
       <div className="tournament-content">
         <Title align="center" uppercase>{text.title}</Title>
         <div className="tournament-signin">
-          <Button primary onClick={() => dispatch(setVisible(true))}>S&apos;inscrire</Button>
+          <Button primary onClick={() => dispatch(setVisible(true))}>S'inscrire</Button>
         </div>
+
         <Title level={2}>Format</Title>
         {text.format}
+
         <Title level={2}>Cashprize</Title>
         <p>Informations à venir.</p>
-        <Title level={2}>Réglement</Title>
+
+        <Title level={2}>Règlement</Title>
         <div className="tournament-rules">
           <p>
             Informations à venir.
           </p>
         </div>
-        <Title level={2}>Equipes inscrites</Title>
-        <p>
-          Les inscriptions ne sont pas encore ouvertes !
-        </p>
+
+        <Title level={2}>Équipes inscrites</Title>
+        <p>Les inscriptions ne sont pas encore ouvertes !</p>
       </div>
     </div>
   );
