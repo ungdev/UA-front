@@ -64,7 +64,7 @@ const text = {
       <>
         L'<span className="main-color">UTT Arena</span> c'est le plus gros événement de l'association <span className="main-color">UTT Net Group</span> en matière d'e-sport.
         L'association a été créée en 1998 et a pour but de réunir les passionnés d'informatique et des nouvelles technologies de l'Université de Technologie de Troyes (UTT).<br />
-        L'UA réalise sa <span className="main-color">16<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d'examen de l'UTT avec une centaine de joueurs.<br />
+        L'UA réalise sa <span className="main-color">17<sup>ème</sup> édition</span> cette année ! Au commencement, lors de la première édition, nous étions dans une salle d'examen de l'UTT avec une centaine de joueurs.<br />
         Puis l'événement a grandi, l'organisation a augmenté à 200 joueurs avec une scène dans la halle sportive de l'UTT.<br />
         L'année 2015 est arrivée et une opportunité unique nous a été offerte par la ville avec la création du Festival des Jeux.
         Nous avons donc déménagé au Cube et nous sommes depuis dans le format que vous connaissez !<br />
