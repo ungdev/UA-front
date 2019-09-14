@@ -33,9 +33,7 @@ const Collapse = ({ title, children, imgSrc }) => {
         {title}
         { children && (
           <div className={`arrow ${contentVisible ? 'open' : ''}`}>
-            <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation">
-              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-            </svg>
+            <i className="fas fa-chevron-down" />
           </div>
         )}
       </div>
