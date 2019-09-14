@@ -1,4 +1,6 @@
 ## CountdownComponent
 
-This component does not have any props.
+prop | type | default | required | description
+---- | :----: | :-------: | :--------: | -----------
+**date** | `Object` |  | :white_check_mark: | The date from which the remaining time will be computed
 
