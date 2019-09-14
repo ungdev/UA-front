@@ -10,6 +10,7 @@ import withReduxStore from '../lib/withReduxStore';
 import { Navbar } from '../components';
 
 import './_app.css';
+import text from '../assets/text';
 
 toast.configure({
   autoClose: 2000,
@@ -32,9 +33,10 @@ const App = ({ Component, pageProps, reduxStore }) => {
   return (
     <div>
       <Head>
-        <title>UTT Arena 2019 - 6, 7 et 8 décembre 2019</title>
+        <title>{text.head.title}</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
+        <meta name="description" content={text.head.description} />
 
         <link rel="icon" href="/static/favicon.ico" />
         <link rel="manifest" href="/static/manifest.json" />
