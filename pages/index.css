@@ -82,12 +82,12 @@
 #home .home-container .home-partners .list-partners {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 #home .home-container .partner {
-  width: 100px;
-  padding: 0 4px;
+  width: 150px;
+  padding: 0 8px;
   transition: all .3s;
 }
 
@@ -97,7 +97,7 @@
 }
 
 #home .home-container .partner-img {
-  height: 66px;
+  height: 100px;
 }
 
 @media screen and (max-width: 1000px) {

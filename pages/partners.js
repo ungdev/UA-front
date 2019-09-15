@@ -5,11 +5,21 @@ import partnersList from '../assets/partners';
 import './partners.css';
 
 const Partners = () => {
-  const partners = partnersList.map((partner) => (
-    <div className="partner" key={partner.link}>
-      <a href={partner.link}>
-        <Card imgSrc={partner.img} classNameCard="white-card" classNameImg="partner-img" />
-      </a>
+  const partners = partnersList.map(({ link, img, description }) => (
+    <div className="partner" key={link}>
+      <Card
+        imgSrc={img}
+        className="partner-card"
+        classNameImg="partner-img"
+        content={description}
+        href={link}
+        buttonContent={(
+          <>
+            Plus d'infos
+            <i className="fas fa-chevron-right right-arrow" />
+          </>
+        )}
+      />
     </div>
   ));
 

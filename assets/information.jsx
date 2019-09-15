@@ -19,7 +19,7 @@ export default {
   ),
   tickets: (
     <>
-      Il sera possible d'acheter une place à partir du dimanche 13 octobre.
+      Il sera possible d'acheter une place courant octobre.
       <ul>
         <li>Il faut d'abord s'inscrire (bouton "Connexion" dans la barre de navigation)</li>
         <li>Ensuite, il faut payer sa place</li>
@@ -128,7 +128,7 @@ export default {
     ],
     rows: [
       { type: <>UTT&nbsp;Arena</>, ven: '17h - 00h', sam: '00h - 00h', dim: '00h - 18h' },
-      { type: <>Festival&nbsp;des&nbsp;jeux</>, ven: '17h - 21h', sam: '11h - 22h', dim: '11h - 18h' },
+      { type: <>Festival&nbsp;des&nbsp;jeux</>, ven: '11h - 21h', sam: '11h - 21h', dim: '11h - 18h' },
     ],
   },
 };

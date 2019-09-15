@@ -5,21 +5,29 @@
 }
 
 #partners .partners-list .partner {
-  width: 300px;
-  transition: all .3s;
+  width: 400px;
 }
 
-#partners .partner:hover,
-#partners .partner:focus {
-  filter: brightness(0.9);
+#partners .partner-card {
+  height: 572px; /* Max card height*/
+  display: flex;
+  flex-direction: column;
 }
 
-@media screen and (max-width: 650px) {
-  #partners .partners-list .partner {
-    width: 150px;
-  }
+#partners .partner .partner-img {
+  height: 264px;
+}
 
-  #partners .partner a .partner-img {
-    height: 100px;
+#partners .right-arrow {
+  margin-left: 8px;
+}
+
+#partners .button {
+  margin: 10px 0 10px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  #partners .partner-card {
+    height: auto;
   }
 }
