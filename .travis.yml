@@ -8,7 +8,6 @@ node_js:
 cache:
   directories:
   - node_modules
-  yarn: true
 script:
 - yarn
 - yarn lint
@@ -23,6 +22,7 @@ deploy:
     token: $OPENSHIFT_TOKEN
     on:
       branch: dev
+    edge: true
   - provider: openshift
     server: $OPENSHIFT_SERVER
     project: ua
@@ -30,4 +30,4 @@ deploy:
     token: $OPENSHIFT_TOKEN
     on:
       branch: master
-  edge: true
+    edge: true
