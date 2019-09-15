@@ -21,7 +21,7 @@ const Card = ({
   classNameImg,
 }) => {
   const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
-  const LinkComponent = href.includes('http') ? 'a' : Link;
+  const LinkComponent = href && href.includes('http') ? 'a' : Link;
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
       {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
