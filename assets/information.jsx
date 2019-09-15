@@ -7,14 +7,11 @@ import { Title } from '../components';
 export default {
   presentation: (
     <>
-      L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> (UNG) en matière d'esport.
-      L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles technologies de l'Université de Technologie de Troyes (UTT).<br /><br />
+      L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> (UNG). . L’UNG a été créée en 1998 pour rassembler tous les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /><br />
       L'UTT Arena revient cette année pour sa <span className="accent">17<sup>ème</sup> édition</span> !
-      D'une simple salle d'examen de l'UTT à 1500m² au cœur du Festival des Jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !<br /><br />
-
+      D’une simple salle d’examen de l’UTT à environ 1500m² au cœur du Festival des Jeux, l’UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! L'UTT Arena se déroule donc au Cube Troyes Champagne Expo sous le format que vous connaissez actuellement.<br /><br />
       À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus d'une <span className="accent">centaine</span> de bénévoles !
-      Et tout cela, c'est grâce à vous, les joueurs, coachs, visiteurs, qui nous faites confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît !
-      C'est aussi grâce à tous nos partenaires qui nous soutiennent chaque année dans l'organisation de la LAN !
+      Et tout cela, c’est grâce à vous, les joueurs, coachs, visiteurs… qui nous faites confiance chaque année pour organiser cet événement dans l’ambiance qu’on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre LAN en fond un évènement exceptionnel !
     </>
   ),
   tickets: (
@@ -36,19 +33,19 @@ export default {
   ),
   playersInfo: (
     <>
-      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans.</strong><br />
+      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans révolus.</strong><br /><br />
 
       <Title level={4}>Joueur mineur</Title>
-      <p>Une autorisation parentale sera demandée lors de l'événement. Elle sera bientôt disponible sur notre site pour que tu puisses la remplir.</p>
+      <p>Une autorisation parentale sera demandée lors de l’événement. Elle sera bientôt disponible sur notre site pour que tu puisses la remplir.</p>
 
       <Title level={4}>Ce qu'il faut apporter</Title>
       <ul>
         <li>Ton PC</li>
-        <li>Ton casque</li>
         <li>Ton écran</li>
+        <li>Ton casque</li>
         <li>Ton clavier et ta souris</li>
         <li>Une multiprise</li>
-        <li>Un câble ethernet de 5m minimum</li>
+        <li>Un câble ethernet de 5m minimum (7m c'est l'idéal)</li>
       </ul>
       <p>Nous vendons sur place des multiprises et des câbles RJ45 de 5m et 7m.</p>
 
@@ -61,8 +58,7 @@ export default {
 
       <Title level={4}>Streaming</Title>
       <p>
-        Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l'UTT Arena.
-        Même si on te permet de streamer, nous nous réservons le droit d'empêcher le stream lors de l'événement.
+        Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant l'UTT Arena. Même si on te permet de streamer, nous nous réservons le droit d’empêcher le stream le jour de l’UA.
       </p>
     </>
   ),
@@ -70,15 +66,14 @@ export default {
     <>
       <Title level={4}>Nourriture</Title>
       <p>
-        On sait que compétition esport de 48h non-stop ça creuse ! Nous te proposons donc un service de restauration sur place !
-        Des croque-monsieur, crêpes, pizzas, boissons, snack... tout le nécessaire pour te sustenter au mieux !
-        Et tout cela à un prix abordable.
+      On sait qu’une compétition esport de 48h non-stop ça creuse ! Nous te proposons donc un service de restauration sur place !
+      Des croque-monsieur, crêpes, pizzas, boissons, snack… Tout le nécessaire pour te sustenter au mieux ! Et tout cela à un prix abordable.
       </p>
 
       <Title level={4}>Couchage</Title>
       <p>
-        Nous mettons à disposition des joueurs des loges communes avec un accès à l'eau et aux douches !
-        Pensez à ramener vos duvets si vous souhaitez vous reposer ! Nous mettrons à disposition des tapis de gym fins pour plus de confort.
+      Nous mettons à disposition des joueurs des loges communes avec un accès à l’eau et aux douches ! Pensez à ramener vos duvets si vous souhaitez vous reposer !
+      Nous mettons à disposition des tapis de gym fins pour plus de confort.
       </p>
 
       <Title level={4}>Location de matériel</Title>
