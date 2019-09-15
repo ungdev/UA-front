@@ -24,15 +24,18 @@
     ],
     "rules": {
         "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-        "brace-style": ["warn", "stroustrup"],
         "react/prop-types": ["off"],
         "react/jsx-props-no-spreading": ["off"],
         "react/destructuring-assignment": ["off"],
         "react/forbid-prop-types": ["off"],
+        "react/no-unescaped-entities": ["off"],
+        "react/jsx-one-expression-per-line": ["off"],
         "jsx-a11y/click-events-have-key-events": ["off"],
         "jsx-a11y/no-static-element-interactions": ["off"],
         "jsx-a11y/control-has-associated-label": ["off"],
         "jsx-a11y/anchor-is-valid": ["off"],
-        "eol-last": ["off"]
+        "eol-last": ["off"],
+        "object-curly-newline": ["off"],
+        "no-param-reassign": ["error", { "props": false }]
     }
 }

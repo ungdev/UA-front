@@ -1,0 +1,33 @@
+language: node_js
+branches:
+  only:
+  - master
+  - dev
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- yarn
+- yarn lint
+- yarn build
+notifications:
+  slack: uttnetgroup:wIIt6boEZlbKTo6dxPCpm8Ke
+deploy:
+  - provider: openshift
+    server: $OPENSHIFT_SERVER
+    project: ua
+    app: front-dev
+    token: $OPENSHIFT_TOKEN
+    on:
+      branch: dev
+    edge: true
+  - provider: openshift
+    server: $OPENSHIFT_SERVER
+    project: ua
+    app: front-prod
+    token: $OPENSHIFT_TOKEN
+    on:
+      branch: master
+    edge: true

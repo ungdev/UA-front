@@ -1,0 +1,80 @@
+.modal:not(.active) {
+  display: none;
+}
+
+.modal .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #202020b2;
+}
+
+.modal .modal-container {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 360px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 3px 10px #2e2e2e;
+}
+
+.modal .modal-container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradient);
+}
+
+.modal .modal-title {
+  text-align: center;
+  font-family: 'LemonMilk';
+  letter-spacing: 1px;
+  font-size: 24px;
+  margin: 0 20px 30px 20px;
+}
+
+.modal .modal-close-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.modal .modal-close-button span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  background: #aaa;
+  height: 2px;
+  width: 22px;
+}
+
+.modal .modal-close-button span:nth-child(1) {
+  transform: translate(-50%) rotate(45deg);
+}
+
+.modal .modal-close-button span:nth-child(2) {
+  transform: translate(-50%) rotate(-45deg);
+}
+
+.modal .modal-footer {
+  margin-top: 30px;
+  text-align: right;
+}
+
+@media screen and (max-width: 450px) {
+  .modal .modal-container {
+    width: calc(100vw - 90px);
+  }
+}

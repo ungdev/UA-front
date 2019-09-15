@@ -1,0 +1,31 @@
+.table {
+  overflow-x: auto;
+}
+
+.table table {
+  display: table;
+  max-width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  text-align: left;
+  margin: auto;
+}
+
+.table th {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: .5em;
+}
+
+.table .table-divider {
+  padding: 0;
+  border: none;
+  height: 2px;
+  background: var(--gradient);
+}
+
+.table td {
+  border-bottom: 1px solid #c8c8c8;
+  padding: .5em;
+}

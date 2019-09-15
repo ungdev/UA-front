@@ -8,22 +8,33 @@
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "eslint components/**.jsx pages/**.js",
-    "lint-fix": "eslint --fix components/**.jsx pages/**.js",
-    "build-docs": "react-docgen components/UI/*.jsx | ./buildDocs.sh"
+    "lint": "eslint --ext .jsx,.js components/ pages/",
+    "lint-fix": "eslint --ext .jsx,.js --fix components/ pages/",
+    "build-docs": "node generateDocs.js"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "autoprefixer": "^9.6.1",
+    "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "dotenv-webpack": "^1.7.0",
+    "lazysizes": "^5.1.1",
     "next": "9.0.4",
     "next-compose-plugins": "^2.2.0",
     "next-images": "^1.1.2",
     "next-progressbar": "^1.0.0",
     "prop-types": "^15.7.2",
-    "react": "16.9.0",
+    "react": "^16.9.0",
+    "react-countdown-now": "^2.1.1",
     "react-dom": "16.9.0",
+    "react-ga": "^2.6.0",
+    "react-redux": "^7.1.1",
+    "react-toastify": "^5.3.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "simplebar": "^4.1.0",
+    "simplebar-react": "^1.1.0",
     "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "devDependencies": {
@@ -33,6 +44,7 @@
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "1.7.0",
-    "react-docgen": "^4.1.1"
+    "react-docgen": "^4.1.1",
+    "react-docgen-markdown-renderer": "^2.1.3"
   }
 }

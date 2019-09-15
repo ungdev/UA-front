@@ -1,0 +1,35 @@
+.tournament-cards .tournaments-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.tournament-cards .tournament {
+  width: 45%;
+}
+
+.tournament-cards .card-img {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.tournament-cards .tournament .right-arrow {
+  margin-left: 8px;
+}
+
+.tournament-cards .tournament .button {
+  margin: 10px 0 10px 0;
+}
+
+.tournament-cards .tournament .tournament-title {
+  font-family: 'LemonMilk';
+  font-size: 1.4em;
+  text-align: center;
+  color: var(--primary-color);
+  margin: 10px 0 20px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .tournament-cards .tournament {
+    width: 100%;
+  }
+}

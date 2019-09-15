@@ -1,0 +1,33 @@
+#partners .partners-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#partners .partners-list .partner {
+  width: 400px;
+}
+
+#partners .partner-card {
+  height: 572px; /* Max card height*/
+  display: flex;
+  flex-direction: column;
+}
+
+#partners .partner .partner-img {
+  height: 264px;
+}
+
+#partners .right-arrow {
+  margin-left: 8px;
+}
+
+#partners .button {
+  margin: 10px 0 10px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  #partners .partner-card {
+    height: auto;
+  }
+}
