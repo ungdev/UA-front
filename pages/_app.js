@@ -29,6 +29,9 @@ const App = ({ Component, pageProps, reduxStore }) => {
       ReactGA.set({ page: window.location.pathname });
       ReactGA.pageview(window.location.pathname);
     }
+
+    // eslint-disable-next-line global-require
+    require('../serviceWorker.js').register();
   });
   return (
     <div>
