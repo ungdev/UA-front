@@ -26,7 +26,7 @@ export default {
     rules: 'Le règlement sera bientôt publié.',
   },
   fortnite: {
-    title: 'fortnite Duo',
+    title: 'Fortnite',
     format: (
       <>
         <div className="tournament-format">32 équipes en trio.</div>
