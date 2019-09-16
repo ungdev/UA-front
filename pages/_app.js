@@ -31,7 +31,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
     }
 
     // eslint-disable-next-line global-require
-    require('../serviceWorker.js').register();
+    require('../static/service-worker.js').register();
   });
   return (
     <div>
