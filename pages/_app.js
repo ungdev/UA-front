@@ -29,7 +29,14 @@ const App = ({ Component, pageProps, reduxStore }) => {
       ReactGA.set({ page: window.location.pathname });
       ReactGA.pageview(window.location.pathname);
     }
+
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (const registration of registrations) {
+        registration.unregister();
+      }
+    });
   });
+
   return (
     <div>
       <Head>
