@@ -31,8 +31,9 @@ const App = ({ Component, pageProps, reduxStore }) => {
     }
 
     // eslint-disable-next-line global-require
-    require('../static/service-worker.js').register();
+    require('../public/service-worker').register();
   });
+
   return (
     <div>
       <Head>
@@ -41,8 +42,8 @@ const App = ({ Component, pageProps, reduxStore }) => {
         <meta name="theme-color" content="#202020" />
         <meta name="description" content={headText.description} />
 
-        <link rel="icon" href="/static/favicon.ico" />
-        <link rel="manifest" href="/static/manifest.json" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/static/logo-notext.png" />
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />

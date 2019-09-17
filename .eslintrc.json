@@ -36,6 +36,7 @@
         "jsx-a11y/anchor-is-valid": ["off"],
         "eol-last": ["off"],
         "object-curly-newline": ["off"],
-        "no-param-reassign": ["error", { "props": false }]
+        "no-param-reassign": ["error", { "props": false }],
+        "brace-style": ["error", "stroustrup"]
     }
 }

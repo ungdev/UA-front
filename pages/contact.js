@@ -26,9 +26,11 @@ const Contact = () => {
   const sendMsg = () => {
     if (firstname === '' || lastname === '' || email === '' || content === '') {
       toast.error('Veuillez remplir tous les champs');
-    } else if (!email.includes('@')) {
+    }
+    else if (!email.includes('@')) {
       toast.error('Veuillez entrer une adresse mail valide');
-    } else {
+    }
+    else {
       toast.success('Votre message à bien été envoyé ;)');
       postToSlack(firstname, lastname, email, subject, content);
       setFirstname('');

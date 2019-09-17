@@ -9,7 +9,8 @@ class Error extends React.Component {
 
     if (res) {
       statusCode = res.statusCode;
-    } else if (err) {
+    }
+    else if (err) {
       statusCode = err.statusCode;
     }
 

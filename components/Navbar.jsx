@@ -52,7 +52,8 @@ const Navbar = () => {
       _setMobileMenuVisible(visible);
       if (visible) {
         document.getElementsByTagName('html')[0].style.overflow = 'hidden';
-      } else {
+      }
+      else {
         document.getElementsByTagName('html')[0].style.overflow = 'auto';
       }
     }

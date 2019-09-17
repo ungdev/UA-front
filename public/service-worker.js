@@ -43,7 +43,8 @@ function registerValidSW(swUrl, config) {
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
-            } else {
+            }
+            else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
@@ -79,7 +80,8 @@ function checkValidServiceWorker(swUrl, config) {
             window.location.reload();
           });
         });
-      } else {
+      }
+      else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl, config);
       }
@@ -103,7 +105,7 @@ export function register(config) {
     }
 
     window.addEventListener('load', () => {
-      const swUrl = '/static/service-worker.js';
+      const swUrl = '/service-worker.js';
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -117,7 +119,8 @@ export function register(config) {
               + 'worker. To learn more, visit http://bit.ly/CRA-PWA',
           );
         });
-      } else {
+      }
+      else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
       }
