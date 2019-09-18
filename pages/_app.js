@@ -30,8 +30,9 @@ const App = ({ Component, pageProps, reduxStore }) => {
       ReactGA.pageview(window.location.pathname);
     }
 
-    // eslint-disable-next-line global-require
-    require('../public/service-worker').register();
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => registration.unregister());
+    });
   });
 
   return (
