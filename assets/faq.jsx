@@ -63,7 +63,7 @@ export default [
           <>
             15 ans. Pour les mineurs, une autorisation parentale ou du responsable légal sera demandée le jour de la LAN.
             <br />
-            <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
+            <a href="https://drive.google.com/uc?export=download&id=1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V">Vous pouvez la télécharger ici.</a>
           </>
         ),
       },
