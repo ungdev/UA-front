@@ -11,7 +11,7 @@
 @font-face {
   font-family: 'Montserrat', sans-serif;
   font-display: swap;
-  src: url('/static/Montserrat-Regular.ttf');
+  src: url('/static/Montserrat-Regular.otf');
 }
 
 :root {
