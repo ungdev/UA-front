@@ -30,9 +30,11 @@ const App = ({ Component, pageProps, reduxStore }) => {
       ReactGA.pageview(window.location.pathname);
     }
 
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      registrations.forEach((registration) => registration.unregister());
-    });
+    if(navigator.serviceWorker) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        registrations.forEach((registration) => registration.unregister());
+      });
+    }
   });
 
   return (
