@@ -83,7 +83,7 @@ const Navbar = () => {
       </Link>
 
       <Link href="/">
-        <a className="centered">
+        <a className="desktop-link">
           <div className="desktop-logo" />
         </a>
       </Link>

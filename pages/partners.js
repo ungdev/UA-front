@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Card, Header, Title } from '../components';
+import { Header } from '../components';
+import { Card, Title } from '../components/UI';
 import partnersList from '../assets/partners';
+
 import './partners.css';
 
 const Partners = () => {

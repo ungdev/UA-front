@@ -2,7 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import { Header, Title, Button } from '../components';
+import { Header } from '../components';
+import { Title, Button } from '../components/UI';
 
 class Error extends React.Component {
   static getInitialProps({ res, err }) {

@@ -1,6 +1,6 @@
 .button {
   display: inline-block;
-  border: 2px solid #ccc;
+  border: 2px solid var(--light-color);
   border-radius: 0;
   padding: 8px 20px;
   margin: 4px;

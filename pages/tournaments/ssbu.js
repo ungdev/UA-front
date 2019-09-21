@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Tournament } from '../../components';
+import { Tournament } from '../../components/UI';
 import tournamentsText from '../../assets/tournaments';
 
 const SSBU = () => (

@@ -1,9 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Title, VideoContainer, Table, Countdown, TournamentCards, Button, Card } from '../components';
+import { TournamentCards } from '../components';
+import { Title, VideoContainer, Table, Countdown, Button, Card } from '../components/UI';
 import indexText from '../assets/index';
 import partnersList from '../assets/partners';
+
 import './index.css';
 
 const listPartners = partnersList.map((partner) => (

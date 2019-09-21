@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Title, Header } from '../components';
+import { Header } from '../components';
+import { Title } from '../components/UI';
 import legalText from '../assets/legal';
+
 import './legal.css';
 
 const Legal = () => (

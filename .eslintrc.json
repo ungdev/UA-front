@@ -12,10 +12,6 @@
     "eslint:recommended",
     "plugin:react/recommended"
   ],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
   "settings": {
     "react": {
       "version": "detect"
@@ -29,8 +25,8 @@
     "sourceType": "module"
   },
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
     "react/require-default-props": "error",
+    "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off"
   }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { Header, Title, Input, Textarea, Button, Select } from '../components';
+
+import { Header } from '../components';
+import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { postToSlack } from '../utils';
 
 const options = [
