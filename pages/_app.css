@@ -1,5 +1,5 @@
 /****************/
-/***** Misc *****/
+/**** Global ****/
 /****************/
 
 @font-face {
@@ -8,16 +8,15 @@
   src: url('/static/LemonMilk.otf');
 }
 
-@font-face {
-  font-family: 'Montserrat', sans-serif;
-  font-display: swap;
-  src: url('/static/Montserrat-Regular.otf');
+* {
+  outline: none;
 }
 
 :root {
   --primary-color: #fb560c;
   --secondary-color: #e21562;
   --accent-color: #e20007;
+  --light-color: #ccc;
   --dark-color: #202020;
   --gradient: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);
   font-family: 'Roboto', sans-serif;
@@ -31,19 +30,23 @@ html, body {
   overflow-x: hidden;
 }
 
+a {
+  color: var(--accent-color);
+}
+
 img {
   max-width: 100%;
   max-height: 100%;
 }
 
-.text-centered {
-  text-align: center;
+.page-padding { /* page-padding should be applied to every page except home page */
+  padding: 2em 5em;
 }
 
-.centered {
-  display: block;
-  margin: auto;
-  width: min-content;
+@media screen and (max-width: 650px) {
+  .page-padding {
+    padding: 1em;
+  }
 }
 
 .accent {
@@ -51,8 +54,8 @@ img {
   font-weight: 700;
 }
 
-a {
-  color: var(--accent-color);
+.form-container {
+  background: var(--light-color);
 }
 
 button.Toastify__close-button {
@@ -92,16 +95,6 @@ div.Toastify__toast.Toastify__toast--warning {
 div.Toastify__toast.Toastify__toast--info {
   color: #3498db;
   background: #fff;
-}
-
-.page-padding { /* page-padding should be applied to every page except home page */
-  padding: 2em 5em;
-}
-
-@media screen and (max-width: 650px) {
-  .page-padding {
-    padding: 1em;
-  }
 }
 
 /**********************/

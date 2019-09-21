@@ -32,6 +32,14 @@ const CountdownComponent = ({ date }) => {
     );
   };
 
+  renderer.propTypes = {
+    days: PropTypes.number.isRequired,
+    hours: PropTypes.number.isRequired,
+    minutes: PropTypes.number.isRequired,
+    seconds: PropTypes.number.isRequired,
+    completed: PropTypes.bool.isRequired,
+  };
+
   return (
     <div className="countdown">
       <Countdown date={date} renderer={renderer} />

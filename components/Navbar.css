@@ -17,6 +17,12 @@
   display: none;
 }
 
+#navbar .desktop-link {
+  display: block;
+  margin: auto;
+  width: min-content;
+}
+
 #navbar .desktop-logo {
   width: 140px;
   height: 140px;

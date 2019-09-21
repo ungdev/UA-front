@@ -48,6 +48,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
         <link rel="apple-touch-icon" href="/static/logo-notext.png" />
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
       </Head>
       <Provider store={reduxStore}>
@@ -62,8 +63,18 @@ const App = ({ Component, pageProps, reduxStore }) => {
 };
 
 App.propTypes = {
+  /**
+   * The page component
+   */
   Component: PropTypes.func.isRequired,
+  /**
+   * The page component props
+   */
   pageProps: PropTypes.array,
+  /**
+   * The redux store
+   */
+  reduxStore: PropTypes.object.isRequired,
 };
 
 App.defaultProps = {

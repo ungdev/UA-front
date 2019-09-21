@@ -18,15 +18,19 @@ const updateBackground = (e) => {
 const Collapse = ({ title, children, imgSrc }) => {
   const wrapperRef = useRef(null);
   const [contentVisible, setContentVisible] = useState(false);
+
   useEffect(() => {
     document.addEventListener('lazybeforeunveil', updateBackground);
+
     if (wrapperRef.current && wrapperRef.current.className.includes('lazyloaded')) {
       wrapperRef.current.style.backgroundImage = `url(${imgSrc})`;
     }
+
     return () => {
       document.removeEventListener('lazybeforeunveil', updateBackground);
     };
   });
+
   return (
     <div className="card">
       <div className="title" onClick={() => setContentVisible(!contentVisible)}>
@@ -37,8 +41,14 @@ const Collapse = ({ title, children, imgSrc }) => {
           </div>
         )}
       </div>
-      { imgSrc
-        && <div className="img lazyload" onClick={() => setContentVisible(!contentVisible)} data-bg={imgSrc} ref={wrapperRef} />}
+      { imgSrc && (
+        <div
+          className="img lazyload"
+          onClick={() => setContentVisible(!contentVisible)}
+          data-bg={imgSrc}
+          ref={wrapperRef}
+        />
+      )}
       { children && (
         <div className={`content ${contentVisible ? 'open' : ''}`}>
           <div className="text">
@@ -59,6 +69,14 @@ Collapse.propTypes = {
    * Content to display when the user clicks on the title
    */
   children: PropTypes.node.isRequired,
+  /**
+   * The source of the image to display
+   */
+  imgSrc: PropTypes.string,
+};
+
+Collapse.defaultProps = {
+  imgSrc: '',
 };
 
 export default Collapse;

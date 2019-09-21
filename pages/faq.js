@@ -1,5 +1,7 @@
 import React from 'react';
-import { Title, Collapse, Header } from '../components';
+
+import { Header } from '../components';
+import { Title, Collapse } from '../components/UI';
 
 import './faq.css';
 import faq from '../assets/faq';

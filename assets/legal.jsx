@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import { Title } from '../components';
+import { Title } from '../components/UI';
 
 export default {
   ung: (

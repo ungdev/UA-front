@@ -2,6 +2,15 @@
   margin-bottom: 3em;
 }
 
+#information .timetable thead th,
+#information .timetable tbody td:not(:first-child) {
+  padding: .5em 1.2em;
+}
+
+#information .timetable tbody td:not(:first-child) {
+  text-align: center;
+}
+
 #information .access {
   display: flex;
   flex-flow: row nowrap;
