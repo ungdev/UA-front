@@ -7,7 +7,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import { setVisible } from '../modules/loginModal';
 import Button from './UI/Button';
-import Modal from './UI/Modal';
+import SigninModal from './SigninModal';
 import './Navbar.css';
 
 const links = [
@@ -111,16 +111,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <SigninModal isVisible={isVisible} />
 
-      <Modal
-        title="Connexion"
-        visible={isVisible}
-        onCancel={() => dispatch(setVisible(false))}
-        isVisible={isVisible}
-        footer={<Button primary onClick={() => dispatch(setVisible(false))}>Fermer</Button>}
-      >
-        Les inscriptions ouvriront bientôt, suivez-nous sur les réseaux sociaux pour ne rien rater !
-      </Modal>
     </div>
   );
 };

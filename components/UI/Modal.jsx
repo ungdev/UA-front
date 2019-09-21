@@ -31,8 +31,10 @@ const Modal = ({ title, children, footer, closable, visible, onCancel, onOk, cla
               <span />
             </div>
           )}
-          <div className="modal-content">{children}</div>
-          <div className="modal-footer">{footerContent}</div>
+          <div className="modal-body">
+            <div className="modal-content">{children}</div>
+            <div className="modal-footer">{footerContent}</div>
+          </div>
         </div>
       </div>
     </div>
