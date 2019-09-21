@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
-import { Navbar } from '../components';
+import { Navbar, HeaderDashboard } from '../components';
 import headText from '../assets/head';
 
 import './_app.css';
@@ -19,7 +19,7 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const App = ({ Component, pageProps, reduxStore }) => {
+const App = ({ Component, pageProps, reduxStore, router }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
@@ -55,6 +55,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
         <Navbar />
 
         <div className="page-container">
+          { router.route.includes("/dashboard") && <HeaderDashboard />}
           <Component {...pageProps} />
         </div>
       </Provider>
@@ -75,6 +76,10 @@ App.propTypes = {
    * The redux store
    */
   reduxStore: PropTypes.object.isRequired,
+  /**
+   * Route Next
+   */
+  router: PropTypes.object.isRequired,
 };
 
 App.defaultProps = {
