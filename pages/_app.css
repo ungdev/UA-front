@@ -56,6 +56,8 @@ img {
   font-weight: 700;
 }
 
+.form-container {
+  background: var(--light-color);
 }
 
 button.Toastify__close-button {

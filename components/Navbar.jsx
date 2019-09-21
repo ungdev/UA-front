@@ -8,6 +8,7 @@ import 'simplebar/dist/simplebar.min.css';
 import { setVisible } from '../modules/loginModal';
 import Button from './UI/Button';
 import Modal from './UI/Modal';
+import Tabs from './UI/Tabs';
 import './Navbar.css';
 
 const links = [
@@ -117,9 +118,24 @@ const Navbar = () => {
         visible={isVisible}
         onCancel={() => dispatch(setVisible(false))}
         isVisible={isVisible}
-        footer={<Button primary onClick={() => dispatch(setVisible(false))}>Fermer</Button>}
+        footer={null}
       >
-        Les inscriptions ouvriront bientôt, suivez-nous sur les réseaux sociaux pour ne rien rater !
+        <Tabs
+          tabs={[
+            {
+              title: 'Connexion',
+              content: (
+                <div className="form-container">
+
+                </div>
+              ),
+            },
+            {
+              title: 'Inscription',
+              content: '',
+            },
+          ]}
+        />
       </Modal>
     </div>
   );
