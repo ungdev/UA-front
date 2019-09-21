@@ -62,8 +62,18 @@ const App = ({ Component, pageProps, reduxStore }) => {
 };
 
 App.propTypes = {
+  /**
+   * The page component
+   */
   Component: PropTypes.func.isRequired,
+  /**
+   * The page component props
+   */
   pageProps: PropTypes.array,
+  /**
+   * The redux store
+   */
+  reduxStore: PropTypes.object.isRequired,
 };
 
 App.defaultProps = {

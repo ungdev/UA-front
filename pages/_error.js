@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import { Header, Title, Button } from '../components';
 
@@ -32,5 +33,13 @@ class Error extends React.Component {
     );
   }
 }
+
+Error.propTypes = {
+  statusCode: PropTypes.number,
+}
+
+Error.defaultProps = {
+  statusCode: null,
+};
 
 export default Error;
