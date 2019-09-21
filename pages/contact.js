@@ -6,35 +6,38 @@ import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { postToSlack } from '../utils';
 
 const options = [
-  { label: "J'ai eu une erreur sur le site", value: 'erreur' },
-  { label: 'Signaler un bug', value: 'bug' },
   { label: 'Tournoi LoL (Pro)', value: 'LoL pro' },
   { label: 'Tournoi LoL (Amateur)', value: 'LoL amateur' },
   { label: 'Tournoi Fortnite', value: 'Fortnite' },
   { label: 'Tournoi CS:GO', value: 'CS:GO' },
   { label: 'Tournoi SSBU', value: 'SSBU' },
-  { label: 'Tournoi OSU', value: 'OSU' },
-  { label: 'Tournoi Libre', value: 'libre' },
-  { label: 'Autre', value: 'autre' },
+  { label: 'Tournoi OSU', value: 'osu!' },
+  { label: 'Tournoi Libre', value: 'Libre' },
+  { label: "J'ai eu une erreur sur le site", value: 'Erreur' },
+  { label: 'Signaler un bug', value: 'Bug' },
+  { label: 'Autre', value: 'Autre' },
 ];
+
+const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
 
 const Contact = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [content, setContent] = useState('');
-  const [subject, setSubject] = useState('erreur');
+  const [subject, setSubject] = useState('Autre');
 
   const sendMsg = () => {
     if (firstname === '' || lastname === '' || email === '' || content === '') {
       toast.error('Veuillez remplir tous les champs');
     }
-    else if (!email.includes('@')) {
+    else if (!email.test(emailRegex)) {
       toast.error('Veuillez entrer une adresse mail valide');
     }
     else {
-      toast.success('Votre message à bien été envoyé ;)');
       postToSlack(firstname, lastname, email, subject, content);
+
+      toast.success('Votre message à bien été envoyé !');
       setFirstname('');
       setLastname('');
       setEmail('');

@@ -31,6 +31,7 @@ const Partners = () => {
 
       <div id="partners" className="page-padding">
         <Title align="center" uppercase>Partenaires</Title>
+
         <div className="partners-list">
           { partners }
         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Header } from '../../components';
-import { TournamentCards } from '../../components/UI';
+import { Header, TournamentCards } from '../../components';
 
 const Tournaments = () => (
   <>

@@ -114,7 +114,7 @@ const Navbar = () => {
       </div>
 
       <Modal
-        title="Connexion"
+        title=""
         visible={isVisible}
         onCancel={() => dispatch(setVisible(false))}
         isVisible={isVisible}

@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import Link from 'next/link';
 
 import { Title } from '../components/UI';
 
 export default {
   presentation: (
     <>
-      L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><Link href="https://ung.utt.fr">UTT Net Group</Link></span> (UNG). L’UNG a été créée en 1998 pour rassembler tous les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /><br />
+      L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><a href="https://ung.utt.fr">UTT Net Group</a></span> (UNG). L’UNG a été créée en 1998 pour rassembler tous les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /><br />
       L'UTT Arena revient cette année pour sa <span className="accent">17<sup>ème</sup> édition</span> !
       D’une simple salle d’examen de l’UTT à environ 1500m² au cœur du Festival des Jeux, l’UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! L'UTT Arena se déroule donc au Cube Troyes Champagne Expo sous le format que vous connaissez actuellement.<br /><br />
       À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus d'une <span className="accent">centaine</span> de bénévoles !
@@ -70,8 +69,20 @@ export default {
       { title: <>Dimanche&nbsp;8</>, key: 'dim' },
     ],
     rows: [
-      { type: <>UTT&nbsp;Arena</>, ven: '17h - 00h', sam: '00h - 00h', dim: '00h - 18h' },
-      { type: <>Festival&nbsp;des&nbsp;jeux</>, ven: '11h - 21h', sam: '11h - 21h', dim: '11h - 18h' },
+      {
+        type: <>UTT&nbsp;Arena</>,
+        ven: '17h - 00h',
+        sam: '00h - 00h',
+        dim: '00h - 18h',
+        key: 'ua',
+      },
+      {
+        type: <>Festival&nbsp;des&nbsp;jeux</>,
+        ven: '11h - 21h',
+        sam: '11h - 21h',
+        dim: '11h - 18h',
+        key: 'fdj',
+      },
     ],
   },
   services: (

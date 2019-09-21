@@ -20,10 +20,6 @@
   resize: none;
 }
 
-.input-container .input-value .input-html:focus {
-  outline: none;
-}
-
 .input-container .input-value {
   position: relative;
   display: flex;

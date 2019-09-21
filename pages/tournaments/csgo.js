@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Tournament } from '../../components/UI';
+import { Tournament } from '../../components';
 import tournamentsText from '../../assets/tournaments';
 
 const CSGO = () => (

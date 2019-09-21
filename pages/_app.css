@@ -1,5 +1,5 @@
 /****************/
-/***** Misc *****/
+/**** Global ****/
 /****************/
 
 @font-face {
@@ -8,10 +8,8 @@
   src: url('/static/LemonMilk.otf');
 }
 
-@font-face {
-  font-family: 'Montserrat', sans-serif;
-  font-display: swap;
-  src: url('/static/Montserrat-Regular.otf');
+* {
+  outline: none;
 }
 
 :root {
