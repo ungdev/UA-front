@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
-import { Navbar, DashboardHeader, Header } from '../components';
+import { Navbar, HeaderDashboard, Header } from '../components';
 import headText from '../assets/head';
 
 import './_app.css';
@@ -64,7 +64,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
 
         <div className="page-container">
           { !isHome && !isDashboard && <Header /> }
-          { isDashboard && <DashboardHeader /> }
+          { isDashboard && <HeaderDashboard /> }
           { isHome && <Component {...pageProps} /> }
           { !isHome && <div className="page-padding"><Component {...pageProps} /></div> }
         </div>
