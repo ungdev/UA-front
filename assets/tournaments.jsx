@@ -5,8 +5,8 @@ export default {
     title: 'League of Legends (Pro)',
     format: (
       <>
-        <div className="tournament-format">16 équipes de 5 joueurs.</div>
-        Description du tournoi à venir.
+        <div className="tournament-format">16 équipes de 5 joueurs</div>
+        <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
@@ -16,10 +16,8 @@ export default {
     title: 'League of Legends (Amateur)',
     format: (
       <>
-        <div className="tournament-format">16 équipes de 5 joueurs.</div>
-        <ul>
-          <li>Description du déroulement du tournoi à venir.</li>
-        </ul>
+        <div className="tournament-format">16 équipes de 5 joueurs</div>
+        <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
@@ -29,10 +27,8 @@ export default {
     title: 'Fortnite',
     format: (
       <>
-        <div className="tournament-format">32 équipes en trio.</div>
-        <ul>
-          <li>Description du déroulement du tournoi à venir.</li>
-        </ul>
+        <div className="tournament-format">32 équipes en trio</div>
+        <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
@@ -42,10 +38,8 @@ export default {
     title: 'Counter-Strike : Global Offensive',
     format: (
       <>
-        <div className="tournament-format">16 équipes de 5 joueurs.</div>
-        <ul>
-          <li>Description du déroulement du tournoi à venir.</li>
-        </ul>
+        <div className="tournament-format">16 équipes de 5 joueurs</div>
+        <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
@@ -55,13 +49,22 @@ export default {
     title: 'Super Smash Bros Ultimate',
     format: (
       <>
-        <div className="tournament-format">32 joueurs en solo.</div>
-        <ul>
-          <li>Description du déroulement du tournoi à venir.</li>
-        </ul>
+        <div className="tournament-format">32 joueurs en solo</div>
+        <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
+  libre: {
+    title: 'Tournoi libre',
+    format: (
+      <>
+        <div className="tournament-format">60 joueurs</div>
+        <p>Description du tournoi à venir.</p>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
+  }
 };

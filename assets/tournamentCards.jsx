@@ -36,5 +36,12 @@ export default {
       img: '/static/fortnite.webp',
       link: '/tournaments/fortnite',
     },
+    {
+      title: 'Libre',
+      cashprize: 'à venir',
+      players: 60,
+      img: '/static/libre.webp',
+      link: '/tournaments/libre',
+    }
   ]
 };
