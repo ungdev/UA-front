@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import { setVisible } from '../modules/loginModal';
-import Title from './UI/Title';
-import Button from './UI/Button';
+import { setLoginModalVisible } from '../modules/loginModal';
+import { Button, Title } from './UI';
 
 import './Tournament.css';
 
@@ -18,7 +17,7 @@ const Tournament = ({ imgSrc, text }) => {
         <Title align="center" uppercase>{text.title}</Title>
 
         <div className="tournament-signin">
-          <Button primary onClick={() => dispatch(setVisible(true))}>S'inscrire</Button>
+          <Button primary onClick={() => dispatch(setLoginModalVisible(true))}>S'inscrire</Button>
         </div>
 
         <Title level={2}>Format</Title>

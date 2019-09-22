@@ -59,11 +59,11 @@ const Contact = () => {
         </p>
 
         <Title level={3}>Formulaire</Title>
-        <Input label="Prénom" value={firstname} onChange={setFirstname} id="firstname" />
-        <Input label="Nom" value={lastname} onChange={setLastname} id="lastname" />
-        <Input label="Email" value={email} onChange={setEmail} id="email" />
-        <Select label="Sujet" options={options} value={subject} onChange={setSubject} id="subject" />
-        <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} id="msg" />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} />
+        <Input label="Nom" value={lastname} onChange={setLastname} />
+        <Input label="Email" value={email} onChange={setEmail} />
+        <Select label="Sujet" options={options} value={subject} onChange={setSubject} />
+        <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} />
 
         <Button primary onClick={sendMsg}>
           Envoyer

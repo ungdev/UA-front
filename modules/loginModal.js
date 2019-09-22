@@ -1,23 +1,23 @@
-export const SET_LOGINMODALVISIBLE = 'loginModal/SET_LOGINMODALVISIBLE';
+const SET_VISIBLE = 'loginModal/SET_VISIBLE';
 
 const initialState = {
-  visibleLoginModal: false,
+  visible: false,
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case SET_LOGINMODALVISIBLE:
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
+    case SET_VISIBLE:
       return {
-        visibleLoginModal: action.payload,
+        visible: payload,
       };
     default:
       return state;
   }
 };
 
-export const setVisible = (visible) => (dispatch) => {
+export const setLoginModalVisible = (visible) => (dispatch) => {
   dispatch({
-    type: SET_LOGINMODALVISIBLE,
+    type: SET_VISIBLE,
     payload: visible,
   });
 };

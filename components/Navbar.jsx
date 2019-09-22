@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-import { setVisible } from '../modules/loginModal';
-import Button from './UI/Button';
-import Modal from './UI/Modal';
-import Tabs from './UI/Tabs';
+import { Button } from './UI';
+import LoginModal from './LoginModal';
+
+import { setLoginModalVisible } from '../modules/loginModal';
+
 import './Navbar.css';
 
 const links = [
@@ -45,7 +46,7 @@ const Navbar = () => {
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
   const dispatch = useDispatch();
-  const isVisible = useSelector((state) => state.loginModal.visibleLoginModal);
+  const isVisible = useSelector((state) => state.loginModal.visible);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -91,7 +92,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          <Button primary className="login-button" onClick={() => dispatch(setVisible(true))}>Connexion</Button>
+          <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>
 
           { navLinks }
         </SimpleBar>
@@ -113,26 +114,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <Modal
-        title=""
-        visible={isVisible}
-        onCancel={() => dispatch(setVisible(false))}
-        isVisible={isVisible}
-        footer={null}
-      >
-        <Tabs
-          tabs={[
-            {
-              title: 'Connexion',
-              content: '',
-            },
-            {
-              title: 'Inscription',
-              content: '',
-            },
-          ]}
-        />
-      </Modal>
+      <LoginModal isVisible={isVisible} />
     </div>
   );
 };

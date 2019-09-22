@@ -1,49 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputBase from './InputBase';
+import './Inputs.css';
+
+let id = 0;
 
 /**
- * Displays a controlled textarea
+ * Displays a textarea
  */
-const Textarea = ({ id, label, placeholder, value, onChange }) => (
-  <InputBase
-    Component="textarea"
-    key={id}
-    id={id}
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    label={label}
-  />
+const Textarea = ({ label, placeholder, value, onChange, className }) => (
+  <div className={`textarea ${className}`}>
+    <label htmlFor={`textarea-${id}`}>{label}</label>
+
+    <textarea
+      id={`textarea-${id++}`}
+      value={value}
+      placeholder={placeholder}
+      onChange={(e) => onChange(e.target.value)}
+    />
+
+    <div className="line" />
+  </div>
 );
 
 Textarea.propTypes = {
   /**
-   * id for the input
-   */
-  id: PropTypes.string.isRequired,
-  /**
-   * Label to display for the input
+   * Label to display
    */
   label: PropTypes.string.isRequired,
   /**
-   * Text to show before user input
+   * Text to show when field is blank
    */
   placeholder: PropTypes.string,
   /**
-   * Controlled value of the input
+   * Value of the input
    */
   value: PropTypes.string,
   /**
-   * onChange function, receive `event`
+   * Function called when the value change,
+   * the new value is passed as parameter
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
 };
 
 Textarea.defaultProps = {
   placeholder: '',
   value: '',
+  className: '',
 };
 
 export default Textarea;

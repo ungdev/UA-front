@@ -4,8 +4,12 @@ import Link from 'next/link';
 
 import './Tabs.css';
 
+/**
+ * Displays a menu with tabs
+ */
 const Tabs = ({ tabs, defaultIndex, className }) => {
   const [index, setIndex] = useState(defaultIndex);
+
   const tabsNav = tabs.map((tab, i) => {
     const tabButton = (
       <button
@@ -19,14 +23,16 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
 
     return tab.path ? <Link href={tab.path}>{tabButton}</Link> : tabButton;
   });
+
   const tabsContent = tabs.map((tab, i) => (
-    tab.content &&
-    <div
-      className={`tab-content ${index === i ? 'active' : ''}`}
-      key={tab.title}
-    >
-      {tab.content}
-    </div>
+    tab.content && (
+      <div
+        className={`tab-content ${index === i ? 'active' : ''}`}
+        key={tab.title}
+      >
+        {tab.content}
+      </div>
+    )
   ));
 
   return (
@@ -34,6 +40,7 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
       <div className="tabs-nav">
         { tabsNav }
       </div>
+
       <div className="tabs-content">
         { tabsContent }
       </div>
@@ -43,7 +50,7 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
 
 Tabs.propTypes = {
   /**
-   * The tabs title and content
+   * Tabs title and content
    */
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,11 +59,11 @@ Tabs.propTypes = {
     }),
   ).isRequired,
   /**
-   * The index of the default tab
+   * Index of the default tab
    */
   defaultIndex: PropTypes.number,
   /**
-   * The class to apply to the container
+   * Class of the container
    */
   className: PropTypes.string,
 };

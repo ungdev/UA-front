@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 
 import './Countdown.css';
 
-const CountdownComponent = ({ date }) => {
+/**
+ * Displays a countdown to the specified date
+ */
+const CountdownComponent = ({ date, className }) => {
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       return null;
@@ -41,7 +44,7 @@ const CountdownComponent = ({ date }) => {
   };
 
   return (
-    <div className="countdown">
+    <div className={`countdown ${className}`}>
       <Countdown date={date} renderer={renderer} />
     </div>
   );
@@ -52,6 +55,14 @@ CountdownComponent.propTypes = {
    * The date from which the remaining time will be computed
    */
   date: PropTypes.object.isRequired,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
+};
+
+CountdownComponent.defaultProps = {
+  className: '',
 };
 
 export default CountdownComponent;

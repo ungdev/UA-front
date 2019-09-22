@@ -1,43 +1,65 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputBase from './InputBase';
+import './Inputs.css';
+
+let id = 0;
 
 /**
- * Displays a controlled select
+ * Displays a select
  */
-const Select = ({ options, id, label, value, onChange }) => (
-  <InputBase
-    Component="select"
-    options={options}
-    id={id}
-    label={label}
-    value={value}
-    onChange={onChange}
-  />
+const Select = ({ options, label, value, onChange, className }) => (
+  <div className={`select ${className}`}>
+    <label htmlFor={`select-${id}`}>{label}</label>
+
+    <select
+      id={`select-${id++}`}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
+      {options.map((option) => (
+        <option
+          value={option.value}
+          key={option.value}
+        >
+          {option.label}
+        </option>
+      ))}
+    </select>
+
+    <div className="line" />
+  </div>
 );
 
 Select.propTypes = {
   /**
-   * id for the input
-   */
-  id: PropTypes.string.isRequired,
-  /**
-   * Label to display for the input
+   * Label to display
    */
   label: PropTypes.string.isRequired,
   /**
-   * Controlled value of the input
+   * Value of the select
    */
   value: PropTypes.string.isRequired,
   /**
-   * onChange function, receive `event`
+   * Function called when the value change,
+   * the new value is passed as parameter
    */
   onChange: PropTypes.func.isRequired,
   /**
-   * list of option
+   * List of options
    */
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  })).isRequired,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
+};
+
+Select.defaultProps = {
+  className: '',
 };
 
 export default Select;
