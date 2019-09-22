@@ -44,6 +44,7 @@ const App = ({ Component, pageProps, reduxStore, router }) => {
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta name="description" content={headText.description} />
+        <meta name="google-site-verification" content={process.env.GOOGLE_VERIFICATION} />
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
