@@ -63,6 +63,6 @@ CountdownComponent.propTypes = {
 
 CountdownComponent.defaultProps = {
   className: '',
-}
+};
 
 export default CountdownComponent;
