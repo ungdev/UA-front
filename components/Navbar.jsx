@@ -8,7 +8,7 @@ import 'simplebar/dist/simplebar.min.css';
 import { setVisible } from '../modules/loginModal';
 import Button from './UI/Button';
 import Modal from './UI/Modal';
-import Tabs from './UI/Tabs';
+
 import './Navbar.css';
 
 const links = [
