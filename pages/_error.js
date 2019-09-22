@@ -37,7 +37,7 @@ class Error extends React.Component {
 
 Error.propTypes = {
   statusCode: PropTypes.number,
-}
+};
 
 Error.defaultProps = {
   statusCode: null,
