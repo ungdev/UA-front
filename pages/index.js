@@ -58,6 +58,12 @@ const Home = () => (
         <div className="list-partners">
           { listPartners }
         </div>
+        <Link href="/partners">
+          <Button primary className="partners-button">
+            Tous les partenaires
+            <i className="fas fa-chevron-right" />
+          </Button>
+        </Link>
       </div>
     </div>
   </div>

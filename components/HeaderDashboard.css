@@ -1,0 +1,53 @@
+#header-dashboard {
+  background: url('/static/background.webp') center no-repeat;
+  background-size: cover;
+  height: 30vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#header-dashboard .home-title {
+  margin: 1em auto;
+  padding: 1.5em;
+  background-color: var(--dark-color);
+  transform: skew(15deg);
+  filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
+}
+
+#header-dashboard .home-title p {
+  font-family: 'LemonMilk';
+  text-align: center;
+  color: white;
+  transform: skew(-15deg);
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+#header-dashboard .home-title .main {
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 650px) {
+  #header-dashboard {
+    height: 15vh;
+  }
+
+  #header-dashboard .home-title {
+    background: none;
+    transform: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header-dashboard .home-title p {
+    font-size: 1rem;
+    transform: skew(0deg);
+  }
+
+  #header-dashboard .home-title .main {
+    font-size: 1.5rem;
+  }
+}
