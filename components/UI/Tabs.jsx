@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
 import './Tabs.css';
 
@@ -10,29 +9,23 @@ import './Tabs.css';
 const Tabs = ({ tabs, defaultIndex, className }) => {
   const [index, setIndex] = useState(defaultIndex);
 
-  const tabsNav = tabs.map((tab, i) => {
-    const tabButton = (
-      <button
-        className={`tab-nav ${index === i ? 'active' : ''}`}
-        onClick={() => setIndex(i)}
-        key={tab.title}
-      >
-        {tab.title}
-      </button>
-    );
-
-    return tab.path ? <Link href={tab.path}>{tabButton}</Link> : tabButton;
-  });
+  const tabsNav = tabs.map((tab, i) => (
+    <button
+      className={`tab-nav ${index === i ? 'active' : ''}`}
+      onClick={() => setIndex(i)}
+      key={tab.title}
+    >
+      {tab.title}
+    </button>
+  ));
 
   const tabsContent = tabs.map((tab, i) => (
-    tab.content && (
-      <div
-        className={`tab-content ${index === i ? 'active' : ''}`}
-        key={tab.title}
-      >
-        {tab.content}
-      </div>
-    )
+    <div
+      className={`tab-content ${index === i ? 'active' : ''}`}
+      key={tab.title}
+    >
+      {tab.content}
+    </div>
   ));
 
   return (
