@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-import Title from './UI/Title';
-import Button from './UI/Button';
 import { setLoginModalVisible } from '../modules/loginModal';
+import { Button, Title } from './UI';
 
 import './Tournament.css';
 

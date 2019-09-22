@@ -15,7 +15,7 @@ const updateBackground = (e) => {
 /**
  * Display an extension panel
  */
-const Collapse = ({ title, children, imgSrc }) => {
+const Collapse = ({ title, children, imgSrc, className }) => {
   const wrapperRef = useRef(null);
   const [contentVisible, setContentVisible] = useState(false);
 
@@ -32,7 +32,7 @@ const Collapse = ({ title, children, imgSrc }) => {
   });
 
   return (
-    <div className="card">
+    <div className={`card ${className}`}>
       <div className="title" onClick={() => setContentVisible(!contentVisible)}>
         {title}
         { children && (
@@ -70,13 +70,18 @@ Collapse.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The source of the image to display
+   * Source of the image
    */
   imgSrc: PropTypes.string,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
 };
 
 Collapse.defaultProps = {
   imgSrc: '',
+  className: '',
 };
 
 export default Collapse;

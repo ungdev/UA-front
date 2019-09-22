@@ -145,7 +145,7 @@
   color: #6441a5;
 }
 
-#navbar .footer-text {
+#navbar .footer .footer-text {
   width: 260px;
   margin: 12px auto 0 auto;
   font-size: 14px;
@@ -153,14 +153,15 @@
   color: #fff;
 }
 
-#navbar .footer-text a {
+#navbar .footer .footer-text a {
   color: #fff;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all .3s;
 }
 
-#navbar .footer-text a:hover, #navbar .footer-text a:focus {
+#navbar .footer .footer-text a:hover,
+#navbar .footer .footer-text a:focus {
   border-bottom: 1px solid #fff;
 }
 

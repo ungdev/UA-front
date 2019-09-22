@@ -26,11 +26,11 @@ Button.propTypes = {
    */
   onClick: PropTypes.func,
   /**
-   * The button content
+   * Button content
    */
   children: PropTypes.node.isRequired,
   /**
-   * The class of the button container
+   * Class of the container
    */
   className: PropTypes.string,
 };

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Table.css';
 
 /**
- * Displays a data table
+ * Displays a table
  */
 const Table = ({ columns, dataSource, className }) => (
   <div className={`table ${className}`}>
@@ -45,7 +45,7 @@ Table.propTypes = {
    */
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * The class to apply to the container
+   * Class of the container
    */
   className: PropTypes.string,
 };

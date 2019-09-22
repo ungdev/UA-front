@@ -1,55 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputBase from './InputBase';
+import './Inputs.css';
+
+let id = 0;
 
 /**
- * Displays a controlled input
+ * Displays an input
  */
-const Input = ({ id, label, placeholder, value, onChange, type }) => (
-  <InputBase
-    Component="input"
-    key={id}
-    id={id}
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    label={label}
-    type={type}
-  />
+const Input = ({ type, label, value, onChange, className }) => (
+  <div className={`input ${className}`}>
+    <label htmlFor={`input-${id}`}>{label}</label>
+
+    <input
+      type={type}
+      id={`input-${id++}`}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+
+    <div className="line" />
+  </div>
 );
 
 Input.propTypes = {
   /**
-   * id for the input
+   * Input type
    */
-  id: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'password', 'number']),
   /**
-   * Label to display for the input
+   * Label to display
    */
   label: PropTypes.string.isRequired,
   /**
-   * Text to show before user input
-   */
-  placeholder: PropTypes.string,
-  /**
-   * Controlled value of the input
+   * Value of the input
    */
   value: PropTypes.string,
   /**
-   * onChange function, receive `event`
+   * Function called when the value change,
+   * the new value is passed as parameter
    */
   onChange: PropTypes.func.isRequired,
   /**
-   * HTML native input type
+   * Class of the container
    */
-  type: PropTypes.oneOf(['text', 'password', 'number']),
+  className: PropTypes.string,
 };
 
 Input.defaultProps = {
-  placeholder: '',
-  value: '',
   type: 'text',
+  value: '',
+  className: '',
 };
 
 export default Input;

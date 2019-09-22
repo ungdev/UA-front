@@ -44,7 +44,7 @@
   font-family: 'LemonMilk';
   letter-spacing: 1px;
   font-size: 24px;
-  margin: 0 20px 30px 20px;
+  margin: 0 40px 30px 40px;
 }
 
 .modal .modal-close-button {
@@ -74,7 +74,7 @@
   transform: translate(-50%) rotate(-45deg);
 }
 
-.modal .modal-footer {
+.modal .modal-buttons {
   margin-top: 30px;
   text-align: right;
 }

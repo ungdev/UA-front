@@ -13,8 +13,8 @@ import headText from '../assets/head';
 import './_app.css';
 
 toast.configure({
-  autoClose: 2000,
-  pauseOnHover: false,
+  autoClose: 3000,
+  pauseOnHover: true,
   transition: Flip,
   hideProgressBar: true,
 });

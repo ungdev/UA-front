@@ -6,12 +6,12 @@ import './Title.css';
 /**
  * Displays a title
  */
-const Title = ({ level, children, gutterBottom, align, uppercase }) => {
+const Title = ({ level, children, gutterBottom, align, uppercase, className }) => {
   const Component = `h${level}`;
 
   return (
     <Component
-      className={`title title-${level} ${align} ${gutterBottom ? 'gutterBottom' : ''} ${uppercase ? 'uppercase' : ''}`}
+      className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''} ${uppercase ? 'uppercase' : ''}`}
     >
       <div className="title-content">
         {children}
@@ -22,11 +22,11 @@ const Title = ({ level, children, gutterBottom, align, uppercase }) => {
 
 Title.propTypes = {
   /**
-   * Set content importance
+   * Set title importance
    */
   level: PropTypes.oneOf([1, 2, 3, 4]),
   /**
-   * The content of the component
+   * Content of the title
    */
   children: PropTypes.node.isRequired,
   /**
@@ -34,13 +34,17 @@ Title.propTypes = {
    */
   gutterBottom: PropTypes.bool,
   /**
-   * Set the text-align on the component
+   * text-align of the component
    */
   align: PropTypes.oneOf(['inherit', 'center', 'justify', 'left', 'right']),
   /**
    * Should the text be uppercase ?
    */
   uppercase: PropTypes.bool,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
 };
 
 Title.defaultProps = {
@@ -48,6 +52,7 @@ Title.defaultProps = {
   gutterBottom: true,
   align: 'inherit',
   uppercase: false,
+  className: '',
 };
 
 export default Title;
