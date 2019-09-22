@@ -29,6 +29,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/no-unescaped-entities": "off",
-    "semi": "error"
+    "semi": "error",
+    "comma-dangle": ["warn", "always-multiline"],
+    "object-curly-spacing": ["warn", "always"]
   }
 }

@@ -19,30 +19,37 @@ const listPartners = partnersList.map((partner) => (
 const Home = () => (
   <div id="home">
     <div className="home-header">
-      <img src="/static/logo-notext-whiteshadow.svg" alt="logo" id="logo" />
+      <img src="/static/logo-notext-whiteshadow.svg" alt="" id="logo" />
+
       <div className="home-title">
         <p className="main">UTT Arena</p>
         <p>6, 7 et 8 décembre 2019</p>
       </div>
     </div>
-    <div className="home-container">
+
+    <div className="home-container page-padding">
       <div className="home-countdown">
         <Countdown date={new Date('December 6 2019 17:00:00')} />
       </div>
+
       <div className="home-info">
         <Title align="center" uppercase>Informations</Title>
         <Title level={4} align="center" uppercase>{indexText.information.catchPhrase}</Title>
+
         <p>{indexText.information.description}</p>
+
         <VideoContainer
           src="https://www.youtube.com/embed/K_Jchg4MIh0"
           title="Aftermovie UTT Arena 2018"
           className="video-container"
         />
+
         <Table
           columns={indexText.information.tableColumns}
           dataSource={indexText.information.tableRows}
           className="info-table"
         />
+
         <Link href="/information">
           <Button primary className="info-button">
             Toutes les informations
@@ -50,14 +57,17 @@ const Home = () => (
           </Button>
         </Link>
       </div>
+
       <div className="home-tournaments">
         <TournamentCards />
       </div>
+
       <div className="home-partners">
         <Title align="center" uppercase>Partenaires</Title>
         <div className="list-partners">
           { listPartners }
         </div>
+
         <Link href="/partners">
           <Button primary className="partners-button">
             Tous les partenaires

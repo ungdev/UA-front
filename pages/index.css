@@ -38,10 +38,6 @@
   text-transform: uppercase;
 }
 
-#home .home-container {
-  padding: 0 5em
-}
-
 #home .home-countdown {
   max-width: 1000px;
   margin: 0 auto 3em auto;
@@ -136,8 +132,5 @@
 @media screen and (max-width: 650px) {
   #home .home-container .tournament {
     width: 100%;
-  }
-  #home .home-container {
-    padding: 0 1em;
   }
 }

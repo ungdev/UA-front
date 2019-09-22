@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
@@ -7,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
-import { Navbar, HeaderDashboard } from '../components';
+import { Navbar, DashboardHeader, Header } from '../components';
 import headText from '../assets/head';
 
 import './_app.css';
@@ -19,7 +20,7 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const App = ({ Component, pageProps, reduxStore, router }) => {
+const App = ({ Component, pageProps, reduxStore }) => {
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
@@ -36,6 +37,10 @@ const App = ({ Component, pageProps, reduxStore, router }) => {
       });
     }
   });
+
+  const { pathname } = useRouter();
+  const isHome = pathname === '/';
+  const isDashboard = pathname.substr(0, 10) === '/dashboard';
 
   return (
     <div>
@@ -58,8 +63,10 @@ const App = ({ Component, pageProps, reduxStore, router }) => {
         <Navbar />
 
         <div className="page-container">
-          { router.route.includes("/dashboard") && <HeaderDashboard />}
-          <Component {...pageProps} />
+          { !isHome && !isDashboard && <Header /> }
+          { isDashboard && <DashboardHeader /> }
+          { isHome && <Component {...pageProps} /> }
+          { !isHome && <div className="page-padding"><Component {...pageProps} /></div> }
         </div>
       </Provider>
     </div>
@@ -79,10 +86,6 @@ App.propTypes = {
    * The redux store
    */
   reduxStore: PropTypes.object.isRequired,
-  /**
-   * Route Next
-   */
-  router: PropTypes.object.isRequired,
 };
 
 App.defaultProps = {
