@@ -1,9 +1,12 @@
-import React from 'react';
+import { useEffect } from 'react';
+import Router from 'next/router';
 
-const Dashboard = () => (
-  <div>
-     Dashboard
-  </div>
-);
+const Dashboard = () => {
+  useEffect(() => {
+    Router.push('/dashboard/team');
+  });
+
+  return null;
+};
 
 export default Dashboard;

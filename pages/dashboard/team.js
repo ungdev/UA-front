@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Team = () => (
-  <div>
-      Team
+  <div id="dashboard-team">
+    Team
   </div>
 );
 

@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Cart = () => (
-  <div>
-      Cart
+  <div id="dashboard-cart">
+    Cart
   </div>
 );
 
