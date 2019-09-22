@@ -27,4 +27,11 @@ const postToSlack = (firstname, lastname, email, subject, content) => {
   });
 };
 
-export { postToSlack };
+const axiosAPI = (token = '') => {
+  return axios.create({
+    baseURL: process.env.ARENA_API_URI,
+    headers: {'X-Token': token}
+  });
+};
+
+export { postToSlack, axiosAPI };

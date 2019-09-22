@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
 import { Modal, Button, Input } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
+import { tryLogin } from '../modules/login';
+import { register } from '../modules/register';
 
 import './LoginModal.css';
 
 const LoginModal = ({ isVisible }) => {
   const dispatch = useDispatch();
-
   // Get panel key value
   const [panel, setPanel] = useState('login');
 
@@ -20,20 +20,20 @@ const LoginModal = ({ isVisible }) => {
     password: null, setPassword: null,
   };
 
-  [login.email, login.setEmail] = useState('');
+  [login.username, login.setUsername] = useState('');
   [login.password, login.setPassword] = useState('');
 
   // Get signup fields value
   const signup = {
     firstname: null, setFirstname: null,
     lastname: null, setLastname: null,
-    nickname: null, setNickname: null,
+    username: null, setUsername: null,
     email: null, setEmail: null,
     password: null, setPassword: null,
     passwordConfirmation: null, setPasswordConfirmation: null,
   };
 
-  [signup.nickname, signup.setNickname] = useState('');
+  [signup.username, signup.setUsername] = useState('');
   [signup.lastname, signup.setLastname] = useState('');
   [signup.firstname, signup.setFirstname] = useState('');
   [signup.email, signup.setEmail] = useState('');
@@ -57,8 +57,8 @@ const LoginModal = ({ isVisible }) => {
       <>
         <Input
           label="Email"
-          value={login.email}
-          onChange={login.setEmail}
+          value={login.username}
+          onChange={login.setUsername}
         />
         <Input
           label="Mot de passe"
@@ -70,16 +70,13 @@ const LoginModal = ({ isVisible }) => {
         <p>
           <a onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
         </p>
-
-        <Link href="/dashboard">
-          <Button
-            primary
-            onClick={() => dispatch(setLoginModalVisible(false))}
-            className="login-modal-button"
-          >
-            Se connecter
-          </Button>
-        </Link>
+        <Button
+          primary
+          onClick={() => dispatch(tryLogin(login))}
+          className="login-modal-button"
+        >
+          Se connecter
+        </Button>
 
         <div className="footer-text">
           Pas encore inscrit ? <a onClick={() => setPanel('signup')}>Créer un compte</a>
@@ -104,8 +101,8 @@ const LoginModal = ({ isVisible }) => {
         />
         <Input
           label="Pseudo"
-          value={signup.nickname}
-          onChange={signup.setNickname}
+          value={signup.username}
+          onChange={signup.setUsername}
         />
         <Input
           label="Email"
@@ -124,16 +121,13 @@ const LoginModal = ({ isVisible }) => {
           onChange={signup.setPasswordConfirmation}
           type="password"
         />
-
-        <Link href="/">
-          <Button
-            primary
-            onClick={() => dispatch(setLoginModalVisible(false))}
-            className="signup-modal-button"
-          >
-            S'inscrire
-          </Button>
-        </Link>
+        <Button
+          primary
+          onClick={() => dispatch(register(signup))}
+          className="signup-modal-button"
+        >
+          S'inscrire
+        </Button>
 
         <div className="footer-text">
           Déjà inscrit ? <a onClick={() => setPanel('login')}>Connecte-toi</a>
