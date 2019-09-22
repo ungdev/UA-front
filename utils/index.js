@@ -27,5 +27,4 @@ const postToSlack = (firstname, lastname, email, subject, content) => {
   });
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export { postToSlack };
