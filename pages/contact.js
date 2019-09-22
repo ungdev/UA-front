@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Header } from '../components';
 import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { postToSlack } from '../utils';
 
@@ -46,30 +45,26 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <Header />
+    <div id="contact">
+      <Title align="center" uppercase>contact</Title>
+      <p>
+        UTT Net Group<br />
+        12 rue Marie Curie 10000 Troyes<br />
+        <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a><br />
+        <a href="tel:0325718550">0325718550</a>
+      </p>
 
-      <div id="contact" className="page-padding">
-        <Title align="center" uppercase>contact</Title>
-        <p>
-          UTT Net Group<br />
-          12 rue Marie Curie 10000 Troyes<br />
-          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a><br />
-          <a href="tel:0325718550">0325718550</a>
-        </p>
+      <Title level={3}>Formulaire</Title>
+      <Input label="Prénom" value={firstname} onChange={setFirstname} />
+      <Input label="Nom" value={lastname} onChange={setLastname} />
+      <Input label="Email" value={email} onChange={setEmail} />
+      <Select label="Sujet" options={options} value={subject} onChange={setSubject} />
+      <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} />
 
-        <Title level={3}>Formulaire</Title>
-        <Input label="Prénom" value={firstname} onChange={setFirstname} />
-        <Input label="Nom" value={lastname} onChange={setLastname} />
-        <Input label="Email" value={email} onChange={setEmail} />
-        <Select label="Sujet" options={options} value={subject} onChange={setSubject} />
-        <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} />
-
-        <Button primary onClick={sendMsg}>
-          Envoyer
-        </Button>
-      </div>
-    </>
+      <Button primary onClick={sendMsg}>
+        Envoyer
+      </Button>
+    </div>
   );
 };
 

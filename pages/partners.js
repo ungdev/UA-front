@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Header } from '../components';
 import { Card, Title } from '../components/UI';
 import partnersList from '../assets/partners';
 
@@ -26,17 +25,13 @@ const Partners = () => {
   ));
 
   return (
-    <>
-      <Header />
+    <div id="partners">
+      <Title align="center" uppercase>Partenaires</Title>
 
-      <div id="partners" className="page-padding">
-        <Title align="center" uppercase>Partenaires</Title>
-
-        <div className="partners-list">
-          { partners }
-        </div>
+      <div className="partners-list">
+        { partners }
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,31 +1,26 @@
 import React from 'react';
 
-import { Header } from '../components';
 import { Title, Collapse } from '../components/UI';
-
-import './faq.css';
 import faq from '../assets/faq';
 
+import './faq.css';
+
 const FAQ = () => (
-  <>
-    <Header />
+  <div id="faq">
+    <Title align="center">FAQ</Title>
 
-    <div id="faq" className="page-padding">
-      <Title align="center">FAQ</Title>
-
-      {faq.map((category) => (
-        <div key={category.title} className="margin-bottom">
-          <Title level={3}>{category.title}</Title>
-          {category.entries.map((entrie, i) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <Collapse key={`${category.title}-${i}`} title={entrie.question}>
-              {entrie.answer}
-            </Collapse>
-          ))}
-        </div>
-      ))}
-    </div>
-  </>
+    {faq.map((category) => (
+      <div key={category.title} className="margin-bottom">
+        <Title level={3}>{category.title}</Title>
+        {category.entries.map((entrie, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <Collapse key={`${category.title}-${i}`} title={entrie.question}>
+            {entrie.answer}
+          </Collapse>
+        ))}
+      </div>
+    ))}
+  </div>
 );
 
 export default FAQ;
