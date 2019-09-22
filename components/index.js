@@ -1,13 +1,13 @@
+import DashboardHeader from './DashboardHeader';
 import Header from './Header';
 import Navbar from './Navbar';
 import Tournament from './Tournament';
 import TournamentCards from './TournamentCards';
-import HeaderDashboard from './HeaderDashboard';
 
 export {
+  DashboardHeader,
   Header,
   Navbar,
   Tournament,
   TournamentCards,
-  HeaderDashboard
 };
