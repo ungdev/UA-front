@@ -114,28 +114,14 @@ const Navbar = () => {
       </div>
 
       <Modal
-        title=""
+        title="Connexion"
         visible={isVisible}
         onCancel={() => dispatch(setVisible(false))}
         isVisible={isVisible}
-        footer={null}
+        footer={<Button primary onClick={() => dispatch(setVisible(false))}>Fermer</Button>}
       >
-        <Tabs
-          tabs={[
-            {
-              title: 'Connexion',
-              content: (
-                <div className="form-container">
-
-                </div>
-              ),
-            },
-            {
-              title: 'Inscription',
-              content: '',
-            },
-          ]}
-        />
+        Les inscriptions ouvriront bientôt,
+        suivez-nous sur les réseaux sociaux pour ne rien rater !
       </Modal>
     </div>
   );
