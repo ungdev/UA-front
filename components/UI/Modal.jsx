@@ -32,7 +32,7 @@ const Modal = ({ title, children, footer, closable, visible, onCancel, onOk, cla
             </div>
           )}
           <div className="modal-content">{children}</div>
-          <div className="modal-footer">{footerContent}</div>
+          { footerContent && <div className="modal-footer">{footerContent}</div> }
         </div>
       </div>
     </div>

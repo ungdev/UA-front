@@ -1,41 +1,33 @@
 {
-    "env": {
-        "browser": true,
-				"es6": true,
-				"node": true
-    },
-    "extends": [
-        "airbnb",
-        "airbnb/hooks"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-        "react/prop-types": ["off"],
-        "react/jsx-props-no-spreading": ["off"],
-        "react/destructuring-assignment": ["off"],
-        "react/forbid-prop-types": ["off"],
-        "react/no-unescaped-entities": ["off"],
-        "react/jsx-one-expression-per-line": ["off"],
-        "jsx-a11y/click-events-have-key-events": ["off"],
-        "jsx-a11y/no-static-element-interactions": ["off"],
-        "jsx-a11y/control-has-associated-label": ["off"],
-        "jsx-a11y/anchor-is-valid": ["off"],
-        "eol-last": ["off"],
-        "object-curly-newline": ["off"],
-        "no-param-reassign": ["error", { "props": false }]
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "plugins": [
+    "react",
+    "react-hooks"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/require-default-props": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": "off"
+  }
 }

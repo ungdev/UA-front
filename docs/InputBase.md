@@ -4,6 +4,7 @@ Main component for input
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
+**Component** | `String` |  | :white_check_mark: | The input component name
 **id** | `String` |  | :white_check_mark: | id for the input
 **label** | `String` |  | :white_check_mark: | Label to display for the input
 **onChange** | `Function` |  | :white_check_mark: | onChange function, receive `event`

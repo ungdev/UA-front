@@ -1,5 +1,5 @@
 export default {
-  catchPhrase: 'Les quatre jeux à l\'UTT Arena 2019',
+  catchPhrase: 'Les cinq tournois à l\'UTT Arena 2019',
   list: [
     {
       title: 'League of Legends (Pro)',

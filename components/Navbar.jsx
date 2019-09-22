@@ -7,7 +7,8 @@ import 'simplebar/dist/simplebar.min.css';
 
 import { setVisible } from '../modules/loginModal';
 import Button from './UI/Button';
-import ConnexionModal from './ConnexionModal';
+import Modal from './UI/Modal';
+
 import './Navbar.css';
 
 const links = [
@@ -52,7 +53,8 @@ const Navbar = () => {
       _setMobileMenuVisible(visible);
       if (visible) {
         document.getElementsByTagName('html')[0].style.overflow = 'hidden';
-      } else {
+      }
+      else {
         document.getElementsByTagName('html')[0].style.overflow = 'auto';
       }
     }
@@ -82,7 +84,7 @@ const Navbar = () => {
       </Link>
 
       <Link href="/">
-        <a className="centered">
+        <a className="desktop-link">
           <div className="desktop-logo" />
         </a>
       </Link>
@@ -111,7 +113,16 @@ const Navbar = () => {
         </div>
       </div>
 
-      <ConnexionModal onClose={() => dispatch(setVisible(false))} isVisible={isVisible} />
+      <Modal
+        title="Connexion"
+        visible={isVisible}
+        onCancel={() => dispatch(setVisible(false))}
+        isVisible={isVisible}
+        footer={<Button primary onClick={() => dispatch(setVisible(false))}>Fermer</Button>}
+      >
+        Les inscriptions ouvriront bientôt,
+        suivez-nous sur les réseaux sociaux pour ne rien rater !
+      </Modal>
     </div>
   );
 };
