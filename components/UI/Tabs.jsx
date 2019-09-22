@@ -15,10 +15,10 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
       >
         {tab.title}
       </button>
-    )
-    return (
-      tab.path ? <Link href={tab.path}>{tabButton}</Link> : tabButton
-    )});
+    );
+
+    return tab.path ? <Link href={tab.path}>{tabButton}</Link> : tabButton;
+  });
   const tabsContent = tabs.map((tab, i) => (
     tab.content &&
     <div
