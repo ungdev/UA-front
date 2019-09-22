@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-import SigninModal from './SigninModal';
 import { Button } from './UI';
+import LoginModal from './LoginModal';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 
@@ -113,8 +113,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <SigninModal isVisible={isVisible} />
 
+      <LoginModal isVisible={isVisible} />
     </div>
   );
 };
