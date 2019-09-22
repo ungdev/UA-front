@@ -3,21 +3,23 @@ import PropTypes from 'prop-types';
 
 import './InputBase.css';
 
-
 /**
  * Main component for input
  */
 const InputBase = ({ id, label, placeholder, value, onChange, type, Component, options }) => {
   const wrapperRef = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
+
   const handleClickOutside = (event) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
       setIsFocus(false);
     }
   };
+
   useEffect(() => {
     // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
+
     return () => {
       // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
@@ -97,6 +99,10 @@ InputBase.propTypes = {
    * HTML native input type
    */
   type: PropTypes.oneOf(['text', 'password', 'number']),
+  /**
+   * The input component name
+   */
+  Component: PropTypes.string.isRequired,
   /**
    * Array of option for select
    */

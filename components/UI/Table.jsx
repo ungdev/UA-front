@@ -21,9 +21,9 @@ const Table = ({ columns, dataSource, className }) => (
       </thead>
       <tbody>
         {dataSource.map((row, i) => (
-          <tr key={row.key || i}>
-            {columns.map((column) => (
-              <td key={row.key + row[column.key]}>{row[column.key]}</td>
+          <tr key={`${row.key}-${i}`}>
+            {columns.map((column, j) => (
+              <td key={`${row[column.key]}-${i}${j}`}>{row[column.key]}</td>
             ))}
           </tr>
         ))}

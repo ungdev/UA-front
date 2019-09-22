@@ -37,6 +37,7 @@ const nextJSConfig = {
 
     return config;
   },
+  useFileSystemPublicRoutes: false,
 };
 
 const progressBarConfig = {

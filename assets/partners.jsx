@@ -7,7 +7,7 @@ export default [
     img: '/static/partners/festival.jpg',
     description: (
       <>
-        <p>L’univers du jeu s’installe de nouveau à Troyes pour une 5ème année encore plus animée et avec davantage d’exposants ! C’est le rendez-vous des gamers de toutes les générations : des amateurs aux passionnés de jeux anciens, fantastiques ou traditionnels ! Avec plus de 6000m², le festival vous propose de découvrir trois grands univers :</p>
+        <p>L’univers du jeu s’installe de nouveau à Troyes pour une 5<sup>ème</sup> année encore plus animée et avec davantage d’exposants ! C’est le rendez-vous des gamers de toutes les générations : des amateurs aux passionnés de jeux anciens, fantastiques ou traditionnels ! Avec plus de 6000m², le festival vous propose de découvrir trois grands univers :</p>
         <ul>
           <li>Gaming, rétrogaming et fantastique</li>
           <li>Jeux de café et jeux traditionnels</li>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TournamentCards, Header } from '../../components';
+import { Header, TournamentCards } from '../../components';
 
 const Tournaments = () => (
   <>
