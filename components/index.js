@@ -1,13 +1,9 @@
-import DashboardHeader from './DashboardHeader';
-import Header from './Header';
-import Navbar from './Navbar';
 import Tournament from './Tournament';
 import TournamentCards from './TournamentCards';
+import Wrapper from './Wrapper';
 
 export {
-  DashboardHeader,
-  Header,
-  Navbar,
   Tournament,
   TournamentCards,
+  Wrapper,
 };
