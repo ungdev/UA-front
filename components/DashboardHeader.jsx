@@ -1,18 +1,22 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import './DashboardHeader.css';
 
-const links = [
-  { title: "Équipe", href: '/dashboard/team' },
-  { title: "Panier", href: '/dashboard/cart' },
-  { title: "Mes achats", href: '/dashboard/purchases' },
-  { title: "Mon compte", href: '/dashboard/account' },
-];
-
-const DashboardHeader = () => {
-  const { pathname } = useRouter();
+const DashboardHeader = ({ pathname, isRegistered }) => {
+  const links = [];
+  if (!isRegistered) {
+    links.push({ title: "Inscription", href: "/dashboard/register" });
+  }
+  else {
+    links.push({ title: "Équipe", href: '/dashboard/team' });
+  }
+  links.push(
+    { title: "Boutique", href: '/dashboard/shop' },
+    { title: "Mes achats", href: '/dashboard/purchases' },
+    { title: "Mon compte", href: '/dashboard/account' },
+  );
 
   return (
     <div id="dashboard-header">
@@ -35,6 +39,17 @@ const DashboardHeader = () => {
       </div>
     </div>
   );
+};
+
+DashboardHeader.propTypes = {
+  /**
+   * Current pathname
+   */
+  pathname: PropTypes.string.isRequired,
+  /**
+   * Is the user registered in a team ?
+   */
+  isRegistered: PropTypes.bool.isRequired,
 };
 
 export default DashboardHeader;

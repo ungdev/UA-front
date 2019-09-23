@@ -15,37 +15,23 @@ const LoginModal = ({ isVisible }) => {
   const [panel, setPanel] = useState('login');
 
   // Get login fields value
-  const login = {
-    email: null, setEmail: null,
-    password: null, setPassword: null,
-  };
-
-  [login.email, login.setEmail] = useState('');
-  [login.password, login.setPassword] = useState('');
+  const [login, setLogin] = useState({
+    email: '',
+    password: '',
+  });
 
   // Get signup fields value
-  const signup = {
-    firstname: null, setFirstname: null,
-    lastname: null, setLastname: null,
-    nickname: null, setNickname: null,
-    email: null, setEmail: null,
-    password: null, setPassword: null,
-    passwordConfirmation: null, setPasswordConfirmation: null,
-  };
+  const [signup, setSignup] = useState({
+    firstname: '',
+    lastname: '',
+    nickname: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  });
 
-  [signup.nickname, signup.setNickname] = useState('');
-  [signup.lastname, signup.setLastname] = useState('');
-  [signup.firstname, signup.setFirstname] = useState('');
-  [signup.email, signup.setEmail] = useState('');
-  [signup.password, signup.setPassword] = useState('');
-  [signup.passwordConfirmation, signup.setPasswordConfirmation] = useState('');
-
-  // Get forgot password field value
-  const forgot = {
-    email: null, setEmail: null,
-  };
-
-  [forgot.email, forgot.setEmail] = useState('');
+  // Get forgot email field value
+  const [forgotEmail, setForgotEmail] = useState('');
 
   // Get modal title and content from panel key
   let title, content;
@@ -58,12 +44,12 @@ const LoginModal = ({ isVisible }) => {
         <Input
           label="Email"
           value={login.email}
-          onChange={login.setEmail}
+          onChange={(email) => setLogin({ ...login, email })}
         />
         <Input
           label="Mot de passe"
           value={login.password}
-          onChange={login.setPassword}
+          onChange={(password) => setLogin({ ...login, password })}
           type="password"
         />
 
@@ -95,33 +81,33 @@ const LoginModal = ({ isVisible }) => {
         <Input
           label="Prénom"
           value={signup.firstname}
-          onChange={signup.setFirstname}
+          onChange={(firstname) => setSignup({ ...signup, firstname })}
         />
         <Input
           label="Nom"
           value={signup.lastname}
-          onChange={signup.setLastname}
+          onChange={(lastname) => setSignup({ ...signup, lastname })}
         />
         <Input
           label="Pseudo"
           value={signup.nickname}
-          onChange={signup.setNickname}
+          onChange={(nickname) => setSignup({ ...signup, nickname })}
         />
         <Input
           label="Email"
           value={signup.email}
-          onChange={signup.setEmail}
+          onChange={(email) => setSignup({ ...signup, email })}
         />
         <Input
           label="Mot de passe"
           value={signup.password}
-          onChange={signup.setPassword}
+          onChange={(password) => setSignup({ ...signup, password })}
           type="password"
         />
         <Input
           label="Confirmez le mot de passe"
           value={signup.passwordConfirmation}
-          onChange={signup.setPasswordConfirmation}
+          onChange={(passwordConfirmation) => setSignup({ ...signup, passwordConfirmation })}
           type="password"
         />
 
@@ -148,20 +134,13 @@ const LoginModal = ({ isVisible }) => {
       <>
         <Input
           label="Email"
-          value={forgot.email}
-          onChange={forgot.setEmail}
+          value={forgotEmail}
+          onChange={setForgotEmail}
         />
 
-        <Button
-          primary
-          onClick={() => setPanel('login')}
-          className="forgot-modal-button"
-        >
-          Suivant
-        </Button>
-
-        <div className="footer-text">
-          <a onClick={() => setPanel('login')}>Se connecter</a>
+        <div className="forgot-modal-buttons">
+          <Button onClick={() => setPanel('login')}>Retour</Button>
+          <Button primary onClick={() => setPanel('login')}>Suivant</Button>
         </div>
       </>
     );
