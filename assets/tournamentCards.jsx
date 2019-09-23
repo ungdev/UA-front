@@ -39,9 +39,9 @@ export default {
     {
       title: 'Libre',
       cashprize: 'à venir',
-      players: 60,
+      players: 46,
       img: '/static/libre.webp',
       link: '/tournaments/libre',
-    }
-  ]
+    },
+  ],
 };

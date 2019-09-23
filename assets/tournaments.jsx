@@ -57,14 +57,14 @@ export default {
     rules: 'Le règlement sera bientôt publié.',
   },
   libre: {
-    title: 'Tournoi libre',
+    title: 'Libre',
     format: (
       <>
-        <div className="tournament-format">60 joueurs</div>
+        <div className="tournament-format">46 joueurs</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),
     rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
-  }
+  },
 };
