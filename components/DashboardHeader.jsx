@@ -19,7 +19,7 @@ const DashboardHeader = ({ pathname, isRegistered }) => {
   );
 
   return (
-    <div id="dashboard-header">
+    <header id="dashboard-header">
       <div className="header">
         <div className="home-title">
           <p>Dashboard</p>
@@ -37,7 +37,7 @@ const DashboardHeader = ({ pathname, isRegistered }) => {
           </Link>
         ))}
       </div>
-    </div>
+    </header>
   );
 };
 

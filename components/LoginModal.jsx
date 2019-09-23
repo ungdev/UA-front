@@ -54,7 +54,7 @@ const LoginModal = ({ isVisible }) => {
         />
 
         <p>
-          <a onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
+          <a tabIndex="0" onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
         </p>
 
         <Link href="/dashboard">
@@ -68,7 +68,7 @@ const LoginModal = ({ isVisible }) => {
         </Link>
 
         <div className="footer-text">
-          Pas encore inscrit ? <a onClick={() => setPanel('signup')}>Créer un compte</a>
+          Pas encore inscrit ? <a tabIndex="0" onClick={() => setPanel('signup')}>Créer un compte</a>
         </div>
       </>
     );
@@ -122,7 +122,7 @@ const LoginModal = ({ isVisible }) => {
         </Link>
 
         <div className="footer-text">
-          Déjà inscrit ? <a onClick={() => setPanel('login')}>Connecte-toi</a>
+          Déjà inscrit ? <a tabIndex="0" onClick={() => setPanel('login')}>Connecte-toi</a>
         </div>
       </>
     );

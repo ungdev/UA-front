@@ -85,7 +85,7 @@ const Navbar = () => {
       </Link>
 
       <Link href="/">
-        <a className="desktop-link">
+        <a className="desktop-link" aria-label="logo">
           <div className="desktop-logo" />
         </a>
       </Link>
@@ -94,16 +94,48 @@ const Navbar = () => {
         <SimpleBar style={{ height: '100%' }}>
           <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>
 
-          { navLinks }
+          <nav>
+            { navLinks }
+          </nav>
         </SimpleBar>
 
-        <div className="footer">
+        <footer>
           <div className="social-links">
-            <a href="https://www.facebook.com/UTTArena" className="facebook-link"><i className="fab fa-facebook-f" /></a>
-            <a href="https://twitter.com/UTTArena" className="twitter-link"><i className="fab fa-twitter" /></a>
-            <a href="https://discord.gg/WhxZwKU" className="discord-link"><i className="fab fa-discord" /></a>
-            <a href="https://www.youtube.com/user/UTTNetGroup/" className="youtube-link"><i className="fab fa-youtube" /></a>
-            <a href="https://www.twitch.tv/uttarena" className="twitch-link"><i className="fab fa-twitch" /></a>
+            <a
+              href="https://www.facebook.com/UTTArena"
+              className="facebook-link"
+              aria-label="Page Facebook"
+            >
+              <i className="fab fa-facebook-f" />
+            </a>
+            <a
+              href="https://twitter.com/UTTArena"
+              className="twitter-link"
+              aria-label="Page Twitter"
+            >
+              <i className="fab fa-twitter" />
+            </a>
+            <a
+              href="https://discord.gg/WhxZwKU"
+              className="discord-link"
+              aria-label="Serveur Discord"
+            >
+              <i className="fab fa-discord" />
+            </a>
+            <a
+              href="https://www.youtube.com/user/UTTNetGroup/"
+              className="youtube-link"
+              aria-label="Chaîne Youtube"
+            >
+              <i className="fab fa-youtube" />
+            </a>
+            <a
+              href="https://www.twitch.tv/uttarena"
+              className="twitch-link"
+              aria-label="Chaîne Twitch"
+            >
+              <i className="fab fa-twitch" />
+            </a>
           </div>
 
           <div className="footer-text">
@@ -111,7 +143,7 @@ const Navbar = () => {
             {' - '}
             <Link href="/legal"><a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a></Link>
           </div>
-        </div>
+        </footer>
       </div>
 
       <LoginModal isVisible={isVisible} />
