@@ -9,43 +9,49 @@ import { register } from '../modules/register';
 
 import './LoginModal.css';
 
+const initialSignup = {
+  firstname: '',
+  lastname: '',
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+};
+
+const initialLogin = {
+  username: '',
+  password: ''
+};
+
 const LoginModal = ({ isVisible }) => {
   const dispatch = useDispatch();
   // Get panel key value
   const [panel, setPanel] = useState('login');
 
-  // Get login fields value
-  const login = {
-    email: null, setEmail: null,
-    password: null, setPassword: null,
+  const [loginForm, setLoginForm] = useState(initialLogin);
+
+  const [signupForm, setSignupForm] = useState(initialSignup);
+
+  const [forgotEmail, setForgotEmail] = useState('');
+
+  const updateLogin = (field, value) => {
+    setLoginForm({
+      ...loginForm,
+      [field]: value,
+    });
   };
 
-  [login.username, login.setUsername] = useState('');
-  [login.password, login.setPassword] = useState('');
-
-  // Get signup fields value
-  const signup = {
-    firstname: null, setFirstname: null,
-    lastname: null, setLastname: null,
-    username: null, setUsername: null,
-    email: null, setEmail: null,
-    password: null, setPassword: null,
-    passwordConfirmation: null, setPasswordConfirmation: null,
+  const updateSignup = (field, value) => {
+    setSignupForm({
+      ...signupForm,
+      [field]: value,
+    });
   };
 
-  [signup.username, signup.setUsername] = useState('');
-  [signup.lastname, signup.setLastname] = useState('');
-  [signup.firstname, signup.setFirstname] = useState('');
-  [signup.email, signup.setEmail] = useState('');
-  [signup.password, signup.setPassword] = useState('');
-  [signup.passwordConfirmation, signup.setPasswordConfirmation] = useState('');
-
-  // Get forgot password field value
-  const forgot = {
-    email: null, setEmail: null,
+  const resetFields = () => {
+    setLoginForm(initialLogin);
+    setSignupForm(initialSignup);
   };
-
-  [forgot.email, forgot.setEmail] = useState('');
 
   // Get modal title and content from panel key
   let title, content;
@@ -57,13 +63,13 @@ const LoginModal = ({ isVisible }) => {
       <>
         <Input
           label="Email"
-          value={login.username}
-          onChange={login.setUsername}
+          value={loginForm.username}
+          onChange={(value) => updateLogin('username', value)}
         />
         <Input
           label="Mot de passe"
-          value={login.password}
-          onChange={login.setPassword}
+          value={loginForm.password}
+          onChange={(value) => updateLogin('password', value)}
           type="password"
         />
 
@@ -72,7 +78,11 @@ const LoginModal = ({ isVisible }) => {
         </p>
         <Button
           primary
-          onClick={() => dispatch(tryLogin(login))}
+          onClick={async () => {
+            if (await dispatch(tryLogin(loginForm))) {
+              resetFields();
+            }
+          }}
           className="login-modal-button"
         >
           Se connecter
@@ -91,39 +101,43 @@ const LoginModal = ({ isVisible }) => {
       <>
         <Input
           label="Prénom"
-          value={signup.firstname}
-          onChange={signup.setFirstname}
+          value={signupForm.firstname}
+          onChange={(value) => updateSignup('firstname', value)}
         />
         <Input
           label="Nom"
-          value={signup.lastname}
-          onChange={signup.setLastname}
+          value={signupForm.lastname}
+          onChange={(value) => updateSignup('lastname', value)}
         />
         <Input
           label="Pseudo"
-          value={signup.username}
-          onChange={signup.setUsername}
+          value={signupForm.username}
+          onChange={(value) => updateSignup('username', value)}
         />
         <Input
           label="Email"
-          value={signup.email}
-          onChange={signup.setEmail}
+          value={signupForm.email}
+          onChange={(value) => updateSignup('email', value)}
         />
         <Input
           label="Mot de passe"
-          value={signup.password}
-          onChange={signup.setPassword}
+          value={signupForm.password}
+          onChange={(value) => updateSignup('password', value)}
           type="password"
         />
         <Input
           label="Confirmez le mot de passe"
-          value={signup.passwordConfirmation}
-          onChange={signup.setPasswordConfirmation}
+          value={signupForm.passwordConfirmation}
+          onChange={(value) => updateSignup('passwordConfirmation', value)}
           type="password"
         />
         <Button
           primary
-          onClick={() => dispatch(register(signup))}
+          onClick={async () => {
+            if (await dispatch(register(signupForm))) {
+              resetFields();
+            }
+          }}
           className="signup-modal-button"
         >
           S'inscrire
@@ -142,8 +156,8 @@ const LoginModal = ({ isVisible }) => {
       <>
         <Input
           label="Email"
-          value={forgot.email}
-          onChange={forgot.setEmail}
+          value={forgotEmail}
+          onChange={setForgotEmail}
         />
 
         <Button
@@ -151,7 +165,7 @@ const LoginModal = ({ isVisible }) => {
           onClick={() => setPanel('login')}
           className="forgot-modal-button"
         >
-          Suivant
+          Envoyer
         </Button>
 
         <div className="footer-text">

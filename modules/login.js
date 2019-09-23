@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
 
 export const autoLogin = () => {
   return async dispatch => {
+    // eslint-disable-next-line no-prototype-builtins
     if (localStorage.hasOwnProperty('arena-2019-token')) {
       dispatch({
         type: SET_TOKEN,
@@ -41,6 +42,7 @@ export const tryLogin = user => async dispatch => {
     dispatch(setLoginModalVisible(false));
     toast.success('Connexion validée');
     Router.push('/dashboard');
+    return true;
   } catch (err) {
     toast.error(err.response.data.error);
   }
@@ -54,10 +56,7 @@ export const saveToken = token => dispatch => {
   localStorage.setItem('arena-2019-token', token);
 };
 
-export const logout = () => {
-  return async dispatch => {
-    dispatch({ type: SET_TOKEN, payload: null });
-
-    localStorage.removeItem('arena-2019-token');
-  };
+export const logout = dispatch => {
+  dispatch({ type: SET_TOKEN, payload: null });
+  localStorage.removeItem('arena-2019-token');
 };

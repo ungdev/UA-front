@@ -24,33 +24,19 @@ export const register = user => async dispatch => {
     await axiosAPI().post('user', user);
     toast.success('Inscription réussie');
     dispatch(setLoginModalVisible(false));
+    return true;
   } catch (err) {
     toast.error(err.response.data.error);
   }
 };
 
-// export const validate = token => {
-//   return async dispatch => {
-//     try {
-//       const res = await axiosAPI().post('user/validate', { token });
-
-//       await dispatch(saveToken(res.data.token));
-
-//       dispatch(
-//         notifActions.notifSend({
-//           message: 'Inscription validée',
-//           dismissAfter: 2000
-//         })
-//       );
-//     } catch (err) {
-//       console.log(err.response.data);
-//       dispatch(
-//         notifActions.notifSend({
-//           message: errorToString(err.response.data.error),
-//           kind: 'danger',
-//           dismissAfter: 2000
-//         })
-//       );
-//     }
-//   };
-// };
+export const validate = token => async dispatch => {
+  try {
+    const res = await axiosAPI().post('user/validate', { token });
+    await dispatch(saveToken(res.data.token));
+    toast.success('Inscription validée');
+    Router.push('/dashboard');
+  } catch (err) {
+    toast.error(err.response.data.error);
+  }
+};
