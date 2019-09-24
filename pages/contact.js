@@ -57,7 +57,7 @@ const Contact = () => {
       <Title level={3}>Formulaire</Title>
       <Input label="Prénom" value={firstname} onChange={setFirstname} />
       <Input label="Nom" value={lastname} onChange={setLastname} />
-      <Input label="Email" value={email} onChange={setEmail} />
+      <Input label="Email" value={email} onChange={setEmail} type="email" />
       <Select label="Sujet" options={options} value={subject} onChange={setSubject} />
       <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} />
 

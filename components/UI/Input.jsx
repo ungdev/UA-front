@@ -27,7 +27,7 @@ Input.propTypes = {
   /**
    * Input type
    */
-  type: PropTypes.oneOf(['text', 'password', 'number']),
+  type: PropTypes.oneOf(['text', 'email', 'password', 'number']),
   /**
    * Label to display
    */

@@ -45,6 +45,7 @@ const LoginModal = ({ isVisible }) => {
           label="Email"
           value={login.email}
           onChange={(email) => setLogin({ ...login, email })}
+          type="email"
         />
         <Input
           label="Mot de passe"
@@ -97,6 +98,7 @@ const LoginModal = ({ isVisible }) => {
           label="Email"
           value={signup.email}
           onChange={(email) => setSignup({ ...signup, email })}
+          type="email"
         />
         <Input
           label="Mot de passe"
@@ -136,6 +138,7 @@ const LoginModal = ({ isVisible }) => {
           label="Email"
           value={forgotEmail}
           onChange={setForgotEmail}
+          type="email"
         />
 
         <div className="forgot-modal-buttons">
