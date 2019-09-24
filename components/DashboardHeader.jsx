@@ -7,15 +7,15 @@ import './DashboardHeader.css';
 const DashboardHeader = ({ pathname, isRegistered }) => {
   const links = [];
   if (!isRegistered) {
-    links.push({ title: "Inscription", href: "/dashboard/register" });
+    links.push({ title: 'Inscription', href: '/dashboard/register' });
   }
   else {
-    links.push({ title: "Équipe", href: '/dashboard/team' });
+    links.push({ title: 'Équipe', href: '/dashboard/team' });
   }
   links.push(
-    { title: "Boutique", href: '/dashboard/shop' },
-    { title: "Mes achats", href: '/dashboard/purchases' },
-    { title: "Mon compte", href: '/dashboard/account' },
+    { title: 'Boutique', href: '/dashboard/shop' },
+    { title: 'Mes achats', href: '/dashboard/purchases' },
+    { title: 'Mon compte', href: '/dashboard/account' },
   );
 
   return (
