@@ -26,7 +26,7 @@
   content: '';
   display: block;
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 0;
   width: 100%;
   height: 5px;
@@ -36,7 +36,11 @@
 .modal .modal-body {
   max-height: 60vh;
   overflow-y: auto;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px 0 20px;
+}
+
+.modal .modal-content {
+  padding-bottom: 20px;
 }
 
 .modal .modal-title {
@@ -44,7 +48,7 @@
   font-family: 'LemonMilk';
   letter-spacing: 1px;
   font-size: 24px;
-  margin: 0 40px 30px 40px;
+  margin: 20px 40px 30px 40px;
 }
 
 .modal .modal-close-button {

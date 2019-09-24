@@ -1,5 +1,5 @@
 export default {
-  catchPhrase: 'Les cinq tournois à l\'UTT Arena 2019',
+  catchPhrase: 'Les 7 tournois à l\'UTT Arena 2019',
   list: [
     {
       title: 'League of Legends (Pro)',
@@ -37,9 +37,16 @@ export default {
       link: '/tournaments/fortnite',
     },
     {
+      title: 'osu!',
+      cashprize: 'à venir',
+      players: 24,
+      img: '/static/osu.webp',
+      link: '/tournaments/osu',
+    },
+    {
       title: 'Libre',
       cashprize: 'à venir',
-      players: 46,
+      players: 24,
       img: '/static/libre.webp',
       link: '/tournaments/libre',
     },

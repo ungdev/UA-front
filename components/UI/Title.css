@@ -1,6 +1,7 @@
 .title {
   margin-top: 0;
   font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
 }
 
 .title.gutterBottom {

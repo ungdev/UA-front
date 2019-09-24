@@ -14,7 +14,7 @@ const Tournament = ({ imgSrc, text }) => {
       <img className="tournament-header" alt="" src={imgSrc} />
 
       <div className="tournament-content">
-        <Title align="center" uppercase>{text.title}</Title>
+        <Title align="center">{text.title}</Title>
 
         <div className="tournament-signin">
           <Button primary onClick={() => dispatch(setLoginModalVisible(true))}>S'inscrire</Button>

@@ -28,7 +28,4 @@ export default {
       { title: <strong>Tournois sans Cashprize</strong>, description: 'LoL Amateur, tournoi libre (dont osu!)' },
     ],
   },
-  tournois: {
-    catchPhrase: 'Les cinq tournois à l\'UTT Arena 2019',
-  },
 };

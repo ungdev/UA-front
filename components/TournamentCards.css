@@ -21,7 +21,8 @@
 }
 
 .tournament-cards .tournament .tournament-title {
-  font-family: 'LemonMilk';
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
   font-size: 1.4em;
   text-align: center;
   color: var(--primary-color);

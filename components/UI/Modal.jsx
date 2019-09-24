@@ -19,23 +19,21 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
     );
 
   return (
-    <div className={className}>
-      <div className={`modal ${visible ? 'active' : ''}`}>
-        <div className="modal-overlay" onClick={() => closable && onCancel()} />
+    <div className={`modal ${visible ? 'active' : ''} ${className}`}>
+      <div className="modal-overlay" onClick={() => closable && onCancel()} />
 
-        <div className="modal-container">
-          <div className="modal-title">{title}</div>
+      <div className="modal-container">
+        <div className="modal-title">{title}</div>
 
-          {closable && (
-            <div className="modal-close-button" onClick={onCancel}>
-              <span />
-              <span />
-            </div>
-          )}
-          <div className="modal-body">
-            <div className="modal-content">{children}</div>
-            { buttonsContent && <div className="modal-buttons">{buttonsContent}</div> }
+        {closable && (
+          <div className="modal-close-button" onClick={onCancel}>
+            <span />
+            <span />
           </div>
+        )}
+        <div className="modal-body">
+          <div className="modal-content">{children}</div>
+          { buttonsContent && <div className="modal-buttons">{buttonsContent}</div> }
         </div>
       </div>
     </div>
