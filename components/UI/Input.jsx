@@ -8,7 +8,7 @@ let id = 0;
 /**
  * Displays an input
  */
-const Input = ({ type, label, value, onChange, className }) => (
+const Input = ({ type, label, value, onChange, className, autocomplete }) => (
   <div className={`input ${className}`}>
     <label htmlFor={`input-${id}`}>{label}</label>
 
@@ -17,6 +17,7 @@ const Input = ({ type, label, value, onChange, className }) => (
       id={`input-${id++}`}
       value={value}
       onChange={(e) => onChange(e.target.value)}
+      autoComplete={autocomplete}
     />
 
     <div className="line" />
@@ -45,12 +46,17 @@ Input.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Autocomplete type
+   */
+  autocomplete: PropTypes.string,
 };
 
 Input.defaultProps = {
   type: 'text',
   value: '',
   className: '',
+  autocomplete: '',
 };
 
 export default Input;

@@ -20,7 +20,7 @@ const initialSignup = {
 
 const initialLogin = {
   username: '',
-  password: ''
+  password: '',
 };
 
 const LoginModal = ({ isVisible }) => {
@@ -51,6 +51,7 @@ const LoginModal = ({ isVisible }) => {
   const resetFields = () => {
     setLoginForm(initialLogin);
     setSignupForm(initialSignup);
+    setPanel('login');
   };
 
   // Get modal title and content from panel key
@@ -62,15 +63,17 @@ const LoginModal = ({ isVisible }) => {
     content = (
       <>
         <Input
-          label="Email"
+          label="Email / Pseudo"
           value={loginForm.username}
           onChange={(value) => updateLogin('username', value)}
+
         />
         <Input
           label="Mot de passe"
           value={loginForm.password}
           onChange={(value) => updateLogin('password', value)}
           type="password"
+          autocomplete="password"
         />
 
         <p>
@@ -103,33 +106,39 @@ const LoginModal = ({ isVisible }) => {
           label="Prénom"
           value={signupForm.firstname}
           onChange={(value) => updateSignup('firstname', value)}
+          autocomplete="given-name"
         />
         <Input
           label="Nom"
           value={signupForm.lastname}
           onChange={(value) => updateSignup('lastname', value)}
+          autocomplete="family-name"
         />
         <Input
           label="Pseudo"
           value={signupForm.username}
           onChange={(value) => updateSignup('username', value)}
+          autocomplete="nickname"
         />
         <Input
           label="Email"
           value={signupForm.email}
           onChange={(value) => updateSignup('email', value)}
+          autocomplete="email"
         />
         <Input
           label="Mot de passe"
           value={signupForm.password}
           onChange={(value) => updateSignup('password', value)}
           type="password"
+          autocomplete="new-password"
         />
         <Input
           label="Confirmez le mot de passe"
           value={signupForm.passwordConfirmation}
           onChange={(value) => updateSignup('passwordConfirmation', value)}
           type="password"
+          autocomplete="new-password"
         />
         <Button
           primary
@@ -158,6 +167,7 @@ const LoginModal = ({ isVisible }) => {
           label="Email"
           value={forgotEmail}
           onChange={setForgotEmail}
+          autocomplete="email"
         />
 
         <Button
@@ -183,7 +193,7 @@ const LoginModal = ({ isVisible }) => {
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false));
-        setPanel('login');
+        resetFields();
       }}
       className="login-modal"
     >

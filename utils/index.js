@@ -31,7 +31,7 @@ const axiosAPI = (token = '') => {
   if (process.browser) {
     return axios.create({
       baseURL: process.env.ARENA_API_URI,
-      headers: {'X-Token': token}
+      headers: { 'X-Token': token },
     });
   }
 };
