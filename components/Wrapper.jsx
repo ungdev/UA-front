@@ -53,7 +53,7 @@ const Wrapper = ({ Component }) => {
           )
         }
 
-        <main className={(!isHome && !isTournament) && 'page-padding'}><Component /></main>
+        <main className={(!isHome && !isTournament) ? 'page-padding' : ''}><Component /></main>
       </div>
     </>
   );
