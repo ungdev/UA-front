@@ -57,7 +57,7 @@ export default {
     rules: 'Le règlement sera bientôt publié.',
   },
   libre: {
-    title: 'Tournoi libre',
+    title: 'Libre',
     format: (
       <>
         <div className="tournament-format">24 joueurs</div>
