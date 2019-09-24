@@ -39,9 +39,16 @@ export default {
     {
       title: 'Libre',
       cashprize: 'à venir',
-      players: 60,
+      players: 24,
       img: '/static/libre.webp',
       link: '/tournaments/libre',
+    },
+    {
+      title: 'osu!',
+      cashprize: 'à venir',
+      players: 24,
+      img: '/static/osu.webp',
+      link: '/tournaments/osu',
     }
   ]
 };

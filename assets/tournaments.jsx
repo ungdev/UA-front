@@ -60,7 +60,18 @@ export default {
     title: 'Tournoi libre',
     format: (
       <>
-        <div className="tournament-format">60 joueurs</div>
+        <div className="tournament-format">24 joueurs</div>
+        <p>Description du tournoi à venir.</p>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
+  },
+  osu: {
+    title: 'osu!',
+    format: (
+      <>
+        <div className="tournament-format">24 joueurs</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),
