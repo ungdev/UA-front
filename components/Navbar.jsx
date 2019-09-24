@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-import { Button } from './UI';
+import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
 
 import { setLoginModalVisible } from '../modules/loginModal';
@@ -146,7 +146,19 @@ const Navbar = () => {
         </footer>
       </div>
 
-      <LoginModal isVisible={isVisible} />
+      { process.env.DASHBOARD_AVAILABLE === 'true' ? (
+        <LoginModal isVisible={isVisible} />
+      ) : (
+        <Modal
+          title="Connexion"
+          onCancel={() => dispatch(setLoginModalVisible(false))}
+          visible={isVisible}
+          buttons={<Button primary onClick={() => dispatch(setLoginModalVisible(false))}>Fermer</Button>}
+        >
+          Les inscriptions ne sont pas ouvertes,
+          suivez-nous sur les réseaux sociaux pour ne rien rater !
+        </Modal>
+      ) }
     </div>
   );
 };

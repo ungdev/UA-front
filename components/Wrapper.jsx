@@ -14,15 +14,30 @@ const Wrapper = ({ Component }) => {
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
 
-  useEffect(() => {
-    if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-      Router.replace('/dashboard/team');
-    }
+  // Handle redirections
+  let redirect = null;
 
-    if (!isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
-      Router.replace('/dashboard/register');
-    }
+  if (isDashboard && process.env.DASHBOARD_AVAILABLE === 'false') {
+    redirect = '/';
+  }
+
+  if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+    redirect = '/dashboard/team';
+  }
+
+  if (!isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+    redirect = '/dashboard/register';
+  }
+
+  // Redirect to desired path
+  useEffect(() => {
+    redirect && Router.replace(redirect);
   });
+
+  // Do not display anything if the user will be redirected
+  if(redirect) {
+    return null;
+  }
 
   return (
     <>

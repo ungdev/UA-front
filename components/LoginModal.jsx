@@ -139,7 +139,9 @@ const LoginModal = ({ isVisible }) => {
         />
 
         <div className="forgot-modal-buttons">
-          <Button onClick={() => setPanel('login')}>Retour</Button>
+          <Button onClick={() => setPanel('login')}>
+            <i className="fas fa-chevron-left" /> Retour
+          </Button>
           <Button primary onClick={() => setPanel('login')}>Suivant</Button>
         </div>
       </>
