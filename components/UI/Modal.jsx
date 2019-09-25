@@ -8,7 +8,7 @@ import './Modal.css';
 /**
  * Displays a modal window
  */
-const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className }) => {
+const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className, ...otherProps }) => {
   const buttonsContent = buttons !== ''
     ? buttons
     : (
@@ -19,7 +19,7 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
     );
 
   return (
-    <div className={className}>
+    <div className={className} {...otherProps}>
       <div className={`modal ${visible ? 'active' : ''}`}>
         <div className="modal-overlay" onClick={() => closable && onCancel()} />
 

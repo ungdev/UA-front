@@ -14,7 +14,7 @@ const HeaderDashboard = () => (
       { title: "Equipe", path: '/dashboard' },
       { title: "Panier", path: '/dashboard/cart' },
       { title: "Mes Achats", path: '/dashboard/purchases' },
-      { title: "Mon Compte", path: '/dashboard/account'}
+      { title: "Mon Compte", path: '/dashboard/account' },
     ]} />
   </>
 );

@@ -34,6 +34,18 @@ const LoginModal = ({ isVisible }) => {
 
   const [forgotEmail, setForgotEmail] = useState('');
 
+  const login = async () => {
+    if (await dispatch(tryLogin(loginForm))) {
+      resetFields();
+    }
+  };
+
+  const signup = async () => {
+    if (await dispatch(register(signupForm))) {
+      resetFields();
+    }
+  };
+
   const updateLogin = (field, value) => {
     setLoginForm({
       ...loginForm,
@@ -55,149 +67,145 @@ const LoginModal = ({ isVisible }) => {
   };
 
   // Get modal title and content from panel key
-  let title, content;
+  const body = {
+    login: {
+      title: 'Connexion',
+      content: (
+        <>
+          <Input
+            label="Email / Pseudo"
+            value={loginForm.username}
+            onChange={(value) => updateLogin('username', value)}
 
-  if(panel === 'login') {
-    title = 'Connexion';
+          />
+          <Input
+            label="Mot de passe"
+            value={loginForm.password}
+            onChange={(value) => updateLogin('password', value)}
+            type="password"
+            autocomplete="password"
+          />
 
-    content = (
-      <>
-        <Input
-          label="Email / Pseudo"
-          value={loginForm.username}
-          onChange={(value) => updateLogin('username', value)}
+          <p>
+            <a onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
+          </p>
+          <Button
+            primary
+            onClick={login}
+            className="login-modal-button"
+          >
+            Se connecter
+          </Button>
 
-        />
-        <Input
-          label="Mot de passe"
-          value={loginForm.password}
-          onChange={(value) => updateLogin('password', value)}
-          type="password"
-          autocomplete="password"
-        />
+          <div className="footer-text">
+            Pas encore inscrit ? <a onClick={() => setPanel('signup')}>Créer un compte</a>
+          </div>
+        </>
+      ),
+      action: () => login(),
+    },
+    signup: {
+      title: 'Inscription',
+      content: (
+        <>
+          <Input
+            label="Prénom"
+            value={signupForm.firstname}
+            onChange={(value) => updateSignup('firstname', value)}
+            autocomplete="given-name"
+          />
+          <Input
+            label="Nom"
+            value={signupForm.lastname}
+            onChange={(value) => updateSignup('lastname', value)}
+            autocomplete="family-name"
+          />
+          <Input
+            label="Pseudo"
+            value={signupForm.username}
+            onChange={(value) => updateSignup('username', value)}
+            autocomplete="nickname"
+          />
+          <Input
+            label="Email"
+            value={signupForm.email}
+            onChange={(value) => updateSignup('email', value)}
+            autocomplete="email"
+          />
+          <Input
+            label="Mot de passe"
+            value={signupForm.password}
+            onChange={(value) => updateSignup('password', value)}
+            type="password"
+            autocomplete="new-password"
+          />
+          <Input
+            label="Confirmez le mot de passe"
+            value={signupForm.passwordConfirmation}
+            onChange={(value) => updateSignup('passwordConfirmation', value)}
+            type="password"
+            autocomplete="new-password"
+          />
+          <Button
+            primary
+            onClick={signup}
+            className="signup-modal-button"
+          >
+            S'inscrire
+          </Button>
 
-        <p>
-          <a onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
-        </p>
-        <Button
-          primary
-          onClick={async () => {
-            if (await dispatch(tryLogin(loginForm))) {
-              resetFields();
-            }
-          }}
-          className="login-modal-button"
-        >
-          Se connecter
-        </Button>
+          <div className="footer-text">
+            Déjà inscrit ? <a onClick={() => setPanel('login')}>Connecte-toi</a>
+          </div>
+        </>
+      ),
+      action: () => signup(),
+    },
+    forgot: {
+      title: 'Mot de passe oublié',
+      content: (
+        <>
+          <Input
+            label="Email"
+            value={forgotEmail}
+            onChange={setForgotEmail}
+            autocomplete="email"
+          />
 
-        <div className="footer-text">
-          Pas encore inscrit ? <a onClick={() => setPanel('signup')}>Créer un compte</a>
-        </div>
-      </>
-    );
-  }
-  else if(panel === 'signup') {
-    title = 'Inscription';
+          <Button
+            primary
+            onClick={() => setPanel('login')}
+            className="forgot-modal-button"
+          >
+            Envoyer
+          </Button>
 
-    content = (
-      <>
-        <Input
-          label="Prénom"
-          value={signupForm.firstname}
-          onChange={(value) => updateSignup('firstname', value)}
-          autocomplete="given-name"
-        />
-        <Input
-          label="Nom"
-          value={signupForm.lastname}
-          onChange={(value) => updateSignup('lastname', value)}
-          autocomplete="family-name"
-        />
-        <Input
-          label="Pseudo"
-          value={signupForm.username}
-          onChange={(value) => updateSignup('username', value)}
-          autocomplete="nickname"
-        />
-        <Input
-          label="Email"
-          value={signupForm.email}
-          onChange={(value) => updateSignup('email', value)}
-          autocomplete="email"
-        />
-        <Input
-          label="Mot de passe"
-          value={signupForm.password}
-          onChange={(value) => updateSignup('password', value)}
-          type="password"
-          autocomplete="new-password"
-        />
-        <Input
-          label="Confirmez le mot de passe"
-          value={signupForm.passwordConfirmation}
-          onChange={(value) => updateSignup('passwordConfirmation', value)}
-          type="password"
-          autocomplete="new-password"
-        />
-        <Button
-          primary
-          onClick={async () => {
-            if (await dispatch(register(signupForm))) {
-              resetFields();
-            }
-          }}
-          className="signup-modal-button"
-        >
-          S'inscrire
-        </Button>
-
-        <div className="footer-text">
-          Déjà inscrit ? <a onClick={() => setPanel('login')}>Connecte-toi</a>
-        </div>
-      </>
-    );
-  }
-  else if(panel === 'forgot') {
-    title = 'Mot de passe oublié';
-
-    content = (
-      <>
-        <Input
-          label="Email"
-          value={forgotEmail}
-          onChange={setForgotEmail}
-          autocomplete="email"
-        />
-
-        <Button
-          primary
-          onClick={() => setPanel('login')}
-          className="forgot-modal-button"
-        >
-          Envoyer
-        </Button>
-
-        <div className="footer-text">
-          <a onClick={() => setPanel('login')}>Se connecter</a>
-        </div>
-      </>
-    );
-  }
+          <div className="footer-text">
+            <a onClick={() => setPanel('login')}>Se connecter</a>
+          </div>
+        </>
+      ),
+      action: () => {},
+    },
+  };
 
   return (
     <Modal
-      title={title}
+      title={body[panel].title}
       visible={isVisible}
-      isVisible={isVisible}
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false));
         resetFields();
       }}
       className="login-modal"
+      onKeyPress={({ key }) => {
+        if (key === 'Enter') {
+          body[panel].action();
+        }
+      }}
     >
-      {content}
+      {body[panel].content}
     </Modal>
   );
 };

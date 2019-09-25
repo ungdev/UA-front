@@ -9,5 +9,5 @@ export {
   Navbar,
   Tournament,
   TournamentCards,
-  HeaderDashboard
+  HeaderDashboard,
 };
