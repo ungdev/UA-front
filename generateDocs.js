@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 const fs = require('fs');
 const reactDocgen = require('react-docgen');
