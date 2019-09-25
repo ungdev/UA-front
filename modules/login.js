@@ -56,6 +56,7 @@ export const saveToken = token => dispatch => {
 
 export const logout = dispatch => {
   toast('Deconnexion');
+  Router.push("/");
   dispatch({ type: SET_TOKEN, payload: null });
   localStorage.removeItem('arena-2019-token');
  };

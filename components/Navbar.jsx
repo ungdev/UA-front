@@ -14,8 +14,6 @@ import { logout } from '../modules/login';
 
 import './Navbar.css';
 
-const isConected = true;
-
 const links = [
   {
     title: 'Accueil',
@@ -51,6 +49,7 @@ const Navbar = () => {
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
+  const isConnected = useSelector((state) => !!state.login.token);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -74,17 +73,12 @@ const Navbar = () => {
     </Link>
   ));
 
-  // Logout and return to index
-  const disconnect = () => {
-    dispatch(logout);
-  };
-
   // Connexion/Dashboard buttons
   const connexionButton = <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>;
   const isLoggediInLayout = (
   <>
     <text className="pseudo">Pseudo</text>
-    <Button className="logout-button" onClick={() => disconnect()}>Disconnect</Button>
+    <a className="logout-button" onClick={() => dispatch(logout)}>Deconnexion</a>
     <Button primary className="login-button" onClick={() => router.push("/dashboard")}>Dashboard</Button>
   </>);
   return (
@@ -109,7 +103,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          { isConected ? isLoggediInLayout : connexionButton }
+          { isConnected ? isLoggediInLayout : connexionButton }
 
           { navLinks }
         </SimpleBar>
