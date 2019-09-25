@@ -20,12 +20,10 @@ const Wrapper = ({ Component }) => {
   if (isDashboard && process.env.DASHBOARD_AVAILABLE === 'false') {
     redirect = '/';
   }
-
-  if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+  else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-
-  if (!isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (!isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
