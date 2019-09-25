@@ -10,6 +10,8 @@ import LoginModal from './LoginModal';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 
+import { logout } from '../modules/login';
+
 import './Navbar.css';
 
 const links = [
@@ -40,13 +42,14 @@ const links = [
 ];
 
 const Navbar = () => {
-  const { pathname } = useRouter();
-  const shortPath = pathname.match(/(\/[a-z]*)/)[0];
+  const router = useRouter();
+  const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
+  const isConnected = useSelector((state) => !!state.login.token);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -70,6 +73,14 @@ const Navbar = () => {
     </Link>
   ));
 
+  // Connexion/Dashboard buttons
+  const connexionButton = <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>;
+  const isLoggediInLayout = (
+  <>
+    <text className="pseudo">Pseudo</text>
+    <a className="logout-button" onClick={() => dispatch(logout)}>Deconnexion</a>
+    <Button primary className="login-button" onClick={() => router.push("/dashboard")}>Dashboard</Button>
+  </>);
   return (
     <div id="navbar" className={mobileMenuVisible ? 'active' : ''}>
       <div className="navbar-hamburger" onClick={() => setMobileMenuVisible(!mobileMenuVisible)}>
@@ -92,7 +103,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>
+          { isConnected ? isLoggediInLayout : connexionButton }
 
           { navLinks }
         </SimpleBar>

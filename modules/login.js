@@ -1,14 +1,14 @@
 import { toast } from 'react-toastify';
+import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
 import { axiosAPI } from '../utils';
 
-import Router from 'next/router';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 
 const initialState = {
-  token: null
+  token: null,
 };
 
 export default (state = initialState, action) => {
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.payload
+        token: action.payload,
       };
     default:
       return state;
@@ -29,7 +29,7 @@ export const autoLogin = () => {
     if (localStorage.hasOwnProperty('arena-2019-token')) {
       dispatch({
         type: SET_TOKEN,
-        payload: localStorage.getItem('arena-2019-token')
+        payload: localStorage.getItem('arena-2019-token'),
       });
     }
   };
@@ -51,12 +51,14 @@ export const tryLogin = user => async dispatch => {
 export const saveToken = token => dispatch => {
   dispatch({
     type: SET_TOKEN,
-    payload: token
+    payload: token,
   });
   localStorage.setItem('arena-2019-token', token);
 };
 
-export const logout = dispatch => {
-  dispatch({ type: SET_TOKEN, payload: null });
+export const logout = async dispatch => {
+  toast('Déconnexion');
+  await dispatch({ type: SET_TOKEN, payload: null });
   localStorage.removeItem('arena-2019-token');
+  Router.push("/");
 };

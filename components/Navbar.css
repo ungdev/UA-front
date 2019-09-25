@@ -165,6 +165,17 @@
   border-bottom: 1px solid #fff;
 }
 
+#navbar .logout-button {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+#navbar .pseudo {
+  color: white;
+  margin: 20px;
+}
+
+
 @media screen and (max-width: 1000px) {
   #navbar {
     width: 100%;
