@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Modal, Button, Input } from './UI';
-import { setLoginModalVisible, tryLogin, registerUser } from '../modules';
+import { setLoginModalVisible } from '../modules/loginModal';
+import { registerUser } from '../modules/register';
+import { tryLogin } from '../modules/login';
 
 import './LoginModal.css';
 

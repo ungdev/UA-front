@@ -40,6 +40,33 @@
   background: #8d8d8d;
 }
 
+#navbar .logged {
+  display: flex;
+  flex-direction: column;
+}
+
+#navbar .logged-info {
+  color: #ffffff;
+  margin: 4px 45px;
+}
+
+#navbar .logout {
+  color: #ffffff;
+  cursor: pointer;
+  margin: 8px auto 32px 45px;
+}
+
+#navbar .dashboard-button {
+  display: block;
+  width: min-content;
+  margin: 0 auto;
+  padding: 10px 36px;
+  font-family: 'LemonMilk';
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 #navbar .login-button {
   display: block;
   width: min-content;
@@ -164,17 +191,6 @@
 #navbar .footer .footer-text a:focus {
   border-bottom: 1px solid #fff;
 }
-
-#navbar .logout-button {
-  background-color: var(--dark-color);
-  color: #fff;
-}
-
-#navbar .pseudo {
-  color: white;
-  margin: 20px;
-}
-
 
 @media screen and (max-width: 1000px) {
   #navbar {

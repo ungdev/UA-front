@@ -75,12 +75,14 @@ const Navbar = () => {
 
   // Connexion/Dashboard buttons
   const connexionButton = <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>;
-  const isLoggediInLayout = (
-  <>
-    <text className="pseudo">Pseudo</text>
-    <a className="logout-button" onClick={() => dispatch(logout)}>Deconnexion</a>
-    <Button primary className="login-button" onClick={() => router.push("/dashboard")}>Dashboard</Button>
-  </>);
+  const isLoggedLayout = (
+  <div className="logged">
+    <p className="logged-info">
+      Pseudo
+    </p>
+    <Button primary className="dashboard-button" onClick={() => router.push("/dashboard")}>Dashboard</Button>
+    <a className="logout" onClick={() => dispatch(logout)}>Deconnexion</a>
+  </div>);
   return (
     <div id="navbar" className={mobileMenuVisible ? 'active' : ''}>
       <div className="navbar-hamburger" onClick={() => setMobileMenuVisible(!mobileMenuVisible)}>
@@ -103,7 +105,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          { isConnected ? isLoggediInLayout : connexionButton }
+          { isConnected ? isLoggedLayout : connexionButton }
 
           { navLinks }
         </SimpleBar>
