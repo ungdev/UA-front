@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const register = user => async dispatch => {
+export const registerUser = user => async dispatch => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('PASSWORD_MISMATCH');
     return;

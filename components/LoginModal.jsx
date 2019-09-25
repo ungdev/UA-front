@@ -3,9 +3,7 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Modal, Button, Input } from './UI';
-import { setLoginModalVisible } from '../modules/loginModal';
-import { tryLogin } from '../modules/login';
-import { register } from '../modules/register';
+import { setLoginModalVisible, tryLogin, registerUser } from '../modules';
 
 import './LoginModal.css';
 
@@ -41,7 +39,7 @@ const LoginModal = ({ isVisible }) => {
   };
 
   const signup = async () => {
-    if (await dispatch(register(signupForm))) {
+    if (await dispatch(registerUser(signupForm))) {
       resetFields();
     }
   };
