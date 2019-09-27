@@ -8,4 +8,5 @@ prop | type | default | required | description
 **className** | `String` | `''` | :x: | Class of the container
 **onClick** | `Function` | `() => {}` | :x: | Function called when the user clicks on the button
 **primary** | `Boolean` | `false` | :x: | Whether the button is a primary button or not
+**type** | `String` | `'button'` | :x: | Type button
 

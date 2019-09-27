@@ -6,9 +6,9 @@ import './Button.css';
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = ({ className, primary, onClick, children }) => (
+const Button = ({ className, primary, onClick, children, type }) => (
   <button
-    type="button"
+    type={type}
     className={`button ${className} ${primary ? 'primary' : ''}`}
     onClick={onClick}
   >
@@ -33,12 +33,17 @@ Button.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Type button
+   */
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
   primary: false,
   onClick: () => {},
   className: '',
+  type: 'button',
 };
 
 export default Button;

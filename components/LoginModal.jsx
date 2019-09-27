@@ -93,6 +93,7 @@ const LoginModal = ({ isVisible }) => {
             primary
             onClick={login}
             className="login-modal-button"
+            type="submit"
           >
             Se connecter
           </Button>
@@ -102,7 +103,7 @@ const LoginModal = ({ isVisible }) => {
           </div>
         </>
       ),
-      action: () => login(),
+      action: login,
     },
     signup: {
       title: 'Inscription',
@@ -150,6 +151,7 @@ const LoginModal = ({ isVisible }) => {
             primary
             onClick={signup}
             className="signup-modal-button"
+            type="submit"
           >
             S'inscrire
           </Button>
@@ -159,7 +161,7 @@ const LoginModal = ({ isVisible }) => {
           </div>
         </>
       ),
-      action: () => signup(),
+      action: signup,
     },
     forgot: {
       title: 'Mot de passe oublié',
@@ -176,6 +178,7 @@ const LoginModal = ({ isVisible }) => {
             primary
             onClick={() => setPanel('login')}
             className="forgot-modal-button"
+            type="submit"
           >
             Envoyer
           </Button>
@@ -199,13 +202,13 @@ const LoginModal = ({ isVisible }) => {
         resetFields();
       }}
       className="login-modal"
-      onKeyPress={({ key }) => {
-        if (key === 'Enter') {
-          body[panel].action();
-        }
-      }}
     >
-      {body[panel].content}
+      <form onSubmit={(event) => {
+        event.preventDefault();
+        body[panel].action();
+      }}>
+        {body[panel].content}
+      </form>
     </Modal>
   );
 };

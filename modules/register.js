@@ -3,6 +3,7 @@ import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
 import { axiosAPI } from '../utils';
+import errorToString from '../utils/errorToString';
 
 import { saveToken } from './login';
 
@@ -17,7 +18,7 @@ export default (state = initialState, action) => {
 
 export const registerUser = user => async dispatch => {
   if (user.password !== user.passwordConfirmation) {
-    toast.error('PASSWORD_MISMATCH');
+    toast.error('Les deux mots de passe ne correspondent pas');
     return;
   }
   try {
@@ -37,6 +38,7 @@ export const validate = token => async dispatch => {
     toast.success('Inscription validée');
     Router.push('/dashboard');
   } catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(errorToString(err.response.data.error));
+    Router.push('/');
   }
 };
