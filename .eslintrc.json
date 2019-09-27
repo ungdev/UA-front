@@ -32,6 +32,7 @@
     "semi": "error",
     "comma-dangle": ["warn", "always-multiline"],
     "object-curly-spacing": ["warn", "always"],
-    "quotes": ["warn", "single"]
+    "quotes": ["warn", "single"],
+    "arrow-parens": ["error", "always"]
   }
 }
