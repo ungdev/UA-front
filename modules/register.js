@@ -30,9 +30,9 @@ export const registerUser = user => async dispatch => {
   }
 };
 
-export const validate = token => async dispatch => {
+export const validate = slug => async dispatch => {
   try {
-    const res = await axiosAPI().post('user/validate', { token });
+    const res = await axiosAPI().post('user/validate', { slug });
     await dispatch(saveToken(res.data.token));
     toast.success('Inscription validée');
     Router.push('/dashboard');
