@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
@@ -20,7 +20,7 @@ toast.configure({
 });
 
 const App = ({ Component, reduxStore }) => {
-  useEffect(() => {
+  if(process.browser) {
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(process.env.GA_ID);
@@ -35,7 +35,7 @@ const App = ({ Component, reduxStore }) => {
         registrations.forEach((registration) => registration.unregister());
       });
     }
-  });
+  }
 
   return (
     <div>
