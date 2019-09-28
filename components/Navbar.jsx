@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,8 @@ import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
 
 import { setLoginModalVisible } from '../modules/loginModal';
+
+import { logout, autoLogin } from '../modules/login';
 
 import './Navbar.css';
 
@@ -40,13 +42,19 @@ const links = [
 ];
 
 const Navbar = () => {
-  const { pathname } = useRouter();
-  const shortPath = pathname.match(/(\/[a-z]*)/)[0];
+  const router = useRouter();
+  const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
+  useEffect(() => {
+    dispatch(autoLogin());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
+  const isConnected = useSelector((state) => !!state.login.token);
+  const username = useSelector((state) => state.login.user && state.login.user.username);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -70,6 +78,18 @@ const Navbar = () => {
     </Link>
   ));
 
+  // Connexion/Dashboard buttons
+  const connexionButton = <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>;
+  const isLoggedLayout = (
+  <div className="logged">
+    <p className="logged-info">
+      <span className="logged-username">
+        {username}
+      </span>
+      <a className="logout" onClick={() => dispatch(logout)}>Deconnexion</a>
+    </p>
+    <Button primary className="dashboard-button" onClick={() => router.push('/dashboard')}>Dashboard</Button>
+  </div>);
   return (
     <div id="navbar" className={mobileMenuVisible ? 'active' : ''}>
       <div className="navbar-hamburger" onClick={() => setMobileMenuVisible(!mobileMenuVisible)}>
@@ -92,7 +112,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>
+          { isConnected ? isLoggedLayout : connexionButton }
 
           <nav>
             { navLinks }

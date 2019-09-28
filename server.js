@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 const express = require('express');
 const next = require('next');
 require('dotenv').config();
@@ -13,6 +12,10 @@ app.prepare().then(() => {
   // Serve public folder as static
   server.use(express.static('public'));
 
+  server.get('/valid/:slug', (req, res) => {
+    return app.render(req, res, '/valid', { slug: req.params.slug });
+  });
+
   server.all('*', (req, res) => {
     const { path } = req;
     console.log(`[ \x1b[36mrequest\x1b[0m ] ${path}`);
@@ -23,4 +26,5 @@ app.prepare().then(() => {
 
   // Start listening
   server.listen(process.env.PORT, () => console.log(`> Ready on http://localhost:${process.env.PORT}`));
+
 });

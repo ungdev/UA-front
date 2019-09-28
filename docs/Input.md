@@ -4,6 +4,7 @@ Displays an input
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
+**autocomplete** | `String` | `''` | :x: | Autocomplete type
 **className** | `String` | `''` | :x: | Class of the container
 **label** | `String` |  | :white_check_mark: | Label to display
 **max** | `Number` | `undefined` | :x: | Maximum value (only for type="number")

@@ -8,7 +8,7 @@ let id = 0;
 /**
  * Displays an input
  */
-const Input = ({ type, label, value, onChange, min, max, className }) => {
+const Input = ({ type, label, value, onChange, min, max, className, autocomplete }) => {
   const handleChange = (newValue) => {
     if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
       return;
@@ -26,6 +26,7 @@ const Input = ({ type, label, value, onChange, min, max, className }) => {
         id={`input-${id++}`}
         value={value}
         onChange={(e) => handleChange(e.target.value)}
+        autoComplete={autocomplete}
       />
 
       <div className="line" />
@@ -63,6 +64,10 @@ Input.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Autocomplete type
+   */
+  autocomplete: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -71,6 +76,7 @@ Input.defaultProps = {
   min: undefined,
   max: undefined,
   className: '',
+  autocomplete: '',
 };
 
 export default Input;

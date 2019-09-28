@@ -40,6 +40,42 @@
   background: #8d8d8d;
 }
 
+#navbar .logged {
+  display: flex;
+  flex-direction: column;
+}
+
+#navbar .logged-info {
+  color: #ffffff;
+  margin: 8px auto;
+  min-width: 188px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#navbar .logged-username {
+  text-overflow: ellipsis;
+  max-width: 100px;
+  overflow: hidden;
+}
+
+#navbar .logout {
+  color: #ffffff;
+  cursor: pointer;
+
+}
+
+#navbar .dashboard-button {
+  display: block;
+  width: min-content;
+  margin: 0 auto 20px;
+  padding: 10px 36px;
+  font-family: 'LemonMilk';
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 #navbar .login-button {
   display: block;
   width: min-content;
