@@ -15,10 +15,13 @@ export default {
   ),
   cookies: (
     <>
-      Afin d'assurer la fourniture du service à l'utilisateur authentifié, un cookie de session est inscrit sur la navigateur lors de l'authentification sur le site.
-      Celui-ci, identifié par le nom "arena-token" dans la portée "arena.utt.fr" a pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
-      Il est détruit lors de la déconnexion, ou à son expiration. Conformément à la directive européenne 2009/136/CE, ce cookie est indispensable à la fourniture du service sollicité.
-      L'utilisateur peut se dispenser de ce cookie en ne s'inscrivant pas sur le site.
+      Nous utilisons des cookies afin d'obtenir des statistiques sur notre site web.
+      Ces informations ne seront en aucun cas vendues, échangées ou données.
+      En naviguant sur notre site web, vous acceptez notre utilisation des cookies.<br />
+      Afin d'assurer le fonctionnement du service à l'utilisateur authentifié, un cookie de session est inscrit sur la navigateur lors de l'authentification sur le site.
+      Celui-ci, identifié par le nom "utt-arena-token" dans la portée "arena.utt.fr", a pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
+      Il est détruit lors de la déconnexion ou à son expiration.
+      Conformément à la directive européenne 2009/136/CE, ce cookie est indispensable à la fourniture du service sollicité.
     </>
   ),
   access: (
