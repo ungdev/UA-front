@@ -12,7 +12,7 @@ const options = [
   { label: 'Tournoi SSBU', value: 'SSBU' },
   { label: 'Tournoi OSU', value: 'osu!' },
   { label: 'Tournoi Libre', value: 'Libre' },
-  { label: "J'ai eu une erreur sur le site", value: 'Erreur' },
+  { label: 'J\'ai eu une erreur sur le site', value: 'Erreur' },
   { label: 'Signaler un bug', value: 'Bug' },
   { label: 'Autre', value: 'Autre' },
 ];
@@ -26,11 +26,11 @@ const Contact = () => {
   const [content, setContent] = useState('');
   const [subject, setSubject] = useState('Autre');
 
-  const sendMsg = () => {
+  const sendMessage = () => {
     if (firstname === '' || lastname === '' || email === '' || content === '') {
       toast.error('Veuillez remplir tous les champs');
     }
-    else if (!email.test(emailRegex)) {
+    else if (!emailRegex.test(email)) {
       toast.error('Veuillez entrer une adresse mail valide');
     }
     else {
@@ -55,13 +55,36 @@ const Contact = () => {
       </p>
 
       <Title level={3}>Formulaire</Title>
-      <Input label="Prénom" value={firstname} onChange={setFirstname} />
-      <Input label="Nom" value={lastname} onChange={setLastname} />
-      <Input label="Email" value={email} onChange={setEmail} />
-      <Select label="Sujet" options={options} value={subject} onChange={setSubject} />
-      <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} />
+      <Input
+        label="Prénom"
+        value={firstname}
+        onChange={setFirstname}
+      />
+      <Input
+        label="Nom"
+        value={lastname}
+        onChange={setLastname}
+      />
+      <Input
+        label="Email"
+        value={email}
+        onChange={setEmail}
+        type="email"
+      />
+      <Select
+        label="Sujet"
+        options={options}
+        value={subject}
+        onChange={setSubject}
+      />
+      <Textarea
+        label="Message"
+        placeholder="Tapez votre message ici..."
+        value={content}
+        onChange={setContent}
+      />
 
-      <Button primary onClick={sendMsg}>
+      <Button primary onClick={sendMessage}>
         Envoyer
       </Button>
     </div>

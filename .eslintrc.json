@@ -31,6 +31,8 @@
     "react/no-unescaped-entities": "off",
     "semi": "error",
     "comma-dangle": ["warn", "always-multiline"],
-    "object-curly-spacing": ["warn", "always"]
+    "object-curly-spacing": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    "arrow-parens": ["error", "always"]
   }
 }

@@ -4,10 +4,13 @@
 }
 
 .login-modal .login-modal-button,
-.login-modal .signup-modal-button,
-.login-modal .forgot-modal-button {
+.login-modal .signup-modal-button {
   display: block;
   margin: auto;
+}
+
+.login-modal .forgot-modal-buttons {
+  text-align: right;
 }
 
 .login-modal .footer-text {

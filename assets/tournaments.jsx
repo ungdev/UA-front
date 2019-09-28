@@ -23,11 +23,11 @@ export default {
     rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
-  fortnite: {
-    title: 'Fortnite',
+  ssbu: {
+    title: 'Super Smash Bros Ultimate',
     format: (
       <>
-        <div className="tournament-format">32 équipes en trio</div>
+        <div className="tournament-format">32 joueurs en solo</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),
@@ -45,11 +45,22 @@ export default {
     rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
-  ssbu: {
-    title: 'Super Smash Bros Ultimate',
+  fortnite: {
+    title: 'Fortnite',
     format: (
       <>
-        <div className="tournament-format">32 joueurs en solo</div>
+        <div className="tournament-format">32 équipes en trio</div>
+        <p>Description du tournoi à venir.</p>
+      </>
+    ),
+    rewards: 'Les récompenses seront bientôt annoncées.',
+    rules: 'Le règlement sera bientôt publié.',
+  },
+  osu: {
+    title: 'osu!',
+    format: (
+      <>
+        <div className="tournament-format">24 joueurs</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),
@@ -67,15 +78,4 @@ export default {
     rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
-  osu: {
-    title: 'osu!',
-    format: (
-      <>
-        <div className="tournament-format">24 joueurs</div>
-        <p>Description du tournoi à venir.</p>
-      </>
-    ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
-    rules: 'Le règlement sera bientôt publié.',
-  }
 };

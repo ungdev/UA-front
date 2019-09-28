@@ -8,8 +8,8 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "node server.js",
-    "lint": "eslint components/ pages/ --ext .jsx,.js",
-    "lint-fix": "eslint --fix components/ pages/ --ext .jsx,.js",
+    "lint": "eslint components/ pages/ assets/ --ext .jsx,.js",
+    "lint-fix": "eslint --fix components/ pages/ assets/ --ext .jsx,.js",
     "build-docs": "node generateDocs.js"
   },
   "dependencies": {

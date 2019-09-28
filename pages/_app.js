@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
@@ -8,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
-import { Navbar, HeaderDashboard, Header } from '../components';
+import { Wrapper } from '../components';
 import headText from '../assets/head';
 
 import './_app.css';
@@ -20,8 +19,8 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const App = ({ Component, pageProps, reduxStore }) => {
-  useEffect(() => {
+const App = ({ Component, reduxStore }) => {
+  if(process.browser) {
     if (process.env.NODE_ENV === 'production') {
       if (!window.GA_INITIALIZED) {
         ReactGA.initialize(process.env.GA_ID);
@@ -36,11 +35,7 @@ const App = ({ Component, pageProps, reduxStore }) => {
         registrations.forEach((registration) => registration.unregister());
       });
     }
-  });
-
-  const { pathname } = useRouter();
-  const isHome = pathname === '/';
-  const isDashboard = pathname.substr(0, 10) === '/dashboard';
+  }
 
   return (
     <div>
@@ -59,15 +54,9 @@ const App = ({ Component, pageProps, reduxStore }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
       </Head>
-      <Provider store={reduxStore}>
-        <Navbar />
 
-        <div className="page-container">
-          { !isHome && !isDashboard && <Header /> }
-          { isDashboard && <HeaderDashboard /> }
-          { isHome && <Component {...pageProps} /> }
-          { !isHome && <div className="page-padding"><Component {...pageProps} /></div> }
-        </div>
+      <Provider store={reduxStore}>
+        <Wrapper Component={Component} />
       </Provider>
     </div>
   );
@@ -75,21 +64,13 @@ const App = ({ Component, pageProps, reduxStore }) => {
 
 App.propTypes = {
   /**
-   * The page component
+   * Page component
    */
   Component: PropTypes.func.isRequired,
-  /**
-   * The page component props
-   */
-  pageProps: PropTypes.array,
   /**
    * The redux store
    */
   reduxStore: PropTypes.object.isRequired,
-};
-
-App.defaultProps = {
-  pageProps: [],
 };
 
 export default withReduxStore(App);

@@ -8,27 +8,37 @@ let id = 0;
 /**
  * Displays an input
  */
-const Input = ({ type, label, value, onChange, className, autocomplete }) => (
-  <div className={`input ${className}`}>
-    <label htmlFor={`input-${id}`}>{label}</label>
+const Input = ({ type, label, value, onChange, min, max, className, autocomplete }) => {
+  const handleChange = (newValue) => {
+    if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
+      return;
+    }
 
-    <input
-      type={type}
-      id={`input-${id++}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      autoComplete={autocomplete}
-    />
+    onChange(newValue);
+  };
 
-    <div className="line" />
-  </div>
-);
+  return (
+    <div className={`input ${className}`}>
+      <label htmlFor={`input-${id}`}>{label}</label>
+
+      <input
+        type={type}
+        id={`input-${id++}`}
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+        autoComplete={autocomplete}
+      />
+
+      <div className="line" />
+    </div>
+  );
+};
 
 Input.propTypes = {
   /**
    * Input type
    */
-  type: PropTypes.oneOf(['text', 'password', 'number']),
+  type: PropTypes.oneOf(['text', 'email', 'password', 'number']),
   /**
    * Label to display
    */
@@ -43,6 +53,14 @@ Input.propTypes = {
    */
   onChange: PropTypes.func.isRequired,
   /**
+   * Minimum value (only for type="number")
+   */
+  min: PropTypes.number,
+  /**
+   * Maximum value (only for type="number")
+   */
+  max: PropTypes.number,
+  /**
    * Class of the container
    */
   className: PropTypes.string,
@@ -55,6 +73,8 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   value: '',
+  min: undefined,
+  max: undefined,
   className: '',
   autocomplete: '',
 };

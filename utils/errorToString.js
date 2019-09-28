@@ -1,4 +1,4 @@
-export default error => {
+export default (error) => {
   switch (error) {
     case 'DISABLED_LOGIN':
       return 'Inscription désactivée';
@@ -7,7 +7,7 @@ export default error => {
     case 'PASSWORD_MISMATCH':
       return 'Les mots de passe ne correspondent pas';
     case 'INVALID_USERNAME':
-      return "Nom d'utilisateur invalide";
+      return 'Nom d\'utilisateur invalide';
     case 'INVALID_PASSWORD':
       return 'Mot de passe invalide';
     case 'ALREADY_IN_TEAM':
