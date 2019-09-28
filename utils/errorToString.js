@@ -29,7 +29,7 @@ export default error => {
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     case 'LAN_FULL':
-      return 'Il n\'y a plus de place pour l\'UTT Arena sauf pour SSBU et Hearthstone, envoyez un mail à arena@utt.fr si vous souhaitez rejoindre ce tournoi';
+      return 'Il n\'y a plus de place pour l\'UTT Arena...';
     case 'PAYMENT_DISABLED':
       return 'Les paiements en ligne ont été désactivés';
     default:
