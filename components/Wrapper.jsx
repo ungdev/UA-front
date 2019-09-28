@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+
+import { autoLogin } from '../modules/login';
 
 import Navbar from './Navbar';
 import Header from './Header';
@@ -10,6 +13,7 @@ const isRegistered = false;
 
 const Wrapper = ({ Component }) => {
   const { pathname } = useRouter();
+  const dispatch = useDispatch();
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
@@ -31,6 +35,11 @@ const Wrapper = ({ Component }) => {
   useEffect(() => {
     redirect && Router.replace(redirect);
   });
+
+  useEffect(() => {
+    dispatch(autoLogin());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Do not display anything if the user will be redirected
   if(redirect) {

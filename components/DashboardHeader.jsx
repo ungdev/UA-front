@@ -5,18 +5,15 @@ import PropTypes from 'prop-types';
 import './DashboardHeader.css';
 
 const DashboardHeader = ({ pathname, isRegistered }) => {
-  const links = [];
-  if (!isRegistered) {
-    links.push({ title: 'Inscription', href: '/dashboard/register' });
-  }
-  else {
-    links.push({ title: 'Équipe', href: '/dashboard/team' });
-  }
-  links.push(
+  const links = [
+    { title: 'Équipe', href: '/dashboard/team' },
     { title: 'Boutique', href: '/dashboard/shop' },
     { title: 'Mes achats', href: '/dashboard/purchases' },
     { title: 'Mon compte', href: '/dashboard/account' },
-  );
+  ];
+  if (!isRegistered) {
+    links[0] = { title: 'Inscription', href: '/dashboard/register' };
+  }
 
   return (
     <header id="dashboard-header">

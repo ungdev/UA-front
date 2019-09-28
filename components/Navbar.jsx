@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import LoginModal from './LoginModal';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 
-import { logout, autoLogin } from '../modules/login';
+import { logout } from '../modules/login';
 
 import './Navbar.css';
 
@@ -47,10 +47,7 @@ const Navbar = () => {
 
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
-  useEffect(() => {
-    dispatch(autoLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
   const isConnected = useSelector((state) => !!state.login.token);
