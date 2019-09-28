@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "node server.js",
     "lint": "eslint components/ pages/ assets/ --ext .jsx,.js",
-    "lint-fix": "eslint --fix components/ pages/ assets/ --ext .jsx,.js",
+    "lint-fix": "eslint --fix components/ pages/ assets/ modules/ --ext .jsx,.js",
     "build-docs": "node generateDocs.js"
   },
   "dependencies": {

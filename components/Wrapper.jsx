@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { autoLogin } from '../modules/login';
 
@@ -9,15 +9,13 @@ import Navbar from './Navbar';
 import Header from './Header';
 import DashboardHeader from './DashboardHeader';
 
-const isRegistered = false;
-
 const Wrapper = ({ Component }) => {
   const { pathname } = useRouter();
   const dispatch = useDispatch();
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-
+  const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId);
   // Handle redirections
   let redirect = null;
 
@@ -42,7 +40,7 @@ const Wrapper = ({ Component }) => {
   }, []);
 
   // Do not display anything if the user will be redirected
-  if(redirect) {
+  if (redirect) {
     return null;
   }
 

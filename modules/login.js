@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const autoLogin = () => async dispatch => {
+export const autoLogin = () => async (dispatch) => {
   // eslint-disable-next-line no-prototype-builtins
   if (localStorage.hasOwnProperty('utt-arena-token')) {
     dispatch({
@@ -46,7 +46,7 @@ export const autoLogin = () => async dispatch => {
   }
 };
 
-export const tryLogin = user => async dispatch => {
+export const tryLogin = (user) => async (dispatch) => {
   try {
     const res = await axiosAPI().put('user/login', user);
     dispatch(saveToken(res.data.token));
@@ -62,7 +62,7 @@ export const tryLogin = user => async dispatch => {
   }
 };
 
-export const saveToken = token => dispatch => {
+export const saveToken = (token) => (dispatch) => {
   dispatch({
     type: SET_TOKEN,
     payload: token,
@@ -70,9 +70,9 @@ export const saveToken = token => dispatch => {
   localStorage.setItem('utt-arena-token', token);
 };
 
-export const logout = async dispatch => {
+export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
   await dispatch({ type: SET_TOKEN, payload: null });
   localStorage.removeItem('utt-arena-token');
-  Router.push("/");
+  Router.push('/');
 };
