@@ -20,7 +20,7 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
 
   return (
     <div className={`modal ${visible ? 'active' : ''} ${className}`}>
-      <div className="modal-overlay" onClick={() => closable && onCancel()} />
+        <div className="modal-overlay" onClick={() => closable && onCancel()} />
 
       <div className="modal-container">
         <div className="modal-title">{title}</div>
