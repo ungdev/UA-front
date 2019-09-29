@@ -16,7 +16,7 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-  const isConnected = useSelector((state) => !!state.login.token);
+  const isLoggedin = useSelector((state) => !!state.login.token);
   const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
   // Handle redirections
   let redirect = null;
@@ -27,7 +27,7 @@ const Wrapper = ({ Component }) => {
   else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-  else if (!isRegistered && isConnected && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (!isRegistered && isLoggedin && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
@@ -54,7 +54,7 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isConnected={isConnected} />
+      <Navbar isLoggedin={isLoggedin} />
 
       <div className="page-container">
         { !isHome && !isTournament && !isDashboard && <Header /> }

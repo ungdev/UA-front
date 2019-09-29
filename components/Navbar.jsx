@@ -42,7 +42,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isConnected }) => {
+const Navbar = ({ isLoggedin }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -109,7 +109,7 @@ const Navbar = ({ isConnected }) => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          { isConnected ? isLoggedLayout : connexionButton }
+          { isLoggedin ? isLoggedLayout : connexionButton }
 
           <nav>
             { navLinks }
@@ -181,7 +181,7 @@ const Navbar = ({ isConnected }) => {
 };
 
 Navbar.propTypes = {
-  isConnected: PropTypes.bool.isRequired,
+  isLoggedin: PropTypes.bool.isRequired,
 };
 
 export default Navbar;
