@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
   }
 };
 
-export const registerUser = user => async dispatch => {
+export const registerUser = (user) => async (dispatch) => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');
     return;
@@ -31,7 +31,7 @@ export const registerUser = user => async dispatch => {
   }
 };
 
-export const validate = slug => async dispatch => {
+export const validate = (slug) => async (dispatch) => {
   try {
     const res = await axiosAPI().post('user/validate', { slug });
     await dispatch(saveToken(res.data.token));

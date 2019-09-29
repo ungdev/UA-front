@@ -12,6 +12,7 @@ const DashboardHeader = ({ pathname, isRegistered }) => {
     { title: 'Mon compte', href: '/dashboard/account' },
   ];
   if (!isRegistered) {
+    // Replace 'team' by 'register'
     links[0] = { title: 'Inscription', href: '/dashboard/register' };
   }
 
