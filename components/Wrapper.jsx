@@ -31,15 +31,15 @@ const Wrapper = ({ Component }) => {
     redirect = '/dashboard/register';
   }
 
-  // Redirect to desired path
   useEffect(() => {
-    redirect && Router.replace(redirect);
-  });
+    // Redirect to desired path
+    if (redirect) {
+      Router.replace(redirect);
+      return;
+    }
 
-  useEffect(() => {
     dispatch(autoLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Do not display anything if the user will be redirected
   if(redirect) {
