@@ -88,7 +88,6 @@ const LoginModal = ({ isVisible }) => {
           </p>
           <Button
             primary
-            onClick={login}
             className="login-modal-button"
             type="submit"
           >
@@ -147,7 +146,6 @@ const LoginModal = ({ isVisible }) => {
           />
           <Button
             primary
-            onClick={signup}
             className="signup-modal-button"
             type="submit"
           >
