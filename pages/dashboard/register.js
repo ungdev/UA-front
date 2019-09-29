@@ -23,7 +23,7 @@ const Register = () => {
       {dashboard.register.create}
       <Select label="Tournoi" options={tournaments} value={tournament} onChange={setTournament} />
       <Input label="Nom d'équipe" value={name} onChange={setName} />
-      <Button onClick={() => dispatch(createTeam({ name, tournament }))} primary>Créer mon équipe +</Button>
+      <Button onClick={() => dispatch(createTeam({ name, tournament }))} primary>Créer mon équipe <i className="fas fa-plus" /></Button>
     </div>
   );
 };
