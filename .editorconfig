@@ -3,7 +3,7 @@
 # top-most EditorConfig file
 root = true
 
-# Unix-style newlines
+# Windows-style newlines
 [*]
 end_of_line = crlf
 insert_final_newline = false
