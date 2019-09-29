@@ -26,7 +26,8 @@ export const registerUser = (user) => async (dispatch) => {
     toast.success('Inscription réussie');
     dispatch(setLoginModalVisible(false));
     return true;
-  } catch (err) {
+  }
+  catch (err) {
     toast.error(err.response.data.error);
   }
 };
@@ -34,10 +35,15 @@ export const registerUser = (user) => async (dispatch) => {
 export const validate = (slug) => async (dispatch) => {
   try {
     const res = await API().post('user/validate', { slug });
-    await dispatch(saveToken(res.data.token));
+    dispatch(saveToken(res.data.token));
+    dispatch({
+      type: 'login/SET_USER',
+      payload: res.data.user,
+    });
     toast.success('Inscription validée');
     Router.push('/dashboard');
-  } catch (err) {
+  }
+  catch (err) {
     toast.error(errorToString(err.response.data.error));
     Router.push('/');
   }
