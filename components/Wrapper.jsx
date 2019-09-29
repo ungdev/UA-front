@@ -7,6 +7,7 @@ import { autoLogin } from '../modules/login';
 
 import Navbar from './Navbar';
 import Header from './Header';
+import CookieConsent from './CookieConsent';
 import DashboardHeader from './DashboardHeader';
 
 const isRegistered = false;
@@ -48,6 +49,7 @@ const Wrapper = ({ Component }) => {
 
   return (
     <>
+      <CookieConsent />
       <Navbar />
 
       <div className="page-container">
