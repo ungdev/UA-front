@@ -76,7 +76,6 @@ const LoginModal = ({ isVisible }) => {
             label="Email / Pseudo"
             value={loginForm.username}
             onChange={(value) => updateLogin('username', value)}
-
           />
           <Input
             label="Mot de passe"
@@ -131,6 +130,7 @@ const LoginModal = ({ isVisible }) => {
             label="Email"
             value={signupForm.email}
             onChange={(value) => updateSignup('email', value)}
+            type="email"
             autocomplete="email"
           />
           <Input
@@ -171,6 +171,7 @@ const LoginModal = ({ isVisible }) => {
             label="Email"
             value={forgotEmail}
             onChange={setForgotEmail}
+            type="email"
             autocomplete="email"
           />
 
