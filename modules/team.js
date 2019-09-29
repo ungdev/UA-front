@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 
-import { axiosAPI } from '../utils';
+import { API } from '../utils';
 import errorToString from '../utils/errorToString';
 
 
@@ -25,8 +25,8 @@ export default (state = initialState, action) => {
 
 export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   try {
-    const { token, user } = getState().login;
-    const res = await axiosAPI(token).post('/teams', bodyTeam);
+    const { user } = getState().login;
+    const res = await API().post('/teams', bodyTeam);
     toast.success(`${bodyTeam.name} a bien été créé`);
     dispatch({
       type: SET_TEAM,
@@ -37,7 +37,8 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
       payload: { ...user, teamId: res.data.id },
     });
     Router.push('/dashboard');
-  } catch (err) {
+  }
+  catch (err) {
     toast.error(errorToString(err.response.data.error));
   }
 };
