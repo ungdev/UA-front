@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import './Inputs.css';
 
-let id = 0;
-
 /**
  * Displays an input
  */
@@ -19,17 +17,18 @@ const Input = ({ type, label, value, onChange, min, max, className, autocomplete
 
   return (
     <div className={`input ${className}`}>
-      <label htmlFor={`input-${id}`}>{label}</label>
+      <label>
+        <div className="input-label">{label}</div>
 
-      <input
-        type={type}
-        id={`input-${id++}`}
-        value={value}
-        onChange={(e) => handleChange(e.target.value)}
-        autoComplete={autocomplete}
-      />
+        <input
+          type={type}
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+          autoComplete={autocomplete}
+        />
 
-      <div className="line" />
+        <div className="line" />
+      </label>
     </div>
   );
 };
