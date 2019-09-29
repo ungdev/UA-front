@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { autoLogin } from '../modules/login';
@@ -10,12 +10,13 @@ import Header from './Header';
 import DashboardHeader from './DashboardHeader';
 
 const Wrapper = ({ Component }) => {
-  const { pathname } = useRouter();
+  const { pathname, replace } = useRouter();
   const dispatch = useDispatch();
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-  const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId);
+  const isConnected = useSelector((state) => !!state.login.token);
+  const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
   // Handle redirections
   let redirect = null;
 
@@ -25,19 +26,24 @@ const Wrapper = ({ Component }) => {
   else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-  else if (!isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (!isRegistered && isConnected && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
   useEffect(() => {
     // Redirect to desired path
     if (redirect) {
-      Router.replace(redirect);
+      replace(redirect);
       return;
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [redirect]);
 
+
+  useEffect(() => {
     dispatch(autoLogin());
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Do not display anything if the user will be redirected
   if (redirect) {
@@ -46,7 +52,7 @@ const Wrapper = ({ Component }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar isConnected={isConnected} />
 
       <div className="page-container">
         { !isHome && !isTournament && !isDashboard && <Header /> }

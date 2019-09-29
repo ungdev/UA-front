@@ -72,7 +72,8 @@ export const saveToken = (token) => (dispatch) => {
 
 export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
-  await dispatch({ type: SET_TOKEN, payload: null });
+  dispatch({ type: SET_TOKEN, payload: null });
+  dispatch({ type: SET_USER, payload: null });
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
 };
