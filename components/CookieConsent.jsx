@@ -12,7 +12,7 @@ const CookieConsent = () => {
   let [display, setDisplay] = useState(false);
 
   const buttonClick = () => {
-    // Set expiration date to 1 year
+    // Set expiration date in 1 year
     const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
     document.cookie = `${cookieName}=true; expires=${expires}; path= /`;
 
