@@ -27,12 +27,21 @@ const postToSlack = (firstname, lastname, email, subject, content) => {
   });
 };
 
-const axiosAPI = (token = '') => {
+let axiosAPI = axios.create({
+  baseURL: process.env.ARENA_API_URI,
+  headers: { 'X-Token': '' },
+});
+
+const setTokenAPI = (token) => {
+  axiosAPI = axios.create({
+    baseURL: process.env.ARENA_API_URI,
+    headers: { 'X-Token': token },
+  });
+};
+
+const API = () => {
   if (process.browser) {
-    return axios.create({
-      baseURL: process.env.ARENA_API_URI,
-      headers: { 'X-Token': token },
-    });
+    return axiosAPI;
   }
 };
 
@@ -52,4 +61,4 @@ const getCookie = (cookieName) => {
   return '';
 };
 
-export { postToSlack, axiosAPI, getCookie };
+export { postToSlack, API, setTokenAPI, getCookie };

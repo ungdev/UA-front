@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { axiosAPI } from '../utils';
+import { API } from '../utils';
 import errorToString from '../utils/errorToString';
 
 import { saveToken } from './login';
@@ -22,7 +22,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
   try {
-    await axiosAPI().post('user', user);
+    await API().post('user', user);
     toast.success('Inscription réussie');
     dispatch(setLoginModalVisible(false));
     return true;
@@ -33,7 +33,7 @@ export const registerUser = (user) => async (dispatch) => {
 
 export const validate = (slug) => async (dispatch) => {
   try {
-    const res = await axiosAPI().post('user/validate', { slug });
+    const res = await API().post('user/validate', { slug });
     await dispatch(saveToken(res.data.token));
     toast.success('Inscription validée');
     Router.push('/dashboard');

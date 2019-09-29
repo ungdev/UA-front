@@ -25,13 +25,11 @@ const initialLogin = {
 
 const LoginModal = ({ isVisible }) => {
   const dispatch = useDispatch();
+
   // Get panel key value
   const [panel, setPanel] = useState('login');
-
   const [loginForm, setLoginForm] = useState(initialLogin);
-
   const [signupForm, setSignupForm] = useState(initialSignup);
-
   const [forgotEmail, setForgotEmail] = useState('');
 
   const login = async () => {
@@ -66,7 +64,7 @@ const LoginModal = ({ isVisible }) => {
     setPanel('login');
   };
 
-  // Get modal title and content from panel key
+  // Get modal title, content and action from panel key
   const body = {
     login: {
       title: 'Connexion',
@@ -178,7 +176,6 @@ const LoginModal = ({ isVisible }) => {
           <Button
             primary
             onClick={() => setPanel('login')}
-            className="forgot-modal-button"
             type="submit"
           >
             Envoyer

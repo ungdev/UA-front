@@ -3,31 +3,30 @@ import PropTypes from 'prop-types';
 
 import './Inputs.css';
 
-let id = 0;
-
 /**
  * Displays a select
  */
 const Select = ({ options, label, value, onChange, className }) => (
   <div className={`select ${className}`}>
-    <label htmlFor={`select-${id}`}>{label}</label>
+    <label>
+      <div className="select-label">{label}</div>
 
-    <select
-      id={`select-${id++}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {options.map((option) => (
-        <option
-          value={option.value}
-          key={option.value}
-        >
-          {option.label}
-        </option>
-      ))}
-    </select>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+      >
+        {options.map((option) => (
+          <option
+            value={option.value}
+            key={option.value}
+          >
+            {option.label}
+          </option>
+        ))}
+      </select>
 
-    <div className="line" />
+      <div className="line" />
+    </label>
   </div>
 );
 

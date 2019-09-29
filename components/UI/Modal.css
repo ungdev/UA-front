@@ -34,7 +34,7 @@
 
 .modal .modal-body {
   max-height: 60vh;
-  overflow-y: auto;
+  overflow: hidden auto;
   padding: 0 20px;
 }
 

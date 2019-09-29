@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { axiosAPI } from '../utils';
+import { API, setTokenAPI } from '../utils';
 import errorToString from '../utils/errorToString';
 
 
@@ -32,13 +32,17 @@ export default (state = initialState, action) => {
 };
 
 export const autoLogin = () => async (dispatch) => {
-  // eslint-disable-next-line no-prototype-builtins
-  if (localStorage.hasOwnProperty('utt-arena-token')) {
+  if (localStorage.hasOwnProperty('utt-arena-token')) { // eslint-disable-line no-prototype-builtins
+    const localToken = localStorage.getItem('utt-arena-token');
+
     dispatch({
       type: SET_TOKEN,
-      payload: localStorage.getItem('utt-arena-token'),
+      payload: localToken,
     });
-    const res = await axiosAPI(localStorage.getItem('utt-arena-token')).get('user');
+
+    setTokenAPI(localToken);
+    const res = await API().get('user');
+
     dispatch({
       type: SET_USER,
       payload: res.data.user,
@@ -48,7 +52,7 @@ export const autoLogin = () => async (dispatch) => {
 
 export const tryLogin = (user) => async (dispatch) => {
   try {
-    const res = await axiosAPI().put('user/login', user);
+    const res = await API().put('user/login', user);
     dispatch(saveToken(res.data.token));
     dispatch({
       type: SET_USER,

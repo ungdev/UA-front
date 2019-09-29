@@ -3,23 +3,22 @@ import PropTypes from 'prop-types';
 
 import './Inputs.css';
 
-let id = 0;
-
 /**
  * Displays a textarea
  */
 const Textarea = ({ label, placeholder, value, onChange, className }) => (
   <div className={`textarea ${className}`}>
-    <label htmlFor={`textarea-${id}`}>{label}</label>
+    <label>
+      <div className="textarea-label">{label}</div>
 
-    <textarea
-      id={`textarea-${id++}`}
-      value={value}
-      placeholder={placeholder}
-      onChange={(e) => onChange(e.target.value)}
-    />
+      <textarea
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+      />
 
-    <div className="line" />
+      <div className="line" />
+    </label>
   </div>
 );
 

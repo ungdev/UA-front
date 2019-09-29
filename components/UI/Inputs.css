@@ -7,9 +7,9 @@
   width: 100%;
 }
 
-.input label,
-.select label,
-.textarea label {
+.input .input-label,
+.select .select-label,
+.textarea .textarea-label {
   display: block;
   padding-bottom: 2px;
   color: #858585;
