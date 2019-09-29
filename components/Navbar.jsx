@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
@@ -41,7 +42,7 @@ const links = [
   },
 ];
 
-const Navbar = () => {
+const Navbar = ({ isLoggedin }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -50,7 +51,6 @@ const Navbar = () => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
-  const isConnected = useSelector((state) => !!state.login.token);
   const username = useSelector((state) => state.login.user && state.login.user.username);
 
   // Set mobile menu visibility
@@ -109,7 +109,7 @@ const Navbar = () => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          { isConnected ? isLoggedLayout : connexionButton }
+          { isLoggedin ? isLoggedLayout : connexionButton }
 
           <nav>
             { navLinks }
@@ -178,6 +178,10 @@ const Navbar = () => {
       ) }
     </div>
   );
+};
+
+Navbar.propTypes = {
+  isLoggedin: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

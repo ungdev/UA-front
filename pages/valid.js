@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 
@@ -8,7 +8,10 @@ const Valid = () => {
   const router = useRouter();
   const { slug } = router.query;
   const dispatch = useDispatch();
-  dispatch(validate(slug));
+  useEffect(() => {
+    dispatch(validate(slug));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
