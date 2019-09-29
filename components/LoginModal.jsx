@@ -178,7 +178,6 @@ const LoginModal = ({ isVisible }) => {
           <Button
             primary
             onClick={() => setPanel('login')}
-            className="forgot-modal-button"
             type="submit"
           >
             Envoyer
