@@ -17,15 +17,15 @@ export default (error) => {
     case 'INVALID_TOKEN':
       return 'Jeton invalide';
     case 'USER_NOT_ACTIVATED':
-      return 'Compte non activé. Vérifiez votre boîte mail.';
+      return 'Compte non activé, vérifiez votre boîte mail';
     case 'NOT_PAID':
-      return 'Vous devez avoir payé votre place.';
+      return 'Vous devez avoir payé votre place';
     case 'SPOTLIGHT_FULL':
       return 'Le tournoi est plein';
     case 'DUPLICATE_ENTRY':
-      return 'Le pseudo ou le mail est déjà utilisé.';
+      return 'Le pseudo ou le mail est déjà utilisé';
     case 'VISITOR_FULL':
-      return 'Il n\'y a plus de places visiteur.';
+      return 'Il n\'y a plus de places visiteur';
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     case 'LAN_FULL':

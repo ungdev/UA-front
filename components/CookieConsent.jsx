@@ -9,7 +9,7 @@ import './CookieConsent.css';
 const cookieName = 'cookie-consent';
 
 const CookieConsent = () => {
-  let [display, setDisplay] = useState(false);
+  const [display, setDisplay] = useState(false);
 
   const buttonClick = () => {
     // Set expiration date in 1 year
