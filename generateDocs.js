@@ -14,10 +14,11 @@ componentsList.forEach((component) => {
   fs.readFile(componentPath, (error, content) => {
     const documentationPath = `docs/${component}${renderer.extension}`;
     const doc = reactDocgen.parse(content);
-    fs.writeFile(documentationPath, renderer.render(
+    const render = renderer.render(
       componentPath,
       doc,
       [],
-    ), () => {});
+    ).replace('\n', '\r\n');
+    fs.writeFile(documentationPath, render, () => {});
   });
 });
