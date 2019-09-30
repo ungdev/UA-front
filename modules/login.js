@@ -34,15 +34,8 @@ export default (state = initialState, action) => {
 export const autoLogin = () => async (dispatch) => {
   if (localStorage.hasOwnProperty('utt-arena-token')) { // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
-
-    dispatch({
-      type: SET_TOKEN,
-      payload: localToken,
-    });
-
-    setTokenAPI(localToken);
+    dispatch(saveToken(localToken));
     const res = await API().get('user');
-
     dispatch({
       type: SET_USER,
       payload: res.data.user,
@@ -61,7 +54,8 @@ export const tryLogin = (user) => async (dispatch) => {
     dispatch(setLoginModalVisible(false));
     Router.push('/dashboard');
     return true;
-  } catch (err) {
+  }
+  catch (err) {
     toast.error(errorToString(err.response.data.error));
   }
 };
@@ -71,6 +65,7 @@ export const saveToken = (token) => (dispatch) => {
     type: SET_TOKEN,
     payload: token,
   });
+  setTokenAPI(token);
   localStorage.setItem('utt-arena-token', token);
 };
 
@@ -78,6 +73,8 @@ export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
   dispatch({ type: SET_TOKEN, payload: null });
   dispatch({ type: SET_USER, payload: null });
+  setTokenAPI('');
+
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
 };
