@@ -22,7 +22,7 @@ const Wrapper = ({ Component }) => {
   // Handle redirections
   let redirect = null;
 
-  if (isDashboard && process.env.DASHBOARD_AVAILABLE === 'false') {
+  if (isDashboard && process.env.DASHBOARD_AVAILABLE !== 'true') {
     redirect = '/';
   }
   else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
