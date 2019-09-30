@@ -61,7 +61,8 @@ export const tryLogin = (user) => async (dispatch) => {
     dispatch(setLoginModalVisible(false));
     Router.push('/dashboard');
     return true;
-  } catch (err) {
+  }
+  catch (err) {
     toast.error(errorToString(err.response.data.error));
   }
 };
