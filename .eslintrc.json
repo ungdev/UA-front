@@ -25,9 +25,18 @@
     "sourceType": "module"
   },
   "rules": {
+    "linebreak-style": ["warn", "windows"],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "semi": "error",
+    "comma-dangle": ["warn", "always-multiline"],
+    "object-curly-spacing": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    "arrow-parens": ["error", "always"],
+    "no-console": "error",
+    "no-alert": "error",
+    "brace-style": ["warn", "stroustrup"]
   }
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Header } from '../components';
 import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { postToSlack } from '../utils';
 
@@ -13,7 +12,7 @@ const options = [
   { label: 'Tournoi SSBU', value: 'SSBU' },
   { label: 'Tournoi OSU', value: 'osu!' },
   { label: 'Tournoi Libre', value: 'Libre' },
-  { label: "J'ai eu une erreur sur le site", value: 'Erreur' },
+  { label: 'J\'ai eu une erreur sur le site', value: 'Erreur' },
   { label: 'Signaler un bug', value: 'Bug' },
   { label: 'Autre', value: 'Autre' },
 ];
@@ -27,11 +26,11 @@ const Contact = () => {
   const [content, setContent] = useState('');
   const [subject, setSubject] = useState('Autre');
 
-  const sendMsg = () => {
+  const sendMessage = () => {
     if (firstname === '' || lastname === '' || email === '' || content === '') {
       toast.error('Veuillez remplir tous les champs');
     }
-    else if (!email.test(emailRegex)) {
+    else if (!emailRegex.test(email)) {
       toast.error('Veuillez entrer une adresse mail valide');
     }
     else {
@@ -46,30 +45,49 @@ const Contact = () => {
   };
 
   return (
-    <>
-      <Header />
+    <div id="contact">
+      <Title align="center" uppercase>contact</Title>
+      <p>
+        UTT Net Group<br />
+        12 rue Marie Curie 10000 Troyes<br />
+        <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a><br />
+        <a href="tel:0325718550">0325718550</a>
+      </p>
 
-      <div id="contact" className="page-padding">
-        <Title align="center" uppercase>contact</Title>
-        <p>
-          UTT Net Group<br />
-          12 rue Marie Curie 10000 Troyes<br />
-          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a><br />
-          <a href="tel:0325718550">0325718550</a>
-        </p>
+      <Title level={3}>Formulaire</Title>
+      <Input
+        label="Prénom"
+        value={firstname}
+        onChange={setFirstname}
+      />
+      <Input
+        label="Nom"
+        value={lastname}
+        onChange={setLastname}
+      />
+      <Input
+        label="Email"
+        value={email}
+        onChange={setEmail}
+        type="email"
+      />
+      <Select
+        label="Sujet"
+        options={options}
+        value={subject}
+        onChange={setSubject}
+      />
+      <Textarea
+        label="Message"
+        placeholder="Tapez votre message ici..."
+        value={content}
+        onChange={setContent}
+      />
 
-        <Title level={3}>Formulaire</Title>
-        <Input label="Prénom" value={firstname} onChange={setFirstname} id="firstname" />
-        <Input label="Nom" value={lastname} onChange={setLastname} id="lastname" />
-        <Input label="Email" value={email} onChange={setEmail} id="email" />
-        <Select label="Sujet" options={options} value={subject} onChange={setSubject} id="subject" />
-        <Textarea label="Message" placeholder="Tapez votre message ici..." value={content} onChange={setContent} id="msg" />
-
-        <Button primary onClick={sendMsg}>
-          Envoyer
-        </Button>
-      </div>
-    </>
+      <Button primary onClick={sendMessage}>
+        Envoyer
+      </Button>
+    </div>
   );
 };
 

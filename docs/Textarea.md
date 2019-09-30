@@ -1,12 +1,12 @@
 ## Textarea
 
-Displays a controlled textarea
+Displays a textarea
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
-**id** | `String` |  | :white_check_mark: | id for the input
-**label** | `String` |  | :white_check_mark: | Label to display for the input
-**onChange** | `Function` |  | :white_check_mark: | onChange function, receive `event`
-**placeholder** | `String` | `''` | :x: | Text to show before user input
-**value** | `String` | `''` | :x: | Controlled value of the input
+**className** | `String` | `''` | :x: | Class of the container
+**label** | `String` |  | :white_check_mark: | Label to display
+**onChange** | `Function` |  | :white_check_mark: | Function called when the value change, the new value is passed as parameter
+**placeholder** | `String` | `''` | :x: | Text to show when field is blank
+**value** | `String` | `''` | :x: | Value of the input
 

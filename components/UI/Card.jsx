@@ -22,6 +22,7 @@ const Card = ({
 }) => {
   const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
   const LinkComponent = href && href.includes('http') ? 'a' : Link;
+
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
       {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
@@ -42,35 +43,35 @@ const Card = ({
 
 Card.propTypes = {
   /**
-   * Dark theme
+   * Whether the card should use dark theme or not
    */
   dark: PropTypes.bool,
   /**
-   * The source of the image to display to the top
+   * Source of the image to display above
    */
   imgSrc: PropTypes.string,
   /**
-   * The content of the card
+   * Content of the card
    */
   content: PropTypes.node,
   /**
-   * The content of the button
+   * Content of the button
    */
   buttonContent: PropTypes.node,
   /**
-   * The function triggered when the user clicks on the button
+   * Function called when the user clicks on the button
    */
   onClick: PropTypes.func,
   /**
-   * The href of the link surrounding the button
+   * Link URL surrounding the button
    */
   href: PropTypes.string,
   /**
-   * The class to apply to the card
+   * Class of the card
    */
   className: PropTypes.string,
   /**
-   * The class to apply to the image
+   * Class of the image
    */
   classNameImg: PropTypes.string,
 };

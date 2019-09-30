@@ -4,12 +4,12 @@ Displays a card which can contain an image, a content and a button
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
-**buttonContent** | `ReactNode` | `''` | :x: | The content of the button
-**className** | `String` | `''` | :x: | The class to apply to the card
-**classNameImg** | `String` | `''` | :x: | The class to apply to the image
-**content** | `ReactNode` | `null` | :x: | The content of the card
-**dark** | `Boolean` | `false` | :x: | Dark theme
-**href** | `String` | `null` | :x: | The href of the link surrounding the button
-**imgSrc** | `String` | `null` | :x: | The source of the image to display to the top
-**onClick** | `Function` | `() => {}` | :x: | The function triggered when the user clicks on the button
+**buttonContent** | `ReactNode` | `''` | :x: | Content of the button
+**className** | `String` | `''` | :x: | Class of the card
+**classNameImg** | `String` | `''` | :x: | Class of the image
+**content** | `ReactNode` | `null` | :x: | Content of the card
+**dark** | `Boolean` | `false` | :x: | Whether the card should use dark theme or not
+**href** | `String` | `null` | :x: | Link URL surrounding the button
+**imgSrc** | `String` | `null` | :x: | Source of the image to display above
+**onClick** | `Function` | `() => {}` | :x: | Function called when the user clicks on the button
 

@@ -40,6 +40,42 @@
   background: #8d8d8d;
 }
 
+#navbar .logged {
+  display: flex;
+  flex-direction: column;
+}
+
+#navbar .logged-info {
+  color: #ffffff;
+  margin: 8px auto;
+  min-width: 188px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#navbar .logged-username {
+  text-overflow: ellipsis;
+  max-width: 100px;
+  overflow: hidden;
+}
+
+#navbar .logged .logout {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#navbar .dashboard-button {
+  display: block;
+  width: min-content;
+  margin: 0 auto 20px;
+  padding: 10px 36px;
+  font-family: 'LemonMilk';
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 #navbar .login-button {
   display: block;
   width: min-content;
@@ -97,7 +133,7 @@
   width: 100%;
 }
 
-#navbar .footer {
+#navbar footer {
   position: fixed;
   bottom: 0;
   width: 260px;
@@ -145,7 +181,7 @@
   color: #6441a5;
 }
 
-#navbar .footer-text {
+#navbar footer .footer-text {
   width: 260px;
   margin: 12px auto 0 auto;
   font-size: 14px;
@@ -153,14 +189,15 @@
   color: #fff;
 }
 
-#navbar .footer-text a {
+#navbar footer .footer-text a {
   color: #fff;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all .3s;
 }
 
-#navbar .footer-text a:hover, #navbar .footer-text a:focus {
+#navbar footer .footer-text a:hover,
+#navbar footer .footer-text a:focus {
   border-bottom: 1px solid #fff;
 }
 
@@ -267,7 +304,7 @@
     margin: 20px auto;
   }
 
-  #navbar .footer {
+  #navbar footer {
     width: calc(100% - 20px);
     position: fixed;
     bottom: 0;
@@ -275,7 +312,7 @@
     transition: all .1s;
   }
 
-  #navbar.active .footer {
+  #navbar.active footer {
     box-shadow: 0 0 12px 0 #000;
     transform: none;
     transition: all .3s;

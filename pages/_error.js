@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import { Header } from '../components';
 import { Title, Button } from '../components/UI';
 
 class Error extends React.Component {
@@ -22,14 +21,10 @@ class Error extends React.Component {
   render() {
     return (
       <>
-        <Header />
+        <Title level={2}>Une erreur est survenue...</Title>
+        <p>{this.props.statusCode && `Erreur ${this.props.statusCode}`}</p>
 
-        <div className="page-padding">
-          <Title level={2}>Une erreur est survenue...</Title>
-          <p>{this.props.statusCode && `Erreur ${this.props.statusCode}`}</p>
-
-          <Link href="/"><Button primary><i className="fas fa-chevron-left" /> Retour à l'accueil</Button></Link>
-        </div>
+        <Link href="/"><Button primary><i className="fas fa-chevron-left" /> Retour à l'accueil</Button></Link>
       </>
     );
   }
@@ -37,7 +32,7 @@ class Error extends React.Component {
 
 Error.propTypes = {
   statusCode: PropTypes.number,
-}
+};
 
 Error.defaultProps = {
   statusCode: null,

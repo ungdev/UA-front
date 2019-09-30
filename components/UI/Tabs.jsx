@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 
 import './Tabs.css';
 
+/**
+ * Displays a menu with tabs
+ */
 const Tabs = ({ tabs, defaultIndex, className }) => {
   const [index, setIndex] = useState(defaultIndex);
-  const tabsNav = tabs.map((tab, i) => {
-    const tabButton = (
-      <button
-        className={`tab-nav ${index === i ? 'active' : ''}`}
-        onClick={() => setIndex(i)}
-        key={tab.title}
-      >
-        {tab.title}
-      </button>
-    )
-    return (
-      tab.path ? <Link href={tab.path}>{tabButton}</Link> : tabButton
-    )});
+
+  const tabsNav = tabs.map((tab, i) => (
+    <button
+      className={`tab-nav ${index === i ? 'active' : ''}`}
+      onClick={() => setIndex(i)}
+      key={tab.title}
+    >
+      {tab.title}
+    </button>
+  ));
+
   const tabsContent = tabs.map((tab, i) => (
-    tab.content &&
     <div
       className={`tab-content ${index === i ? 'active' : ''}`}
       key={tab.title}
@@ -34,6 +33,7 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
       <div className="tabs-nav">
         { tabsNav }
       </div>
+
       <div className="tabs-content">
         { tabsContent }
       </div>
@@ -43,7 +43,7 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
 
 Tabs.propTypes = {
   /**
-   * The tabs title and content
+   * Tabs title and content
    */
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
@@ -52,11 +52,11 @@ Tabs.propTypes = {
     }),
   ).isRequired,
   /**
-   * The index of the default tab
+   * Index of the default tab
    */
   defaultIndex: PropTypes.number,
   /**
-   * The class to apply to the container
+   * Class of the container
    */
   className: PropTypes.string,
 };

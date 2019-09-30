@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Title from './UI/Title';
-import Card from './UI/Card';
+import { Card, Title } from './UI';
 import tournamentCardsText from '../assets/tournamentCards';
 
 import './TournamentCards.css';

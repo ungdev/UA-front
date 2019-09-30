@@ -6,9 +6,9 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 import './VideoContainer.css';
 
 /**
- * Displays iframe and keep 16:9 ratio
+ * Displays iframe and keeps 16:9 ratio
  */
-const VideoContainer = ({ className, title, src }) => (
+const VideoContainer = ({ title, src, className }) => (
   <div className={`video-container ${className}`}>
     <div className="video-container-ratio">
       <div className="video-container-full">
@@ -27,22 +27,22 @@ const VideoContainer = ({ className, title, src }) => (
 
 VideoContainer.propTypes = {
   /**
-   * Class to apply in the div container
-   */
-  className: PropTypes.string,
-  /**
-   * title for the iframe
+   * Title of the iframe
    */
   title: PropTypes.string,
   /**
-   * Source for the iframe
+   * Source of the iframe
    */
   src: PropTypes.string.isRequired,
+  /**
+   * Class of the container
+   */
+  className: PropTypes.string,
 };
 
 VideoContainer.defaultProps = {
-  className: '',
   title: '',
+  className: '',
 };
 
 export default VideoContainer;

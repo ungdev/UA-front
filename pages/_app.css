@@ -54,16 +54,7 @@ img {
   font-weight: 700;
 }
 
-.form-container {
-  background: var(--light-color);
-}
-
-button.Toastify__close-button {
-  color: #000;
-  opacity: 0.3;
-}
-
-div.Toastify__toast::after {
+.Toastify__toast::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -73,28 +64,33 @@ div.Toastify__toast::after {
   background: var(--gradient);
 }
 
-div.Toastify__toast.Toastify__toast--default {
+.Toastify__toast--default {
   color: #212121;
 }
 
-div.Toastify__toast.Toastify__toast--success {
+.Toastify__toast--success {
   color: #74db77;
   background: #fff;
 }
 
-div.Toastify__toast.Toastify__toast--error {
+.Toastify__toast--error {
   color: #e74c3c;
   background: #fff;
 }
 
-div.Toastify__toast.Toastify__toast--warning {
+.Toastify__toast--warning {
   color: #f1c40f;
   background: #fff;
 }
 
-div.Toastify__toast.Toastify__toast--info {
+.Toastify__toast--info {
   color: #3498db;
   background: #fff;
+}
+
+.Toastify__close-button {
+  color: #000;
+  opacity: 0.3;
 }
 
 /**********************/

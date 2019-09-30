@@ -1,9 +1,5 @@
-import React from 'react';
-
-const Dashboard = () => (
-  <div>
-     Dashboard
-  </div>
-);
+const Dashboard = () => {
+  return null;
+};
 
 export default Dashboard;
