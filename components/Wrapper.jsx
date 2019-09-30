@@ -18,6 +18,7 @@ const Wrapper = ({ Component }) => {
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
   const isLoggedin = useSelector((state) => !!state.login.token);
   const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
+
   // Handle redirections
   let redirect = null;
 

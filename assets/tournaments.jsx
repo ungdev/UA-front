@@ -27,7 +27,7 @@ export default {
     title: 'Super Smash Bros Ultimate',
     format: (
       <>
-        <div className="tournament-format">32 joueurs en solo</div>
+        <div className="tournament-format">64 joueurs en solo</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),
@@ -49,7 +49,7 @@ export default {
     title: 'Fortnite',
     format: (
       <>
-        <div className="tournament-format">32 équipes en trio</div>
+        <div className="tournament-format">24 équipes en squad</div>
         <p>Description du tournoi à venir.</p>
       </>
     ),

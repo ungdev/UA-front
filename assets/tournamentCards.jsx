@@ -18,7 +18,7 @@ export default {
     {
       title: 'Super Smash Bros Ultimate',
       cashprize: 'à venir',
-      players: 32,
+      players: 64,
       img: '/static/ssbu.webp',
       link: '/tournaments/ssbu',
     },
