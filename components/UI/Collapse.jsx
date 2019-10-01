@@ -13,6 +13,7 @@ const Collapse = ({ title, children, className }) => {
   const [contentHeight, setContentHeight] = useState(0);
   const [contentVisible, setContentVisible] = useState(false);
 
+  // Set contentHeight when children prop change
   useEffect(() => {
     setContentHeight(contentRef.current.scrollHeight);
   }, [children]);

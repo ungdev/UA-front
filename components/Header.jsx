@@ -1,12 +1,14 @@
 import React from 'react';
 
+import HeaderText from '../assets/header';
+
 import './Header.css';
 
 const Header = () => (
   <header id="header">
     <div className="home-title">
-      <p className="main">UTT Arena</p>
-      <p>6, 7 et 8 décembre 2019</p>
+      <p className="main">{HeaderText.title}</p>
+      <p>{HeaderText.subtitle}</p>
     </div>
   </header>
 );
