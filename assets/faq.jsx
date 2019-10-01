@@ -37,8 +37,29 @@ export default [
     title: 'Inscription',
     entries: [
       {
+        question: 'Je ne suis pas joueur, dois-je m\'inscrire à l\'UTT Arena pour profiter des animations de l\'événement ?',
+        answer: (
+        <>
+            Une place à l\'UTT Arena donne accès à : 
+            <ul>
+              <li> la zone restreinte réservée aux compétiteurs, coachs, managers et accompagnateurs,</li>
+              <li> notre buvette,</li>
+              <li> l\'UTT Arena de nuit.</li>
+            </ul>  
+            <br />
+            Mais nos animations sur scène et notre stand console sont ouverts à tous les visiteurs du Festival des Jeux !
+            <br />
+            <a href="https://web.digitick.com/ext/billetterie5/index.php?site=maisonduboulanger&p=201">Vous pouvez acheter votre place visiteur du Festival des Jeux ici.</a>
+          </>
+         ),
+      },
+      {
         question: 'Quelle place doivent acheter les coachs/managers de mon équipe ?',
-        answer: 'Les coachs et managers d\'équipes doivent acheter une place visiteur.',
+        answer: 'Les coachs et managers d\'équipes doivent acheter une place coach/manager/accompagnateur.',
+      },
+      {
+        question: 'Quand est-ce que mon équipe est officiellement inscrite dans un tournoi de l\'UTT Arena ?',
+        answer: 'Il faut que l\'équipe soit complète et que TOUS les joueurs de l\'équipe aient payé leur place.',
       },
       {
         question: 'Combien coûte la LAN pour les joueurs et les accompagnateurs ?',
@@ -82,12 +103,16 @@ export default [
       },
       {
         question: 'Puis-je payer pour toute mon équipe ?',
-        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs.',
+        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs. Mais il faut qu\ils aient un compte de créé sur le site de l\'UTT Arena.',
+      },
+      {
+        question: 'J\'ai payé ma place, puis-je encore changer de tournoi ?',
+        answer: 'Oui, la place payée est rattachée à un compte joueur et pas à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau',
       },
     ],
   },
   {
-    title: 'Déroulement des tournois',
+    title: 'Tournoi Fortnite',
     entries: [
       {
         question: 'Puis-je jouer à Fortnite sur PS4 ?',
@@ -100,11 +125,11 @@ export default [
     entries: [
       {
         question: 'Dois-je ramener ma console ?',
-        answer: 'Non, nous fournissons tout le matériel pour le tournoi SSBU.',
+        answer: 'Nous fournissons tout le matériel pour le tournoi SSBU mais si tu veux amener ta Switch pour jouer en freeplay, n’hésite pas !',
       },
       {
         question: 'Puis-je ramener mon PC ?',
-        answer: 'Non, car vous n\'aurez pas de place attribuée.',
+        answer: 'Non, car vous n\'aurez pas de place pour installer votre setup.',
       },
     ],
   },
