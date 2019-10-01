@@ -40,12 +40,12 @@ export default [
         question: 'Je ne suis pas joueur, dois-je m\'inscrire à l\'UTT Arena pour profiter des animations de l\'événement ?',
         answer: (
         <>
-            Une place à l\'UTT Arena donne accès à : 
+            Une place à l'UTT Arena donne accès à :
             <ul>
               <li> la zone restreinte réservée aux compétiteurs, coachs, managers et accompagnateurs,</li>
               <li> notre buvette,</li>
-              <li> l\'UTT Arena de nuit.</li>
-            </ul>  
+              <li> l'UTT Arena de nuit.</li>
+            </ul>
             <br />
             Mais nos animations sur scène et notre stand console sont ouverts à tous les visiteurs du Festival des Jeux !
             <br />
@@ -103,7 +103,7 @@ export default [
       },
       {
         question: 'Puis-je payer pour toute mon équipe ?',
-        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs. Mais il faut qu\ils aient un compte de créé sur le site de l\'UTT Arena.',
+        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs. Mais il faut qu\'ils aient un compte de créé sur le site de l\'UTT Arena.',
       },
       {
         question: 'J\'ai payé ma place, puis-je encore changer de tournoi ?',
