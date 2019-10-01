@@ -18,8 +18,8 @@ export default {
       Nous utilisons des cookies afin d'obtenir des statistiques sur notre site web.
       Ces informations ne seront en aucun cas vendues, échangées ou données.
       En naviguant sur notre site web, vous acceptez notre utilisation des cookies.<br />
-      Afin d'assurer le fonctionnement du service à l'utilisateur authentifié, un cookie de session est inscrit sur la navigateur lors de l'authentification sur le site.
-      Celui-ci, identifié par le nom "utt-arena-token" dans la portée "arena.utt.fr", a pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
+      Afin d'assurer le fonctionnement du service à l'utilisateur authentifié, des cookies de session sont inscrit sur la navigateur lors de l'authentification sur le site.
+      Ceux-ci, identifié par le nom "utt-arena-token" et "utt-arena-userid" dans la portée "arena.utt.fr", ont pour seule fonction d'assurer la persistence de la session authentifiée de l'utilisateur.
       Il est détruit lors de la déconnexion ou à son expiration.
       Conformément à la directive européenne 2009/136/CE, ce cookie est indispensable à la fourniture du service sollicité.
     </>
@@ -135,9 +135,10 @@ export default {
       <Title level={3}>Article XI - Droit de rétractation</Title>
       <p>
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit de rétractation.
-        Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription, au plus tard 7 jours calendaires avant la date de l'évènement, soit le 29/11/2019 17:00 CET.
+        Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription,
+        au plus tard 7 jours calendaires avant la date de l'événement, soit le 29/11/2019 17:00 CET.
         Toute demande doit être formulée par courriel addressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription.
-        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra sur la carte bleue ayant servi au paiement.
+        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bleue ayant servi au paiement.
         Compte-tenu des frais bancaires endossés, tout remboursement fera l'objet d'une retenue d'un montant 1€ (un euro) sur le montant total à rembourser.
       </p>
 

@@ -14,12 +14,21 @@ const tournamentsList = [
   { label: 'Counter Strike: GO', value: '4' },
 ];
 
+const tournamentsSolo = [
+  { label: 'Super Smash Bros Ultimate', value: '5' },
+  { label: 'osu!', value: '6' },
+  { label: 'Libre', value: '7' },
+];
+
 const Register = () => {
   const [tournament, setTournament] = useState('1');
+  const [tournamentSolo, setTournamentSolo] = useState('5');
   const [name, setName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournament.tournaments);
+  const username = useSelector((state) => state.login.user && state.login.user.username);
+  const soloTeamName = `${username}-solo-team`;
 
   const fetchTeams = (i) => {
     if (!tournaments || !tournaments[i+1]) {
@@ -44,6 +53,13 @@ const Register = () => {
           }}
           primary
         >Rejoindre une équipe <i className="fas fa-users" /></Button>
+      </div>
+      <div>
+        {dashboard.register.solo}
+        <Select label="Tournoi" options={tournamentsSolo} value={tournamentSolo} onChange={setTournamentSolo} />
+        <Button onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))} primary>
+          S'inscrire en solo <i className="fas fa-user" />
+        </Button>
       </div>
     </>
   );
