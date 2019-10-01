@@ -21,11 +21,11 @@ export default {
       { title: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
       { title: <strong>Début des tournois</strong>, description: 'Samedi 7 décembre à 10h précises' },
       { title: <strong>Nourriture</strong>, description: 'Sur place, pendant tout l\'événement' },
-      { title: <strong>Places</strong>, description: '460 joueurs' },
+      { title: <strong>Places</strong>, description: '450 joueurs' },
       { title: <strong>Tarifs</strong>, description: 'Joueur 20€, Accompagnateur 12€' },
       { title: <strong>Âge minimum</strong>, description: '15 ans' },
       { title: <strong>Tournois avec Cashprize</strong>, description: 'LoL Pro, CS:GO, SSBU, Fortnite' },
-      { title: <strong>Tournois sans Cashprize</strong>, description: 'LoL Amateur, tournoi libre (dont osu!)' },
+      { title: <strong>Tournois sans Cashprize</strong>, description: 'LoL Amateur, osu!, tournoi libre' },
     ],
   },
 };

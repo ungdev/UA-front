@@ -135,9 +135,10 @@ export default {
       <Title level={3}>Article XI - Droit de rétractation</Title>
       <p>
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit de rétractation.
-        Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription, au plus tard 7 jours calendaires avant la date de l'évènement, soit le 29/11/2019 17:00 CET.
+        Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription,
+        au plus tard 7 jours calendaires avant la date de l'événement, soit le 29/11/2019 17:00 CET.
         Toute demande doit être formulée par courriel addressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription.
-        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra sur la carte bleue ayant servi au paiement.
+        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bleue ayant servi au paiement.
         Compte-tenu des frais bancaires endossés, tout remboursement fera l'objet d'une retenue d'un montant 1€ (un euro) sur le montant total à rembourser.
       </p>
 

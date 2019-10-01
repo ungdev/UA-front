@@ -9,7 +9,7 @@ export default {
       L'<span className="accent">UTT Arena</span> (UA) est le plus gros événement de l'association <span className="accent"><a href="https://ung.utt.fr">UTT Net Group</a></span> (UNG). L’UNG a été créée en 1998 pour rassembler tous les passionnés d’informatique et des nouvelles technologies de l’Université de Technologie de Troyes (UTT).<br /><br />
       L'UTT Arena revient cette année pour sa <span className="accent">17<sup>ème</sup> édition</span> !
       D’une simple salle d’examen de l’UTT à environ 1500m² au cœur du Festival des Jeux, l’UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! L'UTT Arena se déroule donc au Cube Troyes Champagne Expo sous le format que vous connaissez actuellement.<br /><br />
-      À présent l'UTT Arena c'est <span className="accent">460 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus d'une <span className="accent">centaine</span> de bénévoles !
+      À présent l'UTT Arena c'est <span className="accent">450 joueurs</span>, <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus d'une <span className="accent">centaine</span> de bénévoles !
       Et tout cela, c’est grâce à vous, les joueurs, coachs, visiteurs… qui nous faites confiance chaque année pour organiser cet événement dans l’ambiance qu’on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre LAN en font un événement exceptionnel !
     </>
   ),
@@ -35,7 +35,10 @@ export default {
       <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans révolus.</strong><br /><br />
 
       <Title level={4}>Joueur mineur</Title>
-      <p>Une autorisation parentale sera demandée lors de l’événement. Elle sera bientôt disponible sur notre site pour que tu puisses la remplir.</p>
+      <p>
+        Une autorisation parentale remplie sera demandée lors de l’événement.{' '}
+        <a href="https://drive.google.com/uc?export=download&id=1bXRvLE091PCiLjcBSWFVVvcvOY6frhO-">Tu peux la télécharger ici.</a>
+      </p>
 
       <Title level={4}>Ce qu'il faut apporter</Title>
       <ul>
