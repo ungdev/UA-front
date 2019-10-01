@@ -13,6 +13,12 @@ const Collapse = ({ title, children, className }) => {
   const [contentHeight, setContentHeight] = useState(0);
   const [contentVisible, setContentVisible] = useState(false);
 
+  // Set contentHeight when the visibility change
+  const setVisible = (visible) => {
+    setContentHeight(contentRef.current.scrollHeight);
+    setContentVisible(visible);
+  };
+
   // Set contentHeight when children prop change
   useEffect(() => {
     setContentHeight(contentRef.current.scrollHeight);
@@ -20,7 +26,7 @@ const Collapse = ({ title, children, className }) => {
 
   return (
     <div className={`collapse ${className} ${contentVisible ? 'active' : ''}`}>
-      <div className="collapse-title" onClick={() => setContentVisible(!contentVisible)}>
+      <div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
         {title}
 
         <div className="collapse-arrow">
