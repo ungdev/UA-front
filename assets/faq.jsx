@@ -10,11 +10,21 @@ export default [
         answer: 'Tous les tournois commencent le samedi à 10h.',
       },
       {
+        question: 'Quel est l\'âge minimum pour la LAN ?',
+        answer: (
+          <>
+            15 ans. Pour les mineurs, une autorisation parentale ou du responsable légal sera demandée le jour de la LAN.<br />
+            <a href="https://drive.google.com/uc?export=download&id=1bXRvLE091PCiLjcBSWFVVvcvOY6frhO-">Vous pouvez la télécharger ici.</a>
+          </>
+        ),
+      },
+      {
         question: 'Que dois-je amener pour jouer ?',
         answer: (
           <>
             Amène tout ce dont tu as besoin pour jouer : ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum.<br />
-            Notre partenaire Scoup eSport te propose également de louer du matériel pendant l'événement. Pour cela ajoute le matériel dans ton dashboard.<br />
+            Notre partenaire Scoup eSport te propose également de louer du matériel pendant l'événement.
+            Pour cela ajoute le matériel dont tu as besoin dans ton dashboard.<br />
             Nous vendons également des multiprises et des câbles RJ45 de 5m et 7m.
           </>
         ),
@@ -25,7 +35,12 @@ export default [
       },
       {
         question: 'Où puis-je trouver des joueurs pour mon équipe ?',
-        answer: 'Sur le discord de l\'UTT Arena tu trouveras sûrement d\'autres joueurs qui cherchent une équipe. Tu peux trouver le lien du discord dans la barre de navigation.',
+        answer: (
+          <>
+            Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
+            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre discord ici.</a>
+          </>
+        ),
       },
       {
         question: 'Puis-je jouer à la manette ?',
@@ -42,13 +57,11 @@ export default [
         <>
             Une place à l'UTT Arena donne accès à :
             <ul>
-              <li> la zone restreinte réservée aux compétiteurs, coachs, managers et accompagnateurs,</li>
-              <li> notre buvette,</li>
-              <li> l'UTT Arena de nuit.</li>
+              <li>la zone restreinte réservée aux compétiteurs, coachs, managers et accompagnateurs</li>
+              <li>notre buvette</li>
+              <li>l'UTT Arena de nuit</li>
             </ul>
-            <br />
-            Mais nos animations sur scène et notre stand console sont ouverts à tous les visiteurs du Festival des Jeux !
-            <br />
+            Mais nos animations sur scène et notre stand console sont ouverts à tous les visiteurs du Festival des Jeux !<br />
             <a href="https://web.digitick.com/ext/billetterie5/index.php?site=maisonduboulanger&p=201">Vous pouvez acheter votre place visiteur du Festival des Jeux ici.</a>
           </>
          ),
@@ -59,11 +72,16 @@ export default [
       },
       {
         question: 'Quand est-ce que mon équipe est officiellement inscrite dans un tournoi de l\'UTT Arena ?',
-        answer: 'Il faut que l\'équipe soit complète et que TOUS les joueurs de l\'équipe aient payé leur place.',
+        answer: <>Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur place.</>,
       },
       {
-        question: 'Combien coûte la LAN pour les joueurs et les accompagnateurs ?',
-        answer: 'La LAN coûte 20€ pour tous les joueurs. La place accompagnateur/visiteur est à 12€.',
+        question: 'Combien coûte la LAN ?',
+        answer: (
+          <>
+            La LAN coûte 20€ pour les joueurs.<br />
+            La place coach/manager/accompagnateur est à 12€.
+          </>
+        ),
       },
       {
         question: 'Je me suis inscrit et je n\'ai pas reçu mon mail de confirmation',
@@ -75,16 +93,6 @@ export default [
               <li>Cet e-mail a été banni. Contactez les organisateurs afin d'en savoir plus.</li>
               <li>Vous vous êtes trompé lors de la saisie de votre adresse mail. Contactez les organisateurs grâce au formulaire de contact.</li>
             </ul>
-          </>
-        ),
-      },
-      {
-        question: 'Quel est l\'âge minimum pour la LAN ?',
-        answer: (
-          <>
-            15 ans. Pour les mineurs, une autorisation parentale ou du responsable légal sera demandée le jour de la LAN.
-            <br />
-            <a href="https://drive.google.com/file/d/1w15X9dXEaqkEQjqLNkXL_OZhDC7SIs2V/view">Vous pouvez la télécharger ici.</a>
           </>
         ),
       },
@@ -103,7 +111,7 @@ export default [
       },
       {
         question: 'Puis-je payer pour toute mon équipe ?',
-        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs. Mais il faut qu\'ils aient un compte de créé sur le site de l\'UTT Arena.',
+        answer: 'Oui cette année il est possible de payer pour d\'autres joueurs. Mais il faut qu\'ils aient d\'abord créé leur compte sur le site de l\'UTT Arena.',
       },
       {
         question: 'J\'ai payé ma place, puis-je encore changer de tournoi ?',
