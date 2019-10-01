@@ -32,21 +32,23 @@ export default (state = initialState, action) => {
 };
 
 export const autoLogin = () => async (dispatch) => {
-  if (localStorage.hasOwnProperty('utt-arena-token')) { // eslint-disable-line no-prototype-builtins
+  if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) { // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
+    const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
-    const res = await API().get('user');
+    const res = await API().get(`users/${userId}`);
     dispatch({
       type: SET_USER,
-      payload: res.data.user,
+      payload: res.data,
     });
   }
 };
 
 export const tryLogin = (user) => async (dispatch) => {
   try {
-    const res = await API().put('user/login', user);
+    const res = await API().post('auth/login', user);
     dispatch(saveToken(res.data.token));
+    localStorage.setItem('utt-arena-userid', res.data.user.id);
     dispatch({
       type: SET_USER,
       payload: res.data.user,
@@ -74,7 +76,7 @@ export const logout = async (dispatch) => {
   dispatch({ type: SET_TOKEN, payload: null });
   dispatch({ type: SET_USER, payload: null });
   setTokenAPI('');
-
+  localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
 };
