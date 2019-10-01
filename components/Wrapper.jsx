@@ -16,7 +16,7 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-  const isLoggedin = useSelector((state) => !!state.login.token);
+  const isLoggedin = useSelector((state) => !!state.login.user);
   const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
   // Handle redirections
   let redirect = null;
