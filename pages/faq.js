@@ -10,12 +10,12 @@ const FAQ = () => (
     <Title align="center">FAQ</Title>
 
     {faq.map((category) => (
-      <div key={category.title} className="margin-bottom">
+      <div key={category.title} className="faq-category">
         <Title level={3}>{category.title}</Title>
-        {category.entries.map((entrie, i) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Collapse key={`${category.title}-${i}`} title={entrie.question}>
-            {entrie.answer}
+
+        {category.entries.map((entry, i) => (
+          <Collapse key={`${category.title}-${i}`} title={entry.question}>
+            {entry.answer}
           </Collapse>
         ))}
       </div>

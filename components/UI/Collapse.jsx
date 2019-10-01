@@ -5,57 +5,35 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import './Collapse.css';
 
-const updateBackground = (e) => {
-  const bg = e.target.getAttribute('data-bg');
-  if (bg) {
-    e.target.style.backgroundImage = `url(${bg})`;
-  }
-};
-
 /**
  * Display an extension panel
  */
-const Collapse = ({ title, children, imgSrc, className }) => {
-  const wrapperRef = useRef(null);
+const Collapse = ({ title, children, className }) => {
+  const contentRef = useRef(null);
+  const [contentHeight, setContentHeight] = useState(0);
   const [contentVisible, setContentVisible] = useState(false);
 
   useEffect(() => {
-    document.addEventListener('lazybeforeunveil', updateBackground);
-
-    if (wrapperRef.current && wrapperRef.current.className.includes('lazyloaded')) {
-      wrapperRef.current.style.backgroundImage = `url(${imgSrc})`;
-    }
-
-    return () => {
-      document.removeEventListener('lazybeforeunveil', updateBackground);
-    };
-  });
+    setContentHeight(contentRef.current.scrollHeight);
+  }, [children]);
 
   return (
-    <div className={`card ${className}`}>
-      <div className="title" onClick={() => setContentVisible(!contentVisible)}>
+    <div className={`collapse ${className} ${contentVisible ? 'active' : ''}`}>
+      <div className="collapse-title" onClick={() => setContentVisible(!contentVisible)}>
         {title}
-        { children && (
-          <div className={`arrow ${contentVisible ? 'open' : ''}`}>
-            <i className="fas fa-chevron-down" />
-          </div>
-        )}
-      </div>
-      { imgSrc && (
-        <div
-          className="img lazyload"
-          onClick={() => setContentVisible(!contentVisible)}
-          data-bg={imgSrc}
-          ref={wrapperRef}
-        />
-      )}
-      { children && (
-        <div className={`content ${contentVisible ? 'open' : ''}`}>
-          <div className="text">
-            {children}
-          </div>
+
+        <div className="collapse-arrow">
+          <i className="fas fa-chevron-down" />
         </div>
-      )}
+      </div>
+
+      <div
+        className="collapse-content"
+        ref={contentRef}
+        style={{ maxHeight: contentVisible ? contentHeight : 0 }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
@@ -70,17 +48,12 @@ Collapse.propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * Source of the image
-   */
-  imgSrc: PropTypes.string,
-  /**
    * Class of the container
    */
   className: PropTypes.string,
 };
 
 Collapse.defaultProps = {
-  imgSrc: '',
   className: '',
 };
 
