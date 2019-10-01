@@ -42,3 +42,18 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
     toast.error(errorToString(err.response.data.error));
   }
 };
+
+export const joinTeam = (teamId, name) => async (dispatch, getState) => {
+  try {
+    const { user } = getState().login;
+    await API().post(`/teams/${teamId}/request`);
+    toast.success(`Votre demande pour rejoindre ${name} a bien été prise en compte`);
+    dispatch({
+      type: 'login/SET_USER',
+      payload: { ...user, askingTeamId: teamId },
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};

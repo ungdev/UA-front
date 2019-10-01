@@ -17,7 +17,7 @@ export default (state = initialState, action) => {
         ...state,
         tournaments: {
           ...state.tournaments,
-          [action.payload.id]: action.payload,
+          [action.payload.id]: action.payload.teams,
         },
       };
     default:
@@ -30,7 +30,7 @@ export const fetchTournamentTeam = (id) => async (dispatch) => {
     const res = await API().get(`/tournaments/${id}/teams`);
     dispatch({
       type: SET_TOURNAMENT_TEAM,
-      payload: res.data,
+      payload: { teams: res.data, id },
     });
   }
   catch (err) {
