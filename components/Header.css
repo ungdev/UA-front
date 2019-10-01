@@ -18,7 +18,7 @@
 }
 
 #header .home-title p {
-  font-family: 'LemonMilk';
+  font-family: 'LemonMilk', sans-serif;
   text-align: center;
   color: white;
   transform: skew(-15deg);
