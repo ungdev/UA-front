@@ -18,10 +18,11 @@ const Wrapper = ({ Component }) => {
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
   const isLoggedin = useSelector((state) => !!state.login.user);
   const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
+
   // Handle redirections
   let redirect = null;
 
-  if (isDashboard && process.env.DASHBOARD_AVAILABLE === 'false') {
+  if (isDashboard && process.env.DASHBOARD_AVAILABLE !== 'true') {
     redirect = '/';
   }
   else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {

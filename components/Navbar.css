@@ -59,10 +59,10 @@
   overflow: hidden;
 }
 
-#navbar .logout {
-  color: #ffffff;
+#navbar .logged .logout {
+  color: #fff;
   cursor: pointer;
-
+  text-decoration: underline;
 }
 
 #navbar .dashboard-button {

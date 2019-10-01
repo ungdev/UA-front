@@ -42,7 +42,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isLoggedin }) => {
+const Navbar = ({ isLoggedin, hasTeam }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -52,6 +52,8 @@ const Navbar = ({ isLoggedin }) => {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
+
+  const dashboardUrl = `/dashboard/${hasTeam ? 'team' : 'register'}`;
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -77,16 +79,26 @@ const Navbar = ({ isLoggedin }) => {
 
   // Connexion/Dashboard buttons
   const connexionButton = <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>Connexion</Button>;
+
   const isLoggedLayout = (
-  <div className="logged">
-    <p className="logged-info">
-      <span className="logged-username">
-        {username}
-      </span>
-      <a className="logout" onClick={() => dispatch(logout)}>Deconnexion</a>
-    </p>
-    <Button primary className="dashboard-button" onClick={() => router.push('/dashboard')}>Dashboard</Button>
-  </div>);
+    <div className="logged">
+      <p className="logged-info">
+        <span className="logged-username">
+          {username}
+        </span>
+
+        <a
+          tabIndex="0"
+          className="logout"
+          onClick={() => dispatch(logout)}
+        >
+          Déconnexion
+        </a>
+      </p>
+      <Button primary className="dashboard-button" onClick={() => router.push(dashboardUrl)}>Dashboard</Button>
+    </div>
+  );
+
   return (
     <div id="navbar" className={mobileMenuVisible ? 'active' : ''}>
       <div className="navbar-hamburger" onClick={() => setMobileMenuVisible(!mobileMenuVisible)}>
@@ -181,7 +193,18 @@ const Navbar = ({ isLoggedin }) => {
 };
 
 Navbar.propTypes = {
+  /**
+   * Is the user logged in ?
+   */
   isLoggedin: PropTypes.bool.isRequired,
+  /**
+   * Has the user a team ?
+   */
+  hasTeam: PropTypes.bool,
+};
+
+Navbar.defaultProps = {
+  hasTeam: false,
 };
 
 export default Navbar;
