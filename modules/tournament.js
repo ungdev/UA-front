@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
 
 export const fetchTournamentTeam = (id) => async (dispatch) => {
   try {
-    const res = await API().get(`/tournaments/${id}/teams`);
+    const res = await API().get(`tournaments/${id}/teams?notFull=true`);
     dispatch({
       type: SET_TOURNAMENT_TEAM,
       payload: { teams: res.data, id },

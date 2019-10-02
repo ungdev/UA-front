@@ -22,7 +22,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
   try {
-    await API().post('user', user);
+    await API().post('users', user);
     toast.success('Inscription réussie');
     dispatch(setLoginModalVisible(false));
     return true;

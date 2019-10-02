@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
 export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   try {
     const { user } = getState().login;
-    const res = await API().post('/teams', bodyTeam);
+    const res = await API().post('teams', bodyTeam);
     toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
     dispatch({
       type: SET_TEAM,
