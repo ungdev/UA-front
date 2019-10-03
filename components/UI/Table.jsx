@@ -6,9 +6,9 @@ import './Table.css';
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className }) => (
+const Table = ({ columns, dataSource, className, alignRight, classNameTable }) => (
   <div className={`table ${className}`}>
-    <table>
+    <table className={classNameTable}>
       <thead>
         <tr className="table-header">
           {columns.map((column) => (
@@ -22,9 +22,10 @@ const Table = ({ columns, dataSource, className }) => (
       <tbody>
         {dataSource.map((row, i) => (
           <tr key={`${row.key}-${i}`}>
-            {columns.map((column, j) => (
-              <td key={`${row[column.key]}-${i}${j}`}>{row[column.key]}</td>
-            ))}
+            {columns.map((column, j) => {
+              const lastColumn = (j+1) === columns.length && alignRight;
+              return (<td key={`${row[column.key]}-${i}${j}`} className={lastColumn ? 'align-right' : ''}>{row[column.key]}</td>);
+            })}
           </tr>
         ))}
       </tbody>
@@ -48,10 +49,20 @@ Table.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Class of the table
+   */
+  classNameTable: PropTypes.string,
+  /**
+   * Align the last column to the right
+   */
+  alignRight: PropTypes.bool,
 };
 
 Table.defaultProps = {
   className: '',
+  classNameTable: '',
+  alignRight: false,
 };
 
 export default Table;

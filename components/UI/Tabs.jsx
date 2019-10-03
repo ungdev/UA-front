@@ -12,7 +12,10 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
   const tabsNav = tabs.map((tab, i) => (
     <button
       className={`tab-nav ${index === i ? 'active' : ''}`}
-      onClick={() => setIndex(i)}
+      onClick={() => {
+        tab.onClick(i);
+        setIndex(i);
+      }}
       key={tab.title}
     >
       {tab.title}
@@ -49,6 +52,7 @@ Tabs.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       content: PropTypes.node.isRequired,
+      onClick: PropTypes.func,
     }),
   ).isRequired,
   /**
