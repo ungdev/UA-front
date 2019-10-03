@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Input, Select, Button, Title, Tabs, Table } from '../../components/UI';
-import { createTeam, joinTeam } from '../../modules/team';
+import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournamentTeam } from '../../modules/tournament';
 
 import dashboard from '../../assets/dashboard';
@@ -10,10 +10,10 @@ import './register.css';
 
 //a récupérer de l'API ???
 const tournamentsList = [
-  { label: 'League of Legends (Pro)', value: '1' },
-  { label: 'League of Legends (Amateur)', value: '2' },
-  { label: 'Fornite', value: '3' },
-  { label: 'Counter Strike: GO', value: '4' },
+  { label: 'League of Legends (Pro)', value: '1', shortName: 'LoL (Pro)' },
+  { label: 'League of Legends (Amateur)', value: '2', shortName: 'LoL (Amateur)' },
+  { label: 'Fortnite', value: '3', shortName: 'Fortnite' },
+  { label: 'Counter Strike: GO', value: '4', shortName: 'CS:GO' },
 ];
 
 const tournamentsSolo = [
@@ -54,14 +54,14 @@ const Register = () => {
         team: askingTeamId === id ? `${name} (demande en attente)` : name,
         players,
         action: askingTeamId === id ?
-        <Button onClick={() => {/*TODO*/}}>Annuler</Button> :
+        <Button onClick={() => dispatch(cancelJoin(id, name))}>Annuler</Button> :
         <Button primary onClick={() => dispatch(joinTeam(id, name))}>Rejoindre</Button> };
     });
     return <Table columns={columns} dataSource={dataSource} alignRight classNameTable='table-join'/>;
   };
 
-  const tabs = tournamentsList.map(({ label, value }) => ({
-    title: label,
+  const tabs = tournamentsList.map(({ shortName, value }) => ({
+    title: shortName,
     content: formatTeams(value),
     onClick: fetchTeams,
   }));

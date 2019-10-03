@@ -57,3 +57,19 @@ export const joinTeam = (teamId, name) => async (dispatch, getState) => {
     toast.error(errorToString(err.response.data.error));
   }
 };
+
+
+export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
+  try {
+    const { user } = getState().login;
+    await API().delete(`/teams/${teamId}/request`, { data: { user: user.id } });
+    toast.success(`Votre demande pour rejoindre ${name} a été annulé`);
+    dispatch({
+      type: 'login/SET_USER',
+      payload: { ...user, askingTeamId: null },
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};
