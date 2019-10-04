@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchTeam, setCaptain, acceptUser, kickUser } from '../../modules/team';
-import { Title, Table, Button } from '../../components/UI';
+import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser } from '../../modules/team';
+import { Title, Table, Button, Modal } from '../../components/UI';
 
 import './team.css';
 
@@ -13,8 +13,10 @@ const columns = [
   { title: '', key: 'action' },
 ];
 
+const initialModal = { onOk: () => {}, visible: false, content: '' };
+
 const Team = () => {
-  const [confirm, setConfirm] = useState({ id: '', statut: false });
+  const [modal, setModal] = useState(initialModal);
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
@@ -24,25 +26,31 @@ const Team = () => {
     if (userTeam && userTeam.id) {
       dispatch(fetchTeam(userTeam.id));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTeam]);
   const players = team && team.users.map((user) => {
-    const needConfirm = confirm.id === user.id && confirm.statut;
     return ({
       username: user.id === team.captainId ? `${user.username} 🜲`: user.username,
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
       action: user.id !== team.captainId && isCaptain ? (<>
-        <Button onClick={() => dispatch(setCaptain(user.id, team.id))}>Designer comme chef</Button>
-        <Button onClick={() => {
-          if (!confirm.statut) {
-            setConfirm({ id: user.id, statut: true });
-          }
-          else if (needConfirm) {
+        <Button onClick={() => setModal({
+          visible: true,
+          onOk: () => {
+            dispatch(setCaptain(user.id, team.id));
+            setModal(initialModal);
+          },
+          content: 'Confirmez le nouveau chef d\'équipe',
+        })}>Designer comme chef</Button>
+        <Button onClick={() => setModal({
+          visible: true,
+          onOk: () => {
             dispatch(kickUser(user, team.id));
-          }
-          }}
-          primary={needConfirm ? true : false}
-        >{ needConfirm ? 'Confirmer?' : 'Exclure'}</Button>
+            setModal(initialModal);
+          },
+          content: 'Confirmez l\'exclusion du joueur',
+        })}
+        >Exclure</Button>
       </>) : '',
     });
   });
@@ -52,7 +60,14 @@ const Team = () => {
     email: user.email,
     action: user.id !== team.captainId && isCaptain ? (<>
       <Button onClick={() => dispatch(acceptUser(user, team.id))} primary>Accepter</Button>
-      <Button>Refuser</Button>
+      <Button onClick={() => setModal({
+        visible: true,
+        onOk: () => {
+          dispatch(refuseUser(user, team.id));
+          setModal(initialModal);
+        },
+        content: 'Confirmez le refus du joueur',
+      })}>Refuser</Button>
     </>) : '',
   }));
   return (
@@ -65,7 +80,11 @@ const Team = () => {
           <Table columns={columns} dataSource={players} alignRight classNameTable="table-players"/>
           <Title level={4}>Joueurs en attente</Title>
           <Table columns={columns} dataSource={playersWaiting} alignRight classNameTable="table-players"/>
-
+          <Modal
+            onOk={modal.onOk}
+            onCancel={() => setModal({ ...initialModal, visible: false })}
+            visible={modal.visible}
+          >{modal.content}</Modal>
         </>
       )}
     </div>
