@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchTeam, setCaptain, acceptUser } from '../../modules/team';
+import { fetchTeam, setCaptain, acceptUser, kickUser } from '../../modules/team';
 import { Title, Table, Button } from '../../components/UI';
 
 import './team.css';
@@ -14,6 +14,7 @@ const columns = [
 ];
 
 const Team = () => {
+  const [confirm, setConfirm] = useState({ id: '', statut: false });
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
@@ -24,15 +25,27 @@ const Team = () => {
       dispatch(fetchTeam(userTeam.id));
     }
   }, [userTeam]);
-  const players = team && team.users.map(({ username, firstname, lastname, id, email }) => ({
-    username: id === team.captainId ? `${username} 🜲`: username,
-    fullname: `${firstname} ${lastname}`,
-    email,
-    action: id !== team.captainId && isCaptain ? (<>
-      <Button onClick={() => dispatch(setCaptain(id, team.id))}>Designer comme chef</Button>
-      <Button>Exclure</Button>
-    </>) : '',
-  }));
+  const players = team && team.users.map((user) => {
+    const needConfirm = confirm.id === user.id && confirm.statut;
+    return ({
+      username: user.id === team.captainId ? `${user.username} 🜲`: user.username,
+      fullname: `${user.firstname} ${user.lastname}`,
+      email: user.email,
+      action: user.id !== team.captainId && isCaptain ? (<>
+        <Button onClick={() => dispatch(setCaptain(user.id, team.id))}>Designer comme chef</Button>
+        <Button onClick={() => {
+          if (!confirm.statut) {
+            setConfirm({ id: user.id, statut: true });
+          }
+          else if (needConfirm) {
+            dispatch(kickUser(user, team.id));
+          }
+          }}
+          primary={needConfirm ? true : false}
+        >{ needConfirm ? 'Confirmer?' : 'Exclure'}</Button>
+      </>) : '',
+    });
+  });
   const playersWaiting = team && team.askingUsers.map((user) => ({
     username: user.username,
     fullname: `${user.firstname} ${user.lastname}`,

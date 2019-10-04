@@ -115,4 +115,19 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
   catch (err) {
     toast.error(errorToString(err.response.data.error));
   }
-}
+};
+
+export const kickUser = (user, teamId) => async (dispatch, getState) => {
+  try {
+    const team = getState().team.team;
+    await API().delete(`teams/${teamId}/users/${user.id}`);
+    team.users = team.users.filter(({ id }) => id !== user.id);
+    dispatch({
+      type: SET_TEAM,
+      payload: team,
+    });
+  }
+  catch (err) {
+      toast.error(errorToString(err.response.data.error));
+  }
+};
