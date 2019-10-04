@@ -58,6 +58,19 @@ export const joinTeam = (teamId, name) => async (dispatch, getState) => {
   }
 };
 
+export const fetchTeam = (id) => async (dispatch) => {
+  try {
+    const res = await API().get(`teams/${id}`);
+    dispatch({
+      type: SET_TEAM,
+      payload: res.data,
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};
+
 
 export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
   try {
@@ -73,3 +86,33 @@ export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
     toast.error(errorToString(err.response.data.error));
   }
 };
+
+export const setCaptain = (id, teamId) => async (dispatch, getState) => {
+  try {
+    const team = getState().team.team;
+    await API().put(`teams/${teamId}`, { captainId: id });
+    dispatch({
+      type: SET_TEAM,
+      payload: { ...team, captainId: id },
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};
+
+export const acceptUser = (user, teamId) => async (dispatch, getState) => {
+  try {
+    const team = getState().team.team;
+    await API().post(`teams/${teamId}/users`, { user: user.id });
+    team.users.push(user);
+    team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
+    dispatch({
+      type: SET_TEAM,
+      payload: team,
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+}
