@@ -1,3 +1,12 @@
 #dashboard-team .table-players {
   width: 100%;
 }
+
+#dashboard-team .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#dashboard-team .players-list {
+  padding: 16px 0;
+}
