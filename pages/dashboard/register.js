@@ -68,24 +68,30 @@ const Register = () => {
 
   const mainPanel = (
     <>
-      <div className="create-team">
-        {dashboard.register.create.info}
-        <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament} />
-        <Input label="Nom d'équipe" value={name} onChange={setName} />
-        <Button onClick={() => dispatch(createTeam({ name, tournament }))} primary>
-          Créer mon équipe <i className="fas fa-plus" />
-        </Button>
-        {dashboard.register.create.discord}
-      </div>
-      <div className="join-team">
-        {dashboard.register.join}
-        <Button
-          onClick={() => {
-            fetchTeams(0);
-            setPanel('join');
-          }}
-          primary
-        >Rejoindre une équipe <i className="fas fa-users" /></Button>
+      <div className="team-tournament">
+        <div className="create-team">
+          {dashboard.register.create.info}
+          <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament} />
+          <Input label="Nom d'équipe" value={name} onChange={setName} />
+          <Button className="center" onClick={() => dispatch(createTeam({ name, tournament }))} primary>
+            Créer mon équipe <i className="fas fa-plus" />
+          </Button>
+          {dashboard.register.create.discord}
+        </div>
+        <div className="join-team">
+          {dashboard.register.join.info}
+          <Button
+            className="center"
+            onClick={() => {
+              fetchTeams(0);
+              setPanel('join');
+            }}
+            primary
+          >
+            Rejoindre une équipe <i className="fas fa-users" />
+          </Button>
+          {dashboard.register.join.discord}
+        </div>
       </div>
       <div className="create-solo-team">
         {dashboard.register.solo}
@@ -99,7 +105,7 @@ const Register = () => {
 
   const joinPanel = (
     <>
-      <Title level={3}><i className="fas fa-arrow-left" onClick={() => setPanel('main')}/> Rejoindre une équipe</Title>
+      <Title level={3}><i className="fas fa-arrow-left pointer" onClick={() => setPanel('main')}/> Rejoindre une équipe</Title>
       <Tabs tabs={tabs}/>
     </>
   );

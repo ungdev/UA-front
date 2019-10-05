@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
       };
     default:
       return state;
@@ -39,7 +39,7 @@ export const autoLogin = () => async (dispatch) => {
     const res = await API().get(`users/${userId}`);
     dispatch({
       type: SET_USER,
-      payload: res.data,
+      user: res.data,
     });
   }
 };
@@ -51,7 +51,7 @@ export const tryLogin = (user) => async (dispatch) => {
     localStorage.setItem('utt-arena-userid', res.data.user.id);
     dispatch({
       type: SET_USER,
-      payload: res.data.user,
+      user: res.data.user,
     });
     dispatch(setLoginModalVisible(false));
     Router.push('/dashboard');
@@ -65,7 +65,7 @@ export const tryLogin = (user) => async (dispatch) => {
 export const saveToken = (token) => (dispatch) => {
   dispatch({
     type: SET_TOKEN,
-    payload: token,
+    token,
   });
   setTokenAPI(token);
   localStorage.setItem('utt-arena-token', token);
@@ -73,8 +73,8 @@ export const saveToken = (token) => (dispatch) => {
 
 export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
-  dispatch({ type: SET_TOKEN, payload: null });
-  dispatch({ type: SET_USER, payload: null });
+  dispatch({ type: SET_TOKEN, token: null });
+  dispatch({ type: SET_USER, user: null });
   setTokenAPI('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
