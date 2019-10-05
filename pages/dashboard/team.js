@@ -33,7 +33,7 @@ const Team = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTeam]);
 
-  const players = team && team.users.map((user) => {
+  const players = !isSolo && team && team.users.map((user) => {
     return ({
       username: user.id === team.captainId ? `${user.username} 🜲`: user.username,
       fullname: `${user.firstname} ${user.lastname}`,
@@ -70,7 +70,7 @@ const Team = () => {
     });
   });
 
-  const playersWaiting = team && team.askingUsers.map((user) => ({
+  const playersWaiting = !isSolo && team && team.askingUsers.map((user) => ({
     username: user.username,
     fullname: `${user.firstname} ${user.lastname}`,
     email: user.email,

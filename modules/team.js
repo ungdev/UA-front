@@ -6,6 +6,7 @@ import errorToString from '../utils/errorToString';
 
 
 export const SET_TEAM = 'team/SET_TEAM';
+export const SET_USER = 'login/SET_USER';
 
 const initialState = {
   team: null,
@@ -16,7 +17,7 @@ export default (state = initialState, action) => {
     case SET_TEAM:
       return {
         ...state,
-        team: action.payload,
+        team: action.team,
       };
     default:
       return state;
@@ -35,11 +36,11 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
     }
     dispatch({
       type: SET_TEAM,
-      payload: res.data,
+      team: res.data,
     });
     dispatch({
-      type: 'login/SET_USER',
-      payload: { ...user, team: { id: res.data.id } },
+      type: SET_USER,
+      user: { ...user, team: res.data.id },
     });
     Router.push('/dashboard');
   }
@@ -54,8 +55,8 @@ export const joinTeam = (teamId, name) => async (dispatch, getState) => {
     await API().post(`/teams/${teamId}/request`);
     toast.success(`Votre demande pour rejoindre ${name} a bien été prise en compte`);
     dispatch({
-      type: 'login/SET_USER',
-      payload: { ...user, askingTeamId: teamId },
+      type: SET_USER,
+      user: { ...user, askingTeamId: teamId },
     });
   }
   catch (err) {
@@ -68,7 +69,7 @@ export const fetchTeam = (id) => async (dispatch) => {
     const res = await API().get(`teams/${id}`);
     dispatch({
       type: SET_TEAM,
-      payload: res.data,
+      team: res.data,
     });
   }
   catch (err) {
@@ -83,8 +84,8 @@ export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
     await API().delete(`/teams/${teamId}/request`, { data: { user: user.id } });
     toast.success(`Votre demande pour rejoindre ${name} a été annulé`);
     dispatch({
-      type: 'login/SET_USER',
-      payload: { ...user, askingTeamId: null },
+      type: SET_USER,
+      user: { ...user, askingTeamId: null },
     });
   }
   catch (err) {
@@ -98,7 +99,7 @@ export const setCaptain = (id, teamId) => async (dispatch, getState) => {
     await API().put(`teams/${teamId}`, { captainId: id });
     dispatch({
       type: SET_TEAM,
-      payload: { ...team, captainId: id },
+      team: { ...team, captainId: id },
     });
   }
   catch (err) {
@@ -114,7 +115,7 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
     team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
     dispatch({
       type: SET_TEAM,
-      payload: team,
+      team,
     });
   }
   catch (err) {
@@ -129,12 +130,12 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
     await API().delete(`teams/${teamId}/users/${userId}`);
     if (user.id === userId) {
       dispatch({
-        type: 'login/SET_USER',
-        payload: { ...user, team: null },
+        type: SET_USER,
+        user: { ...user, team: null },
       });
       dispatch({
         type: SET_TEAM,
-        payload: null,
+        team: null,
       });
       Router.push('/dashboard');
     }
@@ -142,7 +143,7 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
       team.users = team.users.filter(({ id }) => id !== userId);
       dispatch({
         type: SET_TEAM,
-        payload: team,
+        team,
       });
     }
   }
@@ -158,7 +159,7 @@ export const refuseUser = (user, teamId) => async (dispatch, getState) => {
     team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
     dispatch({
       type: SET_TEAM,
-      payload: team,
+      team,
     });
   }
   catch (err) {
@@ -171,12 +172,12 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
     const user = getState().login.user;
     await API().delete(`teams/${teamId}`);
     dispatch({
-      type: 'login/SET_USER',
-      payload: { ...user, team: null },
+      type: SET_USER,
+      user: { ...user, team: null },
     });
     dispatch({
       type: SET_TEAM,
-      payload: null,
+      team: null,
     });
     Router.push('/dashboard');
   }
