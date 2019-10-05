@@ -34,7 +34,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
     });
     dispatch({
       type: 'login/SET_USER',
-      payload: { ...user, teamId: res.data.id },
+      payload: { ...user, team: { id: res.data.id } },
     });
     Router.push('/dashboard');
   }
@@ -117,18 +117,32 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
   }
 };
 
-export const kickUser = (user, teamId) => async (dispatch, getState) => {
+export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   try {
     const team = getState().team.team;
-    await API().delete(`teams/${teamId}/users/${user.id}`);
-    team.users = team.users.filter(({ id }) => id !== user.id);
-    dispatch({
-      type: SET_TEAM,
-      payload: team,
-    });
+    const user = getState().login.user;
+    await API().delete(`teams/${teamId}/users/${userId}`);
+    if (user.id === userId) {
+      dispatch({
+        type: 'login/SET_USER',
+        payload: { ...user, team: null },
+      });
+      dispatch({
+        type: SET_TEAM,
+        payload: null,
+      });
+      Router.push('/dashboard');
+    }
+    else {
+      team.users = team.users.filter(({ id }) => id !== userId);
+      dispatch({
+        type: SET_TEAM,
+        payload: team,
+      });
+    }
   }
   catch (err) {
-      toast.error(errorToString(err.response.data.error));
+    toast.error(errorToString(err.response.data.error));
   }
 };
 
@@ -143,6 +157,25 @@ export const refuseUser = (user, teamId) => async (dispatch, getState) => {
     });
   }
   catch (err) {
-      toast.error(errorToString(err.response.data.error));
+    toast.error(errorToString(err.response.data.error));
+  }
+};
+
+export const deleteTeam = (teamId) => async (dispatch, getState) => {
+  try {
+    const user = getState().login.user;
+    await API().delete(`teams/${teamId}`);
+    dispatch({
+      type: 'login/SET_USER',
+      payload: { ...user, team: null },
+    });
+    dispatch({
+      type: SET_TEAM,
+      payload: null,
+    });
+    Router.push('/dashboard');
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
   }
 };
