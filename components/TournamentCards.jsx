@@ -12,26 +12,21 @@ const tournamentCards = () => (
 
     <div className="tournaments-list">
       { tournamentCardsText.list.map(({ title, cashprize, players, img, link }) => (
-        <div className="tournament" key={title}>
-          <Card
-            dark
-            content={(
-              <>
-                <div className="tournament-title">{title}</div>
-                <p><strong>Places :</strong> {players} joueurs</p>
-                <p><strong>Cashprize :</strong> {cashprize}</p>
-              </>
-            )}
-            imgSrc={img}
-            href={link}
-            buttonContent={(
-              <>
-                Plus d'infos
-                <i className="fas fa-chevron-right right-arrow" />
-              </>
-            )}
-          />
-        </div>
+        <Card
+          dark
+          content={(
+            <>
+              <div className="tournament-title">{title}</div>
+              <p><strong>Places :</strong> {players} joueurs</p>
+              <p><strong>Cashprize :</strong> {cashprize}</p>
+            </>
+          )}
+          imgSrc={img}
+          href={link}
+          buttonContent={<>Plus d'infos <i className="fas fa-chevron-right right-arrow" /></>}
+          className="tournament-card"
+          key={title}
+        />
       ))}
     </div>
   </div>

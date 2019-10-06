@@ -52,7 +52,7 @@ export const autoLogin = () => async (dispatch) => {
 
 export const tryLogin = (user) => async (dispatch) => {
   try {
-    const res = await API().put('user/login', user);
+    const res = await API().post('auth/login', user);
     dispatch(saveToken(res.data.token));
     dispatch({
       type: SET_USER,

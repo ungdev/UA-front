@@ -4,23 +4,23 @@
   flex-wrap: wrap;
 }
 
-.tournament-cards .tournament {
+.tournament-cards .tournament-card {
   width: 45%;
 }
 
-.tournament-cards .card-img {
+.tournament-cards .tournament-card .card-image {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.tournament-cards .tournament .right-arrow {
+.tournament-cards .tournament-card .right-arrow {
   margin-left: 8px;
 }
 
-.tournament-cards .tournament .button {
+.tournament-cards .tournament-card .button {
   margin: 10px 0 10px 0;
 }
 
-.tournament-cards .tournament .tournament-title {
+.tournament-cards .tournament-card .tournament-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   font-size: 1.4em;
@@ -30,7 +30,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .tournament-cards .tournament {
+  .tournament-cards .tournament-card {
     width: 100%;
   }
 }
