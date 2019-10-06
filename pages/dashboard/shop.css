@@ -1,0 +1,9 @@
+#dashboard-shop .shop-table {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+#dashboard-shop .shop-input {
+  max-width: 100px;
+  margin: 5px 0;
+}

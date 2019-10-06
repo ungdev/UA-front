@@ -4,6 +4,7 @@ import login from './login';
 import register from './register';
 import team from './team';
 import tournament from './tournament';
+import items from './items';
 
 export default combineReducers({
   loginModal,
@@ -11,4 +12,5 @@ export default combineReducers({
   register,
   team,
   tournament,
+  items,
 });
