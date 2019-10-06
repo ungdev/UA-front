@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,8 +15,15 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-  const isLoggedin = useSelector((state) => !!state.login.user);
-  const isRegistered = useSelector((state) => state.login.user && !!state.login.user.team) || false;
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  useSelector((state) => {
+    if(isLoggedIn !== !!state.login.user) {
+      setIsLoggedIn(!!state.login.user);
+      setIsRegistered(!!state.login.user.team);
+    }
+  });
 
   // Handle redirections
   let redirect = null;
@@ -24,37 +31,34 @@ const Wrapper = ({ Component }) => {
   if (isDashboard && process.env.DASHBOARD_AVAILABLE !== 'true') {
     redirect = '/';
   }
-  else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+  else if (isLoggedIn && isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-  else if (!isRegistered && isLoggedin && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (isLoggedIn && !isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
+  // Redirect to desired path
   useEffect(() => {
-    // Redirect to desired path
     if (redirect) {
       replace(redirect);
       return;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [redirect]);
-
 
   useEffect(() => {
     dispatch(autoLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Do not display anything if the user will be redirected
-  if (redirect) {
+  if (redirect || (isDashboard && !isLoggedIn)) {
     return null;
   }
 
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedin={isLoggedin} />
+      <Navbar isLoggedIn={isLoggedIn} />
 
       <div className="page-container">
         { !isHome && !isTournament && !isDashboard && <Header /> }
