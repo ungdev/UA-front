@@ -63,10 +63,6 @@
   margin: 30px auto 0 auto;
 }
 
-#home .home-info .info-button i {
-  margin-left: 8px;
-}
-
 #home .home-tournaments {
   margin-bottom: 3em;
 }
@@ -99,10 +95,6 @@
 #home .home-partners .partners-button {
   display: block;
   margin: 30px auto 0 auto;
-}
-
-#home .home-partners .partners-button i {
-  margin-left: 8px;
 }
 
 @media screen and (max-width: 1000px) {

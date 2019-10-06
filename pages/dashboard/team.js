@@ -103,18 +103,25 @@ const Team = () => {
 
   return (
     <div id="dashboard-team">
+      <div className="header">
+        <div className="info">
+          {!isSolo && <Title level={4}>Mon équipe: {team.name}</Title>}
+          <Title level={4}>Tournoi : {team.tournament.name}</Title>
+        </div>
+        <div className="status">
+          <p>Statut : Non payé</p>
+          <Button
+            primary
+            onClick={() => push('/dashboard/shop')}
+            rightIcon="fas fa-shopping-cart"
+          >
+            Payer
+          </Button>
+        </div>
+      </div>
+
       {!isSolo ? (
         <>
-          <div className='header'>
-            <div className='info'>
-              <Title level={4}>Mon équipe: {team.name}</Title>
-              <Title level={4}>Tournoi: {team.tournament.name}</Title>
-            </div>
-            <div className='status'>
-              <p>Statut: Non payé</p>
-              <Button primary onClick={() => push('/dashboard/shop')}>Payer <i className="fas fa-shopping-cart" /></Button>
-            </div>
-          </div>
           <div className="players-list">
             <Title level={4}>Joueurs</Title>
             <Table columns={columns} dataSource={players} alignRight className="table-players"/>
@@ -131,7 +138,7 @@ const Team = () => {
                   dispatch(deleteTeam(team.id));
                   setModal(initialModal);
                 },
-                content: 'Confirmez la dissolution de l\'équipe',
+                content: 'Êtes-vous sûr de vouloir dissoudre l\'équipe ?',
                 title: 'Dissoudre l\'équipe',
               }) :
               setModal({
@@ -140,7 +147,7 @@ const Team = () => {
                   dispatch(kickUser(id, team.id));
                   setModal(initialModal);
                 },
-                content: 'Confirmez pour quitter l\'équipe',
+                content: 'Êtes-vous sûr de vouloir quitter l\'équipe ?',
                 title: 'Quitter l\'équipe',
               })
             }
@@ -150,15 +157,6 @@ const Team = () => {
         </>
       ) : (
         <>
-          <div className='header'>
-            <div className='info'>
-              <Title level={4}>Tournoi: {team.tournament.name}</Title>
-            </div>
-            <div className='status'>
-              <p>Statut: Non payé</p>
-              <Button primary onClick={() => push('/dashboard/shop')}>Payer <i className="fas fa-shopping-cart" /></Button>
-            </div>
-          </div>
           <Button onClick={() =>
             setModal({
               visible: true,
@@ -166,7 +164,7 @@ const Team = () => {
                 dispatch(deleteTeam(team.id));
                 setModal(initialModal);
               },
-              content: 'Quitter le tournoi entraînera la dissolution de l\'équipe',
+              content: 'Êtes-vous sûr de vouloir quitter le tournoi ?',
               title: 'Quitter le tournoi',
             })}
           >
