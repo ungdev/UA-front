@@ -51,9 +51,12 @@ const Home = () => (
         />
 
         <Link href="/information">
-          <Button primary className="info-button">
+          <Button
+            primary
+            className="info-button"
+            rightIcon="fas fa-chevron-right"
+          >
             Toutes les informations
-            <i className="fas fa-chevron-right" />
           </Button>
         </Link>
       </div>
@@ -69,9 +72,12 @@ const Home = () => (
         </div>
 
         <Link href="/partners">
-          <Button primary className="partners-button">
+          <Button
+            primary
+            className="partners-button"
+            rightIcon="fas fa-chevron-right"
+          >
             Tous les partenaires
-            <i className="fas fa-chevron-right" />
           </Button>
         </Link>
       </div>

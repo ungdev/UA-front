@@ -24,7 +24,7 @@ class Error extends React.Component {
         <Title level={2}>Une erreur est survenue...</Title>
         <p>{this.props.statusCode && `Erreur ${this.props.statusCode}`}</p>
 
-        <Link href="/"><Button primary><i className="fas fa-chevron-left" /> Retour à l'accueil</Button></Link>
+        <Link href="/"><Button primary leftIcon="fas fa-chevron-left">Retour à l'accueil</Button></Link>
       </>
     );
   }

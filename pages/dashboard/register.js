@@ -74,22 +74,29 @@ const Register = () => {
           {dashboard.register.create.info}
           <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament} />
           <Input label="Nom d'équipe" value={name} onChange={setName} />
-          <Button className="center" onClick={() => dispatch(createTeam({ name, tournament }))} primary>
-            Créer mon équipe <i className="fas fa-plus" />
+          <Button
+            primary
+            className="center"
+            onClick={() => dispatch(createTeam({ name, tournament }))}
+            rightIcon="fas fa-plus"
+          >
+            Créer mon équipe
           </Button>
           {dashboard.register.create.discord}
         </div>
+
         <div className="join-team">
           {dashboard.register.join.info}
           <Button
+            primary
             className="center"
             onClick={() => {
               fetchTeams(0);
               setPanel('join');
             }}
-            primary
+            rightIcon="fas fa-users"
           >
-            Rejoindre une équipe <i className="fas fa-users" />
+            Rejoindre une équipe
           </Button>
           {dashboard.register.join.discord}
         </div>
@@ -97,8 +104,12 @@ const Register = () => {
       <div className="create-solo-team">
         {dashboard.register.solo}
         <Select label="Tournoi" options={tournamentsSolo} value={tournamentSolo} onChange={setTournamentSolo} />
-        <Button onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))} primary>
-          S'inscrire en solo <i className="fas fa-user" />
+        <Button
+          primary
+          onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))}
+          rightIcon="fas fa-user"
+        >
+          S'inscrire en solo
         </Button>
       </div>
     </>
@@ -106,7 +117,7 @@ const Register = () => {
 
   const joinPanel = (
     <>
-      <Title level={3}><i className="fas fa-arrow-left pointer" onClick={() => setPanel('main')}/> Rejoindre une équipe</Title>
+      <Button onClick={() => setPanel('main')} leftIcon="fas fa-arrow-left">Retour</Button>
       <Tabs tabs={tabs}/>
     </>
   );
