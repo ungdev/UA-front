@@ -29,3 +29,7 @@
   border-bottom: 1px solid #c8c8c8;
   padding: .5em;
 }
+
+.table td.align-right {
+  text-align: right;
+}
