@@ -108,7 +108,7 @@ const Navbar = ({ isLoggedin, hasTeam }) => {
       </div>
 
       <Link href="/">
-        <a className="mobile-link" onClick={() => setMobileMenuVisible(false)}>
+        <a className="mobile-link" arial-label="logo" onClick={() => setMobileMenuVisible(false)}>
           <div className="mobile-logo" />
         </a>
       </Link>

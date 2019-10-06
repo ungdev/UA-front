@@ -1,4 +1,4 @@
-## Modal
+## Modal
 
 Displays a modal window
 

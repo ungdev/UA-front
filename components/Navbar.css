@@ -70,7 +70,7 @@
   width: min-content;
   margin: 0 auto 20px;
   padding: 10px 36px;
-  font-family: 'LemonMilk';
+  font-family: 'LemonMilk', sans-serif;
   font-size: 18px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -81,7 +81,7 @@
   width: min-content;
   margin: 0 auto 40px auto;
   padding: 10px 36px;
-  font-family: 'LemonMilk';
+  font-family: 'LemonMilk', sans-serif;
   font-size: 18px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -96,7 +96,6 @@
   width: calc(100% - 60px);
   padding: 20px 30px;
   color: #fff;
-  font-family: 'Roboto';
   text-transform: uppercase;
   letter-spacing: 1px;
   z-index: 0;

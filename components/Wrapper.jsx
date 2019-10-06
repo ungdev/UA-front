@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { autoLogin } from '../modules/login';
-
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import DashboardHeader from './DashboardHeader';
+import { autoLogin } from '../modules/login';
 
 const Wrapper = ({ Component }) => {
   const { pathname, replace } = useRouter();

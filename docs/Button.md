@@ -1,4 +1,4 @@
-## Button
+## Button
 
 Displays a button that triggers an action when clicked
 
