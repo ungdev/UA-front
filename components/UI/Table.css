@@ -1,8 +1,8 @@
-.table {
+.table-container {
   overflow-x: auto;
 }
 
-.table table {
+.table {
   display: table;
   max-width: 100%;
   table-layout: auto;

@@ -6,9 +6,9 @@ import './Table.css';
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className, alignRight, classNameTable }) => (
-  <div className={`table ${className}`}>
-    <table className={classNameTable}>
+const Table = ({ columns, dataSource, className, alignRight }) => (
+  <div className="table-container">
+    <table className={`table ${className}`}>
       <thead>
         <tr className="table-header">
           {columns.map((column) => (
@@ -46,13 +46,9 @@ Table.propTypes = {
    */
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * Class of the container
-   */
-  className: PropTypes.string,
-  /**
    * Class of the table
    */
-  classNameTable: PropTypes.string,
+  className: PropTypes.string,
   /**
    * Align the last column to the right
    */
@@ -61,7 +57,6 @@ Table.propTypes = {
 
 Table.defaultProps = {
   className: '',
-  classNameTable: '',
   alignRight: false,
 };
 
