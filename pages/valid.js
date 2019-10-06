@@ -10,7 +10,6 @@ const Valid = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(validate(slug));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

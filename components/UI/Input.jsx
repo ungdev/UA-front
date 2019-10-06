@@ -41,11 +41,14 @@ Input.propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /**
    * Value of the input
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   /**
    * Function called when the value change,
    * the new value is passed as parameter
@@ -71,6 +74,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   type: 'text',
+  label: '',
   value: '',
   min: undefined,
   max: undefined,

@@ -53,11 +53,12 @@ const Register = () => {
       return {
         team: askingTeamId === id ? `${name} (demande en attente)` : name,
         players,
-        action: askingTeamId === id ?
-        <Button onClick={() => dispatch(cancelJoin(id, name))}>Annuler</Button> :
-        <Button primary onClick={() => dispatch(joinTeam(id, name))}>Rejoindre</Button> };
+        action: askingTeamId === id
+          ? <Button onClick={() => dispatch(cancelJoin(id, name))}>Annuler</Button>
+          : <Button primary onClick={() => dispatch(joinTeam(id, name))}>Rejoindre</Button>,
+        };
     });
-    return <Table columns={columns} dataSource={dataSource} alignRight classNameTable='table-join'/>;
+    return <Table columns={columns} dataSource={dataSource} alignRight className="table-join" />;
   };
 
   const tabs = tournamentsList.map(({ shortName, value }) => ({

@@ -30,7 +30,6 @@ const Team = () => {
     if (userTeam && userTeam.id) {
       dispatch(fetchTeam(userTeam.id));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userTeam]);
 
   const players = !isSolo && team && team.users.map((user) => {
@@ -118,11 +117,11 @@ const Team = () => {
           </div>
           <div className="players-list">
             <Title level={4}>Joueurs</Title>
-            <Table columns={columns} dataSource={players} alignRight classNameTable="table-players"/>
+            <Table columns={columns} dataSource={players} alignRight className="table-players"/>
           </div>
           <div className="players-list">
             <Title level={4}>Joueurs en attente</Title>
-            <Table columns={columns} dataSource={playersWaiting} alignRight classNameTable="table-players"/>
+            <Table columns={columns} dataSource={playersWaiting} alignRight className="table-players"/>
           </div>
           <Button
             onClick={() => isCaptain ?
