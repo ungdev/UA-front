@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import 'lazysizes';
-import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import './Collapse.css';
 

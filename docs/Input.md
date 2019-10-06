@@ -1,4 +1,4 @@
-## Input
+## Input
 
 Displays an input
 
