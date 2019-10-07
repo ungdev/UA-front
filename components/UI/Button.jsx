@@ -6,13 +6,15 @@ import './Button.css';
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = ({ className, primary, onClick, children, type }) => (
+const Button = ({ className, primary, onClick, children, type, leftIcon, rightIcon }) => (
   <button
     type={type}
     className={`button ${className} ${primary ? 'primary' : ''}`}
     onClick={onClick}
   >
+    {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
     {children}
+    {rightIcon && <i className={`button-icon-right ${rightIcon}`} />}
   </button>
 );
 
@@ -37,6 +39,14 @@ Button.propTypes = {
    * Type button
    */
   type: PropTypes.string,
+  /**
+   * Left icon class name
+   */
+  leftIcon: PropTypes.string,
+  /**
+   * Right icon class name
+   */
+  rightIcon: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -44,6 +54,8 @@ Button.defaultProps = {
   onClick: () => {},
   className: '',
   type: 'button',
+  leftIcon: '',
+  rightIcon: '',
 };
 
 export default Button;

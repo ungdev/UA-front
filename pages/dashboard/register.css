@@ -2,17 +2,13 @@
   width: 100%;
 }
 
-#dashboard-register .pointer {
-  cursor: pointer;
-}
-
 #dashboard-register .team-tournament {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
-#dashboard-register .team-tournament>div {
+#dashboard-register .team-tournament > div {
   width: 45%;
 }
 
@@ -22,7 +18,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  #dashboard-register .team-tournament>div {
+  #dashboard-register .team-tournament > div {
     width: 100%;
   }
 }

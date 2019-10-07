@@ -21,3 +21,11 @@
 .button:hover {
   filter: brightness(0.85);
 }
+
+.button .button-icon-left {
+  margin-right: 8px;
+}
+
+.button .button-icon-right {
+  margin-left: 8px;
+}
