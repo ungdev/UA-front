@@ -18,7 +18,7 @@ const payment = () => {
           toast.error('La transcation a échoué');
           break;
         case 'NO_PAYLOAD':
-          toast.error('Mauvaise requete');
+          toast.error('Requête erronée');
           break;
         default:
           break;
