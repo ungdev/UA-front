@@ -80,13 +80,13 @@ export const logout = async (dispatch) => {
   Router.push('/');
 };
 
-export const editUser = (data, userId) => async (dispatch) => {
+export const editUser = (data, email, userId) => async (dispatch) => {
   try {
     const res = await API().put(`/users/${userId}`, data);
     toast.success('Vos informations ont été modifiées');
     dispatch({
       type: SET_USER,
-      user: res.data,
+      user: { ...res.data, email },
     });
   }
   catch (err) {

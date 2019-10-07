@@ -37,7 +37,12 @@ const Account = () => {
         data.password = password;
       }
 
-      dispatch(editUser(data, user.id));
+      dispatch(editUser(data, user.email, user.id));
+
+      // Reset password fields
+      setOldpassword('');
+      setPassword('');
+      setConfirmPassword('');
     }
     else {
       toast.error('Les mots de passe ne correspondent pas');
