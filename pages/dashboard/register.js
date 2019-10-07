@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Input, Select, Button, Title, Tabs, Table } from '../../components/UI';
+import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournamentTeam } from '../../modules/tournament';
 
