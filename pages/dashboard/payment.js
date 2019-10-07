@@ -14,7 +14,7 @@ const payment = () => {
         case 'CART_NOT_FOUND':
           toast.error('Panier introuvable');
           break;
-        case 'TRANSCATION_ERROR':
+        case 'TRANSACTION_ERROR':
           toast.error('La transaction a échoué');
           break;
         case 'NO_PAYLOAD':
