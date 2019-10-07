@@ -24,6 +24,8 @@ const Wrapper = ({ Component }) => {
       setIsRegistered(!!state.login.user.team);
     }
   });
+  const isLoading = useSelector((state) => state.login.loading);
+
 
   // Handle redirections
   let redirect = null;
@@ -40,15 +42,16 @@ const Wrapper = ({ Component }) => {
 
   // Redirect to desired path
   useEffect(() => {
-    if (redirect) {
+    if (redirect && !isLoading) {
       replace(redirect);
       return;
     }
-  }, [redirect]);
+  }, [redirect, isLoading]);
 
   useEffect(() => {
     dispatch(autoLogin());
   }, []);
+  if(isLoading) return null;
 
   // Do not display anything if the user will be redirected
   if (redirect || (isDashboard && !isLoggedIn)) {
