@@ -7,7 +7,7 @@ const payment = () => {
   const { query, push } = useRouter();
   useEffect(() => {
     if (query.type === 'success') {
-      toast.success('Paiement effectué avec succèes');
+      toast.success('Paiement effectué avec succès');
     }
     else if (query.type === 'error') {
       switch (query.error) {
