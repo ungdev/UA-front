@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchItems } from '../../modules/items';
+import { fetchDraftCart, deleteCartItem, updateCartItem, createCartItem, cartPay } from '../../modules/cart';
 import { Table, Input, Button, Title } from '../../components/UI';
 
 import './shop.css';
@@ -39,13 +40,13 @@ const itemColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
-  const [cart, setCart] = useState({});
-
+  const { cart, cartItems } = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(fetchItems());
+    dispatch(fetchDraftCart());
   }, []);
 
-  if(!items) {
+  if(!items || !cart || !cartItems) {
     return null;
   }
 
@@ -59,14 +60,28 @@ const Shop = () => {
 
   // Get item rows
   const itemRows = items.slice(2).map((item) => {
+    const quantity = cartItems[item.key] && cartItems[item.key].quantity;
     return {
       name: item.name,
       price: `${item.price}€`,
       quantity: (
         <Input
           type="number"
-          value={cart[item.key] || 0}
-          onChange={(quantity) => setCart({ ...cart, [item.key]: quantity })}
+          value={quantity || 0}
+          onChange={(strQuantity) => {
+            const quantity = parseInt(strQuantity, 10);
+            if (Number.isInteger(quantity)) {
+              if (quantity === 0) {
+                dispatch(deleteCartItem(cart.id, cartItems[item.key], item.key));
+              }
+              else if (cartItems[item.key]) {
+                dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity));
+              }
+              else {
+                dispatch(createCartItem(cart.id, item, quantity));
+              }
+            }
+          }}
           min={0}
           className="shop-input"
         />
@@ -75,10 +90,10 @@ const Shop = () => {
   });
 
   // Compute total price
-  let totalPrice = 0;
-  items.forEach((item) => {
-    totalPrice += cart[item.key] ? cart[item.key] * item.price : 0;
-  });
+  const totalPrice = Object.values(cartItems).reduce(
+    (previousValue, cartItem) => previousValue += cartItem.quantity * cartItem.item.price
+    , 0);
+
 
   return (
     <div id="dashboard-shop">
@@ -94,6 +109,7 @@ const Shop = () => {
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
+          onClick={() => dispatch(cartPay(cart.id))}
         >
           Payer
         </Button>
