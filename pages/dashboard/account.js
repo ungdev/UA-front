@@ -2,28 +2,44 @@ import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Input, Button } from '../../components/UI';
+import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
+import { API } from '../../utils';
 
 import './account.css';
 
 const Account = () => {
+  const sendTicket = async () => {
+    await API().get('/user/ticket');
+    toast.success('Ton billet a été envoyé par mail');
+  };
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
 
-  const [firstname,setFirstname] = useState(user.firstname);
-  const [lastname,setLastname] = useState(user.lastname);
-  const [username,setUsername] = useState(user.username);
-  const [oldpassword,setOldpassword] = useState('');
-  const [password,setPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] = useState('');
+  const [firstname, setFirstname] = useState(user.firstname);
+  const [lastname, setLastname] = useState(user.lastname);
+  const [username, setUsername] = useState(user.username);
+  const [oldpassword, setOldpassword] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const edit = () => {
-    if ( password === confirmPassword ) {
-      const data = oldpassword !== ''  && password !== '' ? { firstname,lastname,username,oldpassword,password,email: user.email } : { firstname,lastname,username,email: user.email };
+    if (password === confirmPassword) {
+      const data = {
+        firstname,
+        lastname,
+        username,
+      };
+
+      if (oldpassword !== '' && password !== '') {
+        data.oldpassword = oldpassword;
+        data.password = password;
+      }
+
       dispatch(editUser(data, user.id));
-    }else {
+    }
+    else {
       toast.error('Les mots de passe ne correspondent pas');
     }
   };
@@ -31,7 +47,13 @@ const Account = () => {
   return (
     <div id="dashboard-account">
       <div className="infos">
-        <p>Email : <br/>{user.email}</p>
+        <Title level={4}>Mes informations</Title>
+
+        <Input
+          label="Email"
+          value={user.email}
+          disabled
+        />
         <Input
           label="Prénom"
           value={firstname}
@@ -65,11 +87,13 @@ const Account = () => {
           onChange={setConfirmPassword}
           type="password"
         />
+
         <Button primary onClick={edit}>Modifier</Button>
-        </div>
+      </div>
+
       <div className="ticket">
-        <p>Je ne sais pas quoi écrire ici pour l'instant, ni où le placer</p>
-        <Button primary>Billet</Button>
+        <Title level={4}>Mon billet</Title>
+        <Button primary onClick={sendTicket}>Renvoyer par mail</Button>
       </div>
     </div>
   );

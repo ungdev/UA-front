@@ -5,7 +5,6 @@ import { setLoginModalVisible } from './loginModal';
 import { API, setTokenAPI } from '../utils';
 import errorToString from '../utils/errorToString';
 
-
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
 
@@ -82,19 +81,15 @@ export const logout = async (dispatch) => {
 };
 
 export const editUser = (data, userId) => async (dispatch) => {
-
   try {
     const res = await API().put(`/users/${userId}`, data);
-    toast.success('Informations sauvegardées');
+    toast.success('Vos informations ont été modifiées');
     dispatch({
       type: SET_USER,
       user: res.data,
     });
   }
   catch (err) {
-    console.error(err);
     toast.error(errorToString(err.response.data.error));
   }
-
-
 };
