@@ -3,7 +3,19 @@
   margin-bottom: 50px;
 }
 
+#dashboard-shop .shop-table tbody tr {
+  height: 64px;
+}
+
 #dashboard-shop .shop-input {
   max-width: 100px;
-  margin: 5px 0;
+  margin: 0;
+}
+
+#dashboard-shop .shop-footer {
+  text-align: right;
+}
+
+#dashboard-shop .shop-footer .shop-button {
+  margin-left: 16px;
 }

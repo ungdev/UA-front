@@ -6,6 +6,36 @@ import { Table, Input, Button, Title } from '../../components/UI';
 
 import './shop.css';
 
+const ticketColumns = [
+  {
+    title: '',
+    key: 'type',
+  },
+  {
+    title: 'Pour',
+    key: 'for',
+  },
+  {
+    title: 'Prix',
+    key: 'price',
+  },
+];
+
+const itemColumns = [
+  {
+    title: '',
+    key: 'name',
+  },
+  {
+    title: 'Prix unitaire',
+    key: 'price',
+  },
+  {
+    title: 'Quantité',
+    key: 'quantity',
+  },
+];
+
 const Shop = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.items.items);
@@ -19,48 +49,55 @@ const Shop = () => {
     return null;
   }
 
-  const columns = [
-    {
-      title: '',
-      key: 'name',
-    },
-    {
-      title: 'Prix',
-      key: 'price',
-    },
-    {
-      title: 'Quantité',
-      key: 'quantity',
-    },
-  ];
+  // Get ticket rows
+  const ticketRows = items.slice(0, 2).map((ticket) => {
+    return {
+      type: ticket.name,
+      price: `${ticket.price}€`,
+    };
+  });
 
-  const ticketRows = items.slice(0, 2);
-
-  const itemRows = items.slice(2).map((item) => (
-    {
+  // Get item rows
+  const itemRows = items.slice(2).map((item) => {
+    return {
       name: item.name,
       price: `${item.price}€`,
       quantity: (
         <Input
           type="number"
           value={cart[item.key] || 0}
-          onChange={(v) => setCart({ ...cart, [item.key]: v })}
+          onChange={(quantity) => setCart({ ...cart, [item.key]: quantity })}
           min={0}
           className="shop-input"
         />
       ),
-    }
-  ));
+    };
+  });
+
+  // Compute total price
+  let totalPrice = 0;
+  items.forEach((item) => {
+    totalPrice += cart[item.key] ? cart[item.key] * item.price : 0;
+  });
 
   return (
     <div id="dashboard-shop">
       <Title level={4}>Places</Title>
-      <Table columns={columns} dataSource={ticketRows} className="shop-table" />
+      <Table columns={ticketColumns} dataSource={ticketRows} className="shop-table" />
 
       <Title level={4}>Accessoires</Title>
-      <Table columns={columns} dataSource={itemRows} className="shop-table" />
+      <Table columns={itemColumns} dataSource={itemRows} className="shop-table" />
 
-      <Button primary rightIcon="fas fa-shopping-cart">Payer</Button>
+      <div className="shop-footer">
+        <strong>Total : {totalPrice}€</strong>
+        <Button
+          primary
+          rightIcon="fas fa-shopping-cart"
+          className="shop-button"
+        >
+          Payer
+        </Button>
+      </div>
     </div>
   );
 };
