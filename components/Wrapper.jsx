@@ -24,11 +24,13 @@ const Wrapper = ({ Component }) => {
       setIsRegistered(!!state.login.user.team);
     }
   });
+  const isLoading = useSelector((state) => state.login.loading);
+
 
   // Handle redirections
   let redirect = null;
 
-  if ((isDashboard && !isLoggedIn) || process.env.DASHBOARD_AVAILABLE !== 'true') {
+  if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
   else if (isLoggedIn && isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
@@ -40,18 +42,18 @@ const Wrapper = ({ Component }) => {
 
   // Redirect to desired path
   useEffect(() => {
-    if (redirect) {
+    if (redirect && !isLoading) {
       replace(redirect);
       return;
     }
-  }, [redirect]);
+  }, [redirect, isLoading]);
 
   useEffect(() => {
     dispatch(autoLogin());
   }, []);
 
   // Do not display anything if the user will be redirected
-  if (redirect || (isDashboard && !isLoggedIn)) {
+  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
     return null;
   }
 

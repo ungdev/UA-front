@@ -8,10 +8,12 @@ import errorToString from '../utils/errorToString';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
+export const SET_LOADING = 'login/SET_LOADING';
 
 const initialState = {
   token: null,
   user: null,
+  loading: true,
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +27,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.loading,
       };
     default:
       return state;
@@ -42,6 +49,11 @@ export const autoLogin = () => async (dispatch) => {
       user: res.data,
     });
   }
+  
+  dispatch({
+    type: SET_LOADING,
+    loading: false,
+  });
 };
 
 export const tryLogin = (user) => async (dispatch) => {
