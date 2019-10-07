@@ -80,3 +80,21 @@ export const logout = async (dispatch) => {
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
 };
+
+export const editUser = (data, userId) => async (dispatch) => {
+
+  try {
+    const res = await API().put(`/users/${userId}`, data);
+    toast.success('Informations sauvegardées');
+    dispatch({
+      type: SET_USER,
+      user: res.data,
+    });
+  }
+  catch (err) {
+    console.error(err);
+    toast.error(errorToString(err.response.data.error));
+  }
+
+
+};

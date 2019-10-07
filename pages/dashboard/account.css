@@ -1,10 +1,12 @@
 #dashboard-account {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between
 }
 
-#dashboard-account .ticket,
-  #dashboard-account .infos  {
+#dashboard-account>div  {
+    width: 40%;
     min-width: 300px;
-    margin: 20px 40px 40px;
+    margin: 16px auto;
 }
+

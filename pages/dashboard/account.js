@@ -1,47 +1,37 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Input, Button } from '../../components/UI';
-import { API } from '../../utils';
-import errorToString from '../../utils/errorToString';
+import { editUser } from '../../modules/login';
 
 import './account.css';
 
 const Account = () => {
 
-  const edit = async () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.login.user);
 
-    try{
-      if ( password === confirmPassword ) {
-        const data = oldpassword !== ''  && password !== '' ? { firstname,lastname,username,email,oldpassword, password} : { firstname,lastname,username,email };
-        await API().put(`/users/${userId}`, data);
-        toast('Informations sauvegardées');
-      }
-      else {
-        toast('Les mots de passe ne correspondent pas');
-      }
-    }
-    catch (err) {
-      console.error(err);
-      toast.error(errorToString(err.response.data.error));
-    }
-
-
-  };
-
-  const [firstname,setFirstname] = useState(useSelector((state) => state.login.user.firstname));
-  const [lastname,setLastname] = useState(useSelector((state) => state.login.user.lastname));
-  const [username,setUsername] = useState(useSelector((state) => state.login.user.username));
-  const [email,setEmail] = useState(useSelector((state) => state.login.user.email));
+  const [firstname,setFirstname] = useState(user.firstname);
+  const [lastname,setLastname] = useState(user.lastname);
+  const [username,setUsername] = useState(user.username);
   const [oldpassword,setOldpassword] = useState('');
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
-  const userId = useSelector((state) => state.login.user.id);
+
+  const edit = () => {
+    if ( password === confirmPassword ) {
+      const data = oldpassword !== ''  && password !== '' ? { firstname,lastname,username,oldpassword,password,email: user.email } : { firstname,lastname,username,email: user.email };
+      dispatch(editUser(data, user.id));
+    }else {
+      toast.error('Les mots de passe ne correspondent pas');
+    }
+  };
 
   return (
     <div id="dashboard-account">
       <div className="infos">
+        <p>Email : <br/>{user.email}</p>
         <Input
           label="Prénom"
           value={firstname}
@@ -56,11 +46,6 @@ const Account = () => {
           label="Pseudo"
           value={username}
           onChange={setUsername}
-        />
-        <Input
-          label="Email"
-          value={email}
-          onChange={setEmail}
         />
         <Input
           label="Mot de passe actuel"
