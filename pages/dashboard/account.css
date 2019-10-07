@@ -1,0 +1,10 @@
+#dashboard-account {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#dashboard-account .ticket,
+  #dashboard-account .infos  {
+    min-width: 300px;
+    margin: 20px 40px 40px;
+}
