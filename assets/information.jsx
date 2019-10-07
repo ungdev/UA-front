@@ -81,7 +81,7 @@ export default {
       },
       {
         type: <>Festival&nbsp;des&nbsp;jeux</>,
-        ven: '11h - 21h',
+        ven: '17h - 21h',
         sam: '11h - 21h',
         dim: '11h - 18h',
         key: 'fdj',
