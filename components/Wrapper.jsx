@@ -51,10 +51,9 @@ const Wrapper = ({ Component }) => {
   useEffect(() => {
     dispatch(autoLogin());
   }, []);
-  if(isLoading) return null;
 
   // Do not display anything if the user will be redirected
-  if (redirect || (isDashboard && !isLoggedIn)) {
+  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
     return null;
   }
 
