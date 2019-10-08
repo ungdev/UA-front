@@ -1,4 +1,4 @@
-#dashboard-purchases .list-carts {
+#dashboard-purchases {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -10,6 +10,9 @@
 
 #dashboard-purchases .cart-total {
   text-align: right;
+}
+#dashboard-purchases .purchase-title {
+  margin: 16px;
 }
 
 @media screen and (max-width: 1000px) {

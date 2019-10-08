@@ -42,13 +42,11 @@ const Purchases = () => {
     );
   });
 
+
+
   return (
     <div id="dashboard-purchases">
-      <Title level={2}>Historique : </Title>
-      <div className="list-carts">
-       {displayCarts}
-
-       </div>
+      { carts.length ? displayCarts : <Title level={4} className="purchase-title">Aucun achat</Title>}
     </div>
   );
 };
