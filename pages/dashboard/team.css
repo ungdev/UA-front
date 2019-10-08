@@ -10,6 +10,8 @@
 #dashboard-team .header .info {
 
   max-width: 400px;
+  margin-right: 40px;
+  text-align: left;
 }
 #dashboard-team .players-list {
   padding: 16px 0;

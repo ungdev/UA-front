@@ -72,8 +72,8 @@ const Register = () => {
       <div className="team-tournament">
         <div className="create-team">
           {dashboard.register.create.info}
-          <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament} />
-          <Input label="Nom d'équipe" value={name} onChange={setName} />
+          <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament}/>
+          <Input label="Nom d'équipe" value={name} onChange={setName}  className="select" />
           <Button
             primary
             className="center"
@@ -100,12 +100,13 @@ const Register = () => {
           </Button>
           {dashboard.register.join.discord}
         </div>
-      </div>
-      <div className="create-solo-team">
+        </div>
+        <div className="create-solo-team">
         {dashboard.register.solo}
-        <Select label="Tournoi" options={tournamentsSolo} value={tournamentSolo} onChange={setTournamentSolo} />
+        <Select label="Tournoi" options={tournamentsSolo} value={tournamentSolo} onChange={setTournamentSolo}/>
         <Button
           primary
+          className="centerM"
           onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))}
           rightIcon="fas fa-user"
         >
