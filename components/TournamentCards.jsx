@@ -11,14 +11,14 @@ const tournamentCards = () => (
     <Title level={4} align="center" uppercase>{tournamentCardsText.catchPhrase}</Title>
 
     <div className="tournaments-list">
-      { tournamentCardsText.list.map(({ title, cashprize, players, img, link }) => (
+      { tournamentCardsText.list.map(({ title, rewards, players, img, link }) => (
         <Card
           dark
           content={(
             <>
               <div className="tournament-title">{title}</div>
               <p><strong>Places :</strong> {players} joueurs</p>
-              <p><strong>Cashprize :</strong> {cashprize}</p>
+              {rewards && <p><strong>Récompenses :</strong> {rewards}</p>}
             </>
           )}
           imgSrc={img}

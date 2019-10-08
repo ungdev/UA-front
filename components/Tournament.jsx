@@ -42,8 +42,12 @@ const Tournament = ({ imgSrc, text }) => {
         <Title level={2}>Format</Title>
         <div className="tournament-section">{text.format}</div>
 
-        <Title level={2}>Récompenses</Title>
-        <div className="tournament-section">{text.rewards}</div>
+        {text.rewards && (
+          <>
+            <Title level={2}>Récompenses</Title>
+            <div className="tournament-section">{text.rewards}</div>
+          </>
+        )}
 
         <Title level={2}>Règlement</Title>
         <div className="tournament-section">{text.rules}</div>
