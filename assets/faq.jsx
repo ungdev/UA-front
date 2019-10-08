@@ -31,7 +31,7 @@ export default [
       },
       {
         question: 'Puis-je streamer pendant la LAN ?',
-        answer: 'Bien-sûr ! Mais il faudra dans un premier temps se déclarer auprès des organisateurs. De plus, l’équipe organisatrice se réserve le droit de te refuser de faire du stream.',
+        answer: 'Bien-sûr ! Mais il faudra dans un premier temps se déclarer auprès des organisateurs. De plus, l\'équipe organisatrice se réserve le droit de te refuser de faire du stream.',
       },
       {
         question: 'Où puis-je trouver des joueurs pour mon équipe ?',
@@ -79,7 +79,8 @@ export default [
         answer: (
           <>
             La LAN coûte 20€ pour les joueurs.<br />
-            La place coach/manager/accompagnateur est à 12€.
+            La place coach/manager/accompagnateur est à 12€.<br />
+            Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€.
           </>
         ),
       },
@@ -124,7 +125,7 @@ export default [
     entries: [
       {
         question: 'Puis-je jouer à Fortnite sur PS4 ?',
-        answer: 'Non, seuls les PCs sont autorisés.',
+        answer: 'Non, seuls les PC sont autorisés.',
       },
     ],
   },
@@ -133,7 +134,7 @@ export default [
     entries: [
       {
         question: 'Dois-je ramener ma console ?',
-        answer: 'Nous fournissons tout le matériel pour le tournoi SSBU mais si tu veux amener ta Switch pour jouer en freeplay, n’hésite pas !',
+        answer: 'Nous fournissons tout le matériel pour le tournoi SSBU mais si tu veux amener ta Switch pour jouer en freeplay, n\'hésite pas !',
       },
       {
         question: 'Puis-je ramener mon PC ?',

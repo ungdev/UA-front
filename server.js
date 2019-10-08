@@ -17,11 +17,11 @@ app.prepare().then(() => {
   });
 
   server.all('*', (req, res) => {
-    const { path } = req;
+    const { path, query } = req;
     console.log(`[ \x1b[36mrequest\x1b[0m ] ${path}`);
 
     // Let Next.js handle the request
-    return app.render(req, res, path);
+    return app.render(req, res, path, query);
   });
 
   // Start listening

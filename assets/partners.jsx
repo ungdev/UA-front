@@ -9,8 +9,8 @@ export default [
     description: (
       <>
         <p>
-          L’univers du jeu s’installe de nouveau à Troyes pour une 5<sup>ème</sup> année encore plus animée et avec davantage d’exposants !
-          C’est le rendez-vous des gamers de toutes les générations : des amateurs aux passionnés de jeux anciens, fantastiques ou traditionnels !
+          L'univers du jeu s'installe de nouveau à Troyes pour une 5<sup>ème</sup> année encore plus animée et avec davantage d'exposants !
+          C'est le rendez-vous des gamers de toutes les générations : des amateurs aux passionnés de jeux anciens, fantastiques ou traditionnels !
           Avec plus de 6000m², le festival vous propose de découvrir trois grands univers :
         </p>
         <ul>
@@ -29,7 +29,7 @@ export default [
       <p>
         Réputée pour la fiabilité, la qualité et les performances de ses produits, la marque Asus est le n°1 mondial des fabricants de cartes mères.
         N°1 du PC Gaming, Asus Republic of Gamers est en quête constante de perfection technologique en concevant des ordinateurs, composants et périphériques pour PC sans cesse primés !
-        Toujours à l’avant-garde du secteur numérique, les produits Asus ont toujours été conçus pour satisfaire tous les niveaux de productivité et de divertissement.
+        Toujours à l'avant-garde du secteur numérique, les produits Asus ont toujours été conçus pour satisfaire tous les niveaux de productivité et de divertissement.
       </p>
     ),
   },
@@ -41,7 +41,7 @@ export default [
       <p>
         Entièrement rénové en 2009, le Cube Troyes Champagne Expo est le site où se déroule la majorité des événements grand public
         (salons, concerts, spectacles, manifestation sportives…) et professionnels (congrès, conventions, galas, séminaires).
-        Situé au cœur de la ville de Troyes, c’est le site événementiel qui accueille le Festival des Jeux et l’UTT Arena.
+        Situé au cœur de la ville de Troyes, c'est le site événementiel qui accueille le Festival des Jeux et l'UTT Arena.
       </p>
     ),
   },
@@ -51,8 +51,8 @@ export default [
     img: '/static/partners/warlegend.jpg',
     description: (
       <p>
-        Structure francophone très active dans les jeux de l’esport les plus funs et populaires, War Legend est partenaire de l’UTT Arena pour l’organisation du tournoi Fortnite !
-        Leur équipe, habituée aux événements LAN apportera l’expérience pour vous proposer un tournoi inoubliable !
+        Structure francophone très active dans les jeux de l'esport les plus funs et populaires, War Legend est partenaire de l'UTT Arena pour l'organisation du tournoi Fortnite !
+        Leur équipe, habituée aux événements LAN apportera l'expérience pour vous proposer un tournoi inoubliable !
       </p>
     ),
   },
@@ -78,11 +78,11 @@ export default [
     img: '/static/partners/silverstone.jpg',
     description: (
       <p>
-        SilverStone voit le jour en 2003 avec une équipe d’ingénieurs issus d’un gros fabricant de matériel informatique.
+        SilverStone voit le jour en 2003 avec une équipe d'ingénieurs issus d'un gros fabricant de matériel informatique.
         Depuis, la marque est parvenue à développer une très large gamme de produits allant des boitiers PC, boitiers gaming et mini-ITX,
         ventilateurs, alimentations, périphériques de stockage aux accessoires !<br />
-        Cette diversité associée à l’expertise de l’équipe ont rapidement fait de la marque un acteur de premier plan sur le marché du hardware,
-        mais aussi auprès des joueurs et passionnés d’informatique qui trouvent chez le fabricant tout le nécessaire pour leur PC.
+        Cette diversité associée à l'expertise de l'équipe ont rapidement fait de la marque un acteur de premier plan sur le marché du hardware,
+        mais aussi auprès des joueurs et passionnés d'informatique qui trouvent chez le fabricant tout le nécessaire pour leur PC.
         Les produits Silverstone séduisent par leur esthétique travaillée, une excellente qualité de fabrication et une finition impeccable.
       </p>
     ),
@@ -95,7 +95,7 @@ export default [
       <p>
         La Grosse Ligue est la compétition officielle de Riot Games réservée aux étudiant.e.s résidant.e.s en France et administrée par le Student Gaming Network !<br />
         Chaque équipe sera reversée dans un palier de niveau (Carapateur, Héraut, Dragon, et Baron au niveau national), en fonction du niveau de chacun de ses joueurs.euses.
-        Chaque semaine, les équipes d'une même région s'affronteront. Les meilleures équipes représenteront leur école au niveau national et les top 16 équipes seront diffusées sur O’Gaming !
+        Chaque semaine, les équipes d'une même région s'affronteront. Les meilleures équipes représenteront leur école au niveau national et les top 16 équipes seront diffusées sur O'Gaming !
       </p>
     ),
    },
