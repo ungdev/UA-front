@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 import './DashboardHeader.css';
 
-const DashboardHeader = ({ pathname, isRegistered }) => {
+const DashboardHeader = ({ pathname, hasTeam }) => {
   const links = [
     { title: 'Équipe', href: '/dashboard/team' },
     { title: 'Boutique', href: '/dashboard/shop' },
     { title: 'Mes achats', href: '/dashboard/purchases' },
     { title: 'Mon compte', href: '/dashboard/account' },
   ];
-  if (!isRegistered) {
+  if (!hasTeam) {
     // Replace 'team' by 'register'
     links[0] = { title: 'Inscription', href: '/dashboard/register' };
   }
@@ -45,9 +45,9 @@ DashboardHeader.propTypes = {
    */
   pathname: PropTypes.string.isRequired,
   /**
-   * Is the user registered in a team ?
+   * Is the user in a team ?
    */
-  isRegistered: PropTypes.bool.isRequired,
+  hasTeam: PropTypes.bool.isRequired,
 };
 
 export default DashboardHeader;

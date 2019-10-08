@@ -17,15 +17,15 @@ const Wrapper = ({ Component }) => {
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [hasTeam, setHasTeam] = useState(false);
   useSelector((state) => {
     if(isLoggedIn !== !!state.login.user) {
       setIsLoggedIn(!!state.login.user);
-      setIsRegistered(!!state.login.user.team);
+      setHasTeam(!!state.login.user.team);
     }
   });
-  const isLoading = useSelector((state) => state.login.loading);
 
+  const isLoading = useSelector((state) => state.login.loading);
 
   // Handle redirections
   let redirect = null;
@@ -33,10 +33,10 @@ const Wrapper = ({ Component }) => {
   if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
-  else if (isLoggedIn && isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+  else if (isLoggedIn && hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-  else if (isLoggedIn && !isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (isLoggedIn && !hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
@@ -67,7 +67,7 @@ const Wrapper = ({ Component }) => {
         { isDashboard && (
             <DashboardHeader
               pathname={pathname}
-              isRegistered={isRegistered}
+              hasTeam={hasTeam}
             />
           )
         }

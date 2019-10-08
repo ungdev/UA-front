@@ -42,7 +42,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
       type: SET_USER,
       user: { ...user, team: res.data.id },
     });
-    Router.push('/dashboard');
+    Router.push('/dashboard/team');
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
@@ -53,7 +53,7 @@ export const joinTeam = (teamId, name) => async (dispatch, getState) => {
   try {
     const { user } = getState().login;
     await API().post(`/teams/${teamId}/request`);
-    toast.success(`Votre demande pour rejoindre ${name} a bien été prise en compte`);
+    toast.success(`Votre demande pour rejoindre ${name} a été envoyée`);
     dispatch({
       type: SET_USER,
       user: { ...user, askingTeamId: teamId },
@@ -82,7 +82,7 @@ export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
   try {
     const { user } = getState().login;
     await API().delete(`/teams/${teamId}/request`, { data: { user: user.id } });
-    toast.success(`Votre demande pour rejoindre ${name} a été annulé`);
+    toast.success(`Votre demande pour rejoindre ${name} a été annulée`);
     dispatch({
       type: SET_USER,
       user: { ...user, askingTeamId: null },
@@ -137,7 +137,6 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
         type: SET_TEAM,
         team: null,
       });
-      Router.push('/dashboard');
     }
     else {
       team.users = team.users.filter(({ id }) => id !== userId);
@@ -179,7 +178,7 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
       type: SET_TEAM,
       team: null,
     });
-    Router.push('/dashboard');
+    Router.push('/dashboard/register');
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
