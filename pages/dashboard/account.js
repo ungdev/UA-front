@@ -57,39 +57,46 @@ const Account = () => {
         <Input
           label="Email"
           value={user.email}
+          autocomplete="off"
           disabled
         />
         <Input
           label="Prénom"
           value={firstname}
           onChange={setFirstname}
+          autocomplete="off"
         />
         <Input
           label="Nom"
           value={lastname}
           onChange={setLastname}
+          autocomplete="off"
         />
         <Input
           label="Pseudo"
           value={username}
           onChange={setUsername}
+          autocomplete="off"
         />
         <Input
           label="Mot de passe actuel"
           value={oldpassword}
           onChange={setOldpassword}
+          autocomplete="off"
           type="password"
         />
         <Input
           label="Nouveau mot de passe"
           value={password}
           onChange={setPassword}
+          autocomplete="off"
           type="password"
         />
         <Input
           label="Confirmer le nouveau mot de passe"
           value={confirmPassword}
           onChange={setConfirmPassword}
+          autocomplete="off"
           type="password"
         />
 
