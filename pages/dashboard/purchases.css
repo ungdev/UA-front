@@ -11,9 +11,6 @@
 #dashboard-purchases .cart-total {
   text-align: right;
 }
-#dashboard-purchases .purchase-title {
-  margin: 16px;
-}
 
 @media screen and (max-width: 1000px) {
   #dashboard-purchases .card-cart {
