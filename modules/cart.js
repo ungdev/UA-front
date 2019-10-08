@@ -68,11 +68,12 @@ export const deleteCartItem = (cartId, cartItem, itemKey) => async (dispatch, ge
   }
 };
 
-export const updateCartItem = (cartId, cartItem, itemKey, quantity) => async (dispatch, getState) => {
+export const updateCartItem = (cartId, cartItem, itemKey, quantity, attribute) => async (dispatch, getState) => {
   try {
     const cartItems = getState().cart.cartItems;
-    await API().put(`carts/${cartId}/cartItems/${cartItem.id}`, { quantity });
+    await API().put(`carts/${cartId}/cartItems/${cartItem.id}`, { quantity, attributeId: attribute.id });
     cartItems[itemKey].quantity = quantity;
+    cartItems[itemKey].attribute = attribute;
     dispatch({
       type: SET_CARTITEMS,
       cartItems,
@@ -83,10 +84,10 @@ export const updateCartItem = (cartId, cartItem, itemKey, quantity) => async (di
   }
 };
 
-export const createCartItem = (cartId, item, quantity) => async (dispatch, getState) => {
+export const createCartItem = (cartId, item, quantity, attributeId) => async (dispatch, getState) => {
   try {
     const cartItems = getState().cart.cartItems;
-    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id });
+    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id, attributeId });
     cartItems[item.key] = { ...res.data, item };
     dispatch({
       type: SET_CARTITEMS,

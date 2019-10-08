@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchItems } from '../../modules/items';
 import { fetchDraftCart, deleteCartItem, updateCartItem, createCartItem, cartPay } from '../../modules/cart';
-import { Table, Input, Button, Title } from '../../components/UI';
+import { Table, Input, Button, Title, Select } from '../../components/UI';
 
 import './shop.css';
 
@@ -30,6 +30,10 @@ const itemColumns = [
   {
     title: 'Prix unitaire',
     key: 'price',
+  },
+  {
+    title: 'Attributs',
+    key: 'attributes',
   },
   {
     title: 'Quantité',
@@ -61,9 +65,26 @@ const Shop = () => {
   // Get item rows
   const itemRows = items.slice(2).map((item) => {
     const quantity = cartItems[item.key] && cartItems[item.key].quantity;
+    let attribute = { value: null, id: undefined };
+    if (item.attributes.length) {
+      attribute = (cartItems[item.key] && cartItems[item.key].attribute) ?
+      cartItems[item.key].attribute :
+      { value: item.attributes[2].value, id: 3 };
+    }
     return {
       name: item.name,
       price: `${item.price}€`,
+      attributes: item.attributes.length ?
+      <Select
+        options={item.attributes}
+        label=''
+        onChange={(value) => {
+          const newAttribute = item.attributes.filter((attribute) => attribute.value === value)[0];
+          if (quantity) {
+            dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity, newAttribute));
+          }
+        }}
+        value={attribute.value} /> : '',
       quantity: (
         <Input
           type="number"
@@ -75,10 +96,10 @@ const Shop = () => {
                 dispatch(deleteCartItem(cart.id, cartItems[item.key], item.key));
               }
               else if (cartItems[item.key]) {
-                dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity));
+                dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity, attribute));
               }
               else {
-                dispatch(createCartItem(cart.id, item, quantity));
+                dispatch(createCartItem(cart.id, item, quantity, attribute.id));
               }
             }
           }}
