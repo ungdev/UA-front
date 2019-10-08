@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { Table, Card } from '../../components/UI';
+import moment from 'moment';
+import { Table, Card, Title } from '../../components/UI';
 import { fetchAllCarts } from '../../modules/carts';
 import './purchases.css';
 
@@ -28,11 +28,13 @@ const Purchases = () => {
       total: `${cartItem.quantity * cartItem.item.price} €`,
       totalInt: cartItem.quantity * cartItem.item.price,
     }));
+    const date = new Date(cart.paidAt);
+
     const total = dataSource.reduce((previousValue, data) => previousValue += data.totalInt, 0);
     return (
       <Card className="card-cart" key={cart.id} content={
         <>
-          <p>Date: {cart.paidAt}</p>
+          <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
           <Table columns={columns} dataSource={dataSource}/>
           <p className="cart-total"><strong>Total: {total} €</strong></p>
         </>
@@ -42,7 +44,11 @@ const Purchases = () => {
 
   return (
     <div id="dashboard-purchases">
-      {displayCarts}
+      <Title level={2}>Historique : </Title>
+      <div className="list-carts">
+       {displayCarts}
+
+       </div>
     </div>
   );
 };

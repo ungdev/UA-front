@@ -1,4 +1,4 @@
-#dashboard-purchases {
+#dashboard-purchases .list-carts {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
