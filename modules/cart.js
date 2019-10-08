@@ -84,10 +84,10 @@ export const updateCartItem = (cartId, cartItem, itemKey, quantity, attribute) =
   }
 };
 
-export const createCartItem = (cartId, item, quantity, attributeId) => async (dispatch, getState) => {
+export const createCartItem = (cartId, item, quantity, attributeId, forUserId) => async (dispatch, getState) => {
   try {
     const cartItems = getState().cart.cartItems;
-    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id, attributeId });
+    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id, attributeId, forUserId });
     cartItems[item.key] = { ...res.data, item };
     dispatch({
       type: SET_CARTITEMS,
