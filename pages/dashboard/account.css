@@ -1,0 +1,12 @@
+#dashboard-account {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between
+}
+
+#dashboard-account>div  {
+    width: 40%;
+    min-width: 300px;
+    margin: 16px auto;
+}
+
