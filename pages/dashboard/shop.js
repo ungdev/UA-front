@@ -90,9 +90,12 @@ const Shop = () => {
   };
 
   // Get ticket rows
+  console.log(cartItems);
   const ticketRows = items.slice(0, 2).map((ticket) => {
+    const quantity = cartItems[ticket.key] && cartItems[ticket.key].quantity;
     return {
       type: ticket.name,
+      username: quantity,
       price: `${ticket.price}€`,
     };
   });
