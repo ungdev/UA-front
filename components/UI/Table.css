@@ -33,3 +33,9 @@
 .table td.align-right {
   text-align: right;
 }
+
+.table tbody td.table-void {
+  text-align: center;
+  color: #818181;
+  padding: 1em 0;
+}

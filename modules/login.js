@@ -42,14 +42,22 @@ export const autoLogin = () => async (dispatch) => {
   if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) { // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
     const userId = localStorage.getItem('utt-arena-userid');
-    dispatch(saveToken(localToken));
-    const res = await API().get(`users/${userId}`);
-    dispatch({
-      type: SET_USER,
-      user: res.data,
-    });
+    setTokenAPI(localToken);
+    try {
+      const res = await API().get(`users/${userId}`);
+      dispatch(saveToken(localToken));
+      dispatch({
+        type: SET_USER,
+        user: res.data,
+      });
+    }
+    catch (err) {
+      dispatch({
+        type: SET_LOADING,
+        loading: false,
+      });
+    }
   }
-  
   dispatch({
     type: SET_LOADING,
     loading: false,
