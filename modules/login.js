@@ -5,7 +5,6 @@ import { setLoginModalVisible } from './loginModal';
 import { API, setTokenAPI } from '../utils';
 import errorToString from '../utils/errorToString';
 
-
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
 export const SET_LOADING = 'login/SET_LOADING';
@@ -99,4 +98,18 @@ export const logout = async (dispatch) => {
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
+};
+
+export const editUser = (data, email, userId) => async (dispatch) => {
+  try {
+    const res = await API().put(`/users/${userId}`, data);
+    toast.success('Vos informations ont été modifiées');
+    dispatch({
+      type: SET_USER,
+      user: { ...res.data, email },
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
 };
