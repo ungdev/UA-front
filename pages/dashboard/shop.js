@@ -32,7 +32,7 @@ const itemColumns = [
     key: 'price',
   },
   {
-    title: 'Attributs',
+    title: '',
     key: 'attributes',
   },
   {
