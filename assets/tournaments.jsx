@@ -6,7 +6,10 @@ export default {
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
-        <p>Description du tournoi à venir.</p>
+        <ul>
+          <li>Phase 1: Matches de poules en BO1</li>
+          <li>Phase 2: Arbre à double élimination en BO1 sauf les finales</li>
+        </ul>
       </>
     ),
     rewards: (
@@ -16,14 +19,21 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: 'Le règlement sera bientôt publié.',
+    rules: (
+      <p>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>
+      </p>
+    ),
   },
   lolamateur: {
     title: 'League of Legends (Amateur)',
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
-        <p>Description du tournoi à venir.</p>
+        <ul>
+          <li>Phase 1: Tournoi suisse en BO1</li>
+          <li>Phase 2: Arbre des 4 premier du tournoi suisse en BO3</li>
+        </ul>
       </>
     ),
     rewards: (
@@ -33,14 +43,20 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: 'Le règlement sera bientôt publié.',
+    rules: (
+      <p>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>
+      </p>
+    ),
   },
   ssbu: {
     title: 'Super Smash Bros Ultimate',
     format: (
       <>
         <div className="tournament-format">64 joueurs en solo</div>
-        <p>Description du tournoi à venir.</p>
+        <p>
+
+        </p>
       </>
     ),
     rewards: (
