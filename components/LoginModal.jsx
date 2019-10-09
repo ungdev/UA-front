@@ -9,6 +9,7 @@ import { tryLogin } from '../modules/login';
 
 import './LoginModal.css';
 import { API } from '../utils';
+import { toast } from 'react-toastify';
 
 const initialSignup = {
   firstname: '',
@@ -176,7 +177,9 @@ const LoginModal = ({ isVisible }) => {
             primary
             onClick={() => {
               API().post('auth/reset', { email: forgotEmail });
-              setPanel('login');
+              toast.success('Si un compte existe, un email vient de lui être envoyé');
+              dispatch(setLoginModalVisible(false));
+              resetFields();
             }}
             type="submit"
           >
