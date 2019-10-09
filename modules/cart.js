@@ -36,7 +36,19 @@ export const fetchDraftCart = () => async (dispatch, getState) => {
       res = await API().post(`users/${userId}/carts`);
     }
     const formatCartItem = res.data.cartItems ? res.data.cartItems.reduce((previousValue, cartItem) => {
-      previousValue[cartItem.item.key] = cartItem;
+      if(cartItem.item.id <= 2) {
+        // Tickets
+        if(previousValue.tickets) {
+          previousValue.tickets.push(cartItem);
+        }
+        else {
+          previousValue.tickets = [cartItem];
+        }
+      }
+      else {
+        // Items
+        previousValue[cartItem.item.key] = cartItem;
+      }
       return previousValue;
     },{}) : [];
     dispatch({
@@ -53,11 +65,13 @@ export const fetchDraftCart = () => async (dispatch, getState) => {
   }
 };
 
-export const deleteCartItem = (cartId, cartItem, itemKey) => async (dispatch, getState) => {
+export const deleteCartItem = (cartId, cartItemId, itemKey) => async (dispatch, getState) => {
   try {
     const cartItems = getState().cart.cartItems;
-    await API().delete(`carts/${cartId}/cartItems/${cartItem.id}`);
-    delete cartItems[itemKey];
+    await API().delete(`carts/${cartId}/cartItems/${cartItemId}`);
+    if (itemKey) {
+      delete cartItems[itemKey];
+    }
     dispatch({
       type: SET_CARTITEMS,
       cartItems,

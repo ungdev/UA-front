@@ -28,6 +28,10 @@ const ticketColumns = [
     title: 'Prix',
     key: 'price',
   },
+  {
+    title: '',
+    key: 'delete',
+  },
 ];
 
 const itemColumns = [
@@ -58,11 +62,31 @@ const Shop = () => {
 
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
+  const [ticketRows, setTicketRows] = useState([]);
 
   useEffect(() => {
     dispatch(fetchItems());
     dispatch(fetchDraftCart());
   }, []);
+
+  useEffect(() => {
+    setTicketRows(cartItems && cartItems.tickets
+      ? cartItems.tickets.map((ticket) => ({
+        type: ticket.item.name,
+        username: ticket.forUsername,
+        price: `${ticket.item.price}€`,
+        delete: (
+          <Button
+            onClick={() => deleteTicket(ticket.id)}
+            rightIcon="fas fa-trash-alt"
+            className="delete-button"
+            noStyle
+          />
+        ),
+      }))
+      : []
+    );
+  }, [cartItems]);
 
   if(!items || !cart || !cartItems) {
     return null;
@@ -89,13 +113,9 @@ const Shop = () => {
     setPlace(placeInitialValue);
   };
 
-  // Get ticket rows
-  const ticketRows = items.slice(0, 2).map((ticket) => {
-    return {
-      type: ticket.name,
-      price: `${ticket.price}€`,
-    };
-  });
+  const deleteTicket = (cartItemId) => {
+    dispatch(deleteCartItem(cart.id, cartItemId));
+  };
 
   // Get item rows
   const itemRows = items.slice(2).map((item) => {
@@ -141,7 +161,7 @@ const Shop = () => {
             const quantity = parseInt(strQuantity, 10);
             if (Number.isInteger(quantity)) {
               if (quantity === 0) {
-                dispatch(deleteCartItem(cart.id, cartItems[item.key], item.key));
+                dispatch(deleteCartItem(cart.id, cartItems[item.key].id, item.key));
               }
               else if (cartItems[item.key]) {
                 dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity, attribute));
@@ -161,7 +181,16 @@ const Shop = () => {
 
   // Compute total price
   const totalPrice = Object.values(cartItems)
-    .reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.item.price, 0);
+    .reduce((acc, cartItem) => {
+      if(cartItem.item) {
+        // Item
+        return acc + cartItem.quantity * cartItem.item.price;
+      }
+      else {
+        // Ticket
+        return acc + cartItem.reduce((acc, ticket) => acc + ticket.item.price, 0);
+      }
+    }, 0);
 
   return (
     <div id="dashboard-shop">
@@ -183,6 +212,7 @@ const Shop = () => {
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
           onClick={() => dispatch(cartPay(cart.id))}
+          disabled={!totalPrice}
         >
           Payer
         </Button>

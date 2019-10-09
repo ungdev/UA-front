@@ -15,6 +15,10 @@
   height: 64px;
 }
 
+#dashboard-shop .delete-button {
+  color: #333;
+}
+
 #dashboard-shop .shop-input {
   width: 100px;
   margin: 0;
