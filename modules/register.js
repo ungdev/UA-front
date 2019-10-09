@@ -5,8 +5,6 @@ import { setLoginModalVisible } from './loginModal';
 import { API } from '../utils';
 import errorToString from '../utils/errorToString';
 
-import { saveToken } from './login';
-
 const initialState = {};
 
 export default (state = initialState, action) => {
@@ -32,19 +30,17 @@ export const registerUser = (user) => async (dispatch) => {
   }
 };
 
-export const validate = (slug) => async (dispatch) => {
+export const validate = (slug) => async () => {
   try {
     const res = await API().post('auth/validate', { slug });
-    dispatch(saveToken(res.data.token));
-    dispatch({
-      type: 'login/SET_USER',
-      payload: res.data.user,
-    });
-    toast.success('Compte validé');
-    Router.push('/dashboard');
+    localStorage.setItem('utt-arena-userid', res.data.user.id);
+    localStorage.setItem('utt-arena-token', res.data.token);
+
+    // Refresh page to autoLogin
+    window.location = '/dashboard';
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
-    Router.push('/');
+    Router.replace('/');
   }
 };
