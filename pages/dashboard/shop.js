@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 import { fetchItems } from '../../modules/items';
-import { fetchDraftCart, deleteCartItem, updateCartItem, createCartItem, cartPay } from '../../modules/cart';
+import { fetchDraftCart, saveCart, cartPay } from '../../modules/cart';
 import { Table, Input, Button, Title, Modal, Radio, Select } from '../../components/UI';
 import { API } from '../../utils';
 
@@ -55,40 +56,25 @@ const itemColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
+  const { push } = useRouter();
   const userId = useSelector((state) => state.login.user.id);
   const username = useSelector((state) => state.login.user.username);
   const items = useSelector((state) => state.items.items);
-  const { cart, cartItems } = useSelector((state) => state.cart);
-
+  const [cart, setCart] = useState(null);
+  const cartStore = useSelector((state) => state.cart);
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
-  const [ticketRows, setTicketRows] = useState([]);
+
+  useEffect(() => {
+    setCart(cartStore.cart);
+  }, [cartStore]);
 
   useEffect(() => {
     dispatch(fetchItems());
     dispatch(fetchDraftCart());
   }, []);
 
-  useEffect(() => {
-    setTicketRows(cartItems && cartItems.tickets
-      ? cartItems.tickets.map((ticket) => ({
-        type: ticket.item.name,
-        username: ticket.forUsername,
-        price: `${ticket.item.price}€`,
-        delete: (
-          <Button
-            onClick={() => deleteTicket(ticket.id)}
-            rightIcon="fas fa-trash-alt"
-            className="delete-button"
-            noStyle
-          />
-        ),
-      }))
-      : []
-    );
-  }, [cartItems]);
-
-  if(!items || !cart || !cartItems) {
+  if(!items || !cart) {
     return null;
   }
 
@@ -108,33 +94,54 @@ const Shop = () => {
     }
 
     const item = items.find((item) => item.key === place.type);
-    dispatch(createCartItem(cart.id, item, 1, undefined, placeForId));
+    const newCartItem = {
+      item,
+      quantity: 1,
+      forUserId: placeForId,
+      forUsername: place.forUsername,
+      attribute: {
+        value: null,
+        id: undefined,
+      },
+    };
+    setCart({ ...cart, cartItems: [...cart.cartItems, newCartItem] });
     setAddPlaceVisible(false);
     setPlace(placeInitialValue);
   };
 
-  const deleteTicket = (cartItemId) => {
-    dispatch(deleteCartItem(cart.id, cartItemId));
-  };
+  const tickets = cart.cartItems.filter((cartItem) => ['player', 'visitor'].includes(cartItem.item.key) && cartItem.quantity > 0);
+  const ticketRows = tickets.map((ticket) => ({
+    type: ticket.item.name,
+    username: ticket.forUserId === userId ? username : (ticket.forUsername || 'Autre'),
+    price: `${ticket.item.price}€`,
+    delete: (
+      <Button
+        onClick={() => {
+          const updatedCartItem = cart.cartItems.map((cartItem) => {
+            const isTicket = ['player', 'visitor'].includes(cartItem.item.key);
+            const forSameUser = cartItem.forUserId === ticket.forUserId;
+            return isTicket && forSameUser ? { ...cartItem, quantity: 0 } : cartItem;
+          });
+          setCart({ ...cart, cartItems: updatedCartItem });
+        }}
+        rightIcon="fas fa-trash-alt"
+        className="delete-button"
+        noStyle
+      />
+    ),
+  }));
 
-  // Get item rows
   const itemRows = items.slice(2).map((item) => {
-    const quantity = cartItems[item.key] && cartItems[item.key].quantity;
-    let attribute = {
+    const cartItem = cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key));
+    const quantity = cartItem.length ? cartItem[0].quantity : 0;
+    const initialAttribute = item.attributes.length ? {
+      value: item.attributes[2].value,
+      id: 3,
+    } : {
       value: null,
       id: undefined,
     };
-    if (item.attributes.length) {
-      if (cartItems[item.key] && cartItems[item.key].attribute) {
-        attribute = cartItems[item.key].attribute;
-      }
-      else {
-        attribute = {
-          value: item.attributes[2].value,
-          id: 3,
-        };
-      }
-    }
+    const attribute = cartItem.length && cartItem[0].attribute ? cartItem[0].attribute : initialAttribute;
 
     return {
       name: item.name,
@@ -145,7 +152,11 @@ const Shop = () => {
           onChange={(value) => {
             const newAttribute = item.attributes.filter((attribute) => attribute.value === value)[0];
             if (quantity) {
-              dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity, newAttribute));
+              cartItem[0].quantity = quantity;
+              cartItem[0].attribute = newAttribute;
+              cartItem[0].isUpdated = true;
+              const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
+              setCart({ ...cart, cartItems: newCartItems });
             }
           }}
           value={attribute.value}
@@ -160,14 +171,20 @@ const Shop = () => {
           onChange={(strQuantity) => {
             const quantity = parseInt(strQuantity, 10);
             if (Number.isInteger(quantity)) {
-              if (quantity === 0) {
-                dispatch(deleteCartItem(cart.id, cartItems[item.key].id, item.key));
-              }
-              else if (cartItems[item.key]) {
-                dispatch(updateCartItem(cart.id, cartItems[item.key], item.key, quantity, attribute));
+              if (cartItem.length) {
+                cartItem[0].quantity = quantity;
+                cartItem[0].isUpdated = true;
+                cartItem[0].attribute = initialAttribute;
+                const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
+                setCart({ ...cart, cartItems: newCartItems });
               }
               else {
-                dispatch(createCartItem(cart.id, item, quantity, attribute.id));
+                const newCartItems = [...cart.cartItems, {
+                  attribute,
+                  item,
+                  quantity,
+                }];
+                setCart({ ...cart, cartItems: newCartItems });
               }
             }
           }}
@@ -180,17 +197,8 @@ const Shop = () => {
   });
 
   // Compute total price
-  const totalPrice = Object.values(cartItems)
-    .reduce((acc, cartItem) => {
-      if(cartItem.item) {
-        // Item
-        return acc + cartItem.quantity * cartItem.item.price;
-      }
-      else {
-        // Ticket
-        return acc + cartItem.reduce((acc, ticket) => acc + ticket.item.price, 0);
-      }
-    }, 0);
+  const totalPrice = cart.cartItems
+  .reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.item.price, 0);
 
   return (
     <div id="dashboard-shop">
@@ -211,10 +219,20 @@ const Shop = () => {
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
-          onClick={() => dispatch(cartPay(cart.id))}
+          onClick={() => dispatch(cartPay(cart))}
           disabled={!totalPrice}
         >
           Payer
+        </Button>
+        <br/>
+        <Button
+          rightIcon="fas fa-save"
+          onClick={() => {
+            dispatch(saveCart(cart));
+            push('/dashboard');
+          }}
+        >
+          Sauvegarder
         </Button>
       </div>
 
