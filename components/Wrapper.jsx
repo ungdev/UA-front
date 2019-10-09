@@ -19,9 +19,13 @@ const Wrapper = ({ Component }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
   useSelector((state) => {
-    if(isLoggedIn !== !!state.login.user) {
-      setIsLoggedIn(!!state.login.user);
-      setHasTeam(!!state.login.user.team);
+    const { user } = state.login;
+    if (isLoggedIn !== !!user) {
+      setIsLoggedIn(!!user);
+      setHasTeam(!!user.team);
+    }
+    else if (hasTeam !== !!user.team) {
+      setHasTeam(!!user.team);
     }
   });
 
