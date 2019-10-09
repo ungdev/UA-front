@@ -10,7 +10,12 @@ import './index.css';
 
 const listPartners = partnersList.map((partner) => (
   <div className="partner" key={partner.link}>
-    <a href={partner.link} aria-label={`Partenaire ${partner.name}`}>
+    <a
+      href={partner.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Partenaire ${partner.name}`}
+    >
       <Card imgSrc={partner.img} classNameImg="partner-img" />
     </a>
   </div>
