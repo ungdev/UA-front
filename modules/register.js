@@ -22,7 +22,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
   try {
-    await API().post('user', user);
+    await API().post('users', user);
     toast.success('Inscription réussie');
     dispatch(setLoginModalVisible(false));
     return true;
@@ -34,7 +34,7 @@ export const registerUser = (user) => async (dispatch) => {
 
 export const validate = (slug) => async (dispatch) => {
   try {
-    const res = await API().post('user/validate', { slug });
+    const res = await API().post('auth/validate', { slug });
     dispatch(saveToken(res.data.token));
     dispatch({
       type: 'login/SET_USER',

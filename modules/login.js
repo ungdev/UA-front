@@ -5,13 +5,14 @@ import { setLoginModalVisible } from './loginModal';
 import { API, setTokenAPI } from '../utils';
 import errorToString from '../utils/errorToString';
 
-
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
+export const SET_LOADING = 'login/SET_LOADING';
 
 const initialState = {
   token: null,
   user: null,
+  loading: true,
 };
 
 export default (state = initialState, action) => {
@@ -24,7 +25,12 @@ export default (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.loading,
       };
     default:
       return state;
@@ -32,31 +38,39 @@ export default (state = initialState, action) => {
 };
 
 export const autoLogin = () => async (dispatch) => {
-  if (localStorage.hasOwnProperty('utt-arena-token')) { // eslint-disable-line no-prototype-builtins
+  if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) { // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
-
-    dispatch({
-      type: SET_TOKEN,
-      payload: localToken,
-    });
-
+    const userId = localStorage.getItem('utt-arena-userid');
     setTokenAPI(localToken);
-    const res = await API().get('user');
-
-    dispatch({
-      type: SET_USER,
-      payload: res.data.user,
-    });
+    try {
+      const res = await API().get(`users/${userId}`);
+      dispatch(saveToken(localToken));
+      dispatch({
+        type: SET_USER,
+        user: res.data,
+      });
+    }
+    catch (err) {
+      dispatch({
+        type: SET_LOADING,
+        loading: false,
+      });
+    }
   }
+  dispatch({
+    type: SET_LOADING,
+    loading: false,
+  });
 };
 
 export const tryLogin = (user) => async (dispatch) => {
   try {
-    const res = await API().put('user/login', user);
+    const res = await API().post('auth/login', user);
     dispatch(saveToken(res.data.token));
+    localStorage.setItem('utt-arena-userid', res.data.user.id);
     dispatch({
       type: SET_USER,
-      payload: res.data.user,
+      user: res.data.user,
     });
     dispatch(setLoginModalVisible(false));
     Router.push('/dashboard');
@@ -70,15 +84,32 @@ export const tryLogin = (user) => async (dispatch) => {
 export const saveToken = (token) => (dispatch) => {
   dispatch({
     type: SET_TOKEN,
-    payload: token,
+    token,
   });
+  setTokenAPI(token);
   localStorage.setItem('utt-arena-token', token);
 };
 
 export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
-  dispatch({ type: SET_TOKEN, payload: null });
-  dispatch({ type: SET_USER, payload: null });
+  dispatch({ type: SET_TOKEN, token: null });
+  dispatch({ type: SET_USER, user: null });
+  setTokenAPI('');
+  localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   Router.push('/');
+};
+
+export const editUser = (data, email, userId) => async (dispatch) => {
+  try {
+    const res = await API().put(`/users/${userId}`, data);
+    toast.success('Vos informations ont été modifiées');
+    dispatch({
+      type: SET_USER,
+      user: { ...res.data, email },
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
 };

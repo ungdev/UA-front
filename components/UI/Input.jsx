@@ -6,7 +6,7 @@ import './Inputs.css';
 /**
  * Displays an input
  */
-const Input = ({ type, label, value, onChange, min, max, className, autocomplete }) => {
+const Input = ({ type, label, value, onChange, min, max, className, autocomplete, disabled }) => {
   const handleChange = (newValue) => {
     if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
       return;
@@ -25,6 +25,8 @@ const Input = ({ type, label, value, onChange, min, max, className, autocomplete
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           autoComplete={autocomplete}
+          disabled={disabled}
+          title={disabled ? 'Vous ne pouvez pas modifier ce champ': undefined}
         />
 
         <div className="line" />
@@ -41,16 +43,19 @@ Input.propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   /**
    * Value of the input
    */
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   /**
    * Function called when the value change,
    * the new value is passed as parameter
    */
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   /**
    * Minimum value (only for type="number")
    */
@@ -67,15 +72,22 @@ Input.propTypes = {
    * Autocomplete type
    */
   autocomplete: PropTypes.string,
+  /**
+   * Is the input disabled ?
+   */
+  disabled: PropTypes.bool,
 };
 
 Input.defaultProps = {
   type: 'text',
+  label: '',
   value: '',
+  onChange: () => {},
   min: undefined,
   max: undefined,
   className: '',
   autocomplete: '',
+  disabled: false,
 };
 
 export default Input;

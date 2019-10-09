@@ -5,7 +5,7 @@
   padding: 8px 20px;
   margin: 4px;
   background: #fff;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   cursor: pointer;
   user-select: none;
@@ -20,4 +20,12 @@
 
 .button:hover {
   filter: brightness(0.85);
+}
+
+.button .button-icon-left {
+  margin-right: 8px;
+}
+
+.button .button-icon-right {
+  margin-left: 8px;
 }

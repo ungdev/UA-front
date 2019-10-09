@@ -1,4 +1,4 @@
-## Table
+## Table
 
 Displays a table
 

@@ -13,7 +13,7 @@
 .countdown h1, .countdown h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Montserrat', Impact, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   letter-spacing: 2px;
 }
 

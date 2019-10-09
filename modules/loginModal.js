@@ -4,11 +4,11 @@ const initialState = {
   visible: false,
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (state = initialState, { type, visible }) => {
   switch (type) {
     case SET_VISIBLE:
       return {
-        visible: payload,
+        visible,
       };
     default:
       return state;
@@ -18,6 +18,6 @@ export default (state = initialState, { type, payload }) => {
 export const setLoginModalVisible = (visible) => (dispatch) => {
   dispatch({
     type: SET_VISIBLE,
-    payload: visible,
+    visible,
   });
 };

@@ -6,9 +6,9 @@ import './Table.css';
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className }) => (
-  <div className={`table ${className}`}>
-    <table>
+const Table = ({ columns, dataSource, className, alignRight, emptyText }) => (
+  <div className="table-container">
+    <table className={`table ${className}`}>
       <thead>
         <tr className="table-header">
           {columns.map((column) => (
@@ -20,13 +20,17 @@ const Table = ({ columns, dataSource, className }) => (
         </tr>
       </thead>
       <tbody>
-        {dataSource.map((row, i) => (
-          <tr key={`${row.key}-${i}`}>
-            {columns.map((column, j) => (
-              <td key={`${row[column.key]}-${i}${j}`}>{row[column.key]}</td>
-            ))}
-          </tr>
-        ))}
+        { dataSource.length > 0
+          ? dataSource.map((row, i) => (
+            <tr key={`${row.key}-${i}`}>
+              {columns.map((column, j) => {
+                const lastColumn = (j+1) === columns.length && alignRight;
+                return (<td key={`${row[column.key]}-${i}${j}`} className={lastColumn ? 'align-right' : ''}>{row[column.key]}</td>);
+              })}
+            </tr>
+          ))
+          : <tr><td colSpan={columns.length} className="table-void">{emptyText}</td></tr>
+        }
       </tbody>
     </table>
   </div>
@@ -45,13 +49,23 @@ Table.propTypes = {
    */
   dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
   /**
-   * Class of the container
+   * Class of the table
    */
   className: PropTypes.string,
+  /**
+   * Align the last column to the right
+   */
+  alignRight: PropTypes.bool,
+  /**
+   * Text to display if there is no data
+   */
+  emptyText: PropTypes.string,
 };
 
 Table.defaultProps = {
   className: '',
+  alignRight: false,
+  emptyText: '(Vide)',
 };
 
 export default Table;

@@ -1,4 +1,4 @@
-## Select
+## Select
 
 Displays a select
 

@@ -42,7 +42,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isLoggedin, hasTeam }) => {
+const Navbar = ({ isLoggedIn }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -52,8 +52,6 @@ const Navbar = ({ isLoggedin, hasTeam }) => {
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
-
-  const dashboardUrl = `/dashboard/${hasTeam ? 'team' : 'register'}`;
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -95,7 +93,13 @@ const Navbar = ({ isLoggedin, hasTeam }) => {
           Déconnexion
         </a>
       </p>
-      <Button primary className="dashboard-button" onClick={() => router.push(dashboardUrl)}>Dashboard</Button>
+      <Button
+        primary
+        className="dashboard-button"
+        onClick={() => router.push('/dashboard')}
+      >
+        Dashboard
+      </Button>
     </div>
   );
 
@@ -108,7 +112,7 @@ const Navbar = ({ isLoggedin, hasTeam }) => {
       </div>
 
       <Link href="/">
-        <a className="mobile-link" onClick={() => setMobileMenuVisible(false)}>
+        <a className="mobile-link" arial-label="logo" onClick={() => setMobileMenuVisible(false)}>
           <div className="mobile-logo" />
         </a>
       </Link>
@@ -121,7 +125,7 @@ const Navbar = ({ isLoggedin, hasTeam }) => {
 
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
-          { isLoggedin ? isLoggedLayout : connexionButton }
+          { isLoggedIn ? isLoggedLayout : connexionButton }
 
           <nav>
             { navLinks }
@@ -196,15 +200,7 @@ Navbar.propTypes = {
   /**
    * Is the user logged in ?
    */
-  isLoggedin: PropTypes.bool.isRequired,
-  /**
-   * Has the user a team ?
-   */
-  hasTeam: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  hasTeam: false,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

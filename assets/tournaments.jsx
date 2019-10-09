@@ -9,7 +9,13 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
+    rewards: (
+      <ul>
+        <li>1<sup>ère</sup> équipe : 1700€ + lots</li>
+        <li>2<sup>ème</sup> équipe : lots</li>
+        <li>3<sup>ème</sup> équipe : lots</li>
+      </ul>
+    ),
     rules: 'Le règlement sera bientôt publié.',
   },
   lolamateur: {
@@ -20,7 +26,13 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
+    rewards: (
+      <ul>
+        <li>1<sup>ère</sup> équipe : lots</li>
+        <li>2<sup>ème</sup> équipe : lots</li>
+        <li>3<sup>ème</sup> équipe : lots</li>
+      </ul>
+    ),
     rules: 'Le règlement sera bientôt publié.',
   },
   ssbu: {
@@ -31,7 +43,13 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
+    rewards: (
+      <ul>
+        <li>1<sup>er</sup> : 400€ + lots</li>
+        <li>2<sup>ème</sup> : 150€ + lots</li>
+        <li>3<sup>ème</sup> : 100€ + lots</li>
+      </ul>
+    ),
     rules: 'Le règlement sera bientôt publié.',
   },
   csgo: {
@@ -42,7 +60,13 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
+    rewards: (
+      <ul>
+        <li>1<sup>ère</sup> équipe : 1450€ + lots</li>
+        <li>2<sup>ème</sup> équipe : lots</li>
+        <li>3<sup>ème</sup> équipe : lots</li>
+      </ul>
+    ),
     rules: 'Le règlement sera bientôt publié.',
   },
   fortnite: {
@@ -53,7 +77,13 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
+    rewards: (
+      <ul>
+        <li>1<sup>ère</sup> équipe : 1200€ + lots</li>
+        <li>2<sup>ème</sup> équipe : lots</li>
+        <li>3<sup>ème</sup> équipe : lots</li>
+      </ul>
+    ),
     rules: 'Le règlement sera bientôt publié.',
   },
   osu: {
@@ -64,7 +94,6 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
   libre: {
@@ -75,7 +104,6 @@ export default {
         <p>Description du tournoi à venir.</p>
       </>
     ),
-    rewards: 'Les récompenses seront bientôt annoncées.',
     rules: 'Le règlement sera bientôt publié.',
   },
 };

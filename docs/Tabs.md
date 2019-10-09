@@ -1,4 +1,4 @@
-## Tabs
+## Tabs
 
 Displays a menu with tabs
 

@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { autoLogin } from '../modules/login';
 
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import DashboardHeader from './DashboardHeader';
+import { autoLogin } from '../modules/login';
 
 const Wrapper = ({ Component }) => {
   const { pathname, replace } = useRouter();
@@ -16,46 +15,52 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
-  const isLoggedin = useSelector((state) => !!state.login.token);
-  const isRegistered = useSelector((state) => state.login.user && !!state.login.user.teamId) || false;
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  useSelector((state) => {
+    if(isLoggedIn !== !!state.login.user) {
+      setIsLoggedIn(!!state.login.user);
+      setIsRegistered(!!state.login.user.team);
+    }
+  });
+  const isLoading = useSelector((state) => state.login.loading);
+
 
   // Handle redirections
   let redirect = null;
 
-  if (isDashboard && process.env.DASHBOARD_AVAILABLE !== 'true') {
+  if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
-  else if (isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+  else if (isLoggedIn && isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
     redirect = '/dashboard/team';
   }
-  else if (!isRegistered && isLoggedin && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
+  else if (isLoggedIn && !isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
     redirect = '/dashboard/register';
   }
 
+  // Redirect to desired path
   useEffect(() => {
-    // Redirect to desired path
-    if (redirect) {
+    if (redirect && !isLoading) {
       replace(redirect);
       return;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [redirect]);
-
+  }, [redirect, isLoading]);
 
   useEffect(() => {
     dispatch(autoLogin());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Do not display anything if the user will be redirected
-  if (redirect) {
+  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
     return null;
   }
 
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedin={isLoggedin} />
+      <Navbar isLoggedIn={isLoggedIn} />
 
       <div className="page-container">
         { !isHome && !isTournament && !isDashboard && <Header /> }

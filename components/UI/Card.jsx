@@ -25,7 +25,7 @@ const Card = ({
 
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
-      {imgSrc && <img className={`lazyload card-img ${classNameImg}`} alt="" data-src={imgSrc} />}
+      {imgSrc && <img className={`lazyload card-image ${classNameImg}`} alt="" data-src={imgSrc} />}
       {content && (
         <>
           <div className="card-content">{content}</div>

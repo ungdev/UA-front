@@ -1,8 +1,8 @@
-.table {
+.table-container {
   overflow-x: auto;
 }
 
-.table table {
+.table {
   display: table;
   max-width: 100%;
   table-layout: auto;
@@ -28,4 +28,14 @@
 .table td {
   border-bottom: 1px solid #c8c8c8;
   padding: .5em;
+}
+
+.table td.align-right {
+  text-align: right;
+}
+
+.table tbody td.table-void {
+  text-align: center;
+  color: #818181;
+  padding: 1em 0;
 }

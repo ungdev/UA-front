@@ -1,4 +1,4 @@
-## CountdownComponent
+## CountdownComponent
 
 Displays a countdown to the specified date
 

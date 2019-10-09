@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title } from './UI';
@@ -8,7 +9,25 @@ import { Button, Title } from './UI';
 import './Tournament.css';
 
 const Tournament = ({ imgSrc, text }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useSelector((state) => {
+    if(isLoggedIn !== !!state.login.user) {
+      setIsLoggedIn(!!state.login.user);
+    }
+  });
+
+  const buttonClick = () => {
+    if(isLoggedIn) {
+      router.push('/dashboard');
+    }
+    else {
+      dispatch(setLoginModalVisible(true));
+    }
+  };
+
   return (
     <div className="tournament">
       <img className="tournament-header" alt="" src={imgSrc} />
@@ -17,14 +36,18 @@ const Tournament = ({ imgSrc, text }) => {
         <Title align="center">{text.title}</Title>
 
         <div className="tournament-signin">
-          <Button primary onClick={() => dispatch(setLoginModalVisible(true))}>S'inscrire</Button>
+          <Button primary onClick={buttonClick}>S'inscrire</Button>
         </div>
 
         <Title level={2}>Format</Title>
         <div className="tournament-section">{text.format}</div>
 
-        <Title level={2}>Récompenses</Title>
-        <div className="tournament-section">{text.rewards}</div>
+        {text.rewards && (
+          <>
+            <Title level={2}>Récompenses</Title>
+            <div className="tournament-section">{text.rewards}</div>
+          </>
+        )}
 
         <Title level={2}>Règlement</Title>
         <div className="tournament-section">{text.rules}</div>
