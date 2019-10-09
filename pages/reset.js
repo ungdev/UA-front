@@ -24,12 +24,12 @@ const Reset = () => {
 
   return (
     <div>
-      <Title level={3}>Réinitialisé le mot de passe</Title>
+      <Title level={3}>Réinitialiser le mot de passe</Title>
       <Input value={password} onChange={setPassword} label="Nouveau mot de passe" type="password"/>
       <Input value={passwordBis} onChange={setPasswordBis} label="Confirmer nouveau mot de passe" type="password"/>
       <Button primary onClick={() => {
         if (password !== passwordBis) {
-          toast.error('Mot de passe différent');
+          toast.error('Les deux mots de passe ne sont pas identiques');
         }
         else {
           reset();
