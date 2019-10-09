@@ -23,7 +23,7 @@ export const registerUser = (user) => async (dispatch) => {
   }
   try {
     await API().post('users', user);
-    toast.success('Inscription réussie');
+    toast.success('Inscription réussie, veuillez vérifier vos mails');
     dispatch(setLoginModalVisible(false));
     return true;
   }
@@ -40,7 +40,7 @@ export const validate = (slug) => async (dispatch) => {
       type: 'login/SET_USER',
       payload: res.data.user,
     });
-    toast.success('Inscription validée');
+    toast.success('Compte validé');
     Router.push('/dashboard');
   }
   catch (err) {
