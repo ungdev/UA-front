@@ -213,6 +213,11 @@ const Shop = () => {
         <Table columns={itemColumns} dataSource={itemRows} className="shop-table" />
       </div>
 
+      <p>
+        Pour louer du matériel, rends-toi sur la{' '}
+        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
+      </p>
+
       <div className="shop-footer">
         <strong>Total : {totalPrice}€</strong>
         <Button

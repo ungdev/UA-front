@@ -23,8 +23,8 @@ export default [
         answer: (
           <>
             Amène tout ce dont tu as besoin pour jouer : ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum.<br />
-            Notre partenaire Scoup eSport te propose également de louer du matériel pendant l'événement.
-            Pour cela ajoute le matériel dont tu as besoin dans ton dashboard.<br />
+            Si tu souhaites louer du matériel pendant l'événement, rends-toi sur la{' '}
+            <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.<br />
             Nous vendons également des multiprises et des câbles RJ45 de 5m et 7m.
           </>
         ),
