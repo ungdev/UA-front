@@ -46,7 +46,7 @@ export const fetchDraftCart = () => async (dispatch, getState) => {
   }
 };
 
-export const saveCart = (cart) => async (dispatch, getState) => {
+export const saveCart = (cart, displayToast) => async (dispatch, getState) => {
   try {
     const forUserId = getState().login.user.id;
     const modifiedCartItems = cart.cartItems.reduce((previous, cartItem) => {
@@ -62,17 +62,25 @@ export const saveCart = (cart) => async (dispatch, getState) => {
       }
       return previous;
     },
-    { updated: [], new: [], deleted: [] });
-    await Promise.all(modifiedCartItems.new.map( async ({ quantity, item, attribute, forUserId }) => {
+    {
+      updated: [],
+      new: [],
+      deleted: [],
+    });
+
+    await Promise.all(modifiedCartItems.new.map(async ({ quantity, item, attribute, forUserId }) => {
       await API().post(`carts/${cart.id}/cartItems`, { quantity, itemId: item.id, attributeId: attribute.id, forUserId });
     }));
-    await Promise.all(modifiedCartItems.updated.map( async ({ id, quantity, attribute }) => {
+    await Promise.all(modifiedCartItems.updated.map(async ({ id, quantity, attribute }) => {
       await API().put(`carts/${cart.id}/cartItems/${id}`, { quantity, attributeId: attribute.id });
     }));
-    await Promise.all(modifiedCartItems.deleted.map( async ({ id }) => {
+    await Promise.all(modifiedCartItems.deleted.map(async ({ id }) => {
       await API().delete(`carts/${cart.id}/cartItems/${id}`);
     }));
-    return;
+
+    if(displayToast) {
+      toast.success('Panier sauvegardé');
+    }
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
@@ -81,10 +89,10 @@ export const saveCart = (cart) => async (dispatch, getState) => {
 
 export const cartPay = (cart) => async (dispatch, getState) => {
   try {
-    await dispatch(saveCart(cart));
+    await dispatch(saveCart(cart, false));
     const userId = getState().login.user.id;
     const res = await API().post(`/users/${userId}/carts/${cart.id}/pay`);
-    window.location.replace(res.data.url);
+    window.location = res.data.url;
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));

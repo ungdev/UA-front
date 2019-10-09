@@ -227,10 +227,7 @@ const Shop = () => {
         <br/>
         <Button
           rightIcon="fas fa-save"
-          onClick={() => {
-            dispatch(saveCart(cart));
-            push('/dashboard');
-          }}
+          onClick={() => dispatch(saveCart(cart, true)) }
         >
           Sauvegarder
         </Button>

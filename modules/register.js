@@ -28,7 +28,7 @@ export const registerUser = (user) => async (dispatch) => {
     return true;
   }
   catch (err) {
-    toast.error(err.response.data.error);
+    toast.error(errorToString(err.response.data.error));
   }
 };
 
