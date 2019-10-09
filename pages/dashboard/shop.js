@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 import { fetchItems } from '../../modules/items';
@@ -56,7 +55,6 @@ const itemColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
-  const { push } = useRouter();
   const userId = useSelector((state) => state.login.user.id);
   const username = useSelector((state) => state.login.user.username);
   const items = useSelector((state) => state.items.items);
