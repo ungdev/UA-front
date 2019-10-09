@@ -6,7 +6,7 @@ import './Inputs.css';
 /**
  * Displays a select
  */
-const Select = ({ options, label, value, onChange, className }) => (
+const Select = ({ label, options, value, onChange, disabled, className }) => (
   <div className={`select ${className}`}>
     <label>
       <div className="select-label">{label}</div>
@@ -14,6 +14,7 @@ const Select = ({ options, label, value, onChange, className }) => (
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
       >
         {options.map((option) => (
           <option
@@ -34,7 +35,14 @@ Select.propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  /**
+   * List of options
+   */
+  options: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  })).isRequired,
   /**
    * Value of the select
    */
@@ -45,12 +53,9 @@ Select.propTypes = {
    */
   onChange: PropTypes.func.isRequired,
   /**
-   * List of options
+   * Is the field disabled ?
    */
-  options: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  })).isRequired,
+  disabled: PropTypes.bool,
   /**
    * Class of the container
    */
@@ -58,6 +63,8 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+  label: '',
+  disabled: false,
   className: '',
 };
 

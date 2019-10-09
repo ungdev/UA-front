@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
+import Link from 'next/link';
 
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
-import { API } from '../../utils';
 
 import './account.css';
 
 const Account = () => {
-  const sendTicket = async () => {
-    await API().get('/user/ticket');
-    toast.success('Ton billet a été envoyé par mail');
-  };
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
 
@@ -105,7 +100,11 @@ const Account = () => {
 
       <div className="ticket">
         <Title level={4}>Mon billet</Title>
-        <Button primary onClick={sendTicket}>Renvoyer par mail</Button>
+        <Link href={`${process.env.ARENA_API_URI}users/${user.id}/ticket`}>
+          <a target="_blank">
+            <Button primary>Télécharger mon billet</Button>
+          </a>
+        </Link>
       </div>
     </div>
   );
