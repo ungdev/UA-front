@@ -4,6 +4,7 @@ import login from './login';
 import register from './register';
 import team from './team';
 import tournament from './tournament';
+import carts from './carts';
 import items from './items';
 import cart from './cart';
 
@@ -13,6 +14,7 @@ export default combineReducers({
   register,
   team,
   tournament,
+  carts,
   items,
   cart,
 });

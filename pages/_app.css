@@ -45,7 +45,7 @@ img {
 
 @media screen and (max-width: 650px) {
   .page-padding {
-    padding: 1em;
+    padding: 2em 1em;
   }
 }
 

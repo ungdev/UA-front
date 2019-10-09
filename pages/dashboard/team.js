@@ -105,8 +105,8 @@ const Team = () => {
     <div id="dashboard-team">
       <div className="header">
         <div className="info">
-          {!isSolo && <Title level={4}>Mon équipe: {team.name}</Title>}
-          <Title level={4}>Tournoi : {team.tournament.name}</Title>
+          {!isSolo && <p><strong>Mon équipe :</strong> {team.name}</p>}
+          <p><strong>Tournoi :</strong> {team.tournament.name}</p>
         </div>
         <div className="status">
           <p>Statut : Non payé</p>

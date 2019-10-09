@@ -7,6 +7,33 @@
   justify-content: space-between;
 }
 
+#dashboard-team .header .info {
+
+  max-width: 400px;
+  margin-right: 40px;
+  text-align: left;
+}
 #dashboard-team .players-list {
   padding: 16px 0;
+}
+
+@media screen and (max-width: 600px){
+
+  #dashboard-team .header {
+
+    flex-direction:column-reverse;
+  }
+
+  #dashboard-team .header .status {
+
+    margin-bottom: 30px;
+  }
+  #dashboard-team .header .status p, .title-content {
+
+    margin: 0px 0px 8px 4px;
+  }
+
+
+
+
 }

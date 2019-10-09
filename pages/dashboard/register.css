@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #dashboard-register .team-tournament > div {
@@ -16,9 +19,34 @@
   margin: 0 auto;
   display: block;
 }
+#dashboard-register .select {
+  max-width: 600px;
+}
+
 
 @media screen and (max-width: 1000px) {
   #dashboard-register .team-tournament > div {
     width: 100%;
+  }
+  #dashboard-register .team-tournament {
+    display: block;
+    border: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  #dashboard-register .team-tournament .create-team,  #dashboard-register .team-tournament .join-team{
+
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+
+
+  }
+  #dashboard-register .select {
+    max-width: none;
+  }
+  #dashboard-register .centerM {
+    margin: 0 auto;
+    display: block;
   }
 }
