@@ -34,18 +34,11 @@ export const fetchDraftCart = () => async (dispatch, getState) => {
     let res = await API().get(`users/${userId}/carts/current`);
     if (res.data === null) {
       res = await API().post(`users/${userId}/carts`);
+      res.data.cartItems = [];
     }
-    const formatCartItem = res.data.cartItems ? res.data.cartItems.reduce((previousValue, cartItem) => {
-      previousValue[cartItem.item.key] = cartItem;
-      return previousValue;
-    },{}) : [];
     dispatch({
       type: SET_CART,
       cart: res.data,
-    });
-    dispatch({
-      type: SET_CARTITEMS,
-      cartItems: formatCartItem,
     });
   }
   catch (err) {
@@ -58,6 +51,21 @@ export const deleteCartItem = (cartId, cartItem, itemKey) => async (dispatch, ge
     const cartItems = getState().cart.cartItems;
     await API().delete(`carts/${cartId}/cartItems/${cartItem.id}`);
     delete cartItems[itemKey];
+    dispatch({
+      type: SET_CARTITEMS,
+      cartItems,
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};
+
+export const createCartItem = (cartId, item, quantity, attributeId, forUserId) => async (dispatch, getState) => {
+  try {
+    const cartItems = getState().cart.cartItems;
+    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id, attributeId, forUserId });
+    cartItems[item.key] = { ...res.data, item };
     dispatch({
       type: SET_CARTITEMS,
       cartItems,
@@ -84,25 +92,44 @@ export const updateCartItem = (cartId, cartItem, itemKey, quantity, attribute) =
   }
 };
 
-export const createCartItem = (cartId, item, quantity, attributeId, forUserId) => async (dispatch, getState) => {
+export const saveCart = (cart) => async (dispatch, getState) => {
   try {
-    const cartItems = getState().cart.cartItems;
-    const res = await API().post(`carts/${cartId}/cartItems`, { quantity, itemId: item.id, attributeId, forUserId });
-    cartItems[item.key] = { ...res.data, item };
-    dispatch({
-      type: SET_CARTITEMS,
-      cartItems,
-    });
+    const forUserId = getState().login.user.id;
+    const modifiedCartItems = cart.cartItems.reduce((previous, cartItem) => {
+      const isNew = !cartItem.id;
+      if (isNew) {
+        previous.new.push({ ...cartItem, forUserId: cartItem.forUserId || forUserId });
+      }
+      else if (cartItem.isUpdated && cartItem.quantity !== 0) {
+        previous.updated.push(cartItem);
+      }
+      else if (cartItem.quantity === 0) {
+        previous.deleted.push(cartItem);
+      }
+      return previous;
+    },
+    { updated: [], new: [], deleted: [] });
+    await Promise.all(modifiedCartItems.new.map( async ({ quantity, item, attribute, forUserId }) => {
+      await API().post(`carts/${cart.id}/cartItems`, { quantity, itemId: item.id, attributeId: attribute.id, forUserId });
+    }));
+    await Promise.all(modifiedCartItems.updated.map( async ({ id, quantity, attribute }) => {
+      await API().put(`carts/${cart.id}/cartItems/${id}`, { quantity, attributeId: attribute.id });
+    }));
+    await Promise.all(modifiedCartItems.deleted.map( async ({ id }) => {
+      await API().delete(`carts/${cart.id}/cartItems/${id}`);
+    }));
+    return;
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
   }
 };
 
-export const cartPay = (cartId) => async (dispatch, getState) => {
+export const cartPay = (cart) => async (dispatch, getState) => {
   try {
+    await dispatch(saveCart(cart));
     const userId = getState().login.user.id;
-    const res = await API().post(`/users/${userId}/carts/${cartId}/pay`);
+    const res = await API().post(`/users/${userId}/carts/${cart.id}/pay`);
     window.location.replace(res.data.url);
   }
   catch (err) {
