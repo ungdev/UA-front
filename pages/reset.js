@@ -22,6 +22,11 @@ const Reset = () => {
     }
   };
 
+  if (!resetToken) {
+    toast.error('Token inexistant');
+    router.replace('/');
+  }
+
   return (
     <div>
       <Title level={3}>Réinitialiser le mot de passe</Title>
