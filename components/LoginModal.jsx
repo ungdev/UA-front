@@ -8,6 +8,7 @@ import { registerUser } from '../modules/register';
 import { tryLogin } from '../modules/login';
 
 import './LoginModal.css';
+import { API } from '../utils';
 
 const initialSignup = {
   firstname: '',
@@ -173,7 +174,10 @@ const LoginModal = ({ isVisible }) => {
 
           <Button
             primary
-            onClick={() => setPanel('login')}
+            onClick={() => {
+              API().post('auth/reset', { email: forgotEmail });
+              setPanel('login');
+            }}
             type="submit"
           >
             Envoyer
