@@ -55,7 +55,8 @@
 
 #navbar .logged-username {
   text-overflow: ellipsis;
-  max-width: 100px;
+  max-width: 94px;
+  white-space: nowrap;
   overflow: hidden;
 }
 
