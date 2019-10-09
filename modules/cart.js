@@ -92,7 +92,7 @@ export const cartPay = (cart) => async (dispatch, getState) => {
     await dispatch(saveCart(cart, false));
     const userId = getState().login.user.id;
     const res = await API().post(`/users/${userId}/carts/${cart.id}/pay`);
-    window.location = res.data.url;
+    window.location.replace(res.data.url);
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
