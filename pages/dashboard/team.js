@@ -11,6 +11,7 @@ const columns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Nom', key: 'fullname' },
   { title: 'Email', key: 'email' },
+  { title: 'Payé ?', key: 'isPaid' },
   { title: '', key: 'action' },
 ];
 
@@ -25,6 +26,8 @@ const Team = () => {
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
+  const isPaid = team && team.users.filter((user) => user.id == id);
+  const usersPaid = team && team.users.reduce((previous, user) => user.isPaid ? previous += 1 : previous, 0);
 
   useEffect(() => {
     if (userTeam && userTeam.id) {
@@ -37,6 +40,7 @@ const Team = () => {
       username: user.id === team.captainId ? `${user.username} 🜲`: user.username,
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
+      isPaid: user.isPaid ? 'Oui' : 'Non',
       action: user.id !== team.captainId && isCaptain ? (
       <>
         <Button
@@ -107,9 +111,10 @@ const Team = () => {
         <div className="info">
           {!isSolo && <p><strong>Mon équipe :</strong> {team.name}</p>}
           <p><strong>Tournoi :</strong> {team.tournament.name}</p>
+          <p><strong>Statut :</strong> {usersPaid === team.tournament.playersPerTeam ? 'Inscrit' : 'Non inscrit'} </p>
         </div>
         <div className="status">
-          <p>Statut : Non payé</p>
+          <p>{isPaid ? 'Payé' : 'Non payé'}</p>
           <Button
             primary
             onClick={() => push('/dashboard/shop')}
