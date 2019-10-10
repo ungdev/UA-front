@@ -100,11 +100,9 @@ const Account = () => {
 
       <div className="ticket">
         <Title level={4}>Mon billet</Title>
-        <Link href={`${process.env.ARENA_API_URI}users/${user.id}/ticket`}>
-          <a target="_blank">
-            <Button primary>Télécharger mon billet</Button>
-          </a>
-        </Link>
+        <a href={`${process.env.ARENA_API_URI}users/${user.id}/ticket`} target="_blank" rel="noopener noreferrer">
+          <Button primary>Télécharger mon billet</Button>
+        </a>
       </div>
     </div>
   );
