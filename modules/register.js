@@ -21,7 +21,7 @@ export const registerUser = (user) => async (dispatch) => {
   }
   try {
     await API().post('users', user);
-    toast.success('Inscription réussie, veuillez vérifier vos mails');
+    toast.success('Inscription réussie, veuillez vérifier vos emails');
     dispatch(setLoginModalVisible(false));
     return true;
   }

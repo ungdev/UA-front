@@ -31,7 +31,7 @@ const Contact = () => {
       toast.error('Veuillez remplir tous les champs');
     }
     else if (!emailRegex.test(email)) {
-      toast.error('Veuillez entrer une adresse mail valide');
+      toast.error('Veuillez entrer une adresse email valide');
     }
     else {
       postToSlack(firstname, lastname, email, subject, content);
@@ -46,7 +46,7 @@ const Contact = () => {
 
   return (
     <div id="contact">
-      <Title align="center" uppercase>contact</Title>
+      <Title align="center" uppercase>Contact</Title>
       <p>
         UTT Net Group<br />
         12 rue Marie Curie 10000 Troyes<br />

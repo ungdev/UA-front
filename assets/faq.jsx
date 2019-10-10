@@ -81,19 +81,19 @@ export default [
             La LAN coûte 20€ pour les joueurs.<br />
             La place coach/manager/accompagnateur est à 12€.<br />
             Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€
-            (réduction effectuée au moment du paiement, pensez à utiliser l'adresse mail de votre école).
+            (réduction effectuée au moment du paiement, pensez à utiliser l'adresse email de votre école).
           </>
         ),
       },
       {
-        question: 'Je me suis inscrit et je n\'ai pas reçu mon mail de confirmation',
+        question: 'Je me suis inscrit et je n\'ai pas reçu mon email de confirmation',
         answer: (
           <>
             Si lors de votre inscription votre adresse e-mail est rejetée, cela peut être dû à trois choses:
             <ul>
-              <li>On ne peut pas avoir plus d'un compte par mail</li>
+              <li>On ne peut pas avoir plus d'un compte par email</li>
               <li>Cet e-mail a été banni. Contactez les organisateurs afin d'en savoir plus.</li>
-              <li>Vous vous êtes trompé lors de la saisie de votre adresse mail. Contactez les organisateurs grâce au formulaire de contact.</li>
+              <li>Vous vous êtes trompé lors de la saisie de votre adresse email. Contactez les organisateurs grâce au formulaire de contact.</li>
             </ul>
           </>
         ),
