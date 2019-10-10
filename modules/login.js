@@ -42,7 +42,7 @@ export const autoLogin = () => async (dispatch) => {
     const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
     try {
-      const res = await API('get', `users/${userId}`);
+      const res = await API.get(`users/${userId}`);
       dispatch({
         type: SET_USER,
         user: res.data,
