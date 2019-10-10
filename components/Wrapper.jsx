@@ -18,14 +18,23 @@ const Wrapper = ({ Component }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
+  const [isVisitor, setIsVisitor] = useState(false);
+
   useSelector((state) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
       setHasTeam(!!user.team);
+      setIsVisitor(user.type === 'visitor');
     }
     else if (user && hasTeam !== !!user.team) {
       setHasTeam(!!user.team);
+    }
+    else if (user && !isVisitor && user.type === 'visitor') {
+      setIsVisitor(true);
+    }
+    else if (user && isVisitor && user.type === 'none') {
+      setIsVisitor(false);
     }
   });
 
@@ -37,11 +46,16 @@ const Wrapper = ({ Component }) => {
   if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
-  else if (isLoggedIn && hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-    redirect = '/dashboard/team';
-  }
-  else if (isLoggedIn && !hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
-    redirect = '/dashboard/register';
+  else if (isLoggedIn) {
+    if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/team';
+    }
+    else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/coach';
+    }
+    else if (!isVisitor && !hasTeam && (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')) {
+      redirect = '/dashboard/register';
+    }
   }
 
   // Redirect to desired path
@@ -72,6 +86,7 @@ const Wrapper = ({ Component }) => {
             <DashboardHeader
               pathname={pathname}
               hasTeam={hasTeam}
+              isVisitor={isVisitor}
             />
           )
         }

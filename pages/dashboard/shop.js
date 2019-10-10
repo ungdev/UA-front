@@ -9,9 +9,9 @@ import { Table, Input, Button, Title, Modal, Radio, Select } from '../../compone
 import { API } from '../../utils';
 
 import './shop.css';
+import errorToString from '../../utils/errorToString';
 
 const placeInitialValue = {
-  type: 'player',
   for: 'me',
   forUsername: '',
 };
@@ -57,8 +57,7 @@ const itemColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
-  const userId = useSelector((state) => state.login.user.id);
-  const username = useSelector((state) => state.login.user.username);
+  const { username, user: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
   const [cart, setCart] = useState(null);
   const cartStore = useSelector((state) => state.cart);
@@ -81,19 +80,26 @@ const Shop = () => {
   const addPlace = async () => {
     // Get user id
     let placeForId = userId;
+    let currentType = type;
     if(place.for !== 'me') {
-      const users = await API().get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
-
+      let users = [];
+      try {
+        users = await API().get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
+      }
+      catch (err) {
+        return toast.error(errorToString(err.response.data.error));
+      }
       if(users.data.length !== 1 || place.forUsername === '') {
         toast.error('Impossible de trouver cet utilisateur');
         return;
       }
       else {
         placeForId = users.data[0].id;
+        currentType = users.data[0].type;
       }
     }
 
-    const item = items.find((item) => item.key === place.type);
+    const item = items.find((item) => item.key === currentType);
     const newCartItem = {
       item,
       quantity: 1,
@@ -130,6 +136,27 @@ const Shop = () => {
       />
     ),
   }));
+
+  const getOptions = () => {
+    if (isPaid) {
+      return [
+        {
+          name: 'Autre utilisateur',
+          value: 'other',
+        },
+      ];
+    }
+    return ([
+      {
+        name: `Moi-même (${username})`,
+        value: 'me',
+      },
+      {
+        name: 'Autre utilisateur',
+        value: 'other',
+      },
+    ]);
+  };
 
   const itemRows = items.slice(2).map((item) => {
     const cartItem = cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key));
@@ -249,36 +276,9 @@ const Shop = () => {
         buttons={<Button primary onClick={addPlace}>Ajouter</Button>}
       >
         <Radio
-          label="Type de place"
-          name="type"
-          options={[
-            {
-              name: 'Joueur',
-              value: 'player',
-            },
-            {
-              name: 'Coach / manager / accompagnateur',
-              value: 'visitor',
-            },
-          ]}
-          value={place.type}
-          onChange={(v) => setPlace({ ...place, type: v })}
-          className="add-place-input"
-        />
-
-        <Radio
           label="Pour"
           name="for"
-          options={[
-            {
-              name: `Moi-même (${username})`,
-              value: 'me',
-            },
-            {
-              name: 'Autre utilisateur',
-              value: 'other',
-            },
-          ]}
+          options={getOptions()}
           value={place.for}
           onChange={(v) => setPlace({ ...place, for: v })}
           className="add-place-input"

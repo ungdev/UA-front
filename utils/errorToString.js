@@ -32,6 +32,12 @@ export default (error) => {
       return 'Il n\'y a plus de place pour l\'UTT Arena...';
     case 'PAYMENT_DISABLED':
       return 'Les paiements en ligne ont été désactivés';
+    case 'NO_TEAM':
+      return 'L\'utilisateur n\'a pas d\'équipe';
+    case 'NO_TYPE':
+      return 'L\'utilisateur n\'a pas de rôle';
+    case 'ALREADY_PAID':
+      return 'L\'utilisateur a pas déjà une place';
     default:
       return error;
   }

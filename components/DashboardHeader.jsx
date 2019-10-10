@@ -4,17 +4,29 @@ import PropTypes from 'prop-types';
 
 import './DashboardHeader.css';
 
-const DashboardHeader = ({ pathname, hasTeam }) => {
-  const links = [
-    { title: 'Équipe', href: '/dashboard/team' },
-    { title: 'Boutique', href: '/dashboard/shop' },
-    { title: 'Mes achats', href: '/dashboard/purchases' },
-    { title: 'Mon compte', href: '/dashboard/account' },
-  ];
-  if (!hasTeam) {
-    // Replace 'team' by 'register'
-    links[0] = { title: 'Inscription', href: '/dashboard/register' };
-  }
+const DashboardHeader = ({ pathname, hasTeam, isVisitor }) => {
+  const links = () => {
+    if (hasTeam) {
+      return [
+        { title: 'Équipe', href: '/dashboard/team' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isVisitor) {
+      return [
+        { title: 'Coach', href: '/dashboard/coach' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    return [
+      { title: 'Inscription', href: '/dashboard/register' },
+      { title: 'Mon compte', href: '/dashboard/account' },
+    ];
+  };
 
   return (
     <header id="dashboard-header">
@@ -23,9 +35,8 @@ const DashboardHeader = ({ pathname, hasTeam }) => {
           <p>Dashboard</p>
         </div>
       </div>
-
       <div className="nav">
-        {links.map((link) => (
+        {links().map((link) => (
           <Link href={link.href} key={link.href}>
             <a className={`nav-link ${link.href === pathname ? 'active' : ''}`}>
               <span>
@@ -48,6 +59,7 @@ DashboardHeader.propTypes = {
    * Is the user in a team ?
    */
   hasTeam: PropTypes.bool.isRequired,
+  isVisitor: PropTypes.bool.isRequired,
 };
 
 export default DashboardHeader;
