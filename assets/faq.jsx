@@ -80,7 +80,8 @@ export default [
           <>
             La LAN coûte 20€ pour les joueurs.<br />
             La place coach/manager/accompagnateur est à 12€.<br />
-            Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€.
+            Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€
+            (réduction effectuée au moment du paiement, pensez à utiliser l'adresse mail de votre école).
           </>
         ),
       },

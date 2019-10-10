@@ -27,7 +27,7 @@ export default {
       <ul>
         <li>Joueur : 20€</li>
         <li>Accompagnateur : 12€ (limité à 40 places)</li>
-        <li>Joueur d'une Université de Technologie : 15€</li>
+        <li>Joueur d'une Université de Technologie : 15€ (réduction effectuée au moment du paiement, pensez à utiliser l'adresse mail de votre école)</li>
       </ul>
     </>
   ),
