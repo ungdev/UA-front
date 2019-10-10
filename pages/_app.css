@@ -54,43 +54,43 @@ img {
   font-weight: 700;
 }
 
+.Toastify__toast {
+  background: #fff;
+  color: #212121;
+}
+
 .Toastify__toast::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 5px;
+  height: 4px;
   background: var(--gradient);
 }
 
-.Toastify__toast--default {
-  color: #212121;
-}
-
 .Toastify__toast--success {
-  color: #74db77;
-  background: #fff;
+  color: #00cb00;
 }
 
 .Toastify__toast--error {
-  color: #e74c3c;
-  background: #fff;
+  color: #f00;
 }
 
 .Toastify__toast--warning {
-  color: #f1c40f;
-  background: #fff;
+  color: #f09000;
 }
 
 .Toastify__toast--info {
-  color: #3498db;
-  background: #fff;
+  color: #0096fa;
+}
+
+.Toastify__toast-body {
+  margin: auto 15px auto 5px;
 }
 
 .Toastify__close-button {
-  color: #000;
-  opacity: 0.3;
+  color: #888;
 }
 
 /**********************/
