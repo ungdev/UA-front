@@ -112,3 +112,16 @@ export const editUser = (data, email, userId) => async (dispatch) => {
     toast.error(errorToString(err.response.data.error));
   }
 };
+
+
+export const resetPassword = (email, resetFields) => async (dispatch) => {
+  try {
+    await API().post('auth/reset', { email });
+    toast.success('Un email de confirmation vient d\'être envoyé');
+    dispatch(setLoginModalVisible(false));
+    resetFields();
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data));
+  }
+};

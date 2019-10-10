@@ -17,7 +17,7 @@ const columns = [
 const Register = () => {
   const [tournament, setTournament] = useState('1');
   const [tournamentSolo, setTournamentSolo] = useState('5');
-  const [name, setName] = useState('');
+  const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournament.tournaments);
@@ -68,11 +68,11 @@ const Register = () => {
         <div className="create-team">
           {dashboard.register.create.info}
           <Select label="Tournoi" options={tournamentsOptions} value={tournament} onChange={setTournament}/>
-          <Input label="Nom d'équipe" value={name} onChange={setName}  className="select" />
+          <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ name, tournament }))}
+            onClick={() => dispatch(createTeam({ teamName, tournament }))}
             rightIcon="fas fa-plus"
           >
             Créer mon équipe
@@ -99,7 +99,7 @@ const Register = () => {
         <Button
           primary
           className="center-mobile"
-          onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))}
+          onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
           rightIcon="fas fa-user"
         >
           S'inscrire en solo

@@ -8,7 +8,6 @@ import 'simplebar/dist/simplebar.min.css';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
-
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -51,7 +50,9 @@ const Navbar = ({ isLoggedIn }) => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
-  const username = useSelector((state) => state.login.user && state.login.user.username);
+  const user = useSelector((state) => state.login.user);
+  const username = user ? user.username : null;
+  const inTeam = user && user.team;
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -96,7 +97,7 @@ const Navbar = ({ isLoggedIn }) => {
       <Button
         primary
         className="dashboard-button"
-        onClick={() => router.push('/dashboard')}
+        onClick={() => router.push(`/dashboard/${inTeam ? 'team' : 'register'}`)}
       >
         Dashboard
       </Button>
