@@ -112,3 +112,20 @@ export const editUser = (data, email, userId) => async (dispatch) => {
     toast.error(errorToString(err.response.data.error));
   }
 };
+
+export const setType = (type) => async (dispatch, getState) => {
+  try {
+    const user = getState().login.user;
+    const res = await API().put(`/users/${user.id}`, { ...user, type });
+    if (type === 'visitor') {
+      toast.success('Vous êtes maintenant coach');
+    }
+    dispatch({
+      type: SET_USER,
+      user: res.data,
+    });
+  }
+  catch (err) {
+    toast.error(errorToString(err.response.data.error));
+  }
+};
