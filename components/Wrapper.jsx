@@ -24,7 +24,7 @@ const Wrapper = ({ Component }) => {
       setIsLoggedIn(!!user);
       setHasTeam(!!user.team);
     }
-    else if (hasTeam !== !!user.team) {
+    else if (user && hasTeam !== !!user.team) {
       setHasTeam(!!user.team);
     }
   });

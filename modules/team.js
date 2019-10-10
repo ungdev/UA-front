@@ -180,6 +180,7 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
       type: SET_TEAM,
       team: null,
     });
+    toast.success('L\'équipe a bien été supprimée');
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
