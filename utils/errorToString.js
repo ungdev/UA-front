@@ -37,7 +37,7 @@ export default (error) => {
     case 'NO_TYPE':
       return 'L\'utilisateur n\'a pas de rôle';
     case 'ALREADY_PAID':
-      return 'L\'utilisateur a pas déjà une place';
+      return 'L\'utilisateur a déjà une place';
     case 'TOURNAMENT_FULL':
       return 'Tournoi plein';
     default:

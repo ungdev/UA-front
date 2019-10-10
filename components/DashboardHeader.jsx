@@ -59,6 +59,9 @@ DashboardHeader.propTypes = {
    * Is the user in a team ?
    */
   hasTeam: PropTypes.bool.isRequired,
+  /**
+   * Is the user a visitor ?
+   */
   isVisitor: PropTypes.bool.isRequired,
 };
 

@@ -35,7 +35,7 @@
   width: 45%;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
   #dashboard-register .team-tournament > div {
     width: 100%;
   }

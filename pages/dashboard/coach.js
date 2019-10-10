@@ -7,12 +7,12 @@ const Coach = () => {
   const dispatch = useDispatch();
   const isPaid = useSelector((state) => state.login.user.isPaid);
   return (
-    <div>
+    <div id="dashboard-coach">
       <p>
-        <strong>Role : </strong> Coach / manager / accompagnateur
+        <strong>Rôle : </strong> coach / manager / accompagnateur
         <br/>
-        <strong>Statut : </strong> { isPaid ?
-          <><i className="fas fa-check-circle green-icon"></i> Payé</>
+        <strong>Statut : </strong> { isPaid
+          ? <><i className="fas fa-check-circle green-icon"></i> Payé</>
           : <><i className="fas fa-exclamation-triangle red-icon"></i> Non payé</>}
       </p>
       {!isPaid &&
