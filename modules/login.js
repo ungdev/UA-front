@@ -53,6 +53,10 @@ export const autoLogin = () => async (dispatch) => {
         type: SET_LOADING,
         loading: false,
       });
+
+      // Delete not working values
+      localStorage.removeItem('utt-arena-token');
+      localStorage.removeItem('utt-arena-userid');
     }
   }
   dispatch({
