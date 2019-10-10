@@ -14,6 +14,7 @@ const Partners = () => {
         classNameImg="partner-img"
         content={description}
         href={link}
+        target="_blank"
         buttonContent={(
           <>
             Plus d'infos

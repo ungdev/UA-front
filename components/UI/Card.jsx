@@ -17,6 +17,7 @@ const Card = ({
   buttonContent,
   onClick,
   href,
+  target,
   className,
   classNameImg,
 }) => {
@@ -32,7 +33,7 @@ const Card = ({
           { buttonContent !== ''
           && (
             <div className="card-button">
-              { href ? <LinkComponent href={href}>{button}</LinkComponent> : button }
+              { href ? <LinkComponent href={href} target={target} rel="noopener noreferrer">{button}</LinkComponent> : button }
             </div>
           )}
         </>
@@ -67,6 +68,10 @@ Card.propTypes = {
    */
   href: PropTypes.string,
   /**
+   * Target for the link
+   */
+  target: PropTypes.string,
+  /**
    * Class of the card
    */
   className: PropTypes.string,
@@ -83,6 +88,7 @@ Card.defaultProps = {
   buttonContent: '',
   onClick: () => {},
   href: null,
+  target: '_self',
   className: '',
   classNameImg: '',
 };

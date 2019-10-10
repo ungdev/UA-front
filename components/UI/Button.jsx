@@ -31,7 +31,7 @@ Button.propTypes = {
   /**
    * Button content
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Type button
    */
@@ -61,6 +61,7 @@ Button.propTypes = {
 Button.defaultProps = {
   primary: false,
   onClick: () => {},
+  children: '',
   type: 'button',
   leftIcon: '',
   rightIcon: '',

@@ -4,7 +4,7 @@ import { API } from '../utils';
 import errorToString from '../utils/errorToString';
 
 
-export const SET_TOURNAMENT_TEAM = 'tournament/SET_TOURNAMENT_TEAM';
+export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
 
 const initialState = {
   tournaments: null,
@@ -12,25 +12,21 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_TOURNAMENT_TEAM:
+    case SET_TOURNAMENTS:
       return {
-        ...state,
-        tournaments: {
-          ...state.tournaments,
-          [action.payload.id]: action.payload.teams,
-        },
+        tournaments: action.payload,
       };
     default:
       return state;
   }
 };
 
-export const fetchTournamentTeam = (id) => async (dispatch) => {
+export const fetchTournaments = () => async (dispatch) => {
   try {
-    const res = await API().get(`tournaments/${id}/teams?notFull=true`);
+    const res = await API().get('/tournaments?notFull=true');
     dispatch({
-      type: SET_TOURNAMENT_TEAM,
-      payload: { teams: res.data, id },
+      type: SET_TOURNAMENTS,
+      payload: res.data,
     });
   }
   catch (err) {
