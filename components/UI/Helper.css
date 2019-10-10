@@ -17,7 +17,7 @@
   top: calc(50% - 2px);
   transform: translateY(-50%);
   width: max-content;
-  max-width: 200px;
+  max-width: 250px;
   padding: 10px 16px;
   background: rgba(50, 50, 50, 0.9);
   color: #fff;
