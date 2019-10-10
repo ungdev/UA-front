@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import Router from 'next/router';
 
 import { API } from '../utils';
 import errorToString from '../utils/errorToString';
@@ -42,7 +41,6 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
       type: SET_USER,
       user: { ...user, team: res.data.id },
     });
-    Router.push('/dashboard/team');
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
@@ -144,6 +142,10 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
         type: SET_TEAM,
         team,
       });
+      dispatch({
+        type: SET_USER,
+        user: { ...user, team: null },
+      });
     }
   }
   catch (err) {
@@ -178,7 +180,7 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
       type: SET_TEAM,
       team: null,
     });
-    Router.push('/dashboard/register');
+    toast.success('L\'équipe a bien été supprimée');
   }
   catch (err) {
     toast.error(errorToString(err.response.data.error));
