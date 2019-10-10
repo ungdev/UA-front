@@ -98,16 +98,16 @@ const Team = () => {
   return (
     <div id="dashboard-team">
       <div className="header">
-        {!isSolo && <p><strong>Mon équipe :</strong> {team.name}</p>}
-        <p><strong>Tournoi :</strong> {team.tournament.name}</p>
-        <p>
+        {!isSolo && <div><strong>Mon équipe :</strong> {team.name}</div>}
+        <div><strong>Tournoi :</strong> {team.tournament.name}</div>
+        <div>
           <strong>Statut</strong> <Helper>Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé leur place.</Helper>
           <strong> : </strong>
           {usersPaid === team.tournament.playersPerTeam
             ? <><i className="fas fa-check-circle green-icon"></i> Inscrite</>
             : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
           }
-        </p>
+        </div>
       </div>
 
       {!isSolo ? (

@@ -5,10 +5,11 @@
 
 #dashboard-team .header {
   text-align: left;
+  margin-bottom: 20px;
 }
 
-#dashboard-team .header > p {
-  margin-top: 0;
+#dashboard-team .header > div {
+  margin-bottom: 10px;
 }
 
 #dashboard-team .players-list {
