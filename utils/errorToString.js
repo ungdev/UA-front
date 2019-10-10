@@ -17,7 +17,7 @@ export default (res) => {
         if (detail.msg === 'Invalid value' && detail.value === '') {
           detailText = `Veuillez remplir le champ "${params[detail.param] || detail.param}"`;
         }
-        if (detail.param === 'password' && detail.value.length < 6) {
+        else if (detail.param === 'password' && detail.value.length < 6) {
           detailText = 'Le mot de passe doit contenir au moins 6 caractères';
         }
 

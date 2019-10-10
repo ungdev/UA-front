@@ -71,7 +71,7 @@ const LoginModal = ({ isVisible }) => {
       content: (
         <>
           <Input
-            label="Email / Pseudo"
+            label="Pseudo / Email"
             value={loginForm.username}
             onChange={(value) => updateLogin('username', value)}
           />
