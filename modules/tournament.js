@@ -1,8 +1,4 @@
-import { toast } from 'react-toastify';
-
 import { API } from '../utils';
-import errorToString from '../utils/errorToString';
-
 
 export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
 
@@ -22,14 +18,9 @@ export default (state = initialState, action) => {
 };
 
 export const fetchTournaments = () => async (dispatch) => {
-  try {
-    const res = await API().get('/tournaments?notFull=true');
-    dispatch({
-      type: SET_TOURNAMENTS,
-      payload: res.data,
-    });
-  }
-  catch (err) {
-    toast.error(errorToString(err.response.data.error));
-  }
+  const res = await API.get('/tournaments?notFull=true');
+  dispatch({
+    type: SET_TOURNAMENTS,
+    payload: res.data,
+  });
 };

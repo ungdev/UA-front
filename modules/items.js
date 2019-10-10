@@ -1,6 +1,4 @@
-import { toast } from 'react-toastify';
 import { API } from '../utils';
-import errorToString from '../utils/errorToString';
 
 export const SET_ITEMS = 'items/SET_ITEMS';
 
@@ -21,14 +19,9 @@ export default (state = initialState, action) => {
 };
 
 export const fetchItems = () => async (dispatch) => {
-  try {
-    const res = await API().get('items');
-    dispatch({
-      type: SET_ITEMS,
-      payload: res.data,
-    });
-  }
-  catch (err) {
-    toast.error(errorToString(err.response.data.error));
-  }
+  const res = await API.get('items');
+  dispatch({
+    type: SET_ITEMS,
+    payload: res.data,
+  });
 };

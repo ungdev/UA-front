@@ -82,7 +82,7 @@ const Shop = () => {
     // Get user id
     let placeForId = userId;
     if(place.for !== 'me') {
-      const users = await API().get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
+      const users = await API.get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
 
       if(users.data.length !== 1 || place.forUsername === '') {
         toast.error('Impossible de trouver cet utilisateur');

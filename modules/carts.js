@@ -1,8 +1,4 @@
-import { toast } from 'react-toastify';
-
 import { API } from '../utils';
-import errorToString from '../utils/errorToString';
-
 
 export const SET_ALLCARTS = 'carts/SET_ALLCARTS';
 
@@ -23,15 +19,10 @@ export default (state = initialState, action) => {
 };
 
 export const fetchAllCarts = () => async (dispatch, getState) => {
-  try {
-    const userId = getState().login.user.id;
-    const res = await API().get(`users/${userId}/carts`);
-    dispatch({
-      type: SET_ALLCARTS,
-      allCarts: res.data,
-    });
-  }
-  catch (err) {
-    toast.error(errorToString(err.response.data.error));
-  }
+  const userId = getState().login.user.id;
+  const res = await API.get(`users/${userId}/carts`);
+  dispatch({
+    type: SET_ALLCARTS,
+    allCarts: res.data,
+  });
 };
