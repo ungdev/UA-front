@@ -94,6 +94,7 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
 export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
   const user = getState().login.user;
+
   await API.delete(`teams/${teamId}/users/${userId}`);
   if (user.id === userId) {
     dispatch({
@@ -104,6 +105,7 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
       type: SET_TEAM,
       team: null,
     });
+    toast.success('L\'équipe a bien été supprimée');
   }
   else {
     team.users = team.users.filter(({ id }) => id !== userId);
