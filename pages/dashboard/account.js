@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
 
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
