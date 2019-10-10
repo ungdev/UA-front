@@ -5,15 +5,15 @@ import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { postToSlack } from '../utils';
 
 const options = [
-  { label: 'Tournoi LoL (Pro)', value: 'LoL pro' },
-  { label: 'Tournoi LoL (Amateur)', value: 'LoL amateur' },
-  { label: 'Tournoi Fortnite', value: 'Fortnite' },
-  { label: 'Tournoi CS:GO', value: 'CS:GO' },
-  { label: 'Tournoi SSBU', value: 'SSBU' },
-  { label: 'Tournoi OSU', value: 'osu!' },
-  { label: 'Tournoi Libre', value: 'Libre' },
-  { label: 'J\'ai eu une erreur sur le site', value: 'Erreur' },
-  { label: 'Signaler un bug', value: 'Bug' },
+  { label: 'Tournoi LoL (Pro)', value: 'Tournoi LoL (Pro)' },
+  { label: 'Tournoi LoL (Amateur)', value: 'Tournoi LoL (Amateur)' },
+  { label: 'Tournoi Fortnite', value: 'Tournoi Fortnite' },
+  { label: 'Tournoi CS:GO', value: 'Tournoi CS:GO' },
+  { label: 'Tournoi SSBU', value: 'Tournoi SSBU' },
+  { label: 'Tournoi osu!', value: 'Tournoi osu!' },
+  { label: 'Tournoi libre', value: 'Tournoi libre' },
+  { label: 'J\'ai eu une erreur sur le site', value: 'J\'ai eu une erreur sur le site' },
+  { label: 'Signaler un bug', value: 'Signaler un bug' },
   { label: 'Autre', value: 'Autre' },
 ];
 
