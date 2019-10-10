@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
 import { Title, Table, Button, Modal, Helper } from '../../components/UI';
@@ -26,7 +25,6 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
-  const { push } = useRouter();
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
