@@ -25,7 +25,7 @@ export default (error) => {
     case 'DUPLICATE_ENTRY':
       return 'Le pseudo ou le mail est déjà utilisé';
     case 'VISITOR_FULL':
-      return 'Il n\'y a plus de places visiteur';
+      return 'Il n\'y a plus de places coach';
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     case 'LAN_FULL':
@@ -38,6 +38,8 @@ export default (error) => {
       return 'L\'utilisateur n\'a pas de rôle';
     case 'ALREADY_PAID':
       return 'L\'utilisateur a pas déjà une place';
+    case 'TOURNAMENT_FULL':
+      return 'Tournoi plein';
     default:
       return error;
   }

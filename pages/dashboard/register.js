@@ -115,7 +115,7 @@ const Register = () => {
               rightIcon="fas fa-user-tie"
               onClick={() => dispatch(setType('visitor'))}
             >
-              S'incrire en tant que coach
+              S'incrire
             </Button>
           </div>
       </div>
