@@ -139,6 +139,8 @@ const Navbar = ({ isLoggedIn }) => {
               href="https://www.facebook.com/UTTArena"
               className="facebook-link"
               aria-label="Page Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-facebook-f" />
             </a>
@@ -146,6 +148,8 @@ const Navbar = ({ isLoggedIn }) => {
               href="https://twitter.com/UTTArena"
               className="twitter-link"
               aria-label="Page Twitter"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-twitter" />
             </a>
@@ -153,6 +157,8 @@ const Navbar = ({ isLoggedIn }) => {
               href="https://discord.gg/WhxZwKU"
               className="discord-link"
               aria-label="Serveur Discord"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-discord" />
             </a>
@@ -160,6 +166,8 @@ const Navbar = ({ isLoggedIn }) => {
               href="https://www.youtube.com/user/UTTNetGroup/"
               className="youtube-link"
               aria-label="Chaîne Youtube"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-youtube" />
             </a>
@@ -167,6 +175,8 @@ const Navbar = ({ isLoggedIn }) => {
               href="https://www.twitch.tv/uttarena"
               className="twitch-link"
               aria-label="Chaîne Twitch"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <i className="fab fa-twitch" />
             </a>
@@ -189,7 +199,7 @@ const Navbar = ({ isLoggedIn }) => {
           visible={isVisible}
           buttons={<Button primary onClick={() => dispatch(setLoginModalVisible(false))}>Fermer</Button>}
         >
-          Les inscriptions ne sont pas ouvertes,
+          Les inscriptions ne sont pas encore ouvertes,
           suivez-nous sur les réseaux sociaux pour ne rien rater !
         </Modal>
       ) }
