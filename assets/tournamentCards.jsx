@@ -7,6 +7,7 @@ export default {
       players: 80,
       img: '/static/lolpro.webp',
       link: '/tournaments/lol-pro',
+      id: 1,
     },
     {
       title: 'League of Legends (Amateur)',
@@ -14,6 +15,7 @@ export default {
       players: 80,
       img: '/static/lolamateur.webp',
       link: '/tournaments/lol-amateur',
+      id: 2,
     },
     {
       title: 'Super Smash Bros Ultimate',
@@ -21,6 +23,7 @@ export default {
       players: 64,
       img: '/static/ssbu.webp',
       link: '/tournaments/ssbu',
+      id: 5,
     },
     {
       title: 'Counter-Strike : Global Offensive',
@@ -28,6 +31,7 @@ export default {
       players: 80,
       img: '/static/csgo.webp',
       link: '/tournaments/csgo',
+      id: 4,
     },
     {
       title: 'Fortnite',
@@ -35,18 +39,21 @@ export default {
       players: 96,
       img: '/static/fortnite.webp',
       link: '/tournaments/fortnite',
+      id: 3,
     },
     {
       title: 'osu!',
       players: 24,
       img: '/static/osu.webp',
       link: '/tournaments/osu',
+      id: 6,
     },
     {
       title: 'Libre',
       players: 24,
       img: '/static/libre.webp',
       link: '/tournaments/libre',
+      id: 7,
     },
   ],
 };

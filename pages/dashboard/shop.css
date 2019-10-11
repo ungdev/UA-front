@@ -2,6 +2,10 @@
   margin-bottom: 40px;
 }
 
+#dashboard-shop .title {
+  margin: 20px 0 0 0;
+}
+
 #dashboard-shop .shop-table {
   width: 100%;
   margin-bottom: 20px;
@@ -30,4 +34,15 @@
 
 #dashboard-shop .add-place-input {
   margin-bottom: 20px;
+}
+
+#dashboard-shop .scoup {
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  #dashboard-shop .scoup {
+    width: 100%;
+  }
 }

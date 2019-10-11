@@ -7,6 +7,7 @@ const CSGO = () => (
   <Tournament
     imgSrc="/static/csgo.webp"
     text={tournamentsText.csgo}
+    idTournament={4}
   />
 );
 

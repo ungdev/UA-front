@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
+import { fetchSlots } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper } from '../../components/UI';
 
 import './team.css';
@@ -28,6 +29,7 @@ const Team = () => {
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
+  const slotsTournament = useSelector((state) => state.tournament.slots);
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
@@ -38,6 +40,12 @@ const Team = () => {
       dispatch(fetchTeam(userTeam.id));
     }
   }, [userTeam]);
+
+  useEffect(() => {
+    if (team && !slotsTournament) {
+      dispatch(fetchSlots());
+    }
+  }, [team]);
 
   const players = !isSolo && team && team.users.map((user) => {
     return ({
@@ -108,6 +116,11 @@ const Team = () => {
             : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
           }
         </div>
+        { slotsTournament &&
+        <div>
+          <strong> Places disponibles :</strong> {slotsTournament[team.tournament.id].available} / {slotsTournament[team.tournament.id].total}
+        </div>
+        }
       </div>
 
       {!isSolo ? (

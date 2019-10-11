@@ -7,6 +7,7 @@ const Fortnite = () => (
   <Tournament
     imgSrc="/static/fortnite.webp"
     text={tournamentsText.fortnite}
+    idTournament={3}
   />
 );
 
