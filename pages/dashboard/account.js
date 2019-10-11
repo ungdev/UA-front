@@ -111,10 +111,12 @@ const Account = () => {
         <Button primary onClick={edit}>Modifier</Button>
       </div>
 
-      <div className="ticket">
-        <Title level={4}>Mon billet</Title>
-        <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
-      </div>
+      { user.isPaid &&
+        <div className="ticket">
+          <Title level={4}>Mon billet</Title>
+          <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
+        </div>
+      }
     </div>
   );
 };

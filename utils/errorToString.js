@@ -47,13 +47,21 @@ export default (res) => {
     case 'DUPLICATE_ENTRY':
       return 'Le pseudo ou l\'adresse email est déjà utilisé';
     case 'VISITOR_FULL':
-      return 'Il n\'y a plus de places visiteur';
+      return 'Il n\'y a plus de places coach';
     case 'LAN_FULL':
       return 'Il n\'y a plus de place pour l\'UTT Arena...';
     case 'DISABLED_LOGIN':
       return 'Inscription désactivée';
     case 'PAYMENT_DISABLED':
       return 'Les paiements en ligne ont été désactivés';
+    case 'NO_TEAM':
+      return 'L\'utilisateur n\'a pas d\'équipe';
+    case 'NO_TYPE':
+      return 'L\'utilisateur n\'a pas de rôle';
+    case 'ALREADY_PAID':
+      return 'L\'utilisateur a déjà une place';
+    case 'TOURNAMENT_FULL':
+      return 'Le tournoi est plein';
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     default:

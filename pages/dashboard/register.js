@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
+import { setType } from '../../modules/login';
 import dashboard from '../../assets/dashboard';
 
 import './register.css';
@@ -93,17 +94,30 @@ const Register = () => {
           {dashboard.register.join.discord}
         </div>
         </div>
-        <div className="create-solo-team">
-        {dashboard.register.solo}
-        <Select label="Tournoi" options={tournamentsSoloOptions} value={tournamentSolo} onChange={setTournamentSolo}/>
-        <Button
-          primary
-          className="center-mobile"
-          onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
-          rightIcon="fas fa-user"
-        >
-          S'inscrire en solo
-        </Button>
+        <div className="join-solo">
+          <div className="create-solo-team">
+            {dashboard.register.solo}
+            <Select label="Tournoi" options={tournamentsSoloOptions} value={tournamentSolo} onChange={setTournamentSolo}/>
+            <Button
+              primary
+              className="center-mobile"
+              onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
+              rightIcon="fas fa-user"
+            >
+              S'inscrire en solo
+            </Button>
+          </div>
+          <div>
+            {dashboard.register.coach}
+            <Button
+              primary
+              className="center-mobile"
+              rightIcon="fas fa-user-tie"
+              onClick={() => dispatch(setType('visitor'))}
+            >
+              S'incrire
+            </Button>
+          </div>
       </div>
     </>
   );

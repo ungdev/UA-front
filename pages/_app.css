@@ -54,6 +54,18 @@ img {
   font-weight: 700;
 }
 
+.gold-icon {
+  color: #ffae00;
+}
+
+.green-icon {
+  color: #00a700;
+}
+
+.red-icon {
+  color: #d10000;
+}
+
 .Toastify__toast {
   background: #fff;
   color: #212121;

@@ -21,5 +21,6 @@ export default {
       discord: <p>Tu n'as pas encore de coéquipier ? Pas de soucis, viens en trouver un sur notre <a href="https://discord.gg/TenDPRS">discord</a>.</p>,
     },
     solo: <p>Je veux rejoindre un tournoi solo (SSBU, osu! ou libre)</p>,
+    coach: <p>Tu es coach, manager ou accompagnateur ? C'est ici pour prendre sa place.</p>,
   },
 };

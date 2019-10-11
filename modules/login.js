@@ -106,10 +106,18 @@ export const editUser = (data, email, userId) => async (dispatch) => {
   });
 };
 
-
 export const resetPassword = (email, resetFields) => async (dispatch) => {
   await API.post('auth/reset', { email });
   toast.success('Un email de confirmation vient d\'être envoyé');
   dispatch(setLoginModalVisible(false));
   resetFields();
+};
+
+export const setType = (type) => async (dispatch, getState) => {
+  const user = getState().login.user;
+  const res = await API().put(`/users/${user.id}`, { ...user, type });
+  dispatch({
+    type: SET_USER,
+    user: res.data,
+  });
 };
