@@ -10,11 +10,6 @@ import { API } from '../../utils';
 
 import './shop.css';
 
-const placeInitialValue = {
-  for: 'me',
-  forUsername: '',
-};
-
 const ticketColumns = [
   {
     title: '',
@@ -58,10 +53,11 @@ const Shop = () => {
   const { push } = useRouter();
   const { username, id: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
-  const [cart, setCart] = useState(null);
   const cartStore = useSelector((state) => state.cart);
+  const placeInitialValue = { for: isPaid ? 'other' : 'me', forUsername: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
+  const [cart, setCart] = useState(null);
   const [willBePaid, setWillBePaid] = useState(isPaid);
 
   useEffect(() => {
@@ -113,7 +109,7 @@ const Shop = () => {
     setPlace(placeInitialValue);
   };
 
-  const tickets = cart.cartItems && cart.cartItems.filter((cartItem) => ['player', 'visitor'].includes(cartItem.item.key) && cartItem.quantity > 0);
+  const tickets = cart.cartItems.filter((cartItem) => cartItem.item && ['player', 'visitor'].includes(cartItem.item.key) && cartItem.quantity > 0);
   const ticketRows = tickets.map((ticket) => {
     if (ticket.forUserId === userId && !willBePaid) {
       setWillBePaid(true);
@@ -165,7 +161,7 @@ const Shop = () => {
   };
 
   const itemRows = items.slice(2).map((item) => {
-    const cartItem = cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key));
+    const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key)) : [];
     const quantity = cartItem.length ? cartItem[0].quantity : 0;
     const initialAttribute = item.attributes.length ? {
       value: item.attributes[2].value,

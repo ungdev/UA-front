@@ -9,7 +9,6 @@ import './team.css';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
-  { title: 'Nom', key: 'fullname' },
   { title: 'Email', key: 'email' },
   { title: 'A payé', key: 'isPaid' },
   { title: '', key: 'action' },
@@ -17,7 +16,6 @@ const playersColumns = [
 
 const waitingPlayersColumns = [
   { title: 'Pseudo', key: 'username' },
-  { title: 'Nom', key: 'fullname' },
   { title: 'Email', key: 'email' },
   { title: '', key: 'action' },
 ];
@@ -73,7 +71,6 @@ const Team = () => {
 
   const waitingPlayers = !isSolo && team && team.askingUsers.map((user) => ({
     username: user.username,
-    fullname: `${user.firstname} ${user.lastname}`,
     email: user.email,
     action: user.id !== team.captainId && isCaptain ? (
     <>
@@ -112,8 +109,8 @@ const Team = () => {
           <strong>Statut</strong> <Helper>Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé leur place.</Helper>
           <strong> : </strong>
           {usersPaid === team.tournament.playersPerTeam
-            ? <><i className="fas fa-check-circle green-icon"></i> Inscrite</>
-            : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
+            ? <><i className="fas fa-check-circle green-icon"></i> Inscrit</>
+            : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrit</>
           }
         </div>
         { slotsTournament &&

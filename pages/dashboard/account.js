@@ -32,7 +32,7 @@ const Account = () => {
         data.password = password;
       }
 
-      dispatch(editUser(data, user.email, user.id));
+      dispatch(editUser(data, user.id));
 
       // Reset password fields
       setOldpassword('');

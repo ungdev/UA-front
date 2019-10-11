@@ -3,9 +3,11 @@ import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
 import { API, setTokenAPI } from '../utils';
+import { SET_CART } from './cart';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
+export const UPDATE_USER = 'login/UPDATE_USER';
 export const SET_LOADING = 'login/SET_LOADING';
 
 const initialState = {
@@ -25,6 +27,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ...action.user,
+        },
       };
     case SET_LOADING:
       return {
@@ -97,12 +107,12 @@ export const logout = async (dispatch) => {
   Router.push('/');
 };
 
-export const editUser = (data, email, userId) => async (dispatch) => {
+export const editUser = (data, userId) => async (dispatch) => {
   const res = await API.put(`/users/${userId}`, data);
   toast.success('Vos informations ont été modifiées');
   dispatch({
-    type: SET_USER,
-    user: { ...res.data, email },
+    type: UPDATE_USER,
+    user: res.data,
   });
 };
 
@@ -116,8 +126,13 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
 export const setType = (type) => async (dispatch, getState) => {
   const user = getState().login.user;
   const res = await API.put(`/users/${user.id}`, { ...user, type });
+  await API.delete(`/users/${user.id}/carts/current/items`);
   dispatch({
     type: SET_USER,
     user: res.data,
+  });
+  dispatch({
+    type: SET_CART,
+    cart: null,
   });
 };
