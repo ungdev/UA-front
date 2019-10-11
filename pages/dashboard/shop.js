@@ -9,7 +9,6 @@ import { Table, Input, Button, Title, Modal, Radio, Select } from '../../compone
 import { API } from '../../utils';
 
 import './shop.css';
-import errorToString from '../../utils/errorToString';
 
 const placeInitialValue = {
   for: 'me',
