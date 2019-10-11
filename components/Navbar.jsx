@@ -88,7 +88,7 @@ const Navbar = ({ isLoggedIn }) => {
           tabIndex="0"
           className="logout"
           onClick={() => {
-            dispatch(logout());
+            dispatch(logout);
             setMobileMenuVisible(false);
           }}
         >
