@@ -3,6 +3,7 @@ import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
 import { API, setTokenAPI } from '../utils';
+import { SET_CART } from './cart';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
@@ -125,8 +126,13 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
 export const setType = (type) => async (dispatch, getState) => {
   const user = getState().login.user;
   const res = await API.put(`/users/${user.id}`, { ...user, type });
+  await API.delete(`/users/${user.id}/carts/current/items`);
   dispatch({
     type: SET_USER,
     user: res.data,
+  });
+  dispatch({
+    type: SET_CART,
+    cart: null,
   });
 };
