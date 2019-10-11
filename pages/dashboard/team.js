@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
+import { fetchSlots } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper } from '../../components/UI';
 
 import './team.css';
-import { API } from '../../utils';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -26,21 +26,14 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
-  const [slot, setSlot] = useState({ total: 0, available: 0 });
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
+  const slotsTournament = useSelector((state) => state.tournament.slots);
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
   const usersPaid = team && team.users.reduce((previous, user) => user.isPaid ? previous + 1 : previous, 0);
-
-  const fetchSlot = async () => {
-    const res = await API.get(`tournaments/${team.tournament.id}/teams?paidOnly=true`);
-    const total = team.tournament.maxPlayers / team.tournament.playersPerTeam;
-    const available = total - res.data.length;
-    setSlot({ total, available });
-  };
 
   useEffect(() => {
     if (userTeam && userTeam.id) {
@@ -49,8 +42,8 @@ const Team = () => {
   }, [userTeam]);
 
   useEffect(() => {
-    if (team) {
-      fetchSlot();
+    if (team && !slotsTournament) {
+      dispatch(fetchSlots());
     }
   }, [team]);
 
@@ -123,9 +116,11 @@ const Team = () => {
             : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
           }
         </div>
+        { slotsTournament &&
         <div>
-          <strong> Places disponibles :</strong> {slot.available} / {slot.total}
+          <strong> Places disponibles :</strong> {slotsTournament[team.tournament.id].available} / {slotsTournament[team.tournament.id].total}
         </div>
+        }
       </div>
 
       {!isSolo ? (
