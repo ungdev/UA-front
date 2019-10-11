@@ -50,9 +50,7 @@ const Navbar = ({ isLoggedIn }) => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
-  const user = useSelector((state) => state.login.user);
-  const username = user ? user.username : null;
-  const inTeam = user && user.team;
+  const username = useSelector((state) => state.login.user && state.login.user.username);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -97,7 +95,7 @@ const Navbar = ({ isLoggedIn }) => {
       <Button
         primary
         className="dashboard-button"
-        onClick={() => router.push(`/dashboard/${inTeam ? 'team' : 'register'}`)}
+        onClick={() => router.push('/dashboard')}
       >
         Dashboard
       </Button>

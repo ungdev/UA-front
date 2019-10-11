@@ -93,13 +93,29 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
 
 export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
-  await API.delete(`teams/${teamId}/users/${userId}`);
-
-  team.users = team.users.filter(({ id }) => id !== userId);
-  dispatch({
-    type: SET_TEAM,
-    team,
-  });
+  const user = getState().login.user;
+  await API().delete(`teams/${teamId}/users/${userId}`);
+  if (user.id === userId) {
+    dispatch({
+      type: SET_USER,
+      user: { ...user, team: null },
+    });
+    dispatch({
+      type: SET_TEAM,
+      team: null,
+    });
+  }
+  else {
+    team.users = team.users.filter(({ id }) => id !== userId);
+    dispatch({
+      type: SET_TEAM,
+      team,
+    });
+    dispatch({
+      type: SET_USER,
+      user: { ...user, team: null },
+    });
+  }
 };
 
 export const refuseUser = (user, teamId) => async (dispatch, getState) => {

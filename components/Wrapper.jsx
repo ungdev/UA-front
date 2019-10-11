@@ -70,9 +70,14 @@ const Wrapper = ({ Component }) => {
     dispatch(autoLogin());
   }, []);
 
-  // Do not display anything if the user will be redirected
+  // Do not display the page content if the user will be redirected
   if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
-    return null;
+    return (
+      <>
+        <CookieConsent />
+        <Navbar isLoggedIn={isLoggedIn} />
+      </>
+    );
   }
 
   return (
