@@ -1,23 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
-import { Button, Title } from './UI';
+import { Button, Title, Table } from './UI';
+import { API } from '../utils';
 
 import './Tournament.css';
 
-const Tournament = ({ imgSrc, text }) => {
+const columns = [
+  { title: 'Équipe', key: 'name' },
+  { title: 'Joueurs', key: 'players' },
+];
+
+const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [formatTeams, setFormatTeam] = useState([]);
+
+  const fetchFullTeam = async () => {
+    const res = await API.get(`tournaments/${idTournament}/teams?paidOnly=true`);
+    const teams = res.data.map(({ name, users }) => ({
+      name,
+      players: users.map(({ username }) => username).join(', '),
+    }));
+    setFormatTeam(teams);
+  };
+
   useSelector((state) => {
     if(isLoggedIn !== !!state.login.user) {
       setIsLoggedIn(!!state.login.user);
     }
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchFullTeam();
+    }
+  }, [isLoggedIn]);
 
   const buttonClick = () => {
     if(isLoggedIn) {
@@ -51,6 +74,10 @@ const Tournament = ({ imgSrc, text }) => {
 
         <Title level={2}>Règlement</Title>
         <div className="tournament-section">{text.rules}</div>
+        <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes incrites'}</Title>
+        { isLoggedIn ?
+        <Table columns={isSolo ? [{ title: 'Joueur', key: 'players' }] : columns} dataSource={formatTeams} className="table-tournament"/> :
+        <p>Connectez vous pour afficher les équipes</p>}
       </div>
     </div>
   );
@@ -70,6 +97,18 @@ Tournament.propTypes = {
     rewards: PropTypes.node.isRequired,
     rules: PropTypes.string.isRequired,
   }).isRequired,
+  /**
+   * Is tournament solo?
+   */
+  isSolo: PropTypes.bool,
+  /**
+   * Tournament id
+   */
+  idTournament: PropTypes.string.isRequired,
+};
+
+Tournament.defaultProps = {
+  isSolo: false,
 };
 
 export default Tournament;

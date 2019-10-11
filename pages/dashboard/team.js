@@ -5,6 +5,7 @@ import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } f
 import { Title, Table, Button, Modal, Helper } from '../../components/UI';
 
 import './team.css';
+import { API } from '../../utils';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -25,6 +26,7 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
+  const [slot, setSlot] = useState({ total: 0, available: 0 });
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
@@ -33,11 +35,24 @@ const Team = () => {
   const isSolo = team && team.name.includes('solo-team');
   const usersPaid = team && team.users.reduce((previous, user) => user.isPaid ? previous + 1 : previous, 0);
 
+  const fetchSlot = async () => {
+    const res = await API.get(`tournaments/${team.tournament.id}/teams?paidOnly=true`);
+    const total = team.tournament.maxPlayers / team.tournament.playersPerTeam;
+    const available = total - res.data.length;
+    setSlot({ total, available });
+  };
+
   useEffect(() => {
     if (userTeam && userTeam.id) {
       dispatch(fetchTeam(userTeam.id));
     }
   }, [userTeam]);
+
+  useEffect(() => {
+    if (team) {
+      fetchSlot();
+    }
+  }, [team]);
 
   const players = !isSolo && team && team.users.map((user) => {
     return ({
@@ -107,6 +122,9 @@ const Team = () => {
             ? <><i className="fas fa-check-circle green-icon"></i> Inscrite</>
             : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
           }
+        </div>
+        <div>
+          <strong> Places disponibles :</strong> {slot.available} / {slot.total}
         </div>
       </div>
 
