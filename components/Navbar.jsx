@@ -87,7 +87,10 @@ const Navbar = ({ isLoggedIn }) => {
         <a
           tabIndex="0"
           className="logout"
-          onClick={() => dispatch(logout)}
+          onClick={() => {
+            dispatch(logout());
+            setMobileMenuVisible(false);
+          }}
         >
           Déconnexion
         </a>
@@ -95,7 +98,10 @@ const Navbar = ({ isLoggedIn }) => {
       <Button
         primary
         className="dashboard-button"
-        onClick={() => router.push('/dashboard')}
+        onClick={() => {
+          router.push('/dashboard');
+          setMobileMenuVisible(false);
+        }}
       >
         Dashboard
       </Button>
