@@ -9,7 +9,6 @@ import { Table, Input, Button, Title, Modal, Radio, Select } from '../../compone
 import { API } from '../../utils';
 
 import './shop.css';
-import errorToString from '../../utils/errorToString';
 
 const placeInitialValue = {
   for: 'me',
@@ -82,13 +81,8 @@ const Shop = () => {
     let placeForId = userId;
     let currentType = type;
     if(place.for !== 'me') {
-      let users = [];
-      try {
-        users = await API().get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
-      }
-      catch (err) {
-        return toast.error(errorToString(err.response.data.error));
-      }
+      const users = await API.get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
+
       if(users.data.length !== 1 || place.forUsername === '') {
         toast.error('Impossible de trouver cet utilisateur');
         return;

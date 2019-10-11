@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
+import { API } from '../../utils';
 
 import './account.css';
 
@@ -41,6 +42,19 @@ const Account = () => {
     else {
       toast.error('Les mots de passe ne correspondent pas');
     }
+  };
+
+  const downloadTicket = async () => {
+    const res = await API.get(`${process.env.ARENA_API_URI}users/${user.id}/ticket`);
+
+    let element = document.createElement('a');
+    element.href = 'data:application/pdf;base64,' + res.data;
+    element.download = 'Billet UTT Arena 2019.pdf';
+    element.style.display = 'none';
+
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   };
 
   return (
@@ -96,12 +110,11 @@ const Account = () => {
 
         <Button primary onClick={edit}>Modifier</Button>
       </div>
+
       { user.isPaid &&
         <div className="ticket">
           <Title level={4}>Mon billet</Title>
-          <a href={`${process.env.ARENA_API_URI}users/${user.id}/ticket`} target="_blank" rel="noopener noreferrer">
-            <Button primary>Télécharger mon billet</Button>
-          </a>
+          <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
         </div>
       }
     </div>

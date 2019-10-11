@@ -21,8 +21,18 @@ const Card = ({
   className,
   classNameImg,
 }) => {
-  const button = <Button primary onClick={onClick}>{buttonContent}</Button>;
-  const LinkComponent = href && href.includes('http') ? 'a' : Link;
+  let button = <Button primary onClick={onClick}>{buttonContent}</Button>;
+  if (href) {
+    button = href.includes('http')
+      ? <a
+          href={href}
+          target={target}
+          rel="noopener noreferrer"
+        >
+          {button}
+        </a>
+      : <Link href={href}>{button}</Link>;
+  }
 
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
@@ -30,12 +40,7 @@ const Card = ({
       {content && (
         <>
           <div className="card-content">{content}</div>
-          { buttonContent !== ''
-          && (
-            <div className="card-button">
-              { href ? <LinkComponent href={href} target={target} rel="noopener noreferrer">{button}</LinkComponent> : button }
-            </div>
-          )}
+          { buttonContent !== '' && <div className="card-button">{button}</div> }
         </>
       )}
     </div>

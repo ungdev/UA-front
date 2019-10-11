@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 import { Modal, Button, Input } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
-import { tryLogin } from '../modules/login';
+import { tryLogin, resetPassword } from '../modules/login';
 
 import './LoginModal.css';
-import { API } from '../utils';
-import { toast } from 'react-toastify';
 
 const initialSignup = {
   firstname: '',
@@ -73,7 +71,7 @@ const LoginModal = ({ isVisible }) => {
       content: (
         <>
           <Input
-            label="Email / Pseudo"
+            label="Pseudo / Email"
             value={loginForm.username}
             onChange={(value) => updateLogin('username', value)}
           />
@@ -175,12 +173,7 @@ const LoginModal = ({ isVisible }) => {
 
           <Button
             primary
-            onClick={() => {
-              API().post('auth/reset', { email: forgotEmail });
-              toast.success('Si un compte existe, un email vient de lui être envoyé');
-              dispatch(setLoginModalVisible(false));
-              resetFields();
-            }}
+            onClick={() => dispatch(resetPassword(forgotEmail, resetFields))}
             type="submit"
           >
             Envoyer

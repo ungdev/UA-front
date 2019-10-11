@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
-import errorToString from '../utils/errorToString';
 import { Input, Button, Title } from '../components/UI';
 import { API } from '../utils';
 
@@ -12,14 +11,9 @@ const Reset = () => {
   const [password, setPassword] = useState('');
   const [passwordBis, setPasswordBis] = useState('');
   const reset = async () => {
-    try {
-      await API().put('auth/reset', { resetToken, password });
-      toast.success('Mot de passe réinitialisé');
-      router.push('/');
-    }
-    catch (err) {
-      toast.error(errorToString(err.response.data.error));
-    }
+    await API.put('auth/reset', { resetToken, password });
+    toast.success('Mot de passe réinitialisé');
+    router.push('/');
   };
 
   if (!resetToken) {
