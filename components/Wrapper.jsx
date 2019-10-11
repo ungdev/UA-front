@@ -17,15 +17,28 @@ const Wrapper = ({ Component }) => {
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [hasTeam, setHasTeam] = useState(false);
+  const [isVisitor, setIsVisitor] = useState(false);
+
   useSelector((state) => {
-    if(isLoggedIn !== !!state.login.user) {
-      setIsLoggedIn(!!state.login.user);
-      setIsRegistered(!!state.login.user.team);
+    const { user } = state.login;
+    if (isLoggedIn !== !!user) {
+      setIsLoggedIn(!!user);
+      setHasTeam(!!user.team);
+      setIsVisitor(user.type === 'visitor');
+    }
+    else if (user && hasTeam !== !!user.team) {
+      setHasTeam(!!user.team);
+    }
+    else if (user && !isVisitor && user.type === 'visitor') {
+      setIsVisitor(true);
+    }
+    else if (user && isVisitor && user.type === 'none') {
+      setIsVisitor(false);
     }
   });
-  const isLoading = useSelector((state) => state.login.loading);
 
+  const isLoading = useSelector((state) => state.login.loading);
 
   // Handle redirections
   let redirect = null;
@@ -33,11 +46,16 @@ const Wrapper = ({ Component }) => {
   if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
-  else if (isLoggedIn && isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-    redirect = '/dashboard/team';
-  }
-  else if (isLoggedIn && !isRegistered && (pathname === '/dashboard' || pathname === '/dashboard/team')) {
-    redirect = '/dashboard/register';
+  else if (isLoggedIn) {
+    if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/team';
+    }
+    else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/coach';
+    }
+    else if (!isVisitor && !hasTeam && (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')) {
+      redirect = '/dashboard/register';
+    }
   }
 
   // Redirect to desired path
@@ -52,9 +70,14 @@ const Wrapper = ({ Component }) => {
     dispatch(autoLogin());
   }, []);
 
-  // Do not display anything if the user will be redirected
+  // Do not display the page content if the user will be redirected
   if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
-    return null;
+    return (
+      <>
+        <CookieConsent />
+        <Navbar isLoggedIn={isLoggedIn} />
+      </>
+    );
   }
 
   return (
@@ -67,7 +90,8 @@ const Wrapper = ({ Component }) => {
         { isDashboard && (
             <DashboardHeader
               pathname={pathname}
-              isRegistered={isRegistered}
+              hasTeam={hasTeam}
+              isVisitor={isVisitor}
             />
           )
         }

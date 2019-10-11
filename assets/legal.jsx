@@ -84,11 +84,11 @@ export default {
         L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son inscription.
         L'acheteur sera informé de toute indisponibilité du produit ou du bien commandé.
         Pour que la commande soit validée, l'acheteur devra accepter, en cliquant à l'endroit indiqué, les présentes conditions générales.
-        Il devra également indiquer l'adresse mail vers laquelle sera envoyé son produit et enfin valider le mode de paiement.
+        Il devra également indiquer l'adresse email vers laquelle sera envoyé son produit et enfin valider le mode de paiement.
         La vente sera considérée comme définitive après l'envoi à l'acheteur de la confirmation de l'acceptation de la commande par le vendeur par courrier électronique et après encaissement par le vendeur de l'intégralité du prix.
         Toute commande vaut acceptation des prix et description des produits disponibles à la vente.
         Dans certains cas, notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le vendeur se réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème.
-        Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro de téléphone suivant : 0326406000 (coût d'un appel local), aux jours et horaires suivants : du lundi au vendredi, de 9h à 18h, ou envoyer un mail au vendeur à l'adresse mail suivante : arena@utt.fr.
+        Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro de téléphone suivant : 0326406000 (coût d'un appel local), aux jours et horaires suivants : du lundi au vendredi, de 9h à 18h, ou envoyer un email au vendeur à l'adresse email suivante : arena@utt.fr.
       </p>
 
       <Title level={3}>Article V - Signature électronique</Title>
@@ -96,7 +96,7 @@ export default {
         La fourniture en ligne du numéro de carte bancaire de l'acheteur et la validation finale de la commande vaudront preuve de l'accord de l'acheteur :
         exigibilité des sommes dues au titre du bon de commande ;
         signature et acceptation expresse de toutes les opérations effectuées.
-        En cas d'utilisation frauduleuse de la carte bancaire, l'acheteur est invité, dès le constat de cette utilisation, à contacter le vendeur à l'adresse mail suivante : arena@utt.fr.
+        En cas d'utilisation frauduleuse de la carte bancaire, l'acheteur est invité, dès le constat de cette utilisation, à contacter le vendeur à l'adresse email suivante : arena@utt.fr.
       </p>
 
       <Title level={3}>Article VI - Confirmation de commande</Title>

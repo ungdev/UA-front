@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button, Input } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
-import { tryLogin } from '../modules/login';
+import { tryLogin, resetPassword } from '../modules/login';
 
 import './LoginModal.css';
 
@@ -71,7 +71,7 @@ const LoginModal = ({ isVisible }) => {
       content: (
         <>
           <Input
-            label="Email / Pseudo"
+            label="Pseudo / Email"
             value={loginForm.username}
             onChange={(value) => updateLogin('username', value)}
           />
@@ -173,7 +173,7 @@ const LoginModal = ({ isVisible }) => {
 
           <Button
             primary
-            onClick={() => setPanel('login')}
+            onClick={() => dispatch(resetPassword(forgotEmail, resetFields))}
             type="submit"
           >
             Envoyer

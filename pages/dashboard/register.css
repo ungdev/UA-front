@@ -1,4 +1,5 @@
 #dashboard-register .table-join {
+  margin-top: 20px;
   width: 100%;
 }
 
@@ -6,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #dashboard-register .team-tournament > div {
@@ -17,8 +21,50 @@
   display: block;
 }
 
-@media screen and (max-width: 1000px) {
+#dashboard-register .select {
+  max-width: 600px;
+}
+
+#dashboard-register .join-solo {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#dashboard-register .join-solo > div {
+  width: 45%;
+}
+
+@media screen and (max-width: 1200px) {
   #dashboard-register .team-tournament > div {
     width: 100%;
+  }
+
+  #dashboard-register .join-solo > div {
+    width: 100%;
+  }
+
+  #dashboard-register .team-tournament {
+    display: block;
+    border: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+  }
+
+  #dashboard-register .team-tournament .create-team,
+  #dashboard-register .team-tournament .join-team,
+  #dashboard-register .join-solo .create-solo-team {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+
+  #dashboard-register .select {
+    max-width: none;
+  }
+
+  #dashboard-register .center-mobile {
+    margin: 0 auto;
+    display: block;
   }
 }

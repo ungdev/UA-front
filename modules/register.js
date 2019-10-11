@@ -3,9 +3,6 @@ import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
 import { API } from '../utils';
-import errorToString from '../utils/errorToString';
-
-import { saveToken } from './login';
 
 const initialState = {};
 
@@ -21,30 +18,23 @@ export const registerUser = (user) => async (dispatch) => {
     toast.error('Les deux mots de passe ne correspondent pas');
     return;
   }
-  try {
-    await API().post('users', user);
-    toast.success('Inscription réussie');
-    dispatch(setLoginModalVisible(false));
-    return true;
-  }
-  catch (err) {
-    toast.error(err.response.data.error);
-  }
+
+  await API.post('users', user);
+  toast.success('Inscription réussie, veuillez vérifier vos emails');
+  dispatch(setLoginModalVisible(false));
+  return true;
 };
 
-export const validate = (slug) => async (dispatch) => {
+export const validate = (slug) => async () => {
   try {
-    const res = await API().post('auth/validate', { slug });
-    dispatch(saveToken(res.data.token));
-    dispatch({
-      type: 'login/SET_USER',
-      payload: res.data.user,
-    });
-    toast.success('Inscription validée');
-    Router.push('/dashboard');
+    const res = await API.post('auth/validate', { slug });
+    localStorage.setItem('utt-arena-userid', res.data.user.id);
+    localStorage.setItem('utt-arena-token', res.data.token);
+
+    // Refresh page to autoLogin
+    window.location = '/dashboard';
   }
-  catch (err) {
-    toast.error(errorToString(err.response.data.error));
-    Router.push('/');
+  catch(err) {
+    Router.replace('/');
   }
 };

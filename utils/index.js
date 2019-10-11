@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
+import errorToString from './errorToString';
 
 const postToSlack = (firstname, lastname, email, subject, content) => {
   axios.post(process.env.SLACK_WEBHOOK, {
@@ -39,10 +42,47 @@ const setTokenAPI = (token) => {
   });
 };
 
-const API = () => {
-  if (process.browser) {
-    return axiosAPI;
-  }
+const API = {
+  get: (route) => new Promise((resolve, reject) => {
+    if(process.browser) {
+      axiosAPI.get(route)
+        .then((res) => resolve(res))
+        .catch((err) => {
+          toast.error(errorToString(err.response.data));
+          reject(err);
+        });
+    }
+  }),
+  post: (route, body) => new Promise((resolve, reject) => {
+    if(process.browser) {
+      axiosAPI.post(route, body)
+        .then((res) => resolve(res))
+        .catch((err) => {
+          toast.error(errorToString(err.response.data));
+          reject(err);
+        });
+    }
+  }),
+  put: (route, body) => new Promise((resolve, reject) => {
+    if(process.browser) {
+      axiosAPI.put(route, body)
+        .then((res) => resolve(res))
+        .catch((err) => {
+          toast.error(errorToString(err.response.data));
+          reject(err);
+        });
+    }
+  }),
+  delete: (route,) => new Promise((resolve, reject) => {
+    if(process.browser) {
+      axiosAPI.delete(route)
+        .then((res) => resolve(res))
+        .catch((err) => {
+          toast.error(errorToString(err.response.data));
+          reject(err);
+        });
+    }
+  }),
 };
 
 const getCookie = (cookieName) => {

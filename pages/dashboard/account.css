@@ -7,14 +7,14 @@
 #dashboard-account .infos,
 #dashboard-account .ticket {
   max-width: 100%;
-  margin: 20px;
+  margin: 0px 20px;
 }
 
 #dashboard-account .infos {
   width: 400px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 #dashboard-account .ticket {
-  width: 200px;
+  width: 250px;
 }

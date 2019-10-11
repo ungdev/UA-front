@@ -23,8 +23,8 @@ export default [
         answer: (
           <>
             Amène tout ce dont tu as besoin pour jouer : ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum.<br />
-            Notre partenaire Scoup eSport te propose également de louer du matériel pendant l'événement.
-            Pour cela ajoute le matériel dont tu as besoin dans ton dashboard.<br />
+            Si tu souhaites louer du matériel pendant l'événement, rends-toi sur la{' '}
+            <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.<br />
             Nous vendons également des multiprises et des câbles RJ45 de 5m et 7m.
           </>
         ),
@@ -80,19 +80,20 @@ export default [
           <>
             La LAN coûte 20€ pour les joueurs.<br />
             La place coach/manager/accompagnateur est à 12€.<br />
-            Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€.
+            Pour les joueurs venant d'une Université de Technologie, la place joueur est à 15€
+            (réduction effectuée au moment du paiement, pensez à utiliser l'adresse email de votre école).
           </>
         ),
       },
       {
-        question: 'Je me suis inscrit et je n\'ai pas reçu mon mail de confirmation',
+        question: 'Je me suis inscrit et je n\'ai pas reçu mon email de confirmation',
         answer: (
           <>
             Si lors de votre inscription votre adresse e-mail est rejetée, cela peut être dû à trois choses:
             <ul>
-              <li>On ne peut pas avoir plus d'un compte par mail</li>
+              <li>On ne peut pas avoir plus d'un compte par email</li>
               <li>Cet e-mail a été banni. Contactez les organisateurs afin d'en savoir plus.</li>
-              <li>Vous vous êtes trompé lors de la saisie de votre adresse mail. Contactez les organisateurs grâce au formulaire de contact.</li>
+              <li>Vous vous êtes trompé lors de la saisie de votre adresse email. Contactez les organisateurs grâce au formulaire de contact.</li>
             </ul>
           </>
         ),

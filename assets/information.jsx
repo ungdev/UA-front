@@ -27,7 +27,7 @@ export default {
       <ul>
         <li>Joueur : 20€</li>
         <li>Accompagnateur : 12€ (limité à 40 places)</li>
-        <li>Joueur d'une Université de Technologie : 15€</li>
+        <li>Joueur d'une Université de Technologie : 15€ (réduction effectuée au moment du paiement, pensez à utiliser l'adresse email de votre école)</li>
       </ul>
     </>
   ),
@@ -106,7 +106,8 @@ export default {
       <Title level={4}>Location de matériel</Title>
       <p>
         Grâce à notre partenaire Scoup eSport, nous vous proposons de louer du matériel gaming pour toute la durée de l'événement.
-        Pour cela, choisissez votre matériel dans votre dashboard après avoir payé votre place et vous pourrez le récupérer à partir du vendredi.
+        Pour cela rends-toi sur la{' '}
+        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
       </p>
     </>
   ),

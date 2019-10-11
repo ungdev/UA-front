@@ -4,7 +4,6 @@
 
 .table {
   display: table;
-  max-width: 100%;
   table-layout: auto;
   border-collapse: collapse;
   margin-bottom: 1em;

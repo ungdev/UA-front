@@ -4,17 +4,29 @@ import PropTypes from 'prop-types';
 
 import './DashboardHeader.css';
 
-const DashboardHeader = ({ pathname, isRegistered }) => {
-  const links = [
-    { title: 'Équipe', href: '/dashboard/team' },
-    { title: 'Boutique', href: '/dashboard/shop' },
-    { title: 'Mes achats', href: '/dashboard/purchases' },
-    { title: 'Mon compte', href: '/dashboard/account' },
-  ];
-  if (!isRegistered) {
-    // Replace 'team' by 'register'
-    links[0] = { title: 'Inscription', href: '/dashboard/register' };
-  }
+const DashboardHeader = ({ pathname, hasTeam, isVisitor }) => {
+  const links = () => {
+    if (hasTeam) {
+      return [
+        { title: 'Équipe', href: '/dashboard/team' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isVisitor) {
+      return [
+        { title: 'Coach', href: '/dashboard/coach' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    return [
+      { title: 'Inscription', href: '/dashboard/register' },
+      { title: 'Mon compte', href: '/dashboard/account' },
+    ];
+  };
 
   return (
     <header id="dashboard-header">
@@ -23,9 +35,8 @@ const DashboardHeader = ({ pathname, isRegistered }) => {
           <p>Dashboard</p>
         </div>
       </div>
-
       <div className="nav">
-        {links.map((link) => (
+        {links().map((link) => (
           <Link href={link.href} key={link.href}>
             <a className={`nav-link ${link.href === pathname ? 'active' : ''}`}>
               <span>
@@ -45,9 +56,13 @@ DashboardHeader.propTypes = {
    */
   pathname: PropTypes.string.isRequired,
   /**
-   * Is the user registered in a team ?
+   * Is the user in a team ?
    */
-  isRegistered: PropTypes.bool.isRequired,
+  hasTeam: PropTypes.bool.isRequired,
+  /**
+   * Is the user a visitor ?
+   */
+  isVisitor: PropTypes.bool.isRequired,
 };
 
 export default DashboardHeader;

@@ -43,7 +43,7 @@ Input.propTypes = {
   /**
    * Label to display
    */
-  label: PropTypes.string,
+  label: PropTypes.node,
   /**
    * Value of the input
    */

@@ -101,7 +101,7 @@ export default [
    },
   {
     name: 'Bureau Des Étudiants de l\'Université de Technologie de Troyes',
-    link: 'https://bde.utt.fr/fr',
+    link: 'https://etu.utt.fr/orgas/bde',
     img: '/static/partners/bde.jpg',
     description: (
       <>

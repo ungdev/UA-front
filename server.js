@@ -16,6 +16,10 @@ app.prepare().then(() => {
     return app.render(req, res, '/valid', { slug: req.params.slug });
   });
 
+  server.get('/reset/:resetToken', (req, res) => {
+    return app.render(req, res, '/reset', { resetToken: req.params.resetToken });
+  });
+
   server.all('*', (req, res) => {
     const { path, query } = req;
     console.log(`[ \x1b[36mrequest\x1b[0m ] ${path}`);

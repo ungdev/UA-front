@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
-import { Title, Table, Button, Modal } from '../../components/UI';
+import { Title, Table, Button, Modal, Helper } from '../../components/UI';
 
 import './team.css';
 
-const columns = [
+const playersColumns = [
+  { title: 'Pseudo', key: 'username' },
+  { title: 'Nom', key: 'fullname' },
+  { title: 'Email', key: 'email' },
+  { title: 'A payé', key: 'isPaid' },
+  { title: '', key: 'action' },
+];
+
+const waitingPlayersColumns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Nom', key: 'fullname' },
   { title: 'Email', key: 'email' },
@@ -18,13 +25,13 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
-  const { push } = useRouter();
   const dispatch = useDispatch();
   const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
   const { team } = useSelector((state) => state.team);
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
+  const usersPaid = team && team.users.reduce((previous, user) => user.isPaid ? previous + 1 : previous, 0);
 
   useEffect(() => {
     if (userTeam && userTeam.id) {
@@ -34,11 +41,11 @@ const Team = () => {
 
   const players = !isSolo && team && team.users.map((user) => {
     return ({
-      username: user.id === team.captainId ? `${user.username} 🜲`: user.username,
+      username: user.id === team.captainId ? <>{user.username} <i className="fas fa-crown gold-icon"></i></> : user.username,
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
+      isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
       action: user.id !== team.captainId && isCaptain ? (
-      <>
         <Button
           onClick={() => setModal({
             visible: true,
@@ -52,24 +59,11 @@ const Team = () => {
         >
           Designer comme chef
         </Button>
-        <Button
-          onClick={() => setModal({
-            visible: true,
-            onOk: () => {
-              dispatch(kickUser(user.id, team.id));
-              setModal(initialModal);
-            },
-            content: 'Confirmez l\'exclusion du joueur',
-            title: 'Exclure un joueur',
-          })}
-        >
-          Exclure
-        </Button>
-      </>) : '',
+      ) : '',
     });
   });
 
-  const playersWaiting = !isSolo && team && team.askingUsers.map((user) => ({
+  const waitingPlayers = !isSolo && team && team.askingUsers.map((user) => ({
     username: user.username,
     fullname: `${user.firstname} ${user.lastname}`,
     email: user.email,
@@ -88,7 +82,7 @@ const Team = () => {
             dispatch(refuseUser(user, team.id));
             setModal(initialModal);
           },
-          content: `Confirmez le refus de ${user.username}`,
+          content: `Voulez-vous refuser ${user.username} ?`,
           title: 'Refuser un joueur',
         })}
       >
@@ -104,19 +98,15 @@ const Team = () => {
   return (
     <div id="dashboard-team">
       <div className="header">
-        <div className="info">
-          {!isSolo && <Title level={4}>Mon équipe: {team.name}</Title>}
-          <Title level={4}>Tournoi : {team.tournament.name}</Title>
-        </div>
-        <div className="status">
-          <p>Statut : Non payé</p>
-          <Button
-            primary
-            onClick={() => push('/dashboard/shop')}
-            rightIcon="fas fa-shopping-cart"
-          >
-            Payer
-          </Button>
+        {!isSolo && <div><strong>Mon équipe :</strong> {team.name}</div>}
+        <div><strong>Tournoi :</strong> {team.tournament.name}</div>
+        <div>
+          <strong>Statut</strong> <Helper>Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé leur place.</Helper>
+          <strong> : </strong>
+          {usersPaid === team.tournament.playersPerTeam
+            ? <><i className="fas fa-check-circle green-icon"></i> Inscrite</>
+            : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrite</>
+          }
         </div>
       </div>
 
@@ -124,11 +114,11 @@ const Team = () => {
         <>
           <div className="players-list">
             <Title level={4}>Joueurs</Title>
-            <Table columns={columns} dataSource={players} alignRight className="table-players"/>
+            <Table columns={playersColumns} dataSource={players} alignRight className="table-players"/>
           </div>
           <div className="players-list">
             <Title level={4}>Joueurs en attente</Title>
-            <Table columns={columns} dataSource={playersWaiting} alignRight className="table-players"/>
+            <Table columns={waitingPlayersColumns} dataSource={waitingPlayers} alignRight className="table-players"/>
           </div>
           <Button
             onClick={() => isCaptain ?

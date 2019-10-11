@@ -9,11 +9,6 @@ import { API } from '../../utils';
 import './account.css';
 
 const Account = () => {
-  const sendTicket = async () => {
-    await API().get('/user/ticket');
-    toast.success('Ton billet a été envoyé par mail');
-  };
-
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
 
@@ -47,6 +42,19 @@ const Account = () => {
     else {
       toast.error('Les mots de passe ne correspondent pas');
     }
+  };
+
+  const downloadTicket = async () => {
+    const res = await API.get(`${process.env.ARENA_API_URI}users/${user.id}/ticket`);
+
+    let element = document.createElement('a');
+    element.href = 'data:application/pdf;base64,' + res.data;
+    element.download = 'Billet UTT Arena 2019.pdf';
+    element.style.display = 'none';
+
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
   };
 
   return (
@@ -103,10 +111,12 @@ const Account = () => {
         <Button primary onClick={edit}>Modifier</Button>
       </div>
 
-      <div className="ticket">
-        <Title level={4}>Mon billet</Title>
-        <Button primary onClick={sendTicket}>Renvoyer par mail</Button>
-      </div>
+      { user.isPaid &&
+        <div className="ticket">
+          <Title level={4}>Mon billet</Title>
+          <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
+        </div>
+      }
     </div>
   );
 };
