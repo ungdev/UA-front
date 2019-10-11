@@ -44,7 +44,7 @@ export const saveCart = (cart, displayToast) => async (dispatch, getState) => {
   const forUserId = getState().login.user.id;
   const modifiedCartItems = cart.cartItems.reduce((previous, cartItem) => {
     const isNew = !cartItem.id;
-    if (isNew) {
+    if (isNew && cartItem.quantity !== 0) {
       previous.new.push({ ...cartItem, forUserId: cartItem.forUserId || forUserId });
     }
     else if (cartItem.isUpdated && cartItem.quantity !== 0) {

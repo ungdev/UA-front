@@ -241,7 +241,7 @@ const Shop = () => {
         <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
       </div>
       <div className="scoup">
-        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">
           <img src="/static/scoupbanner.png" alt=""/>
         </a>
       </div>
