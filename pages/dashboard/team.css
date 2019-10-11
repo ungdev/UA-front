@@ -1,10 +1,15 @@
 #dashboard-team .table-players {
   width: 100%;
+  margin-bottom: 30px;
 }
 
 #dashboard-team .header {
-  display: flex;
-  justify-content: space-between;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#dashboard-team .header > div {
+  margin-bottom: 10px;
 }
 
 #dashboard-team .players-list {

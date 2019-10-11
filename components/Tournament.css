@@ -28,6 +28,11 @@
   margin-bottom: 20px;
 }
 
+.tournament .table-tournament {
+  width: 75%;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 650px) {
   .tournament .tournament-header {
     height: 20vh;
@@ -39,5 +44,9 @@
 
   .tournament .tournament-content {
     padding: 0 1em;
+  }
+
+  .tournament .table-tournament {
+    width: 100%;
   }
 }

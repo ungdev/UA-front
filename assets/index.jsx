@@ -16,7 +16,7 @@ export default {
       { title: '', key: 'description' },
     ],
     tableRows: [
-      { title: <strong>Format</strong>, description: 'Bring Your Own Stuff : ramène ton ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum… Bref, tout ce dont tu as besoin pour jouer' },
+      { title: <strong>Format</strong>, description: 'Bring Your Own Stuff : ramène ton ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum (7m idéalement)… Bref, tout ce dont tu as besoin pour jouer' },
       { title: <strong>Ouverture</strong>, description: '6 décembre 2019 - 17h' },
       { title: <strong>Fermeture</strong>, description: '8 décembre 2019 - 18h' },
       { title: <strong>Début des tournois</strong>, description: 'Samedi 7 décembre à 10h précises' },

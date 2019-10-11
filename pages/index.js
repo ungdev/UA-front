@@ -10,7 +10,12 @@ import './index.css';
 
 const listPartners = partnersList.map((partner) => (
   <div className="partner" key={partner.link}>
-    <a href={partner.link} aria-label={`Partenaire ${partner.name}`}>
+    <a
+      href={partner.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Partenaire ${partner.name}`}
+    >
       <Card imgSrc={partner.img} classNameImg="partner-img" />
     </a>
   </div>
@@ -39,8 +44,8 @@ const Home = () => (
         <p>{indexText.information.description}</p>
 
         <VideoContainer
-          src="https://www.youtube.com/embed/K_Jchg4MIh0"
-          title="Aftermovie UTT Arena 2018"
+          src="https://www.youtube.com/embed/58kaynZMwUI"
+          title="Trailer UTT Arena 2019"
           className="video-container"
         />
 

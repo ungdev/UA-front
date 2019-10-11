@@ -13,7 +13,9 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
     <button
       className={`tab-nav ${index === i ? 'active' : ''}`}
       onClick={() => {
-        tab.onClick(i);
+        if (tab.onClick) {
+          tab.onClick(i);
+        }
         setIndex(i);
       }}
       key={tab.title}

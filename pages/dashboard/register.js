@@ -1,29 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
-import { fetchTournamentTeam } from '../../modules/tournament';
-
+import { fetchTournaments } from '../../modules/tournament';
+import { setType } from '../../modules/login';
 import dashboard from '../../assets/dashboard';
+
 import './register.css';
 
-//a récupérer de l'API ???
-const tournamentsList = [
-  { label: 'League of Legends (Pro)', value: '1', shortName: 'LoL (Pro)' },
-  { label: 'League of Legends (Amateur)', value: '2', shortName: 'LoL (Amateur)' },
-  { label: 'Fortnite', value: '3', shortName: 'Fortnite' },
-  { label: 'Counter Strike: GO', value: '4', shortName: 'CS:GO' },
-];
-
-const tournamentsSolo = [
-  { label: 'Super Smash Bros Ultimate', value: '5' },
-  { label: 'osu!', value: '6' },
-  { label: 'Libre', value: '7' },
-];
-
 const columns = [
-  { title: 'Equipe', key: 'team' },
+  { title: 'Équipe', key: 'team' },
   { title: 'Joueurs', key: 'players' },
   { title: '', key: 'action' },
 ];
@@ -31,53 +18,62 @@ const columns = [
 const Register = () => {
   const [tournament, setTournament] = useState('1');
   const [tournamentSolo, setTournamentSolo] = useState('5');
-  const [name, setName] = useState('');
+  const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournament.tournaments);
   const { username, askingTeamId } = useSelector((state) => state.login.user || { username: '', askingTeamId: '' });
   const soloTeamName = `${username}-solo-team`;
 
-  const fetchTeams = (i) => {
-    if (!tournaments || !tournaments[i+1]) {
-      dispatch(fetchTournamentTeam(i+1));
-    }
-  };
+  useEffect(() => {
+    dispatch(fetchTournaments());
+  }, []);
 
-  const formatTeams = (i) => {
-    if (!tournaments || !tournaments[i]) {
-      return [];
-    }
-    const dataSource = tournaments[i].map(({ name, users, id }) => {
-      const players = users.map((user) => user.username).join(', ');
-      return {
-        team: askingTeamId === id ? `${name} (demande en attente)` : name,
-        players,
-        action: askingTeamId === id
-          ? <Button onClick={() => dispatch(cancelJoin(id, name))}>Annuler</Button>
-          : <Button primary onClick={() => dispatch(joinTeam(id, name))}>Rejoindre</Button>,
-        };
-    });
-    return <Table columns={columns} dataSource={dataSource} alignRight className="table-join" />;
-  };
+  if(!tournaments) {
+    return null;
+  }
 
-  const tabs = tournamentsList.map(({ shortName, value }) => ({
-    title: shortName,
-    content: formatTeams(value),
-    onClick: fetchTeams,
+  // Split multiplayer and solo tournaments
+  const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
+  const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
+
+  // Get tournaments category select options
+  const tournamentsOptions = tournamentsList.map((tournament) => ({
+    label: tournament.name,
+    value: tournament.id,
   }));
+  const tournamentsSoloOptions = tournamentsSoloList.map((tournament) => ({
+    label: tournament.name,
+    value: tournament.id,
+  }));
+
+  // Get multiplayer tournaments tabs
+  const tournamentsTabs = tournamentsList.map((tournament) => {
+    const tournamentTeams = tournament.teams.map((team) => ({
+      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+      players: team.users.map((user) => user.username).join(', '),
+      action: askingTeamId === team.id
+        ? <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+        : <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>Rejoindre</Button>,
+    }));
+
+    return {
+      title: tournament.shortName,
+      content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
+    };
+  });
 
   const mainPanel = (
     <>
       <div className="team-tournament">
         <div className="create-team">
           {dashboard.register.create.info}
-          <Select label="Tournoi" options={tournamentsList} value={tournament} onChange={setTournament} />
-          <Input label="Nom d'équipe" value={name} onChange={setName} />
+          <Select label="Tournoi" options={tournamentsOptions} value={tournament} onChange={setTournament}/>
+          <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ name, tournament }))}
+            onClick={() => dispatch(createTeam({ teamName, tournament }))}
             rightIcon="fas fa-plus"
           >
             Créer mon équipe
@@ -90,27 +86,38 @@ const Register = () => {
           <Button
             primary
             className="center"
-            onClick={() => {
-              fetchTeams(0);
-              setPanel('join');
-            }}
+            onClick={() => setPanel('join')}
             rightIcon="fas fa-users"
           >
             Rejoindre une équipe
           </Button>
           {dashboard.register.join.discord}
         </div>
-      </div>
-      <div className="create-solo-team">
-        {dashboard.register.solo}
-        <Select label="Tournoi" options={tournamentsSolo} value={tournamentSolo} onChange={setTournamentSolo} />
-        <Button
-          primary
-          onClick={() => dispatch(createTeam({ tournament: tournamentSolo, name: soloTeamName }))}
-          rightIcon="fas fa-user"
-        >
-          S'inscrire en solo
-        </Button>
+        </div>
+        <div className="join-solo">
+          <div className="create-solo-team">
+            {dashboard.register.solo}
+            <Select label="Tournoi" options={tournamentsSoloOptions} value={tournamentSolo} onChange={setTournamentSolo}/>
+            <Button
+              primary
+              className="center-mobile"
+              onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
+              rightIcon="fas fa-user"
+            >
+              S'inscrire en solo
+            </Button>
+          </div>
+          <div>
+            {dashboard.register.coach}
+            <Button
+              primary
+              className="center-mobile"
+              rightIcon="fas fa-user-tie"
+              onClick={() => dispatch(setType('visitor'))}
+            >
+              S'inscrire
+            </Button>
+          </div>
       </div>
     </>
   );
@@ -118,7 +125,7 @@ const Register = () => {
   const joinPanel = (
     <>
       <Button onClick={() => setPanel('main')} leftIcon="fas fa-arrow-left">Retour</Button>
-      <Tabs tabs={tabs}/>
+      <Tabs tabs={tournamentsTabs}/>
     </>
   );
 

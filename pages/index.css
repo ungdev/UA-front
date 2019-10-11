@@ -50,7 +50,7 @@
 #home .home-info .video-container {
   max-width: 700px;
   margin: 40px auto 30px auto;
-  background: rgb(218, 218, 218);
+  background: #dadada;
 }
 
 #home .home-info .info-table {

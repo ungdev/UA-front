@@ -1,9 +1,15 @@
-.radio {
+.radio .radio-label {
+  padding-bottom: 2px;
+  color: #858585;
+  user-select: none;
+}
+
+.radio .radio-container {
   display: flex;
   flex-flow: column wrap;
 }
 
-.radio.row {
+.radio.row .radio-container {
   flex-direction: row;
 }
 
