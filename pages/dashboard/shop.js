@@ -128,6 +128,9 @@ const Shop = () => {
             const updatedCartItem = cart.cartItems.map((cartItem) => {
               const isTicket = ['player', 'visitor'].includes(cartItem.item.key);
               const forSameUser = cartItem.forUserId === ticket.forUserId;
+              if (forSameUser && cartItem.forUserId === userId && willBePaid) {
+                setWillBePaid(false);
+              }
               return isTicket && forSameUser ? { ...cartItem, quantity: 0 } : cartItem;
             });
             setCart({ ...cart, cartItems: updatedCartItem });
@@ -237,16 +240,15 @@ const Shop = () => {
         <Table columns={ticketColumns} dataSource={ticketRows} className="shop-table" />
         <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
       </div>
-
+      <div className="scoup">
+        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">
+          <img src="/static/scoupbanner.png" alt=""/>
+        </a>
+      </div>
       <div className="shop-section">
         <Title level={4}>Accessoires</Title>
         <Table columns={itemColumns} dataSource={itemRows} className="shop-table" />
       </div>
-
-      <p>
-        Pour louer du matériel, rends-toi sur la{' '}
-        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
-      </p>
 
       <div className="shop-footer">
         <strong>Total : {totalPrice}€</strong>
