@@ -114,4 +114,63 @@ export default [
       </>
       ),
    },
+   {
+     name: 'Noctua',
+     link: 'https://noctua.at/fr',
+     img: '/static/partners/noctua.jpg',
+     description: (
+       <p>
+         Fabricant de solutions de refroidissement haut de gamme, Noctua étend ses produits à l’internationale grâce à leur silence, leurs performances exceptionnelles et leur qualité sans faille.
+         Les produits Noctua bénéficient de technologies reconnues telles que les turbines optimisées ou les systèmes de roulement et de transmission SSO-Bearing et SCD !
+         Noctua revient cette année pour vous proposer des lots géniaux !
+       </p>
+     ),
+   },
+   {
+     name: 'Scoup eSport',
+     link: 'https://www.weezevent.com/utt-arena-2019',
+     img: '/static/partners/scoup.jpg',
+     description: (
+       <p>
+         Scoup eSport est une société qui te propose un service de location de PC Gamers hautes performances qui répondra au besoin des joueurs de compétitions qui souhaitent se rendre à notre LAN en toute tranquillité !
+         Scoup eSport s’occupe cette année de la gestion de ta commande, de la livraison jusqu’à l’UTT Arena et de l’installation de ton matériel !
+         Que du bonheur !  Rdv sur : <a href="https://www.weezevent.com/utt-arena-2019">https://www.weezevent.com/utt-arena-2019</a>
+       </p>
+     ),
+   },
+   {
+    name: 'Troyes D',
+    link: 'https://www.facebook.com/TroyesDimensions',
+    img: '/static/partners/troyesd.jpg',
+    description: (
+      <p>
+        Troyes Dimensions est une association loi 1901 fondée en Mars 2019 (par Arnaud Laculle, Louis-Joseph Falcoz ainsi que Pieryck Ammerich) dans le but de valoriser l’audiovisuel et le numérique au niveau régional ainsi que national.
+        Leur collectif se concentre sur trois pôles majeurs qui sont les créations de types métrages, l’événementiel ainsi qu’une WebTV voulant proposant des contenus variés tels que du jeu-vidéo, du dessin, de la musique et d’autres créations artistiques.
+        Ils seront présents pendant l’UTT Arena avec le Meltdown Troyes pour nous aider à organiser un tournoi Super Smash Bros Ultimate exceptionnel !
+      </p>
+    ),
+  },
+  {
+    name: 'Crédit Mutuel',
+    link: 'https://www.creditmutuel.fr/fr/jeunes.html',
+    img: '/static/partners/creditmutuel.jpg',
+    description: (
+      <p>
+        Banque, assurances, téléphonie et services à destination des jeunes mais aussi des associations, notre association UTT Net Group qui organise l’UTT Arena a choisi de leur faire confiance une fois de plus pour la qualité de leur service et la générosité dont ils font preuve pendant notre événement !
+        Ils seront à nouveau présents pour nous permettre d’organiser le tournoi CS:GO et offrir des lots géniaux pour notre tombola !
+      </p>
+    ),
+  },
+  {
+    name: 'Tekliss',
+    link: 'https://www.tekliss.com',
+    img: '/static/partners/tekliss.jpg',
+    description: (
+      <p>
+        Depuis 1992, Tekliss réalise avec leurs techniciens et leur propre matériel de nombreux événement faisant appel à de la lumière, de la sonorisation, de la vidéo et de la scène et des prestations clés en main !
+        Chaque année, Tekliss revient pour nous permettre de vous proposer la plus belle scène qui soit, avec un équipement son et lumière exceptionnel ainsi qu’un écran LED géant ! Du plus simple au plus complexe, pour tous les budgets, Tekliss saura vous proposer la meilleure solution pour vos événements !
+        Leur agence Aube est située au 7 boulevard du 1er RAM à Troyes. <a href="mailto:Tekliss%20Troyes<troyes@tekliss.com>">troyes@tekliss.com</a>. 03 25 43 04 95
+      </p>
+    ),
+  },
 ];

@@ -51,13 +51,14 @@ const itemColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
-  const { username, user: userId, type, isPaid } = useSelector((state) => state.login.user);
+  const { username, id: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
   const cartStore = useSelector((state) => state.cart);
   const placeInitialValue = { for: isPaid ? 'other' : 'me', forUsername: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
   const [cart, setCart] = useState(null);
+  const [willBePaid, setWillBePaid] = useState(isPaid);
 
   useEffect(() => {
     setCart(cartStore.cart);
@@ -88,6 +89,9 @@ const Shop = () => {
         currentType = users.data[0].type;
       }
     }
+    else {
+      setWillBePaid(true);
+    }
 
     const item = items.find((item) => item.key === currentType);
     const newCartItem = {
@@ -106,29 +110,37 @@ const Shop = () => {
   };
 
   const tickets = cart.cartItems.filter((cartItem) => cartItem.item && ['player', 'visitor'].includes(cartItem.item.key) && cartItem.quantity > 0);
-  const ticketRows = tickets.map((ticket) => ({
-    type: ticket.item.name,
-    username: ticket.forUserId === userId ? username : (ticket.forUsername || 'Autre'),
-    price: `${ticket.item.price}€`,
-    delete: (
-      <Button
-        onClick={() => {
-          const updatedCartItem = cart.cartItems.map((cartItem) => {
-            const isTicket = ['player', 'visitor'].includes(cartItem.item.key);
-            const forSameUser = cartItem.forUserId === ticket.forUserId;
-            return isTicket && forSameUser ? { ...cartItem, quantity: 0 } : cartItem;
-          });
-          setCart({ ...cart, cartItems: updatedCartItem });
-        }}
-        rightIcon="fas fa-trash-alt"
-        className="delete-button"
-        noStyle
-      />
-    ),
-  }));
+  const ticketRows = tickets.map((ticket) => {
+    if (ticket.forUserId === userId && !willBePaid) {
+      setWillBePaid(true);
+    }
+    return ({
+      type: ticket.item.name,
+      username: ticket.forUserId === userId ? username : (ticket.forUsername || 'Autre'),
+      price: `${ticket.item.price}€`,
+      delete: (
+        <Button
+          onClick={() => {
+            const updatedCartItem = cart.cartItems.map((cartItem) => {
+              const isTicket = ['player', 'visitor'].includes(cartItem.item.key);
+              const forSameUser = cartItem.forUserId === ticket.forUserId;
+              if (forSameUser && cartItem.forUserId === userId && willBePaid) {
+                setWillBePaid(false);
+              }
+              return isTicket && forSameUser ? { ...cartItem, quantity: 0 } : cartItem;
+            });
+            setCart({ ...cart, cartItems: updatedCartItem });
+          }}
+          rightIcon="fas fa-trash-alt"
+          className="delete-button"
+          noStyle
+        />
+      ),
+    });
+  });
 
   const getOptions = () => {
-    if (isPaid) {
+    if (isPaid || willBePaid) {
       return [
         {
           name: 'Autre utilisateur',
@@ -224,16 +236,15 @@ const Shop = () => {
         <Table columns={ticketColumns} dataSource={ticketRows} className="shop-table" />
         <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
       </div>
-
+      <div className="scoup">
+        <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">
+          <img src="/static/scoupbanner.png" alt=""/>
+        </a>
+      </div>
       <div className="shop-section">
         <Title level={4}>Accessoires</Title>
         <Table columns={itemColumns} dataSource={itemRows} className="shop-table" />
       </div>
-
-      <p>
-        Pour louer du matériel, rends-toi sur la{' '}
-        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
-      </p>
 
       <div className="shop-footer">
         <strong>Total : {totalPrice}€</strong>

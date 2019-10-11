@@ -7,6 +7,7 @@ const LoLpro = () => (
   <Tournament
     imgSrc="/static/lolpro.webp"
     text={tournamentsText.lolpro}
+    idTournament={1}
   />
 );
 
