@@ -48,7 +48,7 @@ const API = {
       axiosAPI.get(route)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error(errorToString(err.response.data));
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }
@@ -58,7 +58,7 @@ const API = {
       axiosAPI.post(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error(errorToString(err.response.data));
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }
@@ -68,7 +68,7 @@ const API = {
       axiosAPI.put(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error(errorToString(err.response.data));
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }
@@ -78,7 +78,7 @@ const API = {
       axiosAPI.delete(route)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error(errorToString(err.response.data));
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }
