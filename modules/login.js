@@ -115,7 +115,7 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
 
 export const setType = (type) => async (dispatch, getState) => {
   const user = getState().login.user;
-  const res = await API().put(`/users/${user.id}`, { ...user, type });
+  const res = await API.put(`/users/${user.id}`, { ...user, type });
   dispatch({
     type: SET_USER,
     user: res.data,
