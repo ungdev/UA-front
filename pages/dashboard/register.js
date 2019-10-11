@@ -115,7 +115,7 @@ const Register = () => {
               rightIcon="fas fa-user-tie"
               onClick={() => dispatch(setType('visitor'))}
             >
-              S'incrire
+              S'inscrire
             </Button>
           </div>
       </div>
