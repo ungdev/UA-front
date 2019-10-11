@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "node server.js",
+    "start": "pm2 start server.js -i max --name UA-front",
     "lint": "eslint assets/ components/ lib/ modules/ pages/ utils/ --ext .jsx,.js",
     "lint-fix": "eslint --fix assets/ components/ lib/ modules/ pages/ utils/ --ext .jsx,.js",
     "build-docs": "node generateDocs.js"
@@ -25,6 +25,7 @@
     "next-compose-plugins": "^2.2.0",
     "next-images": "^1.1.2",
     "next-progressbar": "^1.0.0",
+    "pm2": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-countdown-now": "^2.1.1",
