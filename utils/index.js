@@ -73,9 +73,9 @@ const API = {
         });
     }
   }),
-  delete: (route,) => new Promise((resolve, reject) => {
+  delete: (route, body) => new Promise((resolve, reject) => {
     if(process.browser) {
-      axiosAPI.delete(route)
+      axiosAPI.delete(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
           toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
