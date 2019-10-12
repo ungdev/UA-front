@@ -19,6 +19,7 @@ const Wrapper = ({ Component }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
   const [isVisitor, setIsVisitor] = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
 
   useSelector((state) => {
     const { user } = state.login;
@@ -36,6 +37,10 @@ const Wrapper = ({ Component }) => {
     else if (user && isVisitor && user.type === 'none') {
       setIsVisitor(false);
     }
+
+    if (user && isPaid !== user.isPaid) {
+      setIsPaid(user.isPaid);
+    }
   });
 
   const isLoading = useSelector((state) => state.login.loading);
@@ -52,6 +57,11 @@ const Wrapper = ({ Component }) => {
     }
     else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/coach';
+    }
+    else if (!isVisitor && !hasTeam && isPaid) {
+      if(pathname === '/dashboard') {
+        redirect = '/dashboard/register';
+      }
     }
     else if (!isVisitor && !hasTeam && (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')) {
       redirect = '/dashboard/register';
@@ -92,6 +102,7 @@ const Wrapper = ({ Component }) => {
               pathname={pathname}
               hasTeam={hasTeam}
               isVisitor={isVisitor}
+              isPaid={isPaid}
             />
           )
         }

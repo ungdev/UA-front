@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './DashboardHeader.css';
 
-const DashboardHeader = ({ pathname, hasTeam, isVisitor }) => {
+const DashboardHeader = ({ pathname, hasTeam, isVisitor, isPaid }) => {
   const links = () => {
     if (hasTeam) {
       return [
@@ -17,6 +17,14 @@ const DashboardHeader = ({ pathname, hasTeam, isVisitor }) => {
     if (isVisitor) {
       return [
         { title: 'Coach', href: '/dashboard/coach' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isPaid) {
+      return [
+        { title: 'Inscription', href: '/dashboard/register' },
         { title: 'Boutique', href: '/dashboard/shop' },
         { title: 'Mes achats', href: '/dashboard/purchases' },
         { title: 'Mon compte', href: '/dashboard/account' },
@@ -63,6 +71,10 @@ DashboardHeader.propTypes = {
    * Is the user a visitor ?
    */
   isVisitor: PropTypes.bool.isRequired,
+  /**
+   * Has the user paid ?
+   */
+  isPaid: PropTypes.bool.isRequired,
 };
 
 export default DashboardHeader;
