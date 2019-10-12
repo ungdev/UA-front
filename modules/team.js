@@ -82,7 +82,7 @@ export const setCaptain = (id, teamId) => async (dispatch, getState) => {
 
 export const acceptUser = (user, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
-  await API.post(`teams/${teamId}/users`, { userId: user.id });
+  await API.post(`teams/${teamId}/users`, { user: user.id });
   team.users.push(user);
   team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
   dispatch({
