@@ -94,7 +94,7 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
 export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
   const user = getState().login.user;
-  await API().delete(`teams/${teamId}/users/${userId}`);
+  await API.delete(`teams/${teamId}/users/${userId}`);
   if (user.id === userId) {
     dispatch({
       type: SET_USER,
@@ -110,10 +110,6 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
     dispatch({
       type: SET_TEAM,
       team,
-    });
-    dispatch({
-      type: SET_USER,
-      user: { ...user, team: null },
     });
   }
 };
