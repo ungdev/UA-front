@@ -161,7 +161,7 @@ const Shop = () => {
   };
 
   const itemRows = items.slice(2).map((item) => {
-    const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key)) : [];
+    const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item && cartItem.item.key === item.key)) : [];
     const quantity = cartItem.length ? cartItem[0].quantity : 0;
     const initialAttribute = item.attributes.length ? {
       value: item.attributes[2].value,
