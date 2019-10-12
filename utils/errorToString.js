@@ -32,6 +32,8 @@ export default (res) => {
       return 'Nom d\'utilisateur introuvable';
     case 'EMAIL_NOT_FOUND':
       return 'E-mail introuvable';
+    case 'USER_NOT_FOUND':
+      return 'Utilisateur introuvable';
     case 'INVALID_PASSWORD':
       return 'Mot de passe invalide';
     case 'INVALID_TOKEN':
