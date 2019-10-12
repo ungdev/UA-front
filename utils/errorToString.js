@@ -52,6 +52,8 @@ export default (res) => {
       return 'Il n\'y a plus de places coach';
     case 'LAN_FULL':
       return 'Il n\'y a plus de place pour l\'UTT Arena...';
+    case 'CANNOT_CHANGE':
+      return 'Vous ne pouvez pas changer de type de place';
     case 'DISABLED_LOGIN':
       return 'Inscription désactivée';
     case 'PAYMENT_DISABLED':
