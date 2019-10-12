@@ -41,12 +41,18 @@ Select.propTypes = {
    */
   options: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
   })).isRequired,
   /**
    * Value of the select
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
   /**
    * Function called when the value change,
    * the new value is passed as parameter

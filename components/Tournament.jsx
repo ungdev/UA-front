@@ -74,7 +74,7 @@ const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
 
         <Title level={2}>Règlement</Title>
         <div className="tournament-section">{text.rules}</div>
-        <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes incrites'}</Title>
+        <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
         { isLoggedIn ?
         <Table columns={isSolo ? [{ title: 'Joueur', key: 'players' }] : columns} dataSource={formatTeams} className="table-tournament"/> :
         <p>Connectez vous pour afficher les équipes</p>}
@@ -95,7 +95,7 @@ Tournament.propTypes = {
     title: PropTypes.node.isRequired,
     format: PropTypes.node.isRequired,
     rewards: PropTypes.node.isRequired,
-    rules: PropTypes.string.isRequired,
+    rules: PropTypes.node.isRequired,
   }).isRequired,
   /**
    * Is tournament solo?
