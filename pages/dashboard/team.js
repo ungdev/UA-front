@@ -51,7 +51,7 @@ const Team = () => {
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
       isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
-      action: user.id !== team.captainId && isCaptain ? (
+      action: user.id !== team.captainId && isCaptain ? (<>
         <Button
           onClick={() => setModal({
             visible: true,
@@ -64,8 +64,23 @@ const Team = () => {
           })}
         >
           Designer comme chef
-        </Button>
-      ) : '',
+        </Button>{
+          !user.isPaid &&
+          <Button
+            onClick={() => setModal({
+              visible: true,
+              onOk: () => {
+                dispatch(kickUser(user.id, team.id));
+                setModal(initialModal);
+              },
+              content: 'Confirmez l\'exclusion du joueur',
+              title: 'Exclure un joueur',
+            })}
+          >
+            Exclure
+          </Button>
+        }
+      </>) : '',
     });
   });
 

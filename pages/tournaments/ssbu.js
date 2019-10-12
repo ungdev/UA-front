@@ -7,7 +7,7 @@ const SSBU = () => (
   <Tournament
     imgSrc="/static/ssbu.webp"
     text={tournamentsText.ssbu}
-    idTournament={5}
+    idTournament="5"
     isSolo
   />
 );

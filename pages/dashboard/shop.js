@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 
 import { fetchItems } from '../../modules/items';
 import { fetchDraftCart, saveCart, cartPay } from '../../modules/cart';
@@ -16,8 +15,8 @@ const ticketColumns = [
     key: 'type',
   },
   {
-    title: 'Nom d\'utilisateur',
-    key: 'username',
+    title: 'Email',
+    key: 'email',
   },
   {
     title: 'Prix',
@@ -51,10 +50,10 @@ const itemColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
-  const { username, id: userId, type, isPaid } = useSelector((state) => state.login.user);
+  const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
   const cartStore = useSelector((state) => state.cart);
-  const placeInitialValue = { for: isPaid ? 'other' : 'me', forUsername: '' };
+  const placeInitialValue = { for: isPaid ? 'other' : 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
   const [cart, setCart] = useState(null);
@@ -78,16 +77,9 @@ const Shop = () => {
     let placeForId = userId;
     let currentType = type;
     if(place.for !== 'me') {
-      const users = await API.get(`/users?exact&or&username=${place.forUsername || ''}&email=${place.forUsername || ''}`);
-
-      if(users.data.length !== 1 || place.forUsername === '') {
-        toast.error('Impossible de trouver cet utilisateur');
-        return;
-      }
-      else {
-        placeForId = users.data[0].id;
-        currentType = users.data[0].type;
-      }
+      const user = await API.get(`users?email=${place.forEmail || ''}`);
+      placeForId = user.data.id;
+      currentType = user.data.type;
     }
     else {
       setWillBePaid(true);
@@ -98,7 +90,7 @@ const Shop = () => {
       item,
       quantity: 1,
       forUserId: placeForId,
-      forUsername: place.forUsername,
+      forEmail: place.forEmail,
       attribute: {
         value: null,
         id: undefined,
@@ -116,7 +108,7 @@ const Shop = () => {
     }
     return ({
       type: ticket.item.name,
-      username: ticket.forUserId === userId ? username : (ticket.forUsername || 'Autre'),
+      email: ticket.forUserId === userId ? email : ticket.forEmail,
       price: `${ticket.item.price}€`,
       delete: (
         <Button
@@ -150,7 +142,7 @@ const Shop = () => {
     }
     return ([
       {
-        name: `Moi-même (${username})`,
+        name: `Moi-même (${email})`,
         value: 'me',
       },
       {
@@ -161,7 +153,7 @@ const Shop = () => {
   };
 
   const itemRows = items.slice(2).map((item) => {
-    const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item.key === item.key)) : [];
+    const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item && cartItem.item.key === item.key)) : [];
     const quantity = cartItem.length ? cartItem[0].quantity : 0;
     const initialAttribute = item.attributes.length ? {
       value: item.attributes[2].value,
@@ -287,9 +279,9 @@ const Shop = () => {
 
         { place.for === 'other' &&
           <Input
-            label="Pseudo ou email du compte"
-            value={place.forUsername}
-            onChange={(v) => setPlace({ ...place, forUsername: v })}
+            label="Email du compte"
+            value={place.forEmail}
+            onChange={(v) => setPlace({ ...place, forEmail: v })}
             className="add-place-input"
           />
         }

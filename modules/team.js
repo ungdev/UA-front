@@ -37,7 +37,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
     });
     dispatch({
       type: SET_USER,
-      user: { ...user, team: res.data.id },
+      user: { ...user, team: res.data.id, type: 'player' },
     });
     Router.push('/dashboard/team');
 };
@@ -94,11 +94,11 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
 export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
   const user = getState().login.user;
-  await API().delete(`teams/${teamId}/users/${userId}`);
+  await API.delete(`teams/${teamId}/users/${userId}`);
   if (user.id === userId) {
     dispatch({
       type: SET_USER,
-      user: { ...user, team: null },
+      user: { ...user, team: null, type: 'none' },
     });
     dispatch({
       type: SET_TEAM,
@@ -110,10 +110,6 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
     dispatch({
       type: SET_TEAM,
       team,
-    });
-    dispatch({
-      type: SET_USER,
-      user: { ...user, team: null },
     });
   }
 };
@@ -133,7 +129,7 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
   await API.delete(`teams/${teamId}`);
   dispatch({
     type: SET_USER,
-    user: { ...user, team: null },
+    user: { ...user, team: null, type: 'none' },
   });
   dispatch({
     type: SET_TEAM,

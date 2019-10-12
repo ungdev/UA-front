@@ -51,7 +51,7 @@ const Register = () => {
   const tournamentsTabs = tournamentsList.map((tournament) => {
     const tournamentTeams = tournament.teams.map((team) => ({
       team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-      players: team.users.map((user) => user.username).join(', '),
+      players: team.users.join(', '),
       action: askingTeamId === team.id
         ? <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
         : <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>Rejoindre</Button>,

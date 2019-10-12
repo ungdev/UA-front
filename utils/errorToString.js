@@ -32,6 +32,8 @@ export default (res) => {
       return 'Nom d\'utilisateur introuvable';
     case 'EMAIL_NOT_FOUND':
       return 'E-mail introuvable';
+    case 'USER_NOT_FOUND':
+      return 'Utilisateur introuvable';
     case 'INVALID_PASSWORD':
       return 'Mot de passe invalide';
     case 'INVALID_TOKEN':
@@ -50,6 +52,8 @@ export default (res) => {
       return 'Il n\'y a plus de places coach';
     case 'LAN_FULL':
       return 'Il n\'y a plus de place pour l\'UTT Arena...';
+    case 'CANNOT_CHANGE':
+      return 'Vous ne pouvez pas changer de type de place';
     case 'DISABLED_LOGIN':
       return 'Inscription désactivée';
     case 'PAYMENT_DISABLED':

@@ -7,7 +7,7 @@ const LoLamateur = () => (
   <Tournament
     imgSrc="/static/lolamateur.webp"
     text={tournamentsText.lolamateur}
-    idTournament={2}
+    idTournament="2"
   />
 );
 

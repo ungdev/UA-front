@@ -6,6 +6,7 @@ import { setType } from '../../modules/login';
 const Coach = () => {
   const dispatch = useDispatch();
   const isPaid = useSelector((state) => state.login.user.isPaid);
+
   return (
     <div id="dashboard-coach">
       <p>
@@ -16,9 +17,9 @@ const Coach = () => {
           : <><i className="fas fa-exclamation-triangle red-icon"></i> Non payé</>}
       </p>
       {!isPaid &&
-      <Button
-        onClick={() => dispatch(setType('none'))}
-      >Changer de rôle</Button>
+        <Button
+          onClick={() => dispatch(setType('none'))}
+        >Changer de rôle</Button>
       }
     </div>
   );

@@ -7,7 +7,7 @@ const Libre = () => (
   <Tournament
     imgSrc="/static/libre.webp"
     text={tournamentsText.libre}
-    idTournament={7}
+    idTournament="7"
     isSolo
   />
 );
