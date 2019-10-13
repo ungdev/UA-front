@@ -14,7 +14,7 @@ const CountdownComponent = ({ date, className }) => {
     }
 
     return (
-      <React.Fragment key={date.toISOString()}>
+      <>
         <div className="days">
           <h1>{days}</h1>
           <h2>Jours</h2>
@@ -31,7 +31,7 @@ const CountdownComponent = ({ date, className }) => {
           <h1>{seconds}</h1>
           <h2>Secondes</h2>
         </div>
-      </React.Fragment>
+      </>
     );
   };
 

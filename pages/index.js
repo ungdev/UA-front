@@ -34,7 +34,7 @@ const Home = () => (
 
     <div className="home-container page-padding">
       <div className="home-countdown">
-        <Countdown date={new Date('December 6 2019 17:00:00')} />
+        <Countdown date={new Date('December 6 2019 17:00:00 UTC+2')} />
       </div>
 
       <div className="home-info">
