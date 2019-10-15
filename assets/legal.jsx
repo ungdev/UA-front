@@ -134,12 +134,19 @@ export default {
 
       <Title level={3}>Article XI - Droit de rétractation</Title>
       <p>
-        Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit de rétractation.
-        Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à demander un remboursement de son inscription,
-        au plus tard 7 jours calendaires avant la date de l'événement, soit le 29/11/2019 17:00 CET.
-        Toute demande doit être formulée par courriel addressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription.
-        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bleue ayant servi au paiement.
-        Compte-tenu des frais bancaires endossés, tout remboursement fera l'objet d'une retenue d'un montant 1€ (un euro) sur le montant total à rembourser.
+        Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit de rétractation. 
+        Toute commande est ferme et définitive. 
+        Toutefois, l'organisateur autorise tout inscrit à demander un remboursement partiel ou total de son inscription, au plus tard 7 jours calendaires avant la date de l'événement, soit le 29/11/2019 17:00 CET. 
+        Toute demande doit être formulée par courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. 
+        Le remboursement sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bleue ayant servi au paiement. 
+        Tout remboursement fera l'objet d'une retenue de :
+        <ul>
+          <li>15% (quinze pourcent) du montant payé si la demande de remboursement est faite avant le 3 novembre (03/11/2019 23:59 CET)</li>
+          <li>30% (trente pourcent) du montant payé si la demande est faite entre les 4 et 10 novembre (entre les 04/11/2019 00:00 CET et 10/11/2019 23:59 CET)</li>
+          <li>50% (cinquante pourcent) du montant payé si la demande est faite entre les 11 et 17 novembre (entre les 11/11/2019 00:00 CET et 17/11/2019 23:59 CET)</li>
+          <li>75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 18 et 24 novembre (entre les 18/11/2019 00:00 CET et 24/11/2019 23:59 CET)</li>
+          <li>Aucun remboursements ne sera accepté au delà du 25 novembre (après le 25/11/2019 00:00 CET).</li>
+        </ul>
       </p>
 
       <Title level={3}>Article XII - Force majeure</Title>
