@@ -29,7 +29,7 @@ const TournamentCards = () => {
             dark
             content={(
               <>
-                <div className="tournament-title">{title}</div>
+                <div className="tournament-title">{title} {slotsTournaments && slotsTournaments[id].available === 0 && '(COMPLET)'}</div>
                 <p><strong>Places :</strong> {players} joueurs</p>
                 {rewards && <p><strong>Récompenses :</strong> {rewards}</p>}
                 {slotsTournaments && <p>
