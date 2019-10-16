@@ -66,6 +66,8 @@ export default (res) => {
       return 'L\'utilisateur a déjà une place';
     case 'TOURNAMENT_FULL':
       return 'Le tournoi est plein';
+    case 'UNAUTHORIZED':
+      return 'Vous n\'avez pas la permission';
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     default:

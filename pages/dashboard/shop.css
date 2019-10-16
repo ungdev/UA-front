@@ -19,6 +19,12 @@
   color: #333;
 }
 
+#dashboard-shop .item-description {
+  font-size: 0.9em;
+  margin-top: 6px;
+  color: #555555;
+}
+
 #dashboard-shop .shop-input {
   width: 100px;
   margin: 0;

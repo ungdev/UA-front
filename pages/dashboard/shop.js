@@ -165,7 +165,12 @@ const Shop = () => {
     const attribute = cartItem.length && cartItem[0].attribute ? cartItem[0].attribute : initialAttribute;
 
     return {
-      name: item.name,
+      name: (
+        <>
+          {item.name}
+          <div className="item-description">{item.infos}</div>
+        </>
+      ),
       price: `${item.price}€`,
       attributes: item.attributes.length
       ? <Select
@@ -179,23 +184,37 @@ const Shop = () => {
               const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
               setCart({ ...cart, cartItems: newCartItems });
             }
+            else {
+              const newCartItems = [
+                ...cart.cartItems,
+                {
+                  item,
+                  quantity: 1,
+                  attribute: newAttribute,
+                },
+              ];
+              setCart({ ...cart, cartItems: newCartItems });
+            }
           }}
           value={attribute.value}
-          disabled={!quantity}
           className="shop-input"
         />
       : '',
       quantity: (
         <Input
           type="number"
-          value={quantity || 0}
+          placeholder="0"
+          value={quantity || ''}
           onChange={(strQuantity) => {
-            const quantity = parseInt(strQuantity, 10);
+            let quantity = parseInt(strQuantity, 10);
+            if(strQuantity === '') {
+              quantity = 0;
+            }
             if (Number.isInteger(quantity)) {
               if (cartItem.length) {
                 cartItem[0].quantity = quantity;
                 cartItem[0].isUpdated = true;
-                cartItem[0].attribute = initialAttribute;
+                cartItem[0].attribute = cartItem[0].attribute || initialAttribute;
                 const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
                 setCart({ ...cart, cartItems: newCartItems });
               }

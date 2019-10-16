@@ -21,7 +21,7 @@ export default {
     ),
     rules: (
       <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>.
       </p>
     ),
   },
@@ -45,7 +45,7 @@ export default {
     ),
     rules: (
       <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>.
       </p>
     ),
   },
@@ -69,7 +69,7 @@ export default {
     ),
     rules: (
       <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/ssbu.pdf" target="_blank">ce lien</a>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/ssbu.pdf" target="_blank">ce lien</a>.
       </p>
     ),
   },
@@ -94,7 +94,7 @@ export default {
     ),
     rules: (
       <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/csgo.pdf" target="_blank">ce lien</a>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/csgo.pdf" target="_blank">ce lien</a>.
       </p>
     ),
   },
@@ -115,7 +115,7 @@ export default {
     ),
     rules: (
       <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/fortnite.pdf" target="_blank">ce lien</a>
+        Vous pouvez consulter le règlement sur <a href="/static/rules/fortnite.pdf" target="_blank">ce lien</a>.
       </p>
     ),
   },
