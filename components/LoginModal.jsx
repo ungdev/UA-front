@@ -118,7 +118,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="family-name"
           />
           <Input
-            label="Pseudo"
+            label="Pseudo (Nom d'invocateur pour LoL)"
             value={signupForm.username}
             onChange={(value) => updateSignup('username', value)}
             autocomplete="nickname"

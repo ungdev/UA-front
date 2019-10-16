@@ -81,7 +81,7 @@ const Account = () => {
           autocomplete="off"
         />
         <Input
-          label="Pseudo"
+          label="Pseudo (Nom d'invocateur pour LoL)"
           value={username}
           onChange={setUsername}
           autocomplete="off"
