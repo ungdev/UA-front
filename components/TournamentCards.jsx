@@ -29,11 +29,11 @@ const TournamentCards = () => {
             dark
             content={(
               <>
-                <div className="tournament-title">{title} {slotsTournaments && slotsTournaments[id].available === 0 && '(COMPLET)'}</div>
+                <div className="tournament-title">{title} {slotsTournaments && slotsTournaments[id].available <= 0 && '(COMPLET)'}</div>
                 <p><strong>Places :</strong> {players} joueurs</p>
                 {rewards && <p><strong>Récompenses :</strong> {rewards}</p>}
                 {slotsTournaments && <p>
-                  <strong> Places disponibles :</strong> {slotsTournaments[id].available} / {slotsTournaments[id].total}
+                  <strong> Places disponibles :</strong> { Math.max(slotsTournaments[id].available, 0)} / {slotsTournaments[id].total }
                 </p>}
               </>
             )}
