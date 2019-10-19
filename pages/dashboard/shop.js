@@ -58,6 +58,7 @@ const Shop = () => {
   const [place, setPlace] = useState(placeInitialValue);
   const [cart, setCart] = useState(null);
   const [willBePaid, setWillBePaid] = useState(isPaid);
+  const [itemPreview, setItemPreview] = useState(null);
 
   useEffect(() => {
     setCart(cartStore.cart);
@@ -156,7 +157,7 @@ const Shop = () => {
     const cartItem = cart.cartItems ? cart.cartItems.filter(((cartItem) => cartItem.item && cartItem.item.key === item.key)) : [];
     const quantity = cartItem.length ? cartItem[0].quantity : 0;
     const initialAttribute = item.attributes.length ? {
-      value: item.attributes[2].value,
+      value: item.attributes[1].value,
       id: 3,
     } : {
       value: null,
@@ -165,7 +166,22 @@ const Shop = () => {
     const attribute = cartItem.length && cartItem[0].attribute ? cartItem[0].attribute : initialAttribute;
 
     return {
-      name: item.name,
+      name: (
+        <>
+          {item.name}
+          {item.image && (
+            <Button
+              className="item-preview-button"
+              onClick={() => setItemPreview(item.image)}
+              leftIcon="far fa-image"
+              noStyle
+            >
+              Voir le design
+            </Button>
+          )}
+          <div className="item-description">{item.infos}</div>
+        </>
+      ),
       price: `${item.price}€`,
       attributes: item.attributes.length
       ? <Select
@@ -179,23 +195,37 @@ const Shop = () => {
               const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
               setCart({ ...cart, cartItems: newCartItems });
             }
+            else {
+              const newCartItems = [
+                ...cart.cartItems,
+                {
+                  item,
+                  quantity: 1,
+                  attribute: newAttribute,
+                },
+              ];
+              setCart({ ...cart, cartItems: newCartItems });
+            }
           }}
           value={attribute.value}
-          disabled={!quantity}
           className="shop-input"
         />
       : '',
       quantity: (
         <Input
           type="number"
-          value={quantity || 0}
+          placeholder="0"
+          value={quantity || ''}
           onChange={(strQuantity) => {
-            const quantity = parseInt(strQuantity, 10);
+            let quantity = parseInt(strQuantity, 10);
+            if(strQuantity === '') {
+              quantity = 0;
+            }
             if (Number.isInteger(quantity)) {
               if (cartItem.length) {
                 cartItem[0].quantity = quantity;
                 cartItem[0].isUpdated = true;
-                cartItem[0].attribute = initialAttribute;
+                cartItem[0].attribute = cartItem[0].attribute || initialAttribute;
                 const newCartItems = cart.cartItems.map((previousCartItem) => previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem);
                 setCart({ ...cart, cartItems: newCartItems });
               }
@@ -285,6 +315,15 @@ const Shop = () => {
             className="add-place-input"
           />
         }
+      </Modal>
+
+      <Modal
+        visible={itemPreview !== null}
+        onCancel={() => setItemPreview(null)}
+        buttons={null}
+        containerClassName="item-preview-modal-container"
+      >
+        {itemPreview && <img src={`/static/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
   );

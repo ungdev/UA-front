@@ -36,10 +36,10 @@
   filter: brightness(0.85);
 }
 
-.button:not(.no-style) .button-icon-left {
+.button:not(.empty) .button-icon-left {
   margin-right: 8px;
 }
 
-.button:not(.no-style) .button-icon-right {
+.button:not(.empty) .button-icon-right {
   margin-left: 8px;
 }

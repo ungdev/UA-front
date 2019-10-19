@@ -8,7 +8,7 @@ import './Modal.css';
 /**
  * Displays a modal window
  */
-const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className }) => {
+const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className, containerClassName }) => {
   const buttonsContent = buttons !== ''
     ? buttons
     : (
@@ -22,7 +22,7 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
     <div className={`modal ${visible ? 'active' : ''} ${className}`}>
         <div className="modal-overlay" onClick={() => closable && onCancel()} />
 
-      <div className="modal-container">
+      <div className={`modal-container ${containerClassName}`}>
         <div className="modal-title">{title}</div>
 
         {closable && (
@@ -71,9 +71,13 @@ Modal.propTypes = {
    */
   onOk: PropTypes.func,
   /**
-   * Class of the container
+   * Class of the modal
    */
   className: PropTypes.string,
+  /**
+   * Class of the container
+   */
+  containerClassName: PropTypes.string,
 };
 
 Modal.defaultProps = {
@@ -81,6 +85,7 @@ Modal.defaultProps = {
   closable: true,
   onOk: () => {},
   className: '',
+  containerClassName: '',
 };
 
 export default Modal;

@@ -6,7 +6,7 @@ import './Inputs.css';
 /**
  * Displays an input
  */
-const Input = ({ type, label, value, onChange, min, max, className, autocomplete, disabled }) => {
+const Input = ({ type, label, placeholder, value, onChange, min, max, className, autocomplete, disabled }) => {
   const handleChange = (newValue) => {
     if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
       return;
@@ -22,6 +22,7 @@ const Input = ({ type, label, value, onChange, min, max, className, autocomplete
 
         <input
           type={type}
+          placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(e.target.value)}
           autoComplete={autocomplete}
@@ -44,6 +45,10 @@ Input.propTypes = {
    * Label to display
    */
   label: PropTypes.node,
+  /**
+   * Text to display if field is blank
+   */
+  placeholder: PropTypes.string,
   /**
    * Value of the input
    */
@@ -81,6 +86,7 @@ Input.propTypes = {
 Input.defaultProps = {
   type: 'text',
   label: '',
+  placeholder: '',
   value: '',
   onChange: () => {},
   min: undefined,
