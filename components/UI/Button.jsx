@@ -9,7 +9,7 @@ import './Button.css';
 const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, className }) => (
   <button
     type={type}
-    className={`button ${className} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''}`}
+    className={`button ${className} ${primary ? 'primary' : ''} ${noStyle ? 'no-style' : ''} ${!children ? 'empty' : ''}`}
     onClick={onClick}
     disabled={disabled}
   >
