@@ -58,6 +58,7 @@ const Shop = () => {
   const [place, setPlace] = useState(placeInitialValue);
   const [cart, setCart] = useState(null);
   const [willBePaid, setWillBePaid] = useState(isPaid);
+  const [itemPreview, setItemPreview] = useState(null);
 
   useEffect(() => {
     setCart(cartStore.cart);
@@ -168,6 +169,16 @@ const Shop = () => {
       name: (
         <>
           {item.name}
+          {item.image && (
+            <Button
+              className="item-preview-button"
+              onClick={() => setItemPreview(item.image)}
+              leftIcon="far fa-image"
+              noStyle
+            >
+              Voir le design
+            </Button>
+          )}
           <div className="item-description">{item.infos}</div>
         </>
       ),
@@ -304,6 +315,15 @@ const Shop = () => {
             className="add-place-input"
           />
         }
+      </Modal>
+
+      <Modal
+        visible={itemPreview !== null}
+        onCancel={() => setItemPreview(null)}
+        buttons={null}
+        containerClassName="item-preview-modal-container"
+      >
+        {itemPreview && <img src={`/static/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
   );
