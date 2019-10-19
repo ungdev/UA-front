@@ -124,10 +124,10 @@ export default {
     format: (
       <>
         <div className="tournament-format">24 joueurs</div>
-        <p>Description du tournoi à venir.</p>
+        <p>Description du tournoi disponible <a href="https://osu.ppy.sh/community/forums/topics/972130">ici</a>.</p>
       </>
     ),
-    rules: 'Le règlement sera bientôt publié.',
+    rules: <>Le règlement est disponible <a href="https://osu.ppy.sh/community/forums/topics/972130">ici</a>.</>,
   },
   libre: {
     title: 'Libre',
