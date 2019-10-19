@@ -28,16 +28,14 @@ export default (res) => {
       }
     case 'PASSWORD_MISMATCH':
       return 'Les deux mots de passe ne correspondent pas';
-    case 'USERNAME_NOT_FOUND':
-      return 'Nom d\'utilisateur introuvable';
+    case 'INVALID_CREDENTIALS':
+      return 'Nom d\'utilisateur ou mot de passe incorrect';
+    case 'INVALID_TOKEN':
+      return 'Jeton invalide';
     case 'EMAIL_NOT_FOUND':
       return 'E-mail introuvable';
     case 'USER_NOT_FOUND':
       return 'Utilisateur introuvable';
-    case 'INVALID_PASSWORD':
-      return 'Mot de passe invalide';
-    case 'INVALID_TOKEN':
-      return 'Jeton invalide';
     case 'USER_NOT_ACTIVATED':
       return 'Compte non activé, vérifiez votre boîte email';
     case 'NOT_PAID':
