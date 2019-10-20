@@ -1,4 +1,4 @@
-## Collapse
+## Collapse
 
 Display an extension panel
 
