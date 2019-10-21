@@ -134,9 +134,12 @@ export default {
     format: (
       <>
         <div className="tournament-format">24 joueurs</div>
-        <p>Description du tournoi à venir.</p>
+        <p>
+        Le tournoi libre se déroulera sur plusieurs jeux tout au long du week-end, il se veut avant tout fun et permettra aux joueurs de montrer leur skill sur différents jeux, pour voir lequel des participants est le plus polyvalent. 
+        Les différents jeux seront <strong>Mario Kart</strong>, <strong>Super Smash Bros</strong>, <strong>Tricky Towers</strong>, <strong>Worms</strong> et encore plusieurs autres, on aura même à disposition un casque VR pour jouer à <strong>Beat Saber</strong>. 
+        De plus n’hésitez à nous proposer des idées pour des jeux que vous aimeriez voir apparaitre dans le tournoi. 
+        Alors si tu crois pouvoir battre tout le monde sur tes jeux préférés, n’hésite pas et inscris-toi.
+        </p>
       </>
-    ),
-    rules: 'Le règlement sera bientôt publié.',
-  },
+    ) },
 };
