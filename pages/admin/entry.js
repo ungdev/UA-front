@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchUser, searchBarcode } from '../../modules/userEntry';
+import { searchUser, searchBarcode, searchManually } from '../../modules/userEntry';
 import { Input, Title, Button, Card } from '../../components/UI';
 import './entry.css';
 
@@ -45,7 +45,7 @@ const Entry = () => {
             label="Manuellement"
             placeholder="Email, pseudo, nom"
           />
-          <Button primary>Valider</Button>
+          <Button primary onClick={() => dispatch(searchManually(username))}>Valider</Button>
         </div>
       </div>
       <div>

@@ -58,3 +58,11 @@ export const searchBarcode = (barcode) => async (dispatch) => {
     barcodeUser: res.data,
   });
 };
+
+export const searchManually = (username) => async (dispatch) => {
+  const res = await API.get(`users?email=${username}`);
+  dispatch({
+    type: SET_BARCODE_USER,
+    barcodeUser: res.data,
+  });
+};
