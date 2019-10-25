@@ -16,9 +16,9 @@ const AdminHeader = ({ pathname }) => {
       ];
     }
     return [
-      { title: 'Utilisateurs', href: '/admin/users' },
       { title: 'Entrée', href: '/admin/entry' },
       { title: 'Notifications', href: '/admin/notif' },
+      { title: 'Utilisateurs', href: '/admin/users' },
     ];
   };
 
