@@ -6,7 +6,19 @@ import './Inputs.css';
 /**
  * Displays an input
  */
-const Input = ({ type, label, placeholder, value, onChange, min, max, className, autocomplete, disabled }) => {
+const Input = ({
+  type,
+  label,
+  placeholder,
+  value,
+  onChange,
+  min,
+  max,
+  className,
+  autocomplete,
+  disabled,
+  autoFocus,
+}) => {
   const handleChange = (newValue) => {
     if (type === 'number' && newValue !== '' && (newValue < min || newValue > max)) {
       return;
@@ -28,6 +40,7 @@ const Input = ({ type, label, placeholder, value, onChange, min, max, className,
           autoComplete={autocomplete}
           disabled={disabled}
           title={disabled ? 'Vous ne pouvez pas modifier ce champ': undefined}
+          autoFocus={autoFocus}
         />
 
         <div className="line" />
@@ -81,6 +94,7 @@ Input.propTypes = {
    * Is the input disabled ?
    */
   disabled: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -94,6 +108,7 @@ Input.defaultProps = {
   className: '',
   autocomplete: '',
   disabled: false,
+  autoFocus: false,
 };
 
 export default Input;

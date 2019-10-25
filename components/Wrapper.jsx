@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import DashboardHeader from './DashboardHeader';
+import AdminHeader from './AdminHeader';
 import { autoLogin } from '../modules/login';
 
 const Wrapper = ({ Component }) => {
@@ -15,6 +16,7 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
+  const isAdminPanel = pathname.substr(0, 6) === '/admin';
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
@@ -96,7 +98,7 @@ const Wrapper = ({ Component }) => {
       <Navbar isLoggedIn={isLoggedIn} />
 
       <div className="page-container">
-        { !isHome && !isTournament && !isDashboard && <Header /> }
+        { !isHome && !isTournament && !isDashboard && !isAdminPanel && <Header /> }
         { isDashboard && (
             <DashboardHeader
               pathname={pathname}
@@ -106,7 +108,12 @@ const Wrapper = ({ Component }) => {
             />
           )
         }
-
+        { isAdminPanel && (
+            <AdminHeader
+              pathname={pathname}
+            />
+          )
+        }
         <main className={(!isHome && !isTournament) ? 'page-padding' : ''}><Component /></main>
       </div>
     </>

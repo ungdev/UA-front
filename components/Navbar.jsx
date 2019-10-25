@@ -8,6 +8,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
+import ModalUser from './ModalUser';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -50,7 +51,9 @@ const Navbar = ({ isLoggedIn }) => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
+  const isUserVisible = useSelector((state) => state.userEntry.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
+  const hasPermissions = useSelector((state) => state.login.user && !!state.login.user.permissions);
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -99,11 +102,11 @@ const Navbar = ({ isLoggedIn }) => {
         primary
         className="dashboard-button"
         onClick={() => {
-          router.push('/dashboard');
+          router.push(hasPermissions ? '/admin/entry' : '/dashboard');
           setMobileMenuVisible(false);
         }}
       >
-        Dashboard
+        { hasPermissions ? 'Admin' : 'Dashboard' }
       </Button>
     </div>
   );
@@ -207,6 +210,7 @@ const Navbar = ({ isLoggedIn }) => {
           suivez-nous sur les réseaux sociaux pour ne rien rater !
         </Modal>
       ) }
+      <ModalUser isVisible={isUserVisible} />
     </div>
   );
 };
