@@ -20,7 +20,7 @@ export default (state = initialState, payload) => {
     case SET_SEARCH_USER:
       return {
         ...state,
-        searchUser: payload.user,
+        searchUser: payload.searchUser,
       };
     case SET_BARCODE_USER:
       return {
