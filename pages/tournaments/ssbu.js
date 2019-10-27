@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { Tournament } from '../../components';
-import tournamentsText from '../../assets/tournaments';
+import tournamentsAssets from '../../assets/tournaments';
 
 const SSBU = () => (
   <Tournament
-    imgSrc="/static/ssbu.webp"
-    text={tournamentsText.ssbu}
-    idTournament="5"
+    assets={tournamentsAssets.ssbu}
+    tournamentId="5"
     isSolo
   />
 );

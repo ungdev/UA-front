@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { Tournament } from '../../components';
-import tournamentsText from '../../assets/tournaments';
+import tournamentsAssets from '../../assets/tournaments';
 
 const LoLamateur = () => (
   <Tournament
-    imgSrc="/static/lolamateur.webp"
-    text={tournamentsText.lolamateur}
-    idTournament="2"
+    assets={tournamentsAssets.lolamateur}
+    tournamentId="2"
   />
 );
 
