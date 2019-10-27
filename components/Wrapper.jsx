@@ -22,6 +22,7 @@ const Wrapper = ({ Component }) => {
   const [hasTeam, setHasTeam] = useState(false);
   const [isVisitor, setIsVisitor] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useSelector((state) => {
     const { user } = state.login;
@@ -39,9 +40,11 @@ const Wrapper = ({ Component }) => {
     else if (user && isVisitor && user.type === 'none') {
       setIsVisitor(false);
     }
-
     if (user && isPaid !== user.isPaid) {
       setIsPaid(user.isPaid);
+    }
+    if (user && !!user.permissions !== isAdmin) {
+      setIsAdmin(true);
     }
   });
 
@@ -67,6 +70,9 @@ const Wrapper = ({ Component }) => {
     }
     else if (!isVisitor && !hasTeam && (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')) {
       redirect = '/dashboard/register';
+    }
+    if (!isAdmin && isAdminPanel) {
+      redirect = '/dashboard';
     }
   }
 
