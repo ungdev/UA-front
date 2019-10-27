@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { fetchInfos } from '../../modules/infos';
-import { Tabs, Table, Button } from '../../components/UI';
+import { Tabs, Table, Button, Modal, Input, Textarea } from '../../components/UI';
+import './notif.css';
 
 const columns = [
   { title: 'Titre', key: 'title' },
@@ -13,6 +14,9 @@ const columns = [
 
 const Notif = () => {
   const dispatch = useDispatch();
+  const [visible, setVisible] = useState(false);
+  const [currentTournament, setCurrentTournament] = useState('');
+  const [form, setForm] = useState({ title: '', content: '' });
   const isLoggedIn = useSelector((state) => state.login.user);
   const infos = useSelector((state) => state.infos.all);
   useEffect(() => {
@@ -23,6 +27,11 @@ const Notif = () => {
   if (!infos) {
     return null;
   }
+  const openModal = (tournamentId) => {
+    setCurrentTournament(tournamentId);
+    setVisible(true);
+  };
+
   const infosTabs = Object.entries(infos).map(([tournamentId, infosTournament]) => {
     const infosFormat = infosTournament.map((info) => ({
       ...info,
@@ -31,14 +40,23 @@ const Notif = () => {
     return ({
       title: tournamentId,
       content: (<>
-        <Table columns={columns} dataSource={infosFormat} alignRight />
-        <Button primary>Ajouter une info</Button>
+        <Table columns={columns} dataSource={infosFormat} alignRight className="infos-table" />
+        <Button primary onClick={() => openModal(tournamentId)}>Ajouter une info</Button>
       </>),
     });
   });
   return (
-    <div>
+    <div id='admin-notif'>
       <Tabs tabs={infosTabs}/>
+      <Modal
+        visible={visible}
+        title="Ajouter une info"
+        onCancel={() => setVisible(false)}
+        buttons={<Button primary>Envoyer</Button>}
+      >
+        <Input label="Titre" value={form.title} onChange={(v) => setForm({ ...form, title: v })} />
+        <Textarea label="Contenu" value={form.content} onChange={(v) => setForm({ ...form, content: v })} />
+      </Modal>
     </div>
   );
 };
