@@ -1,4 +1,5 @@
 import { API } from '../utils';
+import moment from 'moment';
 
 export const SET_INFOS = 'infos/SET_INFOS';
 
@@ -49,5 +50,15 @@ export const fetchInfos = () => async (dispatch) => {
   dispatch({
     type: SET_INFOS,
     all: formatInfos,
+  });
+};
+
+export const postInfo = (form, tournamentId) => async (dispatch, getState) => {
+  //const res = await API.post('infos', { ...form, tournamentId });
+  const allInfos = getState().infos.all;
+  allInfos[tournamentId].push({ ...form, createdAt: moment.now(), tournamentId });
+  dispatch({
+    type: SET_INFOS,
+    all: allInfos,
   });
 };

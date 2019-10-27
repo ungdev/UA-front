@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { fetchInfos } from '../../modules/infos';
+import { fetchInfos, postInfo } from '../../modules/infos';
 import { Tabs, Table, Button, Modal, Input, Textarea } from '../../components/UI';
 import './notif.css';
 
@@ -12,11 +12,13 @@ const columns = [
   { title: '', key: 'action' },
 ];
 
+const initialForm = { title: '', content: '' };
+
 const Notif = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const [currentTournament, setCurrentTournament] = useState('');
-  const [form, setForm] = useState({ title: '', content: '' });
+  const [form, setForm] = useState(initialForm);
   const isLoggedIn = useSelector((state) => state.login.user);
   const infos = useSelector((state) => state.infos.all);
   useEffect(() => {
@@ -32,10 +34,16 @@ const Notif = () => {
     setVisible(true);
   };
 
+  const sendInfo = () => {
+    dispatch(postInfo(form, currentTournament));
+    setVisible(false);
+    setForm(initialForm);
+  };
+
   const infosTabs = Object.entries(infos).map(([tournamentId, infosTournament]) => {
     const infosFormat = infosTournament.map((info) => ({
       ...info,
-      date: moment(infosTournament.createdAt).format('DD/MM HH:mm'),
+      date: moment(info.createdAt).format('DD/MM HH:mm'),
     }));
     return ({
       title: tournamentId,
@@ -52,7 +60,7 @@ const Notif = () => {
         visible={visible}
         title="Ajouter une info"
         onCancel={() => setVisible(false)}
-        buttons={<Button primary>Envoyer</Button>}
+        buttons={<Button primary onClick={sendInfo}>Envoyer</Button>}
       >
         <Input label="Titre" value={form.title} onChange={(v) => setForm({ ...form, title: v })} />
         <Textarea label="Contenu" value={form.content} onChange={(v) => setForm({ ...form, content: v })} />
