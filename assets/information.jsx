@@ -108,6 +108,7 @@ export default {
         <a
           href="https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/"
           target="_blank"
+          rel="noopener noreferrer"
         >
           https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/
         </a>
