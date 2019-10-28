@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { fetchInfos, postInfo } from '../../modules/infos';
+import { fetchInfos, postInfo, deleteInfo } from '../../modules/infos';
 import { Tabs, Table, Button, Modal, Input, Textarea } from '../../components/UI';
 import './notif.css';
 
@@ -43,7 +43,8 @@ const Notif = () => {
   const infosTabs = Object.entries(infos).map(([tournamentId, infosTournament]) => {
     const infosFormat = infosTournament.map((info) => ({
       ...info,
-      date: moment(info.createdAt).format('DD/MM HH:mm'),
+      date: moment(info.createdAt).locale('fr').format('dddd HH:mm'),
+      action: <Button onClick={() => dispatch(deleteInfo(info.id, tournamentId))}><i className="fas fa-trash" /></Button>,
     }));
     return ({
       title: tournamentId,

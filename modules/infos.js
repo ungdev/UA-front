@@ -23,16 +23,16 @@ export const fetchInfos = () => async (dispatch) => {
   //const res = await API.get('/infos');
   const res = {
     data: [
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 1 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 1 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 2 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 3 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 4 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 5 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 6 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 7 },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: null },
-      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: null },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 1, id: 1 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 1, id: 12 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 2, id: 13 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 3, id: 14 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 4, id: 16 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 5, id: 15 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 6, id: 1234 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: 7, id: 135 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: null, id: 145 },
+      { title: 'TEST', content: 'ouioui', createdAt: '2019-10-12 22:26:55', tournamentId: null, id: 13553 },
     ],
   };
   const formatInfos = res.data.reduce((previousVal, info) => {
@@ -60,5 +60,15 @@ export const postInfo = (form, tournamentId) => async (dispatch, getState) => {
   dispatch({
     type: SET_INFOS,
     all: allInfos,
+  });
+};
+
+export const deleteInfo = (infoId, tournamentId) => async (dispatch, getState) => {
+  //const res = await API.delete(`infos/${infoId}`);
+  const allInfos = getState().infos.all;
+  const updatedInfos = allInfos[tournamentId].filter((info) => info.id !== infoId);
+  dispatch({
+    type: SET_INFOS,
+    all: { ...allInfos, [tournamentId]: updatedInfos },
   });
 };
