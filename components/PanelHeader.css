@@ -1,4 +1,4 @@
-#admin-header .header {
+#panel-header .header {
   background: url('/static/background.webp') center no-repeat;
   background-size: cover;
   height: 30vh;
@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-#admin-header .header .home-title {
+#panel-header .header .home-title {
   margin: 1em auto;
   padding: 1.5em;
   background-color: var(--dark-color);
@@ -16,7 +16,7 @@
   filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
 }
 
-#admin-header .header .home-title p {
+#panel-header .header .home-title p {
   font-family: 'LemonMilk', sans-serif;
   text-align: center;
   color: white;
@@ -26,7 +26,7 @@
   letter-spacing: 1px;
 }
 
-#admin-header .nav {
+#panel-header .nav {
   background: var(--dark-color);
   height: 50px;
   display: flex;
@@ -34,7 +34,7 @@
   overflow-x: auto;
 }
 
-#admin-header .nav .nav-link {
+#panel-header .nav .nav-link {
   position: relative;
   display: flex;
   align-items: center;
@@ -50,12 +50,12 @@
   transition: all .3s;
 }
 
-#admin-header .nav .nav-link:hover,
-#admin-header .nav .nav-link.active {
+#panel-header .nav .nav-link:hover,
+#panel-header .nav .nav-link.active {
   background: #fff1;
 }
 
-#admin-header .nav .nav-link::after {
+#panel-header .nav .nav-link::after {
   content: '';
   display: block;
   position: absolute;
@@ -68,23 +68,23 @@
   transition: all .3s;
 }
 
-#admin-header .nav .nav-link.active::after {
+#panel-header .nav .nav-link.active::after {
   opacity: 1;
 }
 
 @media screen and (max-width: 650px) {
-  #admin-header .header {
+  #panel-header .header {
     height: 15vh;
   }
 
-  #admin-header .header .home-title {
+  #panel-header .header .home-title {
     background: none;
     transform: none;
     margin: 0;
     padding: 0;
   }
 
-  #admin-header .header .home-title p {
+  #panel-header .header .home-title p {
     font-size: 1.5rem;
     transform: skew(0deg);
   }

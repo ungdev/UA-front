@@ -7,7 +7,7 @@ import { Modal, Button, Input } from './UI';
 const ModalUser = ({ isVisible }) => {
   const dispatch = useDispatch();
   const searchUser = useSelector((state) => state.userEntry.searchUser);
-  const isAdmin = useSelector((state) => state.login.user && state.login.user.permissions.includes('admin'));
+  const isAdmin = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'));
   const [email, setEmail] = useState('');
   if (email === '' && searchUser) {
     setEmail(searchUser.email);

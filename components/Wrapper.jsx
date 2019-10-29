@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
-import DashboardHeader from './DashboardHeader';
-import AdminHeader from './AdminHeader';
+import PanelHeader from './PanelHeader';
 import { autoLogin } from '../modules/login';
 
 const Wrapper = ({ Component }) => {
@@ -17,6 +16,7 @@ const Wrapper = ({ Component }) => {
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
   const isAdminPanel = pathname.substr(0, 6) === '/admin';
+  const permissions = useSelector((state) => state.login.user && state.login.user.permissions);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
@@ -98,6 +98,50 @@ const Wrapper = ({ Component }) => {
     );
   }
 
+  const linksDashboard = () => {
+    if (hasTeam) {
+      return [
+        { title: 'Équipe', href: '/dashboard/team' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isVisitor) {
+      return [
+        { title: 'Coach', href: '/dashboard/coach' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isPaid) {
+      return [
+        { title: 'Inscription', href: '/dashboard/register' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    return [
+      { title: 'Inscription', href: '/dashboard/register' },
+      { title: 'Mon compte', href: '/dashboard/account' },
+    ];
+  };
+
+  const linksAdmin = () => {
+    if (permissions === 'entry') {
+      return [
+        { title: 'Entrée', href: '/admin/entry' },
+      ];
+    }
+    return [
+      { title: 'Entrée', href: '/admin/entry' },
+      { title: 'Notifications', href: '/admin/notif' },
+      { title: 'Utilisateurs', href: '/admin/users' },
+    ];
+  };
+
   return (
     <>
       <CookieConsent />
@@ -106,17 +150,18 @@ const Wrapper = ({ Component }) => {
       <div className="page-container">
         { !isHome && !isTournament && !isDashboard && !isAdminPanel && <Header /> }
         { isDashboard && (
-            <DashboardHeader
+            <PanelHeader
               pathname={pathname}
-              hasTeam={hasTeam}
-              isVisitor={isVisitor}
-              isPaid={isPaid}
+              links={linksDashboard}
+              title="Dashboard"
             />
           )
         }
         { isAdminPanel && (
-            <AdminHeader
+            <PanelHeader
               pathname={pathname}
+              links={linksAdmin}
+              title="Administration"
             />
           )
         }
