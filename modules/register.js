@@ -19,7 +19,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
 
-  await API.post('users', user);
+  await API.post('auth/register', user);
   toast.success('Inscription réussie, veuillez vérifier vos emails');
   dispatch(setLoginModalVisible(false));
   return true;
@@ -27,7 +27,7 @@ export const registerUser = (user) => async (dispatch) => {
 
 export const validate = (slug) => async () => {
   try {
-    const res = await API.post('auth/validate', { slug });
+    const res = await API.post('auth/validation', { slug });
     localStorage.setItem('utt-arena-userid', res.data.user.id);
     localStorage.setItem('utt-arena-token', res.data.token);
 
