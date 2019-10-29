@@ -40,7 +40,7 @@ export const setUserModalVisible = (visible) => (dispatch) => {
 };
 
 export const searchUser = (name) => async (dispatch) => {
-  const res = await API.get(`users?email=${name}`);
+  const res = await API.post(`entry/validate?search=${name}`);
   dispatch({
     type: SET_SEARCH_USER,
     searchUser: res.data,
@@ -52,7 +52,7 @@ export const searchUser = (name) => async (dispatch) => {
 };
 
 export const searchBarcode = (barcode) => async (dispatch) => {
-  const res = await API.get(`users?barcode=${barcode}`);
+  const res = await API.post(`entry/scan?barcode=${barcode}`);
   dispatch({
     type: SET_BARCODE_USER,
     barcodeUser: res.data,
@@ -60,7 +60,7 @@ export const searchBarcode = (barcode) => async (dispatch) => {
 };
 
 export const searchManually = (username) => async (dispatch) => {
-  const res = await API.get(`users?email=${username}`);
+  const res = await API.post(`entry/scan?search=${username}`);
   dispatch({
     type: SET_BARCODE_USER,
     barcodeUser: res.data,

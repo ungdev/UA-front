@@ -24,11 +24,12 @@ const Entry = () => {
         <div className='entry-content'>
           <Card
             content={<>
+              <p><strong>Pseudo:</strong> {barcodeUser && barcodeUser.username}</p>
               <p><strong>Nom:</strong> {barcodeUser && barcodeUser.lastname}</p>
               <p><strong>Prénom:</strong> {barcodeUser && barcodeUser.firstname}</p>
               <p><strong>Email:</strong> {barcodeUser && barcodeUser.email}</p>
               <p><strong>Equipe:</strong> {barcodeUser && barcodeUser.team.name}</p>
-              <p><strong>Tournoi:</strong> {barcodeUser && barcodeUser.team.tournament.name}</p>
+              <p><strong>Tournoi:</strong> {barcodeUser && barcodeUser.team.tournament.shortName}</p>
               <p><strong>Place:</strong></p>
             </>}
           />
