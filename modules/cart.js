@@ -31,7 +31,7 @@ export const fetchDraftCart = () => async (dispatch, getState) => {
   const userId = getState().login.user.id;
   let res = await API.get(`users/${userId}/carts/current`);
   if (res.data === null) {
-    res = await API.post('carts');
+    res = await API.post(`users/${userId}/carts`);
     res.data.cartItems = [];
   }
   dispatch({
@@ -62,7 +62,7 @@ export const saveCart = (cart, displayToast) => async (dispatch, getState) => {
   });
 
   await Promise.all(modifiedCartItems.new.map(async ({ quantity, item, attribute, forUserId }) => {
-    await API.post(`carts/${cart.id}/add`, { quantity, itemId: item.id, attributeId: attribute.id, forUserId });
+    await API.post(`carts/${cart.id}/cartItems`, { quantity, itemId: item.id, attributeId: attribute.id, forUserId });
   }));
   await Promise.all(modifiedCartItems.updated.map(async ({ id, quantity, attribute }) => {
     await API.put(`carts/${cart.id}/cartItems/${id}`, { quantity, attributeId: attribute.id });
