@@ -1,4 +1,5 @@
 import { API } from '../utils';
+import { toast } from 'react-toastify';
 
 const SET_VISIBLE = 'userEntry/SET_VISIBLE';
 const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
@@ -40,7 +41,7 @@ export const setUserModalVisible = (visible) => (dispatch) => {
 };
 
 export const searchUser = (name) => async (dispatch) => {
-  const res = await API.get(`users?email=${name}`);
+  const res = await API.get(`entry/user?search=${name}`);
   dispatch({
     type: SET_SEARCH_USER,
     searchUser: res.data,
@@ -52,7 +53,8 @@ export const searchUser = (name) => async (dispatch) => {
 };
 
 export const searchBarcode = (barcode) => async (dispatch) => {
-  const res = await API.get(`users?barcode=${barcode}`);
+  const res = await API.post(`entry/scan?barcode=${barcode}`);
+  toast.success(`${res.data.username} scanné`);
   dispatch({
     type: SET_BARCODE_USER,
     barcodeUser: res.data,
@@ -60,9 +62,19 @@ export const searchBarcode = (barcode) => async (dispatch) => {
 };
 
 export const searchManually = (username) => async (dispatch) => {
-  const res = await API.get(`users?email=${username}`);
+  const res = await API.post(`entry/scan?search=${username}`);
+  toast.success(`${res.data.username} scanné`);
   dispatch({
     type: SET_BARCODE_USER,
     barcodeUser: res.data,
+  });
+};
+
+export const validatePay = (id) => async (dispatch) => {
+  await API.post(`entry/forcePay/${id}`);
+  toast.success('Paiement validé');
+  dispatch({
+    type: SET_VISIBLE,
+    visible: false,
   });
 };

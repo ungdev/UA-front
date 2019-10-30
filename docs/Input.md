@@ -4,6 +4,7 @@ Displays an input
 
 prop | type | default | required | description
 ---- | :----: | :-------: | :--------: | -----------
+**autoFocus** | `Boolean` | `false` | :x: | Should the input have the focus by default ?
 **autocomplete** | `String` | `''` | :x: | Autocomplete type
 **className** | `String` | `''` | :x: | Class of the container
 **disabled** | `Boolean` | `false` | :x: | Is the input disabled ?
@@ -14,6 +15,6 @@ prop | type | default | required | description
 **placeholder** | `String` | `''` | :x: | Text to display if field is blank
 **type** | `Enum('text', 'email', 'password', 'number')` | `'text'` | :x: | Input type
 **value** | `Union<String\|Number>` | `''` | :x: | Value of the input
-**value<1>** | `String` |  | :x: | 
-**value<2>** | `Number` |  | :x: | 
+**value<1>** | `String` |  | :x: |
+**value<2>** | `Number` |  | :x: |
 
