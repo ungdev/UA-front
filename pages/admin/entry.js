@@ -21,7 +21,7 @@ const Entry = () => {
     <div id="admin-entry">
       <div className="scan">
         <Title level={2}>Scanner une place</Title>
-        <div className='entry-content'>
+        <div className="entry-content">
           <Card
             content={<>
               <p><strong>Pseudo:</strong> {barcodeUser && barcodeUser.username}</p>

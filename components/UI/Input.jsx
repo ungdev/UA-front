@@ -94,6 +94,9 @@ Input.propTypes = {
    * Is the input disabled ?
    */
   disabled: PropTypes.bool,
+  /**
+   * Should the input have the focus by default ?
+   */
   autoFocus: PropTypes.bool,
 };
 
