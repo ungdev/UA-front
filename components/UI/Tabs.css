@@ -3,6 +3,7 @@
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
+  overflow-x: auto;
 }
 
 .tabs .tabs-nav::after {
@@ -27,6 +28,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: all .3s;
+  min-width: max-content;
 }
 
 .tabs .tabs-nav .tab-nav::after {

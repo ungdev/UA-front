@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import { fetchInfos, postInfo, deleteInfo } from '../../modules/infos';
 import { Tabs, Table, Button, Modal, Input, Textarea } from '../../components/UI';
-import './notif.css';
+import './notification.css';
 
 const columns = [
   { title: 'Titre', key: 'title' },
@@ -14,15 +14,15 @@ const columns = [
 
 const initialForm = { title: '', content: '' };
 
-const Notif = () => {
+const Notification = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const [currentTournament, setCurrentTournament] = useState('');
   const [form, setForm] = useState(initialForm);
   const isLoggedIn = useSelector((state) => state.login.user);
-  const infos = useSelector((state) => state.infos.all);
+  const { all: infos, isFetched } = useSelector((state) => state.infos);
   useEffect(() => {
-    if (isLoggedIn && !infos) {
+    if (isLoggedIn && !isFetched) {
       dispatch(fetchInfos());
     }
   }, [isLoggedIn]);
@@ -40,17 +40,17 @@ const Notif = () => {
     setForm(initialForm);
   };
 
-  const infosTabs = Object.entries(infos).map(([tournamentId, infosTournament]) => {
-    const infosFormat = infosTournament.map((info) => ({
+  const infosTabs = infos.map((infosTournament) => {
+    const infosFormat = infosTournament.list.map((info) => ({
       ...info,
       date: moment(info.createdAt).locale('fr').format('dddd HH:mm'),
-      action: <Button onClick={() => dispatch(deleteInfo(info.id, tournamentId))}><i className="fas fa-trash" /></Button>,
+      action: <Button onClick={() => dispatch(deleteInfo(info.id, infosTournament.id))}><i className="fas fa-trash" /></Button>,
     }));
     return ({
-      title: tournamentId,
+      title: infosTournament.name,
       content: (<>
         <Table columns={columns} dataSource={infosFormat} alignRight className="infos-table" />
-        <Button primary onClick={() => openModal(tournamentId)}>Ajouter une info</Button>
+        <Button primary onClick={() => openModal(infosTournament.id)}>Ajouter une info</Button>
       </>),
     });
   });
@@ -70,4 +70,4 @@ const Notif = () => {
   );
 };
 
-export default Notif;
+export default Notification;

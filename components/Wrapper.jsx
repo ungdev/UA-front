@@ -137,7 +137,7 @@ const Wrapper = ({ Component }) => {
     }
     return [
       { title: 'Entrée', href: '/admin/entry' },
-      { title: 'Notifications', href: '/admin/notif' },
+      { title: 'Notifications', href: '/admin/notification' },
       { title: 'Utilisateurs', href: '/admin/users' },
     ];
   };
