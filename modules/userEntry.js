@@ -1,9 +1,9 @@
 import { API } from '../utils';
 import { toast } from 'react-toastify';
 
-const SET_VISIBLE = 'userEntry/SET_VISIBLE';
-const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
-const SET_BARCODE_USER = 'userEntry/SET_BARCODE_USER';
+export const SET_VISIBLE = 'userEntry/SET_VISIBLE';
+export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
+export const SET_BARCODE_USER = 'userEntry/SET_BARCODE_USER';
 
 const initialState = {
   visible: false,
