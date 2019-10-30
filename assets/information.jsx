@@ -102,6 +102,17 @@ export default {
         Nous mettons à disposition des joueurs des loges communes avec un accès à l'eau et aux douches ! Pensez à ramener vos duvets si vous souhaitez vous reposer !
         Nous mettons à disposition des tapis de gym fins pour plus de confort.
       </p>
+      <p>
+        Si l'idée de dormir par terre ne te tente pas, sache que Kosy Appart'Hôtels te propose une remise de 30% sur leurs chambres, rien que pour tes beaux yeux !
+        Suis le lien ci-dessous et rentre le code GAME2019 afin de bénéficier de la réduction :<br />
+        <a
+          href="https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/
+        </a>
+      </p>
 
       <Title level={4}>Location de matériel</Title>
       <p>
