@@ -14,7 +14,7 @@ const columns = [
   { title: 'Joueurs', key: 'players' },
 ];
 
-const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
+const Tournament = ({ assets, isSolo, tournamentId }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
   const [formatTeams, setFormatTeam] = useState([]);
 
   const fetchFullTeam = async () => {
-    const res = await API.get(`tournaments/${idTournament}/teams?paidOnly=true`);
+    const res = await API.get(`tournaments/${tournamentId}/teams?paidOnly=true`);
     const teams = res.data.map(({ name, users }) => ({
       name,
       players: users.map(({ username }) => username).join(', '),
@@ -53,29 +53,29 @@ const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
 
   return (
     <div className="tournament">
-      <img className="tournament-header" alt="" src={imgSrc} />
+      <img className="tournament-header" alt="" src={assets.image} />
 
       <div className="tournament-content">
-        <Title align="center">{text.title}</Title>
+        <Title align="center">{assets.title}</Title>
 
         <div className="tournament-signin">
           <Button primary onClick={buttonClick}>S'inscrire</Button>
         </div>
 
         <Title level={2}>Format</Title>
-        <div className="tournament-section">{text.format}</div>
+        <div className="tournament-section">{assets.format}</div>
 
-        {text.rewards && (
+        { assets.rewards && (
           <>
             <Title level={2}>Récompenses</Title>
-            <div className="tournament-section">{text.rewards}</div>
+            <div className="tournament-section">{assets.rewards}</div>
           </>
         )}
 
-        { text.rules && (
+        { assets.rules && (
           <>
             <Title level={2}>Règlement</Title>
-            <div className="tournament-section">{text.rules}</div>
+            <div className="tournament-section">{assets.rules}</div>
           </>
         )}
         <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
@@ -89,13 +89,10 @@ const Tournament = ({ imgSrc, text, isSolo, idTournament }) => {
 
 Tournament.propTypes = {
   /**
-   * The source of the image to display
+   * The assets of the tournament
    */
-  imgSrc: PropTypes.string.isRequired,
-  /**
-   * The text that will be displayed on the page
-   */
-  text: PropTypes.shape({
+  assets: PropTypes.shape({
+    image: PropTypes.string.isRequired,
     title: PropTypes.node.isRequired,
     format: PropTypes.node.isRequired,
     rewards: PropTypes.node,
@@ -108,7 +105,7 @@ Tournament.propTypes = {
   /**
    * Tournament id
    */
-  idTournament: PropTypes.string.isRequired,
+  tournamentId: PropTypes.string.isRequired,
 };
 
 Tournament.defaultProps = {

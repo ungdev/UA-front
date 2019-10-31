@@ -31,14 +31,10 @@ const CookieConsent = () => {
 
   return (
     <div className="cookie-consent">
-      <div className="cookie-consent-content">
-        Nous utilisons les cookies pour proposer et améliorer nos services.
-        En navigant sur notre site, vous acceptez l'utilisation des cookies.{' '}
-        <Link href="/legal"><a>En&nbsp;savoir&nbsp;plus</a></Link>
-      </div>
-      <div className="cookie-consent-button">
-        <Button onClick={buttonClick}>J'ai compris</Button>
-      </div>
+      Nous utilisons les cookies pour proposer et améliorer nos services.
+      En navigant sur notre site, vous acceptez l'utilisation des cookies.{' '}
+      <Link href="/legal"><a>En&nbsp;savoir&nbsp;plus</a></Link>
+      <Button onClick={buttonClick} className="cookie-consent-button">J'ai compris</Button>
     </div>
   );
 };

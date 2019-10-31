@@ -2,6 +2,7 @@ import React from 'react';
 
 export default {
   lolpro: {
+    image: '/static/lolpro.png',
     title: 'League of Legends (Pro)',
     format: (
       <>
@@ -26,6 +27,7 @@ export default {
     ),
   },
   lolamateur: {
+    image: '/static/lolamateur.png',
     title: 'League of Legends (Amateur)',
     format: (
       <>
@@ -50,6 +52,7 @@ export default {
     ),
   },
   ssbu: {
+    image: '/static/ssbu.png',
     title: 'Super Smash Bros Ultimate',
     format: (
       <>
@@ -74,6 +77,7 @@ export default {
     ),
   },
   csgo: {
+    image: '/static/csgo.png',
     title: 'Counter-Strike : Global Offensive',
     format: (
       <>
@@ -99,6 +103,7 @@ export default {
     ),
   },
   fortnite: {
+    image: '/static/fortnite.png',
     title: 'Fortnite',
     format: (
       <>
@@ -120,6 +125,7 @@ export default {
     ),
   },
   osu: {
+    image: '/static/osu.png',
     title: 'osu!',
     format: (
       <>
@@ -130,14 +136,15 @@ export default {
     rules: <>Le règlement est disponible <a href="https://osu.ppy.sh/community/forums/topics/972130">ici</a>.</>,
   },
   libre: {
+    image: '/static/libre.png',
     title: 'Libre',
     format: (
       <>
         <div className="tournament-format">24 joueurs</div>
         <p>
-        Le tournoi libre se déroulera sur plusieurs jeux tout au long du week-end, il se veut avant tout fun et permettra aux joueurs de montrer leur skill sur différents jeux, pour voir lequel des participants est le plus polyvalent. 
-        Les différents jeux seront <strong>Mario Kart</strong>, <strong>Super Smash Bros</strong>, <strong>Tricky Towers</strong>, <strong>Worms</strong> et encore plusieurs autres, on aura même à disposition un casque VR pour jouer à <strong>Beat Saber</strong>. 
-        De plus n’hésitez à nous proposer des idées pour des jeux que vous aimeriez voir apparaitre dans le tournoi. 
+        Le tournoi libre se déroulera sur plusieurs jeux tout au long du week-end, il se veut avant tout fun et permettra aux joueurs de montrer leur skill sur différents jeux, pour voir lequel des participants est le plus polyvalent.
+        Les différents jeux seront <strong>Mario Kart</strong>, <strong>Super Smash Bros</strong>, <strong>Tricky Towers</strong>, <strong>Worms</strong> et encore plusieurs autres, on aura même à disposition un casque VR pour jouer à <strong>Beat Saber</strong>.
+        De plus n’hésitez à nous proposer des idées pour des jeux que vous aimeriez voir apparaitre dans le tournoi.
         Alors si tu crois pouvoir battre tout le monde sur tes jeux préférés, n’hésite pas et inscris-toi.
         </p>
       </>

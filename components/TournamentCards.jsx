@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchSlots } from '../modules/tournament';
 import { Card, Title } from './UI';
-import tournamentCardsText from '../assets/tournamentCards';
+import tournamentCardsAssets from '../assets/tournamentCards';
 
 import './TournamentCards.css';
 
@@ -21,10 +21,10 @@ const TournamentCards = () => {
   return (
     <div className="tournament-cards">
       <Title align="center" uppercase>Tournois</Title>
-      <Title level={4} align="center" uppercase>{tournamentCardsText.catchPhrase}</Title>
+      <Title level={4} align="center" uppercase>{tournamentCardsAssets.catchPhrase}</Title>
 
       <div className="tournaments-list">
-        { tournamentCardsText.list.map(({ title, rewards, players, img, link, id }) => (
+        { tournamentCardsAssets.list.map(({ title, rewards, players, image, link, id }) => (
           <Card
             dark
             content={(
@@ -37,7 +37,7 @@ const TournamentCards = () => {
                 </p>}
               </>
             )}
-            imgSrc={img}
+            imgSrc={image}
             href={link}
             buttonContent={<>Plus d'infos <i className="fas fa-chevron-right right-arrow" /></>}
             className="tournament-card"

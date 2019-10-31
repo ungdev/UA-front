@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: url('/static/background.webp') no-repeat center;
+  background: url('/static/background.png') no-repeat center;
   background-size: cover;
   margin-bottom: 3em;
 }
