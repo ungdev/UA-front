@@ -102,7 +102,7 @@ const Navbar = ({ isLoggedIn }) => {
         primary
         className="dashboard-button"
         onClick={() => {
-          router.push(hasPermissions ? '/admin/entry' : '/dashboard');
+          router.push(hasPermissions ? '/admin' : '/dashboard');
           setMobileMenuVisible(false);
         }}
       >
