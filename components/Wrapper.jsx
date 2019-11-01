@@ -78,7 +78,7 @@ const Wrapper = ({ Component }) => {
       redirect = '/admin/entry';
     }
     else if (pathname === '/admin' && permissions === 'anim') {
-      redirect = '/admin/notif';
+      redirect = '/admin/notification';
     }
     else if (pathname === '/admin' && permissions === 'admin') {
       redirect = '/admin/users';
@@ -146,13 +146,13 @@ const Wrapper = ({ Component }) => {
     }
     if (permissions === 'anim') {
       return [
-        { title: 'Notifications', href: '/admin/notif' },
+        { title: 'Notifications', href: '/admin/notification' },
         { title: 'Utilisateurs', href: '/admin/users' },
       ];
     }
     return [
       { title: 'Utilisateurs', href: '/admin/users' },
-      { title: 'Notifications', href: '/admin/notif' },
+      { title: 'Notifications', href: '/admin/notification' },
       { title: 'Entrée', href: '/admin/entry' },
     ];
   };
