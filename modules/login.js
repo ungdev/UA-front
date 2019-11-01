@@ -84,7 +84,12 @@ export const tryLogin = (user) => async (dispatch) => {
     user: res.data.user,
   });
   dispatch(setLoginModalVisible(false));
-  Router.push('/dashboard');
+  if (res.data.user.permissions) {
+    Router.push('/admin/entry');
+  }
+  else {
+    Router.push('/dashboard');
+  }
   return true;
 };
 

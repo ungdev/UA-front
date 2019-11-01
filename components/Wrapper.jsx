@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
-import DashboardHeader from './DashboardHeader';
+import PanelHeader from './PanelHeader';
 import { autoLogin } from '../modules/login';
 
 const Wrapper = ({ Component }) => {
@@ -15,11 +15,14 @@ const Wrapper = ({ Component }) => {
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
   const isDashboard = pathname.substr(0, 10) === '/dashboard';
+  const isAdminPanel = pathname.substr(0, 6) === '/admin';
+  const permissions = useSelector((state) => state.login.user && state.login.user.permissions);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
   const [isVisitor, setIsVisitor] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useSelector((state) => {
     const { user } = state.login;
@@ -37,9 +40,11 @@ const Wrapper = ({ Component }) => {
     else if (user && isVisitor && user.type === 'none') {
       setIsVisitor(false);
     }
-
     if (user && isPaid !== user.isPaid) {
       setIsPaid(user.isPaid);
+    }
+    if (user && !!user.permissions !== isAdmin) {
+      setIsAdmin(true);
     }
   });
 
@@ -66,6 +71,18 @@ const Wrapper = ({ Component }) => {
     else if (!isVisitor && !hasTeam && (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')) {
       redirect = '/dashboard/register';
     }
+    if (!isAdmin && isAdminPanel) {
+      redirect = '/dashboard';
+    }
+    else if (pathname === '/admin' && permissions === 'entry') {
+      redirect = '/admin/entry';
+    }
+    else if (pathname === '/admin' && permissions === 'anim') {
+      redirect = '/admin/notif';
+    }
+    else if (pathname === '/admin' && permissions === 'admin') {
+      redirect = '/admin/users';
+    }
   }
 
   // Redirect to desired path
@@ -90,23 +107,79 @@ const Wrapper = ({ Component }) => {
     );
   }
 
+  const linksDashboard = () => {
+    if (hasTeam) {
+      return [
+        { title: 'Équipe', href: '/dashboard/team' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isVisitor) {
+      return [
+        { title: 'Coach', href: '/dashboard/coach' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    if (isPaid) {
+      return [
+        { title: 'Inscription', href: '/dashboard/register' },
+        { title: 'Boutique', href: '/dashboard/shop' },
+        { title: 'Mes achats', href: '/dashboard/purchases' },
+        { title: 'Mon compte', href: '/dashboard/account' },
+      ];
+    }
+    return [
+      { title: 'Inscription', href: '/dashboard/register' },
+      { title: 'Mon compte', href: '/dashboard/account' },
+    ];
+  };
+
+  const linksAdmin = () => {
+    if (permissions === 'entry') {
+      return [
+        { title: 'Entrée', href: '/admin/entry' },
+      ];
+    }
+    if (permissions === 'anim') {
+      return [
+        { title: 'Notifications', href: '/admin/notif' },
+        { title: 'Utilisateurs', href: '/admin/users' },
+      ];
+    }
+    return [
+      { title: 'Utilisateurs', href: '/admin/users' },
+      { title: 'Notifications', href: '/admin/notif' },
+      { title: 'Entrée', href: '/admin/entry' },
+    ];
+  };
+
   return (
     <>
       <CookieConsent />
       <Navbar isLoggedIn={isLoggedIn} />
 
       <div className="page-container">
-        { !isHome && !isTournament && !isDashboard && <Header /> }
+        { !isHome && !isTournament && !isDashboard && !isAdminPanel && <Header /> }
         { isDashboard && (
-            <DashboardHeader
+            <PanelHeader
               pathname={pathname}
-              hasTeam={hasTeam}
-              isVisitor={isVisitor}
-              isPaid={isPaid}
+              links={linksDashboard}
+              title="Dashboard"
             />
           )
         }
-
+        { isAdminPanel && (
+            <PanelHeader
+              pathname={pathname}
+              links={linksAdmin}
+              title="Administration"
+            />
+          )
+        }
         <main className={(!isHome && !isTournament) ? 'page-padding' : ''}><Component /></main>
       </div>
     </>
