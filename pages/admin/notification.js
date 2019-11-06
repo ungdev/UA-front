@@ -9,6 +9,7 @@ const columns = [
   { title: 'Titre', key: 'title' },
   { title: 'Contenu', key: 'content' },
   { title: 'Date', key: 'date' },
+  { title: 'Auteur', key: 'author' },
   { title: '', key: 'action' },
 ];
 
@@ -45,6 +46,7 @@ const Notification = () => {
     const infosFormat = infosTournament.list.map((info) => ({
       ...info,
       date: moment(info.createdAt).locale('fr').format('dddd HH:mm'),
+      author: `${info.user.firstname} ${info.user.lastname[0]}.`,
       action: <Button onClick={() => setDeletedInfo({ tournamentId: infosTournament.id, id: info.id })}><i className="fas fa-trash" /></Button>,
     }));
     return ({
