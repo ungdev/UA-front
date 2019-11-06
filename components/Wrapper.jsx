@@ -74,6 +74,15 @@ const Wrapper = ({ Component }) => {
     if (!isAdmin && isAdminPanel) {
       redirect = '/dashboard';
     }
+    else if (pathname === '/admin' && permissions === 'entry') {
+      redirect = '/admin/entry';
+    }
+    else if (pathname === '/admin' && permissions === 'anim') {
+      redirect = '/admin/notification';
+    }
+    else if (pathname === '/admin' && permissions === 'admin') {
+      redirect = '/admin/users';
+    }
   }
 
   // Redirect to desired path
@@ -135,10 +144,16 @@ const Wrapper = ({ Component }) => {
         { title: 'Entrée', href: '/admin/entry' },
       ];
     }
+    if (permissions === 'anim') {
+      return [
+        { title: 'Notifications', href: '/admin/notification' },
+        { title: 'Utilisateurs', href: '/admin/users' },
+      ];
+    }
     return [
-      { title: 'Entrée', href: '/admin/entry' },
-      { title: 'Notifications', href: '/admin/notification' },
       { title: 'Utilisateurs', href: '/admin/users' },
+      { title: 'Notifications', href: '/admin/notification' },
+      { title: 'Entrée', href: '/admin/entry' },
     ];
   };
 

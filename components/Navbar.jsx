@@ -102,7 +102,7 @@ const Navbar = ({ isLoggedIn }) => {
         primary
         className="dashboard-button"
         onClick={() => {
-          router.push(hasPermissions ? '/admin/entry' : '/dashboard');
+          router.push(hasPermissions ? '/admin' : '/dashboard');
           setMobileMenuVisible(false);
         }}
       >
@@ -206,7 +206,7 @@ const Navbar = ({ isLoggedIn }) => {
           visible={isVisible}
           buttons={<Button primary onClick={() => dispatch(setLoginModalVisible(false))}>Fermer</Button>}
         >
-          Les inscriptions ne sont pas encore ouvertes,
+          Le système d'inscription est actuellement en maintenance,
           suivez-nous sur les réseaux sociaux pour ne rien rater !
         </Modal>
       ) }

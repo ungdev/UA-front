@@ -23,8 +23,8 @@ const ModalUser = ({ isVisible }) => {
         <p><strong>Prénom:</strong> {searchUser && searchUser.firstname}</p>
         <p><strong>Prénom:</strong> {searchUser && searchUser.username}</p>
         <p><strong>Email:</strong> {searchUser && searchUser.email}</p>
-        <p><strong>Equipe:</strong> {searchUser && searchUser.team.name}</p>
-        <p><strong>Tournoi:</strong> {searchUser && searchUser.team.tournament.shortName}</p>
+        <p><strong>Equipe:</strong> {searchUser && searchUser.team && searchUser.team.name}</p>
+        <p><strong>Tournoi:</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}</p>
       </>
     </Modal>
   );

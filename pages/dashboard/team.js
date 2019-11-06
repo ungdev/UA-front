@@ -45,13 +45,13 @@ const Team = () => {
     }
   }, [team]);
 
-  const players = !isSolo && team && team.users.map((user) => {
-    return ({
-      username: user.id === team.captainId ? <>{user.username} <i className="fas fa-crown gold-icon"></i></> : user.username,
-      fullname: `${user.firstname} ${user.lastname}`,
-      email: user.email,
-      isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
-      action: user.id !== team.captainId && isCaptain ? (<>
+  const players = !isSolo && team && team.users.map((user) => ({
+    username: <>{user.username} {user.id === team.captainId ? <i className="fas fa-crown gold-icon" /> : ''}</>,
+    fullname: `${user.firstname} ${user.lastname}`,
+    email: user.email,
+    isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
+    action: user.id !== team.captainId && isCaptain ? (
+      <>
         <Button
           onClick={() => setModal({
             visible: true,
@@ -64,25 +64,24 @@ const Team = () => {
           })}
         >
           Designer comme chef
-        </Button>{
-          !user.isPaid &&
-          <Button
-            onClick={() => setModal({
-              visible: true,
-              onOk: () => {
-                dispatch(kickUser(user.id, team.id));
-                setModal(initialModal);
-              },
-              content: 'Confirmez l\'exclusion du joueur',
-              title: 'Exclure un joueur',
-            })}
-          >
-            Exclure
-          </Button>
-        }
-      </>) : '',
-    });
-  });
+        </Button>
+
+        <Button
+          onClick={() => setModal({
+            visible: true,
+            onOk: () => {
+              dispatch(kickUser(user.id, team.id));
+              setModal(initialModal);
+            },
+            content: 'Confirmez l\'exclusion du joueur',
+            title: 'Exclure un joueur',
+          })}
+        >
+          Exclure
+        </Button>
+      </>
+    ) : '',
+  }));
 
   const waitingPlayers = !isSolo && team && team.askingUsers.map((user) => ({
     username: user.username,
