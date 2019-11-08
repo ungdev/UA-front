@@ -67,19 +67,19 @@ export const displayUser = (user) => async (dispatch) => {
   });
 };
 
-export const goToPage = (page) => async (dispatch, getState) => {
+export const goToPage = (page, filters) => async (dispatch, getState) => {
   if (page < 0) {
     return;
   }
-  const { all: totalPages, params, page: previousPage, filters } = getState().users;
+  const { all: totalPages, params, page: previousPage } = getState().users;
   if (page > params.total / params.pageSize) {
     return;
   }
-  const trueLast = params.last + params.pageSize > params.total ? params.total : params.last + params.pageSize;
+  const realLast = params.last + params.pageSize > params.total ? params.total : params.last + params.pageSize;
   const newParams = {
     ...params,
     first: previousPage > page ? params.first - params.pageSize : params.last + 1,
-    last: previousPage > page ? params.first - 1 : trueLast,
+    last: previousPage > page ? params.first - 1 : realLast,
   };
   if (totalPages.length > page) {
     dispatch({
@@ -104,9 +104,8 @@ export const goToPage = (page) => async (dispatch, getState) => {
   }
 };
 
-export const filterTournament = (tournamentId) => async (dispatch, getState) => {
-  const filters = getState().users.filters;
-  const res = await API.get('admin/users', { ...filters, tournamentId });
+export const filterUsers = (filters) => async (dispatch) => {
+  const res = await API.get('admin/users',filters);
   const formatUsers = format(res.data.users);
   dispatch({
     type: SET_FETCH,
@@ -119,6 +118,5 @@ export const filterTournament = (tournamentId) => async (dispatch, getState) => 
       pageSize: res.data.pageSize,
     },
     page: 0,
-    filters: { ...filters, tournamentId },
   });
 };

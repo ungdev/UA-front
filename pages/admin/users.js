@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Title, Radio } from '../../components/UI';
-import { fetchUsers, displayUser, goToPage, filterTournament } from '../../modules/users';
+import { Title, Radio, Input, Button } from '../../components/UI';
+import { fetchUsers, displayUser, goToPage, filterUsers } from '../../modules/users';
+import { searchUser } from '../../modules/userEntry';
 import Table from '../../components/UI/Table';
 
 import './users.css';
@@ -36,8 +37,8 @@ const optionsTournaments = [
 
 const Users = () => {
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState('all');
-  const [tournamentFilter, setTournamentFilter] = useState('all');
+  const [filters, setFilters] = useState({ tournamentId: 'all', status: 'all' });
+  const [email, setEmail] = useState('');
   const isLoggedIn = useSelector((state) => state.login.user);
   const { current: users, isFetched, params, page } = useSelector((state) => state.users);
 
@@ -48,17 +49,13 @@ const Users = () => {
   }, [isLoggedIn]);
 
   const updateFilter = (v) => {
-    setFilter(v);
-  };
-
-  const updateTournament = (v) => {
-    setTournamentFilter(v);
-    dispatch(filterTournament(v));
+    setFilters(v);
+    dispatch(filterUsers(v));
   };
 
   const formatUsers = users.map((user) => ({
     ...user,
-    action: <i className="far fa-question-circle point" onClick={() => dispatch(displayUser(user))}/>,
+    action: <i className="fas fa-cog pointer" onClick={() => dispatch(displayUser(user))}/>,
   }));
   return (
     <div id="admin-users">
@@ -68,23 +65,36 @@ const Users = () => {
         name="filter"
         row
         options={options}
-        value={filter}
-        onChange={updateFilter}
+        value={filters.status}
+        onChange={(v) => updateFilter({ ...filters, status: v })}
       />
+      <br/>
       <Radio
         label="Tournoi"
         name="filterTournament"
         row
         options={optionsTournaments}
-        value={tournamentFilter}
-        onChange={updateTournament}
+        value={filters.tournamentId}
+        onChange={(v) => updateFilter({ ...filters, tournamentId: v })}
       />
-      <Table columns={columns} dataSource={formatUsers} className="users-table" />
-      <div className="table-footer">
-        <p>{params.first}-{params.last} sur {params.total}</p>
-        <i className="fas fa-chevron-left pointer" onClick={() => dispatch(goToPage(page-1))} />
-        <i className="fas fa-chevron-right pointer" onClick={() => dispatch(goToPage(page+1))} />
-      </div>
+      <Input
+          value={email}
+          onChange={setEmail}
+          label="Rechercher utilisateur"
+          placeholder="Email, pseudo, nom"
+        />
+        <Button primary onClick={() => dispatch(searchUser(email))}>Rechercher</Button>
+      <Table
+        columns={columns}
+        dataSource={formatUsers}
+        className="users-table"
+        pagination
+        paginationOptions={{
+          ...params,
+          goToPage: (page) => dispatch(goToPage(page, filters)),
+          page,
+        }}
+      />
     </div>
   );
 };
