@@ -78,3 +78,12 @@ export const validatePay = (id) => async (dispatch) => {
     visible: false,
   });
 };
+
+export const saveUser = (id, body, username) => async (dispatch) => {
+  await API.put(`admin/users/${id}`, body);
+  toast.success(`${username} mis à jour`);
+  dispatch({
+    type: SET_VISIBLE,
+    visible: false,
+  });
+};

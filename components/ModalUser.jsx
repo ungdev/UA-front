@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserModalVisible, validatePay } from '../modules/userEntry';
-import { Modal, Button, Radio, Input } from './UI';
+import { setUserModalVisible, validatePay, saveUser } from '../modules/userEntry';
+import { Modal, Button, Radio, Input, Card } from './UI';
+import moment from 'moment';
 
 const options = [
-  { name: 'Aucune', value: 'none' },
+  { name: 'Aucune', value: 'Aucune' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
@@ -15,22 +16,47 @@ const ModalUser = ({ isVisible }) => {
   const dispatch = useDispatch();
   const searchUser = useSelector((state) => state.userEntry.searchUser);
   const isAdmin = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'));
-  const [permission, setPermission] = useState('none');
+  const [permissions, setPermissions] = useState('none');
   const [place, setPlace] = useState('');
+
   useEffect(() => {
     if (searchUser) {
-      setPermission(searchUser.permissions || 'none');
+      setPermissions(searchUser.permissions || 'none');
       setPlace(searchUser.place || '');
     }
   }, [searchUser]);
+
+  const displayCarts = () => {
+    return searchUser.carts.map((cart) => {
+      const cartItems = cart.cartItems.map((cartItem) => (
+        <li key={cartItem}>{cartItem.quantity}x {cartItem.item.name} {cartItem.refunded && '(remboursé)'}</li>
+      ));
+      const date = new Date(cart.paidAt);
+      return <Card
+        key={cart.transactionId}
+        content={
+          <>
+            <p>#{cart.transactionId} {moment(date).format('DD/MM')}</p>
+            <ul>
+              { cartItems }
+            </ul>
+            <Button>Rembourser</Button>
+          </>
+        }
+      />;
+    });
+  };
+
   return (
     <Modal
       visible={isVisible}
       title="Utilisateur"
       onCancel={() => dispatch(setUserModalVisible(false))}
       buttons={<>
-        <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
-        { isAdmin && <Button primary>Enregistrer</Button>}
+        { searchUser && !searchUser.isPaid &&
+          <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
+        }
+        { isAdmin && <Button primary onClick={() => dispatch(saveUser(searchUser.id, { permissions, place }, searchUser.username))}>Enregistrer</Button>}
       </>}
     >
       <>
@@ -47,14 +73,15 @@ const ModalUser = ({ isVisible }) => {
               name="permission"
               row
               options={options}
-              value={permission}
-              onChange={setPermission}
+              value={permissions}
+              onChange={setPermissions}
             />
             <Input
               label="Place"
               value={place}
               onChange={setPlace}
             />
+            { searchUser && displayCarts() }
           </>
         )}
       </>
