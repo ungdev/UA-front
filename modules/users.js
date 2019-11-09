@@ -19,6 +19,8 @@ const format = (users) => {
     tournamentName: user.team ? user.team.tournament.shortName : 'Aucun',
     teamName: user.team ? user.team.name :  user.type,
     isPaid: user.isPaid ? '✔' : '✖',
+    scanned: user.scanned ? '✔' : '✖',
+    permissions: user.permissions ? user.permissions : 'Aucune',
   }));
 };
 
@@ -75,7 +77,7 @@ export const goToPage = (page, filters) => async (dispatch, getState) => {
   if (page > params.total / params.pageSize) {
     return;
   }
-  const realLast = params.last + params.pageSize > params.total ? params.total : params.last + params.pageSize;
+  const realLast = Math.min(params.last + params.pageSize, params.total);
   const newParams = {
     ...params,
     first: previousPage > page ? params.first - params.pageSize : params.last + 1,
@@ -114,6 +116,24 @@ export const filterUsers = (filters) => async (dispatch) => {
     params: {
       total: res.data.total,
       first: res.data.limit - res.data.pageSize + 1,
+      last: Math.min(res.data.limit, res.data.total),
+      pageSize: res.data.pageSize,
+    },
+    page: 0,
+  });
+};
+
+export const searchUsers = (search) => async (dispatch) => {
+  const res = await API.get('admin/users/search', { search });
+  const formatUsers = format(res.data.users);
+
+  dispatch({
+    type: SET_FETCH,
+    current: formatUsers,
+    all: [formatUsers],
+    params: {
+      total: res.data.total,
+      first: 1,
       last: res.data.limit,
       pageSize: res.data.pageSize,
     },
