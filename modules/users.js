@@ -16,11 +16,11 @@ const initialState = {
 const format = (users) => {
   return users.map((user) => ({
     ...user,
-    tournamentName: user.team ? user.team.tournament.shortName : 'Aucun',
-    teamName: user.team ? user.team.name :  user.type,
-    isPaid: user.isPaid ? '✔' : '✖',
+    tournamentName: user.team ? user.team.tournament.shortName : '',
+    teamName: user.team ? user.team.name : (user.type === 'visitor' ? '(visiteur)' : ''),
+    paidLabel: user.isPaid ? '✔' : '✖',
     scanned: user.scanned ? '✔' : '✖',
-    permissions: user.permissions ? user.permissions : 'Aucune',
+    permissionsLabel: user.permissions || '',
   }));
 };
 

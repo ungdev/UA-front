@@ -10,9 +10,9 @@ import './users.css';
 const columns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
-  { title: 'Payé?', key: 'isPaid' },
+  { title: 'Payé?', key: 'paidLabel' },
   { title: 'Scanné?', key: 'scanned' },
-  { title: 'Permissions', key: 'permissions' },
+  { title: 'Permissions', key: 'permissionsLabel' },
   { title: 'Equipe', key: 'teamName' },
   { title: 'Tournoi', key: 'tournamentName' },
   { title: 'Place', key: 'place' },

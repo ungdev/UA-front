@@ -6,7 +6,7 @@ import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
 
 const options = [
-  { name: 'Aucune', value: 'Aucune' },
+  { name: 'Aucune', value: 'none' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
@@ -36,7 +36,7 @@ const ModalUser = ({ isVisible }) => {
         key={cart.transactionId}
         content={
           <>
-            <p>#{cart.transactionId} {moment(date).format('DD/MM')}</p>
+            <p>#{cart.transactionId} {moment(date).format('DD/MM HH:mm')}</p>
             <ul>
               { cartItems }
             </ul>
