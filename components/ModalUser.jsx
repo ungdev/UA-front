@@ -29,7 +29,14 @@ const ModalUser = ({ isVisible }) => {
   const displayCarts = () => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
-        <li key={cartItem}>{cartItem.quantity}x {cartItem.item.name} {cartItem.refunded && '(remboursé)'}</li>
+        <li key={cartItem}>
+          <p>
+            {cartItem.quantity}x {cartItem.item.name}
+          </p>
+          <p>
+            Pour ({cartItem.forUser.email})
+          </p>
+        </li>
       ));
       const date = new Date(cart.paidAt);
       return <Card
@@ -40,7 +47,7 @@ const ModalUser = ({ isVisible }) => {
             <ul>
               { cartItems }
             </ul>
-            <Button>Rembourser</Button>
+            <p><Button>Rembourser</Button></p>
           </>
         }
       />;
@@ -62,10 +69,12 @@ const ModalUser = ({ isVisible }) => {
       <>
         <p><strong>Nom:</strong> {searchUser && searchUser.lastname}</p>
         <p><strong>Prénom:</strong> {searchUser && searchUser.firstname}</p>
-        <p><strong>Prénom:</strong> {searchUser && searchUser.username}</p>
+        <p><strong>Pseudo:</strong> {searchUser && searchUser.username}</p>
         <p><strong>Email:</strong> {searchUser && searchUser.email}</p>
         <p><strong>Equipe:</strong> {searchUser && searchUser.team && searchUser.team.name}</p>
         <p><strong>Tournoi:</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}</p>
+        { searchUser && searchUser.forUser &&
+        <p>Place payé par: {searchUser.forUser[0].userCart.email}</p>}
         { isAdmin && (
           <>
             <Radio
