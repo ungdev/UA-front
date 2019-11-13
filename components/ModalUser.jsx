@@ -29,7 +29,7 @@ const ModalUser = ({ isVisible }) => {
   const displayCarts = () => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
-        <li key={cartItem}>
+        <li key={cartItem.id}>
           <p>
             {cartItem.quantity}x {cartItem.item.name}
           </p>
@@ -43,7 +43,7 @@ const ModalUser = ({ isVisible }) => {
         key={cart.transactionId}
         content={
           <>
-            <p>#{cart.transactionId} {moment(date).format('DD/MM HH:mm')}</p>
+            <p>#{cart.transactionId} {moment(date).format('DD/MM HH:mm')} ({cart.transactionState})</p>
             <ul>
               { cartItems }
             </ul>
@@ -73,7 +73,7 @@ const ModalUser = ({ isVisible }) => {
         <p><strong>Email:</strong> {searchUser && searchUser.email}</p>
         <p><strong>Equipe:</strong> {searchUser && searchUser.team && searchUser.team.name}</p>
         <p><strong>Tournoi:</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}</p>
-        { searchUser && searchUser.forUser &&
+        { searchUser && !!searchUser.forUser.length &&
         <p>Place payé par: {searchUser.forUser[0].userCart.email}</p>}
         { isAdmin && (
           <>
