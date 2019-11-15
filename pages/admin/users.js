@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Title, Radio, Input, Button } from '../../components/UI';
+import { Title, Radio, Input, Button, Table } from '../../components/UI';
 import { fetchUsers, displayUser, goToPage, filterUsers, searchUsers } from '../../modules/users';
-import Table from '../../components/UI/Table';
 
 import './users.css';
 
 const columns = [
+  { title: 'Nom', key: 'fullname' },
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
-  { title: 'Payé?', key: 'paidLabel' },
-  { title: 'Scanné?', key: 'scanned' },
+  { title: 'Payé', key: 'paidLabel' },
+  { title: 'Scanné', key: 'scanned' },
   { title: 'Permissions', key: 'permissionsLabel' },
-  { title: 'Equipe', key: 'teamName' },
+  { title: 'Équipe', key: 'teamName' },
   { title: 'Tournoi', key: 'tournamentName' },
   { title: 'Place', key: 'place' },
   { title: '', key: 'action' },
@@ -72,6 +72,7 @@ const Users = () => {
     ...user,
     action: <i className="fas fa-cog pointer" onClick={() => dispatch(displayUser(user))}/>,
   }));
+
   return (
     <div id="admin-users">
       <Title level={4}>Filtres</Title>
@@ -106,12 +107,12 @@ const Users = () => {
         onChange={(v) => updateFilter({ ...filters, tournamentId: v })}
       />
       <Input
-          value={search}
-          onChange={setSearch}
-          label="Giga recherche"
-          placeholder="Email, pseudo, nom, équipe"
-        />
-        <Button primary onClick={applySearch}>Rechercher</Button>
+        value={search}
+        onChange={setSearch}
+        label="Giga recherche"
+        placeholder="Email, pseudo, nom, équipe"
+      />
+      <Button primary onClick={applySearch}>Rechercher</Button>
       <Table
         columns={columns}
         dataSource={formatUsers}
