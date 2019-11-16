@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserModalVisible, validatePay, saveUser } from '../modules/userEntry';
+import { setUserModalVisible, validatePay, saveUser, refundCart } from '../modules/userEntry';
 import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
 
@@ -47,7 +47,7 @@ const ModalUser = ({ isVisible }) => {
             <ul>
               { cartItems }
             </ul>
-            <p><Button>Rembourser</Button></p>
+            <p><Button onClick={() => dispatch(refundCart(cart.id))}>Rembourser</Button></p>
           </>
         }
       />;

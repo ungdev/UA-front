@@ -87,3 +87,12 @@ export const saveUser = (id, body, username) => async (dispatch) => {
     visible: false,
   });
 };
+
+export const refundCart = (id) => async (dispatch) => {
+  await API.put(`carts/${id}`);
+  toast.success('Le panier a été marqué comme remboursé');
+  dispatch({
+    type: SET_VISIBLE,
+    visible: false,
+  });
+};
