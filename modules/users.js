@@ -49,7 +49,7 @@ export const fetchUsers = () => async (dispatch, getState) => {
   dispatch({
     type: SET_FETCH,
     current: formatUsers,
-    all: [formatUsers],
+    all: formatUsers,
     params: {
       total: res.data.total,
       first: res.data.limit - res.data.pageSize + 1,

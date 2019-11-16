@@ -110,7 +110,7 @@ const Users = () => {
         value={search}
         onChange={setSearch}
         label="Giga recherche"
-        placeholder="Email, pseudo, nom, équipe"
+        placeholder="Nom, pseudo, email, équipe"
       />
       <Button primary onClick={applySearch}>Rechercher</Button>
       <Table
