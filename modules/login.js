@@ -79,6 +79,17 @@ export const tryLogin = (user) => async (dispatch) => {
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.data.token));
   localStorage.setItem('utt-arena-userid', res.data.user.id);
+  const OneSignal = window.OneSignal || [];
+  OneSignal.push(() => {
+    OneSignal.init({
+      appId: 'cac7c5b1-3b95-4c2d-b5df-b631b3c3646b',
+    });
+  });
+  OneSignal.push(() => {
+    OneSignal.sendTags({
+      tournamentId: res.data.user.team.tournamentId,
+    });
+  });
   dispatch({
     type: SET_USER,
     user: res.data.user,
