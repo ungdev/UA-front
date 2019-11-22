@@ -37,7 +37,7 @@ PanelHeader.propTypes = {
   /**
    * Links to display
    */
-  links: PropTypes.array.isRequired,
+  links: PropTypes.func.isRequired,
 };
 
 export default PanelHeader;

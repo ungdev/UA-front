@@ -49,11 +49,11 @@ export const fetchUsers = () => async (dispatch, getState) => {
   dispatch({
     type: SET_FETCH,
     current: formatUsers,
-    all: formatUsers,
+    all: [formatUsers],
     params: {
       total: res.data.total,
       first: res.data.limit - res.data.pageSize + 1,
-      last: res.data.limit,
+      last: Math.min(res.data.limit, res.data.total),
       pageSize: res.data.pageSize,
     },
   });
@@ -108,7 +108,7 @@ export const goToPage = (page, filters) => async (dispatch, getState) => {
 };
 
 export const filterUsers = (filters) => async (dispatch) => {
-  const res = await API.get('admin/users',filters);
+  const res = await API.get('admin/users', filters);
   const formatUsers = format(res.data.users);
   dispatch({
     type: SET_FETCH,

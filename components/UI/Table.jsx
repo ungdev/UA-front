@@ -75,10 +75,10 @@ Table.propTypes = {
    */
   paginationOptions: PropTypes.shape({
     goToPage: PropTypes.func,
-    page: PropTypes.string,
-    first: PropTypes.string,
-    last: PropTypes.string,
-    total: PropTypes.string,
+    page: PropTypes.number,
+    first: PropTypes.number,
+    last: PropTypes.number,
+    total: PropTypes.number,
   }),
 };
 

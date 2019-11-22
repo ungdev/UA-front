@@ -19,20 +19,26 @@ const columns = [
   { title: '', key: 'action' },
 ];
 
-const options = [
+const statusOptions = [
   { name: 'Tous', value: 'all' },
-  { name: 'Payé uniquement', value: 'paid' },
-  { name: 'Non payé', value: 'noPaid' },
+  { name: 'Joueur', value: 'player' },
+  { name: 'Visiteur', value: 'visitor' },
   { name: 'Orga', value: 'orga' },
 ];
 
-const optionsScanned = [
+const paymentOptions = [
+  { name: 'Tous', value: 'all' },
+  { name: 'Payé uniquement', value: 'paid' },
+  { name: 'Non payé', value: 'noPaid' },
+];
+
+const scannedOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'Scanné uniquement', value: 'true' },
   { name: 'Non scanné', value: 'false' },
 ];
 
-const optionsTournaments = [
+const tournamentOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'LoL (pro)', value: '1' },
   { name: 'LoL (amateur)', value: '2' },
@@ -43,7 +49,12 @@ const optionsTournaments = [
   { name: 'Libre', value: '7' },
 ];
 
-const INITIAL_FILTERS = { tournamentId: 'all', status: 'all', scan: 'all' };
+const INITIAL_FILTERS = {
+  status: 'all',
+  payment: 'all',
+  scan: 'all',
+  tournamentId: 'all',
+};
 
 const Users = () => {
   const dispatch = useDispatch();
@@ -77,21 +88,30 @@ const Users = () => {
     <div id="admin-users">
       <Title level={4}>Filtres</Title>
       <Radio
-        label=""
-        name="filter"
+        label="Statut"
+        name="statusFilter"
         row
-        options={options}
+        options={statusOptions}
         value={filters.status}
         onChange={(v) => updateFilter({ ...filters, status: v })}
       />
       <br/>
-      { filters.status === 'paid' && (
+      <Radio
+        label="Paiement"
+        name="paymentFilter"
+        row
+        options={paymentOptions}
+        value={filters.payment}
+        onChange={(v) => updateFilter({ ...filters, payment: v })}
+      />
+      <br/>
+      { filters.payment === 'paid' && (
         <>
           <Radio
             label="Scanné"
-            name="filterScan"
+            name="scanFilter"
             row
-            options={optionsScanned}
+            options={scannedOptions}
             value={filters.scan}
             onChange={(v) => updateFilter({ ...filters, scan: v })}
           />
@@ -100,9 +120,9 @@ const Users = () => {
       )}
       <Radio
         label="Tournoi"
-        name="filterTournament"
+        name="tournamentFilter"
         row
-        options={optionsTournaments}
+        options={tournamentOptions}
         value={filters.tournamentId}
         onChange={(v) => updateFilter({ ...filters, tournamentId: v })}
       />

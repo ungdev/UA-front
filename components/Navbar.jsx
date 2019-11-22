@@ -8,7 +8,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
-import ModalUser from './ModalUser';
+import UserModal from './UserModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -210,7 +210,7 @@ const Navbar = ({ isLoggedIn }) => {
           suivez-nous sur les réseaux sociaux pour ne rien rater !
         </Modal>
       ) }
-      <ModalUser isVisible={isUserVisible} />
+      <UserModal isVisible={isUserVisible} />
     </div>
   );
 };
