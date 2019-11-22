@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
 import { fetchSlots } from '../../modules/tournament';
-import { Title, Table, Button, Modal, Helper } from '../../components/UI';
+import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
 
 import './team.css';
 
@@ -110,6 +110,21 @@ const Team = () => {
     </>) : '',
   }));
 
+  const diplayMatches = team && team.matches.length && team.matches.map(({ opponents, note, id }) => {
+    return (
+      <Card
+        content={
+          <>
+            { opponents.map(({ name }) => <p key={name}>{name}</p>)}
+            <p>Note: {note}</p>
+          </>
+        }
+        className="team-match"
+        key={id}
+      />
+    );
+  });
+
   if (!team) {
     return null;
   }
@@ -133,6 +148,12 @@ const Team = () => {
         </div>
         }
       </div>
+
+      { team.matches.length &&
+        <div className="team-matches">
+          { diplayMatches }
+        </div>
+      }
 
       {!isSolo ? (
         <>

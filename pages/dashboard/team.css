@@ -15,3 +15,19 @@
 #dashboard-team .players-list {
   padding: 16px 0;
 }
+
+#dashboard-team .team-matches {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#dashboard-team .team-match {
+  width: 20%;
+}
+
+@media screen and (max-width: 650px) {
+  #dashboard-team .team-match {
+    width: 100%;
+  }
+}
