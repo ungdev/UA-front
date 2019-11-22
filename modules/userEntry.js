@@ -1,9 +1,9 @@
 import { API } from '../utils';
 import { toast } from 'react-toastify';
 
-const SET_VISIBLE = 'userEntry/SET_VISIBLE';
-const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
-const SET_BARCODE_USER = 'userEntry/SET_BARCODE_USER';
+export const SET_VISIBLE = 'userEntry/SET_VISIBLE';
+export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
+export const SET_BARCODE_USER = 'userEntry/SET_BARCODE_USER';
 
 const initialState = {
   visible: false,
@@ -73,6 +73,24 @@ export const searchManually = (username) => async (dispatch) => {
 export const validatePay = (id) => async (dispatch) => {
   await API.post(`entry/forcePay/${id}`);
   toast.success('Paiement validé');
+  dispatch({
+    type: SET_VISIBLE,
+    visible: false,
+  });
+};
+
+export const saveUser = (id, body, username) => async (dispatch) => {
+  await API.put(`admin/users/${id}`, body);
+  toast.success(`${username} mis à jour`);
+  dispatch({
+    type: SET_VISIBLE,
+    visible: false,
+  });
+};
+
+export const refundCart = (id) => async (dispatch) => {
+  await API.put(`carts/${id}`);
+  toast.success('Le panier a été marqué comme remboursé');
   dispatch({
     type: SET_VISIBLE,
     visible: false,

@@ -10,7 +10,7 @@ import './team.css';
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
-  { title: 'A payé', key: 'isPaid' },
+  { title: <>A&nbsp;payé</>, key: 'isPaid' },
   { title: '', key: 'action' },
 ];
 

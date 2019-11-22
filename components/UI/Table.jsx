@@ -6,7 +6,7 @@ import './Table.css';
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className, alignRight, emptyText }) => (
+const Table = ({ columns, dataSource, className, alignRight, emptyText, pagination, paginationOptions }) => (
   <div className="table-container">
     <table className={`table ${className}`}>
       <thead>
@@ -33,6 +33,12 @@ const Table = ({ columns, dataSource, className, alignRight, emptyText }) => (
         }
       </tbody>
     </table>
+    {pagination &&
+    <div className="table-footer">
+      <p>{paginationOptions.first}-{paginationOptions.last} sur {paginationOptions.total}</p>
+      <i className="fas fa-chevron-left pointer" onClick={() => paginationOptions.goToPage(paginationOptions.page-1)} />
+      <i className="fas fa-chevron-right pointer" onClick={() => paginationOptions.goToPage(paginationOptions.page+1)} />
+    </div>}
   </div>
 );
 
@@ -60,12 +66,28 @@ Table.propTypes = {
    * Text to display if there is no data
    */
   emptyText: PropTypes.string,
+  /**
+   * Set pagination for the table
+   */
+  pagination: PropTypes.bool,
+  /**
+   *
+   */
+  paginationOptions: PropTypes.shape({
+    goToPage: PropTypes.func,
+    page: PropTypes.number,
+    first: PropTypes.number,
+    last: PropTypes.number,
+    total: PropTypes.number,
+  }),
 };
 
 Table.defaultProps = {
   className: '',
   alignRight: false,
   emptyText: '(Vide)',
+  pagination: false,
+  paginationOptions: {},
 };
 
 export default Table;
