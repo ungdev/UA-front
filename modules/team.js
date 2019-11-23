@@ -116,7 +116,7 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
 
 export const refuseUser = (user, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
-  await API.delete(`teams/${teamId}/request`, { data: { user: user.id } });
+  await API.delete(`teams/${teamId}/request`, { data: { userId: user.id } });
   team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
   dispatch({
     type: SET_TEAM,

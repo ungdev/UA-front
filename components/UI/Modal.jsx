@@ -45,11 +45,11 @@ Modal.propTypes = {
   /**
    * Modal window title
    */
-  title: PropTypes.node.isRequired,
+  title: PropTypes.node,
   /**
    * Modal window content
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
    */
@@ -82,6 +82,8 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
+  title: '',
+  children: '',
   buttons: '',
   closable: true,
   onOk: () => {},
