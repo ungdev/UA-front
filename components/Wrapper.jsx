@@ -53,7 +53,10 @@ const Wrapper = ({ Component }) => {
   // Handle redirections
   let redirect = null;
 
-  if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
+  if (isAdminPanel && !isLoggedIn) {
+    redirect = '/';
+  }
+  else if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
     redirect = '/';
   }
   else if (isLoggedIn) {

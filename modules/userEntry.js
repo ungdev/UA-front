@@ -52,18 +52,9 @@ export const searchUser = (name) => async (dispatch) => {
   });
 };
 
-export const searchBarcode = (barcode) => async (dispatch) => {
+export const scan = (barcode) => async (dispatch) => {
   const res = await API.post(`entry/scan?barcode=${barcode}`);
-  toast.success(`${res.data.username} scanné`);
-  dispatch({
-    type: SET_BARCODE_USER,
-    barcodeUser: res.data,
-  });
-};
-
-export const searchManually = (username) => async (dispatch) => {
-  const res = await API.post(`entry/scan?search=${username}`);
-  toast.success(`${res.data.username} scanné`);
+  toast.success('Utilisateur scanné');
   dispatch({
     type: SET_BARCODE_USER,
     barcodeUser: res.data,

@@ -2,14 +2,12 @@ import { API } from '../utils';
 import { SET_VISIBLE, SET_SEARCH_USER } from './userEntry';
 
 export const SET_USERS = 'users/SET_USERS';
-export const SET_FETCH = 'users/SET_FETCH';
 
 const initialState = {
-  all: [],
-  current: [],
-  page: 0,
   isFetched: false,
-  params: {},
+  users: [],
+  total: 0,
+  page: 0,
   filters: {},
 };
 
@@ -30,11 +28,6 @@ export default (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        all: action.all,
-      };
-    case SET_FETCH:
-      return {
-        ...state,
         ...action,
       };
     default:
@@ -42,20 +35,27 @@ export default (state = initialState, action) => {
   }
 };
 
-export const fetchUsers = () => async (dispatch, getState) => {
-  const page = getState().users.page;
-  const res = await API.get(`admin/users?page=${page}`);
+export const fetchUsers = (filters, search, page = 0) => async (dispatch, getState) => {
+  const { total } = getState().users;
+  const pageCount = Math.ceil(total / 25);
+  if (page !== 0 && (page < 0 || page + 1 > pageCount)) {
+    return;
+  }
+
+  let res;
+  if (search && search !== '') {
+    res = await API.get('admin/users/search', { search, page });
+  }
+  else {
+    res = await API.get('admin/users', { ...filters, page });
+  }
+
   const formatUsers = format(res.data.users);
   dispatch({
-    type: SET_FETCH,
-    current: formatUsers,
-    all: [formatUsers],
-    params: {
-      total: res.data.total,
-      first: res.data.limit - res.data.pageSize + 1,
-      last: Math.min(res.data.limit, res.data.total),
-      pageSize: res.data.pageSize,
-    },
+    type: SET_USERS,
+    users: formatUsers,
+    total: res.data.total,
+    page,
   });
 };
 
@@ -67,77 +67,5 @@ export const displayUser = (user) => async (dispatch) => {
   dispatch({
     type: SET_VISIBLE,
     visible: true,
-  });
-};
-
-export const goToPage = (page, filters) => async (dispatch, getState) => {
-  if (page < 0) {
-    return;
-  }
-  const { all: totalPages, params, page: previousPage } = getState().users;
-  if (page > params.total / params.pageSize) {
-    return;
-  }
-  const realLast = Math.min(params.last + params.pageSize, params.total);
-  const newParams = {
-    ...params,
-    first: previousPage > page ? params.first - params.pageSize : params.last + 1,
-    last: previousPage > page ? params.first - 1 : realLast,
-  };
-  if (totalPages.length > page) {
-    dispatch({
-      type: SET_FETCH,
-      all: totalPages,
-      current: totalPages[page],
-      page,
-      params: newParams,
-    });
-  }
-  else {
-    const res = await API.get('admin/users', { ...filters, page });
-    const formatUsers = format(res.data.users);
-    totalPages.push(formatUsers);
-    dispatch({
-      type: SET_FETCH,
-      current: formatUsers,
-      all: totalPages,
-      page,
-      params: newParams,
-    });
-  }
-};
-
-export const filterUsers = (filters) => async (dispatch) => {
-  const res = await API.get('admin/users', filters);
-  const formatUsers = format(res.data.users);
-  dispatch({
-    type: SET_FETCH,
-    current: formatUsers,
-    all: [formatUsers],
-    params: {
-      total: res.data.total,
-      first: res.data.limit - res.data.pageSize + 1,
-      last: Math.min(res.data.limit, res.data.total),
-      pageSize: res.data.pageSize,
-    },
-    page: 0,
-  });
-};
-
-export const searchUsers = (search) => async (dispatch) => {
-  const res = await API.get('admin/users/search', { search });
-  const formatUsers = format(res.data.users);
-
-  dispatch({
-    type: SET_FETCH,
-    current: formatUsers,
-    all: [formatUsers],
-    params: {
-      total: res.data.total,
-      first: 1,
-      last: res.data.limit,
-      pageSize: res.data.pageSize,
-    },
-    page: 0,
   });
 };

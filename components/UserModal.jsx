@@ -8,7 +8,7 @@ import moment from 'moment';
 import './UserModal.css';
 
 const options = [
-  { name: 'Aucune', value: 'none' },
+  { name: 'Aucune', value: '' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
@@ -18,12 +18,14 @@ const UserModal = ({ isVisible }) => {
   const dispatch = useDispatch();
   const searchUser = useSelector((state) => state.userEntry.searchUser);
   const isAdmin = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'));
-  const [permissions, setPermissions] = useState('none');
+  let hasEntryPermission = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('entry'));
+  hasEntryPermission = isAdmin || hasEntryPermission;
+  const [permissions, setPermissions] = useState('');
   const [place, setPlace] = useState('');
 
   useEffect(() => {
     if (searchUser) {
-      setPermissions(searchUser.permissions || 'none');
+      setPermissions(searchUser.permissions || '');
       setPlace(searchUser.place || '');
     }
   }, [searchUser]);
@@ -32,8 +34,8 @@ const UserModal = ({ isVisible }) => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
         <li key={cartItem.id}>
-            {cartItem.quantity}x {cartItem.item.name}<br />
-            (Pour {cartItem.forUser.email})
+          {cartItem.quantity}x {cartItem.item.name} {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}<br />
+          (Pour {cartItem.forUser.email})
         </li>
       ));
       const date = new Date(cart.paidAt);
@@ -50,9 +52,12 @@ const UserModal = ({ isVisible }) => {
             <p>
               <strong>Statut :</strong> {transactionState}<br />
               <strong>Date : </strong>{moment(date).format('DD/MM/YY [à] HH:mm')}<br />
-              {cart.transactionId && `Transaction n° ${cart.transactionId}`}
+              {cart.transactionId
+                ? <><strong>Transaction :</strong> {cart.transactionId}</>
+                : <strong>Paiement validé manuellement</strong>
+              }
             </p>
-            <ul>
+            <ul className="cart-items">
               { cartItems }
             </ul>
             {cart.transactionState === 'paid' && <p><Button onClick={() => dispatch(refundCart(cart.id))}>Rembourser</Button></p>}
@@ -68,7 +73,7 @@ const UserModal = ({ isVisible }) => {
       title="Utilisateur"
       onCancel={() => dispatch(setUserModalVisible(false))}
       buttons={<>
-        { isAdmin && searchUser && !searchUser.isPaid &&
+        { hasEntryPermission && searchUser && !searchUser.isPaid &&
           <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
         }
         { isAdmin && <Button primary onClick={() => dispatch(saveUser(searchUser.id, { permissions, place }, searchUser.username))}>Enregistrer</Button>}
