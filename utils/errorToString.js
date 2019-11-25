@@ -66,6 +66,10 @@ export default (res) => {
       return 'Le tournoi est plein';
     case 'UNAUTHORIZED':
       return 'Vous n\'avez pas la permission';
+    case 'ALREADY_SCANNED':
+      return 'Billet déjà scanné';
+    case 'USER_NOT_PAID':
+      return 'L\'utilisateur n\'a pas payé';
     case 'UNKNOWN':
       return 'Une erreur est survenue';
     default:

@@ -35,7 +35,7 @@ const Table = ({ columns, dataSource, className, alignRight, emptyText, paginati
     </table>
     {pagination &&
     <div className="table-footer">
-      <p>{paginationOptions.first}-{paginationOptions.last} sur {paginationOptions.total}</p>
+      <p>Page {paginationOptions.page + 1} / {Math.ceil(paginationOptions.total / paginationOptions.pageSize)}</p>
       <i className="fas fa-chevron-left pointer" onClick={() => paginationOptions.goToPage(paginationOptions.page-1)} />
       <i className="fas fa-chevron-right pointer" onClick={() => paginationOptions.goToPage(paginationOptions.page+1)} />
     </div>}
@@ -76,8 +76,7 @@ Table.propTypes = {
   paginationOptions: PropTypes.shape({
     goToPage: PropTypes.func,
     page: PropTypes.number,
-    first: PropTypes.number,
-    last: PropTypes.number,
+    pageSize: PropTypes.number,
     total: PropTypes.number,
   }),
 };

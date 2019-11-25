@@ -118,7 +118,7 @@ export default {
       <p>
         Grâce à notre partenaire Scoup eSport, nous vous proposons de louer du matériel gaming pour toute la durée de l'événement.
         Pour cela rends-toi sur la{' '}
-        <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
+        <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.
       </p>
     </>
   ),

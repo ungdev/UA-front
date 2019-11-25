@@ -1,3 +1,11 @@
+#admin-users .filters {
+  background: #eeeeee;
+  padding: 20px;
+  margin-bottom: 25px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+}
+
 #admin-users .users-table {
   width: 100%;
   margin: 20px 0;
@@ -5,6 +13,14 @@
 
 #admin-users .pointer {
   cursor: pointer;
+}
+
+#admin-users hr {
+  background: var(--gradient);
+  height: 2px;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
 }
 
 #admin-users .table-footer {

@@ -1,20 +1,37 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { searchUser, searchBarcode, searchManually } from '../../modules/userEntry';
+
+import { searchUser, scan, SET_BARCODE_USER } from '../../modules/userEntry.js';
 import { Input, Title, Button, Card } from '../../components/UI';
+
 import './entry.css';
 
 const Entry = () => {
-  const [barcode, setBarcode] = useState('');
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [barcode, _setBarcode] = useState('');
+  const [paymentSearch, setPaymentSearch] = useState('');
+
   const dispatch = useDispatch();
   const barcodeUser = useSelector((state) => state.userEntry.barcodeUser);
-  const changeBarcode = (value) => {
-    setBarcode(value);
-    if (value.length === 12) {
-      dispatch(searchBarcode(value));
+
+  const setBarcode = (barcode) => {
+    _setBarcode(barcode);
+
+    if (barcode === '') {
+      resetBarcodeUser();
+      return;
     }
+
+    const isValid = /^\d{12}$/.test(barcode);
+    if (isValid) {
+      dispatch(scan(barcode));
+    }
+  };
+
+  const resetBarcodeUser = () => {
+    dispatch({
+      type: SET_BARCODE_USER,
+      barcodeUser: null,
+    });
   };
 
   return (
@@ -24,41 +41,44 @@ const Entry = () => {
         <div className="entry-content">
           <Card
             content={<>
-              <p><strong>Pseudo:</strong> {barcodeUser && barcodeUser.username}</p>
-              <p><strong>Nom:</strong> {barcodeUser && barcodeUser.lastname}</p>
-              <p><strong>Prénom:</strong> {barcodeUser && barcodeUser.firstname}</p>
-              <p><strong>Email:</strong> {barcodeUser && barcodeUser.email}</p>
-              <p><strong>Equipe:</strong> {barcodeUser && barcodeUser.team.name}</p>
-              <p><strong>Tournoi:</strong> {barcodeUser && barcodeUser.team.tournament.shortName}</p>
-              <p><strong>Place:</strong></p>
+              <p><strong>Pseudo :</strong> {barcodeUser && barcodeUser.username}</p>
+              <p><strong>Nom :</strong> {barcodeUser && barcodeUser.lastname}</p>
+              <p><strong>Prénom :</strong> {barcodeUser && barcodeUser.firstname}</p>
+              <p><strong>Email :</strong> {barcodeUser && barcodeUser.email}</p>
+              <p><strong>Équipe :</strong> {barcodeUser && barcodeUser.team.name}</p>
+              <p><strong>Tournoi :</strong> {barcodeUser && barcodeUser.team.tournament.shortName}</p>
+              <p><strong>Place :</strong> {barcodeUser && barcodeUser.place}</p>
             </>}
           />
-          <Input
-            value={barcode}
-            onChange={changeBarcode}
-            label="Barcode"
-            autoFocus
-          />
-          <Title level={4} align='center'>OU</Title>
-          <Input
-            value={username}
-            onChange={setUsername}
-            label="Manuellement"
-            placeholder="Email, pseudo, nom"
-          />
-          <Button primary onClick={() => dispatch(searchManually(username))}>Valider</Button>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(scan(barcode));
+          }}>
+            <Input
+              value={barcode}
+              onChange={setBarcode}
+              label="Code-barres"
+              autoFocus
+            />
+            <Button primary type="submit">Valider</Button>
+            <Button onClick={() => setBarcode('')}>Réinitialiser</Button>
+          </form>
         </div>
       </div>
       <div>
         <Title level={2}>Valider un paiement</Title>
-        <div className='entry-content'>
-          <Input
-            value={email}
-            onChange={setEmail}
-            label="Rechercher utilisateur"
-            placeholder="Email, pseudo, nom"
-          />
-          <Button primary onClick={() => dispatch(searchUser(email))}>Rechercher</Button>
+        <div className="entry-content">
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            dispatch(searchUser(paymentSearch));
+          }}>
+            <Input
+              value={paymentSearch}
+              onChange={setPaymentSearch}
+              label="Email, pseudo, nom"
+            />
+            <Button primary type="submit">Rechercher</Button>
+          </form>
         </div>
       </div>
     </div>
