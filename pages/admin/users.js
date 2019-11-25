@@ -11,7 +11,7 @@ const columns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
   { title: 'Payé', key: 'paidLabel' },
-  { title: 'Scanné', key: 'scanned' },
+  { title: 'Scanné', key: 'scannedLabel' },
   { title: 'Permissions', key: 'permissionsLabel' },
   { title: 'Équipe', key: 'teamName' },
   { title: 'Tournoi', key: 'tournamentName' },

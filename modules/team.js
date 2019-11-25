@@ -63,7 +63,7 @@ export const fetchTeam = (id) => async (dispatch) => {
 
 export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
   const { user } = getState().login;
-  await API.delete(`/teams/${teamId}/request`, { data: { user: user.id } });
+  await API.delete(`/teams/${teamId}/request`, { data: { userId: user.id } });
   toast.success(`Votre demande pour rejoindre ${name} a été annulée`);
   dispatch({
     type: SET_USER,
