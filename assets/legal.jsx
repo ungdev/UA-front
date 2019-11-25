@@ -145,7 +145,7 @@ export default {
           <li>30% (trente pourcent) du montant payé si la demande est faite entre les 4 et 10 novembre (entre les 04/11/2019 00:00 CET et 10/11/2019 23:59 CET)</li>
           <li>50% (cinquante pourcent) du montant payé si la demande est faite entre les 11 et 17 novembre (entre les 11/11/2019 00:00 CET et 17/11/2019 23:59 CET)</li>
           <li>75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 18 et 24 novembre (entre les 18/11/2019 00:00 CET et 24/11/2019 23:59 CET)</li>
-          <li>Aucun remboursements ne sera accepté au delà du 25 novembre (après le 25/11/2019 00:00 CET).</li>
+          <li>Aucun remboursement ne sera accepté au delà du 25 novembre (après le 25/11/2019 00:00 CET).</li>
         </ul>
       </p>
 

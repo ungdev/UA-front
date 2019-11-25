@@ -6,7 +6,7 @@
 }
 
 .tournament .tournament-content {
-  padding: 0 5em;
+  padding: 0 5em 2em 5em;
 }
 
 .tournament .tournament-signin {
@@ -43,7 +43,7 @@
   }
 
   .tournament .tournament-content {
-    padding: 0 1em;
+    padding: 0 1em 1em 1em;
   }
 
   .tournament .table-tournament {

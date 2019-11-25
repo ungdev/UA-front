@@ -7,6 +7,9 @@ import tournament from './tournament';
 import carts from './carts';
 import items from './items';
 import cart from './cart';
+import userEntry from './userEntry';
+import infos from './infos';
+import users from './users';
 
 export default combineReducers({
   loginModal,
@@ -17,4 +20,7 @@ export default combineReducers({
   carts,
   items,
   cart,
+  userEntry,
+  infos,
+  users,
 });

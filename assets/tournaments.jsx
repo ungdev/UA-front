@@ -20,11 +20,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: (
-      <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>.
-      </p>
-    ),
+    rules: `${process.env.ARENA_API_URI}uploads/rules/lol.pdf`,
   },
   lolamateur: {
     image: '/static/lolamateur.png',
@@ -45,11 +41,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: (
-      <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/lol.pdf" target="_blank">ce lien</a>.
-      </p>
-    ),
+    rules: `${process.env.ARENA_API_URI}uploads/rules/lol.pdf`,
   },
   ssbu: {
     image: '/static/ssbu.png',
@@ -70,11 +62,7 @@ export default {
         <li>3<sup>ème</sup> : 100€ + lots</li>
       </ul>
     ),
-    rules: (
-      <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/ssbu.pdf" target="_blank">ce lien</a>.
-      </p>
-    ),
+    rules: `${process.env.ARENA_API_URI}uploads/rules/ssbu.pdf`,
   },
   csgo: {
     image: '/static/csgo.png',
@@ -96,11 +84,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: (
-      <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/csgo.pdf" target="_blank">ce lien</a>.
-      </p>
-    ),
+    rules: `${process.env.ARENA_API_URI}uploads/rules/csgo.pdf`,
   },
   fortnite: {
     image: '/static/fortnite.png',
@@ -118,11 +102,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: (
-      <p>
-        Vous pouvez consulter le règlement sur <a href="/static/rules/fortnite.pdf" target="_blank">ce lien</a>.
-      </p>
-    ),
+    rules: `${process.env.ARENA_API_URI}uploads/rules/fortnite.pdf`,
   },
   osu: {
     image: '/static/osu.png',
@@ -133,7 +113,7 @@ export default {
         <p>Description du tournoi disponible <a href="https://osu.ppy.sh/community/forums/topics/972130">ici</a>.</p>
       </>
     ),
-    rules: <>Le règlement est disponible <a href="https://osu.ppy.sh/community/forums/topics/972130">ici</a>.</>,
+    rules: 'https://osu.ppy.sh/community/forums/topics/972130',
   },
   libre: {
     image: '/static/libre.png',

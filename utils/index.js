@@ -43,9 +43,9 @@ const setTokenAPI = (token) => {
 };
 
 const API = {
-  get: (route) => new Promise((resolve, reject) => {
+  get: (route, params) => new Promise((resolve, reject) => {
     if(process.browser) {
-      axiosAPI.get(route)
+      axiosAPI.get(route, { params })
         .then((res) => resolve(res))
         .catch((err) => {
           toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));

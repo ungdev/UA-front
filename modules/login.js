@@ -84,7 +84,12 @@ export const tryLogin = (user) => async (dispatch) => {
     user: res.data.user,
   });
   dispatch(setLoginModalVisible(false));
-  Router.push('/dashboard');
+  if (res.data.user.permissions) {
+    Router.push('/admin/entry');
+  }
+  else {
+    Router.push('/dashboard');
+  }
   return true;
 };
 
@@ -117,7 +122,7 @@ export const editUser = (data, userId) => async (dispatch) => {
 };
 
 export const resetPassword = (email, resetFields) => async (dispatch) => {
-  await API.post('auth/reset', { email });
+  await API.post('auth/password/reset', { email });
   toast.success('Un email de confirmation vient d\'être envoyé');
   dispatch(setLoginModalVisible(false));
   resetFields();
