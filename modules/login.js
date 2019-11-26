@@ -90,6 +90,9 @@ export const tryLogin = (user) => async (dispatch) => {
   else {
     Router.push('/dashboard');
   }
+  if (res.data.captivePortalSuccess) {
+    toast.success('Vous êtes maintenant connecté au réseau de l\'UTT Arena');
+  }
   return true;
 };
 
