@@ -18,7 +18,7 @@ const format = (users) => {
     tournamentName: user.team ? user.team.tournament.shortName : '',
     teamName: user.team ? user.team.name : (user.type === 'visitor' ? '(visiteur)' : ''),
     paidLabel: user.isPaid ? '✔' : '✖',
-    scanned: user.scanned ? '✔' : '✖',
+    scannedLabel: user.scanned ? '✔' : '✖',
     permissionsLabel: user.permissions || '',
   }));
 };
@@ -67,5 +67,15 @@ export const displayUser = (user) => async (dispatch) => {
   dispatch({
     type: SET_VISIBLE,
     visible: true,
+  });
+};
+
+export const updateUser = (updateUser) => async (dispatch, getState) => {
+  const users = getState().users.users;
+  const updatedUsers = users.map((user) => user.id === updateUser.id ? updateUser : user);
+  const formatUsers = format(updatedUsers);
+  dispatch({
+    type: SET_USERS,
+    users: formatUsers,
   });
 };

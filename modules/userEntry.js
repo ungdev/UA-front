@@ -1,5 +1,6 @@
-import { API } from '../utils';
 import { toast } from 'react-toastify';
+import { API } from '../utils';
+import { updateUser } from './users';
 
 export const SET_VISIBLE = 'userEntry/SET_VISIBLE';
 export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
@@ -61,9 +62,11 @@ export const scan = (barcode) => async (dispatch) => {
   });
 };
 
-export const validatePay = (id) => async (dispatch) => {
+export const validatePay = (id) => async (dispatch, getState) => {
+  const userModal = getState().userEntry.searchUser;
   await API.post(`entry/forcePay/${id}`);
   toast.success('Paiement validé');
+  dispatch(updateUser({ ...userModal, isPaid: true }));
   dispatch({
     type: SET_VISIBLE,
     visible: false,
@@ -79,9 +82,11 @@ export const saveUser = (id, body, username) => async (dispatch) => {
   });
 };
 
-export const refundCart = (id) => async (dispatch) => {
+export const refundCart = (id) => async (dispatch, getState) => {
   await API.put(`carts/${id}`);
+  const userModal = getState().userEntry.searchUser;
   toast.success('Le panier a été marqué comme remboursé');
+  dispatch(updateUser({ ...userModal, isPaid: false }));
   dispatch({
     type: SET_VISIBLE,
     visible: false,
