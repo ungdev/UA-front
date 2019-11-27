@@ -70,6 +70,19 @@ export default [
     ),
    },
    {
+    name: 'Konix',
+    link: 'https://www.konix-interactive.com',
+    img: `${process.env.ARENA_API_URI}uploads/partners/konix.jpg`,
+    description: (
+      <p>
+        KONIX conçoit et fabrique des accessoires pour toute la famille dans les univers Gaming et High-Tech (audio/mobilité). 
+        Leurs produits conjuguent performances, accessibilité et convivialité. 
+        La gamme Drakkar Prime comprend les accessoires indispensables aux gamers PC les plus exigeants en quête de performances et de précision. 
+        Quels que soient vos genres de jeux préférés, avec Drakkar Prime, mesurez-vous aux meilleurs et à vous la victoire !
+      </p>
+    ),
+   },
+   {
     name: 'SilverStone',
     link: 'https://www.silverstonetek.com/index.php?area=fr',
     img: `${process.env.ARENA_API_URI}uploads/partners/silverstone.jpg`,
