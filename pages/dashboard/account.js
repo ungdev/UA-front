@@ -63,6 +63,12 @@ const Account = () => {
         <Title level={4}>Mes informations</Title>
 
         <Input
+          label="Place"
+          value={user.place}
+          autocomplete="off"
+          disabled
+        />
+        <Input
           label="Email"
           value={user.email}
           autocomplete="off"
