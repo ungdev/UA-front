@@ -170,6 +170,13 @@ const Team = () => {
         </>
       }
 
+      { team.toornamentId &&
+        <>
+          <Title level={4}>Arbre du tournoi</Title>
+          <iframe width="100%" height="500" src={`https://widget.toornament.com/tournaments/${team.tournament.toornamentId}/stages/1996898878294687744/?_locale=fr`} allowFullscreen frameBorder="0"/>
+        </>
+      }
+
       {!isSolo ? (
         <>
           <div className="players-list">

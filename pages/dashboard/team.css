@@ -18,12 +18,12 @@
 
 #dashboard-team .team-matches {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
 #dashboard-team .team-match {
   width: 22%;
+  margin: 16px 1.5%;
 }
 
 #dashboard-team .team-match .opponent {
