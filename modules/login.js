@@ -46,6 +46,13 @@ export default (state = initialState, action) => {
   }
 };
 
+const safelyAccessTournamentId = user => {
+  if (user.team == undefined) {
+    return null;
+  }
+  return user.team.tournamenId;
+};
+
 export const autoLogin = () => async dispatch => {
   if (
     localStorage.hasOwnProperty("utt-arena-token") &&
@@ -88,11 +95,11 @@ export const tryLogin = user => async dispatch => {
       appId: "893364a5-daf6-428c-9570-77e908cd5976"
     });
   });
-  //OneSignal.push(() => {
-  //  OneSignal.sendTags({
-  //    tournamentId: null //res.data.user.team.tournamentId
-  //  });
-  //});
+  OneSignal.push(() => {
+    OneSignal.sendTags({
+      tournamentId: safelyAccessTournamentId(res.data.user) || null
+    });
+  });
   dispatch({
     type: SET_USER,
     user: res.data.user
