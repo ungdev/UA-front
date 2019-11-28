@@ -159,7 +159,12 @@ const Team = () => {
         }
       </div>
 
-      <Title level={4}>Dernières infos</Title>
+      { team.lastInfo ?
+        <div className="info">
+          <Title level={4}>{team.lastInfo.title}</Title>
+          <p>{team.lastInfo.content}</p>
+        </div> : <hr />
+      }
 
       { team.matches.length &&
         <>
@@ -167,13 +172,15 @@ const Team = () => {
           <div className="team-matches">
             { diplayMatches }
           </div>
+          <hr/>
         </>
       }
 
       { team.toornamentId &&
         <>
           <Title level={4}>Arbre du tournoi</Title>
-          <iframe width="100%" height="500" src={`https://widget.toornament.com/tournaments/${team.tournament.toornamentId}/stages/1996898878294687744/?_locale=fr`} allowFullscreen frameBorder="0"/>
+          <iframe width="100%" height="500" src={`https://widget.toornament.com/tournaments/${team.tournament.toornamentId}/stages/${team.lastStage}/?_locale=fr`} allowFullscreen frameBorder="0"/>
+          <hr/>
         </>
       }
 

@@ -62,6 +62,20 @@
   justify-content: center;
 }
 
+#dashboard-team .info {
+  border: 2px solid var(--accent-color);
+  padding: 8px 16px;
+  margin: 32px 0;
+}
+
+#dashboard-team hr {
+  background: var(--gradient);
+  height: 2px;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
+}
+
 @media screen and (max-width: 650px) {
   #dashboard-team .team-match {
     width: 100%;
