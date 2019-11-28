@@ -92,7 +92,7 @@ export const tryLogin = user => async dispatch => {
   const OneSignal = window.OneSignal || [];
   OneSignal.push(() => {
     OneSignal.init({
-      appId: "893364a5-daf6-428c-9570-77e908cd5976"
+      appId: process.env.ARENA_ONESIGNAL_APP_ID
     });
   });
   OneSignal.push(() => {
