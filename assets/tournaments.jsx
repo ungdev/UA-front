@@ -4,6 +4,8 @@ export default {
   lolpro: {
     image: '/static/lolpro.png',
     title: 'League of Legends (Pro)',
+    toornamentId: '3011074110129561600',
+    stages: ['3025534259847487488', '3078266246838550528'],
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
@@ -25,6 +27,8 @@ export default {
   lolamateur: {
     image: '/static/lolamateur.png',
     title: 'League of Legends (Amateur)',
+    toornamentId: '3011074746276151296',
+    stages: ['3054950441521037312', '3078109364003176448'],
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
@@ -67,6 +71,8 @@ export default {
   csgo: {
     image: '/static/csgo.png',
     title: 'Counter-Strike : Global Offensive',
+    toornamentId: '3011077008195854336',
+    stages: ['3025548592378028032', '3025560952611561472'],
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
@@ -89,6 +95,8 @@ export default {
   fortnite: {
     image: '/static/fortnite.png',
     title: 'Fortnite',
+    toornamentId: '3011076472542519296',
+    stages: ['3025975228420431872'],
     format: (
       <>
         <div className="tournament-format">24 équipes en squad</div>
