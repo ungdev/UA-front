@@ -94,21 +94,3 @@ export const refundCart = (id) => async (dispatch, getState) => {
     visible: false,
   });
 };
-
-export const saveUser = (id, body, username) => async (dispatch) => {
-  await API.put(`admin/users/${id}`, body);
-  toast.success(`${username} mis à jour`);
-  dispatch({
-    type: SET_VISIBLE,
-    visible: false,
-  });
-};
-
-export const refundCart = (id) => async (dispatch) => {
-  await API.put(`carts/${id}`);
-  toast.success('Le panier a été marqué comme remboursé');
-  dispatch({
-    type: SET_VISIBLE,
-    visible: false,
-  });
-};
