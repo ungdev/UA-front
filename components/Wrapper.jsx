@@ -142,22 +142,21 @@ const Wrapper = ({ Component }) => {
   };
 
   const linksAdmin = () => {
-    if (permissions === 'entry') {
-      return [
-        { title: 'Entrée', href: '/admin/entry' },
-      ];
+
+    const menu = [];
+
+    if (permissions === 'anim' || permissions === 'admin') {
+        menu.push({ title: 'Notifications', href: '/admin/notification' });
+        menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
-    if (permissions === 'anim') {
-      return [
-        { title: 'Notifications', href: '/admin/notification' },
-        { title: 'Utilisateurs', href: '/admin/users' },
-      ];
+
+    if (permissions === 'entry' || permissions === 'admin') {
+      menu.push({ title: 'Entrée', href: '/admin/entry' });
     }
-    return [
-      { title: 'Utilisateurs', href: '/admin/users' },
-      { title: 'Notifications', href: '/admin/notification' },
-      { title: 'Entrée', href: '/admin/entry' },
-    ];
+
+    menu.push({ title: 'Mon compte', href: '/admin/account' });
+
+    return menu;
   };
 
   return (
