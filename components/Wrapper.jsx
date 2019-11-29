@@ -63,6 +63,9 @@ const Wrapper = ({ Component }) => {
     if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/team';
     }
+    else if (pathname === '/dashboard/shop' && process.env.SHOP_AVAILABLE !== 'true') {
+      redirect = '/dashboard';
+    }
     else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/coach';
     }
@@ -111,34 +114,29 @@ const Wrapper = ({ Component }) => {
   }
 
   const linksDashboard = () => {
+    const menu = [];
+
     if (hasTeam) {
-      return [
-        { title: 'Équipe', href: '/dashboard/team' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+      menu.push({ title: 'Équipe', href: '/dashboard/team' });
     }
-    if (isVisitor) {
-      return [
-        { title: 'Coach', href: '/dashboard/coach' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+    else if (isVisitor) {
+      menu.push({ title: 'Coach', href: '/dashboard/coach' });
     }
-    if (isPaid) {
-      return [
-        { title: 'Inscription', href: '/dashboard/register' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+    else if (isPaid) {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
-    return [
-      { title: 'Inscription', href: '/dashboard/register' },
-      { title: 'Mon compte', href: '/dashboard/account' },
-    ];
+
+    if(hasTeam || isVisitor || isPaid) {
+      if(process.env.SHOP_AVAILABLE === 'true')
+        menu.push({ title: 'Boutique', href: '/dashboard/shop' });
+      menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
+    }
+    else {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
+    }
+
+    menu.push({ title: 'Mon compte', href: '/dashboard/account' });
+    return menu;
   };
 
   const linksAdmin = () => {
