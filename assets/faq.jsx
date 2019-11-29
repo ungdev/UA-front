@@ -24,7 +24,7 @@ export default [
           <>
             Amène tout ce dont tu as besoin pour jouer : ordinateur, écran, souris, tapis de souris, casque, multiprise et câble RJ45 de 5m minimum.<br />
             Si tu souhaites louer du matériel pendant l'événement, rends-toi sur la{' '}
-            <a href="https://scoup-esport.fr/reservation/" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.<br />
+            <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">boutique de notre partenaire Scoup eSport</a>.<br />
             Nous vendons également des multiprises et des câbles RJ45 de 5m et 7m.
           </>
         ),
@@ -38,7 +38,7 @@ export default [
         answer: (
           <>
             Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre discord ici.</a>
+            <a href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener noreferrer">Tu peux rejoindre notre discord ici.</a>
           </>
         ),
       },
@@ -62,7 +62,13 @@ export default [
               <li>l'UTT Arena de nuit</li>
             </ul>
             Mais nos animations sur scène et notre stand console sont ouverts à tous les visiteurs du Festival des Jeux !<br />
-            <a href="https://web.digitick.com/ext/billetterie5/index.php?site=maisonduboulanger&p=201">Vous pouvez acheter votre place visiteur du Festival des Jeux ici.</a>
+            <a
+              href="https://web.digitick.com/festival-des-jeux-de-troyes-festival-le-cube-troyes-champagne-expo-du-06-au-08-decembre-2019-css5-maisonduboulanger-pg101-ri6398307.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Vous pouvez acheter votre place visiteur du Festival des Jeux ici.
+            </a>
           </>
          ),
       },

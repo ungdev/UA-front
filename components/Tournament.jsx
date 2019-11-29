@@ -75,7 +75,9 @@ const Tournament = ({ assets, isSolo, tournamentId }) => {
         { assets.rules && (
           <>
             <Title level={2}>Règlement</Title>
-            <div className="tournament-section">{assets.rules}</div>
+            <div className="tournament-section">
+              <a href={assets.rules} target="_blank" rel="noopener noreferrer">Le règlement est disponible ici.</a>
+            </div>
           </>
         )}
         <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>

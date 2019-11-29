@@ -5,23 +5,28 @@ import { setUserModalVisible, validatePay, saveUser, refundCart } from '../modul
 import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
 
+import './UserModal.css';
+
 const options = [
-  { name: 'Aucune', value: 'none' },
+  { name: 'Aucune', value: '' },
+  { name: 'Orga', value: 'staff'},
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
 ];
 
-const ModalUser = ({ isVisible }) => {
+const UserModal = ({ isVisible }) => {
   const dispatch = useDispatch();
   const searchUser = useSelector((state) => state.userEntry.searchUser);
   const isAdmin = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'));
-  const [permissions, setPermissions] = useState('none');
+  let hasEntryPermission = useSelector((state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('entry'));
+  hasEntryPermission = isAdmin || hasEntryPermission;
+  const [permissions, setPermissions] = useState('');
   const [place, setPlace] = useState('');
 
   useEffect(() => {
     if (searchUser) {
-      setPermissions(searchUser.permissions || 'none');
+      setPermissions(searchUser.permissions || '');
       setPlace(searchUser.place || '');
     }
   }, [searchUser]);
@@ -30,24 +35,33 @@ const ModalUser = ({ isVisible }) => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
         <li key={cartItem.id}>
-          <p>
-            {cartItem.quantity}x {cartItem.item.name}
-          </p>
-          <p>
-            Pour ({cartItem.forUser.email})
-          </p>
+          {cartItem.quantity}x {cartItem.item.name} {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}<br />
+          (Pour {cartItem.forUser.email})
         </li>
       ));
       const date = new Date(cart.paidAt);
+      let transactionState = '';
+      if (cart.transactionState === 'paid') transactionState = 'payé';
+      if (cart.transactionState === 'refunded') transactionState = 'remboursé';
+      if (cart.transactionState === 'canceled') transactionState = 'annulé';
+      if (cart.transactionState === 'refused') transactionState = 'refusé';
+
       return <Card
         key={cart.transactionId}
         content={
           <>
-            <p>#{cart.transactionId} {moment(date).format('DD/MM HH:mm')} ({cart.transactionState})</p>
-            <ul>
+            <p>
+              <strong>Statut :</strong> {transactionState}<br />
+              <strong>Date : </strong>{moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              {cart.transactionId
+                ? <><strong>Transaction :</strong> {cart.transactionId}</>
+                : <strong>Paiement validé manuellement</strong>
+              }
+            </p>
+            <ul className="cart-items">
               { cartItems }
             </ul>
-            <p><Button onClick={() => dispatch(refundCart(cart.id))}>Rembourser</Button></p>
+            {cart.transactionState === 'paid' && <p><Button onClick={() => dispatch(refundCart(cart.id))}>Rembourser</Button></p>}
           </>
         }
       />;
@@ -60,21 +74,22 @@ const ModalUser = ({ isVisible }) => {
       title="Utilisateur"
       onCancel={() => dispatch(setUserModalVisible(false))}
       buttons={<>
-        { searchUser && !searchUser.isPaid &&
+        { hasEntryPermission && searchUser && !searchUser.isPaid &&
           <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
         }
         { isAdmin && <Button primary onClick={() => dispatch(saveUser(searchUser.id, { permissions, place }, searchUser.username))}>Enregistrer</Button>}
       </>}
+      containerClassName="user-modal"
     >
       <>
-        <p><strong>Nom:</strong> {searchUser && searchUser.lastname}</p>
-        <p><strong>Prénom:</strong> {searchUser && searchUser.firstname}</p>
-        <p><strong>Pseudo:</strong> {searchUser && searchUser.username}</p>
-        <p><strong>Email:</strong> {searchUser && searchUser.email}</p>
-        <p><strong>Equipe:</strong> {searchUser && searchUser.team && searchUser.team.name}</p>
-        <p><strong>Tournoi:</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}</p>
+        <p><strong>Nom :</strong> {searchUser && searchUser.lastname}</p>
+        <p><strong>Prénom :</strong> {searchUser && searchUser.firstname}</p>
+        <p><strong>Pseudo :</strong> {searchUser && searchUser.username}</p>
+        <p><strong>Email :</strong> {searchUser && searchUser.email}</p>
+        <p><strong>Équipe :</strong> {searchUser && searchUser.team && searchUser.team.name}</p>
+        <p><strong>Tournoi :</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}</p>
         { searchUser && !!searchUser.forUser.length &&
-        <p>Place payé par: {searchUser.forUser[0].userCart.email}</p>}
+        <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>}
         { isAdmin && (
           <>
             <Radio
@@ -98,11 +113,11 @@ const ModalUser = ({ isVisible }) => {
   );
 };
 
-ModalUser.propTypes = {
+UserModal.propTypes = {
   /**
    * Is the modal visible ?
    */
   isVisible: PropTypes.bool.isRequired,
 };
 
-export default ModalUser;
+export default UserModal;

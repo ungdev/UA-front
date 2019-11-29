@@ -47,38 +47,43 @@ const Notification = () => {
       ...info,
       date: moment(info.createdAt).locale('fr').format('dddd HH:mm'),
       author: `${info.user.firstname} ${info.user.lastname[0]}.`,
-      action: <Button onClick={() => setDeletedInfo({ tournamentId: infosTournament.id, id: info.id })}><i className="fas fa-trash" /></Button>,
+      action: <Button
+        onClick={() => setDeletedInfo({ tournamentId: infosTournament.id, id: info.id })}
+        rightIcon="fas fa-trash"
+        noStyle
+      />,
     }));
     return ({
       title: infosTournament.name,
       content: (<>
         <Table columns={columns} dataSource={infosFormat} alignRight className="infos-table" />
-        <Button primary onClick={() => openModal({ id: infosTournament.id, name: infosTournament.name })}>Ajouter une info</Button>
+        <Button primary onClick={() => openModal({ id: infosTournament.id, name: infosTournament.name })}>Envoyer une notification</Button>
       </>),
     });
   });
   return (
-    <div id='admin-notif'>
+    <div id="admin-notif">
       <Tabs tabs={infosTabs}/>
       <Modal
         visible={visible}
-        title={(<><div>Ajouter une info</div><div>{currentTournament.name}</div></>)}
+        title="Envoyer une notification"
         onCancel={() => setVisible(false)}
         buttons={<Button primary onClick={sendInfo}>Envoyer</Button>}
       >
+        <p>Envoyer à : <strong>{currentTournament.name}</strong></p>
         <Input label="Titre" value={form.title} onChange={(v) => setForm({ ...form, title: v })} />
         <Textarea label="Contenu" value={form.content} onChange={(v) => setForm({ ...form, content: v })} />
       </Modal>
       <Modal
         visible={!!deletedInfo}
-        title=""
+        title="Supprimer la notification"
         onCancel={() => setDeletedInfo(null)}
         onOk={() => {
           dispatch(deleteInfo(deletedInfo.id, deletedInfo.tournamentId));
           setDeletedInfo(null);
         }}
       >
-        Confirmez la suppresion de l'info
+        Êtes-vous sûr de vouloir supprimer la notification ?
       </Modal>
     </div>
   );

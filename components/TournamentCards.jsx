@@ -18,6 +18,17 @@ const TournamentCards = () => {
     }
   }, [isLoggedIn]);
 
+  // todo: enlever ça
+  const maxSlots = {
+    1: 16,
+    2: 16,
+    3: 24,
+    4: 16,
+    5: 64,
+    6: 24,
+    7: 24,
+  };
+
   return (
     <div className="tournament-cards">
       <Title align="center" uppercase>Tournois</Title>
@@ -33,7 +44,7 @@ const TournamentCards = () => {
                 <p><strong>Places :</strong> {players} joueurs</p>
                 {rewards && <p><strong>Récompenses :</strong> {rewards}</p>}
                 {slotsTournaments && <p>
-                  <strong> Places disponibles :</strong> { Math.max(slotsTournaments[id].available, 0)} / {slotsTournaments[id].total }
+                  <strong> Places disponibles :</strong> { Math.max(slotsTournaments[id].available, 0)} / { maxSlots[id] }
                 </p>}
               </>
             )}

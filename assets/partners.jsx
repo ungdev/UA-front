@@ -5,7 +5,7 @@ export default [
   {
     name: 'Festival des Jeux',
     link: 'https://www.festivaldesjeux-troyes.com/',
-    img: '/static/partners/festival.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/festival.jpg`,
     description: (
       <>
         <p>
@@ -24,7 +24,7 @@ export default [
   {
     name: 'ROG',
     link: 'https://rog.asus.com/',
-    img: '/static/partners/rog.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/rog.jpg`,
     description: (
       <p>
         Réputée pour la fiabilité, la qualité et les performances de ses produits, la marque Asus est le n°1 mondial des fabricants de cartes mères.
@@ -36,7 +36,7 @@ export default [
   {
     name: 'Le Cube Troyes Champagne Expo',
     link: 'http://www.maisonduboulanger.com/missions/le-cube-troyes-champagne-expo/',
-    img: '/static/partners/cube.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/cube.jpg`,
     description: (
       <p>
         Entièrement rénové en 2009, le Cube Troyes Champagne Expo est le site où se déroule la majorité des événements grand public
@@ -48,7 +48,7 @@ export default [
   {
     name: 'Scoup eSport',
     link: 'https://www.weezevent.com/utt-arena-2019',
-    img: '/static/partners/scoup.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/scoup.jpg`,
     description: (
       <p>
         Scoup eSport est une société qui te propose un service de location de PC Gamers hautes performances qui répondra au besoin des joueurs de compétitions qui souhaitent se rendre à notre LAN en toute tranquillité !
@@ -60,7 +60,7 @@ export default [
   {
     name: 'La Grosse Ligue',
     link: 'https://fr.euw.leagueoflegends.com/university',
-    img: '/static/partners/gl.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/gl.jpg`,
     description: (
       <p>
         La Grosse Ligue est la compétition officielle de Riot Games réservée aux étudiant.e.s résidant.e.s en France et administrée par le Student Gaming Network !<br />
@@ -70,9 +70,22 @@ export default [
     ),
    },
    {
+    name: 'Konix',
+    link: 'https://www.konix-interactive.com',
+    img: `${process.env.ARENA_API_URI}uploads/partners/konix.jpg`,
+    description: (
+      <p>
+        KONIX conçoit et fabrique des accessoires pour toute la famille dans les univers Gaming et High-Tech (audio/mobilité). 
+        Leurs produits conjuguent performances, accessibilité et convivialité. 
+        La gamme Drakkar Prime comprend les accessoires indispensables aux gamers PC les plus exigeants en quête de performances et de précision. 
+        Quels que soient vos genres de jeux préférés, avec Drakkar Prime, mesurez-vous aux meilleurs et à vous la victoire !
+      </p>
+    ),
+   },
+   {
     name: 'SilverStone',
     link: 'https://www.silverstonetek.com/index.php?area=fr',
-    img: '/static/partners/silverstone.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/silverstone.jpg`,
     description: (
       <p>
         SilverStone voit le jour en 2003 avec une équipe d'ingénieurs issus d'un gros fabricant de matériel informatique.
@@ -87,7 +100,7 @@ export default [
    {
     name: 'Tekliss',
     link: 'https://www.tekliss.com',
-    img: '/static/partners/tekliss.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/tekliss.jpg`,
     description: (
       <p>
         Depuis 1992, Tekliss réalise avec leurs techniciens et leur propre matériel de nombreux événement faisant appel à de la lumière, de la sonorisation, de la vidéo et de la scène et des prestations clés en main !
@@ -99,7 +112,7 @@ export default [
   {
     name: 'Noctua',
     link: 'https://noctua.at/fr',
-    img: '/static/partners/noctua.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/noctua.jpg`,
     description: (
       <p>
         Fabricant de solutions de refroidissement haut de gamme, Noctua étend ses produits à l’internationale grâce à leur silence, leurs performances exceptionnelles et leur qualité sans faille.
@@ -111,7 +124,7 @@ export default [
   {
     name: 'Meltdown Troyes',
     link: 'https://www.meltdown.bar/troyes',
-    img: '/static/partners/meltdown.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/meltdown.jpg`,
     description: (
       <p>
         Le Meltdown Troyes c’est LE bar gaming où tu retrouves Switch, Playstation, Game Cube et PC pour jouer autour de bons cocktails !
@@ -127,7 +140,7 @@ export default [
   {
     name: 'Crédit Mutuel',
     link: 'https://www.creditmutuel.fr/fr/jeunes.html',
-    img: '/static/partners/creditmutuel.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/creditmutuel.jpg`,
     description: (
       <p>
         Banque, assurances, téléphonie et services à destination des jeunes mais aussi des associations, notre association UTT Net Group qui organise l’UTT Arena a choisi de leur faire confiance une fois de plus pour la qualité de leur service et la générosité dont ils font preuve pendant notre événement !
@@ -139,7 +152,7 @@ export default [
   {
     name: 'Bureau Des Étudiants de l\'Université de Technologie de Troyes',
     link: 'https://etu.utt.fr/orgas/bde',
-    img: '/static/partners/bde.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/bde.jpg`,
     description: (
       <>
         <p>Le BDE de l'UTT est la première association de notre l'école ! Le BDE remplit différentes missions :</p>
@@ -154,7 +167,7 @@ export default [
    {
     name: 'Troyes D',
     link: 'https://www.facebook.com/TroyesDimensions',
-    img: '/static/partners/troyesd.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/troyesd.jpg`,
     description: (
       <p>
         Troyes Dimensions est une association loi 1901 fondée en Mars 2019 (par Arnaud Laculle, Louis-Joseph Falcoz ainsi que Pieryck Ammerich) dans le but de valoriser l’audiovisuel et le numérique au niveau régional ainsi que national.
@@ -166,7 +179,7 @@ export default [
   {
     name: 'Blade',
     link: 'https://shadow.tech',
-    img: '/static/partners/shadow.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/shadow.jpg`,
     description: (
       <p>
         Shadow est la solution révolutionnaire que propose la start-up française Blade !
@@ -182,7 +195,7 @@ export default [
   {
     name: 'War Legend',
     link: 'https://www.warlegend.net/',
-    img: '/static/partners/warlegend.jpg',
+    img: `${process.env.ARENA_API_URI}uploads/partners/warlegend.jpg`,
     description: (
       <p>
         Structure francophone très active dans les jeux de l'esport les plus funs et populaires, War Legend est partenaire de l'UTT Arena pour l'organisation du tournoi Fortnite !
