@@ -21,9 +21,9 @@ const Entry = () => {
       return;
     }
 
-    const isValid = /^\d{12}$/.test(barcode);
-    if (isValid) {
-      dispatch(scan(barcode));
+    const isValid = /^\d{13}$/.test(barcode); 
+    if (isValid) { 
+      dispatch(scan(barcode.substring(0, 12))); 
     }
   };
 
@@ -32,6 +32,17 @@ const Entry = () => {
       type: SET_BARCODE_USER,
       barcodeUser: null,
     });
+  };
+
+  const onBarcodeChange = (_text) => {
+    const mappings = [['&', '1'], ['é', '2'], ['"', '3'], ['\'', '4'], ['(', '5'], ['-', '6'], ['è', '7'], ['_', '8'], ['ç', '9'], ['à', 0]];
+    let text = _text;
+
+    mappings.forEach((mapping) => {
+      text = text.replace(mapping[0], mapping[1]);
+    });
+
+    _setBarcode(text);
   };
 
   return (
@@ -52,12 +63,12 @@ const Entry = () => {
           />
           <form onSubmit={(e) => {
             e.preventDefault();
-            dispatch(scan(barcode));
+            setBarcode(barcode);
           }}>
             <Input
               value={barcode}
-              onChange={setBarcode}
               label="Code-barres"
+              onChange={onBarcodeChange}
               autoFocus
             />
             <Button primary type="submit">Valider</Button>
