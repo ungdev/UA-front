@@ -9,6 +9,7 @@ import './UserModal.css';
 
 const options = [
   { name: 'Aucune', value: '' },
+  { name: 'Orga', value: 'staff'},
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
