@@ -110,7 +110,7 @@ const Team = () => {
     </>) : '',
   }));
 
-  const diplayMatches = team && team.matches.length && team.matches.map(({ opponents, note, id }) => {
+  const diplayMatches = team && team.matches && team.matches.length && team.matches.map(({ opponents, note, id }) => {
     const displayOpponents = opponents.map(({ name, result, rank }) => {
       return (
         <div key={name} className="opponent">
@@ -127,7 +127,7 @@ const Team = () => {
           <>
             { displayOpponents }
             { note && <div className="divider"/>}
-            { note && <p>Note: {note}</p>}
+            { note && <p className="match-note">Note : {note}</p>}
           </>
         }
         key={id}
@@ -166,14 +166,14 @@ const Team = () => {
         </div> : <hr />
       }
 
-      { team.matches.length &&
+      { team.matches.length ?
         <>
           <Title level={4}>Mes matchs</Title>
           <div className="team-matches">
             { diplayMatches }
           </div>
           <hr/>
-        </>
+        </> : ''
       }
 
       { team.toornamentId &&

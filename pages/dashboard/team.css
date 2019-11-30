@@ -22,8 +22,9 @@
 }
 
 #dashboard-team .team-match {
-  width: 22%;
-  margin: 16px 1.5%;
+  width: calc(25% - 20px);
+  margin: 16px 10px;
+  text-align: left;
 }
 
 #dashboard-team .team-match .opponent {
@@ -62,6 +63,10 @@
   justify-content: center;
 }
 
+#dashboard-team .team-match .match-note {
+  word-wrap: break-word;
+}
+
 #dashboard-team .info {
   border: 2px solid var(--accent-color);
   padding: 8px 16px;
@@ -76,7 +81,19 @@
   margin: 20px 0;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1300px) {
+  #dashboard-team .team-match {
+    width: calc(100% / 3 - 20px);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  #dashboard-team .team-match {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 600px) {
   #dashboard-team .team-match {
     width: 100%;
   }
