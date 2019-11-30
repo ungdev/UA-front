@@ -54,6 +54,20 @@ const safelyAccessTournamentId = (user) => {
   return user.team.tournamentId;
 };
 
+const initOneSignal = (user) => {
+  const OneSignal = window.OneSignal || [];
+  OneSignal.push(() => {
+    OneSignal.init({
+      appId: process.env.ARENA_ONESIGNAL_APP_ID,
+    });
+  });
+  OneSignal.push(() => {
+    OneSignal.sendTags({
+      tournamentId: safelyAccessTournamentId(user) || null,
+    });
+  });
+};
+
 export const autoLogin = () => async (dispatch) => {
   if (
     localStorage.hasOwnProperty('utt-arena-token') &&
@@ -65,6 +79,7 @@ export const autoLogin = () => async (dispatch) => {
     dispatch(saveToken(localToken));
     try {
       const res = await API.get(`users/${userId}`);
+      initOneSignal(res.data);
       dispatch({
         type: SET_USER,
         user: res.data,
@@ -91,17 +106,7 @@ export const tryLogin = (user) => async (dispatch) => {
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.data.token));
   localStorage.setItem('utt-arena-userid', res.data.user.id);
-  const OneSignal = window.OneSignal || [];
-  OneSignal.push(() => {
-    OneSignal.init({
-      appId: process.env.ARENA_ONESIGNAL_APP_ID,
-    });
-  });
-  OneSignal.push(() => {
-    OneSignal.sendTags({
-      tournamentId: safelyAccessTournamentId(res.data.user) || null,
-    });
-  });
+  initOneSignal(res.data.user);
   dispatch({
     type: SET_USER,
     user: res.data.user,

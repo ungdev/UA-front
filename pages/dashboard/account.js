@@ -118,11 +118,16 @@ const Account = () => {
       </div>
 
       { user.isPaid &&
-        <div className="ticket">
-          <Title level={4}>Mon billet</Title>
-          <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
-        </div>
+        <>
+          <hr/>
+          <div className="ticket">
+            <Title level={4}>Mon billet</Title>
+            <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
+          </div>
+        </>
       }
+      <hr/>
+      <div className='onesignal-customlink-container'/>
     </div>
   );
 };
