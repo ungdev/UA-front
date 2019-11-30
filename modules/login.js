@@ -51,7 +51,7 @@ const safelyAccessTournamentId = (user) => {
   if (user.team == undefined) {
     return null;
   }
-  return user.team.tournamenId;
+  return user.team.tournamentId;
 };
 
 export const autoLogin = () => async (dispatch) => {
