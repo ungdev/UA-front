@@ -15,3 +15,86 @@
 #dashboard-team .players-list {
   padding: 16px 0;
 }
+
+#dashboard-team .team-matches {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#dashboard-team .team-match {
+  width: calc(25% - 20px);
+  margin: 16px 10px;
+  text-align: left;
+}
+
+#dashboard-team .team-match .opponent {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+#dashboard-team .team-match .divider {
+  padding: 0;
+  border: none;
+  height: 2px;
+  background: var(--light-color);
+}
+
+#dashboard-team .team-match .win {
+  font-weight: 900;
+  color: #00a700;
+}
+
+#dashboard-team .team-match .loss {
+  font-weight: 900;
+  color: #d10000;
+}
+
+#dashboard-team .team-match .circle {
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#dashboard-team .team-match .match-note {
+  word-wrap: break-word;
+}
+
+#dashboard-team .info {
+  border: 2px solid var(--accent-color);
+  padding: 8px 16px;
+  margin: 32px 0;
+}
+
+#dashboard-team hr {
+  background: var(--gradient);
+  height: 2px;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
+}
+
+@media screen and (max-width: 1300px) {
+  #dashboard-team .team-match {
+    width: calc(100% / 3 - 20px);
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  #dashboard-team .team-match {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #dashboard-team .team-match {
+    width: 100%;
+  }
+}
