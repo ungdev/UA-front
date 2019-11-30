@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 
@@ -46,8 +47,19 @@ export default (state = initialState, action) => {
   }
 };
 
+const safelyAccessTournamentId = (user) => {
+  if (user.team == undefined) {
+    return null;
+  }
+  return user.team.tournamenId;
+};
+
 export const autoLogin = () => async (dispatch) => {
-  if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) { // eslint-disable-line no-prototype-builtins
+  if (
+    localStorage.hasOwnProperty('utt-arena-token') &&
+    localStorage.hasOwnProperty('utt-arena-userid')
+  ) {
+    // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
     const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
@@ -58,7 +70,7 @@ export const autoLogin = () => async (dispatch) => {
         user: res.data,
       });
     }
-    catch (err) {
+ catch (err) {
       dispatch({
         type: SET_LOADING,
         loading: false,
@@ -79,6 +91,17 @@ export const tryLogin = (user) => async (dispatch) => {
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.data.token));
   localStorage.setItem('utt-arena-userid', res.data.user.id);
+  const OneSignal = window.OneSignal || [];
+  OneSignal.push(() => {
+    OneSignal.init({
+      appId: process.env.ARENA_ONESIGNAL_APP_ID,
+    });
+  });
+  OneSignal.push(() => {
+    OneSignal.sendTags({
+      tournamentId: safelyAccessTournamentId(res.data.user) || null,
+    });
+  });
   dispatch({
     type: SET_USER,
     user: res.data.user,
