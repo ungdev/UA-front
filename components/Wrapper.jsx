@@ -114,6 +114,7 @@ const Wrapper = ({ Component }) => {
     if (hasTeam) {
       return [
         { title: 'Équipe', href: '/dashboard/team' },
+        { title: 'Informations', href: '/dashboard/infos' },
         { title: 'Boutique', href: '/dashboard/shop' },
         { title: 'Mes achats', href: '/dashboard/purchases' },
         { title: 'Mon compte', href: '/dashboard/account' },
