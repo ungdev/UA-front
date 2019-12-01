@@ -52,7 +52,8 @@ const UserModal = ({ isVisible }) => {
           <>
             <p>
               <strong>Statut :</strong> {transactionState}<br />
-              <strong>Date : </strong>{moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              <strong>Date :</strong> {moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              <strong>Prix :</strong> {cart.price}€<br />
               {cart.transactionId
                 ? <><strong>Transaction :</strong> {cart.transactionId}</>
                 : <strong>Paiement validé manuellement</strong>
