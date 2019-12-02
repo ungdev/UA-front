@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { API, setTokenAPI } from '../utils';
+import { API, setTokenAPI, hasOrgaPermission } from '../utils';
 import { SET_CART } from './cart';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
@@ -84,7 +84,7 @@ export const tryLogin = (user) => async (dispatch) => {
     user: res.data.user,
   });
   dispatch(setLoginModalVisible(false));
-  if (res.data.user.permissions) {
+  if (hasOrgaPermission(res.data.user.permissions)) {
     Router.push('/admin');
   }
   else {

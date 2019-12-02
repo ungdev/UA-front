@@ -8,6 +8,7 @@ import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
 import { autoLogin } from '../modules/login';
+import { hasOrgaPermission } from '../utils';
 
 const Wrapper = ({ Component }) => {
   const { pathname, replace } = useRouter();
@@ -43,7 +44,7 @@ const Wrapper = ({ Component }) => {
     if (user && isPaid !== user.isPaid) {
       setIsPaid(user.isPaid);
     }
-    if (user && !!user.permissions !== isAdmin) {
+    if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
       setIsAdmin(true);
     }
   });
