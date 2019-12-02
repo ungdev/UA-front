@@ -64,7 +64,7 @@ const Wrapper = ({ Component }) => {
     if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/team';
     }
-    else if (pathname === '/dashboard/shop' && process.env.SHOP_AVAILABLE !== 'true') {
+    else if (pathname === '/dashboard/shop' && process.env.EVENT_RUNNING === 'true') {
       redirect = '/dashboard';
     }
     else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
@@ -128,8 +128,9 @@ const Wrapper = ({ Component }) => {
     }
 
     if(hasTeam || isVisitor || isPaid) {
-      if(process.env.SHOP_AVAILABLE === 'true')
+      if(process.env.EVENT_RUNNING !== 'true') {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
+      }
       menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
     }
     else {
