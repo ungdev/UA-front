@@ -80,6 +80,12 @@ const Tournament = ({ assets, isSolo, tournamentId }) => {
             </div>
           </>
         )}
+        {
+          assets.toornamentId &&
+          assets.stages.map((stage) => (
+          <iframe key={stage} width="100%" height="500" src={`https://widget.toornament.com/tournaments/${assets.toornamentId}/stages/${stage}/?_locale=fr`} allowFullscreen frameBorder="0"/>
+          ))
+        }
         <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
         { isLoggedIn ?
         <Table columns={isSolo ? [{ title: 'Joueur', key: 'players' }] : columns} dataSource={formatTeams} className="table-tournament"/> :
@@ -99,6 +105,8 @@ Tournament.propTypes = {
     format: PropTypes.node.isRequired,
     rewards: PropTypes.node,
     rules: PropTypes.node,
+    toornamentId: PropTypes.string,
+    stages: PropTypes.array,
   }).isRequired,
   /**
    * Is tournament solo?

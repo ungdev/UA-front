@@ -18,3 +18,11 @@
 #dashboard-account .ticket {
   width: 250px;
 }
+
+#dashboard-account hr {
+  background: var(--gradient);
+  height: 2px;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
+}

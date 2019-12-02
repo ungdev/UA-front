@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
 import { fetchSlots } from '../../modules/tournament';
-import { Title, Table, Button, Modal, Helper } from '../../components/UI';
+import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
 
 import './team.css';
 
@@ -110,6 +110,31 @@ const Team = () => {
     </>) : '',
   }));
 
+  const diplayMatches = team && team.matches && team.matches.length && team.matches.map(({ opponents, note, id }) => {
+    const displayOpponents = opponents.map(({ name, result, rank }) => {
+      return (
+        <div key={name} className="opponent">
+          <div>{name}</div>
+          {result && <div className={result}>{result[0].toUpperCase()}</div>}
+          {rank && <div className="circle">{rank}</div>}
+        </div>
+      );
+    });
+    return (
+      <Card
+        className="team-match"
+        content={
+          <>
+            { displayOpponents }
+            { note && <div className="divider"/>}
+            { note && <p className="match-note">Note : {note}</p>}
+          </>
+        }
+        key={id}
+      />
+    );
+  });
+
   if (!team) {
     return null;
   }
@@ -133,6 +158,31 @@ const Team = () => {
         </div>
         }
       </div>
+
+      { team.lastInfo ?
+        <div className="info">
+          <Title level={4}>{team.lastInfo.title}</Title>
+          <p>{team.lastInfo.content}</p>
+        </div> : <hr />
+      }
+
+      { team.matches.length ?
+        <>
+          <Title level={4}>Mes matchs</Title>
+          <div className="team-matches">
+            { diplayMatches }
+          </div>
+          <hr/>
+        </> : ''
+      }
+
+      { team.toornamentId &&
+        <>
+          <Title level={4}>Arbre du tournoi</Title>
+          <iframe width="100%" height="500" src={`https://widget.toornament.com/tournaments/${team.tournament.toornamentId}/stages/${team.lastStage}/?_locale=fr`} allowFullscreen frameBorder="0"/>
+          <hr/>
+        </>
+      }
 
       {!isSolo ? (
         <>
