@@ -4,12 +4,22 @@
 }
 
 #dashboard-team .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#dashboard-team .header .header-info {
   text-align: left;
   margin-bottom: 20px;
 }
 
-#dashboard-team .header > div {
+#dashboard-team .header .header-info > div {
   margin-bottom: 10px;
+}
+
+#dashboard-team .refresh {
+  cursor: pointer;
+  font-size: 24px;
 }
 
 #dashboard-team .players-list {

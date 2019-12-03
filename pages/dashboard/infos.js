@@ -34,11 +34,11 @@ const Infos = () => {
 
   return (
     <div id="dashboard-infos">
-      <Title level={3}>Général</Title>
-      <Table columns={columns} dataSource={formatInfos(0)} className="infos-table" />
-      <br />
       <Title level={3}>{infos[user.team.tournamentId].name}</Title>
       <Table columns={columns} dataSource={formatInfos(user.team.tournamentId)} className="infos-table" />
+      <br />
+      <Title level={3}>Général</Title>
+      <Table columns={columns} dataSource={formatInfos(0)} className="infos-table" />
     </div>
   );
 };
