@@ -18,6 +18,11 @@ const Infos = () => {
   useEffect(() => {
     if (user) {
       dispatch(fetchInfos());
+      let interval = setInterval(
+        () => dispatch(fetchInfos()),
+        120000
+      );
+      return () => clearInterval(interval);
     }
   }, [user]);
   if (!infos) {
@@ -34,6 +39,7 @@ const Infos = () => {
 
   return (
     <div id="dashboard-infos">
+      <i className="fas fa-sync-alt refresh" onClick={() => document.location.reload()}/>
       <Title level={3}>{infos[user.team.tournamentId].name}</Title>
       <Table columns={columns} dataSource={formatInfos(user.team.tournamentId)} className="infos-table" />
       <br />

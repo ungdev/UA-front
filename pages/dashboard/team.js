@@ -38,7 +38,7 @@ const Team = () => {
       dispatch(fetchTeam(userTeam.id));
       let interval = setInterval(
         () => dispatch(fetchTeam(userTeam.id)),
-        18000000
+        120000
       );
       return () => clearInterval(interval);
     }
