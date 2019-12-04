@@ -52,13 +52,11 @@ const UserModal = ({ isVisible }) => {
         content={
           <>
             <p>
-              <strong>Statut :</strong> {transactionState}<br />
-              <strong>Date :</strong> {moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              <strong>Statut :</strong> {transactionState} ({cart.transactionId ? `#${cart.transactionId}` : 'Paiement validé manuellement'})<br />
+              { (cart.transactionState === 'paid' || cart.transactionState === 'refunded') && <>
+                <strong>Date :</strong> {moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              </>}
               <strong>Prix :</strong> {cart.price}€<br />
-              {cart.transactionId
-                ? <><strong>Transaction :</strong> {cart.transactionId}</>
-                : <strong>Paiement validé manuellement</strong>
-              }
             </p>
             <ul className="cart-items">
               { cartItems }
