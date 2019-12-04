@@ -1,0 +1,11 @@
+#dashboard-infos .infos-table {
+  width: 100%;
+  margin: 20px 0;
+}
+
+#dashboard-infos .refresh {
+  text-align: right;
+  width: 100%;
+  cursor: pointer;
+  font-size: 24px;
+}

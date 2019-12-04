@@ -119,6 +119,7 @@ const Wrapper = ({ Component }) => {
 
     if (hasTeam) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
+      menu.push({ title: 'Informations', href: '/dashboard/infos' });
     }
     else if (isVisitor) {
       menu.push({ title: 'Coach', href: '/dashboard/coach' });
