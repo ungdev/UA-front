@@ -12,6 +12,7 @@ import UserModal from './UserModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
+import { hasOrgaPermission as _hasOrgaPermission } from '../utils';
 
 import './Navbar.css';
 
@@ -53,7 +54,7 @@ const Navbar = ({ isLoggedIn }) => {
   const isVisible = useSelector((state) => state.loginModal.visible);
   const isUserVisible = useSelector((state) => state.userEntry.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
-  const hasPermissions = useSelector((state) => state.login.user && !!state.login.user.permissions);
+  const hasOrgaPermission = useSelector((state) => state.login.user && _hasOrgaPermission(state.login.user.permissions));
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -102,11 +103,11 @@ const Navbar = ({ isLoggedIn }) => {
         primary
         className="dashboard-button"
         onClick={() => {
-          router.push(hasPermissions ? '/admin' : '/dashboard');
+          router.push(hasOrgaPermission ? '/admin' : '/dashboard');
           setMobileMenuVisible(false);
         }}
       >
-        { hasPermissions ? 'Admin' : 'Dashboard' }
+        { hasOrgaPermission ? 'Admin' : 'Dashboard' }
       </Button>
     </div>
   );

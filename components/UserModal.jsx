@@ -9,6 +9,7 @@ import './UserModal.css';
 
 const options = [
   { name: 'Aucune', value: '' },
+  { name: 'Stream', value: 'stream' },
   { name: 'Orga', value: 'staff' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },

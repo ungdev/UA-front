@@ -101,4 +101,6 @@ const getCookie = (cookieName) => {
   return '';
 };
 
-export { postToSlack, API, setTokenAPI, getCookie };
+const hasOrgaPermission = (permission) => permission === 'admin' || permission === 'anim' || permission === 'entry' || permission === 'orga';
+
+export { postToSlack, API, setTokenAPI, getCookie, hasOrgaPermission };
