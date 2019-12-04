@@ -38,11 +38,13 @@ const Notification = () => {
   };
 
   const checkIfShouldOpenGeneralModal = () => {
-    if(currentTournament.id === 0) {
-      setGeneralInfo(true);
-    }
-    else {
-      sendInfo();
+    if(form.title && form.content) {
+      if(currentTournament.id === 0) {
+        setGeneralInfo(true);
+      }
+      else {
+        sendInfo();
+      }
     }
   };
 
