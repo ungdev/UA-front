@@ -19,6 +19,7 @@ const Notification = () => {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
   const [deletedInfo, setDeletedInfo] = useState(null);
+  const [generalInfo, setGeneralInfo] = useState(false);
   const [currentTournament, setCurrentTournament] = useState('');
   const [form, setForm] = useState(initialForm);
   const isLoggedIn = useSelector((state) => state.login.user);
@@ -36,8 +37,18 @@ const Notification = () => {
     setVisible(true);
   };
 
+  const checkIfShouldOpenGeneralModal = () => {
+    if(currentTournament.id === 0) {
+      setGeneralInfo(true);
+    }
+    else {
+      sendInfo();
+    }
+  };
+
   const sendInfo = () => {
     dispatch(postInfo(form, currentTournament.id));
+    setGeneralInfo(false);
     setVisible(false);
     setForm(initialForm);
   };
@@ -68,11 +79,19 @@ const Notification = () => {
         visible={visible}
         title="Envoyer une notification"
         onCancel={() => setVisible(false)}
-        buttons={<Button primary onClick={sendInfo}>Envoyer</Button>}
+        buttons={<Button primary onClick={checkIfShouldOpenGeneralModal}>Envoyer</Button>}
       >
         <p>Envoyer à : <strong>{currentTournament.name}</strong></p>
         <Input label="Titre" value={form.title} onChange={(v) => setForm({ ...form, title: v })} />
         <Textarea label="Contenu" value={form.content} onChange={(v) => setForm({ ...form, content: v })} />
+      </Modal>
+      <Modal
+        visible={generalInfo}
+        title="Notifier le canal général"
+        onCancel={() => setGeneralInfo(false)}
+        onOk={sendInfo}
+        >
+          Êtes-vous sûr d'envoyer une notifications aux 450 joueurs ?
       </Modal>
       <Modal
         visible={!!deletedInfo}
