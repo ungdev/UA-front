@@ -8,6 +8,7 @@ import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
 import { autoLogin } from '../modules/login';
+import { hasOrgaPermission } from '../utils';
 
 const Wrapper = ({ Component }) => {
   const { pathname, replace } = useRouter();
@@ -43,7 +44,7 @@ const Wrapper = ({ Component }) => {
     if (user && isPaid !== user.isPaid) {
       setIsPaid(user.isPaid);
     }
-    if (user && !!user.permissions !== isAdmin) {
+    if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
       setIsAdmin(true);
     }
   });
@@ -62,6 +63,9 @@ const Wrapper = ({ Component }) => {
   else if (isLoggedIn) {
     if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/team';
+    }
+    else if (pathname === '/dashboard/shop' && process.env.EVENT_RUNNING === 'true') {
+      redirect = '/dashboard';
     }
     else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/coach';
@@ -111,54 +115,49 @@ const Wrapper = ({ Component }) => {
   }
 
   const linksDashboard = () => {
+    const menu = [];
+
     if (hasTeam) {
-      return [
-        { title: 'Équipe', href: '/dashboard/team' },
-        { title: 'Informations', href: '/dashboard/infos' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+      menu.push({ title: 'Équipe', href: '/dashboard/team' });
+      menu.push({ title: 'Informations', href: '/dashboard/infos' });
     }
-    if (isVisitor) {
-      return [
-        { title: 'Coach', href: '/dashboard/coach' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+    else if (isVisitor) {
+      menu.push({ title: 'Coach', href: '/dashboard/coach' });
     }
-    if (isPaid) {
-      return [
-        { title: 'Inscription', href: '/dashboard/register' },
-        { title: 'Boutique', href: '/dashboard/shop' },
-        { title: 'Mes achats', href: '/dashboard/purchases' },
-        { title: 'Mon compte', href: '/dashboard/account' },
-      ];
+    else if (isPaid) {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
-    return [
-      { title: 'Inscription', href: '/dashboard/register' },
-      { title: 'Mon compte', href: '/dashboard/account' },
-    ];
+
+    if(hasTeam || isVisitor || isPaid) {
+      if(process.env.EVENT_RUNNING !== 'true') {
+        menu.push({ title: 'Boutique', href: '/dashboard/shop' });
+      }
+      menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
+    }
+    else {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
+    }
+
+    menu.push({ title: 'Mon compte', href: '/dashboard/account' });
+    return menu;
   };
 
   const linksAdmin = () => {
-    if (permissions === 'entry') {
-      return [
-        { title: 'Entrée', href: '/admin/entry' },
-      ];
+
+    const menu = [];
+
+    if (permissions === 'anim' || permissions === 'admin') {
+        menu.push({ title: 'Notifications', href: '/admin/notification' });
+        menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
-    if (permissions === 'anim') {
-      return [
-        { title: 'Notifications', href: '/admin/notification' },
-        { title: 'Utilisateurs', href: '/admin/users' },
-      ];
+
+    if (permissions === 'entry' || permissions === 'admin') {
+      menu.push({ title: 'Entrée', href: '/admin/entry' });
     }
-    return [
-      { title: 'Utilisateurs', href: '/admin/users' },
-      { title: 'Notifications', href: '/admin/notification' },
-      { title: 'Entrée', href: '/admin/entry' },
-    ];
+
+    menu.push({ title: 'Mon compte', href: '/admin/account' });
+
+    return menu;
   };
 
   return (

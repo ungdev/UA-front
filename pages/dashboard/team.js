@@ -55,7 +55,7 @@ const Team = () => {
     fullname: `${user.firstname} ${user.lastname}`,
     email: user.email,
     isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
-    action: user.id !== team.captainId && isCaptain ? (
+    action: user.id !== team.captainId && isCaptain && process.env.EVENT_RUNNING !== 'true' ? (
       <>
         <Button
           onClick={() => setModal({
@@ -198,34 +198,37 @@ const Team = () => {
             <Title level={4}>Joueurs</Title>
             <Table columns={playersColumns} dataSource={players} alignRight className="table-players"/>
           </div>
-          <div className="players-list">
-            <Title level={4}>Joueurs en attente</Title>
-            <Table columns={waitingPlayersColumns} dataSource={waitingPlayers} alignRight className="table-players"/>
-          </div>
-          <Button
-            onClick={() => isCaptain ?
-              setModal({
-                visible: true,
-                onOk: () => {
-                  dispatch(deleteTeam(team.id));
-                  setModal(initialModal);
-                },
-                content: 'Êtes-vous sûr de vouloir dissoudre l\'équipe ?',
-                title: 'Dissoudre l\'équipe',
-              }) :
-              setModal({
-                visible: true,
-                onOk: () => {
-                  dispatch(kickUser(id, team.id));
-                  setModal(initialModal);
-                },
-                content: 'Êtes-vous sûr de vouloir quitter l\'équipe ?',
-                title: 'Quitter l\'équipe',
-              })
-            }
-          >
-            {isCaptain ? 'Dissoudre l\'équipe' : 'Quitter l\'équipe'}
-          </Button>
+          { process.env.EVENT_RUNNING !== 'true' &&
+          <>
+            <div className="players-list">
+              <Title level={4}>Joueurs en attente</Title>
+              <Table columns={waitingPlayersColumns} dataSource={waitingPlayers} alignRight className="table-players"/>
+            </div>
+            <Button
+              onClick={() => isCaptain ?
+                setModal({
+                  visible: true,
+                  onOk: () => {
+                    dispatch(deleteTeam(team.id));
+                    setModal(initialModal);
+                  },
+                  content: 'Êtes-vous sûr de vouloir dissoudre l\'équipe ?',
+                  title: 'Dissoudre l\'équipe',
+                }) :
+                setModal({
+                  visible: true,
+                  onOk: () => {
+                    dispatch(kickUser(id, team.id));
+                    setModal(initialModal);
+                  },
+                  content: 'Êtes-vous sûr de vouloir quitter l\'équipe ?',
+                  title: 'Quitter l\'équipe',
+                })
+              }
+            >
+              {isCaptain ? 'Dissoudre l\'équipe' : 'Quitter l\'équipe'}
+            </Button>
+          </>}
         </>
       ) : (
         <>
