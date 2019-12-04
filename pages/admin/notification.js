@@ -91,7 +91,7 @@ const Notification = () => {
         onCancel={() => setGeneralInfo(false)}
         onOk={sendInfo}
         >
-          Êtes-vous sûr d'envoyer une notifications aux 450 joueurs ?
+          Êtes-vous sûr d'envoyer une notification aux 450 joueurs ?
       </Modal>
       <Modal
         visible={!!deletedInfo}

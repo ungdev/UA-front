@@ -127,7 +127,7 @@ const Account = () => {
         </>
       }
       <hr/>
-      <div className='onesignal-customlink-container'/>
+      <div className="onesignal-customlink-container" />
     </div>
   );
 };
