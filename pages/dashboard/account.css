@@ -5,7 +5,8 @@
 }
 
 #dashboard-account .infos,
-#dashboard-account .ticket {
+#dashboard-account .ticket,
+#dashboard-account .notif {
   max-width: 100%;
   margin: 0px 20px;
 }
@@ -17,4 +18,12 @@
 
 #dashboard-account .ticket {
   width: 250px;
+}
+
+#dashboard-account hr {
+  background: var(--gradient);
+  height: 2px;
+  width: 100%;
+  border: none;
+  margin: 20px 0;
 }

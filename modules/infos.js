@@ -37,10 +37,11 @@ export default (state = initialState, action) => {
 
 export const fetchInfos = () => async (dispatch) => {
   const res = await API.get('infos');
+  const initial = JSON.parse(JSON.stringify(initialState.all));
   const formatInfos = res.data.reduce((previousVal, info) => {
     previousVal[info.tournamentId || 0].list.push(info);
     return previousVal;
-  }, initialState.all);
+  }, initial);
   dispatch({
     type: SET_INFOS,
     all: formatInfos,

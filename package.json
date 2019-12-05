@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "pm2-runtime start server.js -i 4 --name UA-front",
+    "start": "pm2-runtime start server.js -i 1 --name UA-front",
     "lint": "eslint assets/ components/ lib/ modules/ pages/ utils/ --ext .jsx,.js",
     "lint-fix": "eslint --fix assets/ components/ lib/ modules/ pages/ utils/ --ext .jsx,.js",
     "build-docs": "node generateDocs.js"

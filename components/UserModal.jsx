@@ -9,6 +9,8 @@ import './UserModal.css';
 
 const options = [
   { name: 'Aucune', value: '' },
+  { name: 'Stream', value: 'stream' },
+  { name: 'Orga', value: 'staff' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
@@ -50,12 +52,11 @@ const UserModal = ({ isVisible }) => {
         content={
           <>
             <p>
-              <strong>Statut :</strong> {transactionState}<br />
-              <strong>Date : </strong>{moment(date).format('DD/MM/YY [à] HH:mm')}<br />
-              {cart.transactionId
-                ? <><strong>Transaction :</strong> {cart.transactionId}</>
-                : <strong>Paiement validé manuellement</strong>
-              }
+              <strong>Statut :</strong> {transactionState} ({cart.transactionId ? `#${cart.transactionId}` : 'Paiement validé manuellement'})<br />
+              { (cart.transactionState === 'paid' || cart.transactionState === 'refunded') && <>
+                <strong>Date :</strong> {moment(date).format('DD/MM/YY [à] HH:mm')}<br />
+              </>}
+              <strong>Prix :</strong> {cart.price}€<br />
             </p>
             <ul className="cart-items">
               { cartItems }

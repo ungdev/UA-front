@@ -53,6 +53,7 @@ const App = ({ Component, reduxStore }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""/>
       </Head>
 
       <Provider store={reduxStore}>

@@ -1,8 +1,9 @@
+/* eslint-disable no-prototype-builtins */
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { API, setTokenAPI } from '../utils';
+import { API, setTokenAPI, hasOrgaPermission } from '../utils';
 import { SET_CART } from './cart';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
@@ -46,19 +47,45 @@ export default (state = initialState, action) => {
   }
 };
 
+const safelyAccessTournamentId = (user) => {
+  if (user.team == undefined) {
+    return null;
+  }
+  return user.team.tournamentId;
+};
+
+const initOneSignal = (user) => {
+  const OneSignal = window.OneSignal || [];
+  OneSignal.push(() => {
+    OneSignal.init({
+      appId: process.env.ARENA_ONESIGNAL_APP_ID,
+    });
+  });
+  OneSignal.push(() => {
+    OneSignal.sendTags({
+      tournamentId: safelyAccessTournamentId(user) || null,
+    });
+  });
+};
+
 export const autoLogin = () => async (dispatch) => {
-  if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) { // eslint-disable-line no-prototype-builtins
+  if (
+    localStorage.hasOwnProperty('utt-arena-token') &&
+    localStorage.hasOwnProperty('utt-arena-userid')
+  ) {
+    // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
     const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
     try {
       const res = await API.get(`users/${userId}`);
+      initOneSignal(res.data);
       dispatch({
         type: SET_USER,
         user: res.data,
       });
     }
-    catch (err) {
+ catch (err) {
       dispatch({
         type: SET_LOADING,
         loading: false,
@@ -79,16 +106,20 @@ export const tryLogin = (user) => async (dispatch) => {
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.data.token));
   localStorage.setItem('utt-arena-userid', res.data.user.id);
+  initOneSignal(res.data.user);
   dispatch({
     type: SET_USER,
     user: res.data.user,
   });
   dispatch(setLoginModalVisible(false));
-  if (res.data.user.permissions) {
-    Router.push('/admin/entry');
+  if (hasOrgaPermission(res.data.user.permissions)) {
+    Router.push('/admin');
   }
   else {
     Router.push('/dashboard');
+  }
+  if (res.data.captivePortalSuccess) {
+    toast.success('Vous êtes maintenant connecté au réseau de l\'UTT Arena');
   }
   return true;
 };
