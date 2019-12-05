@@ -150,19 +150,21 @@ const Team = () => {
         <div className="header-info">
           {!isSolo && <div><strong>Mon équipe :</strong> {team.name}</div>}
           <div><strong>Tournoi :</strong> {team.tournament.name}</div>
-          <div>
-            <strong>Statut</strong> <Helper>Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé leur place.</Helper>
-            <strong> : </strong>
-            {usersPaid === team.tournament.playersPerTeam
-              ? <><i className="fas fa-check-circle green-icon"></i> Inscrit</>
-              : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrit</>
+          { process.env.EVENT_RUNNING !== 'true' && <>
+            <div>
+              <strong>Statut</strong> <Helper>Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé leur place.</Helper>
+              <strong> : </strong>
+              {usersPaid === team.tournament.playersPerTeam
+                ? <><i className="fas fa-check-circle green-icon"></i> Inscrit</>
+                : <><i className="fas fa-exclamation-triangle red-icon"></i> Non inscrit</>
+              }
+            </div>
+            { slotsTournament &&
+              <div>
+                <strong> Places disponibles :</strong> {slotsTournament[team.tournament.id].available} / {slotsTournament[team.tournament.id].total}
+              </div>
             }
-          </div>
-          { slotsTournament &&
-          <div>
-            <strong> Places disponibles :</strong> {slotsTournament[team.tournament.id].available} / {slotsTournament[team.tournament.id].total}
-          </div>
-          }
+          </> }
         </div>
         <i className="fas fa-sync-alt refresh" onClick={() => document.location.reload()}/>
       </div>
