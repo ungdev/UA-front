@@ -5,7 +5,8 @@
 }
 
 #dashboard-account .infos,
-#dashboard-account .ticket {
+#dashboard-account .ticket,
+#dashboard-account .notif {
   max-width: 100%;
   margin: 0px 20px;
 }
