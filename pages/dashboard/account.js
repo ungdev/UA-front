@@ -59,6 +59,27 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
+      <div className="notif">
+        <Title level={4}>Notifications</Title>
+        <p>
+          N'hésite pas à activer les notifications pour recevoir en temps réel les dernières informations sur ton tournoi et sur la LAN.
+          <br/>
+          <strong>Pense à désactiver ton bloqueur de pub préféré.</strong>
+          <br/>
+          Les notifications ne seront utilisées que pendant l'événement.
+        </p>
+      </div>
+      <hr/>
+
+      { user.isPaid &&
+        <>
+          <div className="ticket">
+            <Title level={4}>Mon billet</Title>
+            <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
+          </div>
+          <hr/>
+        </>
+      }
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
@@ -116,18 +137,6 @@ const Account = () => {
 
         <Button primary onClick={edit}>Modifier</Button>
       </div>
-
-      { user.isPaid &&
-        <>
-          <hr/>
-          <div className="ticket">
-            <Title level={4}>Mon billet</Title>
-            <Button primary onClick={downloadTicket}>Télécharger mon billet</Button>
-          </div>
-        </>
-      }
-      <hr/>
-      <div className="onesignal-customlink-container" />
     </div>
   );
 };
