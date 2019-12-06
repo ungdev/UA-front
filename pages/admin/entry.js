@@ -21,9 +21,9 @@ const Entry = () => {
       return;
     }
 
-    const isValid = /^\d{13}$/.test(barcode); 
-    if (isValid) { 
-      dispatch(scan(barcode.substring(0, 12))); 
+    const isValid = /^\d{13}$/.test(barcode);
+    if (isValid) {
+      dispatch(scan(barcode.substring(0, 12)));
     }
   };
 
@@ -56,8 +56,8 @@ const Entry = () => {
               <p><strong>Nom :</strong> {barcodeUser && barcodeUser.lastname}</p>
               <p><strong>Prénom :</strong> {barcodeUser && barcodeUser.firstname}</p>
               <p><strong>Email :</strong> {barcodeUser && barcodeUser.email}</p>
-              <p><strong>Équipe :</strong> {barcodeUser && barcodeUser.team.name}</p>
-              <p><strong>Tournoi :</strong> {barcodeUser && barcodeUser.team.tournament.shortName}</p>
+              <p><strong>Équipe :</strong> {barcodeUser && barcodeUser.team ? barcodeUser.team.name : 'Accompagnateur'}</p>
+              <p><strong>Tournoi :</strong> {barcodeUser && barcodeUser.team && barcodeUser.team.tournament.shortName}</p>
               <p><strong>Place :</strong> {barcodeUser && barcodeUser.place}</p>
             </>}
           />
