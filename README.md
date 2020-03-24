@@ -1,4 +1,5 @@
 # UA-front
+[![Build Status](https://travis-ci.org/ungdev/UA-front.svg?branch=master)](https://travis-ci.org/ungdev/UA-front)
 
 Nouvelle version du site de l'UTT Arena ([https://arena.utt.fr](https://arena.utt.fr)).
 
