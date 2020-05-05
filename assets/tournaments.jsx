@@ -22,7 +22,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URI}uploads/rules/lol.pdf`,
+    rules: '/uploads/files/rules/lol.pdf',
   },
   lolamateur: {
     image: '/static/lolamateur.png',
@@ -45,7 +45,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URI}uploads/rules/lol.pdf`,
+    rules: '/uploads/files/rules/lol.pdf',
   },
   ssbu: {
     image: '/static/ssbu.png',
@@ -66,7 +66,7 @@ export default {
         <li>3<sup>ème</sup> : 100€ + lots</li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URI}uploads/rules/ssbu.pdf`,
+    rules: '/uploads/files/rules/ssbu.pdf',
   },
   csgo: {
     image: '/static/csgo.png',
@@ -90,7 +90,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URI}uploads/rules/csgo.pdf`,
+    rules: '/uploads/files/rules/csgo.pdf',
   },
   fortnite: {
     image: '/static/fortnite.png',
@@ -110,7 +110,7 @@ export default {
         <li>3<sup>ème</sup> équipe : lots</li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URI}uploads/rules/fortnite.pdf`,
+    rules: '/uploads/files/rules/fortnite.pdf',
   },
   osu: {
     image: '/static/osu.png',
