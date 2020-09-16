@@ -353,9 +353,9 @@ template {
 /****************/
 
 @font-face {
-  font-family: 'LemonMilk';
+  font-family: 'Preussische';
   font-display: swap;
-  src: url('/static/LemonMilk.otf');
+  src: url('/static/PreussischeVI9Ag2.ttf');
 }
 
 * {
@@ -363,9 +363,9 @@ template {
 }
 
 :root {
-  --primary-color: #fb560c;
-  --secondary-color: #e21562;
-  --accent-color: #e20007;
+  --primary-color: #06b8ff;
+  --secondary-color: #ed00e4;
+  --accent-color: #6056f1;
   --light-color: #ccc;
   --dark-color: #202020;
   --gradient: linear-gradient(135deg, var(--primary-color) 15%, var(--secondary-color) 85%);

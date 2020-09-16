@@ -191,7 +191,7 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
 
           <div className="footer-text">
-            © 2019 <a href="https://ung.utt.fr">UTT Net Group</a>
+            © 2020 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal"><a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a></Link>
           </div>

@@ -24,11 +24,11 @@ const listPartners = partnersList.map((partner) => (
 const Home = () => (
   <div id="home">
     <div className="home-header">
-      <img src="/static/logo-notext-whiteshadow.svg" alt="" id="logo" />
+      <img src="/static/logo-notext.png" alt="" id="logo" />
 
       <div className="home-title">
         <p className="main">UTT Arena</p>
-        <p>6, 7 et 8 décembre 2019</p>
+        <p>27, 28 et 29 novembre 2020</p>
       </div>
     </div>
 

@@ -1,4 +1,4 @@
 export default {
   title: 'UTT Arena',
-  subtitle: '6, 7 et 8 décembre 2019',
+  subtitle: '27, 28 et 29 novembre 2020',
 };
