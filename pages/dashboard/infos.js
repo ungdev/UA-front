@@ -20,7 +20,7 @@ const Infos = () => {
       dispatch(fetchInfos());
       let interval = setInterval(
         () => dispatch(fetchInfos()),
-        120000
+        120000,
       );
       return () => clearInterval(interval);
     }
