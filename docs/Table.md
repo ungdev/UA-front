@@ -11,4 +11,10 @@ prop | type | default | required | description
 **columns[].title** | `*` |  | :white_check_mark: | 
 **dataSource** | `Array[]<Object>` |  | :white_check_mark: | Data for each row, must follow the key of each column
 **emptyText** | `String` | `'(Vide)'` | :x: | Text to display if there is no data
+**pagination** | `Boolean` | `false` | :x: | Set pagination for the table
+**paginationOptions** | `Shape` | `{}` | :x: | 
+**paginationOptions.goToPage** | `Function` |  | :x: | 
+**paginationOptions.page** | `Number` |  | :x: | 
+**paginationOptions.pageSize** | `Number` |  | :x: | 
+**paginationOptions.total** | `Number` |  | :x: | 
 
