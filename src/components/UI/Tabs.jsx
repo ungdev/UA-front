@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './Tabs.css';
-
 /**
  * Displays a menu with tabs
  */

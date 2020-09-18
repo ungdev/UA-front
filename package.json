@@ -13,7 +13,6 @@
     "build-docs": "node generateDocs.js"
   },
   "dependencies": {
-    "autoprefixer": "^10.0.0",
     "axios": "^0.20.0",
     "dotenv": "^8.1.0",
     "dotenv-webpack": "^2.0.0",
@@ -31,6 +30,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.26.11",
     "simplebar": "^5.2.1",
     "simplebar-react": "^2.2.1"
   },

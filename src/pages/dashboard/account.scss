@@ -1,0 +1,29 @@
+#dashboard-account {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+
+  .infos,
+  .ticket,
+  .notif {
+    max-width: 100%;
+    margin: 0px 20px;
+  }
+
+  .infos {
+    width: 400px;
+    margin-bottom: 50px;
+  }
+
+  .ticket {
+    width: 250px;
+  }
+
+  hr {
+    background: $gradient;
+    height: 2px;
+    width: 100%;
+    border: none;
+    margin: 20px 0;
+  }
+}

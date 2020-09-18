@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Preussische';
+  font-display: swap;
+  src: url('/assets/PreussischeVI9Ag2.ttf');
+}
+
+* {
+  outline: none;
+}
+
+:root {
+  font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #212121;
+  text-align: justify;
+  overflow-x: hidden;
+}
+
+a {
+  color: $accent-color;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.page-padding {
+  /* page-padding should be applied to every page except home page */
+  padding: 2em 5em;
+}
+
+@media screen and (max-width: 800px) {
+  .page-padding {
+    padding: 2em 1em;
+  }
+}
+
+.accent {
+  color: $accent-color;
+  font-weight: 700;
+}
+
+.gold-icon {
+  color: #ffae00;
+}
+
+.green-icon {
+  color: #00a700;
+}
+
+.red-icon {
+  color: #d10000;
+}
+
+.Toastify__toast {
+  background: #fff;
+  color: #212121;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: $gradient;
+  }
+}
+
+.Toastify__toast--success {
+  color: #00cb00;
+}
+
+.Toastify__toast--error {
+  color: #f00;
+}
+
+.Toastify__toast--warning {
+  color: #f09000;
+}
+
+.Toastify__toast--info {
+  color: #0096fa;
+}
+
+.Toastify__toast-body {
+  margin: auto 15px auto 5px;
+}
+
+.Toastify__close-button {
+  color: #888;
+}

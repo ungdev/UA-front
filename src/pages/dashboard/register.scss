@@ -1,0 +1,76 @@
+#dashboard-register {
+  .table-join {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .team-tournament {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+
+    > div {
+      width: 45%;
+    }
+  }
+
+  .center {
+    margin: 0 auto;
+    display: block;
+  }
+
+  .select {
+    max-width: 600px;
+  }
+
+  .join-solo {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    > div {
+      width: 45%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #dashboard-register {
+    .team-tournament > div,
+    .join-solo > div {
+      width: 100%;
+    }
+
+    .team-tournament {
+      display: block;
+      border: none;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+
+      .create-team,
+      .join-team {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .join-solo .create-solo-team {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .select {
+      max-width: none;
+    }
+
+    .center-mobile {
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}

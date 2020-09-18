@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
@@ -13,8 +12,6 @@ import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils';
-
-import './Navbar.css';
 
 const links = [
   {

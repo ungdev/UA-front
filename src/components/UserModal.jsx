@@ -5,8 +5,6 @@ import { setUserModalVisible, validatePay, saveUser, refundCart } from '../modul
 import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
 
-import './UserModal.css';
-
 const options = [
   { name: 'Aucune', value: '' },
   { name: 'Stream', value: 'stream' },

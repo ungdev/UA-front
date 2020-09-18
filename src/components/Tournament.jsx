@@ -7,8 +7,6 @@ import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title, Table } from './UI';
 import { API } from '../utils';
 
-import './Tournament.css';
-
 const columns = [
   { title: 'Équipe', key: 'name' },
   { title: 'Joueurs', key: 'players' },

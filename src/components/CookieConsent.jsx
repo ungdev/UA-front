@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { Button } from './UI';
 import { getCookie } from '../utils';
 
-import './CookieConsent.css';
-
 const cookieName = 'cookie-consent';
 
 const CookieConsent = () => {

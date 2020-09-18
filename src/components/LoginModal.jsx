@@ -7,8 +7,6 @@ import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
 import { tryLogin, resetPassword } from '../modules/login';
 
-import './LoginModal.css';
-
 const initialSignup = {
   firstname: '',
   lastname: '',

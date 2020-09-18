@@ -6,7 +6,7 @@
     "plugin:import/react",
     "prettier"
   ],
-  "plugins": ["react-hooks", "prettier"],
+  "plugins": ["react-hooks", "react", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",

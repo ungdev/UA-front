@@ -5,7 +5,6 @@ import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import Button from './Button';
-import './Card.css';
 
 /**
  * Displays a card which can contain an image, a content and a button

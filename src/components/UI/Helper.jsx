@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Helper.css';
-
 const Helper = ({ children, className }) => (
   <div className={`helper ${className}`}>
     <i className="fas fa-question-circle helper-icon" tabIndex="0" />

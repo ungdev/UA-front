@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
-import './VideoContainer.css';
-
 /**
  * Displays iframe and keeps 16:9 ratio
  */

@@ -5,8 +5,6 @@ import { fetchSlots } from '../modules/tournament';
 import { Card, Title } from './UI';
 import tournamentCardsAssets from '../assets/tournamentCards';
 
-import './TournamentCards.css';
-
 const TournamentCards = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.login.user);

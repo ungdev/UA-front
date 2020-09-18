@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Radio.css';
-
 const Radio = ({ label, options, name, value, onChange, row, className }) => (
   <div className={`radio ${row ? 'row' : ''} ${className}`}>
     <div className="radio-label">{label}</div>

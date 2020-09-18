@@ -1,0 +1,19 @@
+#dashboard-purchases {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .card-cart {
+    width: 45%;
+  }
+
+  .cart-total {
+    text-align: right;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #dashboard-purchases .card-cart {
+    width: 100%;
+  }
+}

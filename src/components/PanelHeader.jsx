@@ -2,8 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import './PanelHeader.css';
-
 const PanelHeader = ({ pathname, links, title }) => (
   <header id="panel-header">
     <div className="header">
