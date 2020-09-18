@@ -7,10 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 
 import withReduxStore from '../lib/withReduxStore';
-import { Wrapper } from '../components';
+import Wrapper from '../components/Wrapper';
 import headText from '../assets/head';
 
-import './styles.css';
+import './_app.css';
 
 toast.configure({
   autoClose: 3000,

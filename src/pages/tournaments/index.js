@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TournamentCards } from '../../components';
+import TournamentCards from '../../components/TournamentCards';
 
 const Tournaments = () => (
   <div id="tournaments">

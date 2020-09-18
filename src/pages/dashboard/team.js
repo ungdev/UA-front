@@ -36,10 +36,7 @@ const Team = () => {
   useEffect(() => {
     if (userTeam && userTeam.id) {
       dispatch(fetchTeam(userTeam.id));
-      let interval = setInterval(
-        () => dispatch(fetchTeam(userTeam.id)),
-        120000
-      );
+      let interval = setInterval(() => dispatch(fetchTeam(userTeam.id)), 120000);
       return () => clearInterval(interval);
     }
   }, [userTeam]);
@@ -220,8 +217,7 @@ const Team = () => {
       {team.matches.length ? (
         <>
           <Title level={4}>Mes matchs</Title>
-          <div className="team-matches">
-            { diplayMatches }
+          <div className="team-matches">{diplayMatches}</div>
           <hr />
         </>
       ) : (
@@ -308,8 +304,7 @@ const Team = () => {
         onOk={modal.onOk}
         onCancel={() => setModal({ ...initialModal, visible: false })}
         visible={modal.visible}
-        title={modal.title}
-      >
+        title={modal.title}>
         {modal.content}
       </Modal>
     </div>

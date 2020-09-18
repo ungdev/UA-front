@@ -1,5 +1,11 @@
 {
-  "extends": ["plugin:react/recommended", "plugin:import/errors", "plugin:import/warnings", "prettier"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/react",
+    "prettier"
+  ],
   "plugins": ["react-hooks", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -11,6 +17,11 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
     }
   },
   "rules": {
@@ -20,7 +31,7 @@
     "linebreak-style": ["warn", "unix"],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
     "import/default": "off"
   }

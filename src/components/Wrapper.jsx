@@ -92,7 +92,7 @@ const Wrapper = ({ Component }) => {
       replace(redirect);
       return;
     }
-  }, [redirect, isLoading]);
+  }, [replace, redirect, isLoading]);
 
   useEffect(() => {
     dispatch(autoLogin());

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { TournamentCards } from '../components';
+import TournamentCards from '../components/TournamentCards';
 import { Title, VideoContainer, Table, Countdown, Button, Card } from '../components/UI';
 import indexText from '../assets/index';
 import partnersList from '../assets/partners';
