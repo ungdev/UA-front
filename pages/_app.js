@@ -54,6 +54,16 @@ const App = ({ Component, reduxStore }) => {
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossOrigin="anonymous" />
         <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""/>
+
+        <meta property="og:title" content="UTT Arena 2020 - 27, 28 et 29 Novembre 2020" />
+        <meta property="og:description" content={headText.description} />
+        <meta property="og:image" content="/uploads/files/images/banner.png" />
+        <meta property="og:url" content="https://arena.utt.fr/" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <meta property="og:site_name" content="UTT Arena 2020" />
+        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2020, le 27, 28 et 29 Novembre" />
+
       </Head>
 
       <Provider store={reduxStore}>
