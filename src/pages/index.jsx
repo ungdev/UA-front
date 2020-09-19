@@ -63,6 +63,7 @@ const Home = () => (
         <TournamentCards />
       </div>
 
+      {/*
       <div className="home-partners">
         <Title align="center" uppercase>
           Partenaires
@@ -75,6 +76,7 @@ const Home = () => (
           </Button>
         </Link>
       </div>
+      */}
     </div>
   </div>
 );
