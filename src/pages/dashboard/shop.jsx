@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { fetchItems } from '../../modules/items';
 import { fetchDraftCart, saveCart, cartPay } from '../../modules/cart';
 import { Table, Input, Button, Title, Modal, Radio, Select } from '../../components/UI';
-import { API } from '../../utils';
+import { API } from '../../utils/api';
 
 const ticketColumns = [
   {

@@ -8,7 +8,8 @@ import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
 import { autoLogin } from '../modules/login';
-import { hasOrgaPermission } from '../utils';
+import { hasOrgaPermission } from '../utils/permission';
+import { isLoginAllowed, isShopAllowed } from '../utils/settings';
 
 const Wrapper = ({ Component }) => {
   const { pathname, replace } = useRouter();
@@ -53,12 +54,12 @@ const Wrapper = ({ Component }) => {
 
   if (isAdminPanel && !isLoggedIn) {
     redirect = '/';
-  } else if (isDashboard && (!isLoggedIn || process.env.DASHBOARD_AVAILABLE !== 'true')) {
+  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed())) {
     redirect = '/';
   } else if (isLoggedIn) {
     if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/team';
-    } else if (pathname === '/dashboard/shop' && process.env.EVENT_RUNNING === 'true') {
+    } else if (pathname === '/dashboard/shop' && !isShopAllowed()) {
       redirect = '/dashboard';
     } else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/coach';
@@ -121,7 +122,7 @@ const Wrapper = ({ Component }) => {
     }
 
     if (hasTeam || isVisitor || isPaid) {
-      if (process.env.EVENT_RUNNING !== 'true') {
+      if (isShopAllowed()) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
       menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });

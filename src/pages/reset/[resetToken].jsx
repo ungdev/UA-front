@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 
 import { Input, Button, Title } from '../../components/UI';
-import { API } from '../../utils';
+import { API } from '../../utils/api';
 
 const Reset = () => {
   const router = useRouter();

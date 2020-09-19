@@ -1,4 +1,4 @@
-import { API } from '../utils';
+import { API } from '../utils/api';
 
 export const SET_ALLCARTS = 'carts/SET_ALLCARTS';
 

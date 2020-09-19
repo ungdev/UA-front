@@ -1,9 +1,9 @@
-/* eslint-disable no-prototype-builtins */
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { API, setTokenAPI, hasOrgaPermission } from '../utils';
+import { API, setAuthorizationToken } from '../utils/api';
+import { hasOrgaPermission } from '../utils/permission';
 import { SET_CART } from './cart';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
@@ -101,7 +101,7 @@ export const saveToken = (token) => (dispatch) => {
     type: SET_TOKEN,
     token,
   });
-  setTokenAPI(token);
+  setAuthorizationToken(token);
   localStorage.setItem('utt-arena-token', token);
 };
 
@@ -109,7 +109,7 @@ export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
   dispatch({ type: SET_TOKEN, token: null });
   dispatch({ type: SET_USER, user: null });
-  setTokenAPI('');
+  setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   Router.push('/');

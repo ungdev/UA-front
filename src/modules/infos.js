@@ -1,5 +1,6 @@
-import { API } from '../utils';
 import { toast } from 'react-toastify';
+
+import { API } from '../utils/api';
 
 export const SET_INFOS = 'infos/SET_INFOS';
 export const SET_FETCH = 'infos/SET_FETCH';

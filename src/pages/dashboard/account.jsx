@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
-import { API } from '../../utils';
+import { API } from '../../utils/api';
+import { apiUrl } from '../../utils/env';
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Account = () => {
   };
 
   const downloadTicket = async () => {
-    const res = await API.get(`${process.env.ARENA_API_URL}users/${user.id}/ticket`);
+    const res = await API.get(`${apiUrl()}users/${user.id}/ticket`);
 
     let element = document.createElement('a');
     element.href = 'data:application/pdf;base64,' + res.data;

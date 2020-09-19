@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
 import { fetchSlots } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
+import { isShopAllowed } from '../../utils/settings';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -58,7 +59,7 @@ const Team = () => {
       email: user.email,
       isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
       action:
-        user.id !== team.captainId && isCaptain && process.env.EVENT_RUNNING !== 'true' ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed() ? (
           <>
             <Button
               onClick={() =>
@@ -172,7 +173,7 @@ const Team = () => {
           <div>
             <strong>Tournoi :</strong> {team.tournament.name}
           </div>
-          {process.env.EVENT_RUNNING !== 'true' && (
+          {isShopAllowed() && (
             <>
               <div>
                 <strong>Statut</strong>{' '}
@@ -242,7 +243,7 @@ const Team = () => {
             <Title level={4}>Joueurs</Title>
             <Table columns={playersColumns} dataSource={players} alignRight className="table-players" />
           </div>
-          {process.env.EVENT_RUNNING !== 'true' && (
+          {isShopAllowed() && (
             <>
               <div className="players-list">
                 <Title level={4}>Joueurs en attente</Title>

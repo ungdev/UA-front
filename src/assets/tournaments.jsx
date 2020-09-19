@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { apiUrl } from '../utils/env';
+
 export default {
   lolpro: {
     image: '/assets/lolpro.png',
@@ -28,7 +30,7 @@ export default {
         </li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URL}uploads/rules/lol.pdf`,
+    rules: `${apiUrl()}uploads/rules/lol.pdf`,
   },
   lolamateur: {
     image: '/assets/lolamateur.png',
@@ -57,7 +59,7 @@ export default {
         </li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URL}uploads/rules/lol.pdf`,
+    rules: `${apiUrl()}uploads/rules/lol.pdf`,
   },
   ssbu: {
     image: '/assets/ssbu.png',
@@ -84,7 +86,7 @@ export default {
         </li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URL}uploads/rules/ssbu.pdf`,
+    rules: `${apiUrl()}uploads/rules/ssbu.pdf`,
   },
   csgo: {
     image: '/assets/csgo.png',
@@ -114,7 +116,7 @@ export default {
         </li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URL}uploads/rules/csgo.pdf`,
+    rules: `${apiUrl()}uploads/rules/csgo.pdf`,
   },
   fortnite: {
     image: '/assets/fortnite.png',
@@ -140,7 +142,7 @@ export default {
         </li>
       </ul>
     ),
-    rules: `${process.env.ARENA_API_URL}uploads/rules/fortnite.pdf`,
+    rules: `${apiUrl()}uploads/rules/fortnite.pdf`,
   },
   osu: {
     image: '/assets/osu.png',

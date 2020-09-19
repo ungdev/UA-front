@@ -1,11 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
 
+import { apiUrl } from '../utils/env';
+
 export default [
   {
     name: 'Festival des Jeux',
     link: 'https://www.festivaldesjeux-troyes.com/',
-    img: `${process.env.ARENA_API_URL}uploads/partners/festival.jpg`,
+    img: `${apiUrl()}uploads/partners/festival.jpg`,
     description: (
       <>
         <p>
@@ -25,7 +27,7 @@ export default [
   {
     name: 'ROG',
     link: 'https://rog.asus.com/',
-    img: `${process.env.ARENA_API_URL}uploads/partners/rog.jpg`,
+    img: `${apiUrl()}uploads/partners/rog.jpg`,
     description: (
       <p>
         Réputée pour la fiabilité, la qualité et les performances de ses produits, la marque Asus est le n°1 mondial des
@@ -39,7 +41,7 @@ export default [
   {
     name: 'Le Cube Troyes Champagne Expo',
     link: 'http://www.maisonduboulanger.com/missions/le-cube-troyes-champagne-expo/',
-    img: `${process.env.ARENA_API_URL}uploads/partners/cube.jpg`,
+    img: `${apiUrl()}uploads/partners/cube.jpg`,
     description: (
       <p>
         Entièrement rénové en 2009, le Cube Troyes Champagne Expo est le site où se déroule la majorité des événements
@@ -52,7 +54,7 @@ export default [
   {
     name: 'Scoup eSport',
     link: 'https://www.weezevent.com/utt-arena-2019',
-    img: `${process.env.ARENA_API_URL}uploads/partners/scoup.jpg`,
+    img: `${apiUrl()}uploads/partners/scoup.jpg`,
     description: (
       <p>
         Scoup eSport est une société qui te propose un service de location de PC Gamers hautes performances qui répondra
@@ -66,7 +68,7 @@ export default [
   {
     name: 'La Grosse Ligue',
     link: 'https://fr.euw.leagueoflegends.com/university',
-    img: `${process.env.ARENA_API_URL}uploads/partners/gl.jpg`,
+    img: `${apiUrl()}uploads/partners/gl.jpg`,
     description: (
       <p>
         La Grosse Ligue est la compétition officielle de Riot Games réservée aux étudiant.e.s résidant.e.s en France et
@@ -81,7 +83,7 @@ export default [
   {
     name: 'Konix',
     link: 'https://www.konix-interactive.com',
-    img: `${process.env.ARENA_API_URL}uploads/partners/konix.jpg`,
+    img: `${apiUrl()}uploads/partners/konix.jpg`,
     description: (
       <p>
         KONIX conçoit et fabrique des accessoires pour toute la famille dans les univers Gaming et High-Tech
@@ -95,7 +97,7 @@ export default [
   {
     name: 'SilverStone',
     link: 'https://www.silverstonetek.com/index.php?area=fr',
-    img: `${process.env.ARENA_API_URL}uploads/partners/silverstone.jpg`,
+    img: `${apiUrl()}uploads/partners/silverstone.jpg`,
     description: (
       <p>
         SilverStone voit le jour en 2003 avec une équipe d'ingénieurs issus d'un gros fabricant de matériel
@@ -111,7 +113,7 @@ export default [
   {
     name: 'Tekliss',
     link: 'https://www.tekliss.com',
-    img: `${process.env.ARENA_API_URL}uploads/partners/tekliss.jpg`,
+    img: `${apiUrl()}uploads/partners/tekliss.jpg`,
     description: (
       <p>
         Depuis 1992, Tekliss réalise avec leurs techniciens et leur propre matériel de nombreux événement faisant appel
@@ -127,7 +129,7 @@ export default [
   {
     name: 'Noctua',
     link: 'https://noctua.at/fr',
-    img: `${process.env.ARENA_API_URL}uploads/partners/noctua.jpg`,
+    img: `${apiUrl()}uploads/partners/noctua.jpg`,
     description: (
       <p>
         Fabricant de solutions de refroidissement haut de gamme, Noctua étend ses produits à l’internationale grâce à
@@ -140,7 +142,7 @@ export default [
   {
     name: 'Meltdown Troyes',
     link: 'https://www.meltdown.bar/troyes',
-    img: `${process.env.ARENA_API_URL}uploads/partners/meltdown.jpg`,
+    img: `${apiUrl()}uploads/partners/meltdown.jpg`,
     description: (
       <p>
         Le Meltdown Troyes c’est LE bar gaming où tu retrouves Switch, Playstation, Game Cube et PC pour jouer autour de
@@ -156,7 +158,7 @@ export default [
   {
     name: 'Crédit Mutuel',
     link: 'https://www.creditmutuel.fr/fr/jeunes.html',
-    img: `${process.env.ARENA_API_URL}uploads/partners/creditmutuel.jpg`,
+    img: `${apiUrl()}uploads/partners/creditmutuel.jpg`,
     description: (
       <p>
         Banque, assurances, téléphonie et services à destination des jeunes mais aussi des associations, notre
@@ -170,7 +172,7 @@ export default [
   {
     name: "Bureau Des Étudiants de l'Université de Technologie de Troyes",
     link: 'https://etu.utt.fr/orgas/bde',
-    img: `${process.env.ARENA_API_URL}uploads/partners/bde.jpg`,
+    img: `${apiUrl()}uploads/partners/bde.jpg`,
     description: (
       <>
         <p>Le BDE de l'UTT est la première association de notre l'école ! Le BDE remplit différentes missions :</p>
@@ -185,7 +187,7 @@ export default [
   {
     name: 'Troyes D',
     link: 'https://www.facebook.com/TroyesDimensions',
-    img: `${process.env.ARENA_API_URL}uploads/partners/troyesd.jpg`,
+    img: `${apiUrl()}uploads/partners/troyesd.jpg`,
     description: (
       <p>
         Troyes Dimensions est une association loi 1901 fondée en Mars 2019 (par Arnaud Laculle, Louis-Joseph Falcoz
@@ -200,7 +202,7 @@ export default [
   {
     name: 'Blade',
     link: 'https://shadow.tech',
-    img: `${process.env.ARENA_API_URL}uploads/partners/shadow.jpg`,
+    img: `${apiUrl()}uploads/partners/shadow.jpg`,
     description: (
       <p>
         Shadow est la solution révolutionnaire que propose la start-up française Blade ! C'est le premier PC gaming
@@ -217,7 +219,7 @@ export default [
   {
     name: 'War Legend',
     link: 'https://www.warlegend.net/',
-    img: `${process.env.ARENA_API_URL}uploads/partners/warlegend.jpg`,
+    img: `${apiUrl()}uploads/partners/warlegend.jpg`,
     description: (
       <p>
         Structure francophone très active dans les jeux de l'esport les plus funs et populaires, War Legend est

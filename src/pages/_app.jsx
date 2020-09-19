@@ -12,6 +12,8 @@ import 'simplebar/dist/simplebar.min.css';
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
 import headText from '../assets/head';
+import { googleAnalyticsId, googleVerification, nodeEnv } from '../utils/environment';
+import { API } from '../utils/api';
 
 // Import all CSS files
 import '../styles.scss';
@@ -25,9 +27,9 @@ toast.configure({
 
 const App = ({ Component, reduxStore }) => {
   if (process.browser) {
-    if (process.env.NODE_ENV === 'production') {
+    if (nodeEnv() === 'production') {
       if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(process.env.GA_ID);
+        ReactGA.initialize(googleAnalyticsId());
         window.GA_INITIALIZED = true;
       }
       ReactGA.set({ page: window.location.pathname });
@@ -42,7 +44,7 @@ const App = ({ Component, reduxStore }) => {
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta name="description" content={headText.description} />
-        <meta name="google-site-verification" content={process.env.GOOGLE_VERIFICATION} />
+        <meta name="google-site-verification" content={googleVerification()} />
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />

@@ -1,4 +1,4 @@
-import { API } from '../utils';
+import { API } from '../utils/api';
 
 export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
 export const SET_SLOTS = 'tournament/SET_SLOTS';

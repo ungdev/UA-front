@@ -1,4 +1,4 @@
-import { API } from '../utils';
+import { API } from '../utils/api';
 import { SET_VISIBLE, SET_SEARCH_USER } from './userEntry';
 
 export const SET_USERS = 'users/SET_USERS';

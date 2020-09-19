@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title, Table } from './UI';
-import { API } from '../utils';
+import { API } from '../utils/api';
 
 const columns = [
   { title: 'Équipe', key: 'name' },

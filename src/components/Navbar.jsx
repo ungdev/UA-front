@@ -11,7 +11,8 @@ import UserModal from './UserModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
-import { hasOrgaPermission as _hasOrgaPermission } from '../utils';
+import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
+import { isLoginAllowed } from '../utils/settings';
 
 const links = [
   {
@@ -191,7 +192,7 @@ const Navbar = ({ isLoggedIn }) => {
         </footer>
       </div>
 
-      {process.env.DASHBOARD_AVAILABLE === 'true' ? (
+      {isLoginAllowed() ? (
         <LoginModal isVisible={isVisible} />
       ) : (
         <Modal

@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
-import { API } from '../utils';
+
+import { API } from '../utils/api';
 import { updateUser } from './users';
 
 export const SET_VISIBLE = 'userEntry/SET_VISIBLE';

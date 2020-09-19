@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { setLoginModalVisible } from './loginModal';
-import { API } from '../utils';
+import { API } from '../utils/api';
 
 const initialState = {};
 

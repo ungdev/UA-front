@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
-import { API } from '../utils';
+
+import { API } from '../utils/api';
 
 export const SET_CART = 'cart/SET_CART';
-
 export const SET_CARTITEMS = 'cart/SET_CARTITEMS';
 
 const initialState = {

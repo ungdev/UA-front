@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 
-import { API } from '../utils';
+import { API } from '../utils/api';
 
 export const SET_TEAM = 'team/SET_TEAM';
 export const SET_USER = 'login/SET_USER';
