@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
 import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
 
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/dist/simplebar.min.css';
 
-import withReduxStore from '../lib/withReduxStore';
+import { initStore } from '../store';
 import Wrapper from '../components/Wrapper';
 import headText from '../assets/head';
 import { googleAnalyticsId, googleVerification, nodeEnv } from '../utils/environment';
-import { API } from '../utils/api';
 
 // Import all CSS files
 import '../styles.scss';
@@ -25,7 +25,7 @@ toast.configure({
   hideProgressBar: true,
 });
 
-const App = ({ Component, reduxStore }) => {
+const App = ({ Component, store }) => {
   if (process.browser) {
     if (nodeEnv() === 'production') {
       if (!window.GA_INITIALIZED) {
@@ -61,12 +61,14 @@ const App = ({ Component, reduxStore }) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
       </Head>
 
-      <Provider store={reduxStore}>
+      <Provider store={store}>
         <Wrapper Component={Component} />
       </Provider>
     </div>
   );
 };
+
+App.getInitialProps = () => {};
 
 App.propTypes = {
   /**
@@ -76,7 +78,7 @@ App.propTypes = {
   /**
    * The redux store
    */
-  reduxStore: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
 };
 
-export default withReduxStore(App);
+export default withRedux(initStore)(App);
