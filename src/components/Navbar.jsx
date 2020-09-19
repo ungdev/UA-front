@@ -121,14 +121,14 @@ const Navbar = ({ isLoggedIn }) => {
         </a>
       </Link>
 
-      <Link href="/">
-        <a className="desktop-link" aria-label="logo">
-          <div className="desktop-logo" />
-        </a>
-      </Link>
-
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
+          <Link href="/">
+            <a className="desktop-link" aria-label="logo">
+              <div className="desktop-logo" />
+            </a>
+          </Link>
+
           {isLoggedIn ? isLoggedLayout : connexionButton}
 
           <nav>{navLinks}</nav>
@@ -151,6 +151,14 @@ const Navbar = ({ isLoggedIn }) => {
               target="_blank"
               rel="noopener noreferrer">
               <i className="fab fa-twitter" />
+            </a>
+            <a
+              href="https://www.instagram.com/uttarena/"
+              className="instagram-link"
+              aria-label="Page Instagram"
+              target="_blank"
+              rel="noopener noreferrer">
+              <i className="fab fa-instagram" />
             </a>
             <a
               href="https://discord.gg/WhxZwKU"

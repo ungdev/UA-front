@@ -31,10 +31,8 @@ const Home = () => (
       </div>
 
       <div className="home-info">
-        <Title align="center" uppercase>
-          Informations
-        </Title>
-        <Title level={4} align="center" uppercase>
+        <Title align="center">Informations</Title>
+        <Title level={4} align="center" className="uppercase">
           {indexText.information.catchPhrase}
         </Title>
 
@@ -53,9 +51,11 @@ const Home = () => (
         />
 
         <Link href="/information">
-          <Button primary className="info-button" rightIcon="fas fa-chevron-right">
-            Toutes les informations
-          </Button>
+          <a>
+            <Button primary className="info-button" rightIcon="fas fa-chevron-right">
+              Toutes les informations
+            </Button>
+          </a>
         </Link>
       </div>
 
@@ -65,7 +65,7 @@ const Home = () => (
 
       {/*
       <div className="home-partners">
-        <Title align="center" uppercase>
+        <Title align="center">
           Partenaires
         </Title>
         <div className="list-partners">{listPartners}</div>

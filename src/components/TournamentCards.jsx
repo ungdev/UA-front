@@ -18,10 +18,8 @@ const TournamentCards = () => {
 
   return (
     <div className="tournament-cards">
-      <Title align="center" uppercase>
-        Tournois
-      </Title>
-      <Title level={4} align="center" uppercase>
+      <Title align="center">Tournois</Title>
+      <Title level={4} align="center" className="uppercase">
         {tournamentCardsAssets.catchPhrase}
       </Title>
 

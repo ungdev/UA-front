@@ -5,9 +5,7 @@ import legalText from '../assets/legal';
 
 const Legal = () => (
   <div id="legal">
-    <Title align="center" uppercase>
-      Mentions légales
-    </Title>
+    <Title align="center">Mentions légales</Title>
 
     <Title level={2}>Propriétaire et hébergeur du site</Title>
     {legalText.ung}

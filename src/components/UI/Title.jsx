@@ -4,14 +4,11 @@ import PropTypes from 'prop-types';
 /**
  * Displays a title
  */
-const Title = ({ level, children, gutterBottom, align, uppercase, className }) => {
+const Title = ({ level, children, gutterBottom, align, className }) => {
   const Component = `h${level}`;
 
   return (
-    <Component
-      className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''} ${
-        uppercase ? 'uppercase' : ''
-      }`}>
+    <Component className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
       <div className="title-content">{children}</div>
     </Component>
   );
@@ -35,10 +32,6 @@ Title.propTypes = {
    */
   align: PropTypes.oneOf(['inherit', 'center', 'justify', 'left', 'right']),
   /**
-   * Should the text be uppercase ?
-   */
-  uppercase: PropTypes.bool,
-  /**
    * Class of the container
    */
   className: PropTypes.string,
@@ -48,7 +41,6 @@ Title.defaultProps = {
   level: 1,
   gutterBottom: true,
   align: 'inherit',
-  uppercase: false,
   className: '',
 };
 

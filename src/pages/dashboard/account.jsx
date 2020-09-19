@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
 import { API } from '../../utils/api';
-import { apiUrl } from '../../utils/env';
+import { apiUrl } from '../../utils/environment';
 
 const Account = () => {
   const dispatch = useDispatch();

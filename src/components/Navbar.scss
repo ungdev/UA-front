@@ -30,7 +30,7 @@
   .navbar-container {
     overflow-x: hidden;
     overflow-y: auto;
-    height: calc(100vh - 280px);
+    height: calc(100vh - 90px);
   }
 
   .simplebar-scrollbar::before {
@@ -164,11 +164,15 @@
     }
 
     .facebook-link:hover {
-      color: #3b5998;
+      color: #1278f3;
     }
 
     .twitter-link:hover {
       color: #1da1f2;
+    }
+
+    .instagram-link:hover {
+      color: #c13584;
     }
 
     .discord-link:hover {

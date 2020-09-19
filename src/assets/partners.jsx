@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import { apiUrl } from '../utils/env';
+import { apiUrl } from '../utils/environment';
 
 export default [
   {

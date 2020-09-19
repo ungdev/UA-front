@@ -5,24 +5,16 @@ import informationText from '../assets/information';
 
 const Information = () => (
   <div id="information">
-    <Title align="center" uppercase>
-      Présentation
-    </Title>
+    <Title align="center">Présentation</Title>
     <div className="information-section">{informationText.presentation}</div>
 
-    <Title align="center" uppercase>
-      Billetterie
-    </Title>
+    <Title align="center">Billetterie</Title>
     <div className="information-section">{informationText.tickets}</div>
 
-    <Title align="center" uppercase>
-      Infos joueurs
-    </Title>
+    <Title align="center">Infos joueurs</Title>
     <div className="information-section">{informationText.playersInfo}</div>
 
-    <Title align="center" uppercase>
-      Horaires
-    </Title>
+    <Title align="center">Horaires</Title>
     <div className="information-section">
       <Table
         columns={informationText.timetable.columns}
@@ -31,14 +23,10 @@ const Information = () => (
       />
     </div>
 
-    <Title align="center" uppercase>
-      Services
-    </Title>
+    <Title align="center">Services</Title>
     <div className="information-section">{informationText.services}</div>
 
-    <Title align="center" uppercase>
-      Accès
-    </Title>
+    <Title align="center">Accès</Title>
     <div className="information-section">{informationText.access}</div>
   </div>
 );

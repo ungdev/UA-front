@@ -21,7 +21,9 @@ const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, cla
         {button}
       </a>
     ) : (
-      <Link href={href}>{button}</Link>
+      <Link href={href}>
+        <a>{button}</a>
+      </Link>
     );
   }
 
