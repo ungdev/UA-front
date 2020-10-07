@@ -19,40 +19,34 @@ export default {
         18<sup>ème</sup> édition
       </span>{' '}
       ! D'une simple salle d'examen de l'UTT à environ 1500m² au cœur du Festival des Jeux, l'UTT Arena a évolué de
-      manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! L'UTT Arena se déroule donc au
-      Cube Troyes Champagne Expo sous le format que vous connaissez actuellement.
+      manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! Cette année, L'UTT Arena se
+      déroule exceptionnellement à distance, dans un tout nouveau format. L'occasion aussi de s'ouvrir encore plus à
+      l'international.
       <br />
       <br />À présent l'UTT Arena c'est <span className="accent">450 joueurs</span>,{' '}
-      <span className="accent">5 tournois spotlights</span>, une scène de <span className="accent">70 m²</span> et plus
-      d'une <span className="accent">centaine</span> de bénévoles ! Et tout cela, c'est grâce à vous, les joueurs,
-      coachs, visiteurs… qui nous faites confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui
-      connaît ! La confiance de nos partenaires et leur mobilisation autour de notre LAN en font un événement
-      exceptionnel !
+      <span className="accent">6 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
+      tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
+      les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
+      l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
+      contribuent à le rendre exceptionnel ! Un grand merci également à tous les bénévoles qui rendent possible
+      l'organisation de ce beau projet.
     </>
   ),
   tickets: (
     <>
-      Il sera possible d'acheter une place courant octobre.
+      Ouverture des inscriptions le <span className="accent">VENDREDI 16 OCTOBRE, à 19h30 </span>(heure française) !
       <ul>
-        <li>Il faut d'abord s'inscrire (bouton "Connexion" dans la barre de navigation)</li>
-        <li>Ensuite, il faut payer sa place</li>
-        <li>Cette année, le paiement groupé est possible</li>
-        <li>Le paiement se fait uniquement par carte bancaire sur le site</li>
+        <li>Il faut d'abord cliquer sur le bouton "Inscription" dans la barre de navigation</li>
+        <li>Ensuite, choisis ton tournoi, tu seras redirigé vers la plateforme toornament</li>
+        <li>Clique sur le bouton "s'inscrire au tournoi"</li>
+        <li>Pour les tournois en équipe, il faudra inscrire tous les joueurs en une fois</li>
       </ul>
-      Les tarifs sont les suivants :
-      <ul>
-        <li>Joueur : 20€</li>
-        <li>Accompagnateur : 12€ (limité à 40 places)</li>
-        <li>
-          Joueur d'une Université de Technologie : 15€ (réduction effectuée au moment du paiement, pensez à utiliser
-          l'adresse email de votre école)
-        </li>
-      </ul>
+      Cette année l'inscription à l'UTT Arena est <span className="accent">gratuite</span> !
     </>
   ),
   playersInfo: (
     <>
-      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 15 ans révolus.</strong>
+      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 16 ans révolus.</strong>
       <br />
       <br />
 
@@ -64,32 +58,14 @@ export default {
         </a>
       </p>
 
-      <Title level={4}>Ce qu'il faut apporter</Title>
-      <ul>
-        <li>Ton PC</li>
-        <li>Ton écran</li>
-        <li>Ton casque</li>
-        <li>Ton clavier et ta souris</li>
-        <li>Une multiprise</li>
-        <li>Un câble ethernet de 5m minimum (7m c'est l'idéal)</li>
-      </ul>
-      <p>Nous vendons sur place des multiprises et des câbles RJ45 de 5m et 7m.</p>
-
-      <Title level={4}>Ce qui est fourni</Title>
-      <ul>
-        <li>Une table ainsi qu'une place assise bien évidemment</li>
-        <li>Un port ethernet pour te brancher au réseau de l'UTT Arena</li>
-        <li>Une prise électrique pour y brancher ta multiprise</li>
-      </ul>
-
       <Title level={4}>Streaming</Title>
       <p>
-        Pour les joueurs souhaitant streamer pendant la LAN, il faudra en faire la demande au moins 2 semaines avant
-        l'UTT Arena. Même si on te permet de streamer, nous nous réservons le droit d'empêcher le stream le jour de
-        l'UA.
+        Il sera possible de streamer pendant l'événement. N'hésitez pas à taguer l'UTT Arena si vous partagez votre
+        stream !
       </p>
     </>
   ),
+
   timetable: {
     columns: [
       { title: '', key: 'type' },
@@ -100,89 +76,18 @@ export default {
     rows: [
       {
         type: <>UTT&nbsp;Arena</>,
-        ven: '17h - 00h',
-        sam: '00h - 00h',
-        dim: '00h - 18h',
+        ven: '17h - 23h',
+        sam: '10h - 18h',
+        dim: '10h - 18h',
         key: 'ua',
-      },
-      {
-        type: <>Festival&nbsp;des&nbsp;jeux</>,
-        ven: '17h - 21h',
-        sam: '11h - 21h',
-        dim: '11h - 18h',
-        key: 'fdj',
       },
     ],
   },
-  services: (
-    <>
-      <Title level={4}>Nourriture</Title>
-      <p>
-        On sait qu'une compétition esport de 48h non-stop ça creuse ! Nous vous proposons donc un service de
-        restauration sur place ! Des croque-monsieur, crêpes, pizzas, boissons, snack… Tout le nécessaire pour vous
-        sustenter au mieux ! Et tout cela à un prix abordable.
-      </p>
 
-      <Title level={4}>Couchage</Title>
-      <p>
-        Nous mettons à disposition des joueurs des loges communes avec un accès à l'eau et aux douches ! Pensez à
-        ramener vos duvets si vous souhaitez vous reposer ! Nous mettons à disposition des tapis de gym fins pour plus
-        de confort.
-      </p>
-      <p>
-        Si l'idée de dormir par terre ne te tente pas, sache que Kosy Appart'Hôtels te propose une remise de 30% sur
-        leurs chambres, rien que pour tes beaux yeux ! Suis le lien ci-dessous et rentre le code GAME2019 afin de
-        bénéficier de la réduction :<br />
-        <a
-          href="https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/"
-          target="_blank"
-          rel="noopener noreferrer">
-          https://www.kosy-apparthotels.com/nos-residences/troyes-city-park/
-        </a>
-      </p>
-
-      <Title level={4}>Location de matériel</Title>
-      <p>
-        Grâce à notre partenaire Scoup eSport, nous vous proposons de louer du matériel gaming pour toute la durée de
-        l'événement. Pour cela rends-toi sur la{' '}
-        <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">
-          boutique de notre partenaire Scoup eSport
-        </a>
-        .
-      </p>
-    </>
-  ),
-  access: (
-    <>
-      <p>
-        <strong>Adresse :</strong> UTT Arena, 20 rue des Gayettes, 10000 Troyes
-      </p>
-
-      <div className="access">
-        <div>
-          <iframe
-            height="320"
-            width="100%"
-            title="Google Maps"
-            src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            frameBorder="0"
-            scrolling="no"
-            marginHeight="0"
-            marginWidth="0"
-          />
-        </div>
-
-        <div>
-          <Title level={4}>Parking</Title>
-          <p>Parking gratuit mis à disposition juste en face du Parc des Expositions</p>
-
-          <Title level={4}>Train</Title>
-          <p>Gare de Troyes à 10 min à pied du festival</p>
-
-          <Title level={4}>Bus</Title>
-          <p>Lignes 2, 6, 8 : arrêt Terrasses ou Ligne 5 : arrêt CCI</p>
-        </div>
-      </div>
-    </>
+  timetableinfo: (
+    <p>
+      Ces horaires sont donnés à titre indicatif. En dehors des tournois officiels, des animations seront aussi
+      proposées.
+    </p>
   ),
 };
