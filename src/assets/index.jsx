@@ -32,7 +32,7 @@ export default {
       { title: <strong>Âge minimum</strong>, description: '15 ans' },
       {
         title: <strong>Tournois avec lots à gagner</strong>,
-        description: 'LoL Pro, CS:GO, SSBU, Rocket League, TFT, Valorant',
+        description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant',
       },
     ],
   },
