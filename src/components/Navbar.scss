@@ -124,14 +124,16 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: -10px;
       width: 0;
-      height: 3px;
-      background: $gradient;
+      height: 1px;
+      background: white;
+      box-shadow: 0 0 8px 4px #06b8ff;
       transition: all 0.3s;
     }
 
     &.active::after {
+      left: 0;
       width: 100%;
     }
   }
