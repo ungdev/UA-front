@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import TournamentCards from '../components/TournamentCards';
-import { Title, VideoContainer, Table, Countdown, Button, Card } from '../components/UI';
+import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG } from '../components/UI';
 import indexText from '../assets/index';
 import partnersList from '../assets/partners';
 
@@ -17,8 +17,9 @@ const listPartners = partnersList.map((partner) => (
 const Home = () => (
   <div id="home">
     <div className="home-header">
-      <img src="/assets/logo-notext.png" alt="" id="logo" />
-
+      <div id="logo">
+        <LogoSVG />
+      </div>
       <div className="home-title">
         <p className="main">UTT Arena</p>
         <p>27, 28 et 29 novembre 2020</p>

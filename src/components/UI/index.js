@@ -12,6 +12,7 @@ import Tabs from './Tabs';
 import Textarea from './Textarea';
 import Title from './Title';
 import VideoContainer from './VideoContainer';
+import LogoSVG from './LogoSVG';
 
 export {
   Button,
@@ -28,4 +29,5 @@ export {
   Textarea,
   Title,
   VideoContainer,
+  LogoSVG,
 };

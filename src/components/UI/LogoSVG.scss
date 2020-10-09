@@ -1,0 +1,40 @@
+.inside {
+  stroke-dasharray: 2880;
+  stroke-dashoffset: 2880;
+  .neon {
+    animation: turnOnNeon 1.5s ease-in forwards;
+  }
+  .light {
+    stroke: transparent;
+    animation: turnOnLight 1s ease-in forwards 0.5s;
+  }
+}
+
+.externe {
+  stroke-dashoffset: 1512.3;
+  stroke-dasharray: 1512.3;
+  .neon {
+    animation: turnOnNeon 1.5s ease-in forwards 1s;
+  }
+  .light {
+    stroke: transparent;
+    animation: turnOnLight 1s ease-in forwards 1.5s;
+  }
+}
+
+@keyframes turnOnNeon {
+  from {
+    filter: none;
+    stroke: #e2e4da;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes turnOnLight {
+  to {
+    stroke: white;
+    stroke-dashoffset: 0;
+  }
+}
