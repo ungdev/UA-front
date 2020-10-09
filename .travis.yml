@@ -1,20 +1,24 @@
 language: node_js
+
+node_js:
+  - 'node'
+
 branches:
   only:
-  - master
-  - dev
-node_js:
-- stable
-cache:
-  directories:
-  - node_modules
+    - master
+    - staging
+
+cache: yarn
+
 script:
-- yarn
-- yarn lint
-- yarn build
+  - yarn
+  - yarn lint
+  - yarn build
+
 notifications:
   slack:
     secure: YwSUz6OGhhxYWQEFGz5xRmeM4yK/jyGN0dfHLZRnrwMb1RFcVlWwOSxhNSPWmFPyNOcgh7lfCiqig3rUXL6wO9+hHqUpt5sP3pqpHlw23XNyN12vrSHaxLSQ927k3YDE/YoENZGXTOQ0Uw5yEifwqoD/LYsr2l3TdTATtmOLwFcvR022bTAERQqAsQLyUqSNCrsPhW/iS62bFs7v31wBrmSvS0Ro7kcablGz+KCaUeG28i5wBH2fdJc8SRcySsZwIxJK63gGJnH5bGKcra7s5SlI7nYzYb+WNWI+Fm3/MABxlbLcTHlp3E0lwznvyQSQaFAValfugyoAXavHrgtweI/tDfA9ZyhKAsbSpsofXOOnaB7s1vgOJ1jc8/UtQCy22dkB3eeG+o+jRuTgG2ZVmiG5mV88ytfACnmrd2ipSZv/wTAZp2dEBPlbnlT2IwCVIkvX55NDWuU6s8DhU4RfdWCpbj5kabADjzZfe4CT4vwOBxQmBRoP6lmNH2DyyMxhLE7zcmM9rlLH2uHSM6oq2QMcgBNMVRUVJgTxLgCSJHFKf6Y8P7BVayL14PMpF7sv8P4+i9RCDNaELEI+qvGrmzZbcN/SK9e4a+uO/wUJeYkh4wqQsYnGQrv8NiaFR0mlYO56hAgHCbJFx+JhY/C5tCwlRnO8xkctluLa5XS/EDw=
+
 deploy:
   - provider: openshift
     server: $OPENSHIFT_SERVER
@@ -22,7 +26,7 @@ deploy:
     app: front-dev
     token: $OPENSHIFT_TOKEN
     on:
-      branch: dev
+      branch: staging
     edge: true
   - provider: openshift
     server: $OPENSHIFT_SERVER
