@@ -8,7 +8,7 @@ const Information = () => (
     <Title align="center">Présentation</Title>
     <div className="information-section">{informationText.presentation}</div>
 
-    <Title align="center">Billetterie</Title>
+    <Title align="center">Inscriptions</Title>
     <div className="information-section">{informationText.tickets}</div>
 
     <Title align="center">Infos joueurs</Title>
@@ -21,13 +21,8 @@ const Information = () => (
         dataSource={informationText.timetable.rows}
         className="timetable"
       />
+      <p>{informationText.timetableinfo}</p>
     </div>
-
-    <Title align="center">Services</Title>
-    <div className="information-section">{informationText.services}</div>
-
-    <Title align="center">Accès</Title>
-    <div className="information-section">{informationText.access}</div>
   </div>
 );
 
