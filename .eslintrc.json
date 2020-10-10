@@ -1,42 +1,38 @@
 {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
-  },
-  "plugins": [
-    "react",
-    "react-hooks"
-  ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/react",
+    "prettier"
   ],
+  "plugins": ["react-hooks", "react", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     }
   },
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "rules": {
-    "linebreak-style": ["warn", "windows"],
+    "prettier/prettier": ["error"],
+    "no-console": "error",
+    "no-alert": "error",
+    "linebreak-style": ["warn", "unix"],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "semi": "error",
-    "comma-dangle": ["warn", "always-multiline"],
-    "object-curly-spacing": ["warn", "always"],
-    "quotes": ["warn", "single"],
-    "arrow-parens": ["error", "always"],
-    "no-console": "error",
-    "no-alert": "error",
-    "brace-style": ["warn", "stroustrup"]
+    "import/default": "off"
   }
 }

@@ -1,0 +1,16 @@
+.login-modal {
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .login-modal-button,
+  .signup-modal-button {
+    display: block;
+    margin: auto;
+  }
+
+  .footer-text {
+    margin-top: 20px;
+  }
+}

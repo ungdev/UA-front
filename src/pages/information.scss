@@ -1,0 +1,40 @@
+#information {
+  .information-section {
+    margin-bottom: 3em;
+  }
+
+  .timetable {
+    thead th {
+      padding: 0.5em 1.2em;
+    }
+
+    tbody td:not(:first-child) {
+      padding: 0.5em 1.2em;
+      text-align: center;
+    }
+  }
+
+  .access {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    > div {
+      width: calc(50% - 20px);
+
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #information .access {
+    flex-flow: column nowrap;
+
+    > div {
+      width: 100%;
+    }
+  }
+}

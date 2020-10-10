@@ -1,0 +1,43 @@
+// Global
+@import './variables.scss';
+@import './global.scss';
+@import './pages/_app.scss';
+
+// Pages
+@import './pages/faq.scss';
+@import './pages/index.scss';
+@import './pages/information.scss';
+@import './pages/legal.scss';
+@import './pages/admin/entry.scss';
+@import './pages/admin/notification.scss';
+@import './pages/admin/users.scss';
+@import './pages/dashboard/account.scss';
+@import './pages/dashboard/infos.scss';
+@import './pages/dashboard/purchases.scss';
+@import './pages/dashboard/register.scss';
+@import './pages/dashboard/shop.scss';
+@import './pages/dashboard/team.scss';
+
+// Components
+@import './components/CookieConsent.scss';
+@import './components/Header.scss';
+@import './components/LoginModal.scss';
+@import './components/Navbar.scss';
+@import './components/PanelHeader.scss';
+@import './components/Tournament.scss';
+@import './components/TournamentCards.scss';
+@import './components/UserModal.scss';
+
+// UI Components
+@import './components/UI/Button.scss';
+@import './components/UI/Card.scss';
+@import './components/UI/Collapse.scss';
+@import './components/UI/Countdown.scss';
+@import './components/UI/Helper.scss';
+@import './components/UI/Inputs.scss';
+@import './components/UI/Modal.scss';
+@import './components/UI/Radio.scss';
+@import './components/UI/Table.scss';
+@import './components/UI/Tabs.scss';
+@import './components/UI/Title.scss';
+@import './components/UI/VideoContainer.scss';

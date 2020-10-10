@@ -1,0 +1,76 @@
+.title {
+  margin-top: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+
+  &.gutterBottom {
+    margin-bottom: 1em;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.inherit {
+    text-align: inherit;
+  }
+
+  &.left {
+    text-align: left;
+  }
+
+  &.right {
+    text-align: right;
+  }
+
+  &.justify {
+    text-align: justify;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.title-1 {
+    font-family: $ua-font;
+    text-transform: uppercase;
+    overflow: hidden;
+    color: $secondary-color;
+    position: relative;
+
+    .title-content {
+      display: inline-block;
+      position: relative;
+      background: #f5f5f5;
+      padding: 0 12px;
+      box-shadow: 0 0 10px 6px #f5f5f5;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: calc(100% - 20px);
+      height: 1px;
+      top: 50%;
+      left: 0;
+      box-shadow: 0 0 8px 2px $primary-color;
+      border-radius: 10px;
+      margin: 0 10px;
+    }
+  }
+
+  &.title-2 {
+    font-weight: 400;
+    font-size: 2rem;
+  }
+
+  &.title-3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &.title-4 {
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+}

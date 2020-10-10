@@ -1,0 +1,38 @@
+.tournament-cards {
+  .tournaments-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .tournament-card {
+    width: 45%;
+
+    .card-image {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .right-arrow {
+      margin-left: 8px;
+    }
+
+    .button {
+      margin: 10px 0 10px 0;
+    }
+
+    .tournament-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      font-size: 1.4em;
+      text-align: center;
+      color: $primary-color;
+      margin: 10px 0 20px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .tournament-cards .tournament-card {
+    width: 100%;
+  }
+}

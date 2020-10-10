@@ -1,0 +1,36 @@
+#admin-users {
+  .filters {
+    background: #eeeeee;
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 2px solid $primary-color;
+    border-radius: 4px;
+  }
+
+  .users-table {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  hr {
+    background: $gradient;
+    height: 2px;
+    width: 100%;
+    border: none;
+    margin: 20px 0;
+  }
+
+  .table-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+
+    * {
+      padding: 0 12px;
+    }
+  }
+}

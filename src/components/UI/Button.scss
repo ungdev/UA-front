@@ -1,0 +1,47 @@
+.button {
+  display: inline-block;
+  border: 2px solid $light-color;
+  border-radius: 0;
+  padding: 8px 20px;
+  margin: 4px;
+  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+
+  &.primary {
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    background: $gradient;
+  }
+
+  &:disabled {
+    filter: grayscale(0.5) brightness(0.8);
+    cursor: default;
+  }
+
+  &.no-style {
+    border: none;
+    background: none;
+    font-size: 1em;
+    padding: 8px;
+    margin: 0;
+  }
+
+  &:not(:disabled):hover {
+    filter: brightness(0.85);
+  }
+
+  &:not(.empty) {
+    .button-icon-left {
+      margin-right: 8px;
+    }
+
+    .button-icon-right {
+      margin-left: 8px;
+    }
+  }
+}
