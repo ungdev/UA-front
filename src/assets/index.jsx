@@ -29,7 +29,7 @@ export default {
       { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },
       { title: <strong>Places</strong>, description: '450 joueurs' },
       { title: <strong>Tarif</strong>, description: 'Gratuit !' },
-      { title: <strong>Âge minimum</strong>, description: '15 ans' },
+      { title: <strong>Âge minimum</strong>, description: '16 ans' },
       {
         title: <strong>Tournois avec lots à gagner</strong>,
         description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant',

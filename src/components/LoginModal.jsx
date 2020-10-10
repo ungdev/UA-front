@@ -170,21 +170,14 @@ const LoginModal = ({ isVisible }) => {
 
   return (
     <Modal
-      title={body[panel].title}
+      title="Inscription"
       visible={isVisible}
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false));
-        resetFields();
       }}
       className="login-modal">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          body[panel].action();
-        }}>
-        {body[panel].content}
-      </form>
+      Les inscriptions ouvriront bientôt, suivez-nous sur les réseaux sociaux !
     </Modal>
   );
 };

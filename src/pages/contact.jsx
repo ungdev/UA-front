@@ -5,11 +5,11 @@ import { sendMessage } from '../utils/contact';
 
 const options = [
   'Tournoi League of Legends',
-  'Tournoi Teamfight Tactics',
-  'Tournoi Counter-Strike : Global Offensive',
-  'Tournoi Rocket League',
-  'Tournoi Super Smash Bros Ultimate',
   'Tournoi Valorant',
+  'Tournoi Counter-Strike : Global Offensive',
+  'Tournoi Super Smash Bros Ultimate',
+  'Tournoi Rocket League',
+  'Tournoi Teamfight Tactics',
   'Problème sur le site',
   'Autre',
 ]

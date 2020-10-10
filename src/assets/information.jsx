@@ -35,9 +35,10 @@ export default {
   tickets: (
     <>
       Ouverture des inscriptions le <span className="accent">VENDREDI 16 OCTOBRE, à 19h30 </span>(heure française) !
+      Elles auront lieu sur la plateforme Toornament mais pas de panique, tout est expliqué ici.
       <ul>
         <li>Il faut d'abord cliquer sur le bouton "Inscription" dans la barre de navigation</li>
-        <li>Ensuite, choisis ton tournoi, tu seras redirigé vers la plateforme toornament</li>
+        <li>Ensuite, choisis ton tournoi, tu seras redirigé vers la plateforme Toornament</li>
         <li>Clique sur le bouton "s'inscrire au tournoi"</li>
         <li>Pour les tournois en équipe, il faudra inscrire tous les joueurs en une fois</li>
       </ul>
@@ -46,16 +47,9 @@ export default {
   ),
   playersInfo: (
     <>
-      <strong className="accent">Rappel : l'âge minimum pour participer au tournoi est de 16 ans révolus.</strong>
-      <br />
-      <br />
-
-      <Title level={4}>Joueur mineur</Title>
+      <Title level={4}>Joueurs mineurs</Title>
       <p>
-        Une autorisation parentale remplie sera demandée lors de l'événement.{' '}
-        <a href="https://drive.google.com/uc?export=download&id=1bXRvLE091PCiLjcBSWFVVvcvOY6frhO-">
-          Tu peux la télécharger ici.
-        </a>
+        L'âge minimum pour participer au tournoi est de <strong className="accent">16 ans révolus</strong>.
       </p>
 
       <Title level={4}>Streaming</Title>
@@ -86,8 +80,8 @@ export default {
 
   timetableinfo: (
     <p>
-      Ces horaires sont donnés à titre indicatif. En dehors des tournois officiels, des animations seront aussi
-      proposées.
+      Ces horaires sont donnés à titre indicatif. En dehors des tournois officiels, des animations vous seront proposées
+      pour vous offrir une ambiance en continu en journée !
     </p>
   ),
 };
