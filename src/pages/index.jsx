@@ -38,10 +38,9 @@ const Home = () => (
         </Title>
 
         <p>{indexText.information.description}</p>
-
         <VideoContainer
-          src="https://www.youtube.com/embed/xktOJ3kI1Y4"
-          title="Aftermovie UTT Arena 2020"
+          src="https://www.youtube.com/embed/bjBwMWQX-DY"
+          title="Trailer UTT Arena 2020"
           className="video-container"
         />
 
