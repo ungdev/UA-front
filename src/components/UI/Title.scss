@@ -50,10 +50,9 @@
       content: '';
       position: absolute;
       width: calc(100% - 20px);
-      height: 3px;
+      height: 1px;
       top: 50%;
       left: 0;
-      background: $primary-color;
       box-shadow: 0 0 8px 2px $primary-color;
       border-radius: 10px;
       margin: 0 10px;

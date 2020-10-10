@@ -84,7 +84,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     border: 1px solid #fff;
-    box-shadow: inset 0 0 10px 8px #ed00e4, 0 0 10px 8px #ed00e4;
+    box-shadow: inset 0 0 4px 2px #ed00e4, 0 0 4px 2px #ed00e4;
     background: transparent;
   }
 
@@ -129,8 +129,8 @@
       bottom: 0;
       left: -10px;
       width: 0;
-      height: 3px;
-      background: $primary-color;
+      height: 1px;
+      background: white;
       box-shadow: 0 0 8px 2px $primary-color;
       transition: all 0.3s;
     }
