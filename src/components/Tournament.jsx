@@ -92,16 +92,6 @@ const Tournament = ({ assets, isSolo, tournamentId }) => {
               frameBorder="0"
             />
           ))}
-        <Title level={2}>{isSolo ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
-        {isLoggedIn ? (
-          <Table
-            columns={isSolo ? [{ title: 'Joueur', key: 'players' }] : columns}
-            dataSource={formatTeams}
-            className="table-tournament"
-          />
-        ) : (
-          <p>Connectez vous pour afficher les équipes</p>
-        )}
       </div>
     </div>
   );

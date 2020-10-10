@@ -8,15 +8,12 @@
   outline: none;
 }
 
-:root {
-  font-family: 'Roboto', sans-serif;
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
   color: #212121;
+  font-family: 'Roboto', sans-serif;
   text-align: justify;
   overflow-x: hidden;
 }
