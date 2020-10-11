@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchSlots } from '../modules/tournament';
 import { Card, Title } from './UI';
-import tournamentCardsAssets from '../assets/tournamentCards';
+import tournaments from '../utils/tournaments';
 
 const TournamentCards = () => {
   const dispatch = useDispatch();
@@ -20,18 +20,16 @@ const TournamentCards = () => {
     <div className="tournament-cards">
       <Title align="center">Tournois</Title>
       <Title level={4} align="center" className="uppercase">
-        {tournamentCardsAssets.catchPhrase}
+        Les 6 tournois à l'UTT Arena 2020
       </Title>
 
       <div className="tournaments-list">
-        {tournamentCardsAssets.list.map(({ title, rewards, players, image, link, id }) => (
+        {tournaments.map(({ name, shortName, players, image, rewards }) => (
           <Card
             dark
             content={
               <>
-                <div className="tournament-title">
-                  {title} {slotsTournaments && slotsTournaments[id].available <= 0 && '(COMPLET)'}
-                </div>
+                <div className="tournament-name">{name}</div>
                 <p>
                   <strong>Places :</strong> {players} joueurs
                 </p>
@@ -40,23 +38,17 @@ const TournamentCards = () => {
                     <strong>Récompenses :</strong> {rewards}
                   </p>
                 )}
-                {slotsTournaments && (
-                  <p>
-                    <strong> Places disponibles :</strong> {Math.max(slotsTournaments[id].available, 0)} /{' '}
-                    {slotsTournaments[id].total}
-                  </p>
-                )}
               </>
             }
             imgSrc={image}
-            href={link}
+            href={`/tournaments/${shortName}`}
             buttonContent={
               <>
                 Plus d'infos <i className="fas fa-chevron-right right-arrow" />
               </>
             }
             className="tournament-card"
-            key={title}
+            key={shortName}
           />
         ))}
       </div>

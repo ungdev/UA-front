@@ -3,9 +3,8 @@ import Link from 'next/link';
 
 import TournamentCards from '../components/TournamentCards';
 import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG } from '../components/UI';
-import indexText from '../assets/index';
-import partnersList from '../assets/partners';
 
+/*
 const listPartners = partnersList.map((partner) => (
   <div className="partner" key={partner.link}>
     <a href={partner.link} target="_blank" rel="noopener noreferrer" aria-label={`Partenaire ${partner.name}`}>
@@ -13,6 +12,7 @@ const listPartners = partnersList.map((partner) => (
     </a>
   </div>
 ));
+*/
 
 const Home = () => (
   <div id="home">
@@ -34,10 +34,20 @@ const Home = () => (
       <div className="home-info">
         <Title align="center">Informations</Title>
         <Title level={4} align="center" className="uppercase">
-          {indexText.information.catchPhrase}
+          Un format repensé, toujours la même ambiance !
         </Title>
 
-        <p>{indexText.information.description}</p>
+        <p>
+          L'UTT Arena revient pour sa 18<sup>ème</sup> édition les{' '}
+          <span className="accent">27, 28 et 29 novembre 2020</span>. Cette édition aura lieu pour la première fois{' '}
+          <span className="accent">intégralement en ligne</span>. Au programme,{' '}
+          <span className="accent">6 tournois spotlights</span> sur des incontournables de l'esport, du skill, des
+          personnalités et des rencontres, de nombreuses animations, avec bien sûr des{' '}
+          <span className="accent">lots</span> à gagner, qui rendront cette édition plus intense et vibrante que jamais.
+          Comme toujours des invités de qualité seront présents pour streamer et commenter tes meilleures games ! Alors
+          prépare tout ton stuff et <span className="accent">impose-toi dans l'arène !</span>
+        </p>
+
         <VideoContainer
           src="https://www.youtube.com/embed/bjBwMWQX-DY"
           title="Trailer UTT Arena 2020"
@@ -45,8 +55,26 @@ const Home = () => (
         />
 
         <Table
-          columns={indexText.information.tableColumns}
-          dataSource={indexText.information.tableRows}
+          columns={[
+            { title: '', key: 'title' },
+            { title: '', key: 'description' },
+          ]}
+          dataSource={[
+            {
+              title: <strong>Format</strong>,
+              description: "A distance : chez toi, avec ton matos, prépare ton meilleur spot et c'est parti !",
+            },
+            { title: <strong>Ouverture</strong>, description: '27 novembre 2020 - 17h' },
+            { title: <strong>Fermeture</strong>, description: '29 novembre 2020 - 18h' },
+            { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },
+            { title: <strong>Places</strong>, description: '450 joueurs' },
+            { title: <strong>Tarif</strong>, description: 'Gratuit !' },
+            { title: <strong>Âge minimum</strong>, description: '16 ans' },
+            {
+              title: <strong>Tournois avec lots à gagner</strong>,
+              description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant',
+            },
+          ]}
           className="info-table"
         />
 

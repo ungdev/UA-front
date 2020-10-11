@@ -1,70 +1,82 @@
 import React from 'react';
 
-export default {
-  lol: {
+export default [
+  {
+    name: 'League of Legends',
+    shortName: 'lol',
+    players: 160,
     image: '/assets/lol.jpg',
-    title: 'League of Legends',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">32 équipes de 5 joueurs</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-  valorant: {
+  {
+    name: 'Valorant',
+    shortName: 'valorant',
+    players: 80,
     image: '/assets/valorant.jpg',
-    title: 'Valorant',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-  csgo: {
+  {
+    name: 'Counter-Strike: Global Offensive',
+    shortName: 'csgo',
+    players: 80,
     image: '/assets/csgo.jpg',
-    title: 'Counter-Strike: Global Offensive',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-  ssbu: {
+  {
+    name: 'Super Smash Bros. Ultimate',
+    shortName: 'ssbu',
+    players: 64,
     image: '/assets/ssbu.png',
-    title: 'Super Smash Bros. Ultimate',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">64 joueurs en solo</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-  'rocket-league': {
-    image: '/assets/rl.jpg',
-    title: 'Rocket League',
+  {
+    name: 'Rocket League',
+    shortName: 'rocket-league',
+    players: 48,
+    image: '/assets/rocket-league.jpg',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">16 équipes de 3 joueurs</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-  tft: {
+  {
+    name: 'Teamfight Tactics',
+    shortName: 'tft',
+    players: 16,
     image: '/assets/tft.png',
-    title: 'Teamfight Tactics',
+    rewards: 'À venir',
     format: (
       <>
         <div className="tournament-format">16 joueurs</div>
         <p>Plus d'informations à venir</p>
       </>
     ),
-    rewards: 'À venir',
   },
-};
+];

@@ -11,7 +11,6 @@ import 'simplebar/dist/simplebar.min.css';
 
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
-import headText from '../assets/head';
 import { googleAnalyticsId, googleVerification, nodeEnv } from '../utils/environment';
 import { API } from '../utils/api';
 
@@ -40,10 +39,20 @@ const App = ({ Component, reduxStore }) => {
   return (
     <div>
       <Head>
-        <title>{headText.title}</title>
+        <title>UTT Arena 2020 - 27, 28 et 29 novembre 2020</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
-        <meta name="description" content={headText.description} />
+        <meta
+          name="description"
+          content={
+            'Venez participer au célèbre tournoi du Grand-Est ! ' +
+            "L'UTT Arena revient pour sa 18ème édition les 27, 28 et 29 novembre 2020. " +
+            'Cette édition spéciale aura lieu en ligne et sera 100% gratuite ! ' +
+            "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
+            'de nombreuses animations et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
+            "Alors prépare tout ton stuff et impose-toi dans l'arène !"
+          }
+        />
         <meta name="google-site-verification" content={googleVerification()} />
 
         <link rel="icon" href="/favicon.ico" />

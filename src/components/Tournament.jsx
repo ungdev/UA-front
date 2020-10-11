@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
-import { Button, Title, Table } from './UI';
+import { Button, Title } from './UI';
 import { API } from '../utils/api';
 
 const columns = [
@@ -12,7 +12,7 @@ const columns = [
   { title: 'Joueurs', key: 'players' },
 ];
 
-const Tournament = ({ assets, isSolo, tournamentId }) => {
+const Tournament = ({ assets, tournamentId }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -53,7 +53,7 @@ const Tournament = ({ assets, isSolo, tournamentId }) => {
       <img className="tournament-header" alt="" src={assets.image} />
 
       <div className="tournament-content">
-        <Title align="center">{assets.title}</Title>
+        <Title align="center">{assets.name}</Title>
 
         <div className="tournament-signin">
           <Button primary onClick={buttonClick}>
@@ -102,8 +102,8 @@ Tournament.propTypes = {
    * The assets of the tournament
    */
   assets: PropTypes.shape({
+    name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    title: PropTypes.node.isRequired,
     format: PropTypes.node.isRequired,
     rewards: PropTypes.node,
     rules: PropTypes.node,

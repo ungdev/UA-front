@@ -5,7 +5,6 @@ import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
-import dashboard from '../../assets/dashboard';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -70,7 +69,12 @@ const Register = () => {
     <>
       <div className="team-tournament">
         <div className="create-team">
-          {dashboard.register.create.info}
+          <p>
+            Je veux créer mon équipe pour pouvoir rejoindre un tournoi.
+            <br />
+            Je serai chef d'équipe et je pourrai gérer les membres de mon équipe.
+          </p>
+
           <Select label="Tournoi" options={tournamentsOptions} value={tournament} onChange={setTournament} />
           <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
           <Button
@@ -80,20 +84,34 @@ const Register = () => {
             rightIcon="fas fa-plus">
             Créer mon équipe
           </Button>
-          {dashboard.register.create.discord}
+
+          <p>
+            Il te manque un ou plusieurs joueurs ? Viens recruter sur notre{' '}
+            <a href="https://discord.gg/TenDPRS">discord</a>.
+          </p>
         </div>
 
         <div className="join-team">
-          {dashboard.register.join.info}
+          <p>
+            Je veux rejoindre une équipe déjà créée pour un tournoi.
+            <br />
+            Le chef d'équipe devra accepter ma demande.
+          </p>
+
           <Button primary className="center" onClick={() => setPanel('join')} rightIcon="fas fa-users">
             Rejoindre une équipe
           </Button>
-          {dashboard.register.join.discord}
+
+          <p>
+            Tu n'as pas encore de coéquipier ? Pas de soucis, viens en trouver un sur notre{' '}
+            <a href="https://discord.gg/TenDPRS">discord</a>.
+          </p>
         </div>
       </div>
       <div className="join-solo">
         <div className="create-solo-team">
-          {dashboard.register.solo}
+          <p>Je veux rejoindre un tournoi solo (SSBU, osu! ou libre)</p>
+
           <Select
             label="Tournoi"
             options={tournamentsSoloOptions}
@@ -109,7 +127,8 @@ const Register = () => {
           </Button>
         </div>
         <div>
-          {dashboard.register.coach}
+          <p>Tu es coach, manager ou accompagnateur ? C'est ici pour prendre sa place.</p>
+
           <Button
             primary
             className="center-mobile"
