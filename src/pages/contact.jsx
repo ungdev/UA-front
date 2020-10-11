@@ -25,6 +25,17 @@ const Contact = () => {
   const [message, setMessage] = useState('');
   const [subject, setSubject] = useState('Autre');
 
+  const onSubmit = async () => {
+    const isValid = await sendMessage(name, email, subject, message);
+
+    if (isValid) {
+      setName('');
+      setEmail('');
+      setMessage('');
+      setSubject('');
+    }
+  };
+
   return (
     <div id="contact">
       <Title align="center">Contact</Title>
@@ -46,7 +57,7 @@ const Contact = () => {
       <Select label="Sujet" value={subject} onChange={setSubject} options={options} />
       <Textarea label="Message" value={message} onChange={setMessage} placeholder="Tapez votre message ici..." />
 
-      <Button primary onClick={() => sendMessage(name, email, subject, message)} rightIcon="fas fa-paper-plane">
+      <Button primary onClick={onSubmit} rightIcon="fas fa-paper-plane">
         Envoyer
       </Button>
     </div>
