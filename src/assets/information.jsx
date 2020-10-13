@@ -63,9 +63,9 @@ export default {
   timetable: {
     columns: [
       { title: '', key: 'type' },
-      { title: <>Vendredi&nbsp;6</>, key: 'ven' },
-      { title: <>Samedi&nbsp;7</>, key: 'sam' },
-      { title: <>Dimanche&nbsp;8</>, key: 'dim' },
+      { title: <>Vendredi&nbsp;27</>, key: 'ven' },
+      { title: <>Samedi&nbsp;28</>, key: 'sam' },
+      { title: <>Dimanche&nbsp;29</>, key: 'dim' },
     ],
     rows: [
       {
