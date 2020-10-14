@@ -129,9 +129,13 @@ const Navbar = ({ isLoggedIn }) => {
             </a>
           </Link>
 
-          <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>
-            Inscription
-          </Button>
+          <Link href="/tournaments">
+            <a>
+              <Button primary className="login-button" /*onClick={() => dispatch(setLoginModalVisible(true))}*/>
+                Inscription
+              </Button>
+            </a>
+          </Link>
 
           <nav>{navLinks}</nav>
         </SimpleBar>

@@ -7,6 +7,7 @@ export default [
     players: 160,
     image: '/assets/lol.jpg',
     rewards: 'À venir',
+    toornamentId: '3964490483953033216',
     format: (
       <>
         <div className="tournament-format">32 équipes de 5 joueurs</div>
@@ -20,6 +21,7 @@ export default [
     players: 80,
     image: '/assets/valorant.jpg',
     rewards: 'À venir',
+    toornamentId: '3964512438822207488',
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
@@ -33,6 +35,7 @@ export default [
     players: 80,
     image: '/assets/csgo.jpg',
     rewards: 'À venir',
+    toornamentId: '3964440948621860864',
     format: (
       <>
         <div className="tournament-format">16 équipes de 5 joueurs</div>
@@ -46,6 +49,7 @@ export default [
     players: 64,
     image: '/assets/ssbu.png',
     rewards: 'À venir',
+    toornamentId: '3968020242978578432',
     format: (
       <>
         <div className="tournament-format">64 joueurs en solo</div>
@@ -59,6 +63,7 @@ export default [
     players: 48,
     image: '/assets/rocket-league.jpg',
     rewards: 'À venir',
+    toornamentId: '3968011074334515200',
     format: (
       <>
         <div className="tournament-format">16 équipes de 3 joueurs</div>
@@ -72,6 +77,7 @@ export default [
     players: 16,
     image: '/assets/tft.png',
     rewards: 'À venir',
+    toornamentId: '3964519359953436672',
     format: (
       <>
         <div className="tournament-format">16 joueurs</div>

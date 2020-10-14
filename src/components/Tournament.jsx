@@ -56,9 +56,9 @@ const Tournament = ({ assets, tournamentId }) => {
         <Title align="center">{assets.name}</Title>
 
         <div className="tournament-signin">
-          <Button primary onClick={buttonClick}>
-            S'inscrire
-          </Button>
+          <a href={`https://www.toornament.com/fr/tournaments/${assets.toornamentId}/information`}>
+            <Button primary>S'inscrire</Button>
+          </a>
         </div>
 
         <Title level={2}>Format</Title>
@@ -82,6 +82,7 @@ const Tournament = ({ assets, tournamentId }) => {
           </>
         )}
         {assets.toornamentId &&
+          assets.stages &&
           assets.stages.map((stage) => (
             <iframe
               key={stage}
