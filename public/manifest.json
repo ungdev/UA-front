@@ -3,7 +3,7 @@
   "short_name": "UTT Arena",
   "icons": [
     {
-      "src": "/assets/logo-notext.png",
+      "src": "/logo-notext.png",
       "type": "image/png",
       "sizes": "192x192 512x512"
     }

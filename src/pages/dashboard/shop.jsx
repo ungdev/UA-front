@@ -268,7 +268,7 @@ const Shop = () => {
       </div>
       <div className="scoup">
         <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">
-          <img src="/assets/scoupbanner.png" alt="" />
+          <img src="/scoupbanner.png" alt="" />
         </a>
       </div>
       <div className="shop-section">

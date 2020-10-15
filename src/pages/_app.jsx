@@ -57,7 +57,7 @@ const App = ({ Component, reduxStore }) => {
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="apple-touch-icon" href="/assets/logo-notext.png" />
+        <link rel="apple-touch-icon" href="/logo-notext.png" />
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />

@@ -5,7 +5,7 @@ export default [
     name: 'League of Legends',
     shortName: 'lol',
     players: 160,
-    image: '/assets/lol.jpg',
+    image: '/tournaments/lol.jpg',
     rewards: 'À venir',
     toornamentId: '3964490483953033216',
     format: (
@@ -19,7 +19,7 @@ export default [
     name: 'Valorant',
     shortName: 'valorant',
     players: 80,
-    image: '/assets/valorant.jpg',
+    image: '/tournaments/valorant.jpg',
     rewards: 'À venir',
     toornamentId: '3964512438822207488',
     format: (
@@ -33,7 +33,7 @@ export default [
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
     players: 80,
-    image: '/assets/csgo.jpg',
+    image: '/tournaments/csgo.jpg',
     rewards: 'À venir',
     toornamentId: '3964440948621860864',
     format: (
@@ -47,7 +47,7 @@ export default [
     name: 'Super Smash Bros. Ultimate',
     shortName: 'ssbu',
     players: 64,
-    image: '/assets/ssbu.png',
+    image: '/tournaments/ssbu.png',
     rewards: 'À venir',
     toornamentId: '3968020242978578432',
     format: (
@@ -61,7 +61,7 @@ export default [
     name: 'Rocket League',
     shortName: 'rocket-league',
     players: 48,
-    image: '/assets/rocket-league.jpg',
+    image: '/tournaments/rocket-league.jpg',
     rewards: 'À venir',
     toornamentId: '3968011074334515200',
     format: (
@@ -75,7 +75,7 @@ export default [
     name: 'Teamfight Tactics',
     shortName: 'tft',
     players: 16,
-    image: '/assets/tft.png',
+    image: '/tournaments/tft.png',
     rewards: 'À venir',
     toornamentId: '3964519359953436672',
     format: (
