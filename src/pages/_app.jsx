@@ -49,7 +49,7 @@ const App = ({ Component, reduxStore }) => {
             "L'UTT Arena revient pour sa 18ème édition les 27, 28 et 29 novembre 2020. " +
             'Cette édition spéciale aura lieu en ligne et sera 100% gratuite ! ' +
             "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
-            'de nombreuses animations et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
+            'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"
           }
         />

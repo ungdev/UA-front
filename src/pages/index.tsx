@@ -47,10 +47,11 @@ const Home = () => {
             <span className="accent">27, 28 et 29 novembre 2020</span>. Cette édition aura lieu pour la première fois{' '}
             <span className="accent">intégralement en ligne</span>. Au programme,{' '}
             <span className="accent">6 tournois spotlights</span> sur des incontournables de l'esport, du skill, des
-            personnalités et des rencontres, de nombreuses animations, avec bien sûr des{' '}
-            <span className="accent">lots</span> à gagner, qui rendront cette édition plus intense et vibrante que
-            jamais. Comme toujours des invités de qualité seront présents pour streamer et commenter tes meilleures
-            games ! Alors prépare tout ton stuff et <span className="accent">impose-toi dans l'arène !</span>
+            personnalités et des rencontres, de nombreuses animations, avec bien sûr du{' '}
+            <span className="accent">cashprize</span> et des <span className="accent">lots</span> à gagner, qui rendront
+            cette édition plus intense et vibrante que jamais. Comme toujours des invités de qualité seront présents
+            pour streamer et commenter tes meilleures games ! Alors prépare tout ton stuff et{' '}
+            <span className="accent">impose-toi dans l'arène !</span>
           </p>
 
           <VideoContainer
@@ -75,10 +76,7 @@ const Home = () => {
               { title: <strong>Places</strong>, description: '450 joueurs' },
               { title: <strong>Tarif</strong>, description: 'Gratuit !' },
               { title: <strong>Âge minimum</strong>, description: '16 ans' },
-              {
-                title: <strong>Tournois avec lots à gagner</strong>,
-                description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant',
-              },
+              { title: <strong>Tournois</strong>, description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant' },
             ]}
             className="info-table"
           />

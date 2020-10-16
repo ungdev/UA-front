@@ -62,18 +62,20 @@ const Tournament = ({ assets, tournamentId }) => {
         </div>
 
         <Title level={2}>Format</Title>
-        <div className="tournament-section">{assets.format}</div>
+        <div className="tournament-section">
+          <strong>{assets.format}</strong>
+        </div>
 
-        {assets.rewards && (
-          <>
-            <Title level={2}>Récompenses</Title>
-            <div className="tournament-section">{assets.rewards}</div>
-          </>
-        )}
+        <Title level={2}>Récompenses</Title>
+        <div className="tournament-section">
+          <p>{assets.rewards}</p>
+        </div>
 
-        {assets.rules && (
+        <Title level={2}>Règlement</Title>
+        {!assets.rules ? (
+          'Le règlement sera bientôt disponible.'
+        ) : (
           <>
-            <Title level={2}>Règlement</Title>
             <div className="tournament-section">
               <a href={assets.rules} target="_blank" rel="noopener noreferrer">
                 Le règlement est disponible ici.

@@ -6,83 +6,137 @@ export default [
     shortName: 'lol',
     players: 160,
     image: '/tournaments/lol.jpg',
-    rewards: 'À venir',
-    toornamentId: '3964490483953033216',
-    format: (
-      <>
-        <div className="tournament-format">32 équipes de 5 joueurs</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '500€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 250€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 150€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 100€
+        </li>
+      </ul>
     ),
+    toornamentId: '3964490483953033216',
+    format: '32 équipes de 5 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/lol.pdf',
   },
   {
     name: 'Valorant',
     shortName: 'valorant',
     players: 80,
     image: '/tournaments/valorant.jpg',
-    rewards: 'À venir',
-    toornamentId: '3964512438822207488',
-    format: (
-      <>
-        <div className="tournament-format">16 équipes de 5 joueurs</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '500€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 250€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 150€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 100€
+        </li>
+      </ul>
     ),
+    toornamentId: '3964512438822207488',
+    format: '16 équipes de 5 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/valorant.pdf',
   },
   {
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
     players: 80,
     image: '/tournaments/csgo.jpg',
-    rewards: 'À venir',
-    toornamentId: '3964440948621860864',
-    format: (
-      <>
-        <div className="tournament-format">16 équipes de 5 joueurs</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '500€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 250€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 150€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 100€
+        </li>
+      </ul>
     ),
+    toornamentId: '3964440948621860864',
+    format: '16 équipes de 5 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/csgo.pdf',
   },
   {
     name: 'Super Smash Bros. Ultimate',
     shortName: 'ssbu',
     players: 64,
     image: '/tournaments/ssbu.png',
-    rewards: 'À venir',
-    toornamentId: '3968020242978578432',
-    format: (
-      <>
-        <div className="tournament-format">64 joueurs en solo</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '250€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 120€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 80€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 50€
+        </li>
+      </ul>
     ),
+    toornamentId: '3968020242978578432',
+    format: '64 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/ssbu.pdf',
   },
   {
     name: 'Rocket League',
     shortName: 'rocket-league',
     players: 48,
     image: '/tournaments/rocket-league.jpg',
-    rewards: 'À venir',
-    toornamentId: '3968011074334515200',
-    format: (
-      <>
-        <div className="tournament-format">16 équipes de 3 joueurs</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '200€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 90€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 70€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 40€
+        </li>
+      </ul>
     ),
+    toornamentId: '3968011074334515200',
+    format: '16 équipes de 3 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/rocket-league.pdf',
   },
   {
     name: 'Teamfight Tactics',
     shortName: 'tft',
     players: 16,
     image: '/tournaments/tft.png',
-    rewards: 'À venir',
-    toornamentId: '3964519359953436672',
-    format: (
-      <>
-        <div className="tournament-format">16 joueurs</div>
-        <p>Plus d'informations à venir</p>
-      </>
+    shortRewards: '150€ + lots',
+    rewards: (
+      <ul>
+        <li>
+          1<sup>ère</sup> place : 70€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 50€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 30€
+        </li>
+      </ul>
     ),
+    toornamentId: '3964519359953436672',
+    format: '16 joueurs',
+    rules: 'https://arena.utt.fr/uploads/files/rules/tft.pdf',
   },
 ];

@@ -24,7 +24,7 @@ const TournamentCards = () => {
       </Title>
 
       <div className="tournaments-list">
-        {tournaments.map(({ name, shortName, players, image, rewards }) => (
+        {tournaments.map(({ name, shortName, players, image, shortRewards }) => (
           <Card
             dark
             content={
@@ -33,9 +33,9 @@ const TournamentCards = () => {
                 <p>
                   <strong>Places :</strong> {players} joueurs
                 </p>
-                {rewards && (
+                {shortRewards && (
                   <p>
-                    <strong>Récompenses :</strong> {rewards}
+                    <strong>Récompenses :</strong> {shortRewards}
                   </p>
                 )}
               </>
