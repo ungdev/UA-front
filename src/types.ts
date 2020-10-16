@@ -3,6 +3,13 @@ export interface Settings {
   shop: boolean;
 }
 
+export interface Partner {
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+}
+
 declare namespace NodeJS {
   interface Process {
     browser: boolean;

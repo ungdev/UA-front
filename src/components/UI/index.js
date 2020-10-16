@@ -4,6 +4,7 @@ import Collapse from './Collapse';
 import Countdown from './Countdown';
 import Helper from './Helper';
 import Input from './Input';
+import Loader from './Loader';
 import Modal from './Modal';
 import Radio from './Radio';
 import Select from './Select';
@@ -21,6 +22,7 @@ export {
   Countdown,
   Helper,
   Input,
+  Loader,
   Modal,
   Radio,
   Select,

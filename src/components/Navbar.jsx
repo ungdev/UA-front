@@ -32,6 +32,10 @@ const links = [
     href: '/faq',
   },
   {
+    title: 'Partenaires',
+    href: '/partners',
+  },
+  {
     title: 'Contact',
     href: '/contact',
   },
