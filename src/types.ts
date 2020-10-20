@@ -10,6 +10,14 @@ export interface Partner {
   link: string;
 }
 
+export type Organisers = {
+  title: string;
+  members: {
+    name: string;
+    role: string;
+  }[];
+}[];
+
 declare namespace NodeJS {
   interface Process {
     browser: boolean;

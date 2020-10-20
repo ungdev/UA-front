@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 import { Title, Table } from '../components/UI';
@@ -28,8 +29,11 @@ const Information = () => (
       tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
       les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
       l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
-      contribuent à le rendre exceptionnel ! Un grand merci également à tous les bénévoles qui rendent possible
-      l'organisation de ce beau projet.
+      contribuent à le rendre exceptionnel ! Un grand merci également à{' '}
+      <Link href="/organisers">
+        <a>tous les bénévoles</a>
+      </Link>{' '}
+      qui rendent possible l'organisation de ce beau projet.
     </div>
 
     <Title align="center">Inscriptions</Title>
