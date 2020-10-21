@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import { API } from '../utils/api';
 import { Card, Title, Loader } from '../components/UI';
 import { Partner } from '../types';
 
@@ -12,7 +12,7 @@ const Partners = () => {
   }, []);
 
   const fetchPartners = async () => {
-    const request = await API.get<Partner[]>('/partners');
+    const request = await axios.get<Partner[]>('/uploads/files/partners/list.json');
 
     setPartners(request.data);
   };
