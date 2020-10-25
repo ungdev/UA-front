@@ -1,20 +1,22 @@
 import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
-import { apiUrl } from './environment';
+import { apiUrl, uploadsUrl } from './environment';
 
-let token: string | null = null;
+let token = null as string | null;
 
 // Send request to API and handle errors
-const requestAPI = <T>(method: Method, route: string, body?: object) =>
+const requestAPI = <T>(method: Method, baseURL: string, route: string, authorizationHeader: boolean, body?: object) =>
   new Promise<AxiosResponse<T>>((resolve, reject) => {
     // Create the request
     axios
       .request<T>({
-        baseURL: apiUrl(),
+        baseURL,
         method,
-        headers: {
-          Authorization: token ? `Bearer ${token}` : undefined,
-        },
+        headers: authorizationHeader
+          ? {
+              Authorization: token ? `Bearer ${token}` : '',
+            }
+          : {},
         url: route,
         data: body,
         timeout: 5000,
@@ -40,9 +42,13 @@ export const setAuthorizationToken = (_token: string) => {
 
 // Access the API through different HTTP methods
 export const API = {
-  get: <T>(route: string) => requestAPI<T>('GET', route),
-  post: <T>(route: string, body: object) => requestAPI<T>('POST', route, body),
-  put: <T>(route: string, body: object) => requestAPI<T>('PUT', route, body),
-  patch: <T>(route: string, body: object) => requestAPI<T>('PATCH', route, body),
-  delete: <T>(route: string) => requestAPI<T>('DELETE', route),
+  get: <T>(route: string) => requestAPI<T>('GET', apiUrl(), route, true),
+  post: <T>(route: string, body: object) => requestAPI<T>('POST', apiUrl(), route, true, body),
+  put: <T>(route: string, body: object) => requestAPI<T>('PUT', apiUrl(), route, true, body),
+  patch: <T>(route: string, body: object) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
+  delete: <T>(route: string) => requestAPI<T>('DELETE', apiUrl(), route, true),
+};
+
+export const uploads = {
+  get: <T>(route: string) => requestAPI<T>('GET', uploadsUrl(), route, false),
 };

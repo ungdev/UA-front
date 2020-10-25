@@ -1,16 +1,16 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { Partner } from '../types';
 import TournamentCards from '../components/TournamentCards';
 import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG, Loader } from '../components/UI';
+import { uploads } from '../utils/api';
 
 const Home = () => {
   const [partners, setPartners] = useState<Partner[]>();
 
   const fetchPartners = async () => {
-    const request = await axios.get<Partner[]>('/uploads/files/partners/list.json');
+    const request = await uploads.get<Partner[]>('/partners/list.json');
 
     setPartners(request.data);
   };

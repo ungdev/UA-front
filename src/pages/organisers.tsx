@@ -1,8 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 import { Title, Loader } from '../components/UI';
 import { Organisers as OrganisersType } from '../types';
+import { uploads } from '../utils/api';
+import { uploadsUrl } from '../utils/environment';
 import { getShortName } from '../utils/strings';
 
 const Organisers = () => {
@@ -13,7 +14,7 @@ const Organisers = () => {
   }, []);
 
   const fetchOrganisers = async () => {
-    const request = await axios.get<OrganisersType>('/uploads/files/organisers/list.json');
+    const request = await uploads.get<OrganisersType>('/organisers/list.json');
 
     setOrganisers(request.data);
   };
@@ -42,7 +43,7 @@ const Organisers = () => {
                   <div
                     className="image"
                     style={{
-                      backgroundImage: `url(/uploads/files/organisers/${getShortName(
+                      backgroundImage: `url(${uploadsUrl()}/organisers/${getShortName(
                         member.name,
                       )}.jpg), url(/question-mark.png)`,
                     }}
