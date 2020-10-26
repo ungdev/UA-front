@@ -36,6 +36,10 @@ const links = [
     href: '/partners',
   },
   {
+    title: 'Organisateurs',
+    href: '/organisers',
+  },
+  {
     title: 'Contact',
     href: '/contact',
   },

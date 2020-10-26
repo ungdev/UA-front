@@ -1,0 +1,31 @@
+#organisers {
+  text-align: center;
+
+  .commission {
+    margin: 20px 0;
+
+    .members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .member {
+        margin: 0 20px 20px 20px;
+        max-width: 120px;
+
+        .image {
+          width: 120px;
+          height: 120px;
+          background-size: cover;
+          background-position: center;
+        }
+
+        .name {
+          margin-top: 10px;
+          color: $primary-color;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

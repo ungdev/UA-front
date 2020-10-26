@@ -1,4 +1,5 @@
 import React from 'react';
+import { uploadsUrl } from './environment';
 
 export default [
   {
@@ -22,7 +23,7 @@ export default [
     ),
     toornamentId: '3964490483953033216',
     format: '32 équipes de 5 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/lol.pdf',
+    rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
     name: 'Valorant',
@@ -45,7 +46,7 @@ export default [
     ),
     toornamentId: '3964512438822207488',
     format: '16 équipes de 5 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/valorant.pdf',
+    rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
@@ -68,7 +69,7 @@ export default [
     ),
     toornamentId: '3964440948621860864',
     format: '16 équipes de 5 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/csgo.pdf',
+    rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
     name: 'Super Smash Bros. Ultimate',
@@ -91,7 +92,7 @@ export default [
     ),
     toornamentId: '3968020242978578432',
     format: '64 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/ssbu.pdf',
+    rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
   {
     name: 'Rocket League',
@@ -114,7 +115,7 @@ export default [
     ),
     toornamentId: '3968011074334515200',
     format: '16 équipes de 3 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/rocket-league.pdf',
+    rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
     name: 'Teamfight Tactics',
@@ -137,6 +138,6 @@ export default [
     ),
     toornamentId: '3964519359953436672',
     format: '16 joueurs',
-    rules: 'https://arena.utt.fr/uploads/files/rules/tft.pdf',
+    rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
 ];
