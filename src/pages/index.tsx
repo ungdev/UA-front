@@ -73,10 +73,10 @@ const Home = () => {
               { title: <strong>Ouverture</strong>, description: '27 novembre 2020 - 17h' },
               { title: <strong>Fermeture</strong>, description: '29 novembre 2020 - 18h' },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },
-              { title: <strong>Places</strong>, description: '450 joueurs' },
+              { title: <strong>Places</strong>, description: '500 joueurs' },
               { title: <strong>Tarif</strong>, description: 'Gratuit !' },
               { title: <strong>Âge minimum</strong>, description: '16 ans' },
-              { title: <strong>Tournois</strong>, description: 'LoL, CS:GO, SSBU, Rocket League, TFT, Valorant' },
+              { title: <strong>Tournois</strong>, description: 'LoL, Valorant, CS:GO, SSBU, Rocket League, TFT' },
             ]}
             className="info-table"
           />
