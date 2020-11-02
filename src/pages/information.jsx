@@ -24,7 +24,7 @@ const Information = () => (
       déroule exceptionnellement à distance, dans un tout nouveau format. L'occasion aussi de s'ouvrir encore plus à
       l'international.
       <br />
-      <br />À présent l'UTT Arena c'est <span className="accent">450 joueurs</span>,{' '}
+      <br />À présent l'UTT Arena c'est <span className="accent">500 joueurs</span>,{' '}
       <span className="accent">6 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
       tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
       les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans

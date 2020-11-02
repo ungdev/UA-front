@@ -7,17 +7,17 @@ export default [
     shortName: 'lol',
     players: 160,
     image: '/tournaments/lol.jpg',
-    shortRewards: '500€ + lots',
+    shortRewards: '850€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 250€ + lots
+          1<sup>ère</sup> place : 425€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 150€
+          2<sup>ème</sup> place : 275€
         </li>
         <li>
-          3<sup>ème</sup> place : 100€
+          3<sup>ème</sup> place : 150€
         </li>
       </ul>
     ),
@@ -30,14 +30,14 @@ export default [
     shortName: 'valorant',
     players: 80,
     image: '/tournaments/valorant.jpg',
-    shortRewards: '500€ + lots',
+    shortRewards: '700€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 250€ + lots
+          1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 150€
+          2<sup>ème</sup> place : 225€
         </li>
         <li>
           3<sup>ème</sup> place : 100€
@@ -53,14 +53,14 @@ export default [
     shortName: 'csgo',
     players: 80,
     image: '/tournaments/csgo.jpg',
-    shortRewards: '500€ + lots',
+    shortRewards: '700€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 250€ + lots
+          1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 150€
+          2<sup>ème</sup> place : 225€
         </li>
         <li>
           3<sup>ème</sup> place : 100€
@@ -76,17 +76,17 @@ export default [
     shortName: 'ssbu',
     players: 64,
     image: '/tournaments/ssbu.png',
-    shortRewards: '250€ + lots',
+    shortRewards: '380€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 120€ + lots
+          1<sup>ère</sup> place : 170€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 80€
+          2<sup>ème</sup> place : 125€
         </li>
         <li>
-          3<sup>ème</sup> place : 50€
+          3<sup>ème</sup> place : 85€
         </li>
       </ul>
     ),
@@ -99,17 +99,17 @@ export default [
     shortName: 'rocket-league',
     players: 48,
     image: '/tournaments/rocket-league.jpg',
-    shortRewards: '200€ + lots',
+    shortRewards: '315€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 90€ + lots
+          1<sup>ère</sup> place : 150€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 70€
+          2<sup>ème</sup> place : 105€
         </li>
         <li>
-          3<sup>ème</sup> place : 40€
+          3<sup>ème</sup> place : 60€
         </li>
       </ul>
     ),
@@ -120,24 +120,24 @@ export default [
   {
     name: 'Teamfight Tactics',
     shortName: 'tft',
-    players: 16,
+    players: 64,
     image: '/tournaments/tft.png',
-    shortRewards: '150€ + lots',
+    shortRewards: '305€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 70€ + lots
+          1<sup>ère</sup> place : 130€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 50€
+          2<sup>ème</sup> place : 100€
         </li>
         <li>
-          3<sup>ème</sup> place : 30€
+          3<sup>ème</sup> place : 75€
         </li>
       </ul>
     ),
     toornamentId: '3964519359953436672',
-    format: '16 joueurs',
+    format: '64 joueurs',
     rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
 ];
