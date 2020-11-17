@@ -23,7 +23,9 @@
   }
 
   .partner .partner-img {
-    height: 264px;
+    height: 240px;
+    width: calc(100% - 16px);
+    margin: 8px;
     object-fit: contain;
   }
 
