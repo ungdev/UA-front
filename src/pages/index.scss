@@ -91,7 +91,9 @@
     }
 
     .partner-img {
-      height: 100px;
+      height: 92px;
+      width: calc(100% - 8px);
+      margin: 4px;
       object-fit: contain;
     }
   }
