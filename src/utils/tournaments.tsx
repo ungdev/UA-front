@@ -99,14 +99,14 @@ export default [
     shortName: 'rocket-league',
     players: 48,
     image: '/tournaments/rocket-league.jpg',
-    shortRewards: '315€ + lots',
+    shortRewards: '420€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 150€ + lots
+          1<sup>ère</sup> place : 225€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 105€
+          2<sup>ème</sup> place : 135€
         </li>
         <li>
           3<sup>ème</sup> place : 60€
@@ -122,17 +122,17 @@ export default [
     shortName: 'tft',
     players: 64,
     image: '/tournaments/tft.png',
-    shortRewards: '305€ + lots',
+    shortRewards: '200€ + lots',
     rewards: (
       <ul>
         <li>
-          1<sup>ère</sup> place : 130€ + lots
+          1<sup>ère</sup> place : 80€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 100€
+          2<sup>ème</sup> place : 65€
         </li>
         <li>
-          3<sup>ème</sup> place : 75€
+          3<sup>ème</sup> place : 55€
         </li>
       </ul>
     ),
