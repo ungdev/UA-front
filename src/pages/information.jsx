@@ -65,27 +65,10 @@ const Information = () => (
 
     <Title align="center">Horaires</Title>
     <div className="information-section">
-      <Table
-        columns={[
-          { title: '', key: 'type' },
-          { title: <>Vendredi&nbsp;27</>, key: 'ven' },
-          { title: <>Samedi&nbsp;28</>, key: 'sam' },
-          { title: <>Dimanche&nbsp;29</>, key: 'dim' },
-        ]}
-        dataSource={[
-          {
-            type: <>UTT&nbsp;Arena</>,
-            ven: '17h - 23h',
-            sam: '10h - 18h',
-            dim: '10h - 18h',
-            key: 'ua',
-          },
-        ]}
-        className="timetable"
-      />
       <p>
-        Ces horaires sont donnés à titre indicatif. En dehors des tournois officiels, des animations vous seront
-        proposées pour vous offrir une ambiance en continu en journée !
+        Vendredi à 21h aura lieu un discours d'ouverture, suivi d'une soirée jeux libres pour jouer tous ensemble !
+        <br />
+        Les horaires des matchs vont seront communiqués sur notre Discord !
       </p>
     </div>
   </div>
