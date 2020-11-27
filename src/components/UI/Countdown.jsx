@@ -12,7 +12,7 @@ const CountdownComponent = ({ date, className }) => {
     }
 
     return (
-      <>
+      <div className={`countdown ${className}`}>
         <div className="days">
           <h1>{days}</h1>
           <h2>Jours</h2>
@@ -29,7 +29,7 @@ const CountdownComponent = ({ date, className }) => {
           <h1>{seconds}</h1>
           <h2>Secondes</h2>
         </div>
-      </>
+      </div>
     );
   };
 
@@ -41,11 +41,7 @@ const CountdownComponent = ({ date, className }) => {
     completed: PropTypes.bool.isRequired,
   };
 
-  return (
-    <div className={`countdown ${className}`}>
-      <Countdown date={date} renderer={renderer} />
-    </div>
-  );
+  return <Countdown date={date} renderer={renderer} />;
 };
 
 CountdownComponent.propTypes = {

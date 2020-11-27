@@ -32,11 +32,17 @@ const Home = () => {
       </div>
 
       <div className="home-container page-padding">
-        <div className="home-countdown">
-          <Countdown date={new Date('November 27 2020 17:00:00 UTC+1')} />
-        </div>
-
         <div className="home-info">
+          <Title align="center">Stream</Title>
+
+          <Countdown date={new Date('November 27 2020 21:00:00 UTC+1')} className="home-countdown" />
+
+          <a href="https://www.twitch.tv/uttarena">
+            <Button primary leftIcon="fab fa-twitch" className="stream-link">
+              Voir le stream
+            </Button>
+          </a>
+
           <Title align="center">Informations</Title>
           <Title level={4} align="center" className="uppercase">
             Un format repensé, toujours la même ambiance !
@@ -68,10 +74,9 @@ const Home = () => {
             dataSource={[
               {
                 title: <strong>Format</strong>,
-                description: "A distance : chez toi, avec ton matos, prépare ton meilleur spot et c'est parti !",
+                description: "A distance : chez toi, avec ton matos, prépare ton meilleur setup et c'est parti !",
               },
-              { title: <strong>Ouverture</strong>, description: '27 novembre 2020 - 17h' },
-              { title: <strong>Fermeture</strong>, description: '29 novembre 2020 - 18h' },
+              { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 27 novembre à 21h' },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },
               { title: <strong>Places</strong>, description: '500 joueurs' },
               { title: <strong>Tarif</strong>, description: 'Gratuit !' },
