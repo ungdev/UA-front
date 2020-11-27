@@ -14,7 +14,7 @@ export default [
           1<sup>ère</sup> place : 425€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 275€
+          2<sup>ème</sup> place : 275€ + lots
         </li>
         <li>
           3<sup>ème</sup> place : 150€
@@ -37,7 +37,7 @@ export default [
           1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 225€
+          2<sup>ème</sup> place : 225€ + lots
         </li>
         <li>
           3<sup>ème</sup> place : 100€
@@ -60,7 +60,7 @@ export default [
           1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
-          2<sup>ème</sup> place : 225€
+          2<sup>ème</sup> place : 225€ + lots
         </li>
         <li>
           3<sup>ème</sup> place : 100€
