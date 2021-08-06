@@ -1,7 +1,13 @@
 @font-face {
-  font-family: 'Preussische';
+  font-family: 'UA_Title';
   font-display: swap;
-  src: url('/PreussischeVI9Ag2.ttf');
+  src: url('/UA_Title.ttf');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-display: swap;
+  src: url('/Nunito-Regular.ttf');
 }
 
 * {
@@ -13,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   color: #212121;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
   text-align: justify;
   overflow-x: hidden;
 }
