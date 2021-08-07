@@ -6,7 +6,7 @@ node_js:
 branches:
   only:
     - master
-    - staging
+    - dev
 
 cache: yarn
 
@@ -26,7 +26,7 @@ deploy:
     app: front-dev
     token: $OPENSHIFT_TOKEN
     on:
-      branch: staging
+      branch: dev
     edge: true
   - provider: openshift
     server: $OPENSHIFT_SERVER
