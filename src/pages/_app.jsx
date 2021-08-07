@@ -64,7 +64,10 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:image:width" content="1500" />
         <meta property="og:image:height" content="1500" />
         {/* TODO : Implémenter une meilleure image faite par le graphisme */}
-        <meta property="og:description" content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "/>
+        <meta
+          property="og:description"
+          content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "
+        />
         {/* TODO : Faire relire cette balise par la com */}
 
         <meta name="twitter:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
@@ -72,7 +75,10 @@ const App = ({ Component, reduxStore }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content="https://arena.utt.fr/uploads/files/images/logo_fond_sombre.png" />
         <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2021, le 26, 27 et 28 Novembre" />
-        <meta property="twitter:description" content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "/>
+        <meta
+          property="twitter:description"
+          content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "
+        />
         {/* TODO : Comme pour og */}
 
         <meta name="google-site-verification" content={googleVerification()} />
