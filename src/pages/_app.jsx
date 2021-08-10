@@ -66,7 +66,7 @@ const App = ({ Component, reduxStore }) => {
         {/* TODO : Implémenter une meilleure image faite par le graphisme */}
         <meta
           property="og:description"
-          content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "
+          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
         />
         {/* TODO : Faire relire cette balise par la com */}
 
@@ -77,7 +77,7 @@ const App = ({ Component, reduxStore }) => {
         <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2021, le 26, 27 et 28 Novembre" />
         <meta
           property="twitter:description"
-          content="L'UTT Arena revient pour sa 19ème édition les 26, 27 et 28 novembre 2021. "
+          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
         />
         {/* TODO : Comme pour og */}
 
