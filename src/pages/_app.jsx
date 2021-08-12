@@ -63,12 +63,10 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1500" />
         <meta property="og:image:height" content="1500" />
-        {/* TODO : Implémenter une meilleure image faite par le graphisme */}
         <meta
           property="og:description"
           content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
         />
-        {/* TODO : Faire relire cette balise par la com */}
 
         <meta name="twitter:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
         <meta name="twitter:site" content="@UTTArena" />
@@ -79,7 +77,6 @@ const App = ({ Component, reduxStore }) => {
           property="twitter:description"
           content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
         />
-        {/* TODO : Comme pour og */}
 
         <meta name="google-site-verification" content={googleVerification()} />
 
