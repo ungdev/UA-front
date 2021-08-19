@@ -75,17 +75,20 @@
   }
 
   .login-button {
-    display: block;
-    width: min-content;
-    margin: 0 auto 40px auto;
-    padding: 10px 36px;
-    font-family: $ua-font;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid #fff;
-    box-shadow: inset 0 0 8px 6px #ed00e4, 0 0 8px 6px #ed00e4;
-    background: transparent;
+    &.buttonWrapper {
+      display: block;
+      width: min-content;
+      padding: 10px 36px;
+      font-family: $ua-font;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    &.topButtonDiv {
+      box-shadow: $accent-color 2px 2px;
+    }
   }
 
   .navbar-container a {
@@ -313,7 +316,24 @@
     }
 
     .login-button {
-      margin: 20px auto;
+      &.buttonWrapper {
+        margin: 20px auto;
+      }
+
+      // &.topButtonDiv {
+      //   box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
+      // }
+      &.topButtonDiv {
+        box-shadow: $dark-color 2 * $buttonLength - $shadow 2 * $buttonLength + $shadow,
+          $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength + $shadow,
+          $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength -$shadow, $dark-color (-$shadow) $shadow,
+          $dark-color (-$shadow) (-$shadow), $dark-color $shadow (-$shadow),
+          $accent-color 2 * $buttonLength - $loginLength 2 * $buttonLength + $loginLength,
+          $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength + $loginLength,
+          $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength -$loginLength,
+          $accent-color (-$loginLength) $loginLength, $accent-color (-$loginLength) (-$loginLength),
+          $accent-color $loginLength (-$loginLength);
+      }
     }
 
     footer {
