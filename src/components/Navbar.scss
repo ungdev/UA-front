@@ -127,8 +127,7 @@
       left: -10px;
       width: 0;
       height: 3px;
-      background: $primary-color;
-      box-shadow: 0 0 8px 2px $primary-color;
+      border-bottom: dotted $accent-color 5px;
       transition: all 0.3s;
     }
 
