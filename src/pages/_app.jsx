@@ -58,7 +58,7 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
         <meta property="og:url" content="https://arena.utt.fr/" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://arena.utt.fr/uploads/files/images/logo_fond_sombre.png" />
+        <meta property="og:image" content="https://arena.utt.fr/uploads/files/images/banniere_SEO_2.png" />
         <meta property="og:image:alt" content="Logo de l'UTT Arena" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1500" />
@@ -71,7 +71,7 @@ const App = ({ Component, reduxStore }) => {
         <meta name="twitter:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
         <meta name="twitter:site" content="@UTTArena" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:image" content="https://arena.utt.fr/uploads/files/images/logo_fond_sombre.png" />
+        <meta property="twitter:image" content="https://arena.utt.fr/uploads/files/images/banniere_SEO_2.png" />
         <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2021, le 26, 27 et 28 Novembre" />
         <meta
           property="twitter:description"
