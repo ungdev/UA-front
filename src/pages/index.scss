@@ -76,6 +76,7 @@
 
   .home-partners {
     margin-bottom: 3em;
+    text-align: center;
 
     .list-partners {
       display: flex;
@@ -103,7 +104,7 @@
   }
 
   .home-partners .partners-button {
-    display: block;
+    display: inline-block;
     margin: 30px auto 0 auto;
   }
 }
