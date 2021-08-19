@@ -137,13 +137,9 @@ const Navbar = ({ isLoggedIn }) => {
             </a>
           </Link>
 
-          <Link href="/tournaments">
-            <a>
-              <Button primary className="login-button" /*onClick={() => dispatch(setLoginModalVisible(true))}*/>
-                Inscription
-              </Button>
-            </a>
-          </Link>
+          <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>
+            Inscription
+          </Button>
 
           <nav>{navLinks}</nav>
         </SimpleBar>
@@ -210,24 +206,22 @@ const Navbar = ({ isLoggedIn }) => {
         </footer>
       </div>
 
-      {
-        /*isLoginAllowed()*/ true ? (
-          <LoginModal isVisible={isVisible} />
-        ) : (
-          <Modal
-            title="Connexion"
-            onCancel={() => dispatch(setLoginModalVisible(false))}
-            visible={isVisible}
-            buttons={
-              <Button primary onClick={() => dispatch(setLoginModalVisible(false))}>
-                Fermer
-              </Button>
-            }>
-            Le système d'inscription est actuellement en maintenance, suivez-nous sur les réseaux sociaux pour ne rien
-            rater !
-          </Modal>
-        )
-      }
+      {isLoginAllowed() ? (
+        <LoginModal isVisible={isVisible} />
+      ) : (
+        <Modal
+          title="Connexion"
+          onCancel={() => dispatch(setLoginModalVisible(false))}
+          visible={isVisible}
+          buttons={
+            <Button primary onClick={() => dispatch(setLoginModalVisible(false))}>
+              Fermer
+            </Button>
+          }>
+          Le système d'inscription est actuellement en maintenance, suivez-nous sur les réseaux sociaux pour ne rien
+          rater !
+        </Modal>
+      )}
       <UserModal isVisible={isUserVisible} />
     </div>
   );
