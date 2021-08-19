@@ -44,25 +44,26 @@ const Register = () => {
     value: tournament.id,
   }));
 
+  // TODO : This has to be fixed with the route /tournaments on API
   // Get multiplayer tournaments tabs
-  const tournamentsTabs = tournamentsList.map((tournament) => {
-    const tournamentTeams = tournament.teams.map((team) => ({
-      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-      players: team.users.map(({ username }) => username).join(', '),
-      action:
-        askingTeamId === team.id ? (
-          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-        ) : (
-          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
-            Rejoindre
-          </Button>
-        ),
-    }));
-
-    return {
-      title: tournament.shortName,
-      content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
-    };
+  const tournamentsTabs = tournamentsList.map(async (tournament) => {
+    // const teams = await API.get('/???');
+    // const tournamentTeams = teams.map((team) => ({
+    //   team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+    //   players: team.users.map(({ username }) => username).join(', '),
+    //   action:
+    //     askingTeamId === team.id ? (
+    //       <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+    //     ) : (
+    //       <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
+    //         Rejoindre
+    //       </Button>
+    //     ),
+    // }));
+    // return {
+    //   title: tournament.shortName,
+    //   content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
+    // };
   });
 
   const mainPanel = (

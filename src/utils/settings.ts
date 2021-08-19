@@ -5,7 +5,7 @@ import { Settings } from '../types';
 export const isLoginAllowed = async (): Promise<boolean> => {
   try {
     // Fetch the settings
-    const response = await API.get<Settings>('/');
+    const response = await API.get<Settings>('/settings');
 
     return response.data.login;
   } catch (error) {
@@ -17,7 +17,7 @@ export const isLoginAllowed = async (): Promise<boolean> => {
 export const isShopAllowed = async (): Promise<boolean> => {
   try {
     // Fetch the settings
-    const response = await API.get<Settings>('/');
+    const response = await API.get<Settings>('/settings');
 
     return response.data.shop;
   } catch (error) {

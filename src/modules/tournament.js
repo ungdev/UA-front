@@ -35,9 +35,9 @@ export const fetchTournaments = () => async (dispatch) => {
 
 export const fetchSlots = () => async (dispatch) => {
   const res = await API.get('/tournaments?paidOnly=true');
-  const slots = res.data.reduce((previous, { maxPlayers, playersPerTeam, teams, id }) => {
+  const slots = res.data.reduce((previous, { maxPlayers, playersPerTeam, lockedTeamsCount, id }) => {
     const total = maxPlayers / playersPerTeam;
-    const available = total - teams.length;
+    const available = total - lockedTeamsCount;
     previous[id] = { total, available };
     return previous;
   }, {});
