@@ -89,17 +89,6 @@
     &.topButtonDiv {
       box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
     }
-    // &.topButtonDiv {
-    //   box-shadow: $dark-color 2 * $buttonLength - $shadow 2 * $buttonLength + $shadow,
-    //     $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength + $shadow,
-    //     $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength -$shadow, $dark-color (-$shadow) $shadow,
-    //     $dark-color (-$shadow) (-$shadow), $dark-color $shadow (-$shadow),
-    //     $accent-color 2 * $buttonLength - $loginLength 2 * $buttonLength + $loginLength,
-    //     $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength + $loginLength,
-    //     $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength -$loginLength,
-    //     $accent-color (-$loginLength) $loginLength, $accent-color (-$loginLength) (-$loginLength),
-    //     $accent-color $loginLength (-$loginLength);
-    // }
   }
 
   .navbar-container a {
@@ -333,17 +322,6 @@
       &.topButtonDiv {
         box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
       }
-      // &.topButtonDiv {
-      //   box-shadow: $dark-color 2 * $buttonLength - $shadow 2 * $buttonLength + $shadow,
-      //     $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength + $shadow,
-      //     $dark-color 2 * $buttonLength + $shadow 2 * $buttonLength -$shadow, $dark-color (-$shadow) $shadow,
-      //     $dark-color (-$shadow) (-$shadow), $dark-color $shadow (-$shadow),
-      //     $accent-color 2 * $buttonLength - $loginLength 2 * $buttonLength + $loginLength,
-      //     $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength + $loginLength,
-      //     $accent-color 2 * $buttonLength + $loginLength 2 * $buttonLength -$loginLength,
-      //     $accent-color (-$loginLength) $loginLength, $accent-color (-$loginLength) (-$loginLength),
-      //     $accent-color $loginLength (-$loginLength);
-      // }
     }
 
     footer {
