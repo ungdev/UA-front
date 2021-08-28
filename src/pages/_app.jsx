@@ -11,7 +11,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
-import { googleAnalyticsId, googleVerification, nodeEnv } from '../utils/environment';
+import { googleAnalyticsId, googleVerification, nodeEnv, uploadsUrl } from '../utils/environment';
 import { API } from '../utils/api';
 
 // Import all CSS files
@@ -39,20 +39,45 @@ const App = ({ Component, reduxStore }) => {
   return (
     <div>
       <Head>
-        <title>UTT Arena 2020 - 27, 28 et 29 novembre 2020</title>
+        <title>UTT Arena 2020 - 26, 27 et 28 novembre 2021</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta
           name="description"
           content={
             'Venez participer au célèbre tournoi du Grand-Est ! ' +
-            "L'UTT Arena revient pour sa 18ème édition les 27, 28 et 29 novembre 2020. " +
+            "L'UTT Arena revient pour sa 18ème édition les 26, 27 et 28 novembre 2021. " +
             'Cette édition spéciale aura lieu en ligne et sera 100% gratuite ! ' +
             "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"
           }
         />
+
+        <meta property="og:site_name" content="UTT Arena 2021" />
+        <meta property="og:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
+        <meta property="og:url" content="https://arena.utt.fr/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
+        <meta property="og:image:alt" content="Logo de l'UTT Arena" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="1500" />
+        <meta property="og:image:height" content="1500" />
+        <meta
+          property="og:description"
+          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
+        />
+
+        <meta name="twitter:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
+        <meta name="twitter:site" content="@UTTArena" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
+        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2021, le 26, 27 et 28 Novembre" />
+        <meta
+          property="twitter:description"
+          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
+        />
+
         <meta name="google-site-verification" content={googleVerification()} />
 
         <link rel="icon" href="/favicon.ico" />
