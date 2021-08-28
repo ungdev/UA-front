@@ -1,0 +1,77 @@
+name: CI
+on:
+  push:
+    branches: [master, dev]
+  pull_request:
+    branches: [master, dev]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn --frozen-lockfile
+      - run: yarn lint
+      - uses: lazy-actions/slatify@master
+        if: failure()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Job ${{ github.job }}*'
+          commit: true
+          url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn --frozen-lockfile
+      - run: yarn build
+      - uses: lazy-actions/slatify@master
+        if: failure()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Job ${{ github.job }}*'
+          commit: true
+          url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+    runs-on: ubuntu-latest
+    needs:
+      - lint
+      - build
+    env:
+      RESOURCE_NAME: ${{ github.ref == 'refs/heads/master' && 'prod-front' || 'dev-front' }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install oc
+        uses: redhat-actions/oc-installer@v1
+        with:
+          oc_version: '4.6'
+      - name: Login to OKD
+        run: oc login --token=${{ secrets.OKD_TOKEN }} --server=${{ secrets.OKD_SERVER }}
+
+      - name: Change the project
+        run: oc project ${{ secrets.OKD_PROJECT }}
+
+      - name: Start the build
+        run: oc start-build ${{ env.RESOURCE_NAME }} --follow
+
+      - uses: lazy-actions/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Deployment to ${{ env.RESOURCE_NAME }}*'
+          commit: true
+          url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          token: ${{ secrets.GITHUB_TOKEN }}
