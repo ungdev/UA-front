@@ -89,6 +89,25 @@
     &.topButtonDiv {
       box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
     }
+
+    &:hover {
+      & .topButtonDiv {
+        // transform: translate(0, 0);
+        box-shadow: none;
+
+        & .bottomButtonDiv {
+          transform: translate(0, 0);
+          padding: 0;
+
+          & .button {
+            transform: translate(0, 0);
+            padding: 10 + $buttonLength 22 + $buttonLength;
+            margin: 0;
+            border-radius: $buttonRadius;
+          }
+        }
+      }
+    }
   }
 
   .navbar-container a {
