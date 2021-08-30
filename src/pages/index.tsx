@@ -74,7 +74,7 @@ const Home = () => {
             dataSource={[
               {
                 title: <strong>Format</strong>,
-                description: "A distance : chez toi, avec ton matos, prépare ton meilleur setup et c'est parti !",
+                description: "A l'espace Argence !",
               },
               { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 27 novembre à 21h' },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },

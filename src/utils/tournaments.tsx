@@ -3,7 +3,7 @@ import { uploadsUrl } from './environment';
 
 export default [
   {
-    name: 'League of Legends',
+    name: 'League of Legends ',
     shortName: 'lol',
     players: 160,
     image: '/tournaments/lol.jpg',
@@ -26,9 +26,9 @@ export default [
     rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
-    name: 'Valorant',
-    shortName: 'valorant',
-    players: 80,
+    name: 'osu!',
+    shortName: 'osu!',
+    players: 24,
     image: '/tournaments/valorant.jpg',
     shortRewards: '700€ + lots',
     rewards: (
@@ -45,7 +45,7 @@ export default [
       </ul>
     ),
     toornamentId: '3964512438822207488',
-    format: '16 équipes de 5 joueurs',
+    format: '24 joueurs',
     rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
   {
@@ -97,7 +97,7 @@ export default [
   {
     name: 'Rocket League',
     shortName: 'rocket-league',
-    players: 48,
+    players: 96,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: '420€ + lots',
     rewards: (
@@ -114,13 +114,13 @@ export default [
       </ul>
     ),
     toornamentId: '3968011074334515200',
-    format: '16 équipes de 3 joueurs',
+    format: '32 équipes de 3 joueurs',
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
-    name: 'Teamfight Tactics',
-    shortName: 'tft',
-    players: 64,
+    name: 'Libre',
+    shortName: 'libre',
+    players: 24,
     image: '/tournaments/tft.png',
     shortRewards: '200€ + lots',
     rewards: (
@@ -137,7 +137,7 @@ export default [
       </ul>
     ),
     toornamentId: '3964519359953436672',
-    format: '64 joueurs',
+    format: '24 joueurs',
     rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
 ];
