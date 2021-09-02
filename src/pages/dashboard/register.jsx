@@ -13,7 +13,7 @@ const columns = [
 ];
 
 const Register = () => {
-  const [tournament, setTournament] = useState('1');
+  const [tournamentId, setTournamentId] = useState('lol');
   const [tournamentSolo, setTournamentSolo] = useState('5');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
@@ -76,12 +76,12 @@ const Register = () => {
             Je serai chef d'équipe et je pourrai gérer les membres de mon équipe.
           </p>
 
-          <Select label="Tournoi" options={tournamentsOptions} value={tournament} onChange={setTournament} />
+          <Select label="Tournoi" options={tournamentsOptions} value={tournamentId} onChange={setTournamentId} />
           <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ teamName, tournament }))}
+            onClick={() => dispatch(createTeam({ teamName, tournamentId }))}
             rightIcon="fas fa-plus">
             Créer mon équipe
           </Button>
