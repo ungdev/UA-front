@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchTeam, setCaptain, acceptUser, kickUser, refuseUser, deleteTeam } from '../../modules/team';
-import { fetchSlots } from '../../modules/tournament';
+import {
+  fetchTeam,
+  setCaptain,
+  acceptUser,
+  kickUser,
+  refuseUser,
+  deleteTeam,
+  fetchCurrentTeam,
+} from '../../modules/team';
+import tournament, { fetchSlots, fetchTournaments } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
 import { isShopAllowed } from '../../utils/settings';
 
@@ -24,21 +32,30 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useDispatch();
-  const { id, team: userTeam } = useSelector((state) => state.login.user || { id: '', team: '' });
+  const { id } = useSelector((state) => state.login.user || { id: '' });
   const { team } = useSelector((state) => state.team);
   const slotsTournament = useSelector((state) => state.tournament.slots);
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
-  const usersPaid = team && team.users.reduce((previous, user) => (user.isPaid ? previous + 1 : previous), 0);
+  const usersPaid = team && team.players.reduce((previous, player) => (player.isPaid ? previous + 1 : previous), 0);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(tournament);
+  }, [tournament]);
+  const tournaments = useSelector((state) => state.tournament.tournaments);
+  const tournament =
+    team && tournaments && tournaments.filter((tournament) => tournament.shortName === team.tournamentId)[0];
+  const tournamentName = tournament && tournament.name;
 
   useEffect(() => {
-    if (userTeam && userTeam.id) {
-      dispatch(fetchTeam(userTeam.id));
-      let interval = setInterval(() => dispatch(fetchTeam(userTeam.id)), 120000);
+    if (!team) {
+      dispatch(fetchCurrentTeam());
+    } else {
+      let interval = setInterval(() => dispatch(fetchCurrentTeam()), 120000);
       return () => clearInterval(interval);
     }
-  }, [userTeam]);
+  }, [team]);
 
   useEffect(() => {
     if (team && !slotsTournament) {
@@ -49,7 +66,7 @@ const Team = () => {
   const players =
     !isSolo &&
     team &&
-    team.users.map((user) => ({
+    team.players.map((user) => ({
       username: (
         <>
           {user.username} {user.id === team.captainId ? <i className="fas fa-crown gold-icon" /> : ''}
@@ -171,7 +188,7 @@ const Team = () => {
             </div>
           )}
           <div>
-            <strong>Tournoi :</strong> {team.tournament.name}
+            <strong>Tournoi :</strong> {tournamentName}
           </div>
           {isShopAllowed() && (
             <>
@@ -182,7 +199,7 @@ const Team = () => {
                   leur place.
                 </Helper>
                 <strong> : </strong>
-                {usersPaid === team.tournament.playersPerTeam ? (
+                {tournament && usersPaid === tournament.playersPerTeam ? (
                   <>
                     <i className="fas fa-check-circle green-icon"></i> Inscrit
                   </>
@@ -194,8 +211,8 @@ const Team = () => {
               </div>
               {slotsTournament && (
                 <div>
-                  <strong> Places disponibles :</strong> {slotsTournament[team.tournament.id].available} /{' '}
-                  {slotsTournament[team.tournament.id].total}
+                  <strong> Places disponibles :</strong> {slotsTournament[team.tournamentId].available} /{' '}
+                  {slotsTournament[team.tournamentId].total}
                 </div>
               )}
             </>
@@ -213,7 +230,8 @@ const Team = () => {
         <hr />
       )}
 
-      {team.matches.length ? (
+      {/* TODO : fix this */}
+      {/* {team.matches.length ? (
         <>
           <Title level={4}>Mes matchs</Title>
           <div className="team-matches">{diplayMatches}</div>
@@ -221,7 +239,7 @@ const Team = () => {
         </>
       ) : (
         ''
-      )}
+      )} */}
 
       {team.toornamentId && (
         <>
