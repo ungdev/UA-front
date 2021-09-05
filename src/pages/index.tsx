@@ -112,7 +112,7 @@ const Home = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Partenaire ${partner.name}`}>
-                    <Card imgSrc={partner.image} classNameImg="partner-img" />
+                    <Card imgSrc={partner.image} classNameImg="partner-img" alt={`Partenaire ${partner.name}`} />
                   </a>
                 </div>
               ))
