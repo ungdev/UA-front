@@ -12,7 +12,7 @@ const columns = [
   { title: 'Joueurs', key: 'players' },
 ];
 
-const Tournament = ({ assets, tournamentId }) => {
+const Tournament = ({ assets, tournamentId, alt }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ const Tournament = ({ assets, tournamentId }) => {
 
   return (
     <div className="tournament">
-      <img className="tournament-header" alt="" src={assets.image} />
+      <img className="tournament-header" alt={alt} src={assets.image} />
 
       <div className="tournament-content">
         <Title align="center">{assets.name}</Title>
@@ -121,10 +121,15 @@ Tournament.propTypes = {
    * Tournament id
    */
   tournamentId: PropTypes.string.isRequired,
+  /**
+   * alt
+   */
+  alt: PropTypes.string,
 };
 
 Tournament.defaultProps = {
   isSolo: false,
+  alt: '',
 };
 
 export default Tournament;
