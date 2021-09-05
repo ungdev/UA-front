@@ -124,11 +124,12 @@ Tournament.propTypes = {
   /**
    * alt
    */
-   alt: PropTypes.string,
+  alt: PropTypes.string,
 };
 
 Tournament.defaultProps = {
   isSolo: false,
+  alt: '',
 };
 
 export default Tournament;

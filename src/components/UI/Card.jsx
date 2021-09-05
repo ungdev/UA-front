@@ -80,7 +80,7 @@ Card.propTypes = {
   /**
    * alt
    */
-   alt: PropTypes.string,
+  alt: PropTypes.string,
 };
 
 Card.defaultProps = {
@@ -93,6 +93,7 @@ Card.defaultProps = {
   target: '_self',
   className: '',
   classNameImg: '',
+  alt: '',
 };
 
 export default Card;
