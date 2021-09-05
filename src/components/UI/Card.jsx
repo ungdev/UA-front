@@ -9,7 +9,7 @@ import Button from './Button';
 /**
  * Displays a card which can contain an image, a content and a button
  */
-const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, className, classNameImg }) => {
+const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, className, classNameImg, alt }) => {
   let button = (
     <Button primary onClick={onClick}>
       {buttonContent}
@@ -29,7 +29,7 @@ const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, cla
 
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
-      {imgSrc && <img className={`lazyload card-image ${classNameImg}`} alt="" data-src={imgSrc} />}
+      {imgSrc && <img className={`lazyload card-image ${classNameImg}`} alt={alt} data-src={imgSrc} />}
       {content && (
         <>
           <div className="card-content">{content}</div>
@@ -77,6 +77,10 @@ Card.propTypes = {
    * Class of the image
    */
   classNameImg: PropTypes.string,
+  /**
+   * alt
+   */
+   alt: PropTypes.string,
 };
 
 Card.defaultProps = {
