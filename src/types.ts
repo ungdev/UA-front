@@ -12,9 +12,11 @@ export interface Partner {
 
 export type Organisers = {
   title: string;
+  description: string;
   members: {
     name: string;
     role: string;
+    pseudo: string;
   }[];
 }[];
 

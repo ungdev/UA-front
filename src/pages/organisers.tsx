@@ -36,6 +36,7 @@ const Organisers = () => {
         organisers.map((commission) => (
           <div className="commission">
             <Title level={2}>{commission.title}</Title>
+            <p>{commission.description}</p>
 
             <div className="members">
               {commission.members.map((member) => (
@@ -49,7 +50,8 @@ const Organisers = () => {
                     }}
                   />
                   <div className="name">{member.name}</div>
-                  <div className="role">{member.role}</div>
+                  <div>{member.pseudo}</div>
+                  {/* <div className="role">{member.role}</div> */}
                 </div>
               ))}
             </div>
