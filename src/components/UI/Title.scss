@@ -112,3 +112,9 @@ $radius: 8px;
   transition: 0.3s;
   transform: translate($doubleSize, $doubleSize) scale(1);
 }
+
+@media screen and (max-width: 650px) {
+  .title.title-1 {
+    font-size: 1rem;
+  }
+}
