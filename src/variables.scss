@@ -1,7 +1,11 @@
-$primary-color: #06b8ff;
-$secondary-color: #ed00e4;
-$accent-color: #08a2df;
+$primary-color: #f1737f;
+$secondary-color: #006492;
+$superposed-color: #8d485d;
+$accent-color: #fbb464;
 $light-color: #ccc;
 $dark-color: #202020;
 $gradient: linear-gradient(135deg, $primary-color 15%, $secondary-color 85%);
-$ua-font: 'Preussische', sans-serif;
+$ua-font: 'UA_Title', sans-serif;
+
+$buttonLength: 2px;
+$buttonRadius: 6px;

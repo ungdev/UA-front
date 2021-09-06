@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: url('/background.png') no-repeat center;
+    background: url('/background.jpg') no-repeat center;
     background-size: cover;
     margin-bottom: 3em;
 
@@ -30,7 +30,7 @@
         transform: skew(-15deg);
         margin: 0;
         font-size: calc(0.029 * (100vw - 280px));
-        letter-spacing: 1px;
+        letter-spacing: -3px;
       }
 
       .main {
@@ -49,8 +49,8 @@
       margin: 0 auto 30px auto;
     }
 
-    .stream-link {
-      margin: 20px 0 60px 0;
+    .stream-link.buttonWrapper {
+      margin: 20px 0 40px 0;
     }
 
     .video-container {
@@ -64,7 +64,7 @@
       margin: auto;
     }
 
-    .info-button {
+    .info-button.buttonWrapper {
       display: inline-block;
       margin: 30px auto 0 auto;
     }
@@ -76,6 +76,7 @@
 
   .home-partners {
     margin-bottom: 3em;
+    text-align: center;
 
     .list-partners {
       display: flex;
@@ -102,8 +103,8 @@
     }
   }
 
-  .home-partners .partners-button {
-    display: block;
+  .home-partners .partners-button.buttonWrapper {
+    display: inline-block;
     margin: 30px auto 0 auto;
   }
 }
@@ -129,6 +130,10 @@
         font-size: 12vw;
       }
     }
+  }
+
+  #logo {
+    margin-top: 110px !important;
   }
 }
 
