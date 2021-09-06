@@ -27,7 +27,7 @@ const Partners = () => {
         {!partners ? (
           <Loader />
         ) : (
-          partners.map(({ description, image, link }) => (
+          partners.map(({name, description, image, link}) => (
             <div className="partner" key={link}>
               <Card
                 imgSrc={image}
@@ -36,6 +36,7 @@ const Partners = () => {
                 content={<p>{description}</p>}
                 href={link}
                 target="_blank"
+                alt={`Partenaire ${name}`}
                 buttonContent={
                   <>
                     Visiter leur site

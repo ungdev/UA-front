@@ -14,7 +14,7 @@ const TournamentPage = () => {
     return null;
   }
 
-  return <Tournament assets={tournament} />;
+  return <Tournament assets={tournament} alt={`Tournoi ${name}`} />;
 };
 
 export default TournamentPage;
