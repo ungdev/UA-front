@@ -1,21 +1,24 @@
 .button {
   display: inline-block;
   border: 2px solid $light-color;
+  margin: 0%;
   border-radius: 0;
   padding: 8px 20px;
-  margin: 4px;
   background: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   cursor: pointer;
   user-select: none;
   transition: all 0.3s;
+  transform: translate(-$buttonLength, -$buttonLength);
 
   &.primary {
-    color: #fff;
+    color: unset;
     border: none;
     padding: 10px 22px;
-    background: $gradient;
+    background: $superposed-color;
+    font-weight: bolder;
+    border-radius: $buttonRadius 0 $buttonRadius 0;
   }
 
   &:disabled {
@@ -31,10 +34,6 @@
     margin: 0;
   }
 
-  &:not(:disabled):hover {
-    filter: brightness(0.85);
-  }
-
   &:not(.empty) {
     .button-icon-left {
       margin-right: 8px;
@@ -44,4 +43,56 @@
       margin-left: 8px;
     }
   }
+}
+
+.buttonWrapper {
+  display: inline-block;
+  box-sizing: border-box;
+
+  &.primary {
+    margin: 10px auto;
+    color: white;
+    filter: brightness(1);
+  }
+
+  &:hover {
+    cursor: pointer;
+    filter: brightness(1);
+    color: $accent-color;
+  }
+
+  :disabled {
+    filter: grayscale(0.1) brightness(0.8);
+    cursor: default;
+  }
+}
+
+.topButtonDiv {
+  display: inline-block;
+  box-sizing: border-box;
+
+  &.primary {
+    &:not(.no-style) {
+      border-radius: $buttonRadius;
+      background-color: $primary-color;
+      transition: 0.3s;
+      transform: translate(-$buttonLength, -$buttonLength) scale(1);
+    }
+  }
+}
+
+.bottomButtonDiv {
+  display: inline-block;
+  box-sizing: border-box;
+  &:not(.no-style).primary {
+    border-radius: $buttonRadius;
+    padding: $buttonLength;
+    background-color: $secondary-color;
+    transition: 0.3s;
+    transform: translate(2 * $buttonLength, 2 * $buttonLength) scale(1);
+  }
+}
+
+.disabled {
+  pointer-events: none;
 }

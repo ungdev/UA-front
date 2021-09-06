@@ -27,7 +27,7 @@ const Home = () => {
         </div>
         <div className="home-title">
           <p className="main">UTT Arena</p>
-          <p>27, 28 et 29 novembre 2020</p>
+          <p>26, 27, 28 novembre 2021</p>
         </div>
       </div>
 
@@ -35,7 +35,7 @@ const Home = () => {
         <div className="home-info">
           <Title align="center">Stream</Title>
 
-          <Countdown date={new Date('November 27 2020 21:00:00 UTC+1')} className="home-countdown" />
+          <Countdown date={new Date('November 26 2021 21:00:00 UTC+1')} className="home-countdown" />
 
           <a href="https://www.twitch.tv/uttarena">
             <Button primary leftIcon="fab fa-twitch" className="stream-link">

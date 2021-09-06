@@ -1,3 +1,9 @@
+$length: 4px;
+$doubleSize: 8px;
+$tenPlusLength: 13px;
+$tenMinusLength: 7px;
+$radius: 8px;
+
 .title {
   margin-top: 0;
   font-family: 'Montserrat', sans-serif;
@@ -35,15 +41,17 @@
     font-family: $ua-font;
     text-transform: uppercase;
     overflow: hidden;
-    color: $secondary-color;
+    color: white;
     position: relative;
 
     .title-content {
       display: inline-block;
       position: relative;
-      background: #f5f5f5;
-      padding: 0 12px;
-      box-shadow: 0 0 10px 6px #f5f5f5;
+      background: $superposed-color;
+      padding: 14px;
+      transform: translate(-$length, -$length);
+      border-radius: $radius 0 $radius 0;
+      //box-shadow: 0 0 10px 6px #f5f5f5;
     }
 
     &::before {
@@ -53,9 +61,7 @@
       height: 3px;
       top: 50%;
       left: 0;
-      background: $primary-color;
-      box-shadow: 0 0 8px 2px $primary-color;
-      border-radius: 10px;
+      border-bottom: dotted 10px $accent-color;
       margin: 0 10px;
     }
   }
@@ -73,5 +79,42 @@
   &.title-4 {
     font-weight: 600;
     font-size: 1.25rem;
+  }
+}
+
+.title-wrapper {
+  margin: 10px 0;
+  /*color: white;
+  filter: brightness(1);
+  cursor: pointer;*/
+  display: inline-block;
+  box-sizing: border-box;
+  position: sticky;
+  border-left: solid #f5f5f5 25px;
+  border-right: solid #f5f5f5 25px;
+}
+
+.title-top {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: $radius;
+  background-color: $secondary-color;
+  transition: 0.3s;
+  transform: translate(-$length, -$length) scale(1);
+}
+
+.title-bottom {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: $radius;
+  padding: $length;
+  background-color: $primary-color;
+  transition: 0.3s;
+  transform: translate($doubleSize, $doubleSize) scale(1);
+}
+
+@media screen and (max-width: 650px) {
+  .title.title-1 {
+    font-size: 1rem;
   }
 }

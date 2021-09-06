@@ -75,17 +75,39 @@
   }
 
   .login-button {
-    display: block;
-    width: min-content;
-    margin: 0 auto 40px auto;
-    padding: 10px 36px;
-    font-family: $ua-font;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid #fff;
-    box-shadow: inset 0 0 8px 6px #ed00e4, 0 0 8px 6px #ed00e4;
-    background: transparent;
+    &.buttonWrapper {
+      display: block;
+      width: min-content;
+      padding: 10px 36px;
+      font-family: $ua-font;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    &.topButtonDiv {
+      box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
+    }
+
+    &:hover {
+      & .topButtonDiv {
+        // transform: translate(0, 0);
+        box-shadow: none;
+
+        & .bottomButtonDiv {
+          transform: translate(0, 0);
+          padding: 0;
+
+          & .button {
+            transform: translate(0, 0);
+            padding: 10 + $buttonLength 22 + $buttonLength;
+            margin: 0;
+            border-radius: $buttonRadius;
+          }
+        }
+      }
+    }
   }
 
   .navbar-container a {
@@ -124,8 +146,7 @@
       left: -10px;
       width: 0;
       height: 3px;
-      background: $primary-color;
-      box-shadow: 0 0 8px 2px $primary-color;
+      border-bottom: dotted $accent-color 5px;
       transition: all 0.3s;
     }
 
@@ -194,7 +215,7 @@
   footer .footer-text {
     width: 260px;
     margin: 12px auto 0 auto;
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     color: #fff;
 
@@ -313,7 +334,13 @@
     }
 
     .login-button {
-      margin: 20px auto;
+      &.buttonWrapper {
+        margin: 20px auto;
+      }
+
+      &.topButtonDiv {
+        box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
+      }
     }
 
     footer {
