@@ -2,6 +2,8 @@
 
 Nouvelle version du site de l'UTT Arena ([https://arena.utt.fr](https://arena.utt.fr)).
 
+**Avant toute chose**, prenez connaissance de [la documentation](https://ua-api.readthedocs.io).
+
 ## Pré-requis
 
 - [Yarn](https://yarnpkg.com/fr/)
