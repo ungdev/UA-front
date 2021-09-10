@@ -49,8 +49,8 @@ const Home = () => {
           </Title>
 
           <p>
-            L'UTT Arena revient pour sa 18<sup>ème</sup> édition les{' '}
-            <span className="accent">27, 28 et 29 novembre 2020</span>. Cette édition aura lieu pour la première fois{' '}
+            L'UTT Arena revient pour sa 19<sup>ème</sup> édition les{' '}
+            <span className="accent">26, 27 et 28 novembre 2021</span>. Cette édition aura lieu pour la première fois{' '}
             <span className="accent">intégralement en ligne</span>. Au programme,{' '}
             <span className="accent">6 tournois spotlights</span> sur des incontournables de l'esport, du skill, des
             personnalités et des rencontres, de nombreuses animations, avec bien sûr du{' '}
@@ -76,12 +76,12 @@ const Home = () => {
                 title: <strong>Format</strong>,
                 description: "A l'espace Argence !",
               },
-              { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 27 novembre à 21h' },
-              { title: <strong>Début des tournois</strong>, description: 'Samedi 28 novembre à 10h précises' },
-              { title: <strong>Places</strong>, description: '500 joueurs' },
-              { title: <strong>Tarif</strong>, description: 'Gratuit !' },
+              { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 26 novembre' },
+              { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre' },
+              { title: <strong>Places</strong>, description: '448 joueurs' },
+              { title: <strong>Tarif</strong>, description: 'A venir...' },
               { title: <strong>Âge minimum</strong>, description: '16 ans' },
-              { title: <strong>Tournois</strong>, description: 'LoL, Valorant, CS:GO, SSBU, Rocket League, TFT' },
+              { title: <strong>Tournois</strong>, description: 'LoL, osu!, CS:GO, SSBU, Rocket League, Libre' },
             ]}
             className="info-table"
           />

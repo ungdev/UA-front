@@ -17,14 +17,14 @@ const Information = () => (
       <br />
       L'UTT Arena revient cette année pour sa{' '}
       <span className="accent">
-        18<sup>ème</sup> édition
+        19<sup>ème</sup> édition
       </span>{' '}
       ! D'une simple salle d'examen de l'UTT à environ 1500m² au cœur du Festival des Jeux, l'UTT Arena a évolué de
       manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! Cette année, L'UTT Arena se
       déroule exceptionnellement à distance, dans un tout nouveau format. L'occasion aussi de s'ouvrir encore plus à
       l'international.
       <br />
-      <br />À présent l'UTT Arena c'est <span className="accent">500 joueurs</span>,{' '}
+      <br />À présent l'UTT Arena c'est <span className="accent">448 joueurs</span>,{' '}
       <span className="accent">6 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
       tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
       les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
@@ -38,7 +38,7 @@ const Information = () => (
 
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
-      Ouverture des inscriptions le <span className="accent">VENDREDI 16 OCTOBRE, à 19h30 </span>(heure française) !
+      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
       Elles auront lieu sur la plateforme Toornament mais pas de panique, tout est expliqué ici.
       <ul>
         <li>Il faut d'abord cliquer sur le bouton "Inscription" dans la barre de navigation</li>
@@ -66,7 +66,7 @@ const Information = () => (
     <Title align="center">Horaires</Title>
     <div className="information-section">
       <p>
-        Vendredi à 21h aura lieu un discours d'ouverture, suivi d'une soirée jeux libres pour jouer tous ensemble !
+        Vendredi aura lieu un discours d'ouverture, suivi d'une soirée jeux libres pour jouer tous ensemble !
         <br />
         Les horaires des matchs vont seront communiqués sur notre Discord !
       </p>

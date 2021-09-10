@@ -26,10 +26,10 @@ export default [
     rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
-    name: 'osu!',
-    shortName: 'osu!',
-    players: 24,
-    image: '/tournaments/valorant.jpg',
+    name: 'Rocket League',
+    shortName: 'rocket-league',
+    players: 96,
+    image: '/tournaments/rocket-league.jpg',
     shortRewards: '700€ + lots',
     rewards: (
       <ul>
@@ -45,7 +45,7 @@ export default [
       </ul>
     ),
     toornamentId: '3964512438822207488',
-    format: '24 joueurs',
+    format: '32 équipes de 3 joueurs',
     rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
   {
@@ -95,10 +95,10 @@ export default [
     rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
   {
-    name: 'Rocket League',
-    shortName: 'rocket-league',
-    players: 96,
-    image: '/tournaments/rocket-league.jpg',
+    name: 'osu!',
+    shortName: 'osu',
+    players: 24,
+    image: '/tournaments/valorant.jpg',
     shortRewards: '420€ + lots',
     rewards: (
       <ul>
@@ -114,7 +114,7 @@ export default [
       </ul>
     ),
     toornamentId: '3968011074334515200',
-    format: '32 équipes de 3 joueurs',
+    format: '24 joueurs',
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {

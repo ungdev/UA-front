@@ -75,8 +75,7 @@ const content = [
         question: 'Combien coûte la participation à un tournoi ?',
         answer: (
           <>
-            <strong>Rien !</strong> L’UTT Arena se déroulant en distanciel cette année, les frais de participation sont
-            nuls ! Raison de plus pour participer ;)
+            <strong>A venir...</strong>
           </>
         ),
       },
