@@ -14,6 +14,8 @@ import { logout } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed } from '../utils/settings';
 
+const a = isLoginAllowed();
+
 const links = [
   {
     title: 'Accueil',
@@ -204,7 +206,7 @@ const Navbar = ({ isLoggedIn }) => {
         </footer>
       </div>
 
-      {isLoginAllowed() ? (
+      {isLoginAllowed() === true ? (
         <LoginModal isVisible={isVisible} />
       ) : (
         <Modal
@@ -216,8 +218,7 @@ const Navbar = ({ isLoggedIn }) => {
               Fermer
             </Button>
           }>
-          Le système d'inscription est actuellement en maintenance, suivez-nous sur les réseaux sociaux pour ne rien
-          rater !
+          Les inscriptions ouvriront le Vendredi 8 Octobre 2021 à 19h.
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
