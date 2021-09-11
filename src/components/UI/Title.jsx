@@ -11,11 +11,7 @@ const Title = ({ level, children, gutterBottom, align, className }) => {
     <Component className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
       {level === 1 ? (
         <div className={`title-wrapper ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
-          <div className={`title-top ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
-            <div className={`title-bottom ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
-              <div className="title-content">{children}</div>
-            </div>
-          </div>
+          <div className="title-content">{children}</div>
         </div>
       ) : (
         <div className="title-content">{children}</div>
