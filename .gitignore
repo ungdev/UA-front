@@ -12,5 +12,4 @@
 # misc
 .DS_Store
 .env
-/docs/build/
 .vscode/
