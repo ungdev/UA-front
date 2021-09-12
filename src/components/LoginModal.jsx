@@ -16,8 +16,9 @@ const initialSignup = {
   passwordConfirmation: '',
 };
 
+// TODO : Allow user to login with username
 const initialLogin = {
-  username: '',
+  email: '',
   password: '',
 };
 
@@ -68,11 +69,7 @@ const LoginModal = ({ isVisible }) => {
       title: 'Connexion',
       content: (
         <>
-          <Input
-            label="Pseudo / Email"
-            value={loginForm.username}
-            onChange={(value) => updateLogin('username', value)}
-          />
+          <Input label="Pseudo / Email" value={loginForm.email} onChange={(value) => updateLogin('email', value)} />
           <Input
             label="Mot de passe"
             value={loginForm.password}
@@ -170,14 +167,21 @@ const LoginModal = ({ isVisible }) => {
 
   return (
     <Modal
-      title="Inscription"
+      title={body[panel].title}
       visible={isVisible}
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false));
+        resetFields();
       }}
       className="login-modal">
-      Les inscriptions ouvriront bientôt, suivez-nous sur les réseaux sociaux !
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          body[panel].action();
+        }}>
+        {body[panel].content}
+      </form>
     </Modal>
   );
 };

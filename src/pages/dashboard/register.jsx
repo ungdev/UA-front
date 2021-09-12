@@ -13,7 +13,7 @@ const columns = [
 ];
 
 const Register = () => {
-  const [tournament, setTournament] = useState('1');
+  const [tournamentId, setTournamentId] = useState('lol');
   const [tournamentSolo, setTournamentSolo] = useState('5');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
@@ -44,25 +44,26 @@ const Register = () => {
     value: tournament.id,
   }));
 
+  // TODO : This has to be fixed with the route /tournaments on API
   // Get multiplayer tournaments tabs
-  const tournamentsTabs = tournamentsList.map((tournament) => {
-    const tournamentTeams = tournament.teams.map((team) => ({
-      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-      players: team.users.map(({ username }) => username).join(', '),
-      action:
-        askingTeamId === team.id ? (
-          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-        ) : (
-          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
-            Rejoindre
-          </Button>
-        ),
-    }));
-
-    return {
-      title: tournament.shortName,
-      content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
-    };
+  const tournamentsTabs = tournamentsList.map(async (tournament) => {
+    // const teams = await API.get('/???');
+    // const tournamentTeams = teams.map((team) => ({
+    //   team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+    //   players: team.users.map(({ username }) => username).join(', '),
+    //   action:
+    //     askingTeamId === team.id ? (
+    //       <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+    //     ) : (
+    //       <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
+    //         Rejoindre
+    //       </Button>
+    //     ),
+    // }));
+    // return {
+    //   title: tournament.shortName,
+    //   content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
+    // };
   });
 
   const mainPanel = (
@@ -75,12 +76,12 @@ const Register = () => {
             Je serai chef d'équipe et je pourrai gérer les membres de mon équipe.
           </p>
 
-          <Select label="Tournoi" options={tournamentsOptions} value={tournament} onChange={setTournament} />
+          <Select label="Tournoi" options={tournamentsOptions} value={tournamentId} onChange={setTournamentId} />
           <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ teamName, tournament }))}
+            onClick={() => dispatch(createTeam({ teamName, tournamentId }))}
             rightIcon="fas fa-plus">
             Créer mon équipe
           </Button>

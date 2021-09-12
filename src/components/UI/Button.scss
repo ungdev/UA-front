@@ -9,7 +9,7 @@
   font-size: 1em;
   cursor: pointer;
   user-select: none;
-  transition: all 0.3s;
+  transition: all 0.3s, color 0s;
   transform: translate(-$buttonLength, -$buttonLength);
 
   &.primary {
@@ -75,7 +75,7 @@
     &:not(.no-style) {
       border-radius: $buttonRadius;
       background-color: $primary-color;
-      transition: 0.3s;
+      transition: all 0.3s, color 0s;
       transform: translate(-$buttonLength, -$buttonLength) scale(1);
     }
   }
@@ -88,7 +88,7 @@
     border-radius: $buttonRadius;
     padding: $buttonLength;
     background-color: $secondary-color;
-    transition: 0.3s;
+    transition: all 0.3s, color 0s;
     transform: translate(2 * $buttonLength, 2 * $buttonLength) scale(1);
   }
 }

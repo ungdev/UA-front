@@ -30,10 +30,10 @@ const Wrapper = ({ Component }) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
-      setHasTeam(!!user.team);
+      setHasTeam(!!user.teamId);
       setIsVisitor(user.type === 'visitor');
-    } else if (user && hasTeam !== !!user.team) {
-      setHasTeam(!!user.team);
+    } else if (user && hasTeam !== !!user.teamId) {
+      setHasTeam(!!user.teamId);
     } else if (user && !isVisitor && user.type === 'visitor') {
       setIsVisitor(true);
     } else if (user && isVisitor && user.type === 'none') {
