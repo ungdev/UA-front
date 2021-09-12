@@ -12,7 +12,7 @@ import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
-import { isLoginAllowed } from '../utils/settings';
+import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
 const links = [
   {
@@ -59,6 +59,10 @@ const Navbar = ({ isLoggedIn }) => {
   const hasOrgaPermission = useSelector(
     (state) => state.login.user && _hasOrgaPermission(state.login.user.permissions),
   );
+  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
+  isLoginAllowedFunction().then((result) => {
+    setIsLoginAllowed(result);
+  });
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -122,13 +126,11 @@ const Navbar = ({ isLoggedIn }) => {
         <span />
         <span />
       </div>
-
       <Link href="/">
         <a className="mobile-link" arial-label="logo" onClick={() => setMobileMenuVisible(false)}>
           <div className="mobile-logo" />
         </a>
       </Link>
-
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
           <Link href="/">
@@ -137,13 +139,7 @@ const Navbar = ({ isLoggedIn }) => {
             </a>
           </Link>
 
-          <Link href="/tournaments">
-            <a>
-              <Button primary className="login-button" /*onClick={() => dispatch(setLoginModalVisible(true))}*/>
-                Inscription
-              </Button>
-            </a>
-          </Link>
+          {isLoggedIn ? isLoggedLayout : connexionButton}
 
           <nav>{navLinks}</nav>
         </SimpleBar>
@@ -209,25 +205,21 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
         </footer>
       </div>
-
-      {
-        /*isLoginAllowed()*/ true ? (
-          <LoginModal isVisible={isVisible} />
-        ) : (
-          <Modal
-            title="Connexion"
-            onCancel={() => dispatch(setLoginModalVisible(false))}
-            visible={isVisible}
-            buttons={
-              <Button primary onClick={() => dispatch(setLoginModalVisible(false))}>
-                Fermer
-              </Button>
-            }>
-            Le système d'inscription est actuellement en maintenance, suivez-nous sur les réseaux sociaux pour ne rien
-            rater !
-          </Modal>
-        )
-      }
+      {isLoginAllowed ? (
+        <LoginModal isVisible={isVisible} />
+      ) : (
+        <Modal
+          title="Connexion"
+          onCancel={() => dispatch(setLoginModalVisible(false))}
+          visible={isVisible}
+          buttons={
+            <Button primary onClick={() => dispatch(setLoginModalVisible(false))}>
+              Fermer
+            </Button>
+          }>
+          Les inscriptions ouvriront le Vendredi 8 Octobre 2021 à 19h.
+        </Modal>
+      )}
       <UserModal isVisible={isUserVisible} />
     </div>
   );

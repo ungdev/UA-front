@@ -59,6 +59,14 @@ export const fetchTeam = (id) => async (dispatch) => {
   });
 };
 
+export const fetchCurrentTeam = () => async (dispatch) => {
+  const res = await API.get(`teams/current`);
+  dispatch({
+    type: SET_TEAM,
+    team: res.data,
+  });
+};
+
 export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
   const { user } = getState().login;
   await API.delete(`/teams/${teamId}/request`, { data: { userId: user.id } });

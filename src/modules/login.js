@@ -54,7 +54,7 @@ export const autoLogin = () => async (dispatch) => {
     const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
     try {
-      const res = await API.get(`users/${userId}`);
+      const res = await API.get(`users/current`);
       dispatch({
         type: SET_USER,
         user: res.data,
@@ -116,7 +116,7 @@ export const logout = async (dispatch) => {
 };
 
 export const editUser = (data, userId) => async (dispatch) => {
-  const res = await API.put(`/users/${userId}`, data);
+  const res = await API.put(`/users/current`, data);
   toast.success('Vos informations ont été modifiées');
   dispatch({
     type: UPDATE_USER,
@@ -131,6 +131,7 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
   resetFields();
 };
 
+// TODO : vérifier que ça fonctionne
 export const setType = (type) => async (dispatch, getState) => {
   const user = getState().login.user;
   const res = await API.put(`/users/${user.id}`, { ...user, type });

@@ -55,9 +55,12 @@ const Tournament = ({ assets, tournamentId, alt }) => {
       <div className="tournament-content">
         <Title align="center">{assets.name}</Title>
 
+        {/* TODO : Redirect to tournament register (not toornament) */}
         <div className="tournament-signin">
           <a href={`https://www.toornament.com/fr/tournaments/${assets.toornamentId}/information`}>
-            <Button primary>S'inscrire</Button>
+            <Button primary disabled>
+              S'inscrire
+            </Button>
           </a>
         </div>
 
