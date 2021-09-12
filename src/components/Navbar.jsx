@@ -12,9 +12,7 @@ import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
-import { isLoginAllowed } from '../utils/settings';
-
-const a = isLoginAllowed();
+import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
 const links = [
   {
@@ -61,6 +59,10 @@ const Navbar = ({ isLoggedIn }) => {
   const hasOrgaPermission = useSelector(
     (state) => state.login.user && _hasOrgaPermission(state.login.user.permissions),
   );
+  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
+  isLoginAllowedFunction().then((result) => {
+    setIsLoginAllowed(result);
+  });
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {
@@ -124,13 +126,11 @@ const Navbar = ({ isLoggedIn }) => {
         <span />
         <span />
       </div>
-
       <Link href="/">
         <a className="mobile-link" arial-label="logo" onClick={() => setMobileMenuVisible(false)}>
           <div className="mobile-logo" />
         </a>
       </Link>
-
       <div className="navbar-container">
         <SimpleBar style={{ height: '100%' }}>
           <Link href="/">
@@ -205,8 +205,7 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
         </footer>
       </div>
-
-      {isLoginAllowed() === true ? (
+      {isLoginAllowed ? (
         <LoginModal isVisible={isVisible} />
       ) : (
         <Modal
