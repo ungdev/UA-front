@@ -29,13 +29,17 @@ const CookieConsent = () => {
 
   return (
     <div className="cookie-consent">
-      Nous utilisons les cookies pour proposer et améliorer nos services. En navigant sur notre site, vous acceptez
-      l'utilisation des cookies.{' '}
+      Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, vous consentez
+      {' à'} l'utilisation de ces cookies.{' '}
       <Link href="/legal">
         <a>En&nbsp;savoir&nbsp;plus</a>
       </Link>
+      <br />
       <Button onClick={buttonClick} className="cookie-consent-button">
-        J'ai compris
+        J'accepte
+      </Button>
+      <Button onClick={() => setDisplay(false)} className="cookie-deny-button">
+        Je refuse
       </Button>
     </div>
   );

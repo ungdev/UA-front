@@ -46,6 +46,7 @@ const links = [
 ];
 
 const Navbar = ({ isLoggedIn }) => {
+  isLoggedIn = true; // DEBUG
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
