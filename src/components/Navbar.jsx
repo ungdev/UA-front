@@ -46,7 +46,7 @@ const links = [
 ];
 
 const Navbar = ({ isLoggedIn }) => {
-  isLoggedIn = true; // DEBUG
+  //isLoggedIn = true; // DEBUG
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -62,7 +62,8 @@ const Navbar = ({ isLoggedIn }) => {
   );
   const [isLoginAllowed, setIsLoginAllowed] = useState(false);
   isLoginAllowedFunction().then((result) => {
-    setIsLoginAllowed(result);
+    //setIsLoginAllowed(result);
+    setIsLoginAllowed(true);
   });
 
   // Set mobile menu visibility
