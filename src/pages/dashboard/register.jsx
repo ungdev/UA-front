@@ -6,6 +6,7 @@ import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
+import { API } from '../../utils/api';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -21,19 +22,12 @@ const Register = () => {
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
-  const tournaments = useSelector((state) => state.tournament.tournaments);
   const { username, askingTeamId } = useSelector((state) => state.login.user || { username: '', askingTeamId: '' });
   const soloTeamName = `${username}-solo-team`;
-
-  useEffect(() => {
-    dispatch(fetchTournaments());
-  }, []);
-
-  if (!tournaments) {
-    return null;
-  }
+  const [tournaments, setTournaments] = useState([]);
 
   // Split multiplayer and solo tournaments
+  console.log(tournaments);
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
   const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
 
@@ -58,27 +52,38 @@ const Register = () => {
     value: tournament.id,
   }));
 
+  // Set tournaments state
+  useEffect(() => {
+    (async () => {
+      setTournaments((await API.get('/tournaments')).data);
+    })();
+  }, []);
+
+  if (!tournaments) {
+    return null;
+  }
+
+  const tournamentsTabs = tournaments.map((tournament) => {
+    const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams).map((team) => ({
+      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+      players: team.players.map(({ username }) => username).join(', '),
+      action:
+        askingTeamId === team.id ? (
+          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+        ) : (
+          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
+            Rejoindre
+          </Button>
+        ),
+    }));
+    return {
+      title: tournament.name,
+      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
+    };
+  });
+
   // TODO : This has to be fixed with the route /tournaments on API
   // Get multiplayer tournaments tabs
-  const tournamentsTabs = tournamentsList.map(async (tournament) => {
-    // const teams = await API.get('/???');
-    // const tournamentTeams = teams.map((team) => ({
-    //   team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-    //   players: team.users.map(({ username }) => username).join(', '),
-    //   action:
-    //     askingTeamId === team.id ? (
-    //       <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-    //     ) : (
-    //       <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
-    //         Rejoindre
-    //       </Button>
-    //     ),
-    // }));
-    // return {
-    //   title: tournament.shortName,
-    //   content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
-    // };
-  });
 
   const mainPanel = (
     <>
@@ -164,7 +169,6 @@ const Register = () => {
       <Tabs tabs={tournamentsTabs} />
     </>
   );
-
   return <div id="dashboard-register">{panel === 'main' ? mainPanel : joinPanel}</div>;
 };
 
