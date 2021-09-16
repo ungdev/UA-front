@@ -25,10 +25,10 @@ export default (state = initialState, action) => {
 export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   const { user } = getState().login;
   const res = await API.post('teams', bodyTeam);
-  if (bodyTeam.teamName.includes('solo-team')) {
+  if (bodyTeam.name.includes('solo-team')) {
     toast.success(`Vous avez rejoint le tournoi ${res.data.tournament.shortName}`);
   } else {
-    toast.success(`L'équipe ${bodyTeam.teamName} a bien été créée`);
+    toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
   }
   dispatch({
     type: SET_TEAM,
@@ -131,7 +131,7 @@ export const refuseUser = (user, teamId) => async (dispatch, getState) => {
 
 export const deleteTeam = (teamId) => async (dispatch, getState) => {
   const user = getState().login.user;
-  await API.delete(`teams/${teamId}`);
+  await API.delete('teams/current');
   dispatch({
     type: SET_USER,
     user: { ...user, team: null, type: 'none' },

@@ -27,7 +27,6 @@ const Register = () => {
   const [tournaments, setTournaments] = useState([]);
 
   // Split multiplayer and solo tournaments
-  console.log(tournaments);
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
   const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
 
@@ -82,9 +81,6 @@ const Register = () => {
     };
   });
 
-  // TODO : This has to be fixed with the route /tournaments on API
-  // Get multiplayer tournaments tabs
-
   const mainPanel = (
     <>
       <div className="team-tournament">
@@ -100,7 +96,7 @@ const Register = () => {
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ teamName, tournamentId }))}
+            onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'player' }))}
             rightIcon="fas fa-plus">
             Créer mon équipe
           </Button>
@@ -141,7 +137,7 @@ const Register = () => {
           <Button
             primary
             className="center-mobile"
-            onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
+            onClick={() => dispatch(createTeam({ name: soloTeamName, tournamentId, userType: 'player' }))}
             rightIcon="fas fa-user">
             S'inscrire en solo
           </Button>

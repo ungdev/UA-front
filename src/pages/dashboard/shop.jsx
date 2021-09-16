@@ -47,6 +47,7 @@ const supplementColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
+  // The list of all items available
   const items = useSelector((state) => state.items.items);
   const placeInitialValue = { for: 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
@@ -93,6 +94,19 @@ const Shop = () => {
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
+  useEffect(() => {
+    if (!items) {
+      return;
+    }
+    let newCart = cart;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (cart.findIndex((cartItem) => cartItem.item.id === item.id) === -1) {
+        newCart.push({ item, quantity: 0 });
+      }
+    }
+    setCart(newCart);
+  }, [items]);
 
   useEffect(() => {
     setPlace({ ...place, for: isPaid || willBePaid ? 'other' : 'me' });
