@@ -5,6 +5,7 @@ import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
+import { useRouter } from 'next/router';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -13,8 +14,18 @@ const columns = [
 ];
 
 const Register = () => {
-  const [tournamentId, setTournamentId] = useState('lol');
-  const [tournamentSolo, setTournamentSolo] = useState('5');
+  const { query } = useRouter();
+
+  const teamGames = ['lol', 'valorant', 'csgo', 'rl'];
+  const soloGames = ['ssbu', 'tft'];
+
+  // if query is 'rocket-league', transform it so it can be used later
+  if (query.tournament == 'rocket-league') query.tournament = 'rl';
+
+  const [tournamentId, setTournamentId] = useState(teamGames.includes(query.tournament) ? query.tournament : 'lol');
+  const [tournamentSolo, setTournamentSolo] = useState(
+    soloGames.includes(query.tournament) ? query.tournament : 'ssbu',
+  );
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
@@ -39,6 +50,7 @@ const Register = () => {
     label: tournament.name,
     value: tournament.id,
   }));
+
   const tournamentsSoloOptions = tournamentsSoloList.map((tournament) => ({
     label: tournament.name,
     value: tournament.id,
