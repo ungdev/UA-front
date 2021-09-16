@@ -11,6 +11,7 @@
   user-select: none;
   transition: all 0.3s, color 0s;
   transform: translate(-$buttonLength, -$buttonLength);
+  width: 100%;
 
   &.primary {
     color: unset;
