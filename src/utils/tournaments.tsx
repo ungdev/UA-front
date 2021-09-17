@@ -3,14 +3,15 @@ import { uploadsUrl } from './environment';
 
 export default [
   {
-    name: 'League of Legends ',
+    name: 'League of Legends pro',
     shortName: 'lol',
-    players: 160,
-    image: '/tournaments/lol.jpg',
-    shortRewards: '850€ + lots',
+    players: 80,
+    image: '/tournaments/lol_pro.jpg',
+    shortRewards: 'A venir...', // '850€ + lots',
     rewards: (
       <ul>
-        <li>
+        <li>A venir...</li>
+        {/* <li>
           1<sup>ère</sup> place : 425€ + lots
         </li>
         <li>
@@ -18,22 +19,47 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 150€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3964490483953033216',
     format: '32 équipes de 5 joueurs',
-    rules: `${uploadsUrl()}/rules/lol.pdf`,
+    rules: `${uploadsUrl()}/rules/lol_pro.pdf`,
+  },
+  {
+    name: 'League of Legends amateur',
+    shortName: 'lolamateur',
+    players: 80,
+    image: '/tournaments/lol_amateur.jpg',
+    shortRewards: 'A venir...', // '850€ + lots',
+    rewards: (
+      <ul>
+        <li>A venir...</li>
+        {/* <li>
+          1<sup>ère</sup> place : 425€ + lots
+        </li>
+        <li>
+          2<sup>ème</sup> place : 275€ + lots
+        </li>
+        <li>
+          3<sup>ème</sup> place : 150€
+        </li> */}
+      </ul>
+    ),
+    toornamentId: '3964490483953033216',
+    format: '32 équipes de 5 joueurs',
+    rules: `${uploadsUrl()}/rules/lol_amateur.pdf`,
   },
   {
     name: 'Rocket League',
     shortName: 'rocket-league',
     players: 96,
-    image: '/tournaments/rocket-league.jpg',
-    shortRewards: '700€ + lots',
+    image: '/tournaments/rl.jpg',
+    shortRewards: 'A venir...', // '700€ + lots',
     rewards: (
       <ul>
-        <li>
+        <li>A venir...</li>
+        {/* <li>
           1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
@@ -41,22 +67,23 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 100€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3964512438822207488',
     format: '32 équipes de 3 joueurs',
-    rules: `${uploadsUrl()}/rules/valorant.pdf`,
+    rules: `${uploadsUrl()}/rules/rl.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
     players: 80,
     image: '/tournaments/csgo.jpg',
-    shortRewards: '700€ + lots',
+    shortRewards: 'A venir...', // '700€ + lots',
     rewards: (
       <ul>
-        <li>
+        A venir...
+        {/* <li>
           1<sup>ère</sup> place : 375€ + lots
         </li>
         <li>
@@ -64,7 +91,7 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 100€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3964440948621860864',
@@ -75,11 +102,12 @@ export default [
     name: 'Super Smash Bros. Ultimate',
     shortName: 'ssbu',
     players: 64,
-    image: '/tournaments/ssbu.png',
-    shortRewards: '380€ + lots',
+    image: '/tournaments/ssbu.jpg',
+    shortRewards: 'A venir...', // '380€ + lots',
     rewards: (
       <ul>
-        <li>
+        <li>A venir...</li>
+        {/* <li>
           1<sup>ère</sup> place : 170€ + lots
         </li>
         <li>
@@ -87,7 +115,7 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 85€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3968020242978578432',
@@ -98,11 +126,12 @@ export default [
     name: 'osu!',
     shortName: 'osu',
     players: 24,
-    image: '/tournaments/valorant.jpg',
-    shortRewards: '420€ + lots',
+    image: '/tournaments/osu.jpg',
+    shortRewards: 'A venir...', // '420€ + lots',
     rewards: (
       <ul>
-        <li>
+        <li>A venir...</li>
+        {/* <li>
           1<sup>ère</sup> place : 225€ + lots
         </li>
         <li>
@@ -110,22 +139,23 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 60€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3968011074334515200',
     format: '24 joueurs',
-    rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
+    rules: `${uploadsUrl()}/rules/osu.pdf`,
   },
   {
     name: 'Libre',
-    shortName: 'libre',
+    shortName: 'open',
     players: 24,
-    image: '/tournaments/tft.png',
-    shortRewards: '200€ + lots',
+    image: '/tournaments/open.jpg',
+    shortRewards: 'A venir...', // '200€ + lots',
     rewards: (
       <ul>
-        <li>
+        <li>A venir...</li>
+        {/* <li>
           1<sup>ère</sup> place : 80€ + lots
         </li>
         <li>
@@ -133,11 +163,11 @@ export default [
         </li>
         <li>
           3<sup>ème</sup> place : 55€
-        </li>
+        </li> */}
       </ul>
     ),
     toornamentId: '3964519359953436672',
     format: '24 joueurs',
-    rules: `${uploadsUrl()}/rules/tft.pdf`,
+    rules: `${uploadsUrl()}/rules/open.pdf`,
   },
 ];
