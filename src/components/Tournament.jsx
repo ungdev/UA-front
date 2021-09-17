@@ -20,6 +20,7 @@ const Tournament = ({ assets, tournamentId, alt }) => {
   const [isLogginAllowed, setIsLogginAllowed] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formatTeams, setFormatTeam] = useState([]);
+  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
 
   fetchIsLogginAllowed().then((result) => {
     setIsLogginAllowed(result);
@@ -61,14 +62,14 @@ const Tournament = ({ assets, tournamentId, alt }) => {
       <div className="tournament-content">
         <Title align="center">{assets.name}</Title>
 
-        {/* Redirect to tournament register */}
-        <div className="tournament-signin">
-          <a onClick={buttonClick}>
-            <Button primary disabled>
+        {/* Redirect to tournament register. The button is only display if Login is allowed (api call). */}
+        {isLoginAllowed ? (
+          <div className="tournament-signin">
+            <Button primary onClick={buttonClick}>
               S'inscrire
             </Button>
-          </a>
-        </div>
+          </div>
+        ) : null}
 
         <Title level={2}>Format</Title>
         <div className="tournament-section">
