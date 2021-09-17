@@ -35,10 +35,10 @@ const links = [
     title: 'Partenaires',
     href: '/partners',
   },
-  {
-    title: 'Organisateurs',
-    href: '/organisers',
-  },
+  // {
+  //   title: 'Organisateurs',
+  //   href: '/organisers',
+  // },
   {
     title: 'Contact',
     href: '/contact',
@@ -197,7 +197,7 @@ const Navbar = ({ isLoggedIn }) => {
           </div>
 
           <div className="footer-text">
-            © 2020 <a href="https://ung.utt.fr">UTT Net Group</a>
+            © 2021 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal">
               <a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a>

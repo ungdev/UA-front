@@ -20,7 +20,7 @@ const TournamentCards = () => {
     <div className="tournament-cards">
       <Title align="center">Tournois</Title>
       <Title level={4} align="center" className="uppercase">
-        Les 6 tournois à l'UTT Arena 2020
+        Les 7 tournois à l'UTT Arena 2021
       </Title>
 
       <div className="tournaments-list">

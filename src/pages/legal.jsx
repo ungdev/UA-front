@@ -11,34 +11,50 @@ const Legal = () => (
       <br />
       N° RNA : W103000699
       <br />
+      N° de TVA intracommunautaire : FR50500164249
+      <br />
+      N° d'immatriculation RCS : 500164249
+      <br />
+      Capital social : 0 euros
+      <br />
       12 rue Marie Curie, 10004 Troyes
       <br />
-      03 26 40 60 00
+      03 25 71 85 50
       <br />
       ung@utt.fr
     </p>
 
-    <Title level={2}>Informations relatives aux cookies</Title>
+    <Title level={2}>Collecte des données</Title>
     <p>
-      Nous utilisons des cookies afin d'obtenir des statistiques sur notre site web. Ces informations ne seront en aucun
-      cas vendues, échangées ou données. En naviguant sur notre site web, vous acceptez notre utilisation des cookies.
+      Le site collecte certaines données personnelles renseignées par l’utilisateur sur le site telles que le nom et le
+      prénom. Ces données ne seront en aucun cas échangées, distribuées ou vendues à un tiers.
       <br />
-      Afin d'assurer le fonctionnement du service à l'utilisateur authentifié, des cookies de session sont inscrit sur
-      la navigateur lors de l'authentification sur le site. Ceux-ci, identifiés par les noms "utt-arena-token" et
-      "utt-arena-userid" dans la portée "arena.utt.fr", ont pour seule fonction d'assurer la persistence de la session
-      authentifiée de l'utilisateur. Il est détruit lors de la déconnexion ou à son expiration. Conformément à la
-      directive européenne 2009/136/CE, ce cookie est indispensable à la fourniture du service sollicité.
+      Ces données serviront à identifier l’utilisateur lors de son arrivée sur le lieu de l’évènement.
+      <br />
+      En vertu de la loi Informatique et Libertés, en date du 6 janvier 1978, l'Utilisateur dispose d'un droit d'accès,
+      de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut exercer ce droit
+      en effectuant une demande par mail à l’adresse arena@utt.fr
+      <br />
+      Le responsable du traitement des données est Valentin PELTIER.
+      <br />
+      L’équipe technique et les administrateurs du site pourront accéder aux données.
+      <br />
+      Ces données seront conservées au maximum 10 mois après la collecte des informations.
     </p>
 
-    <Title level={2}>Conditions d'accès aux systèmes informatiques</Title>
+    <Title level={2}>Cookies</Title>
     <p>
-      Pour assurer la qualité et la sécurité du réseau et des équipements rattachés d'une part, et la fluidité des
-      échanges et des services offerts d'autre part, les organisateurs se réservent le droit de bloquer, altérer ou
-      réaliser toute autre action qu'ils jugeront pertinente sur les échanges réseaux afin d'atteindre les objectifs
-      susmentionnés.
+      L’Utilisateur est informé que lors de ses visites sur le site, un cookie peut s’installer automatiquement sur son
+      logiciel de navigation. En naviguant sur le site, il les accepte.
+      <br />
+      Un cookie est un élément qui ne permet pas d’identifier l’Utilisateur mais sert à enregistrer des informations
+      relatives à la navigation de celui-ci sur le site Internet. L’Utilisateur pourra désactiver ce cookie par
+      l’intermédiaire des paramètres figurant au sein de son logiciel de navigation.
     </p>
 
-    <Title level={2}>Conditions générales de vente</Title>
+    {/* <p>Pour plus d’informations, se reporter à la section CGV. (Publication sous peu)</p> */}
+
+    {/* <Title level={2}>Conditions générales de vente</Title>
 
     <Title level={3}>Préambule</Title>
     <p>
@@ -220,7 +236,7 @@ const Legal = () => (
       site internet de l'UTT Arena a fait l'objet d'une déclaration auprès de la CNIL. L'acheteur dispose d'un droit
       d'accès permanent, de modification, de rectification et d'opposition s'agissant des informations le concernant. Ce
       droit peut être exercé dans les conditions et selon les modalités définies sur le site de l'UTT Arena.
-    </p>
+    </p> */}
   </div>
 );
 
