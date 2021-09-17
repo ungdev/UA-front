@@ -36,15 +36,16 @@ const Information = () => (
 
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
-      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) ! Elles
-      auront lieu sur la plateforme Toornament mais pas de panique, tout est expliqué ici.
+      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
       <ul>
-        <li>Il faut d'abord cliquer sur le bouton "Inscription" dans la barre de navigation</li>
-        <li>Ensuite, choisis ton tournoi, tu seras redirigé vers la plateforme Toornament</li>
-        <li>Clique sur le bouton "s'inscrire au tournoi"</li>
-        <li>Pour les tournois en équipe, il faudra inscrire tous les joueurs en une fois</li>
+        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+        <li>Crée ton compte et clique sur le lien envoyé par mail</li>
+        <li>Une fois connecté, crée ou rejoins une équipe</li>
+        <li>
+          Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
+          verrouiller votre équipe
+        </li>
       </ul>
-      Cette année l'inscription à l'UTT Arena est <span className="accent">gratuite</span> !
     </div>
 
     <Title align="center">Infos joueurs</Title>

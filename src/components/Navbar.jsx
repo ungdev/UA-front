@@ -35,10 +35,10 @@ const links = [
     title: 'Partenaires',
     href: '/partners',
   },
-  {
-    title: 'Organisateurs',
-    href: '/organisers',
-  },
+  // {
+  //   title: 'Organisateurs',
+  //   href: '/organisers',
+  // },
   {
     title: 'Contact',
     href: '/contact',
