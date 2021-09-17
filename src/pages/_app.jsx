@@ -39,7 +39,7 @@ const App = ({ Component, reduxStore }) => {
   return (
     <div>
       <Head>
-        <title>UTT Arena 2020 - 26, 27 et 28 novembre 2021</title>
+        <title>UTT Arena 2021 - 26, 27 et 28 novembre 2021</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta

@@ -62,19 +62,14 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Pour cette année les inscriptions se dérouleront sur la plateforme Toornament. Voilà comment cela se passe :
+            Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
             <ul>
-              <li>Sur le site de l'UTT Arena, clique sur le bouton "Inscription" dans la barre de navigation</li>
-              <li>Choisis ton tournoi, tu seras redirigé vers le site de Toornament</li>
-              <li>Clique sur le bouton vert "S'inscrire au tournoi"</li>
+              <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+              <li>Crée ton compte et clique sur le lien envoyé par mail</li>
+              <li>Une fois connecté, crée ou rejoins une équipe</li>
               <li>
-                Pour chaque joueur, il faudra renseigner son nom d'utilisateur Discord (nom d'utilisateur complet, avec
-                le tag) afin qu'on puisse te trouver sur notre serveur Discord et te marquer comme "inscrit"
-              </li>
-              <li>Pour les tournois en équipe, il faudra inscrire tous les joueurs d'un coup</li>
-              <li>
-                Tous les participants devraient recevoir un mail de confirmation te demandant de bien lire le règlement
-                de ton tournoi
+                Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
+                verrouiller votre équipe
               </li>
             </ul>
           </>
