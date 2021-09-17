@@ -24,7 +24,7 @@ export default [
     ),
     toornamentId: '3964490483953033216',
     format: '32 équipes de 5 joueurs',
-    rules: `${uploadsUrl()}/rules/lol_pro.pdf`,
+    // rules: `${uploadsUrl()}/rules/lol_pro.pdf`,
   },
   {
     name: 'League of Legends amateur',
@@ -48,7 +48,7 @@ export default [
     ),
     toornamentId: '3964490483953033216',
     format: '32 équipes de 5 joueurs',
-    rules: `${uploadsUrl()}/rules/lol_amateur.pdf`,
+    // rules: `${uploadsUrl()}/rules/lol_amateur.pdf`,
   },
   {
     name: 'Rocket League',
@@ -72,7 +72,7 @@ export default [
     ),
     toornamentId: '3964512438822207488',
     format: '32 équipes de 3 joueurs',
-    rules: `${uploadsUrl()}/rules/rl.pdf`,
+    // rules: `${uploadsUrl()}/rules/rl.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
@@ -96,7 +96,7 @@ export default [
     ),
     toornamentId: '3964440948621860864',
     format: '16 équipes de 5 joueurs',
-    rules: `${uploadsUrl()}/rules/csgo.pdf`,
+    // rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
     name: 'SSBU by Murex',
@@ -120,7 +120,7 @@ export default [
     ),
     toornamentId: '3968020242978578432',
     format: '64 joueurs',
-    rules: `${uploadsUrl()}/rules/ssbu.pdf`,
+    // rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
   {
     name: 'osu!',
@@ -144,7 +144,7 @@ export default [
     ),
     toornamentId: '3968011074334515200',
     format: '24 joueurs',
-    rules: `${uploadsUrl()}/rules/osu.pdf`,
+    // rules: `${uploadsUrl()}/rules/osu.pdf`,
   },
   {
     name: 'Libre',
@@ -168,6 +168,6 @@ export default [
     ),
     toornamentId: '3964519359953436672',
     format: '24 joueurs',
-    rules: `${uploadsUrl()}/rules/open.pdf`,
+    // rules: `${uploadsUrl()}/rules/open.pdf`,
   },
 ];
