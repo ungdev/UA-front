@@ -19,20 +19,18 @@ const Information = () => (
       <span className="accent">
         19<sup>ème</sup> édition
       </span>{' '}
-      ! D'une simple salle d'examen de l'UTT à environ 1500m² au cœur du Festival des Jeux, l'UTT Arena a évolué de
-      manière à proposer chaque année des tournois de meilleure qualité à ses joueurs ! Cette année, L'UTT Arena se
-      déroule exceptionnellement à distance, dans un tout nouveau format. L'occasion aussi de s'ouvrir encore plus à
-      l'international.
+      ! D'une simple salle d'examen de l'UTT à 2000m² de gaming à l'espace Argence, en passant par le festival des jeux,
+      l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
       <br />
-      <br />À présent l'UTT Arena c'est <span className="accent">448 joueurs</span>,{' '}
-      <span className="accent">6 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
+      <br />À présent l'UTT Arena c'est <span className="accent">450 joueurs</span>,{' '}
+      <span className="accent">5 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
       tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
       les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
       l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
-      contribuent à le rendre exceptionnel ! Un grand merci également à{' '}
-      <Link href="/organisers">
-        <a>tous les bénévoles</a>
-      </Link>{' '}
+      contribuent à le rendre exceptionnel ! Un grand merci également à {/* <Link href="/organisers">
+        <a> */}
+      <span className="accent">tous les bénévoles</span> {/* </a>
+      </Link>{' '} */}
       qui rendent possible l'organisation de ce beau projet.
     </div>
 
@@ -53,13 +51,13 @@ const Information = () => (
     <div className="information-section">
       <Title level={4}>Joueurs mineurs</Title>
       <p>
-        L'âge minimum pour participer au tournoi est de <strong className="accent">16 ans révolus</strong>.
+        L'âge minimum pour participer au tournoi est de <strong className="accent">15 ans révolus</strong>.
       </p>
 
       <Title level={4}>Streaming</Title>
       <p>
-        Il sera possible de streamer pendant l'événement. N'hésitez pas à taguer l'UTT Arena si vous partagez votre
-        stream !
+        Un formulaire de demande de streaming sera mis à disposition avant l’événement. Tu recevras alors une
+        confirmation si tu es autorisé à streamer.
       </p>
     </div>
 

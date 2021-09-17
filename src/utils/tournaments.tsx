@@ -99,7 +99,7 @@ export default [
     rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
-    name: 'Super Smash Bros. Ultimate',
+    name: 'SSBU by Murex',
     shortName: 'ssbu',
     players: 64,
     image: '/tournaments/ssbu.jpg',
