@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title } from './UI';
 import { API } from '../utils/api';
-import { isLoginAllowed as fetchIsLogginAllowed } from '../utils/settings';
+import { isLoginAllowed as fetchIsLoginAllowed } from '../utils/settings';
 
 const columns = [
   { title: 'Équipe', key: 'name' },
@@ -17,13 +17,12 @@ const Tournament = ({ assets, tournamentId, alt }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [isLogginAllowed, setIsLogginAllowed] = useState(false);
+  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formatTeams, setFormatTeam] = useState([]);
-  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
 
-  fetchIsLogginAllowed().then((result) => {
-    setIsLogginAllowed(result);
+  fetchIsLoginAllowed().then((result) => {
+    setIsLoginAllowed(result);
   });
 
   const fetchFullTeam = async () => {
