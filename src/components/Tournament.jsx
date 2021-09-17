@@ -62,7 +62,7 @@ const Tournament = ({ assets, tournamentId, alt }) => {
         <Title align="center">{assets.name}</Title>
 
         {/* TODO : Redirect to tournament register (not toornament) */}
-        {isLogginAllowed ? (
+        {/* {isLogginAllowed ? (
           <div className="tournament-signin">
             <a href={`https://www.toornament.com/fr/tournaments/${assets.toornamentId}/information`}>
               <Button primary disabled>
@@ -72,7 +72,7 @@ const Tournament = ({ assets, tournamentId, alt }) => {
           </div>
         ) : (
           <></>
-        )}
+        )} */}
 
         <Title level={2}>Format</Title>
         <div className="tournament-section">

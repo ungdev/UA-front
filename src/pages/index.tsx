@@ -63,11 +63,11 @@ const Home = () => {
             Alors prépare tout ton stuff et <span className="accent">impose toi dans l’arène !</span>
           </p>
 
-          <VideoContainer
+          {/* <VideoContainer
             src="https://www.youtube.com/embed/bjBwMWQX-DY"
             title="Trailer UTT Arena 2020"
             className="video-container"
-          />
+          /> */}
 
           <Table
             columns={[
