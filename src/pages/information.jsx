@@ -38,8 +38,8 @@ const Information = () => (
 
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
-      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
-      Elles auront lieu sur la plateforme Toornament mais pas de panique, tout est expliqué ici.
+      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) ! Elles
+      auront lieu sur la plateforme Toornament mais pas de panique, tout est expliqué ici.
       <ul>
         <li>Il faut d'abord cliquer sur le bouton "Inscription" dans la barre de navigation</li>
         <li>Ensuite, choisis ton tournoi, tu seras redirigé vers la plateforme Toornament</li>

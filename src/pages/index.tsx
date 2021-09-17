@@ -76,12 +76,15 @@ const Home = () => {
                 title: <strong>Format</strong>,
                 description: "A l'espace Argence !",
               },
-              { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 26 novembre' },
+              { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 26 novembre à 10:00' },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre' },
               { title: <strong>Places</strong>, description: '448 joueurs' },
               { title: <strong>Tarif</strong>, description: 'A venir...' },
-              { title: <strong>Âge minimum</strong>, description: '16 ans' },
-              { title: <strong>Tournois</strong>, description: 'LoL, osu!, CS:GO, SSBU, Rocket League, Libre' },
+              { title: <strong>Âge minimum</strong>, description: '15 ans' },
+              {
+                title: <strong>Tournois</strong>,
+                description: 'LoL pro, LoL amateur, Rocket League, CS:GO, SSBU by Murex, osu!, Libre',
+              },
             ]}
             className="info-table"
           />
