@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title } from './UI';
-import { API } from '../utils/api';
 import { isLoginAllowed as fetchIsLoginAllowed } from '../utils/settings';
 
 const columns = [
@@ -25,14 +24,14 @@ const Tournament = ({ assets, tournamentId, alt }) => {
     setIsLoginAllowed(result);
   });
 
-  const fetchFullTeam = async () => {
-    const res = await API.get(`tournaments/${tournamentId}/teams?paidOnly=true`);
-    const teams = res.data.map(({ name, users }) => ({
-      name,
-      players: users.map(({ username }) => username).join(', '),
-    }));
-    setFormatTeam(teams);
-  };
+  // const fetchFullTeam = async () => {
+  //   const res = await API.get(`tournaments/${tournamentId}/teams?paidOnly=true`);
+  //   const teams = res.data.map(({ name, users }) => ({
+  //     name,
+  //     players: users.map(({ username }) => username).join(', '),
+  //   }));
+  //   setFormatTeam(teams);
+  // };
 
   useSelector((state) => {
     if (isLoggedIn !== !!state.login.user) {
@@ -40,15 +39,15 @@ const Tournament = ({ assets, tournamentId, alt }) => {
     }
   });
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetchFullTeam();
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     fetchFullTeam();
+  //   }
+  // }, [isLoggedIn]);
 
   const buttonClick = () => {
     if (isLoggedIn) {
-      router.push(`/dashboard/register?tournament=${tournamentId}`);
+      router.push(`/dashboard/register?tournamentId=${tournamentId}`);
     } else {
       dispatch(setLoginModalVisible(true));
     }

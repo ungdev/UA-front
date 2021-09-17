@@ -16,16 +16,8 @@ const columns = [
 const Register = () => {
   const { query } = useRouter();
 
-  const teamGames = ['lol', 'valorant', 'csgo', 'rl'];
-  const soloGames = ['ssbu', 'tft'];
-
-  // if query is 'rocket-league', transform it so it can be used later
-  if (query.tournament == 'rocket-league') query.tournament = 'rl';
-
-  const [tournamentId, setTournamentId] = useState(teamGames.includes(query.tournament) ? query.tournament : 'lol');
-  const [tournamentSolo, setTournamentSolo] = useState(
-    soloGames.includes(query.tournament) ? query.tournament : 'ssbu',
-  );
+  const [tournamentId, setTournamentId] = useState('lol');
+  const [tournamentSolo, setTournamentSolo] = useState('ssbu');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
@@ -44,6 +36,16 @@ const Register = () => {
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
   const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
+
+  // If there's a query, pre-select the tournament given by this query
+  if (query.tournamentId && (tournamentId !== query.tournamentId || tournamentSolo !== query.tournamentId)) {
+    if (tournamentsList.filter((tournament) => tournament.id === query.tournamentId)) {
+      setTournamentId(query.tournamentId);
+    }
+    if (tournamentsSoloList.filter((tournament) => tournament.id === query.tournamentId)) {
+      setTournamentSolo(query.tournamentId);
+    }
+  }
 
   // Get tournaments category select options
   const tournamentsOptions = tournamentsList.map((tournament) => ({
