@@ -67,7 +67,7 @@ const Information = () => (
       <p>
         Vendredi aura lieu un discours d'ouverture, suivi d'une soirée jeux libres pour jouer tous ensemble !
         <br />
-        Les horaires des matchs vont seront communiqués sur notre Discord !
+        Les horaires des matchs vous seront communiqués sur notre Discord !
       </p>
     </div>
   </div>
