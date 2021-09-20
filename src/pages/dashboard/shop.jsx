@@ -26,7 +26,7 @@ const ticketColumns = [
   },
 ];
 
-const itemColumns = [
+const supplementColumns = [
   {
     title: '',
     key: 'name',
@@ -50,24 +50,20 @@ const Shop = () => {
   const { push } = useRouter();
   const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
-  const cartStore = useSelector((state) => state.cart);
   const placeInitialValue = { for: isPaid ? 'other' : 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
-  const [cart, setCart] = useState(null);
+  const cartInitialValue = { tickets: [], supplements: [] };
+  const [cart, setCart] = useState(cartInitialValue);
   const [willBePaid, setWillBePaid] = useState(isPaid);
   const [itemPreview, setItemPreview] = useState(null);
-
-  useEffect(() => {
-    setCart(cartStore.cart);
-  }, [cartStore]);
 
   useEffect(() => {
     dispatch(fetchItems());
     dispatch(fetchDraftCart());
   }, []);
 
-  if (!items || !cart) {
+  if (!items) {
     return null;
   }
 
@@ -76,33 +72,25 @@ const Shop = () => {
     let placeForId = userId;
     let currentType = type;
     if (place.for !== 'me') {
-      const user = await API.get(`users?email=${place.forEmail || ''}`);
+      const user = await API.get(`users?search=${place.forEmail || ''}`);
       placeForId = user.data.id;
       currentType = user.data.type;
     } else {
       setWillBePaid(true);
     }
 
-    const item = items.find((item) => item.key === currentType);
-    const newCartItem = {
+    const item = items.find((item) => item.id === 'ticket-' + currentType);
+    const newCartTicket = {
       item,
-      quantity: 1,
       forUserId: placeForId,
       forEmail: place.forEmail,
-      attribute: {
-        value: null,
-        id: undefined,
-      },
     };
-    setCart({ ...cart, cartItems: [...cart.cartItems, newCartItem] });
+    setCart({ ...cart, tickets: [...cart.tickets, newCartTicket] });
     setAddPlaceVisible(false);
     setPlace(placeInitialValue);
   };
 
-  const tickets = cart.cartItems.filter(
-    (cartItem) => cartItem.item && ['player', 'visitor'].includes(cartItem.item.key) && cartItem.quantity > 0,
-  );
-  const ticketRows = tickets.map((ticket) => {
+  const ticketRows = cart.tickets.map((ticket) => {
     if (ticket.forUserId === userId && !willBePaid) {
       setWillBePaid(true);
     }
@@ -113,15 +101,13 @@ const Shop = () => {
       delete: (
         <Button
           onClick={() => {
-            const updatedCartItem = cart.cartItems.map((cartItem) => {
-              const isTicket = ['player', 'visitor'].includes(cartItem.item.key);
-              const forSameUser = cartItem.forUserId === ticket.forUserId;
-              if (forSameUser && cartItem.forUserId === userId && willBePaid) {
-                setWillBePaid(false);
-              }
-              return isTicket && forSameUser ? { ...cartItem, quantity: 0 } : cartItem;
-            });
-            setCart({ ...cart, cartItems: updatedCartItem });
+            const updatedCartTickets = cart.tickets;
+            const index = updatedCartTickets.indexOf(ticket);
+            if (ticket.forUserId === userId && willBePaid) {
+              setWillBePaid(false);
+            }
+            updatedCartTickets.splice(index, 1);
+            setCart({ ...cart, cartTickets: updatedCartTickets });
           }}
           rightIcon="fas fa-trash-alt"
           className="delete-button"
@@ -152,65 +138,66 @@ const Shop = () => {
     ];
   };
 
-  const itemRows = items.slice(2).map((item) => {
-    const cartItem = cart.cartItems
-      ? cart.cartItems.filter((cartItem) => cartItem.item && cartItem.item.key === item.key)
-      : [];
-    const quantity = cartItem.length ? cartItem[0].quantity : 0;
-    const initialAttribute = item.attributes.length
-      ? {
-          value: item.attributes[1].value,
-          id: 3,
+  const supplementTypes = [];
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].category === 'supplement') {
+      const itemId = items[i].id.replace(new RegExp(`-${items[i].attribute}$`, ''));
+      const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
+      if (!supplementType) {
+        const newSupplementType = { ...items[i], id: itemId, attributes: [] };
+        delete newSupplementType.attribute;
+        if (items[i].attribute) {
+          newSupplementType.attributes = [items[i].attribute];
         }
-      : {
-          value: null,
-          id: undefined,
-        };
-    const attribute = cartItem.length && cartItem[0].attribute ? cartItem[0].attribute : initialAttribute;
-
+        supplementTypes.push(newSupplementType);
+      } else {
+        supplementType.attributes.push(items[i].attribute);
+      }
+    }
+  }
+  const supplementRows = supplementTypes.slice(2).map((supplement) => {
+    const cartSupplement = cart.supplements.find(
+      (cartSupplement) => cartSupplement.item && cartSupplement.item.key === supplement.key,
+    );
+    const quantity = cartSupplement ? cartSupplement.quantity : 0;
+    const availableAttributes = [];
+    supplement.attributes.forEach((attribute) => {
+      availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
+    });
     return {
       name: (
         <>
-          {item.name}
-          {item.image && (
+          {supplement.name}
+          {supplement.image && (
             <Button
               className="item-preview-button"
-              onClick={() => setItemPreview(item.image)}
+              onClick={() => setItemPreview(supplement.image)}
               leftIcon="far fa-image"
               noStyle>
               Voir le design
             </Button>
           )}
-          <div className="item-description">{item.infos}</div>
+          <div className="item-description">{supplement.infos}</div>
         </>
       ),
-      price: `${item.price}€`,
-      attributes: item.attributes.length ? (
+      price: `${(supplement.price / 100).toFixed(2)}€`,
+      attributes: supplement.attributes.length ? (
         <Select
-          options={item.attributes}
+          options={availableAttributes}
           onChange={(value) => {
-            const newAttribute = item.attributes.filter((attribute) => attribute.value === value)[0];
             if (quantity) {
-              cartItem[0].quantity = quantity;
-              cartItem[0].attribute = newAttribute;
-              cartItem[0].isUpdated = true;
-              const newCartItems = cart.cartItems.map((previousCartItem) =>
-                previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem,
-              );
-              setCart({ ...cart, cartItems: newCartItems });
-            } else {
-              const newCartItems = [
-                ...cart.cartItems,
-                {
-                  item,
-                  quantity: 1,
-                  attribute: newAttribute,
-                },
-              ];
-              setCart({ ...cart, cartItems: newCartItems });
+              cartSupplement.quantity = quantity;
+              cartSupplement.attribute = value;
+              const newCartSupplements = cart.supplements;
+              newCartSupplements.forEach((previousCartSupplements) => {
+                if (previousCartSupplements.item.id === supplement.id) {
+                  previousCartSupplements.attribute = value;
+                }
+              });
+              setCart({ ...cart, supplements: newCartSupplements });
             }
           }}
-          value={attribute.value}
+          value={undefined}
           className="shop-input"
         />
       ) : (
@@ -220,31 +207,26 @@ const Shop = () => {
         <Input
           type="number"
           placeholder="0"
-          value={quantity || ''}
+          value={quantity}
           onChange={(strQuantity) => {
             let quantity = parseInt(strQuantity, 10);
             if (strQuantity === '') {
               quantity = 0;
             }
             if (Number.isInteger(quantity)) {
-              if (cartItem.length) {
-                cartItem[0].quantity = quantity;
-                cartItem[0].isUpdated = true;
-                cartItem[0].attribute = cartItem[0].attribute || initialAttribute;
-                const newCartItems = cart.cartItems.map((previousCartItem) =>
-                  previousCartItem.item.key === item.key ? cartItem[0] : previousCartItem,
+              if (cartSupplement) {
+                cartSupplement.quantity = quantity;
+                cartSupplement.isUpdated = true;
+                const newCartSupplements = cart.supplements.map((previousCartSupplement) =>
+                  previousCartSupplement.item.id === supplement.id ? cartSupplement : previousCartSupplement,
                 );
-                setCart({ ...cart, cartItems: newCartItems });
+                setCart({ ...cart, supplements: newCartSupplements });
               } else {
-                const newCartItems = [
-                  ...cart.cartItems,
-                  {
-                    attribute,
-                    item,
-                    quantity,
-                  },
-                ];
-                setCart({ ...cart, cartItems: newCartItems });
+                const newCartSupplements = {
+                  item: supplement,
+                  quantity,
+                };
+                setCart({ ...cart, supplements: [...cart.supplements, newCartSupplements] });
               }
             }
           }}
@@ -257,7 +239,9 @@ const Shop = () => {
   });
 
   // Compute total price
-  const totalPrice = cart.cartItems.reduce((acc, cartItem) => acc + cartItem.quantity * cartItem.item.price, 0);
+  const totalPrice =
+    cart.tickets.reduce((acc, cartTicket) => acc + cartTicket.item.price, 0) +
+    cart.supplements.reduce((acc, cartSupplement) => acc + cartSupplement.quantity * cartSupplement.item.price, 0);
 
   return (
     <div id="dashboard-shop">
@@ -273,16 +257,15 @@ const Shop = () => {
       </div>
       <div className="shop-section">
         <Title level={4}>Accessoires</Title>
-        <Table columns={itemColumns} dataSource={itemRows} className="shop-table" />
+        <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
       </div>
-
       <div className="shop-footer">
-        <strong>Total : {totalPrice}€</strong>
+        <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
         <Button
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
-          onClick={() => dispatch(cartPay(cart))}
+          onClick={() => alert('faites péter la carte bleue !') /*() => dispatch(cartPay(cart))*/}
           disabled={!totalPrice}>
           Payer
         </Button>
@@ -290,13 +273,13 @@ const Shop = () => {
         <Button
           rightIcon="fas fa-save"
           onClick={() => {
-            dispatch(saveCart(cart, true));
-            push('/dashboard');
+            //dispatch(saveCart(cart, true));
+            //push('/dashboard');
+            alert("c'est save !");
           }}>
           Sauvegarder
         </Button>
       </div>
-
       <Modal
         title="Ajouter une place"
         className="add-place-modal"
@@ -325,9 +308,8 @@ const Shop = () => {
           />
         )}
       </Modal>
-
       <Modal
-        visible={itemPreview !== null}
+        visible={!!itemPreview}
         onCancel={() => setItemPreview(null)}
         buttons={null}
         containerClassName="item-preview-modal-container">
