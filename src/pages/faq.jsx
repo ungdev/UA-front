@@ -90,11 +90,6 @@ const content = [
         ),
       },
       {
-        question: "Quand est-ce que mon équipe est officiellement inscrite dans un tournoi de l'UTT Arena ?",
-        answer:
-          "À partir du moment où ton équipe est verrouillée, c'est que tu es officiellement inscrit. Félicitations !",
-      },
-      {
         question: 'Combien coûte la participation à un tournoi ?',
         answer: (
           <>

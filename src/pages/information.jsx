@@ -52,7 +52,8 @@ const Information = () => (
     <div className="information-section">
       <Title level={4}>Joueurs mineurs</Title>
       <p>
-        L'âge minimum pour participer au tournoi est de <strong className="accent">15 ans révolus</strong>.
+        L'âge minimum pour participer au tournoi est de{' '}
+        <strong className="accent">15 ans révolus le jour de l'évènement</strong>.
       </p>
 
       <Title level={4}>Streaming</Title>
