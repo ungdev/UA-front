@@ -18,7 +18,7 @@ const initialSignup = {
 
 // TODO : Allow user to login with username
 const initialLogin = {
-  email: '',
+  login: '',
   password: '',
 };
 
@@ -69,7 +69,7 @@ const LoginModal = ({ isVisible }) => {
       title: 'Connexion',
       content: (
         <>
-          <Input label="Pseudo / Email" value={loginForm.email} onChange={(value) => updateLogin('email', value)} />
+          <Input label="Pseudo / Email" value={loginForm.login} onChange={(value) => updateLogin('login', value)} />
           <Input
             label="Mot de passe"
             value={loginForm.password}
