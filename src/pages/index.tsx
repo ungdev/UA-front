@@ -76,14 +76,14 @@ const Home = () => {
             ]}
             dataSource={[
               {
-                title: <strong>Format</strong>,
+                title: <strong>Lieu</strong>,
                 description: "A l'espace Argence !",
               },
               { title: <strong>Discours d'ouverture</strong>, description: 'Vendredi 26 novembre' },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre à 10h' },
               { title: <strong>Places</strong>, description: '450 joueurs' },
               { title: <strong>Tarif</strong>, description: '20 €' },
-              { title: <strong>Âge minimum</strong>, description: '15 ans révolus' },
+              { title: <strong>Âge minimum</strong>, description: "15 ans révolus le jour de l'évènement" },
               {
                 title: <strong>Tournois</strong>,
                 description: 'LoL pro, LoL amateur, Rocket League, CS:GO, SSBU by Murex, osu!, Libre',

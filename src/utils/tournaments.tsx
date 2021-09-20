@@ -23,7 +23,7 @@ export default [
       </ul>
     ),
     toornamentId: '3964490483953033216',
-    format: '32 équipes de 5 joueurs',
+    format: '16 équipes de 5 joueurs',
     // rules: `${uploadsUrl()}/rules/lol_pro.pdf`,
   },
   {
@@ -47,7 +47,7 @@ export default [
       </ul>
     ),
     toornamentId: '3964490483953033216',
-    format: '32 équipes de 5 joueurs',
+    format: '16 équipes de 5 joueurs',
     // rules: `${uploadsUrl()}/rules/lol_amateur.pdf`,
   },
   {

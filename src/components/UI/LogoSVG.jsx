@@ -61,8 +61,8 @@ const LogoSVG = () => (
       strokeWidth="20"
       strokeDasharray="870"
       strokeDashoffset="870"
-      d="m 53.298754,721.13857 12.843074,38.85029 -54.261985,32.10769 103.908317,319.01575 159.83307,-85.8195 c 65.35895,35.5931 135.12149,67.2906 231.57631,75.3758">
-      <animate attributeName="stroke-dashoffset" from="-870" to="0" begin="2.925s" dur="0.54s" fill="freeze" />
+      d="m 507.32104,1100.3603 c -84.03217,-7.7695 -162.40069,-34.4674 -230.92872,-76.0641 L 116.88171,1112.8482 11.108522,792.00522 65.955414,760.48457 53.785828,722.90202">
+      <animate attributeName="stroke-dashoffset" from="870" to="0" begin="2.925s" dur="0.54s" fill="freeze" />
     </path>
     <path
       data-name="trait"
