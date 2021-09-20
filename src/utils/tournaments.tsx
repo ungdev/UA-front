@@ -52,7 +52,7 @@ export default [
   },
   {
     name: 'Rocket League',
-    shortName: 'rocket-league',
+    shortName: 'rl',
     players: 96,
     image: '/tournaments/rl.jpg',
     shortRewards: 'A venir...', // '700€ + lots',

@@ -5,6 +5,7 @@ import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
+import { useRouter } from 'next/router';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -13,8 +14,10 @@ const columns = [
 ];
 
 const Register = () => {
+  const { query } = useRouter();
+
   const [tournamentId, setTournamentId] = useState('lol');
-  const [tournamentSolo, setTournamentSolo] = useState('5');
+  const [tournamentSolo, setTournamentSolo] = useState('ssbu');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
@@ -34,11 +37,22 @@ const Register = () => {
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
   const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
 
+  // If there's a query, pre-select the tournament given by this query
+  if (query.tournamentId && (tournamentId !== query.tournamentId || tournamentSolo !== query.tournamentId)) {
+    if (tournamentsList.filter((tournament) => tournament.id === query.tournamentId)) {
+      setTournamentId(query.tournamentId);
+    }
+    if (tournamentsSoloList.filter((tournament) => tournament.id === query.tournamentId)) {
+      setTournamentSolo(query.tournamentId);
+    }
+  }
+
   // Get tournaments category select options
   const tournamentsOptions = tournamentsList.map((tournament) => ({
     label: tournament.name,
     value: tournament.id,
   }));
+
   const tournamentsSoloOptions = tournamentsSoloList.map((tournament) => ({
     label: tournament.name,
     value: tournament.id,
