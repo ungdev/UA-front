@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
 import { fetchItems } from '../../modules/items';
-import { fetchDraftCart, saveCart, cartPay } from '../../modules/cart';
+import { cartPay } from '../../modules/cart';
 import { Table, Input, Button, Title, Modal, Radio, Select } from '../../components/UI';
 import { API } from '../../utils/api';
 
@@ -53,14 +53,47 @@ const Shop = () => {
   const placeInitialValue = { for: isPaid ? 'other' : 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
+  /* Structure of the cart :
+  {
+    supplements: [
+      {
+        item: {
+          id: string,
+          image: string,
+          infos: string,
+          name: string,
+          price: int,
+          attributes: [] // represents the list of available attributes for this item
+        },
+        quantity: int,
+        attribute: string | null
+      },
+    ]
+    tickets: [
+      {
+        forEmail: string,
+        forUserId: string,
+        item: {
+          attribute: string | null,
+          category: "ticket" | "supplement",
+          id: string,
+          image: string,
+          infos: string,
+          name: string,
+          price: int
+        }
+      }
+    ]
+  }
+  */
   const cartInitialValue = { tickets: [], supplements: [] };
   const [cart, setCart] = useState(cartInitialValue);
   const [willBePaid, setWillBePaid] = useState(isPaid);
   const [itemPreview, setItemPreview] = useState(null);
+  const [test, setTest] = useState(0);
 
   useEffect(() => {
     dispatch(fetchItems());
-    dispatch(fetchDraftCart());
   }, []);
 
   if (!items) {
@@ -141,11 +174,12 @@ const Shop = () => {
   const supplementTypes = [];
   for (let i = 0; i < items.length; i++) {
     if (items[i].category === 'supplement') {
-      const itemId = items[i].id.replace(new RegExp(`-${items[i].attribute}$`, ''));
+      const itemId = items[i].id.replace(new RegExp(`-${items[i].attribute}$`), '');
       const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
       if (!supplementType) {
         const newSupplementType = { ...items[i], id: itemId, attributes: [] };
         delete newSupplementType.attribute;
+        delete newSupplementType.category;
         if (items[i].attribute) {
           newSupplementType.attributes = [items[i].attribute];
         }
@@ -155,15 +189,25 @@ const Shop = () => {
       }
     }
   }
-  const supplementRows = supplementTypes.slice(2).map((supplement) => {
-    const cartSupplement = cart.supplements.find(
-      (cartSupplement) => cartSupplement.item && cartSupplement.item.key === supplement.key,
+
+  const supplementRows = supplementTypes.slice(2).map((supplement, i) => {
+    // Get cart supplement we are managing
+    let cartSupplement = cart.supplements.find(
+      (cartSupplement) => cartSupplement.item && cartSupplement.item.id === supplement.id,
     );
-    const quantity = cartSupplement ? cartSupplement.quantity : 0;
+    if (cartSupplement === undefined) {
+      cartSupplement = {
+        item: supplement,
+        quantity: 0,
+        attribute: supplement.attributes.length ? supplement.attributes[0] : null,
+      };
+    }
+    // Get attributes
     const availableAttributes = [];
     supplement.attributes.forEach((attribute) => {
       availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
     });
+    // Return the row
     return {
       name: (
         <>
@@ -185,15 +229,11 @@ const Shop = () => {
         <Select
           options={availableAttributes}
           onChange={(value) => {
-            if (quantity) {
-              cartSupplement.quantity = quantity;
+            if (cartSupplement.quantity) {
               cartSupplement.attribute = value;
-              const newCartSupplements = cart.supplements;
-              newCartSupplements.forEach((previousCartSupplements) => {
-                if (previousCartSupplements.item.id === supplement.id) {
-                  previousCartSupplements.attribute = value;
-                }
-              });
+              const newCartSupplements = cart.supplements.map((supplement) =>
+                supplement.item.id === cartSupplement.item.id ? cartSupplement : supplement,
+              );
               setCart({ ...cart, supplements: newCartSupplements });
             }
           }}
@@ -207,26 +247,33 @@ const Shop = () => {
         <Input
           type="number"
           placeholder="0"
-          value={quantity}
+          value={cartSupplement.quantity}
           onChange={(strQuantity) => {
             let quantity = parseInt(strQuantity, 10);
             if (strQuantity === '') {
               quantity = 0;
             }
             if (Number.isInteger(quantity)) {
-              if (cartSupplement) {
-                cartSupplement.quantity = quantity;
-                cartSupplement.isUpdated = true;
-                const newCartSupplements = cart.supplements.map((previousCartSupplement) =>
-                  previousCartSupplement.item.id === supplement.id ? cartSupplement : previousCartSupplement,
-                );
-                setCart({ ...cart, supplements: newCartSupplements });
+              const previousQuantity = cartSupplement.quantity;
+              cartSupplement.quantity = quantity;
+              if (cartSupplement.quantity) {
+                if (previousQuantity) {
+                  const newCartSupplements = cart.supplements.map((previousCartSupplement) =>
+                    previousCartSupplement.item.id === supplement.id ? cartSupplement : previousCartSupplement,
+                  );
+                  setCart({ ...cart, supplements: newCartSupplements });
+                } else {
+                  setCart({ ...cart, supplements: [...cart.supplements, cartSupplement] });
+                }
               } else {
-                const newCartSupplements = {
-                  item: supplement,
-                  quantity,
-                };
-                setCart({ ...cart, supplements: [...cart.supplements, newCartSupplements] });
+                const newCartSupplements = cart.supplements;
+                const index = newCartSupplements.findIndex(
+                  (previousCartSupplement) => previousCartSupplement.item.id === supplement.id,
+                );
+                if (index !== -1) {
+                  newCartSupplements.splice(index, 1);
+                  setCart({ ...cart, supplements: newCartSupplements });
+                }
               }
             }
           }}
@@ -265,19 +312,9 @@ const Shop = () => {
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
-          onClick={() => alert('faites péter la carte bleue !') /*() => dispatch(cartPay(cart))*/}
+          onClick={() => dispatch(cartPay(cart))}
           disabled={!totalPrice}>
           Payer
-        </Button>
-        <br />
-        <Button
-          rightIcon="fas fa-save"
-          onClick={() => {
-            //dispatch(saveCart(cart, true));
-            //push('/dashboard');
-            alert("c'est save !");
-          }}>
-          Sauvegarder
         </Button>
       </div>
       <Modal
