@@ -18,9 +18,8 @@ export default (state = initialState, action) => {
   }
 };
 
-export const fetchAllCarts = () => async (dispatch, getState) => {
-  const userId = getState().login.user.id;
-  const res = await API.get(`users/${userId}/carts`);
+export const fetchAllCarts = () => async (dispatch) => {
+  const res = await API.get('users/current/carts');
   dispatch({
     type: SET_ALLCARTS,
     allCarts: res.data,
