@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 
 import { fetchItems } from '../../modules/items';
 import { cartPay } from '../../modules/cart';
@@ -47,10 +46,9 @@ const supplementColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
-  const { push } = useRouter();
   const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
   const items = useSelector((state) => state.items.items);
-  const placeInitialValue = { for: isPaid ? 'other' : 'me', forEmail: '' };
+  const placeInitialValue = { for: 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(placeInitialValue);
   /* Structure of the cart :
@@ -75,7 +73,7 @@ const Shop = () => {
         forUserId: string,
         item: {
           attribute: string | null,
-          category: "ticket" | "supplement",
+          category: "ticket" | "supplement",  // Should always be "ticket"
           id: string,
           image: string,
           infos: string,
@@ -88,13 +86,17 @@ const Shop = () => {
   */
   const cartInitialValue = { tickets: [], supplements: [] };
   const [cart, setCart] = useState(cartInitialValue);
+  // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [willBePaid, setWillBePaid] = useState(isPaid);
   const [itemPreview, setItemPreview] = useState(null);
-  const [test, setTest] = useState(0);
 
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
+
+  useEffect(() => {
+    setPlace({ ...place, for: isPaid || willBePaid ? 'other' : 'me' });
+  }, [isPaid, willBePaid]);
 
   if (!items) {
     return null;
@@ -130,7 +132,7 @@ const Shop = () => {
     return {
       type: ticket.item.name,
       email: ticket.forUserId === userId ? email : ticket.forEmail,
-      price: `${ticket.item.price}€`,
+      price: `${(ticket.item.price / 100).toFixed(2)}€`,
       delete: (
         <Button
           onClick={() => {
@@ -171,25 +173,36 @@ const Shop = () => {
     ];
   };
 
+  // In the database, every t-shirt size has it's own entry.
+  // We need to display all of the woman t-shirts in a single row, and all of the man t-shirts in an other row.
+  // So we need to know which items must be rendered in the same row.
+  // We need to create supplement types, which are normal items, except :
+  //  * they don't have an attribute field, instead they have a list of attributes that the supplement type can take.
+  //  * they don't have category (because they must be supplements)
+  // This list will display instead of the items list.
   const supplementTypes = [];
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].category === 'supplement') {
-      const itemId = items[i].id.replace(new RegExp(`-${items[i].attribute}$`), '');
+  items.forEach((item) => {
+    if (item.category === 'supplement') {
+      // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
+      // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
+      // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
+      const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
       const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
       if (!supplementType) {
-        const newSupplementType = { ...items[i], id: itemId, attributes: [] };
+        const newSupplementType = { ...item, id: itemId, attributes: [] };
         delete newSupplementType.attribute;
         delete newSupplementType.category;
-        if (items[i].attribute) {
-          newSupplementType.attributes = [items[i].attribute];
+        if (item.attribute) {
+          newSupplementType.attributes = [item.attribute];
         }
         supplementTypes.push(newSupplementType);
       } else {
-        supplementType.attributes.push(items[i].attribute);
+        supplementType.attributes.push(item.attribute);
       }
     }
-  }
+  });
 
+  // We display the supplementTypes we have just defined, and not the items
   const supplementRows = supplementTypes.slice(2).map((supplement, i) => {
     // Get cart supplement we are managing
     let cartSupplement = cart.supplements.find(
