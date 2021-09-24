@@ -16,7 +16,6 @@ const initialSignup = {
   passwordConfirmation: '',
 };
 
-// TODO : Allow user to login with username
 const initialLogin = {
   login: '',
   password: '',
