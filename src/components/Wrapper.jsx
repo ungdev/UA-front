@@ -2,17 +2,22 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
+import Modal from './UI/Modal';
+import Input from './UI/Input';
+import Button from './UI/Button';
 import { autoLogin } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
+import { API } from '../utils/api';
 
 const Wrapper = ({ Component }) => {
-  const { pathname, replace } = useRouter();
+  const { pathname, query, replace } = useRouter();
   const dispatch = useDispatch();
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
@@ -25,6 +30,8 @@ const Wrapper = ({ Component }) => {
   const [isPaid, setIsPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
+  const [newPassword, setResetPassword] = useState('');
+  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('');
 
   useSelector((state) => {
     const { user } = state.login;
@@ -84,6 +91,41 @@ const Wrapper = ({ Component }) => {
       redirect = '/admin/users';
     }
   }
+
+  useEffect(() => {
+    if (query.action === 'oauth') {
+      switch (query.value) {
+        case '0':
+          toast.success('Le lien avec le compte Discord a bien été créé !');
+          redirect = pathname;
+          break;
+        case '1':
+          toast.success('Le lien avec le compte Discord a bien été mis à jour !');
+          redirect = pathname;
+          break;
+        case '2':
+          toast.success("Le lien avec le compte Discord n'a pas été modifié");
+          redirect = pathname;
+          break;
+        case '3':
+          toast.error("Ce compte Discord est déjà lié au compte d'un autre utilisateur");
+          redirect = pathname;
+          break;
+        case '4':
+          toast.error("Vous avez refusé à nos services l'accès à votre compte Discord");
+          redirect = pathname;
+          break;
+        case '5':
+          toast.error('Une erreur de requête est survenue');
+          redirect = pathname;
+          break;
+        case '6':
+          toast.error('Une erreur inconnue est survenue');
+          redirect = pathname;
+          break;
+      }
+    }
+  }, [isLoading]);
 
   // Redirect to desired path
   useEffect(() => {
@@ -151,7 +193,6 @@ const Wrapper = ({ Component }) => {
     <>
       <CookieConsent />
       <Navbar isLoggedIn={isLoggedIn} />
-
       <div className="page-container">
         {!isHome && !isTournament && !isDashboard && !isAdminPanel && <Header />}
         {isDashboard && <PanelHeader pathname={pathname} links={linksDashboard} title="Dashboard" />}
@@ -160,6 +201,44 @@ const Wrapper = ({ Component }) => {
           <Component />
         </main>
       </div>
+      <Modal
+        title="Réinitialiser le mot de passe"
+        visible={query.action === 'pwd-reset'}
+        buttons={null}
+        onCancel={() => replace(pathname)}
+        className="login-modal">
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            if (newPassword !== newPasswordConfirmation) {
+              toast.error('Les deux mots de passe ne sont pas identiques.');
+            }
+            await API.post(`auth/reset-password/${query.value}`, { password: newPassword });
+            toast.success('Le mot de passe a été réinitialisé, vous pouvez maintenant vous connecter.');
+            if (!isLoading) {
+              replace(pathname);
+            }
+          }}>
+          <Input
+            label="Mot de passe"
+            value={newPassword}
+            onChange={setResetPassword}
+            type="password"
+            autocomplete="password"
+          />
+          <Input
+            label="Confirmer le mot de passe"
+            value={newPasswordConfirmation}
+            onChange={setNewPasswordConfirmation}
+            type="password"
+            autocomplete="new-password"
+          />
+
+          <Button primary type="submit">
+            Envoyer
+          </Button>
+        </form>
+      </Modal>
     </>
   );
 };

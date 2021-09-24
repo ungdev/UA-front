@@ -19,7 +19,6 @@ const initialSignup = {
   isAdult: false,
 };
 
-// TODO : Allow user to login with username
 const initialLogin = {
   login: '',
   password: '',
