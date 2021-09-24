@@ -8,7 +8,6 @@ export const isLoginAllowed = async (): Promise<boolean> => {
     const response = await API.get<Settings>('/settings');
 
     return response.data.login;
-    //return true; // DEBUG
   } catch (error) {
     return false;
   }

@@ -63,17 +63,6 @@
     text-decoration: underline;
   }
 
-  /*.dashboard-button {
-    display: block;
-    width: min-content;
-    margin: 0 auto 20px;
-    padding: 10px 36px;
-    font-family: $ua-font;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }*/
-
   .login-button {
     &.buttonWrapper {
       display: block;
@@ -128,7 +117,6 @@
 
     &:hover {
       & .topButtonDiv {
-        // transform: translate(0, 0);
         box-shadow: none;
 
         & .bottomButtonDiv {

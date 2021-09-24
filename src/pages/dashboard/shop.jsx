@@ -94,19 +94,6 @@ const Shop = () => {
   useEffect(() => {
     dispatch(fetchItems());
   }, []);
-  useEffect(() => {
-    if (!items) {
-      return;
-    }
-    let newCart = cart;
-    for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      if (cart.findIndex((cartItem) => cartItem.item.id === item.id) === -1) {
-        newCart.push({ item, quantity: 0 });
-      }
-    }
-    setCart(newCart);
-  }, [items]);
 
   useEffect(() => {
     setPlace({ ...place, for: isPaid || willBePaid ? 'other' : 'me' });
