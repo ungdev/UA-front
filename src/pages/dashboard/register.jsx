@@ -6,6 +6,7 @@ import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
+import { API } from '../../utils/api';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -21,17 +22,9 @@ const Register = () => {
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
-  const tournaments = useSelector((state) => state.tournament.tournaments);
   const { username, askingTeamId } = useSelector((state) => state.login.user || { username: '', askingTeamId: '' });
   const soloTeamName = `${username}-solo-team`;
-
-  useEffect(() => {
-    dispatch(fetchTournaments());
-  }, []);
-
-  if (!tournaments) {
-    return null;
-  }
+  const [tournaments, setTournaments] = useState([]);
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -58,26 +51,35 @@ const Register = () => {
     value: tournament.id,
   }));
 
-  // TODO : This has to be fixed with the route /tournaments on API
-  // Get multiplayer tournaments tabs
-  const tournamentsTabs = tournamentsList.map(async (tournament) => {
-    // const teams = await API.get('/???');
-    // const tournamentTeams = teams.map((team) => ({
-    //   team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-    //   players: team.users.map(({ username }) => username).join(', '),
-    //   action:
-    //     askingTeamId === team.id ? (
-    //       <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-    //     ) : (
-    //       <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
-    //         Rejoindre
-    //       </Button>
-    //     ),
-    // }));
-    // return {
-    //   title: tournament.shortName,
-    //   content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
-    // };
+  // Set tournaments state
+  useEffect(() => {
+    (async () => {
+      setTournaments((await API.get('/tournaments')).data);
+    })();
+  }, []);
+
+  if (!tournaments) {
+    return null;
+  }
+
+  const tournamentsTabs = tournaments.map((tournament) => {
+    const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams).map((team) => ({
+      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+      players: team.players.map(({ username }) => username).join(', '),
+      action:
+        askingTeamId === team.id ? (
+          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+        ) : (
+          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
+            Rejoindre
+          </Button>
+        ),
+    }));
+    return {
+      title: tournament.name,
+      key: tournament.id,
+      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
+    };
   });
 
   const mainPanel = (
@@ -95,7 +97,7 @@ const Register = () => {
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ teamName, tournamentId }))}
+            onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'player' }))}
             rightIcon="fas fa-plus">
             Créer mon équipe
           </Button>
@@ -136,7 +138,7 @@ const Register = () => {
           <Button
             primary
             className="center-mobile"
-            onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
+            onClick={() => dispatch(createTeam({ name: soloTeamName, tournamentId, userType: 'player' }))}
             rightIcon="fas fa-user">
             S'inscrire en solo
           </Button>
@@ -164,7 +166,6 @@ const Register = () => {
       <Tabs tabs={tournamentsTabs} />
     </>
   );
-
   return <div id="dashboard-register">{panel === 'main' ? mainPanel : joinPanel}</div>;
 };
 

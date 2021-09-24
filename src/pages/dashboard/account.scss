@@ -26,4 +26,8 @@
     border: none;
     margin: 20px 0;
   }
+
+  input:disabled {
+    background-color: rgb(230, 230, 230);
+  }
 }

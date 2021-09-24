@@ -21,14 +21,14 @@ const Account = () => {
   const edit = () => {
     if (password === confirmPassword) {
       const data = {
-        firstname,
-        lastname,
+        //firstname,
+        //lastname,
         username,
       };
 
       if (oldpassword !== '' && password !== '') {
-        data.oldpassword = oldpassword;
-        data.password = password;
+        data.password = oldpassword;
+        data.newPassword = password;
       }
 
       dispatch(editUser(data, user.id));
@@ -57,19 +57,6 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
-      <div className="notif">
-        <Title level={4}>Notifications</Title>
-        <p>
-          N'hésite pas à activer les notifications pour recevoir en temps réel les dernières informations sur ton
-          tournoi et sur la LAN.
-          <br />
-          <strong>Pense à désactiver ton bloqueur de pub préféré.</strong>
-          <br />
-          Les notifications ne seront utilisées que pendant l'événement.
-        </p>
-      </div>
-      <hr />
-
       {user.isPaid && (
         <>
           <div className="ticket">

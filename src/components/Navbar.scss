@@ -63,17 +63,6 @@
     text-decoration: underline;
   }
 
-  .dashboard-button {
-    display: block;
-    width: min-content;
-    margin: 0 auto 20px;
-    padding: 10px 36px;
-    font-family: $ua-font;
-    font-size: 18px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
   .login-button {
     &.buttonWrapper {
       display: block;
@@ -93,6 +82,41 @@
     &:hover {
       & .topButtonDiv {
         // transform: translate(0, 0);
+        box-shadow: none;
+
+        & .bottomButtonDiv {
+          transform: translate(0, 0);
+          padding: 0;
+
+          & .button {
+            transform: translate(0, 0);
+            padding: 10 + $buttonLength 22 + $buttonLength;
+            margin: 0;
+            border-radius: $buttonRadius;
+          }
+        }
+      }
+    }
+  }
+
+  .dashboard-button {
+    &.buttonWrapper {
+      display: block;
+      width: min-content;
+      padding: 10px 36px;
+      font-family: $ua-font;
+      font-size: 18px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    &.topButtonDiv {
+      box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
+    }
+
+    &:hover {
+      & .topButtonDiv {
         box-shadow: none;
 
         & .bottomButtonDiv {
@@ -334,6 +358,16 @@
     }
 
     .login-button {
+      &.buttonWrapper {
+        margin: 20px auto;
+      }
+
+      &.topButtonDiv {
+        box-shadow: $accent-color 4 * $buttonLength 4 * $buttonLength;
+      }
+    }
+
+    .dashboard-button {
       &.buttonWrapper {
         margin: 20px auto;
       }

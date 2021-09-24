@@ -39,10 +39,6 @@ const Team = () => {
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
   const usersPaid = team && team.players.reduce((previous, player) => (player.isPaid ? previous + 1 : previous), 0);
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(tournament);
-  }, [tournament]);
   const tournaments = useSelector((state) => state.tournament.tournaments);
   const tournament =
     team && tournaments && tournaments.filter((tournament) => tournament.shortName === team.tournamentId)[0];

@@ -152,7 +152,11 @@ const LoginModal = ({ isVisible }) => {
         <>
           <Input label="Email" value={forgotEmail} onChange={setForgotEmail} type="email" autocomplete="email" />
 
-          <Button primary onClick={() => dispatch(resetPassword(forgotEmail, resetFields))} type="submit">
+          <Button
+            primary
+            onClick={() => dispatch(resetPassword(forgotEmail, resetFields))}
+            className="forgot-modal-button"
+            type="submit">
             Envoyer
           </Button>
 

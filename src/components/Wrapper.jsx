@@ -80,8 +80,6 @@ const Wrapper = ({ Component }) => {
       redirect = '/dashboard';
     } else if (pathname === '/admin' && permissions === 'entry') {
       redirect = '/admin/entry';
-    } else if (pathname === '/admin' && permissions === 'anim') {
-      redirect = '/admin/notification';
     } else if (pathname === '/admin' && permissions === 'admin') {
       redirect = '/admin/users';
     }
@@ -114,7 +112,6 @@ const Wrapper = ({ Component }) => {
 
     if (hasTeam) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
-      menu.push({ title: 'Informations', href: '/dashboard/infos' });
     } else if (isVisitor) {
       menu.push({ title: 'Coach', href: '/dashboard/coach' });
     } else if (isPaid) {
@@ -138,7 +135,6 @@ const Wrapper = ({ Component }) => {
     const menu = [];
 
     if (permissions === 'anim' || permissions === 'admin') {
-      menu.push({ title: 'Notifications', href: '/admin/notification' });
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
 

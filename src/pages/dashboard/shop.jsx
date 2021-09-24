@@ -47,6 +47,7 @@ const supplementColumns = [
 const Shop = () => {
   const dispatch = useDispatch();
   const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
+  // The list of all items available
   const items = useSelector((state) => state.items.items);
   const placeInitialValue = { for: 'me', forEmail: '' };
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
