@@ -21,13 +21,11 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
     </button>
   ));
 
-  const tabsContent = tabs.map((tab, i) => {
-    return (
-      <div className={`tab-content ${index === i ? 'active' : ''}`} key={tab.value}>
-        {tab.content}
-      </div>
-    );
-  });
+  const tabsContent = tabs.map((tab, i) => (
+    <div className={`tab-content ${index === i ? 'active' : ''}`} key={tab.key}>
+      {tab.content}
+    </div>
+  ));
 
   return (
     <div className={`tabs ${className}`}>

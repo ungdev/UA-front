@@ -61,8 +61,7 @@ const Navbar = ({ isLoggedIn }) => {
   );
   const [isLoginAllowed, setIsLoginAllowed] = useState(false);
   isLoginAllowedFunction().then((result) => {
-    //setIsLoginAllowed(result);
-    setIsLoginAllowed(true);
+    setIsLoginAllowed(result);
   });
 
   // Set mobile menu visibility

@@ -77,6 +77,7 @@ const Register = () => {
     }));
     return {
       title: tournament.name,
+      key: tournament.id,
       content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
     };
   });
