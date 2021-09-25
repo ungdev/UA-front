@@ -104,7 +104,7 @@ const Register = () => {
 
           <p>
             Il te manque un ou plusieurs joueurs ? Viens recruter sur notre{' '}
-            <a href="https://discord.gg/TenDPRS">discord</a>.
+            <a href="https://discord.gg/WhxZwKU">discord</a>.
           </p>
         </div>
 
@@ -121,7 +121,7 @@ const Register = () => {
 
           <p>
             Tu n'as pas encore de coéquipier ? Pas de soucis, viens en trouver un sur notre{' '}
-            <a href="https://discord.gg/TenDPRS">discord</a>.
+            <a href="https://discord.gg/WhxZwKU">discord</a>.
           </p>
         </div>
       </div>

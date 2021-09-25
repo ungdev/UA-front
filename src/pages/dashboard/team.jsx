@@ -40,8 +40,7 @@ const Team = () => {
   const isSolo = team && team.name.includes('solo-team');
   const usersPaid = team && team.players.reduce((previous, player) => (player.isPaid ? previous + 1 : previous), 0);
   const tournaments = useSelector((state) => state.tournament.tournaments);
-  const tournament =
-    team && tournaments && tournaments.filter((tournament) => tournament.shortName === team.tournamentId)[0];
+  const tournament = team && tournaments && tournaments.filter((tournament) => tournament.id === team.tournamentId)[0];
   const tournamentName = tournament && tournament.name;
 
   useEffect(() => {
@@ -56,6 +55,12 @@ const Team = () => {
   useEffect(() => {
     if (team && !slotsTournament) {
       dispatch(fetchSlots());
+    }
+  }, [team]);
+
+  useEffect(() => {
+    if (team && !tournaments) {
+      dispatch(fetchTournaments());
     }
   }, [team]);
 

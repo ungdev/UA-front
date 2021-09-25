@@ -26,7 +26,8 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   const { user } = getState().login;
   const res = await API.post('teams', bodyTeam);
   if (bodyTeam.name.includes('solo-team')) {
-    toast.success(`Vous avez rejoint le tournoi ${res.data.tournament.shortName}`);
+    const tournamentName = getState().tournament.tournaments.filter(({ id }) => id === res.data.tournamentId)[0].name;
+    toast.success(`Vous avez rejoint le tournoi ${tournamentName}`);
   } else {
     toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
   }
@@ -36,7 +37,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   });
   dispatch({
     type: SET_USER,
-    user: { ...user, team: res.data.id, type: 'player' },
+    user: { ...user, teamId: res.data.id, type: 'player' },
   });
   Router.push('/dashboard/team');
 };
@@ -97,14 +98,14 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
   });
 };
 
-export const kickUser = (userId, teamId) => async (dispatch, getState) => {
+export const kickUser = (userId) => async (dispatch, getState) => {
   const team = getState().team.team;
   const user = getState().login.user;
   if (user.id === userId) {
     await API.delete('teams/current/users/current');
     dispatch({
       type: SET_USER,
-      user: { ...user, team: null, type: 'none' },
+      user: { ...user, teamId: null, type: 'none' },
     });
     dispatch({
       type: SET_TEAM,
@@ -112,7 +113,7 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
     });
   } else {
     await API.delete(`teams/current/users/${userId}`);
-    team.users = team.players.filter(({ id }) => id !== userId);
+    team.players = team.players.filter(({ id }) => id !== userId);
     dispatch({
       type: SET_TEAM,
       team,
@@ -120,7 +121,7 @@ export const kickUser = (userId, teamId) => async (dispatch, getState) => {
   }
 };
 
-export const refuseUser = (user, teamId) => async (dispatch, getState) => {
+export const refuseUser = (user) => async (dispatch, getState) => {
   const team = getState().team.team;
   await API.delete(`teams/current/join-requests/${user.id}`);
   team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
@@ -135,7 +136,7 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
   await API.delete('teams/current');
   dispatch({
     type: SET_USER,
-    user: { ...user, team: null, type: 'none' },
+    user: { ...user, teamId: null, type: 'none' },
   });
   dispatch({
     type: SET_TEAM,
