@@ -210,7 +210,7 @@ const Wrapper = ({ Component }) => {
         visible={query.action === 'pwd-reset'}
         buttons={null}
         onCancel={() => replace(pathname)}
-        className="login-modal">
+        className="reset-password-modal">
         <form
           onSubmit={async (event) => {
             event.preventDefault();
@@ -238,7 +238,7 @@ const Wrapper = ({ Component }) => {
             autocomplete="new-password"
           />
 
-          <Button primary type="submit">
+          <Button className="new-password-modal-button" primary type="submit">
             Envoyer
           </Button>
         </form>
