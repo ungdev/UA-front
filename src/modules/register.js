@@ -19,6 +19,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
 
+  delete user.passwordConfirmation;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, veuillez vérifier vos emails');
   dispatch(setLoginModalVisible(false));

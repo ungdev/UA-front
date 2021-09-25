@@ -4,9 +4,10 @@
     cursor: pointer;
   }
 
-  .login-modal-button,
-  .signup-modal-button {
-    display: block;
+  .login-modal-button.buttonWrapper,
+  .signup-modal-button.buttonWrapper,
+  .forgot-modal-button.buttonWrapper {
+    display: table;
     margin: auto;
   }
 
