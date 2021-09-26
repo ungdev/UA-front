@@ -8,13 +8,10 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
-import Modal from './UI/Modal';
-import Input from './UI/Input';
-import Button from './UI/Button';
 import { autoLogin } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
-import { API } from '../utils/api';
+import ResetPasswordModal from './ResetPasswordModal';
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -30,8 +27,6 @@ const Wrapper = ({ Component }) => {
   const [isPaid, setIsPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
-  const [newPassword, setResetPassword] = useState('');
-  const [newPasswordConfirmation, setNewPasswordConfirmation] = useState('');
 
   useSelector((state) => {
     const { user } = state.login;
@@ -201,44 +196,7 @@ const Wrapper = ({ Component }) => {
           <Component />
         </main>
       </div>
-      <Modal
-        title="Réinitialiser le mot de passe"
-        visible={query.action === 'pwd-reset'}
-        buttons={null}
-        onCancel={() => replace(pathname)}
-        className="reset-password-modal">
-        <form
-          onSubmit={async (event) => {
-            event.preventDefault();
-            if (newPassword !== newPasswordConfirmation) {
-              toast.error('Les deux mots de passe ne sont pas identiques.');
-            }
-            await API.post(`auth/reset-password/${query.value}`, { password: newPassword });
-            toast.success('Le mot de passe a été réinitialisé, vous pouvez maintenant vous connecter.');
-            if (!isLoading) {
-              replace(pathname);
-            }
-          }}>
-          <Input
-            label="Mot de passe"
-            value={newPassword}
-            onChange={setResetPassword}
-            type="password"
-            autocomplete="password"
-          />
-          <Input
-            label="Confirmer le mot de passe"
-            value={newPasswordConfirmation}
-            onChange={setNewPasswordConfirmation}
-            type="password"
-            autocomplete="new-password"
-          />
-
-          <Button className="new-password-modal-button" primary type="submit">
-            Envoyer
-          </Button>
-        </form>
-      </Modal>
+      {query.action === 'pwd-reset' && <ResetPasswordModal resetToken={query.value} />}
     </>
   );
 };
