@@ -187,7 +187,7 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} resetToken={query.action === 'pwd-reset' ? query.value : undefined} />
       <div className="page-container">
         {!isHome && !isTournament && !isDashboard && !isAdminPanel && <Header />}
         {isDashboard && <PanelHeader pathname={pathname} links={linksDashboard} title="Dashboard" />}
@@ -196,7 +196,6 @@ const Wrapper = ({ Component }) => {
           <Component />
         </main>
       </div>
-      {query.action === 'pwd-reset' && <ResetPasswordModal resetToken={query.value} />}
     </>
   );
 };

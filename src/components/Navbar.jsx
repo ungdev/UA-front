@@ -8,6 +8,7 @@ import SimpleBar from 'simplebar-react';
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
 import UserModal from './UserModal';
+import ResetPasswordModal from './ResetPasswordModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -45,7 +46,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({ isLoggedIn, resetToken }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -221,6 +222,7 @@ const Navbar = ({ isLoggedIn }) => {
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
+      {resetToken && <ResetPasswordModal resetToken={resetToken} />}
     </div>
   );
 };
@@ -230,6 +232,14 @@ Navbar.propTypes = {
    * Is the user logged in ?
    */
   isLoggedIn: PropTypes.bool.isRequired,
+  /**
+   * The token to reset password, used for ResetPasswordModal component
+   */
+  resetToken: PropTypes.string,
+};
+
+Navbar.defaultProps = {
+  resetToken: undefined,
 };
 
 export default Navbar;
