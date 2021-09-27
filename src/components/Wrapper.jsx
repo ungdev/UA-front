@@ -8,10 +8,10 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
-import { autoLogin } from '../modules/login';
+import { autoLogin, saveToken } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
-import ResetPasswordModal from './ResetPasswordModal';
+import { API } from '../utils/api';
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -119,7 +119,13 @@ const Wrapper = ({ Component }) => {
           redirect = pathname;
           break;
       }
-    }
+    } /* else if (query.action === 'registerToken') {
+      API.post(`auth/validate/${query.value}`).then((res) => {
+        dispatch(saveToken(res.data.token));
+        toast.info('Le compte a été confirmé !');
+        replace(pathname);
+      });
+    }*/
   }, [isLoading]);
 
   // Redirect to desired path
@@ -139,7 +145,7 @@ const Wrapper = ({ Component }) => {
     return (
       <>
         <CookieConsent />
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} action={query.action} value={query.value} />
       </>
     );
   }
@@ -187,7 +193,7 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedIn={isLoggedIn} resetToken={query.action === 'pwd-reset' ? query.value : undefined} />
+      <Navbar isLoggedIn={isLoggedIn} action={query.action} value={query.value} />
       <div className="page-container">
         {!isHome && !isTournament && !isDashboard && !isAdminPanel && <Header />}
         {isDashboard && <PanelHeader pathname={pathname} links={linksDashboard} title="Dashboard" />}
