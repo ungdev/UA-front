@@ -3,8 +3,8 @@ import { uploadsUrl } from './environment';
 
 export default [
   {
-    name: 'League of Legends pro',
-    shortName: 'lol',
+    name: 'League of Legends compétitif',
+    shortName: 'lolCompetitive',
     players: 80,
     image: '/tournaments/lol_pro.jpg',
     shortRewards: 'A venir...', // '850€ + lots',
@@ -27,8 +27,8 @@ export default [
     // rules: `${uploadsUrl()}/rules/lol_pro.pdf`,
   },
   {
-    name: 'League of Legends amateur',
-    shortName: 'lolamateur',
+    name: 'League of Legends loisir',
+    shortName: 'lolLeisure',
     players: 80,
     image: '/tournaments/lol_amateur.jpg',
     shortRewards: 'A venir...', // '850€ + lots',
