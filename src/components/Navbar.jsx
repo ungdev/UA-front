@@ -8,7 +8,7 @@ import SimpleBar from 'simplebar-react';
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
 import UserModal from './UserModal';
-import ActionParameterModal from './ActionParameterModal';
+import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -222,7 +222,7 @@ const Navbar = ({ isLoggedIn, action, value }) => {
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
-      <ActionParameterModal action={action} value={value} />
+      {action === 'pwd-reset' && <ResetModal resetToken={value} />}
     </div>
   );
 };

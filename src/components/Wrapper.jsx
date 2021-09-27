@@ -88,6 +88,9 @@ const Wrapper = ({ Component }) => {
   }
 
   useEffect(() => {
+    if (isLoading) {
+      return;
+    }
     if (query.action === 'oauth') {
       switch (query.value) {
         case '0':
@@ -119,13 +122,13 @@ const Wrapper = ({ Component }) => {
           redirect = pathname;
           break;
       }
-    } /* else if (query.action === 'registerToken') {
+    } else if (query.action === 'registerToken') {
       API.post(`auth/validate/${query.value}`).then((res) => {
         dispatch(saveToken(res.data.token));
-        toast.info('Le compte a été confirmé !');
-        replace(pathname);
+        toast.success('Le compte a été confirmé !');
+        redirect = pathname;
       });
-    }*/
+    }
   }, [isLoading]);
 
   // Redirect to desired path
