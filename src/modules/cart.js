@@ -29,7 +29,7 @@ export const cartPay = (cart) => async (dispatch, getState) => {
   const sendableCart = {
     tickets: {
       userIds: [],
-      // attendant: {},
+      //attendant: {},
     },
     supplements: [],
   };
