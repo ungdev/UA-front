@@ -46,7 +46,8 @@ const supplementColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
-  const { email, id: userId, type, isPaid } = useSelector((state) => state.login.user);
+  const usr = useSelector((state) => state.login.user);
+  const { email, id: userId, type, hasPaid } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items.items);
   const placeInitialValue = { for: 'me', forEmail: '' };
@@ -88,7 +89,7 @@ const Shop = () => {
   const cartInitialValue = { tickets: [], supplements: [] };
   const [cart, setCart] = useState(cartInitialValue);
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
-  const [willBePaid, setWillBePaid] = useState(isPaid);
+  const [willBePaid, setWillBePaid] = useState(hasPaid);
   const [itemPreview, setItemPreview] = useState(null);
 
   useEffect(() => {
@@ -96,8 +97,8 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    setPlace({ ...place, for: isPaid || willBePaid ? 'other' : 'me' });
-  }, [isPaid, willBePaid]);
+    setPlace({ ...place, for: hasPaid || willBePaid ? 'other' : 'me' });
+  }, [hasPaid, willBePaid]);
 
   if (!items) {
     return null;
@@ -154,7 +155,7 @@ const Shop = () => {
   });
 
   const getOptions = () => {
-    if (isPaid || willBePaid) {
+    if (hasPaid || willBePaid) {
       return [
         {
           name: 'Autre utilisateur',
