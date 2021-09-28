@@ -122,7 +122,7 @@ const Wrapper = ({ Component }) => {
           redirect = pathname;
           break;
       }
-    } else if (query.action === 'registerToken') {
+    } else if (query.action === 'validate') {
       API.post(`auth/validate/${query.value}`).then((res) => {
         dispatch(saveToken(res.data.token));
         toast.success('Le compte a été confirmé !');
