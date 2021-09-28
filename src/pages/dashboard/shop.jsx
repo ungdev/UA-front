@@ -131,7 +131,7 @@ const Shop = () => {
       ticketType = type;
     } else {
       ticketType = membersWithoutTicket.splice(
-        membersWithoutTicket.findIndex((user) => user.id === place),
+        membersWithoutTicket.findIndex((member) => member.id === place),
         1,
       )[0].type;
     }
@@ -171,9 +171,9 @@ const Shop = () => {
               // If we don't change that, next time we will add another place,
               // the default value in the modal will not be our place
             } else {
-              const newPlayersWithoutTicket = membersWithoutTicket;
-              newPlayersWithoutTicket.push(teamMembers.find((member) => member.id === ticket.for));
-              setMembersWithoutTicket(newPlayersWithoutTicket);
+              const newMembersWithoutTicket = membersWithoutTicket;
+              newMembersWithoutTicket.push(teamMembers.find((member) => member.id === ticket.for));
+              setMembersWithoutTicket(newMembersWithoutTicket);
             }
             updatedCartTickets.splice(index, 1);
             setCart({ ...cart, cartTickets: updatedCartTickets });
