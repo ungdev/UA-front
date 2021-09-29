@@ -55,9 +55,24 @@
   }
 
   .scoup {
-    width: 600px;
+    display: flex;
+
     max-width: 100%;
     margin: 0 auto;
+    padding-right: 15px;
+    border: solid #c8c8c8 1px;
+    border-radius: 16px;
+
+    & > img {
+      height: 60px;
+      border-radius: 15px;
+      margin-right: 15px;
+    }
+
+    & > p {
+      flex: 1;
+      padding-left: 15px;
+    }
   }
 
   .item-preview-modal-container {
@@ -68,5 +83,20 @@
   .item-preview-image {
     max-width: 1000px;
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #dashboard-shop {
+    .scoup {
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px;
+      text-align: center;
+
+      & > img {
+        width: 60px;
+      }
+    }
   }
 }

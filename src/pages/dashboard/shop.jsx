@@ -312,9 +312,10 @@ const Shop = () => {
         <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
       </div>
       <div className="scoup">
-        <a href="https://www.weezevent.com/utt-arena-2019" target="_blank" rel="noopener noreferrer">
-          <img src="/scoupbanner.png" alt="" />
-        </a>
+        <img src="/scoup.jpg" alt="" />
+        <p>
+          Notre partenaire Scoup Esport <a href="#">loue du matériel</a> supplémentaire pendant l'UTT Arena.
+        </p>
       </div>
       <div className="shop-section">
         <Title level={4}>Accessoires</Title>
