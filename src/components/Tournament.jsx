@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
-import { Button, Title } from './UI';
+import { Button, Title, Table } from './UI';
 import { isLoginAllowed as fetchIsLoginAllowed } from '../utils/settings';
+import { API } from '../utils/api';
 
 const columns = [
   { title: 'Équipe', key: 'name' },
@@ -19,19 +20,25 @@ const Tournament = ({ assets, tournamentId, alt }) => {
   const [isLoginAllowed, setIsLoginAllowed] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formatTeams, setFormatTeam] = useState([]);
+  const [tournament, setTournament] = useState();
 
   fetchIsLoginAllowed().then((result) => {
     setIsLoginAllowed(result);
   });
 
-  // const fetchFullTeam = async () => {
-  //   const res = await API.get(`tournaments/${tournamentId}/teams?paidOnly=true`);
-  //   const teams = res.data.map(({ name, users }) => ({
-  //     name,
-  //     players: users.map(({ username }) => username).join(', '),
-  //   }));
-  //   setFormatTeam(teams);
-  // };
+  // Fetch the tournaments from the API, and update the state with the tournament object and a map of locked teams / players
+  const fetchTournament = async () => {
+    const res = await API.get(`/tournaments`);
+    const tournament = res.data.filter((tournament) => tournament.id === tournamentId);
+    const teams = tournament[0].teams
+      .filter((team) => team.lockedAt !== null)
+      .map(({ name, players }) => ({
+        name,
+        players: players.map(({ username }) => username).join(', '),
+      }));
+    setTournament(tournament[0]);
+    setFormatTeam(teams);
+  };
 
   useSelector((state) => {
     if (isLoggedIn !== !!state.login.user) {
@@ -39,11 +46,12 @@ const Tournament = ({ assets, tournamentId, alt }) => {
     }
   });
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     fetchFullTeam();
-  //   }
-  // }, [isLoggedIn]);
+  // Fetch the tournaments once, after the first render
+  useEffect(() => {
+    if (!tournament) {
+      fetchTournament();
+    }
+  }, []);
 
   const buttonClick = () => {
     if (isLoggedIn) {
@@ -81,7 +89,9 @@ const Tournament = ({ assets, tournamentId, alt }) => {
 
         <Title level={2}>Règlement</Title>
         {!assets.rules ? (
-          'Le règlement sera bientôt disponible.'
+          <div className="tournament-section">
+            <p>Le règlement sera bientôt disponible.</p>
+          </div>
         ) : (
           <>
             <div className="tournament-section">
@@ -91,18 +101,18 @@ const Tournament = ({ assets, tournamentId, alt }) => {
             </div>
           </>
         )}
-        {/* {assets.toornamentId &&
-          assets.stages &&
-          assets.stages.map((stage) => (
-            <iframe
-              key={stage}
-              width="100%"
-              height="500"
-              src={`https://widget.toornament.com/tournaments/${assets.toornamentId}/stages/${stage}/?_locale=fr`}
-              allowFullscreen
-              frameBorder="0"
+
+        {/* If tournament is defined (if the fetch has finished and succeeded) then render a table with the list of the validated players / teams */}
+        {tournament ? (
+          <>
+            <Title level={2}>{tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
+            <Table
+              columns={tournament.playersPerTeam === 1 ? [{ title: 'Joueurs', key: 'players' }] : columns}
+              dataSource={formatTeams}
+              className="table-tournament"
             />
-          ))} */}
+          </>
+        ) : null}
       </div>
     </div>
   );
