@@ -14,6 +14,7 @@ const columns = [
 
 const Purchases = () => {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.login.user.id);
   const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
   const items = useSelector((state) => state.items.items);
   useEffect(() => {
@@ -26,8 +27,14 @@ const Purchases = () => {
     : carts.map((cart) => {
         const dataSource = cart.cartItems.map((cartItem) => {
           const item = items.find((item) => cartItem.itemId === item.id);
+          let itemName = item.name;
+          if (item.id.startsWith('ticket')) {
+            itemName =
+              `${item.name} | ` +
+              (cartItem.forUser.id === userId ? `Vous (${cartItem.forUser.username})` : cartItem.forUser.username);
+          }
           return {
-            name: item.name,
+            name: itemName,
             quantity: cartItem.quantity,
             price: `${(item.price / 100).toFixed(2)} €`,
             total: `${((cartItem.quantity * item.price) / 100).toFixed(2)} €`,
