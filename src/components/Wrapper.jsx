@@ -91,7 +91,7 @@ const Wrapper = ({ Component }) => {
     if (isLoading) {
       return;
     }
-    // 3 actions possible : 
+    // 3 actions possible :
     //  - oauth
     //  - validate
     //  - pwd-reset
