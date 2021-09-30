@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,6 +17,9 @@ const Account = () => {
   const [oldpassword, setOldpassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [discordLink, setDiscordLink] = useState('');
+
+  useEffect(async () => setDiscordLink((await API.get('discord/connect')).data.link), []);
 
   const edit = () => {
     if (password === confirmPassword) {
@@ -113,9 +116,7 @@ const Account = () => {
         )}
 
         <p>
-          <a
-            className="discord-link"
-            onClick={() => API.get('discord/connect').then((res) => (window.location = res.data.link))}>
+          <a className="discord-button" href={discordLink}>
             {user.discordId ? 'Changez votre compte Discord' : 'Connectez-vous à votre compte Discord'}
           </a>
         </p>
