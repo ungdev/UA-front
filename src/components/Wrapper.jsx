@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
-import { autoLogin, saveToken, SET_USER } from '../modules/login';
+import { autoLogin, validate } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
 import { API } from '../utils/api';
@@ -127,15 +127,8 @@ const Wrapper = ({ Component }) => {
           break;
       }
     } else if (query.action === 'validate') {
-      API.post(`auth/validate/${query.state}`).then((res) => {
-        dispatch(saveToken(res.data.token));
-        dispatch({
-          type: SET_USER,
-          user: res.data.user,
-        });
-        toast.success('Le compte a été confirmé !');
-        replace(pathname);
-      });
+      dispatch(validate(query.state));
+      replace(pathname);
     }
   }, [isLoading]);
 
