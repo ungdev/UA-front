@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Modal, Button, Input, Radio } from './UI';
+import { Modal, Button, Input } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
 import { tryLogin, resetPassword } from '../modules/login';
@@ -14,7 +14,6 @@ const initialSignup = {
   email: '',
   password: '',
   passwordConfirmation: '',
-  age: 'child',
 };
 
 // TODO : Allow user to login with username
@@ -136,18 +135,6 @@ const LoginModal = ({ isVisible }) => {
             type="password"
             autocomplete="new-password"
           />
-          <Radio
-            label="Je suis :"
-            options={[
-              { value: 'child', name: 'Mineur' },
-              { value: 'adult', name: 'Majeur' },
-            ]}
-            name="age"
-            value={signupForm.age}
-            onChange={(value) => {
-              updateSignup('age', value);
-            }}
-            row={true}></Radio>
           <Button primary className="signup-modal-button" type="submit">
             S'inscrire
           </Button>
