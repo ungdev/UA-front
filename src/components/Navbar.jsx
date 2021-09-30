@@ -139,11 +139,8 @@ const Navbar = ({ isLoggedIn }) => {
             </a>
           </Link>
 
-          <a>
-            <Button primary className="login-button" onClick={() => dispatch(setLoginModalVisible(true))}>
-              Inscription
-            </Button>
-          </a>
+          {isLoggedIn ? isLoggedLayout : connexionButton}
+
           <nav>{navLinks}</nav>
         </SimpleBar>
 
