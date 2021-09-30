@@ -152,7 +152,7 @@ const Wrapper = ({ Component }) => {
     return (
       <>
         <CookieConsent />
-        <Navbar isLoggedIn={isLoggedIn} action={query.action} state={query.state} />
+        <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       </>
     );
   }
