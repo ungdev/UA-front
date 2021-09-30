@@ -19,7 +19,7 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
   if (user.username.includes('.')) {
-    toast.error('Le pseudo ne doit pas être une aresse mail.');
+    toast.error('Le pseudo ne doit pas contenir de point.');
     return;
   }
 
