@@ -91,6 +91,10 @@ const Wrapper = ({ Component }) => {
     if (isLoading) {
       return;
     }
+    // 3 actions possible : 
+    //  - oauth
+    //  - validate
+    //  - pwd-reset
     if (query.action === 'oauth') {
       switch (query.state) {
         case '0':
