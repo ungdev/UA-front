@@ -8,7 +8,7 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
-import { autoLogin, saveToken } from '../modules/login';
+import { autoLogin, saveToken, SET_USER } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
 import { API } from '../utils/api';
@@ -92,7 +92,7 @@ const Wrapper = ({ Component }) => {
       return;
     }
     if (query.action === 'oauth') {
-      switch (query.value) {
+      switch (query.state) {
         case '0':
           toast.success('Le lien avec le compte Discord a bien été créé !');
           redirect = pathname;
@@ -123,10 +123,14 @@ const Wrapper = ({ Component }) => {
           break;
       }
     } else if (query.action === 'validate') {
-      API.post(`auth/validate/${query.value}`).then((res) => {
+      API.post(`auth/validate/${query.state}`).then((res) => {
         dispatch(saveToken(res.data.token));
+        dispatch({
+          type: SET_USER,
+          user: res.data.user,
+        });
         toast.success('Le compte a été confirmé !');
-        redirect = pathname;
+        replace(pathname);
       });
     }
   }, [isLoading]);
@@ -148,7 +152,7 @@ const Wrapper = ({ Component }) => {
     return (
       <>
         <CookieConsent />
-        <Navbar isLoggedIn={isLoggedIn} action={query.action} value={query.value} />
+        <Navbar isLoggedIn={isLoggedIn} action={query.action} state={query.state} />
       </>
     );
   }
@@ -196,7 +200,7 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedIn={isLoggedIn} action={query.action} value={query.value} />
+      <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       <div className="page-container">
         {!isHome && !isTournament && !isDashboard && !isAdminPanel && <Header />}
         {isDashboard && <PanelHeader pathname={pathname} links={linksDashboard} title="Dashboard" />}

@@ -46,7 +46,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isLoggedIn, action, value }) => {
+const Navbar = ({ isLoggedIn, action }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -222,7 +222,7 @@ const Navbar = ({ isLoggedIn, action, value }) => {
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
-      {action === 'pwd-reset' && <ResetModal resetToken={value} />}
+      {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}
     </div>
   );
 };
@@ -233,13 +233,13 @@ Navbar.propTypes = {
    */
   isLoggedIn: PropTypes.bool.isRequired,
   /**
-   * The action parameter passed in the url
+   * An object reprensenting the action and state parameters passed in the url
    */
-  action: PropTypes.string.isRequired,
-  /**
-   * The value parameter passed in the url
-   */
-  value: PropTypes.string.isRequired,
+  action: PropTypes.shape({ action: PropTypes.string, state: PropTypes.string }),
+};
+
+Navbar.defaultProps = {
+  action: { action: '', state: '' },
 };
 
 export default Navbar;
