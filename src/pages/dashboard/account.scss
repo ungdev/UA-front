@@ -13,6 +13,12 @@
   .infos {
     width: 400px;
     margin-bottom: 50px;
+    .discord-button {
+      text-decoration: underline;
+    }
+    .discord-button:hover {
+      cursor: pointer;
+    }
   }
 
   .ticket {
