@@ -114,7 +114,7 @@ const Account = () => {
 
         <p>
           <a
-            className="discord-button"
+            className="discord-link"
             onClick={() => API.get('discord/connect').then((res) => (window.location = res.data.link))}>
             {user.discordId ? 'Changez votre compte Discord' : 'Connectez-vous à votre compte Discord'}
           </a>
