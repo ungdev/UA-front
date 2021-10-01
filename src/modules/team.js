@@ -26,8 +26,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   const { user } = getState().login;
   const res = await API.post('teams', bodyTeam);
   if (bodyTeam.name.includes('solo-team')) {
-    const tournamentName = getState().tournament.tournaments.filter(({ id }) => id === res.data.tournamentId)[0].name;
-    toast.success(`Vous avez rejoint le tournoi ${tournamentName}`);
+    toast.success(`Vous avez rejoint le tournoi.`);
   } else {
     toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
   }

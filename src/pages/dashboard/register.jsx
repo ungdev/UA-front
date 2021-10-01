@@ -17,7 +17,7 @@ const columns = [
 const Register = () => {
   const { query } = useRouter();
 
-  const [tournamentId, setTournamentId] = useState('lol');
+  const [tournamentId, setTournamentId] = useState('lolCompetitive');
   const [tournamentSolo, setTournamentSolo] = useState('ssbu');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
@@ -138,7 +138,9 @@ const Register = () => {
           <Button
             primary
             className="center-mobile"
-            onClick={() => dispatch(createTeam({ name: soloTeamName, tournamentId, userType: 'player' }))}
+            onClick={() =>
+              dispatch(createTeam({ name: soloTeamName, tournamentId: tournamentSolo, userType: 'player' }))
+            }
             rightIcon="fas fa-user">
             S'inscrire en solo
           </Button>
