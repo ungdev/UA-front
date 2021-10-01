@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,6 +17,9 @@ const Account = () => {
   const [oldpassword, setOldpassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [discordLink, setDiscordLink] = useState('');
+
+  useEffect(async () => setDiscordLink((await API.get('discord/connect')).data.link), []);
 
   const edit = () => {
     if (password === confirmPassword) {
@@ -73,16 +76,9 @@ const Account = () => {
 
         <Input label="Place" value={user.place} autocomplete="off" disabled />
         <Input label="Email" value={user.email} autocomplete="off" disabled />
-        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" />
-        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
+        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
         <Input label="Pseudo (Nom d'invocateur pour LoL)" value={username} onChange={setUsername} autocomplete="off" />
-        <Input
-          label="Mot de passe actuel"
-          value={oldpassword}
-          onChange={setOldpassword}
-          autocomplete="off"
-          type="password"
-        />
         <Input
           label="Nouveau mot de passe"
           value={password}
@@ -98,9 +94,32 @@ const Account = () => {
           type="password"
         />
 
+        <br />
+        <Input
+          label="Pour modifier votre profil, entrez votre mot de passe actuel"
+          value={oldpassword}
+          onChange={setOldpassword}
+          autocomplete="off"
+          type="password"
+        />
+
         <Button primary onClick={edit}>
           Modifier
         </Button>
+
+        {user.discordId ? (
+          <p>
+            Vous êtes connecté à votre compte Discord ! <i className="fas fa-check green-icon" />
+          </p>
+        ) : (
+          ''
+        )}
+
+        <p>
+          <a className="discord-button" href={discordLink}>
+            {user.discordId ? 'Changez votre compte Discord' : 'Connectez-vous à votre compte Discord'}
+          </a>
+        </p>
       </div>
     </div>
   );
