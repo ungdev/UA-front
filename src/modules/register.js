@@ -18,6 +18,10 @@ export const registerUser = (user) => async (dispatch) => {
     toast.error('Les deux mots de passe ne correspondent pas');
     return;
   }
+  if (user.username.includes('.')) {
+    toast.error('Le pseudo ne doit pas contenir de point.');
+    return;
+  }
 
   delete user.passwordConfirmation;
   await API.post('auth/register', user);
