@@ -22,6 +22,14 @@ export const registerUser = (user) => async (dispatch) => {
     toast.error('Le pseudo ne doit pas contenir de point.');
     return;
   }
+  if (user.isMinor === user.isAdult) {
+    toast.error('Vous devez être soit mineur, soit majeur.');
+    return;
+  }
+
+  user.age = user.isMinor ? 'child' : 'adult';
+  delete user.isMinor;
+  delete user.isAdult;
 
   delete user.passwordConfirmation;
   await API.post('auth/register', user);

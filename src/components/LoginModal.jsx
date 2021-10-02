@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Modal, Button, Input } from './UI';
+import { Modal, Button, Input, Checkbox } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
 import { tryLogin, resetPassword } from '../modules/login';
@@ -15,6 +15,8 @@ const initialSignup = {
   email: '',
   password: '',
   passwordConfirmation: '',
+  isMinor: false,
+  isAdult: false,
 };
 
 // TODO : Allow user to login with username
@@ -136,6 +138,9 @@ const LoginModal = ({ isVisible }) => {
             type="password"
             autocomplete="new-password"
           />
+          <div className="age-label">Le 26 Novembre 2021, vous serez : </div>
+          <Checkbox label="Mineur" value={signupForm.isMinor} onChange={(value) => updateSignup('isMinor', value)} />
+          <Checkbox label="Majeur" value={signupForm.isAdult} onChange={(value) => updateSignup('isAdult', value)} />
           <Button primary className="signup-modal-button" type="submit">
             S'inscrire
           </Button>
