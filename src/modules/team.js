@@ -42,9 +42,9 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   Router.push('/dashboard/team');
 };
 
-export const joinTeam = (teamId, name) => async (dispatch, getState) => {
+export const joinTeam = (teamId, name, userType) => async (dispatch, getState) => {
   const { user } = getState().login;
-  await API.post(`/teams/${teamId}/join-requests`, { userType: 'player' });
+  await API.post(`/teams/${teamId}/join-requests`, { userType });
   toast.success(`Votre demande pour rejoindre ${name} a été envoyée`);
   dispatch({
     type: SET_USER,
@@ -90,7 +90,8 @@ export const setCaptain = (id, teamId) => async (dispatch, getState) => {
 export const acceptUser = (user, teamId) => async (dispatch, getState) => {
   const team = getState().team.team;
   await API.post(`teams/current/join-requests/${user.id}`);
-  team.players.push(user);
+  user.type === 'player' ? team.players.push(user) : team.coaches.push(user);
+
   team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
   dispatch({
     type: SET_TEAM,
@@ -114,6 +115,7 @@ export const kickUser = (userId) => async (dispatch, getState) => {
   } else {
     await API.delete(`teams/current/users/${userId}`);
     team.players = team.players.filter(({ id }) => id !== userId);
+    team.coaches = team.coaches.filter(({ id }) => id !== userId);
     dispatch({
       type: SET_TEAM,
       team,
