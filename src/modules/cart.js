@@ -29,12 +29,12 @@ export const cartPay = (cart) => async (dispatch, getState) => {
   const sendableCart = {
     tickets: {
       userIds: [],
-      visitors: [],
+      //attendant: {},
     },
     supplements: [],
   };
   cart.tickets.forEach((ticket) => {
-    sendableCart.tickets.userIds.push(ticket.forUserId);
+    sendableCart.tickets.userIds.push(ticket.for);
   });
   cart.supplements.forEach((supplement) => {
     const itemId = supplement.attribute ? `${supplement.item.id}-${supplement.attribute}` : supplement.item.id;
