@@ -6,6 +6,7 @@ import Modal from './UI/Modal';
 import Button from './UI/Button';
 import Input from './UI/Input';
 import { API } from '../utils/api';
+import { toast } from 'react-toastify';
 
 const ResetModal = ({ resetToken }) => {
   const { pathname, replace } = useRouter();
