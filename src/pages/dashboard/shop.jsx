@@ -10,12 +10,8 @@ import { toast } from 'react-toastify';
 
 const ticketColumns = [
   {
-    title: '',
+    title: 'Bénéficiaire',
     key: 'type',
-  },
-  {
-    title: 'Email',
-    key: 'email',
   },
   {
     title: 'Prix',
@@ -48,7 +44,7 @@ const supplementColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
-  const { email, id: userId, type, hasPaid, username } = useSelector((state) => state.login.user);
+  const { id: userId, type, hasPaid, username, age } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items.items);
   const team = useSelector((state) => state.team.team);
@@ -57,6 +53,12 @@ const Shop = () => {
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(userId);
+  const [hasAttendant, setHasAttendant] = useState(false);
+  const [attendant, setAttendant] = useState({
+    firstname: '',
+    lastname: '',
+  });
+
   /* Structure of the cart :
   {
     supplements: [
@@ -94,6 +96,7 @@ const Shop = () => {
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [willBePaid, setWillBePaid] = useState(hasPaid);
   const [itemPreview, setItemPreview] = useState(null);
+  const [placeFor, setPlaceFor] = useState(hasPaid ? 'other' : 'me');
   // The members of the team who didn't buy a ticket
   const [membersWithoutTicket, setMembersWithoutTicket] = useState([]);
 
@@ -120,41 +123,55 @@ const Shop = () => {
     );
   }, [teamMembers]);
 
+  // verify if an attendant ticket has been paid
+  useEffect(() => {
+    API.get('/users/current/carts').then((res) => {
+      res.data.map((paidCart) => {
+        paidCart.cartItems.map((cartItem) => {
+          cartItem.itemId === 'ticket-attendant' && setHasAttendant(true);
+        });
+      });
+    });
+  }, []);
+
   if (!items) {
     return null;
   }
 
   const addPlace = async () => {
-    // Get user id
-    let ticketType = undefined;
-    if (place === userId) {
-      setWillBePaid(true);
-      ticketType = type;
-    } else {
-      ticketType = membersWithoutTicket.splice(
-        membersWithoutTicket.findIndex((member) => member.id === place),
-        1,
-      )[0].type;
-    }
-    const item = items.find((item) => item.id === `ticket-${ticketType}`);
-    const newCartTicket = {
-      item,
-      for: place,
-    };
-    setCart({ ...cart, tickets: [...cart.tickets, newCartTicket] });
-    setAddPlaceVisible(false);
-    let newPlace = undefined;
-    if (hasPaid || willBePaid || place === userId) {
-      if (membersWithoutTicket.length) {
-        newPlace = membersWithoutTicket[0].id;
+    if (placeFor === 'attendant') {
+      const { firstname, lastname } = attendant;
+      if (firstname == '' || lastname == '') {
+        toast.error('Vous devez renseigner le prénom et le nom de votre accompagnateur.');
+        return;
       }
+      setCart({ ...cart, attendant });
     } else {
-      newPlace = userId;
+      // Get user id
+      let ticketType = undefined;
+      if (place === userId) {
+        setWillBePaid(true);
+        ticketType = type;
+      } else {
+        ticketType = membersWithoutTicket.splice(
+          membersWithoutTicket.findIndex((member) => member.id === place),
+          1,
+        )[0].type;
+      }
+      const item = items.find((item) => item.id === `ticket-${ticketType}`);
+      const newCartTicket = {
+        item,
+        for: place,
+      };
+      setCart({ ...cart, tickets: [...cart.tickets, newCartTicket] });
     }
-    setPlace(newPlace);
+
+    //Prepare form for next places
+    setAddPlaceVisible(false);
+    setPlaceFor(undefined);
   };
 
-  const ticketRows = cart.tickets.map((ticket) => {
+  let ticketRows = cart.tickets.map((ticket) => {
     return {
       type:
         `${ticket.item.name} | ` +
@@ -187,12 +204,35 @@ const Shop = () => {
     };
   });
 
+  // add attendant if needed
+  cart.attendant &&
+    ticketRows.push({
+      type: `Place accompagnateur | ${cart.attendant.firstname} ${cart.attendant.lastname}`,
+      price: '12.00€',
+      delete: (
+        <Button
+          onClick={() => {
+            setCart({ ...cart, attendant: undefined });
+          }}
+          rightIcon="fas fa-trash-alt"
+          className="delete-button"
+          noStyle
+        />
+      ),
+    });
+
   const getOptions = () => {
     const options = [];
     if (!hasPaid && !willBePaid) {
       options.push({
         name: `Moi-même (${username})`,
         value: 'me',
+      });
+    }
+    if (age === 'child' && !cart.attendant && !hasAttendant) {
+      options.push({
+        name: 'Un accompagnateur',
+        value: 'attendant',
       });
     }
     if (membersWithoutTicket.length) {
@@ -332,7 +372,8 @@ const Shop = () => {
   // Compute total price
   const totalPrice =
     cart.tickets.reduce((acc, cartTicket) => acc + cartTicket.item.price, 0) +
-    cart.supplements.reduce((acc, cartSupplement) => acc + cartSupplement.quantity * cartSupplement.item.price, 0);
+    cart.supplements.reduce((acc, cartSupplement) => acc + cartSupplement.quantity * cartSupplement.item.price, 0) +
+    (cart.attendant ? 1200 : 0);
 
   return (
     <div id="dashboard-shop">
@@ -400,13 +441,28 @@ const Shop = () => {
           label="Pour"
           name="for"
           options={getOptions()}
-          value={place === userId ? 'me' : 'other'}
+          value={placeFor}
           onChange={(v) => {
+            setPlaceFor(v);
             setPlace(v === 'me' ? userId : membersWithoutTicket[0].id);
           }}
           className="add-place-input"
         />
-        {place !== userId && (
+        {placeFor === 'attendant' && (
+          <>
+            <Input
+              label="Prénom"
+              value={attendant.firstname}
+              onChange={(value) => setAttendant({ ...attendant, firstname: value })}
+            />
+            <Input
+              label="Nom"
+              value={attendant.lastname}
+              onChange={(value) => setAttendant({ ...attendant, lastname: value })}
+            />
+          </>
+        )}
+        {placeFor === 'other' && (
           <Select
             label="Membre"
             options={membersWithoutTicket.map((member) => ({
