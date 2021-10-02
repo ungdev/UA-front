@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchItems } from '../../modules/items';
 import { cartPay } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
-import { Table, Input, Button, Title, Modal, Radio, Select } from '../../components/UI';
+import { Table, Input, Button, Title, Modal, Radio, Select, Checkbox } from '../../components/UI';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
 
@@ -54,6 +54,7 @@ const Shop = () => {
   const team = useSelector((state) => state.team.team);
   // The members of the team are the players and the coaches
   const [teamMembers, setTeamMembers] = useState([]);
+  const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(userId);
   /* Structure of the cart :
@@ -365,13 +366,23 @@ const Shop = () => {
         <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
       </div>
       <div className="shop-footer">
+        <Checkbox
+          className="cgvCheckbox"
+          label={
+            <>
+              J'accepte les <a href="/legal#CGV">Conditions Générales de Vente</a>
+            </>
+          }
+          value={isCgvAccepted}
+          onChange={(value) => setIsCgvAccepted(value)}
+        />
         <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
         <Button
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
           onClick={() => dispatch(cartPay(cart))}
-          disabled={!totalPrice}>
+          disabled={!totalPrice || !isCgvAccepted}>
           Payer
         </Button>
       </div>

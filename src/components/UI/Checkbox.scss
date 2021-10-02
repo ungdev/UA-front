@@ -1,12 +1,10 @@
 .checkbox {
-  & > label {
-    display: flex;
-    margin-top: 10px;
+  display: flex;
+  margin-top: 10px;
 
-    & > input {
-      height: 17px;
-      width: 17px;
-      margin-right: 5px;
-    }
+  & > input {
+    height: 17px;
+    width: 17px;
+    margin-right: 5px;
   }
 }

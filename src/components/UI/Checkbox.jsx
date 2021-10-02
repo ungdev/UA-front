@@ -6,21 +6,19 @@ import PropTypes from 'prop-types';
  */
 const Checkbox = ({ label, value, onChange, className, autoFocus }) => {
   return (
-    <div className={`checkbox ${className}`}>
-      <label>
-        <input
-          type="checkbox"
-          checked={value}
-          value={value.toString()}
-          onChange={(e) => {
-            onChange(!value);
-          }}
-          autoFocus={autoFocus}
-        />
+    <label className={`checkbox ${className}`}>
+      <input
+        type="checkbox"
+        checked={value}
+        value={value.toString()}
+        onChange={(e) => {
+          onChange(!value);
+        }}
+        autoFocus={autoFocus}
+      />
 
-        <div className="checkbox-label">{label}</div>
-      </label>
-    </div>
+      <div className="checkbox-label">{label}</div>
+    </label>
   );
 };
 
