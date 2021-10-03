@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
 import { Provider } from 'react-redux';
 
@@ -35,17 +34,6 @@ const App = ({ Component, reduxStore }) => {
       }
     });
   }, []);
-
-  if (process.browser) {
-    if (nodeEnv() === 'production') {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(googleAnalyticsId());
-        window.GA_INITIALIZED = true;
-      }
-      ReactGA.set({ page: window.location.pathname });
-      ReactGA.pageview(window.location.pathname);
-    }
-  }
 
   return (
     <div>
