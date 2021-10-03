@@ -1,5 +1,6 @@
 import Button from './Button';
 import Card from './Card';
+import Checkbox from './Checkbox';
 import Collapse from './Collapse';
 import Countdown from './Countdown';
 import Helper from './Helper';
@@ -18,6 +19,7 @@ import LogoSVG from './LogoSVG';
 export {
   Button,
   Card,
+  Checkbox,
   Collapse,
   Countdown,
   Helper,

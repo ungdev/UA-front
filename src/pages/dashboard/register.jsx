@@ -6,6 +6,8 @@ import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { API } from '../../utils/api';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -16,22 +18,16 @@ const columns = [
 const Register = () => {
   const { query } = useRouter();
 
-  const [tournamentId, setTournamentId] = useState('lol');
+  const [tournamentId, setTournamentId] = useState('lolCompetitive');
   const [tournamentSolo, setTournamentSolo] = useState('ssbu');
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
-  const tournaments = useSelector((state) => state.tournament.tournaments);
-  const { username, askingTeamId } = useSelector((state) => state.login.user || { username: '', askingTeamId: '' });
+  const { username, askingTeamId, discordId } = useSelector(
+    (state) => state.login.user || { username: '', askingTeamId: '' },
+  );
   const soloTeamName = `${username}-solo-team`;
-
-  useEffect(() => {
-    dispatch(fetchTournaments());
-  }, []);
-
-  if (!tournaments) {
-    return null;
-  }
+  const [tournaments, setTournaments] = useState([]);
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -58,30 +54,50 @@ const Register = () => {
     value: tournament.id,
   }));
 
-  // TODO : This has to be fixed with the route /tournaments on API
-  // Get multiplayer tournaments tabs
-  const tournamentsTabs = tournamentsList.map(async (tournament) => {
-    // const teams = await API.get('/???');
-    // const tournamentTeams = teams.map((team) => ({
-    //   team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-    //   players: team.users.map(({ username }) => username).join(', '),
-    //   action:
-    //     askingTeamId === team.id ? (
-    //       <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-    //     ) : (
-    //       <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
-    //         Rejoindre
-    //       </Button>
-    //     ),
-    // }));
-    // return {
-    //   title: tournament.shortName,
-    //   content: <Table columns={columns} dataSource={tournamentTeams} alignRight className="table-join" />,
-    // };
+  // Set tournaments state
+  useEffect(() => {
+    (async () => {
+      setTournaments((await API.get('/tournaments')).data);
+    })();
+  }, []);
+
+  if (!tournaments) {
+    return null;
+  }
+
+  const tournamentsTabs = tournaments.map((tournament) => {
+    const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams).map((team) => ({
+      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+      players: team.players.map(({ username }) => username).join(', '),
+      action:
+        askingTeamId === team.id ? (
+          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+        ) : (
+          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))} disabled={!discordId}>
+            Rejoindre
+          </Button>
+        ),
+    }));
+    return {
+      title: tournament.name,
+      key: tournament.id,
+      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
+    };
   });
 
   const mainPanel = (
     <>
+      {!discordId ? (
+        <div>
+          <i className="fas fa-exclamation-triangle red-icon"></i> Avant toute chose, synchronisez votre compte Discord
+          dans l'onglet{' '}
+          <Link href="/dashboard/account">
+            <a>Mon compte</a>
+          </Link>
+        </div>
+      ) : (
+        ''
+      )}
       <div className="team-tournament">
         <div className="create-team">
           <p>
@@ -95,14 +111,15 @@ const Register = () => {
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ teamName, tournamentId }))}
-            rightIcon="fas fa-plus">
+            onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'player' }))}
+            rightIcon="fas fa-plus"
+            disabled={!discordId}>
             Créer mon équipe
           </Button>
 
           <p>
             Il te manque un ou plusieurs joueurs ? Viens recruter sur notre{' '}
-            <a href="https://discord.gg/TenDPRS">discord</a>.
+            <a href="https://discord.gg/WhxZwKU">discord</a>.
           </p>
         </div>
 
@@ -119,7 +136,7 @@ const Register = () => {
 
           <p>
             Tu n'as pas encore de coéquipier ? Pas de soucis, viens en trouver un sur notre{' '}
-            <a href="https://discord.gg/TenDPRS">discord</a>.
+            <a href="https://discord.gg/WhxZwKU">discord</a>.
           </p>
         </div>
       </div>
@@ -136,20 +153,19 @@ const Register = () => {
           <Button
             primary
             className="center-mobile"
-            onClick={() => dispatch(createTeam({ teamName: soloTeamName, tournament: tournamentSolo }))}
-            rightIcon="fas fa-user">
+            onClick={() =>
+              dispatch(createTeam({ name: soloTeamName, tournamentId: tournamentSolo, userType: 'player' }))
+            }
+            rightIcon="fas fa-user"
+            disabled={!discordId}>
             S'inscrire en solo
           </Button>
         </div>
         <div>
-          <p>Tu es coach, manager ou accompagnateur ? C'est ici pour prendre sa place.</p>
+          <p>Tu es spectateur ? C'est ici pour prendre sa place.</p>
 
-          <Button
-            primary
-            className="center-mobile"
-            rightIcon="fas fa-user-tie"
-            onClick={() => dispatch(setType('visitor'))}>
-            S'inscrire
+          <Button primary className="center-mobile" onClick={() => dispatch(setType('spectator'))}>
+            Devenir spectateur
           </Button>
         </div>
       </div>
@@ -164,7 +180,6 @@ const Register = () => {
       <Tabs tabs={tournamentsTabs} />
     </>
   );
-
   return <div id="dashboard-register">{panel === 'main' ? mainPanel : joinPanel}</div>;
 };
 

@@ -22,22 +22,22 @@ const Wrapper = ({ Component }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
-  const [isVisitor, setIsVisitor] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isSpectator, setIsSpectator] = useState(false);
 
   useSelector((state) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
       setHasTeam(!!user.teamId);
-      setIsVisitor(user.type === 'visitor');
+      setIsSpectator(user.type === 'spectator');
     } else if (user && hasTeam !== !!user.teamId) {
       setHasTeam(!!user.teamId);
-    } else if (user && !isVisitor && user.type === 'visitor') {
-      setIsVisitor(true);
-    } else if (user && isVisitor && user.type === 'none') {
-      setIsVisitor(false);
+    } else if (user && !isSpectator && user.type === 'spectator') {
+      setIsSpectator(true);
+    } else if (user && isSpectator && user.type !== 'spectator') {
+      setIsSpectator(false);
     }
     if (user && isPaid !== user.isPaid) {
       setIsPaid(user.isPaid);
@@ -61,14 +61,14 @@ const Wrapper = ({ Component }) => {
       redirect = '/dashboard/team';
     } else if (pathname === '/dashboard/shop' && !isShopAllowed()) {
       redirect = '/dashboard';
-    } else if (isVisitor && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-      redirect = '/dashboard/coach';
-    } else if (!isVisitor && !hasTeam && isPaid) {
-      if (pathname === '/dashboard') {
+    } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/spectator';
+    } else if (!isSpectator && !hasTeam) {
+      if (pathname === '/dashboard/spectator') {
         redirect = '/dashboard/register';
       }
     } else if (
-      !isVisitor &&
+      !isSpectator &&
       !hasTeam &&
       isDashboard &&
       pathname !== '/dashboard/register' &&
@@ -80,8 +80,6 @@ const Wrapper = ({ Component }) => {
       redirect = '/dashboard';
     } else if (pathname === '/admin' && permissions === 'entry') {
       redirect = '/admin/entry';
-    } else if (pathname === '/admin' && permissions === 'anim') {
-      redirect = '/admin/notification';
     } else if (pathname === '/admin' && permissions === 'admin') {
       redirect = '/admin/users';
     }
@@ -114,14 +112,13 @@ const Wrapper = ({ Component }) => {
 
     if (hasTeam) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
-      menu.push({ title: 'Informations', href: '/dashboard/infos' });
-    } else if (isVisitor) {
-      menu.push({ title: 'Coach', href: '/dashboard/coach' });
+    } else if (isSpectator) {
+      menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
     } else if (isPaid) {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
-    if (hasTeam || isVisitor || isPaid) {
+    if (hasTeam || isSpectator || isPaid) {
       if (isShopAllowed()) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
@@ -138,7 +135,6 @@ const Wrapper = ({ Component }) => {
     const menu = [];
 
     if (permissions === 'anim' || permissions === 'admin') {
-      menu.push({ title: 'Notifications', href: '/admin/notification' });
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
 

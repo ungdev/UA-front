@@ -20,6 +20,11 @@
   .center {
     margin: 0 auto;
     display: block;
+
+    &.buttonWrapper {
+      display: table;
+      margin: auto;
+    }
   }
 
   .select {
@@ -71,6 +76,11 @@
     .center-mobile {
       margin: 0 auto;
       display: block;
+
+      &.buttonWrapper {
+        margin: 0 auto;
+        display: table;
+      }
     }
   }
 }

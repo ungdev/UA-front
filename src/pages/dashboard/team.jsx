@@ -9,6 +9,7 @@ import {
   refuseUser,
   deleteTeam,
   fetchCurrentTeam,
+  lockTeam,
 } from '../../modules/team';
 import tournament, { fetchSlots, fetchTournaments } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
@@ -17,7 +18,7 @@ import { isShopAllowed } from '../../utils/settings';
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
-  { title: <>A&nbsp;payé</>, key: 'isPaid' },
+  { title: <>A&nbsp;payé</>, key: 'hasPaid' },
   { title: '', key: 'action' },
 ];
 
@@ -38,14 +39,9 @@ const Team = () => {
 
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
-  const usersPaid = team && team.players.reduce((previous, player) => (player.isPaid ? previous + 1 : previous), 0);
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(tournament);
-  }, [tournament]);
+  const usersPaid = team && team.players.reduce((previous, player) => (player.hasPaid ? previous + 1 : previous), 0);
   const tournaments = useSelector((state) => state.tournament.tournaments);
-  const tournament =
-    team && tournaments && tournaments.filter((tournament) => tournament.shortName === team.tournamentId)[0];
+  const tournament = team && tournaments && tournaments.filter((tournament) => tournament.id === team.tournamentId)[0];
   const tournamentName = tournament && tournament.name;
 
   useEffect(() => {
@@ -63,6 +59,12 @@ const Team = () => {
     }
   }, [team]);
 
+  useEffect(() => {
+    if (team && !tournaments) {
+      dispatch(fetchTournaments());
+    }
+  }, [team]);
+
   const players =
     !isSolo &&
     team &&
@@ -74,9 +76,9 @@ const Team = () => {
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      isPaid: user.isPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
+      hasPaid: user.hasPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
       action:
-        user.id !== team.captainId && isCaptain && isShopAllowed() ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed() && !team.lockedAt ? (
           <>
             <Button
               onClick={() =>
@@ -195,11 +197,11 @@ const Team = () => {
               <div>
                 <strong>Statut</strong>{' '}
                 <Helper>
-                  Pour être inscrite, une équipe doit être complète et tous les membres de l'équipe doivent avoir payé
-                  leur place.
+                  Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé
+                  leur place et l'équipe doit être verrouillée.
                 </Helper>
                 <strong> : </strong>
-                {tournament && usersPaid === tournament.playersPerTeam ? (
+                {team.lockedAt ? (
                   <>
                     <i className="fas fa-check-circle green-icon"></i> Inscrit
                   </>
@@ -261,7 +263,15 @@ const Team = () => {
             <Title level={4}>Joueurs</Title>
             <Table columns={playersColumns} dataSource={players} alignRight className="table-players" />
           </div>
-          {isShopAllowed() && (
+          {isCaptain && !team.lockedAt && (
+            <Button
+              primary
+              disabled={!(tournament && usersPaid === tournament.playersPerTeam)}
+              onClick={() => dispatch(lockTeam())}>
+              Verrouiller l'équipe
+            </Button>
+          )}
+          {isShopAllowed() && !team.lockedAt && (
             <>
               <div className="players-list">
                 <Title level={4}>Joueurs en attente</Title>
@@ -300,22 +310,27 @@ const Team = () => {
           )}
         </>
       ) : (
-        <>
-          <Button
-            onClick={() =>
-              setModal({
-                visible: true,
-                onOk: () => {
-                  dispatch(deleteTeam(team.id));
-                  setModal(initialModal);
-                },
-                content: 'Êtes-vous sûr de vouloir quitter le tournoi ?',
-                title: 'Quitter le tournoi',
-              })
-            }>
-            Quitter le tournoi
-          </Button>
-        </>
+        !team.lockedAt && (
+          <>
+            <Button primary disabled={!usersPaid} onClick={() => dispatch(lockTeam())}>
+              Verrouiller mon inscription
+            </Button>
+            <Button
+              onClick={() =>
+                setModal({
+                  visible: true,
+                  onOk: () => {
+                    dispatch(deleteTeam(team.id));
+                    setModal(initialModal);
+                  },
+                  content: 'Êtes-vous sûr de vouloir quitter le tournoi ?',
+                  title: 'Quitter le tournoi',
+                })
+              }>
+              Quitter le tournoi
+            </Button>
+          </>
+        )
       )}
       <Modal
         onOk={modal.onOk}
