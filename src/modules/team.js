@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 
 import { API } from '../utils/api';
+import { fetchSlots } from './tournament';
 
 export const SET_TEAM = 'team/SET_TEAM';
 export const SET_USER = 'login/SET_USER';
@@ -143,4 +144,14 @@ export const deleteTeam = (teamId) => async (dispatch, getState) => {
   });
   toast.success("L'équipe a bien été supprimée");
   Router.push('/dashboard/register');
+};
+
+export const lockTeam = (teamId) => async (dispatch, getState) => {
+  const res = await API.post('teams/current/lock');
+  dispatch({
+    type: SET_TEAM,
+    team: res.data,
+  });
+  dispatch(fetchSlots());
+  toast.success("L'équipe a bien été verrouillée");
 };

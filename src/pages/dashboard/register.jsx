@@ -6,6 +6,7 @@ import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { API } from '../../utils/api';
 
 const columns = [
@@ -22,7 +23,9 @@ const Register = () => {
   const [teamName, setTeamName] = useState('');
   const [panel, setPanel] = useState('main');
   const dispatch = useDispatch();
-  const { username, askingTeamId } = useSelector((state) => state.login.user || { username: '', askingTeamId: '' });
+  const { username, askingTeamId, discordId } = useSelector(
+    (state) => state.login.user || { username: '', askingTeamId: '' },
+  );
   const soloTeamName = `${username}-solo-team`;
   const [tournaments, setTournaments] = useState([]);
 
@@ -70,7 +73,7 @@ const Register = () => {
         askingTeamId === team.id ? (
           <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
         ) : (
-          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))}>
+          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))} disabled={!discordId}>
             Rejoindre
           </Button>
         ),
@@ -84,6 +87,17 @@ const Register = () => {
 
   const mainPanel = (
     <>
+      {!discordId ? (
+        <div>
+          <i className="fas fa-exclamation-triangle red-icon"></i> Avant toute chose, synchronisez votre compte Discord
+          dans l'onglet{' '}
+          <Link href="/dashboard/account">
+            <a>Mon compte</a>
+          </Link>
+        </div>
+      ) : (
+        ''
+      )}
       <div className="team-tournament">
         <div className="create-team">
           <p>
@@ -98,7 +112,8 @@ const Register = () => {
             primary
             className="center"
             onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'player' }))}
-            rightIcon="fas fa-plus">
+            rightIcon="fas fa-plus"
+            disabled={!discordId}>
             Créer mon équipe
           </Button>
 
@@ -141,19 +156,16 @@ const Register = () => {
             onClick={() =>
               dispatch(createTeam({ name: soloTeamName, tournamentId: tournamentSolo, userType: 'player' }))
             }
-            rightIcon="fas fa-user">
+            rightIcon="fas fa-user"
+            disabled={!discordId}>
             S'inscrire en solo
           </Button>
         </div>
         <div>
-          <p>Tu es coach, manager ou accompagnateur ? C'est ici pour prendre sa place.</p>
+          <p>Tu es spectateur ? C'est ici pour prendre sa place.</p>
 
-          <Button
-            primary
-            className="center-mobile"
-            rightIcon="fas fa-user-tie"
-            onClick={() => dispatch(setType('visitor'))}>
-            S'inscrire
+          <Button primary className="center-mobile" onClick={() => dispatch(setType('spectator'))}>
+            Devenir spectateur
           </Button>
         </div>
       </div>

@@ -19,13 +19,15 @@ const Account = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [discordLink, setDiscordLink] = useState('');
 
-  useEffect(async () => setDiscordLink((await API.get('discord/connect')).data.link), []);
+  useEffect(() => {
+    API.get('discord/connect').then((res) => {
+      setDiscordLink(res.data.link);
+    });
+  }, []);
 
   const edit = () => {
     if (password === confirmPassword) {
       const data = {
-        //firstname,
-        //lastname,
         username,
       };
 

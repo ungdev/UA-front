@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { setLoginModalVisible } from './loginModal';
 import { API, setAuthorizationToken } from '../utils/api';
 import { hasOrgaPermission } from '../utils/permission';
-import { SET_CART } from './cart';
+import { SET_TEAM } from './team';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
@@ -109,6 +109,7 @@ export const logout = async (dispatch) => {
   toast('Vous avez été déconnecté');
   dispatch({ type: SET_TOKEN, token: null });
   dispatch({ type: SET_USER, user: null });
+  dispatch({ type: SET_TEAM, team: null });
   setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
@@ -131,17 +132,15 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
   resetFields();
 };
 
-// TODO : vérifier que ça fonctionne
 export const setType = (type) => async (dispatch, getState) => {
-  const user = getState().login.user;
-  const res = await API.put(`/users/${user.id}`, { ...user, type });
-  await API.delete(`/users/${user.id}/carts/current/items`);
+  let res = undefined;
+  if (type === 'spectator') {
+    res = await API.post(`/users/current/spectate`);
+  } else {
+    res = await API.delete(`/users/current/spectate`);
+  }
   dispatch({
     type: SET_USER,
     user: res.data,
-  });
-  dispatch({
-    type: SET_CART,
-    cart: null,
   });
 };
