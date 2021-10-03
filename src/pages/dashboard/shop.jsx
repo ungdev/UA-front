@@ -102,7 +102,9 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(fetchItems());
-    dispatch(fetchCurrentTeam());
+    if (type !== 'spectator') {
+      dispatch(fetchCurrentTeam());
+    }
   }, []);
 
   // Initializing teamMembers
