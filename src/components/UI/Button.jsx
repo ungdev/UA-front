@@ -8,19 +8,16 @@ const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disable
   return (
     <div
       className={`buttonWrapper ${primary ? 'primary' : ''} ${className} ${noStyle ? 'no-style' : ''} ${
-        disabled ? 'disabled' : ''
-      }`}
-      disabled={disabled}>
+        disabled && 'disabled'
+      }`}>
       <div
         className={`topButtonDiv ${primary ? 'primary' : ''} ${className ? className : ''} ${
           noStyle ? 'no-style' : ''
-        }`}
-        disabled={disabled}>
+        }`}>
         <div
           className={`bottomButtonDiv ${primary ? 'primary' : ''} ${className ? className : ''} ${
             noStyle ? 'no-style' : ''
-          }`}
-          disabled={disabled}>
+          }`}>
           <button
             type={type}
             className={`button ${primary ? 'primary' : ''} ${className ? className : ''} ${noStyle ? 'no-style' : ''} ${
