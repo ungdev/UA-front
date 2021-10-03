@@ -117,7 +117,7 @@ export const logout = async (dispatch) => {
 };
 
 export const editUser = (data, userId) => async (dispatch) => {
-  const res = await API.put(`/users/current`, data);
+  const res = await API.patch(`/users/current`, data);
   toast.success('Vos informations ont été modifiées');
   dispatch({
     type: UPDATE_USER,

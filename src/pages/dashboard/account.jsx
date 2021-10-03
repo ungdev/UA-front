@@ -26,24 +26,31 @@ const Account = () => {
   }, []);
 
   const edit = () => {
-    if (password === confirmPassword) {
+    if (password && password !== confirmPassword) return toast.error('Les mots de passe ne correspondent pas');
+    else if (oldpassword) {
       const data = {
-        username,
+        username: username,
+        password: oldpassword,
+        newPassword: password,
       };
 
-      if (oldpassword !== '' && password !== '') {
-        data.password = oldpassword;
-        data.newPassword = password;
+      // Remove null fields from `data`
+      for (const key in data) if (!data[key]) delete data[key];
+
+      // Stop request if the user only filled the `oldPassword`
+      if (Object.keys(data).length < 2) {
+        toast.error('Si tu veux modifier ton compte, mets à jour une information');
+      } else {
+        // Send the request to the api
+        dispatch(editUser(data, user.id));
+
+        // Reset password fields
+        setOldpassword('');
+        setPassword('');
+        setConfirmPassword('');
       }
-
-      dispatch(editUser(data, user.id));
-
-      // Reset password fields
-      setOldpassword('');
-      setPassword('');
-      setConfirmPassword('');
     } else {
-      toast.error('Les mots de passe ne correspondent pas');
+      toast.error('Tu dois rentrer ton mot de passe actuel pour modifier ces informations');
     }
   };
 
