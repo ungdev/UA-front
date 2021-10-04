@@ -35,7 +35,7 @@ const Home = () => {
         <div className="home-info">
           <Title align="center">Stream</Title>
 
-          <Countdown date={new Date('November 26 2021 21:00:00 UTC+1')} className="home-countdown" />
+          <Countdown date={new Date('November 26 2021 17:00:00 UTC+1')} className="home-countdown" />
 
           <a href="https://www.twitch.tv/uttarena">
             <Button primary leftIcon="fab fa-twitch" className="stream-link">

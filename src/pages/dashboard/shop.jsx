@@ -401,7 +401,8 @@ const Shop = () => {
       <div className="scoup">
         <img src="/scoup.jpg" alt="" />
         <p>
-          Notre partenaire Scoup Esport <a href="#">loue du matériel</a> supplémentaire pendant l'UTT Arena.
+          Notre partenaire Scoup Esport <a href="https://www.weezevent.com/utt-arena-2">loue du matériel</a>{' '}
+          supplémentaire pendant l'UTT Arena.
         </p>
       </div>
       <div className="shop-section">
