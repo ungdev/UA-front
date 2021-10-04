@@ -15,7 +15,7 @@ const initialSignup = {
   email: '',
   password: '',
   passwordConfirmation: '',
-  age: 'child',
+  age: '',
 };
 
 // TODO : Allow user to login with username
