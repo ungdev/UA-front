@@ -31,7 +31,7 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.login.user || { id: '' });
+  const { id, teamId } = useSelector((state) => state.login.user || { id: '', teamId: null });
   const { team } = useSelector((state) => state.team);
   const slotsTournament = useSelector((state) => state.tournament.slots);
 
@@ -43,7 +43,7 @@ const Team = () => {
   const tournamentName = tournament && tournament.name;
 
   useEffect(() => {
-    if (!team) {
+    if (!team && teamId) {
       dispatch(fetchCurrentTeam());
     } else {
       let interval = setInterval(() => dispatch(fetchCurrentTeam()), 120000);
@@ -297,8 +297,8 @@ const Team = () => {
               </div>
               {slotsTournament && (
                 <div>
-                  <strong> Places disponibles :</strong> {slotsTournament[team.tournamentId].available} /{' '}
-                  {slotsTournament[team.tournamentId].total}
+                  <strong> {isSolo ? 'Places' : 'Equipes'} disponibles :</strong>{' '}
+                  {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
                 </div>
               )}
             </>
