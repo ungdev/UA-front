@@ -28,9 +28,7 @@ const ResetModal = ({ resetToken }) => {
           }
           await API.post(`auth/reset-password/${resetToken}`, { password: newPassword });
           toast.success('Le mot de passe a été réinitialisé, vous pouvez maintenant vous connecter.');
-          if (!isLoading) {
-            replace(pathname);
-          }
+          replace(pathname);
         }}>
         <Input
           label="Mot de passe"
