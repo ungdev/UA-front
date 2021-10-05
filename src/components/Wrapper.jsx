@@ -64,7 +64,7 @@ const Wrapper = ({ Component }) => {
     } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/spectator';
     } else if (!isSpectator && !hasTeam) {
-      if (pathname === '/dashboard/spectator') {
+      if (pathname === '/dashboard/spectator' || pathname === '/dashboard') {
         redirect = '/dashboard/register';
       }
     } else if (

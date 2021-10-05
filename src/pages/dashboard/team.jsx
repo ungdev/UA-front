@@ -178,6 +178,7 @@ const Team = () => {
                 Accepter
               </Button>
               <Button
+                className="refuse-button"
                 onClick={() =>
                   setModal({
                     visible: true,

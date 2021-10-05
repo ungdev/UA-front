@@ -10,7 +10,6 @@
   cursor: pointer;
   user-select: none;
   transition: all 0.3s, color 0s;
-  transform: translate(-$buttonLength, -$buttonLength);
 
   &.primary {
     color: unset;
@@ -19,6 +18,7 @@
     background: $superposed-color;
     font-weight: bolder;
     border-radius: $buttonRadius 0 $buttonRadius 0;
+    transform: translate(-$buttonLength, -$buttonLength);
   }
 
   &.no-style {
