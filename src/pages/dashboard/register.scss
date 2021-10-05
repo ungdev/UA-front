@@ -2,6 +2,10 @@
   .table-join {
     margin-top: 20px;
     width: 100%;
+
+    .coachJoinButton.buttonWrapper {
+      margin-left: 10px;
+    }
   }
 
   .team-tournament {
@@ -23,7 +27,7 @@
 
     &.buttonWrapper {
       display: table;
-      margin: auto;
+      margin: 10px auto;
     }
   }
 

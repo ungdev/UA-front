@@ -66,18 +66,29 @@ const Register = () => {
   }
 
   const tournamentsTabs = tournaments.map((tournament) => {
-    const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams).map((team) => ({
-      team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
-      players: team.players.map(({ username }) => username).join(', '),
-      action:
-        askingTeamId === team.id ? (
-          <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
-        ) : (
-          <Button primary onClick={() => dispatch(joinTeam(team.id, team.name))} disabled={!discordId}>
-            Rejoindre
-          </Button>
-        ),
-    }));
+    const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams)
+      .filter((team) => !team.lockedAt)
+      .map((team) => ({
+        team: askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+        players: team.players.map(({ username }) => username).join(', '),
+        action:
+          askingTeamId === team.id ? (
+            <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+          ) : (
+            <>
+              <Button primary onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))} disabled={!discordId}>
+                Rejoindre
+              </Button>
+              <Button
+                className="coachJoinButton"
+                primary
+                onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
+                disabled={!discordId}>
+                Rejoindre (coach / manager)
+              </Button>
+            </>
+          ),
+      }));
     return {
       title: tournament.name,
       key: tournament.id,
@@ -115,6 +126,13 @@ const Register = () => {
             rightIcon="fas fa-plus"
             disabled={!discordId}>
             Créer mon équipe
+          </Button>
+          <Button
+            primary
+            className="center"
+            onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'coach' }))}
+            rightIcon="fas fa-plus">
+            Créer (coach / manager)
           </Button>
 
           <p>
