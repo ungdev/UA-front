@@ -67,7 +67,7 @@ export const validatePay = (id) => async (dispatch, getState) => {
   const userModal = getState().userEntry.searchUser;
   await API.post(`entry/forcePay/${id}`);
   toast.success('Paiement validé');
-  dispatch(updateUser({ ...userModal, isPaid: true }));
+  dispatch(updateUser({ ...userModal, hasPaid: true }));
   dispatch({
     type: SET_VISIBLE,
     visible: false,
@@ -89,7 +89,7 @@ export const refundCart = (id) => async (dispatch, getState) => {
   await API.put(`carts/${id}`);
   const userModal = getState().userEntry.searchUser;
   toast.success('Le panier a été marqué comme remboursé');
-  dispatch(updateUser({ ...userModal, isPaid: false }));
+  dispatch(updateUser({ ...userModal, hasPaid: false }));
   dispatch({
     type: SET_VISIBLE,
     visible: false,

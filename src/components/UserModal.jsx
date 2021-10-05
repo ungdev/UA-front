@@ -86,7 +86,7 @@ const UserModal = ({ isVisible }) => {
       onCancel={() => dispatch(setUserModalVisible(false))}
       buttons={
         <>
-          {hasEntryPermission && searchUser && !searchUser.isPaid && (
+          {hasEntryPermission && searchUser && !searchUser.hasPaid && (
             <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
           )}
           {isAdmin && (

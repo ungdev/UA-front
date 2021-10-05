@@ -24,7 +24,7 @@ const Wrapper = ({ Component }) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
-  const [isPaid, setIsPaid] = useState(false);
+  const [hasPaid, setHasPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
 
@@ -41,8 +41,8 @@ const Wrapper = ({ Component }) => {
     } else if (user && isSpectator && user.type !== 'spectator') {
       setIsSpectator(false);
     }
-    if (user && isPaid !== user.isPaid) {
-      setIsPaid(user.isPaid);
+    if (user && hasPaid !== user.hasPaid) {
+      setHasPaid(user.hasPaid);
     }
     if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
       setIsAdmin(true);
@@ -161,11 +161,11 @@ const Wrapper = ({ Component }) => {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
     } else if (isSpectator) {
       menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
-    } else if (isPaid) {
+    } else if (hasPaid) {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
-    if (hasTeam || isSpectator || isPaid) {
+    if (hasTeam || isSpectator || hasPaid) {
       if (isShopAllowed()) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
