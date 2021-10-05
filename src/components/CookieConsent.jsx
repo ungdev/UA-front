@@ -35,12 +35,14 @@ const CookieConsent = () => {
         <a>En&nbsp;savoir&nbsp;plus</a>
       </Link>
       <br />
-      <Button onClick={buttonClick} className="cookie-consent-button">
-        J'accepte
-      </Button>
-      <Button onClick={() => setDisplay(false)} className="cookie-deny-button">
-        Je refuse
-      </Button>
+      <div className="button-row">
+        <Button onClick={buttonClick} className="cookie-button consent">
+          J'accepte
+        </Button>
+        <Button onClick={() => setDisplay(false)} className="cookie-button deny">
+          Je refuse
+        </Button>
+      </div>
     </div>
   );
 };

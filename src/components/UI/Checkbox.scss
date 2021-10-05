@@ -1,10 +1,52 @@
 .checkbox {
-  display: flex;
-  margin-top: 10px;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex !important;
+  flex-flow: row nowrap;
+  user-select: none;
+  align-items: center;
+  gap: 0.5em;
+
+  & > * {
+    display: inline-block;
+    flex: 1 1 auto;
+  }
 
   & > input {
-    height: 17px;
-    width: 17px;
-    margin-right: 5px;
+    height: 16px;
+    width: 16px;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+  }
+
+  & > input,
+  & > input + .ui {
+    flex: 1 0 auto !important;
+  }
+
+  & > input + .ui {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    border-radius: 5px !important;
+    outline: 2px solid $primary-color;
+    overflow: hidden;
+  }
+
+  & > input + .ui::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-color: $primary-color;
+    display: block;
+    opacity: 0.2;
+    transition: clip-path 0.5s cubic-bezier(0.34, 0, 0, 1.75), opacity 0.35s ease-in-out;
+    clip-path: path('M0 5v-5h16v16h-16v-11h16l3 3l-3 3l1.5 1.5l3-3l3 3l1.5-1.5l-3-3l3-3l-1.5-1.5l-3 3l-3-3l-1.5 1.5Z');
+  }
+
+  & > input:checked + .ui::before {
+    opacity: 1;
+    clip-path: path('M0 5v-5h16v16h-16v-11h3.5l3 3l-3 3l1.5 1.5l3-3l3 3l1.5-1.5l-3-3l3-3l-1.5-1.5l-3 3l-3-3l-1.5 1.5Z');
   }
 }

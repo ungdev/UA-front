@@ -420,6 +420,7 @@ const Shop = () => {
           value={isCgvAccepted}
           onChange={(value) => setIsCgvAccepted(value)}
         />
+        <br />
         <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
         <Button
           primary
