@@ -55,11 +55,11 @@ const Account = () => {
   };
 
   const downloadTicket = async () => {
-    const res = await API.get(`${apiUrl()}users/${user.id}/ticket`);
+    const res = await API.get(`tickets`);
 
     let element = document.createElement('a');
-    element.href = 'data:application/pdf;base64,' + res.data;
-    element.download = 'Billet UTT Arena 2019.pdf';
+    element.href = `data:application/pdf;base64,${res.data}`;
+    element.download = 'Billet UTT Arena 2021.pdf';
     element.style.display = 'none';
 
     document.body.appendChild(element);
