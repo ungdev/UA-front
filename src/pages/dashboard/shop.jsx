@@ -410,6 +410,12 @@ const Shop = () => {
         <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
       </div>
       <div className="shop-footer">
+        {cart.attendant && (
+          <>
+            <i className="fas fa-exclamation-triangle red-icon"></i> Si vous cliquez sur payer, vous ne pourrez plus
+            modifier votre accompagnateur.
+          </>
+        )}
         <Checkbox
           className="cgvCheckbox"
           label={
