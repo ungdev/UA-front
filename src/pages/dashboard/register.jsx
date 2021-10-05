@@ -131,7 +131,8 @@ const Register = () => {
             primary
             className="center"
             onClick={() => dispatch(createTeam({ name: teamName, tournamentId, userType: 'coach' }))}
-            rightIcon="fas fa-plus">
+            rightIcon="fas fa-plus"
+            disabled={!discordId}>
             Créer (coach / manager)
           </Button>
 
