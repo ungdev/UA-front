@@ -8,6 +8,7 @@ import SimpleBar from 'simplebar-react';
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
 import UserModal from './UserModal';
+import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout } from '../modules/login';
@@ -45,7 +46,7 @@ const links = [
   },
 ];
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({ isLoggedIn, action }) => {
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
@@ -221,6 +222,7 @@ const Navbar = ({ isLoggedIn }) => {
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
+      {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}
     </div>
   );
 };
@@ -230,6 +232,14 @@ Navbar.propTypes = {
    * Is the user logged in ?
    */
   isLoggedIn: PropTypes.bool.isRequired,
+  /**
+   * An object reprensenting the action and state parameters passed in the url
+   */
+  action: PropTypes.shape({ action: PropTypes.string, state: PropTypes.string }),
+};
+
+Navbar.defaultProps = {
+  action: { action: '', state: '' },
 };
 
 export default Navbar;

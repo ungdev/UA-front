@@ -5,7 +5,7 @@ import { setType } from '../../modules/login';
 
 const Spectator = () => {
   const dispatch = useDispatch();
-  const isPaid = useSelector((state) => state.login.user.isPaid);
+  const hasPaid = useSelector((state) => state.login.user.hasPaid);
 
   return (
     <div id="dashboard-coach">
@@ -13,7 +13,7 @@ const Spectator = () => {
         <strong>Rôle : </strong> Spectateur
         <br />
         <strong>Statut : </strong>{' '}
-        {isPaid ? (
+        {hasPaid ? (
           <>
             <i className="fas fa-check-circle green-icon"></i> Payé
           </>
@@ -23,7 +23,7 @@ const Spectator = () => {
           </>
         )}
       </p>
-      {!isPaid && <Button onClick={() => dispatch(setType(undefined))}>Changer de rôle</Button>}
+      {!hasPaid && <Button onClick={() => dispatch(setType(undefined))}>Changer de rôle</Button>}
     </div>
   );
 };
