@@ -71,6 +71,25 @@ const Information = () => (
         Les horaires des matchs vous seront communiqués sur notre Discord !
       </p>
     </div>
+
+    <Title align="center">Emplacement</Title>
+    <div className="information-section">
+      <p>
+        <a href="https://www.google.com/maps/place/UTT+Arena/@48.300153,4.0699859,17z/data=!3m1!4b1!4m5!3m4!1s0x47ee985568e4c74b:0x5a667248e9ced9f0!8m2!3d48.2998563!4d4.0724229">
+          20 bis Bd Gambetta, 10000 Troyes
+        </a>
+      </p>
+      <iframe
+        height="320"
+        width="100%"
+        title="Google Maps"
+        src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        frameBorder="0"
+        scrolling="no"
+        marginHeight="0"
+        marginWidth="0"
+      />
+    </div>
   </div>
 );
 
