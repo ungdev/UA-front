@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
-import { autoLogin } from '../modules/login';
+import { autoLogin, validate } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
+import { API } from '../utils/api';
 
 const Wrapper = ({ Component }) => {
-  const { pathname, replace } = useRouter();
+  const { pathname, query, replace } = useRouter();
   const dispatch = useDispatch();
   const isHome = pathname === '/';
   const isTournament = pathname.substr(0, 13) === '/tournaments/';
@@ -85,6 +87,51 @@ const Wrapper = ({ Component }) => {
     }
   }
 
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    // 3 actions possible :
+    //  - oauth
+    //  - validate
+    //  - pwd-reset
+    if (query.action === 'oauth') {
+      switch (query.state) {
+        case '0':
+          toast.success('Le lien avec le compte Discord a bien été créé !');
+          redirect = pathname;
+          break;
+        case '1':
+          toast.success('Le lien avec le compte Discord a bien été mis à jour !');
+          redirect = pathname;
+          break;
+        case '2':
+          toast.success("Le lien avec le compte Discord n'a pas été modifié");
+          redirect = pathname;
+          break;
+        case '3':
+          toast.error("Ce compte Discord est déjà lié au compte d'un autre utilisateur");
+          redirect = pathname;
+          break;
+        case '4':
+          toast.error("Vous avez refusé à nos services l'accès à votre compte Discord");
+          redirect = pathname;
+          break;
+        case '5':
+          toast.error('Une erreur de requête est survenue');
+          redirect = pathname;
+          break;
+        case '6':
+          toast.error('Une erreur inconnue est survenue');
+          redirect = pathname;
+          break;
+      }
+    } else if (query.action === 'validate') {
+      dispatch(validate(query.state));
+      replace(pathname);
+    }
+  }, [isLoading]);
+
   // Redirect to desired path
   useEffect(() => {
     if (redirect && !isLoading) {
@@ -102,7 +149,7 @@ const Wrapper = ({ Component }) => {
     return (
       <>
         <CookieConsent />
-        <Navbar isLoggedIn={isLoggedIn} />
+        <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       </>
     );
   }
@@ -150,8 +197,7 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedIn={isLoggedIn} />
-
+      <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       <div className="page-container">
         {!isHome && !isTournament && !isDashboard && !isAdminPanel && <Header />}
         {isDashboard && <PanelHeader pathname={pathname} links={linksDashboard} title="Dashboard" />}
