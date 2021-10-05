@@ -11,11 +11,12 @@ const Checkbox = ({ label, value, onChange, className, autoFocus }) => {
         type="checkbox"
         checked={value}
         value={value.toString()}
-        onChange={(e) => {
+        onChange={() => {
           onChange(!value);
         }}
         autoFocus={autoFocus}
       />
+      <div className="ui"></div>
 
       <div className="checkbox-label">{label}</div>
     </label>

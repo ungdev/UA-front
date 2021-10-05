@@ -56,22 +56,27 @@
 
   .scoup {
     display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
 
     max-width: 100%;
     margin: 0 auto;
-    padding-right: 15px;
+    padding: 10px 15px;
     border: solid #c8c8c8 1px;
     border-radius: 16px;
 
     & > img {
       height: 60px;
       border-radius: 15px;
-      margin: auto 15px auto auto;
     }
 
     & > p {
-      flex: 1;
-      padding-left: 15px;
+      flex: 1 1 500px;
+      margin: 0;
+      text-align: center;
     }
   }
 
@@ -87,21 +92,5 @@
 
   .cgvCheckbox {
     display: block ruby;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  #dashboard-shop {
-    .scoup {
-      flex-direction: column;
-      justify-content: center;
-      padding: 10px;
-      text-align: center;
-
-      & > img {
-        margin: auto;
-        width: 60px;
-      }
-    }
   }
 }
