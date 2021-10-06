@@ -233,7 +233,7 @@ const Shop = () => {
     }
     if (age === 'child' && !cart.attendant && !hasAttendant) {
       options.push({
-        name: 'Un accompagnateur',
+        name: 'Un accompagnateur (majeur)',
         value: 'attendant',
       });
     }
@@ -407,7 +407,10 @@ const Shop = () => {
       <div className="scoup">
         <img src="/scoup.jpg" alt="" />
         <p>
-          Notre partenaire Scoup Esport <a href="https://www.weezevent.com/utt-arena-2">loue du matériel</a>{' '}
+          Notre partenaire Scoup Esport{' '}
+          <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
+            loue du matériel
+          </a>{' '}
           supplémentaire pendant l'UTT Arena.
         </p>
       </div>
