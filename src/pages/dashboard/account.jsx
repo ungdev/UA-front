@@ -105,7 +105,7 @@ const Account = () => {
 
         <br />
         <Input
-          label="Pour modifier ton profil, entrez ton mot de passe actuel"
+          label="Pour modifier ton profil, entre ton mot de passe actuel"
           value={oldpassword}
           onChange={setOldpassword}
           autocomplete="off"
