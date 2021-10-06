@@ -83,7 +83,6 @@ const Account = () => {
           <hr />
         </>
       )*/}
-
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
