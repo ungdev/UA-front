@@ -37,7 +37,7 @@ const Input = ({
           onChange={(e) => handleChange(e.target.value)}
           autoComplete={autocomplete}
           disabled={disabled}
-          title={disabled ? 'Vous ne pouvez pas modifier ce champ' : undefined}
+          title={disabled ? 'Tu ne peux pas modifier ce champ' : undefined}
           autoFocus={autoFocus}
         />
 

@@ -69,7 +69,7 @@ const content = [
               <li>Une fois connecté, crée ou rejoins une équipe</li>
               <li>
                 Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
-                verrouiller votre équipe
+                verrouiller l'équipe
               </li>
             </ul>
           </>
@@ -148,7 +148,7 @@ const content = [
       },
       {
         question: 'Puis-je ramener mon PC ?',
-        answer: "Non, car vous n'aurez pas de place pour installer votre setup.",
+        answer: "Non, car tu n'auras pas de place pour installer ton setup.",
       },
       {
         question: 'Dois-je ramener mes manettes ?',

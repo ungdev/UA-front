@@ -105,7 +105,7 @@ const Account = () => {
 
         <br />
         <Input
-          label="Pour modifier votre profil, entrez votre mot de passe actuel"
+          label="Pour modifier ton profil, entrez ton mot de passe actuel"
           value={oldpassword}
           onChange={setOldpassword}
           autocomplete="off"
@@ -118,7 +118,7 @@ const Account = () => {
 
         {user.discordId ? (
           <p>
-            Vous êtes connecté à votre compte Discord ! <i className="fas fa-check green-icon" />
+            Tu es connecté à ton compte Discord ! <i className="fas fa-check green-icon" />
           </p>
         ) : (
           ''
@@ -126,7 +126,7 @@ const Account = () => {
 
         <p>
           <a className="discord-button" href={discordLink}>
-            {user.discordId ? 'Changez votre compte Discord' : 'Connectez-vous à votre compte Discord'}
+            {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
           </a>
         </p>
       </div>

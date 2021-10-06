@@ -31,7 +31,7 @@ const Purchases = () => {
           if (item.id.startsWith('ticket')) {
             itemName =
               `${item.name} | ` +
-              (cartItem.forUser.id === userId ? `Vous (${cartItem.forUser.username})` : cartItem.forUser.username);
+              (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
           }
           return {
             name: itemName,

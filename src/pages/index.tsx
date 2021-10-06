@@ -55,9 +55,9 @@ const Home = () => {
             <span className="accent">
               2000 m<sup>2</sup> de gaming
             </span>{' '}
-            vous attendent pendant ces 3 jours de folie ! Au programme : <span className="accent">5 tournois</span> sur
-            vos jeux favoris, 3 jours pour montrer vos skills parmis les <span className="accent">450 joueurs</span> qui
-            composeront l’évènement et tenter de remporter les <span className="accent">cash prizes, lots</span> et de
+            t'attendent pendant ces 3 jours de folie ! Au programme : <span className="accent">5 tournois</span> sur
+            tes jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">450 joueurs</span> qui
+            composeront l’évènement et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
             <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !{' '}
             Alors prépare tout ton stuff et <span className="accent">impose toi dans l’arène !</span>
@@ -81,7 +81,7 @@ const Home = () => {
               },
               {
                 title: <strong>Ouverture de l'UTT Arena, discours et concert</strong>,
-                description: 'Vendredi 26 novembre à 18h',
+                description: 'Vendredi 26 novembre à 17h',
               },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre à 10h' },
               { title: <strong>Places</strong>, description: '450 joueurs + 50 visiteurs' },

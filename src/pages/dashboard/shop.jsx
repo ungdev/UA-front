@@ -144,7 +144,7 @@ const Shop = () => {
     if (placeFor === 'attendant') {
       const { firstname, lastname } = attendant;
       if (firstname == '' || lastname == '') {
-        toast.error('Vous devez renseigner le prénom et le nom de votre accompagnateur.');
+        toast.error('Tu dois renseigner le prénom et le nom de ton accompagnateur.');
         return;
       }
       setCart({ ...cart, attendant });
@@ -177,9 +177,7 @@ const Shop = () => {
     return {
       type:
         `${ticket.item.name} | ` +
-        (ticket.for === userId
-          ? `Vous (${username})`
-          : teamMembers.find((member) => member.id === ticket.for).username),
+        (ticket.for === userId ? `Toi (${username})` : teamMembers.find((member) => member.id === ticket.for).username),
       price: `${(ticket.item.price / 100).toFixed(2)}€`,
       delete: (
         <Button

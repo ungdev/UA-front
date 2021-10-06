@@ -45,7 +45,7 @@ const Information = () => (
         <li>Une fois connecté, crée ou rejoins une équipe</li>
         <li>
           Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
-          verrouiller votre équipe
+          verrouiller l'équipe
         </li>
       </ul>
     </div>
@@ -70,7 +70,7 @@ const Information = () => (
       <p>
         Vendredi aura lieu un discours d'ouverture, suivi d'une soirée jeux libres pour jouer tous ensemble !
         <br />
-        Les horaires des matchs vous seront communiqués sur notre Discord !
+        Les horaires des matchs te seront communiqués sur notre Discord !
       </p>
     </div>
 

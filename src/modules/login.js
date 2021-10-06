@@ -91,7 +91,7 @@ export const tryLogin = (user) => async (dispatch) => {
     Router.push('/dashboard');
   }
   if (res.data.captivePortalSuccess) {
-    toast.success("Vous êtes maintenant connecté au réseau de l'UTT Arena");
+    toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   return true;
 };
@@ -106,7 +106,7 @@ export const saveToken = (token) => (dispatch) => {
 };
 
 export const logout = async (dispatch) => {
-  toast('Vous avez été déconnecté');
+  toast('Tu as été déconnecté');
   dispatch({ type: SET_TOKEN, token: null });
   dispatch({ type: SET_USER, user: null });
   dispatch({ type: SET_TEAM, team: null });
@@ -118,7 +118,7 @@ export const logout = async (dispatch) => {
 
 export const editUser = (data, userId) => async (dispatch) => {
   const res = await API.patch(`/users/current`, data);
-  toast.success('Vos informations ont été modifiées');
+  toast.success('Tes informations ont été modifiées');
   dispatch({
     type: UPDATE_USER,
     user: res.data,

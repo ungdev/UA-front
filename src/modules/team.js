@@ -27,7 +27,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   const { user } = getState().login;
   const res = await API.post('teams', bodyTeam);
   if (bodyTeam.name.includes('solo-team')) {
-    toast.success(`Vous avez rejoint le tournoi.`);
+    toast.success(`Tu as rejoint le tournoi.`);
   } else {
     toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
   }
@@ -45,7 +45,7 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
 export const joinTeam = (teamId, name, userType) => async (dispatch, getState) => {
   const { user } = getState().login;
   await API.post(`/teams/${teamId}/join-requests`, { userType });
-  toast.success(`Votre demande pour rejoindre ${name} a été envoyée`);
+  toast.success(`Ta demande pour rejoindre ${name} a été envoyée`);
   dispatch({
     type: SET_USER,
     user: { ...user, askingTeamId: teamId },
@@ -71,7 +71,7 @@ export const fetchCurrentTeam = () => async (dispatch) => {
 export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
   const { user } = getState().login;
   await API.delete('/teams/current/join-requests/current');
-  toast.success(`Votre demande pour rejoindre ${name} a été annulée`);
+  toast.success(`Ta demande pour rejoindre ${name} a été annulée`);
   dispatch({
     type: SET_USER,
     user: { ...user, askingTeamId: null },
