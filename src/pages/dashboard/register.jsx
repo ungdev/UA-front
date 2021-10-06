@@ -103,7 +103,7 @@ const Register = () => {
           <div className="fas fa-exclamation-triangle"></div>
           <div>
             Avant toute chose, synchronise ton compte Discord dans l'onglet{' '}
-            <Link href="/dashboard/account">
+            <Link href="/dashboard/account#discord">
               <a>Mon&nbsp;compte</a>
             </Link>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,11 +18,14 @@ const Account = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [discordLink, setDiscordLink] = useState('');
+  const discordLinkRef = useRef(null);
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
       setDiscordLink(res.data.link);
     });
+    // Scroll to discord section (as it may be below information section)
+    if (window.location.href.endsWith('#discord')) discordLinkRef.current.scrollIntoView();
   }, []);
 
   const edit = () => {
@@ -80,6 +83,7 @@ const Account = () => {
           <hr />
         </>
       )*/}
+
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
@@ -115,20 +119,20 @@ const Account = () => {
         <Button primary onClick={edit}>
           Modifier
         </Button>
+      </div>
 
+      <div className="infos" ref={discordLinkRef}>
+        <Title level={4}>Mon compte Discord</Title>
         {user.discordId ? (
           <p>
-            Tu es connecté à ton compte Discord ! <i className="fas fa-check green-icon" />
+            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
           </p>
         ) : (
           ''
         )}
-
-        <p>
-          <a className="discord-button" href={discordLink}>
-            {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
-          </a>
-        </p>
+        <a href={discordLink}>
+          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
+        </a>
       </div>
     </div>
   );
