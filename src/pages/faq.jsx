@@ -16,8 +16,12 @@ const content = [
       },
       {
         question: 'Puis-je streamer pendant les tournois ?',
-        answer:
-          'Un formulaire de demande de streaming sera mis à disposition avant l’événement. Tu recevras alors une confirmation si tu es autorisé à streamer',
+        answer: (
+          <>
+            Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
+            Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.
+          </>
+        ),
       },
       {
         question: 'Où puis-je trouver des joueurs pour monter une équipe ?',
