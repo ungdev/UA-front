@@ -80,6 +80,11 @@ const content = [
         ),
       },
       {
+        question: 'Comment savoir quand mon équipe est inscrite ?',
+        answer:
+          'Une fois que l\'équipe est verrouillée, le statut dans l\'onglet "équipe" sera vert et ton équipe est inscrite.',
+      },
+      {
         question: 'Quelle place doivent acheter les coachs/managers de mon équipe ?',
         answer: "Les coachs et managers d'équipes doivent acheter une place coach/manager/accompagnateur.",
       },
@@ -126,7 +131,7 @@ const content = [
       {
         question: 'Puis-je payer pour toute mon équipe ?',
         answer:
-          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena.",
+          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
       },
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
