@@ -141,7 +141,6 @@ const Shop = () => {
   }
 
   const addPlace = async () => {
-    console.log(placeFor);
     if (placeFor === 'attendant') {
       const { firstname, lastname } = attendant;
       if (firstname == '' || lastname == '') {
