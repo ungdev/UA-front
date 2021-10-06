@@ -362,7 +362,7 @@ const Shop = () => {
             }
           }}
           min={0}
-          max={100}
+          max={cartSupplement.item.id === 'discount-switch-ssbu' ? 1 : 100}
           className="shop-input"
         />
       ),
