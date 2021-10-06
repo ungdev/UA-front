@@ -141,6 +141,7 @@ const Shop = () => {
   }
 
   const addPlace = async () => {
+    console.log(placeFor);
     if (placeFor === 'attendant') {
       const { firstname, lastname } = attendant;
       if (firstname == '' || lastname == '') {
@@ -148,9 +149,9 @@ const Shop = () => {
         return;
       }
       setCart({ ...cart, attendant });
-    } else {
+    } else if (placeFor !== 'attendant') {
       // Get user id
-      let ticketType = undefined;
+      let ticketType;
       if (place === userId) {
         setWillBePaid(true);
         ticketType = type;
@@ -384,12 +385,18 @@ const Shop = () => {
         <Table columns={ticketColumns} dataSource={ticketRows} className="shop-table" />
         <Button
           onClick={() => {
-            if ((hasPaid || willBePaid) && !membersWithoutTicket.length) {
+            if (!hasPaid && !willBePaid) {
+              setPlaceFor('me');
+            } else if (membersWithoutTicket.length) {
+              setPlaceFor('other');
+            } else if (age === 'child' && !cart.attendant & !hasAttendant) {
+              setPlaceFor('attendant');
+            } else {
               toast.info("Tous les membres de l'équipe ont déjà une place !");
               return;
             }
             if (hasPaid || willBePaid) {
-              setPlace(membersWithoutTicket[0].id);
+              setPlace(membersWithoutTicket.length ? membersWithoutTicket[0].id : undefined);
             } else {
               setPlace(userId);
             }
@@ -454,7 +461,7 @@ const Shop = () => {
           value={placeFor}
           onChange={(v) => {
             setPlaceFor(v);
-            setPlace(v === 'me' ? userId : membersWithoutTicket[0].id);
+            setPlace(v === 'me' ? userId : v === 'other' ? membersWithoutTicket[0].id : undefined);
           }}
           className="add-place-input"
         />
