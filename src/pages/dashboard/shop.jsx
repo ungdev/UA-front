@@ -276,7 +276,7 @@ const Shop = () => {
   });
 
   // We display the supplementTypes we have just defined, and not the items
-  const supplementRows = supplementTypes.slice(2).map((supplement, i) => {
+  const supplementRows = supplementTypes.map((supplement, i) => {
     // Get cart supplement we are managing
     let cartSupplement = cart.supplements.find(
       (cartSupplement) => cartSupplement.item && cartSupplement.item.id === supplement.id,
