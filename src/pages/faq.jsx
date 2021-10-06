@@ -42,7 +42,7 @@ const content = [
       {
         question: 'Où puis-je trouver les règlements des tournois ?',
         answer:
-          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement ! (Ils seront publiés d'ici peu de temps)",
+          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
     ],
   },
