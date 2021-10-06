@@ -69,7 +69,7 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
-      {user.hasPaid && (
+      {/* user.hasPaid && (
         <>
           <div className="ticket">
             <Title level={4}>Mon billet</Title>
@@ -79,7 +79,7 @@ const Account = () => {
           </div>
           <hr />
         </>
-      )}
+      )*/}
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
