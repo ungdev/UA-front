@@ -51,7 +51,7 @@ const Contact = () => {
         <a href="tel:+33325718550">+33 (0) 3 25 71 85 50</a>
       </p>
 
-      <p>Tu pouvez également nous contacter via ce formulaire, nous te répondrons dans les meilleurs délais.</p>
+      <p>Tu peux également nous contacter via ce formulaire, nous te répondrons dans les meilleurs délais.</p>
 
       <Input label="Nom" value={name} onChange={setName} />
       <Input label="Email" value={email} onChange={setEmail} type="email" />
