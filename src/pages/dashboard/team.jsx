@@ -186,7 +186,7 @@ const Team = () => {
                       dispatch(refuseUser(user, team.id));
                       setModal(initialModal);
                     },
-                    content: `Voulez-vous refuser ${user.username} ?`,
+                    content: `Veux-tu refuser ${user.username} ?`,
                     title: 'Refuser un joueur',
                   })
                 }>
@@ -220,7 +220,7 @@ const Team = () => {
                       dispatch(refuseUser(user, team.id));
                       setModal(initialModal);
                     },
-                    content: `Voulez-vous refuser ${user.username} ?`,
+                    content: `Veux-tu refuser ${user.username} ?`,
                     title: 'Refuser un coach / manager',
                   })
                 }>
