@@ -38,15 +38,17 @@ const Information = () => (
 
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
-      Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
+      Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure française) !
       <ul>
         <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
         <li>Crée ton compte et clique sur le lien envoyé par mail</li>
-        <li>Une fois connecté, crée ou rejoins une équipe</li>
+        <li>Une fois connecté, associe ton compte Discord</li>
+        <li>Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)</li>
         <li>
-          Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
-          verrouiller l'équipe
+          Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
+          <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de l'équipe)
         </li>
+        <li>Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !</li>
       </ul>
     </div>
 
@@ -57,11 +59,15 @@ const Information = () => (
         L'âge minimum pour participer au tournoi est de{' '}
         <strong className="accent">15 ans le jour de l'évènement</strong>.
       </p>
+      <p>
+        Pour tous les joueurs mineurs, l'<strong>autorisation parentale</strong> sera demandée avant de rentrer dans l'UTT Arena.{' '}
+        <strong>Elle est <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">disponible ici</a>.</strong>
+      </p>
 
       <Title level={4}>Streaming</Title>
       <p>
-        Un formulaire de demande de streaming sera mis à disposition avant l’événement. Tu recevras alors une
-        confirmation si tu es autorisé à streamer.
+        Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
+        Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.
       </p>
     </div>
 

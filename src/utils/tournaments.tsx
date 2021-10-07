@@ -6,7 +6,7 @@ export default [
     name: 'League of Legends compétitif',
     shortName: 'lolCompetitive',
     players: 80,
-    image: '/tournaments/lol_pro.jpg',
+    image: '/tournaments/lol-competitive.jpg',
     shortRewards: '1600€ + lots',
     rewards: (
       <ul>
@@ -28,13 +28,13 @@ export default [
         Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports.
       </>
     ),
-    rules: `${uploadsUrl()}/rules/lol_competitive.pdf`,
+    rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
   },
   {
     name: 'League of Legends loisir',
     shortName: 'lolLeisure',
     players: 80,
-    image: '/tournaments/lol_amateur.jpg',
+    image: '/tournaments/lol-leisure.jpg',
     shortRewards: 'lots',
     rewards: (
       <ul>
@@ -56,13 +56,13 @@ export default [
         Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports.
       </>
     ),
-    rules: `${uploadsUrl()}/rules/lol_leisure.pdf`,
+    rules: `${uploadsUrl()}/rules/lol-leisure.pdf`,
   },
   {
     name: 'Rocket League',
     shortName: 'rl',
     players: 96,
-    image: '/tournaments/rl.jpg',
+    image: '/tournaments/rocket-league.jpg',
     shortRewards: '1200€ + lots',
     rewards: (
       <ul>

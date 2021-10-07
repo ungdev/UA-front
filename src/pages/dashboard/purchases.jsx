@@ -51,7 +51,7 @@ const Purchases = () => {
             content={
               <>
                 <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
-                <Table columns={columns} dataSource={dataSource} />
+                <Table columns={columns} dataSource={dataSource} className="cart" />
                 <p className="cart-total">
                   <strong>Total: {(total / 100).toFixed(2)} €</strong>
                 </p>

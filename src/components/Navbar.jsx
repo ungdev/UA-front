@@ -218,7 +218,7 @@ const Navbar = ({ isLoggedIn, action }) => {
               Fermer
             </Button>
           }>
-          Les inscriptions ouvriront le Vendredi 8 Octobre 2021 à 19h.
+          Les inscriptions ouvriront le vendredi 8 octobre 2021 à 19h00.
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />
