@@ -420,8 +420,8 @@ const Shop = () => {
         {cart.attendant && (
           <>
             <div className="attendant-warning">
-              <span className="fas fa-exclamation-triangle red-icon"></span> Si vous cliquez sur payer, vous ne pourrez
-              plus modifier votre accompagnateur.
+              <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras
+              plus modifier ton accompagnateur.
             </div>
           </>
         )}
