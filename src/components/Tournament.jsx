@@ -93,10 +93,21 @@ const Tournament = ({ assets, tournamentId, alt }) => {
             {!assets.rules ? (
               <li>Le règlement sera bientôt disponible.</li>
             ) : (
-              <li><a href={assets.rules} target="_blank" rel="noopener noreferrer">Règlement du tournoi</a></li>
+              <li>
+                <a href={assets.rules} target="_blank" rel="noopener noreferrer">
+                  Règlement du tournoi
+                </a>
+              </li>
             )}
             {assets.toornamentId && (
-              <li><a href={`https://play.toornament.com/fr/tournaments/${assets.toornamentId}`} target="_blank" rel="noopener noreferrer">Page Toornament</a></li>
+              <li>
+                <a
+                  href={`https://play.toornament.com/fr/tournaments/${assets.toornamentId}`}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Page Toornament
+                </a>
+              </li>
             )}
           </ul>
         </div>
