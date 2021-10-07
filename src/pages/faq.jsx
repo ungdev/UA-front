@@ -14,9 +14,15 @@ const content = [
         question: "Quel est l'âge minimum pour participer aux tournois ?",
         answer: (
           <>
-            Pour participer au tournoi il faut avoir au minimum 15 ans. Tu trouveras plus d'informations à propos
-            des joueurs mineurs sur <a href="/information">la page informations</a>. L'autorisation parentale est
-            <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">disponible ici</a>.
+            Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
+            que tu présentes l'autorisation parentale (
+            <strong>
+              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
+                disponible ici
+              </a>
+            </strong>
+            ) <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            avant d'accéder à l'UTT Arena.
           </>
         ),
       },
@@ -70,7 +76,8 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure française) !
+            Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure
+            française) !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
@@ -78,7 +85,8 @@ const content = [
               <li>Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)</li>
               <li>
                 Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
-                <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de l'équipe)
+                <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de
+                l'équipe)
               </li>
               <li>Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !</li>
             </ol>
@@ -90,9 +98,9 @@ const content = [
         answer: (
           <>
             Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur
-            place. Le chef d'équipe peut alors <strong>verrouiller l'équipe</strong> pour confirmer la participation
-            de l'équipe au tournoi.
-            Une fois que l'équipe est verrouillée, le statut dans l'onglet "équipe" devient vert et ton équipe est inscrite.
+            place. Le chef d'équipe peut alors <strong>verrouiller l'équipe</strong> pour confirmer la participation de
+            l'équipe au tournoi. Une fois que l'équipe est verrouillée, le statut dans l'onglet "équipe" devient vert et
+            ton équipe est inscrite.
           </>
         ),
       },
@@ -105,9 +113,8 @@ const content = [
               <li>12 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
               <li>12€ en tant que spectateur</li>
               <li>
-                Pour les étudiants des écoles partenaires (réseau UT) :
-                15€ en tant que joueur et 10€ en tant que spectateur.
-                Pensez à vous inscrire avec votre adresse mail étudiante.
+                Pour les étudiants des écoles partenaires (réseau UT) : 15€ en tant que joueur et 10€ en tant que
+                spectateur. Pensez à vous inscrire avec votre adresse mail étudiante.
               </li>
             </ul>
           </>
@@ -147,25 +154,31 @@ const content = [
     title: 'Tournoi Super Smash Bros Ultimate',
     entries: [
       {
-        question: 'Dois-je ramener ma console ?',
+        question: 'Dois-je apporter ma console ?',
         answer: (
           <>
-            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet ramener ta
+            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta
             Switch, et tu bénéficies d'une réduction sur le prix de ton billet. Cette option est disponible pour les
             plus rapides seulement.
             <br />
-            Même sans cocher cette case, tu peux ramener ta console pour jouer en freeplay.
+            Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
+            <br />
+            <br />
+            <strong>
+              Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera
+              facturé sur place.
+            </strong>
           </>
         ),
       },
       {
-        question: 'Puis-je ramener mon PC ?',
+        question: 'Puis-je apporter mon PC ?',
         answer: "Non, car tu n'auras pas de place pour installer ton setup.",
       },
       {
-        question: 'Dois-je ramener mes manettes ?',
+        question: 'Dois-je apporter mes manettes ?',
         answer:
-          "Oui. Tu dois ramener tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
+          "Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
       },
     ],
   },

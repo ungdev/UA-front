@@ -3,14 +3,24 @@
     margin-bottom: 3em;
   }
 
-  .timetable {
-    thead th {
-      padding: 0.5em 1.2em;
+  table {
+    margin: 0 auto;
+
+    tr {
+      background: #eee;
+
+      &:nth-child(2n) {
+        background: #ddd;
+      }
+
+      &.accent-line {
+        font-weight: bold;
+        background: $accent-color;
+      }
     }
 
-    tbody td:not(:first-child) {
-      padding: 0.5em 1.2em;
-      text-align: center;
+    td {
+      padding: 10px;
     }
   }
 
