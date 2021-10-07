@@ -65,7 +65,8 @@ const Register = () => {
     return null;
   }
 
-  const tournamentsTabs = tournaments.map((tournament) => {
+  const multiplayerTournaments = tournaments.filter((tournament) => tournament.playersPerTeam > 1); // do only select non-solo tounaments
+  const tournamentsTabs = multiplayerTournaments.map((tournament) => {
     const tournamentTeamsRender = (tournament.teams === undefined ? [] : tournament.teams)
       .filter((team) => !team.lockedAt)
       .map((team) => ({
