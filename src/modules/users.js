@@ -35,28 +35,30 @@ export default (state = initialState, action) => {
   }
 };
 
-export const fetchUsers = (filters, search, page = 0) => async (dispatch, getState) => {
-  const { total } = getState().users;
-  const pageCount = Math.ceil(total / 25);
-  if (page !== 0 && (page < 0 || page + 1 > pageCount)) {
-    return;
-  }
+export const fetchUsers =
+  (filters, search, page = 0) =>
+  async (dispatch, getState) => {
+    const { total } = getState().users;
+    const pageCount = Math.ceil(total / 25);
+    if (page !== 0 && (page < 0 || page + 1 > pageCount)) {
+      return;
+    }
 
-  let res;
-  if (search && search !== '') {
-    res = await API.get('admin/users/search', { search, page });
-  } else {
-    res = await API.get('admin/users', { ...filters, page });
-  }
+    let res;
+    if (search && search !== '') {
+      res = await API.get('admin/users/search', { search, page });
+    } else {
+      res = await API.get('admin/users', { ...filters, page });
+    }
 
-  const formatUsers = format(res.data.users);
-  dispatch({
-    type: SET_USERS,
-    users: formatUsers,
-    total: res.data.total,
-    page,
-  });
-};
+    const formatUsers = format(res.data.users);
+    dispatch({
+      type: SET_USERS,
+      users: formatUsers,
+      total: res.data.total,
+      page,
+    });
+  };
 
 export const displayUser = (user) => async (dispatch) => {
   dispatch({

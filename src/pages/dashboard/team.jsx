@@ -335,7 +335,7 @@ const Team = () => {
             width="100%"
             height="500"
             src={`https://widget.toornament.com/tournaments/${team.tournament.toornamentId}/stages/${team.lastStage}/?_locale=fr`}
-            allowFullscreen
+            allowFullScreen
             frameBorder="0"
           />
           <hr />
