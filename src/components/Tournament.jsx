@@ -87,20 +87,19 @@ const Tournament = ({ assets, tournamentId, alt }) => {
           <p>{assets.rewards}</p>
         </div>
 
-        <Title level={2}>Règlement</Title>
-        {!assets.rules ? (
-          <div className="tournament-section">
-            <p>Le règlement sera bientôt disponible.</p>
-          </div>
-        ) : (
-          <>
-            <div className="tournament-section">
-              <a href={assets.rules} target="_blank" rel="noopener noreferrer">
-                Le règlement est disponible ici.
-              </a>
-            </div>
-          </>
-        )}
+        <Title level={2}>Liens utiles</Title>
+        <div className="tournament-section">
+          <ul>
+            {!assets.rules ? (
+              <li>Le règlement sera bientôt disponible.</li>
+            ) : (
+              <li><a href={assets.rules} target="_blank" rel="noopener noreferrer">Règlement du tournoi</a></li>
+            )}
+            {assets.toornamentId && (
+              <li><a href={`https://play.toornament.com/fr/tournaments/${assets.toornamentId}`} target="_blank" rel="noopener noreferrer">Page Toornament</a></li>
+            )}
+          </ul>
+        </div>
 
         {/* If tournament is defined (if the fetch has finished and succeeded) then render a table with the list of the validated players / teams */}
         {tournament ? (
