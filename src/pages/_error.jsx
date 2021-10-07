@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Title, Button } from '../components/UI';
 
 class Error extends React.Component {
-  static getInitialProps({ res, err }) {
+  static getStaticProps({ res, err }) {
     let statusCode = null;
 
     if (res) {
