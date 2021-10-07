@@ -29,7 +29,7 @@ const CookieConsent = () => {
 
   return (
     <div className="cookie-consent">
-      Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consentes
+      Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consens
       {' à'} l'utilisation de ces cookies.{' '}
       <Link href="/legal">
         <a>En&nbsp;savoir&nbsp;plus</a>
