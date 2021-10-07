@@ -116,7 +116,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="nickname"
           />
           <Input
-            label="Email"
+            label="Email (utilise ton adresse étudiante si tu es dans une UT)"
             value={signupForm.email}
             onChange={(value) => updateSignup('email', value)}
             type="email"
