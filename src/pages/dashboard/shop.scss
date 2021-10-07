@@ -18,6 +18,13 @@
     td:first-child {
       min-width: 300px;
     }
+
+    .reducted-price {
+      text-decoration: line-through;
+      color: $primary-color;
+      font-size: 10px;
+      vertical-align: super;
+    }
   }
 
   .delete-button {
