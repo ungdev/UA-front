@@ -27,10 +27,6 @@ export const registerUser = (user) => async (dispatch) => {
     return;
   }
 
-  user.age = user.isMinor ? 'child' : 'adult';
-  delete user.isMinor;
-  delete user.isAdult;
-
   delete user.passwordConfirmation;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, veuillez vérifier vos emails');
