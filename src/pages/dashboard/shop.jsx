@@ -148,7 +148,7 @@ const Shop = () => {
         return;
       }
       setCart({ ...cart, attendant });
-    } else if (placeFor !== 'attendant') {
+    } else {
       // Get user id
       let ticketType;
       if (place === userId) {
