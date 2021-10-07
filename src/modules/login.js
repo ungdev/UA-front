@@ -149,6 +149,7 @@ export const validate = (registerToken) => async (dispatch, getState) => {
   const res = await API.post(`auth/validate/${registerToken}`);
   toast.success('Le compte a été confirmé !');
   dispatch(saveToken(res.data.token));
+  localStorage.setItem('utt-arena-userid', res.data.user.id);
   dispatch({
     type: SET_USER,
     user: res.data.user,
