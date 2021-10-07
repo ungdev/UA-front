@@ -44,7 +44,7 @@ const supplementColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
-  const { id: userId, type, hasPaid, username, age, email } = useSelector((state) => state.login.user);
+  const { id: userId, type, hasPaid, username, age } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items.items);
   const team = useSelector((state) => state.team.team);
@@ -140,8 +140,6 @@ const Shop = () => {
     return null;
   }
 
-  const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
-
   const addPlace = async () => {
     if (placeFor === 'attendant') {
       const { firstname, lastname } = attendant;
@@ -176,19 +174,11 @@ const Shop = () => {
   };
 
   let ticketRows = cart.tickets.map((ticket) => {
-    let price = `${(ticket.item.price / 100).toFixed(2)}€`;
-    if (ticket.for === userId && type !== 'coach' && hasDiscount) {
-      price = (
-        <>
-          {type === 'player' ? '15.00€' : '10.00€'} <span className="reducted-price">{price}</span>
-        </>
-      );
-    }
     return {
       type:
         `${ticket.item.name} | ` +
         (ticket.for === userId ? `Toi (${username})` : teamMembers.find((member) => member.id === ticket.for).username),
-      price: price,
+      price: `${(ticket.item.price / 100).toFixed(2)}€`,
       delete: (
         <Button
           onClick={() => {
@@ -381,15 +371,8 @@ const Shop = () => {
 
   // Compute total price
   const totalPrice =
-    cart.tickets.reduce((acc, cartTicket) => {
-      if (cartTicket.for === userId && type !== 'coach' && hasDiscount) {
-        return acc + (type === 'player' ? 15 : 12);
-      }
-      return acc + cartTicket.item.price;
-    }, 0) +
-    cart.supplements.reduce((acc, cartSupplement) => {
-      return acc + cartSupplement.quantity * cartSupplement.item.price;
-    }, 0) +
+    cart.tickets.reduce((acc, cartTicket) => acc + cartTicket.item.price, 0) +
+    cart.supplements.reduce((acc, cartSupplement) => acc + cartSupplement.quantity * cartSupplement.item.price, 0) +
     (cart.attendant ? 1200 : 0);
 
   return (
