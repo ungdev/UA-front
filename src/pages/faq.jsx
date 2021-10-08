@@ -12,21 +12,35 @@ const content = [
       },
       {
         question: "Quel est l'âge minimum pour participer aux tournois ?",
-        answer: 'Pour participer au tournoi il faut avoir au minimum 15 ans.',
+        answer: (
+          <>
+            Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
+            que tu présentes l'autorisation parentale (
+            <strong>
+              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
+                disponible ici
+              </a>
+            </strong>
+            ) <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            avant d'accéder à l'UTT Arena.
+          </>
+        ),
       },
       {
         question: 'Puis-je streamer pendant les tournois ?',
-        answer:
-          'Un formulaire de demande de streaming sera mis à disposition avant l’événement. Tu recevras alors une confirmation si tu es autorisé à streamer',
+        answer: (
+          <>
+            Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
+            Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.
+          </>
+        ),
       },
       {
         question: 'Où puis-je trouver des joueurs pour monter une équipe ?',
         answer: (
           <>
             Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-            <a href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener noreferrer">
-              Tu peux rejoindre notre discord ici.
-            </a>
+            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre discord ici.</a>
           </>
         ),
       },
@@ -36,9 +50,9 @@ const content = [
           'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi].',
       },
       {
-        question: 'Où puis-je trouver les règlements des tournois ?',
+        question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
         answer:
-          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement ! (Ils seront publiés d'ici peu de temps)",
+          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
     ],
   },
@@ -62,30 +76,31 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions le <span className="accent">VENDREDI 8 OCTOBRE, à 19h </span>(heure française) !
-            <ul>
+            Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure
+            française) !
+            <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
-              <li>Une fois connecté, crée ou rejoins une équipe</li>
+              <li>Une fois connecté, associe ton compte Discord</li>
+              <li>Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)</li>
               <li>
-                Une fois ton équipe au complet et tous les billets de l'équipe payés, demande à ton chef d'équipe de
-                verrouiller votre équipe
+                Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
+                <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de
+                l'équipe)
               </li>
-            </ul>
+              <li>Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !</li>
+            </ol>
           </>
         ),
       },
       {
-        question: 'Quelle place doivent acheter les coachs/managers de mon équipe ?',
-        answer: "Les coachs et managers d'équipes doivent acheter une place coach/manager/accompagnateur.",
-      },
-      {
-        question: "Quand est-ce que mon équipe est officiellement inscrite dans un tournoi de l'UTT Arena ?",
+        question: 'Comment savoir si mon équipe est inscrite ?',
         answer: (
           <>
             Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur
-            place. Le chef d'équipe peut alors verrouiller l'équipe pour confirmer la participation de l'équipe au
-            tournoi.
+            place. Le chef d'équipe peut alors <strong>verrouiller l'équipe</strong> pour confirmer la participation de
+            l'équipe au tournoi. Une fois que l'équipe est verrouillée, le statut dans l'onglet "équipe" devient vert et
+            ton équipe est inscrite.
           </>
         ),
       },
@@ -94,9 +109,13 @@ const content = [
         answer: (
           <>
             <ul>
-              <li>20 € par défaut</li>
-              <li>15 € pour les étudiants des écoles partenaires (réseau UT)</li>
-              <li>12 € pour les coachs, managers et accompagnateurs</li>
+              <li>20 € en tant que joueur</li>
+              <li>12 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+              <li>12€ en tant que spectateur</li>
+              <li>
+                Pour les étudiants des écoles partenaires (réseau UT) : 15€ en tant que joueur et 10€ en tant que
+                spectateur. Pensez à vous inscrire avec votre adresse mail étudiante.
+              </li>
             </ul>
           </>
         ),
@@ -122,12 +141,12 @@ const content = [
       {
         question: 'Puis-je payer pour toute mon équipe ?',
         answer:
-          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena.",
+          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
       },
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer:
-          'Oui, la place payée est rattachée à un compte joueur et pas à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau.',
+          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau.',
       },
     ],
   },
@@ -135,25 +154,31 @@ const content = [
     title: 'Tournoi Super Smash Bros Ultimate',
     entries: [
       {
-        question: 'Dois-je ramener ma console ?',
+        question: 'Dois-je apporter ma console ?',
         answer: (
           <>
-            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet ramener ta
+            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta
             Switch, et tu bénéficies d'une réduction sur le prix de ton billet. Cette option est disponible pour les
             plus rapides seulement.
             <br />
-            Même sans cocher cette case, tu peux ramener ta console pour jouer en freeplay.
+            Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
+            <br />
+            <br />
+            <strong>
+              Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera
+              facturé sur place.
+            </strong>
           </>
         ),
       },
       {
-        question: 'Puis-je ramener mon PC ?',
-        answer: "Non, car vous n'aurez pas de place pour installer votre setup.",
+        question: 'Puis-je apporter mon PC ?',
+        answer: "Non, car tu n'auras pas de place pour installer ton setup.",
       },
       {
-        question: 'Dois-je ramener mes manettes ?',
+        question: 'Dois-je apporter mes manettes ?',
         answer:
-          "Oui. Tu dois ramener tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
+          "Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
       },
     ],
   },

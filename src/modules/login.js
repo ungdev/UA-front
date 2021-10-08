@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { setLoginModalVisible } from './loginModal';
 import { API, setAuthorizationToken } from '../utils/api';
 import { hasOrgaPermission } from '../utils/permission';
-import { SET_CART } from './cart';
+import { SET_TEAM } from './team';
 
 export const SET_TOKEN = 'login/SET_TOKEN';
 export const SET_USER = 'login/SET_USER';
@@ -91,7 +91,7 @@ export const tryLogin = (user) => async (dispatch) => {
     Router.push('/dashboard');
   }
   if (res.data.captivePortalSuccess) {
-    toast.success("Vous êtes maintenant connecté au réseau de l'UTT Arena");
+    toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   return true;
 };
@@ -106,9 +106,10 @@ export const saveToken = (token) => (dispatch) => {
 };
 
 export const logout = async (dispatch) => {
-  toast('Vous avez été déconnecté');
+  toast('Tu as été déconnecté');
   dispatch({ type: SET_TOKEN, token: null });
   dispatch({ type: SET_USER, user: null });
+  dispatch({ type: SET_TEAM, team: null });
   setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
@@ -116,8 +117,8 @@ export const logout = async (dispatch) => {
 };
 
 export const editUser = (data, userId) => async (dispatch) => {
-  const res = await API.put(`/users/current`, data);
-  toast.success('Vos informations ont été modifiées');
+  const res = await API.patch(`/users/current`, data);
+  toast.success('Tes informations ont été modifiées');
   dispatch({
     type: UPDATE_USER,
     user: res.data,
@@ -125,23 +126,32 @@ export const editUser = (data, userId) => async (dispatch) => {
 };
 
 export const resetPassword = (email, resetFields) => async (dispatch) => {
-  await API.post('auth/password/reset', { email });
+  await API.post('auth/reset-password/ask', { email });
   toast.success("Un email de confirmation vient d'être envoyé");
   dispatch(setLoginModalVisible(false));
   resetFields();
 };
 
-// TODO : vérifier que ça fonctionne
 export const setType = (type) => async (dispatch, getState) => {
-  const user = getState().login.user;
-  const res = await API.put(`/users/${user.id}`, { ...user, type });
-  await API.delete(`/users/${user.id}/carts/current/items`);
+  let res = undefined;
+  if (type === 'spectator') {
+    res = await API.post(`/users/current/spectate`);
+  } else {
+    res = await API.delete(`/users/current/spectate`);
+  }
   dispatch({
     type: SET_USER,
     user: res.data,
   });
+};
+
+export const validate = (registerToken) => async (dispatch, getState) => {
+  const res = await API.post(`auth/validate/${registerToken}`);
+  toast.success('Le compte a été confirmé !');
+  dispatch(saveToken(res.data.token));
+  localStorage.setItem('utt-arena-userid', res.data.user.id);
   dispatch({
-    type: SET_CART,
-    cart: null,
+    type: SET_USER,
+    user: res.data.user,
   });
 };

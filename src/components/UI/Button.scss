@@ -10,7 +10,6 @@
   cursor: pointer;
   user-select: none;
   transition: all 0.3s, color 0s;
-  transform: translate(-$buttonLength, -$buttonLength);
 
   &.primary {
     color: unset;
@@ -19,11 +18,7 @@
     background: $superposed-color;
     font-weight: bolder;
     border-radius: $buttonRadius 0 $buttonRadius 0;
-  }
-
-  &:disabled {
-    filter: grayscale(0.5) brightness(0.8);
-    cursor: default;
+    transform: translate(-$buttonLength, -$buttonLength);
   }
 
   &.no-style {
@@ -48,6 +43,7 @@
 .buttonWrapper {
   display: inline-block;
   box-sizing: border-box;
+  margin: 0 5px 0 5px;
 
   &.primary {
     margin: 10px auto;
@@ -61,8 +57,8 @@
     color: $accent-color;
   }
 
-  :disabled {
-    filter: grayscale(0.1) brightness(0.8);
+  &.disabled {
+    filter: grayscale(0.5) brightness(0.7);
     cursor: default;
   }
 }

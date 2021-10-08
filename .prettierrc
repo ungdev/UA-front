@@ -6,5 +6,5 @@
   "tabWidth": 2,
   "arrowParens": "always",
   "endOfLine": "lf",
-  "jsxBracketSameLine": true
+  "bracketSameLine": true
 }

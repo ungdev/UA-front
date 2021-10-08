@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import ReactGA from 'react-ga';
 import { toast, Flip } from 'react-toastify';
 import { Provider } from 'react-redux';
 
@@ -13,6 +12,7 @@ import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
 import { googleAnalyticsId, googleVerification, nodeEnv, uploadsUrl } from '../utils/environment';
 import { API } from '../utils/api';
+import Router from 'next/router';
 
 // Import all CSS files
 import '../styles.scss';
@@ -25,20 +25,20 @@ toast.configure({
 });
 
 const App = ({ Component, reduxStore }) => {
-  if (process.browser) {
-    if (nodeEnv() === 'production') {
-      if (!window.GA_INITIALIZED) {
-        ReactGA.initialize(googleAnalyticsId());
-        window.GA_INITIALIZED = true;
+  useEffect(() => {
+    Router.events.on('routeChangeStart', (url) => {
+      if (window && window._paq) {
+        window._paq.push(['setCustomUrl', url]);
+        window._paq.push(['setDocumentTitle', document.title]);
+        window._paq.push(['trackPageView']);
       }
-      ReactGA.set({ page: window.location.pathname });
-      ReactGA.pageview(window.location.pathname);
-    }
-  }
+    });
+  }, []);
 
   return (
     <div>
       <Head>
+        <script src="/matomo.js"></script>
         <title>UTT Arena 2021 - 26, 27 et 28 novembre 2021</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
@@ -47,7 +47,6 @@ const App = ({ Component, reduxStore }) => {
           content={
             'Venez participer au célèbre tournoi du Grand-Est ! ' +
             "L'UTT Arena revient pour sa 18ème édition les 26, 27 et 28 novembre 2021. " +
-            'Cette édition spéciale aura lieu en ligne et sera 100% gratuite ! ' +
             "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"

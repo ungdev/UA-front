@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 import { API } from '../utils/api';
 
 export const SET_CART = 'cart/SET_CART';
@@ -27,64 +25,22 @@ export default (state = initialState, action) => {
   }
 };
 
-export const fetchDraftCart = () => async (dispatch, getState) => {
-  const userId = getState().login.user.id;
-  let res = await API.get(`users/${userId}/carts/current`);
-  if (res.data === null) {
-    res = await API.post('carts');
-    res.data.cartItems = [];
-  }
-  dispatch({
-    type: SET_CART,
-    cart: res.data,
-  });
-};
-
-export const saveCart = (cart, displayToast) => async (dispatch, getState) => {
-  const forUserId = getState().login.user.id;
-  const modifiedCartItems = cart.cartItems.reduce(
-    (previous, cartItem) => {
-      const isNew = !cartItem.id;
-      if (isNew && cartItem.quantity !== 0) {
-        previous.new.push({ ...cartItem, forUserId: cartItem.forUserId || forUserId });
-      } else if (cartItem.isUpdated && cartItem.quantity !== 0) {
-        previous.updated.push(cartItem);
-      } else if (cartItem.quantity === 0) {
-        previous.deleted.push(cartItem);
-      }
-      return previous;
-    },
-    {
-      updated: [],
-      new: [],
-      deleted: [],
-    },
-  );
-
-  await Promise.all(
-    modifiedCartItems.new.map(async ({ quantity, item, attribute, forUserId }) => {
-      await API.post(`carts/${cart.id}/add`, { quantity, itemId: item.id, attributeId: attribute.id, forUserId });
-    }),
-  );
-  await Promise.all(
-    modifiedCartItems.updated.map(async ({ id, quantity, attribute }) => {
-      await API.put(`carts/${cart.id}/cartItems/${id}`, { quantity, attributeId: attribute.id });
-    }),
-  );
-  await Promise.all(
-    modifiedCartItems.deleted.map(async ({ id }) => {
-      await API.delete(`carts/${cart.id}/cartItems/${id}`);
-    }),
-  );
-
-  if (displayToast) {
-    toast.success('Panier sauvegardé');
-  }
-};
-
 export const cartPay = (cart) => async (dispatch, getState) => {
-  await dispatch(saveCart(cart, false));
-  const userId = getState().login.user.id;
-  const res = await API.post(`/users/${userId}/carts/${cart.id}/pay`);
+  const sendableCart = {
+    tickets: {
+      userIds: [],
+      //attendant: {},
+    },
+    supplements: [],
+  };
+  cart.tickets.forEach((ticket) => {
+    sendableCart.tickets.userIds.push(ticket.for);
+  });
+  if (cart.attendant) sendableCart.tickets.attendant = cart.attendant;
+  cart.supplements.forEach((supplement) => {
+    const itemId = supplement.attribute ? `${supplement.item.id}-${supplement.attribute}` : supplement.item.id;
+    sendableCart.supplements.push({ itemId, quantity: supplement.quantity });
+  });
+  const res = await API.post(`users/current/carts`, sendableCart);
   window.location = res.data.url;
 };

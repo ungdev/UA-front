@@ -18,7 +18,7 @@ export const sendMessage = async (name: string, email: string, subject: string, 
   // Send message via API
   await API.post('/contact', { name, email, subject, message });
 
-  toast.success('Votre message à bien été envoyé !');
+  toast.success('Ton message à bien été envoyé !');
 
   return true;
 };

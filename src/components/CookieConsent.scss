@@ -9,23 +9,39 @@
   background: #2b2b2b;
   box-shadow: 0 0 4px #000;
   z-index: 1;
+  box-sizing: border-box;
 
   a {
     color: #fff;
   }
 
-  .cookie-consent-button {
-    display: block;
-    margin-top: 10px;
-    font-size: 0.875em;
+  .button-row {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    padding-top: 15px;
+  }
+
+  .buttonWrapper {
+    margin: 0 !important;
+  }
+
+  .cookie-button {
+    font-size: 0.95em;
   }
 }
 
 @media screen and (max-width: 650px) {
   .cookie-consent {
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 10px;
-    right: 0;
+    left: 0;
     bottom: 0;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .cookie-button {
+    width: 100%;
   }
 }

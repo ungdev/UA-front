@@ -11,10 +11,8 @@
 @import './pages/organisers.scss';
 @import './pages/partners.scss';
 @import './pages/admin/entry.scss';
-@import './pages/admin/notification.scss';
 @import './pages/admin/users.scss';
 @import './pages/dashboard/account.scss';
-@import './pages/dashboard/infos.scss';
 @import './pages/dashboard/purchases.scss';
 @import './pages/dashboard/register.scss';
 @import './pages/dashboard/shop.scss';
@@ -29,10 +27,12 @@
 @import './components/Tournament.scss';
 @import './components/TournamentCards.scss';
 @import './components/UserModal.scss';
+@import './components/ResetModal.scss';
 
 // UI Components
 @import './components/UI/Button.scss';
 @import './components/UI/Card.scss';
+@import './components/UI/Checkbox.scss';
 @import './components/UI/Collapse.scss';
 @import './components/UI/Countdown.scss';
 @import './components/UI/Helper.scss';

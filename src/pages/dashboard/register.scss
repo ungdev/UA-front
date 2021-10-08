@@ -2,6 +2,10 @@
   .table-join {
     margin-top: 20px;
     width: 100%;
+
+    .coachJoinButton.buttonWrapper {
+      margin-left: 10px;
+    }
   }
 
   .team-tournament {
@@ -20,6 +24,11 @@
   .center {
     margin: 0 auto;
     display: block;
+
+    &.buttonWrapper {
+      display: table;
+      margin: 10px auto;
+    }
   }
 
   .select {
@@ -34,6 +43,23 @@
     > div {
       width: 45%;
     }
+  }
+
+  & > .banner {
+    padding: 10px;
+    border-radius: $buttonRadius;
+    background-color: $primary-color;
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  & > .banner a {
+    color: inherit !important;
   }
 }
 
@@ -71,6 +97,11 @@
     .center-mobile {
       margin: 0 auto;
       display: block;
+
+      &.buttonWrapper {
+        margin: 0 auto;
+        display: table;
+      }
     }
   }
 }

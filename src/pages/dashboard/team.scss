@@ -2,6 +2,10 @@
   .table-players {
     width: 100%;
     margin-bottom: 30px;
+
+    .refuse-button.buttonWrapper {
+      margin-left: 10px;
+    }
   }
 
   .header {
@@ -85,7 +89,7 @@
   }
 
   hr {
-    background: $gradient;
+    background: $accent-color;
     height: 2px;
     width: 100%;
     border: none;

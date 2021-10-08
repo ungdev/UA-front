@@ -15,15 +15,12 @@ const Legal = () => (
       <br />
       N° d'immatriculation RCS : 500164249
       <br />
-      Capital social : 0 euros
-      <br />
-      12 rue Marie Curie, 10004 Troyes
+      12 rue Marie Curie, 10000 Troyes
       <br />
       03 25 71 85 50
       <br />
       ung@utt.fr
     </p>
-
     <Title level={2}>Collecte des données</Title>
     <p>
       Le site collecte certaines données personnelles renseignées par l’utilisateur sur le site telles que le nom et le
@@ -35,103 +32,103 @@ const Legal = () => (
       de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut exercer ce droit
       en effectuant une demande par mail à l’adresse arena@utt.fr
       <br />
-      Le responsable du traitement des données est Valentin PELTIER.
+      Le responsable du traitement des données est Lucien CHARLEUX.
       <br />
       L’équipe technique et les administrateurs du site pourront accéder aux données.
       <br />
       Ces données seront conservées au maximum 10 mois après la collecte des informations.
     </p>
-
-    <Title level={2}>Cookies</Title>
+    <Title level={2}>Informations relatives aux cookies</Title>
     <p>
-      L’Utilisateur est informé que lors de ses visites sur le site, un cookie peut s’installer automatiquement sur son
-      logiciel de navigation. En naviguant sur le site, il les accepte.
-      <br />
-      Un cookie est un élément qui ne permet pas d’identifier l’Utilisateur mais sert à enregistrer des informations
-      relatives à la navigation de celui-ci sur le site Internet. L’Utilisateur pourra désactiver ce cookie par
-      l’intermédiaire des paramètres figurant au sein de son logiciel de navigation.
+      Nous utilisons des cookies afin d'obtenir des statistiques sur notre site web. Ces informations ne seront en aucun
+      cas vendues, échangées ou données. Ces cookies sont anonymisés. Afin d'assurer le fonctionnement du service à
+      l'utilisateur authentifié, des cookies de session sont inscrits sur le navigateur lors de l'authentification sur
+      le site. Ceux-ci ont pour seule fonction d'assurer la persistance de la session authentifiée de l'utilisateur. Ils
+      sont détruits lors de la déconnexion ou à son expiration. Conformément à la directive européenne 2009/136/CE, ces
+      cookies sont indispensables à la fourniture du service sollicité. En naviguant sur notre site web, vous acceptez
+      l’utilisation de ces cookies.
     </p>
-
-    {/* <p>Pour plus d’informations, se reporter à la section CGV. (Publication sous peu)</p> */}
-
-    {/* <Title level={2}>Conditions générales de vente</Title>
-
-    <Title level={3}>Préambule</Title>
+    <Title align="center" id="CGV">
+      Conditions générales de vente
+    </Title>
+    <Title level={2}>Préambule</Title>
     <p>
       Les présentes conditions générales de vente s'appliquent à toutes les ventes conclues sur le site internet
-      arena.utt.fr. Le site internet arena.utt.fr est un service de :<br />
+      https://arena.utt.fr/ dont le propriétaire et l'hébergeur du site est :<br />
       UTT Net Group, association loi 1901
       <br />
       N° RNA : W103000699
       <br />
-      12 rue Marie Curie, 10004 Troyes
+      12 rue Marie Curie, 10000 Troyes
       <br />
       03 26 40 60 00
       <br />
       ung@utt.fr
+    </p>
+    <p>
+      Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena ainsi que du matériel
+      en prévente.
       <br />
-      Le site arena.utt.fr commercialise le produit suivant : place pour la LAN et matériel en prévente ou location. Le
-      client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la
+      Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la
       passation de sa commande. La validation de la commande vaut donc acceptation des conditions générales de vente.
-      <br />
+    </p>
+    <p>
       Le paiement est assuré par le prestataire suivant :<br />
       BDE UTT, association loi 1901
       <br />
-      sis au 12, rue Marie Curie, 10000 Troyes
+      N° RNA : W103000735
       <br />
-      SIRET 4483866720001
+      12 rue Marie Curie, 10000 Troyes
       <br />
+      03 25 71 76 74
+      <br />
+      bde@utt.fr
     </p>
-
-    <Title level={3}>Article I - Principe</Title>
+    <Title level={2}>Article 1 - Principe</Title>
     <p>
       Les présentes conditions générales expriment l'intégralité des obligations des parties. En ce sens, l'acheteur est
       réputé les accepter sans réserve. Les présentes conditions générales sont accessibles sur le site de l'UTT Arena
       et prévaudront, le cas échéant, sur toute autre version ou tout autre document contradictoire. Le vendeur et
-      l'acheteur conviennent que les présentes conditions générales régissent exclusivement leur relation. vendeur se
+      l'acheteur conviennent que les présentes conditions générales régissent exclusivement leur relation. Le vendeur se
       réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès leur mise en
       ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les usages en
       vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes conditions
-      générales de vente sont valables jusqu'au 8 décembre 2019 inclus.
+      générales de vente sont valables jusqu'au 28 novembre 2021 inclus.
     </p>
-
-    <Title level={3}>Article II - Contenu</Title>
-    <p>
-      Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre
-      de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
-      présentes conditions ne concernent que les achats effectués sur le site de l'UTT Arena. Ces achats concernent les
-      produits suivants : place pour la LAN et matériel en prévente ou location.
-    </p>
-
-    <Title level={3}>Article III - Informations précontractuelles</Title>
-    <p>
-      L'acheteur reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du
-      contrat, d'une manière lisible et compréhensible, des présentes conditions générales de vente et de toutes les
-      informations listées à l'article L.221-5 du code de la consommation. Sont transmises à l'acheteur, de manière
-      claire et compréhensible, les informations suivantes : les caractéristiques essentielles du bien ; le prix du bien
-      et/ou le mode de calcul du prix ; les informations relatives à l'identité du vendeur, à ses coordonnées postale,
-      téléphonique et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du
-      contenu numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions
-      contractuelles.
-    </p>
-
-    <Title level={3}>Article IV - Commande</Title>
-    <p>
-      L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son
-      inscription. L'acheteur sera informé de toute indisponibilité du produit ou du bien commandé. Pour que la commande
-      soit validée, l'acheteur devra accepter, en cliquant à l'endroit indiqué, les présentes conditions générales. Il
-      devra également indiquer l'adresse email vers laquelle sera envoyé son produit et enfin valider le mode de
-      paiement. La vente sera considérée comme définitive après l'envoi à l'acheteur de la confirmation de l'acceptation
-      de la commande par le vendeur par courrier électronique et après encaissement par le vendeur de l'intégralité du
-      prix. Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans certains
-      cas, notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le vendeur
-      se réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. Pour toute question
-      relative au suivi d'une commande, l'acheteur doit appeler le numéro de téléphone suivant : 0326406000 (coût d'un
-      appel local), aux jours et horaires suivants : du lundi au vendredi, de 9h à 18h, ou envoyer un email au vendeur à
-      l'adresse email suivante : arena@utt.fr.
-    </p>
-
-    <Title level={3}>Article V - Signature électronique</Title>
+    <Title level={2}>Article 2 - Contenu</Title>
+    Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre de
+    la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
+    présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
+    concernent les produits suivants : place pour l’événement UTT Arena 2021 et matériel en prévente.
+    <Title level={2}>Article 3 - Informations précontractuelles</Title>
+    L'acheteur reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du
+    contrat, d'une manière lisible et compréhensible, des présentes conditions générales de vente et de toutes les
+    informations listées à l'article L.221-5 du code de la consommation. Sont transmises à l'acheteur, de manière claire
+    et compréhensible, les informations suivantes : les caractéristiques essentielles du bien ; le prix du bien et/ou le
+    mode de calcul du prix ; les informations relatives à l'identité du vendeur, à ses coordonnées postale, téléphonique
+    et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du contenu
+    numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions contractuelles. Les
+    produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de place pour l’événement UTT
+    Arena 2021, l’UNG se réserve le droit de demander un justificatif pour les coachs et managers, et si le justificatif
+    n’est pas suffisant, peut annuler l’achat de la place et procéder à son remboursement intégral sans dédommagement.
+    <Title level={2}>Article 4 - Commande</Title>
+    L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son
+    inscription. L'acheteur sera informé de toute indisponibilité du produit ou du bien commandé. Pour que la commande
+    soit validée, l'acheteur devra accepter, en cliquant à l'endroit indiqué, les présentes conditions générales de
+    vente. Il devra également indiquer l'adresse email vers laquelle sera envoyé son justificatif et enfin valider le
+    mode de paiement. La vente sera considérée comme acceptée après l'envoi à l'acheteur de la confirmation de la
+    commande par le vendeur par courrier électronique et après encaissement par le vendeur de l'intégralité du montant.
+    Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans certains cas,
+    notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le vendeur se
+    réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation de la
+    commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2021. Seul le statut “Inscrit” sur la
+    page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de place pour
+    l’événement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque de
+    disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
+    l'adresse : arena@utt.fr. Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro de
+    téléphone suivant : 03 26 40 60 00 (coût d'un appel local), aux jours et horaires suivants : du lundi au vendredi,
+    de 9h à 18h, ou envoyer un email au vendeur à l'adresse email suivante : arena@utt.fr.
+    <Title level={2}>Article 5 - Signature électronique</Title>
     <p>
       La fourniture en ligne du numéro de carte bancaire de l'acheteur et la validation finale de la commande vaudront
       preuve de l'accord de l'acheteur : exigibilité des sommes dues au titre du bon de commande ; signature et
@@ -139,74 +136,104 @@ const Legal = () => (
       l'acheteur est invité, dès le constat de cette utilisation, à contacter le vendeur à l'adresse email suivante :
       arena@utt.fr.
     </p>
-
-    <Title level={3}>Article VI - Confirmation de commande</Title>
-    <p>Le vendeur fournit à l'acheteur un exemplaire du contrat, par messagerie électronique.</p>
-
-    <Title level={3}>Article VII - Preuve de la transaction</Title>
+    <Title level={2}>Article 6 - Confirmation de commande</Title>
+    <p>
+      Le vendeur fournit à l'acheteur un exemplaire du contrat dès que la commande a été validée par messagerie
+      électronique à l’adresse indiquée par le client.
+    </p>
+    <Title level={2}>Article 7 - Preuve de la transaction</Title>
     <p>
       Les registres informatisés, conservés dans les systèmes informatiques du vendeur dans des conditions raisonnables
       de sécurité, seront considérés comme les preuves des communications, des commandes et des paiements intervenus
       entre les parties. L'archivage des bons de commande et des factures est effectué sur un support fiable et durable
       pouvant être produit à titre de preuve.
     </p>
-
-    <Title level={3}>Article VIII - Informations sur les produits</Title>
+    <Title level={2}>Article 8 - Informations sur les produits</Title>
     <p>
       Les produits sont décrits et présentés avec la plus grande exactitude possible. Toutefois, si des erreurs ou des
       omissions ont pu se produire quant à cette présentation, la responsabilité du vendeur ne pourrait être engagée.
       Les photographies des produits ne sont pas contractuelles.
     </p>
-
-    <Title level={3}>Article IX - Prix</Title>
+    <Title level={2}>Article 9 - Tarifs</Title>
     <p>
-      Le vendeur s'engage à ce que les tarifs indiqués lors de la commande demeurent les même jusqu'à confirmation par
+      Le vendeur s'engage à ce que les tarifs indiqués lors de la commande demeurent les mêmes jusqu'à confirmation par
       courrier électronique de la commande. Les prix sont indiqués en euros et tiennent compte de la TVA applicable au
       jour de la commande. Tout changement du taux applicable TVA sera automatiquement répercuté sur le prix des
       produits de la boutique en ligne.
     </p>
-
-    <Title level={3}>Article X - Mode de paiement</Title>
+    <Title level={2}>Article 10 - Mode de paiement</Title>
     <p>
       Il s'agit d'une commande avec obligation de paiement, ce qui signifie que la passation de la commande implique un
       règlement de l'acheteur. Pour régler sa commande, l'acheteur dispose, à son choix, de l'ensemble des modes de
       paiements mis à sa disposition par le vendeur et listés sur le site du vendeur. L'acheteur garantit au vendeur
       qu'il dispose des autorisations éventuellement nécessaires pour utiliser le mode de paiement choisi par lui, lors
       de la validation du bon de commande. Le paiement du prix s'effectue en totalité au jour de la commande, selon les
-      modalités suivantes : par carte de paiement.
+      modalités suivantes : par carte de paiement. Il est possible de régler votre commande par Carte Bancaire de type «
+      Carte Bleue », « VISA » ou « MASTERCARD ». Ledit paiement est traité par notre partenaire bancaire. Les
+      coordonnées de ce dernier sont accessibles depuis la page « mentions légales » du site. Le paiement par carte peut
+      avoir recours au système 3D Secure qui vise à identifier le porteur de la carte dans le but de limiter la fraude.
+      Dans le cas où un paiement se révélerait invalidé par la banque après émission de votre billet ou de votre
+      commande, celui-ci sera invalidé, ne vous permettant pas un accès à l’événement.
     </p>
-
-    <Title level={3}>Article XI - Droit de rétractation</Title>
+    <Title level={2}>Article 11 - Émission et condition d’utilisation des billets</Title>
+    <Title level={3}>Livraison</Title>
+    <p>
+      Les billets électroniques ou un lien permettant de les télécharger sont envoyés sur la messagerie électronique de
+      l’acheteur après chaque commande.
+    </p>
+    <Title level={3}>Support</Title>
+    <p>
+      Afin d’être accepté, le billet peut être imprimé en noir et blanc ou couleur, sur du Papier A4 blanc et vierge ou
+      présenté en format numérique. Ce dernier doit présenter un état total d’intégrité et de lisibilité correct : les
+      billets endommagés ou illisibles seront considérés comme non valables. L’organisateur décline toute responsabilité
+      concernant toute anomalie pouvant survenir au cours d’une commande, du téléchargement ou de l’impression d’un
+      billet. Il ne sera remis aucun duplicata autre que le seul billet initial.
+    </p>
+    <Title level={3}>Unicité</Title>
+    <p>
+      Un billet ne peut être utilisé qu’une seule fois pour accéder à l’événement. Ainsi en cas de perte, vol,
+      duplication, seule la première personne à présenter le billet sera admise à assister à la manifestation. Un
+      détenteur de billet qui aurait déjà été utilisé ne pourra prétendre à aucun remboursement. Le billet est
+      uniquement valable pour le lieu, la date et l'heure auquel il appartient. Le billet doit être conservé jusqu’à la
+      fin de l’événement.
+    </p>
+    <Title level={3}>Contrôle</Title>
+    <p>
+      L’Organisateur est libre de contrôler la validité des billets lors de l’accès à l’événement. Le participant doit
+      veiller à la confidentialité de son billet. L’accès à l'événement peut être refusé à un participant qui présente
+      un billet déjà utilisé. L’Organisateur n’est pas tenu de vérifier l’authenticité du billet. Après la présentation
+      du billet, un bracelet sera remis au participant. Ce bracelet sera valable pendant toute la durée de l’événement.
+      En cas de perte du bracelet, une nouvelle vérification d’identité sera effectuée.
+    </p>
+    <Title level={3}>Justificatif</Title>
+    <p>
+      L’Organisateur est libre de contrôler l’identité des participants. Dans ce cas, le participant doit être en mesure
+      de justifier de son identité à l’aide d’un document officiel comportant une photographie. Un participant mineur
+      doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une photocopie de la
+      pièce d’identité d’un de ses responsables légaux.
+    </p>
+    <Title level={2}>Article 12 - Droit de rétractation</Title>
     <p>
       Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
       de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
-      demander un remboursement partiel ou total de son inscription, au plus tard 7 jours calendaires avant la date de
-      l'événement, soit le 29/11/2019 17:00 CET. Toute demande doit être formulée par courriel adressé à arena@utt.fr,
-      précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. Le remboursement sera exécuté
-      sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bleue ayant servi au paiement. Tout
-      remboursement fera l'objet d'une retenue de :
-      <ul>
-        <li>
-          15% (quinze pourcent) du montant payé si la demande de remboursement est faite avant le 3 novembre (03/11/2019
-          23:59 CET)
-        </li>
-        <li>
-          30% (trente pourcent) du montant payé si la demande est faite entre les 4 et 10 novembre (entre les 04/11/2019
-          00:00 CET et 10/11/2019 23:59 CET)
-        </li>
-        <li>
-          50% (cinquante pourcent) du montant payé si la demande est faite entre les 11 et 17 novembre (entre les
-          11/11/2019 00:00 CET et 17/11/2019 23:59 CET)
-        </li>
-        <li>
-          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 18 et 24 novembre (entre les
-          18/11/2019 00:00 CET et 24/11/2019 23:59 CET)
-        </li>
-        <li>Aucun remboursement ne sera accepté au delà du 25 novembre (après le 25/11/2019 00:00 CET).</li>
-      </ul>
+      demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 7 jours calendaires
+      avant la date de l'événement, soit le 19/11/2021 17:00 CET. Toute demande doit être formulée par courriel adressé
+      à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. Le remboursement
+      sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bancaire ayant servi au
+      paiement. Tout remboursement fera l'objet d'une retenue de :
     </p>
-
-    <Title level={3}>Article XII - Force majeure</Title>
+    <ul>
+      <li>
+        25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 22/10/2021 17:00 CET et le 05/11/2021
+        17:00 CET
+      </li>
+      <li>
+        50% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 05/11/2021 17:00 CET et le
+        19/11/2021 17:00 CET
+      </li>
+      <li>Aucun remboursement ne sera accepté au-delà du 19/11/2021 17:00 CET.</li>
+    </ul>
+    <Title level={2}>Article 13 - Force majeure</Title>
     <p>
       Toutes circonstances indépendantes de la volonté des parties empêchant l'exécution dans des conditions normales de
       leurs obligations sont considérées comme des causes d'exonération des obligations des parties et entraînent leur
@@ -220,23 +247,42 @@ const Legal = () => (
       poursuivie. Si le cas de force majeure a une durée supérieure à trois mois, les présentes conditions générales
       pourront être résiliées par la partie lésée.
     </p>
-
-    <Title level={3}>Article XIII - Propriété intellectuelle</Title>
+    <Title level={2}>Article 14 - Propriété intellectuelle</Title>
     <p>
       Le contenu du site internet reste la propriété du vendeur, seul titulaire des droits de propriété intellectuelle
       sur ce contenu. Les acheteurs s'engagent à ne faire aucun usage de ce contenu ; toute reproduction totale ou
       partielle de ce contenu est strictement interdite et est susceptible de constituer un délit de contrefaçon.
     </p>
-
-    <Title level={3}>Article XIV - Informatiques et Libertés</Title>
+    <Title level={2}>Article 15 - Données personnelles</Title>
     <p>
-      Les données nominatives fournies par l'acheteur sont nécessaires au traitement de sa commande et à l'établissement
-      de ses factures. Elles peuvent être communiquées aux partenaires du vendeur chargés de l'exécution, du traitement,
-      de la gestion et du paiement des commandes. Le traitement des informations communiquées par l'intermédiaire du
-      site internet de l'UTT Arena a fait l'objet d'une déclaration auprès de la CNIL. L'acheteur dispose d'un droit
-      d'accès permanent, de modification, de rectification et d'opposition s'agissant des informations le concernant. Ce
-      droit peut être exercé dans les conditions et selon les modalités définies sur le site de l'UTT Arena.
-    </p> */}
+      Chaque utilisateur du site web a un droit permanent d'accès et de rectification sur toutes les données le
+      concernant, conformément aux textes européens et aux lois nationales en vigueur. Il vous suffit d'en faire la
+      demande par courrier électronique (arena@utt.fr). Ce droit peut être exercé dans les conditions et selon les
+      modalités définies sur le site de l'UTT Arena. Les données nominatives fournies par l'acheteur sont nécessaires au
+      traitement de sa commande et à l'établissement de ses factures. Elles peuvent être communiquées aux partenaires du
+      vendeur chargés de l'exécution, du traitement, de la gestion et du paiement des commandes. Notre système héberge
+      les données pour une durée de 1 à 3 ans suivant la fin de l’événement. Nous conservons les autorisations
+      parentales pour une durée de 1 an suivant la fin de l’événement.
+    </p>
+    <Title level={2}>Article 16 - Mentions Légales</Title>
+    <p>
+      L’événement UTT Arena 2021 est organisé par :<br />
+      <br />
+      UTT Net Group, association loi 1901
+      <br />
+      N° RNA : W103000699
+      <br />
+      N° de TVA intracommunautaire : FR50500164249
+      <br />
+      N° d'immatriculation RCS : 500164249
+      <br />
+      Adresse : 12 rue Marie Curie, 10004 Troyes
+      <br />
+      Téléphone : 03 25 71 85 50
+      <br />
+      Email : ung@utt.fr
+      <br />
+    </p>
   </div>
 );
 

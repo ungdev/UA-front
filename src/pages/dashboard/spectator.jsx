@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../../components/UI';
 import { setType } from '../../modules/login';
 
-const Coach = () => {
+const Spectator = () => {
   const dispatch = useDispatch();
-  const isPaid = useSelector((state) => state.login.user.isPaid);
+  const hasPaid = useSelector((state) => state.login.user.hasPaid);
 
   return (
     <div id="dashboard-coach">
       <p>
-        <strong>Rôle : </strong> coach / manager / accompagnateur
+        <strong>Rôle : </strong> Spectateur
         <br />
         <strong>Statut : </strong>{' '}
-        {isPaid ? (
+        {hasPaid ? (
           <>
             <i className="fas fa-check-circle green-icon"></i> Payé
           </>
@@ -23,9 +23,9 @@ const Coach = () => {
           </>
         )}
       </p>
-      {!isPaid && <Button onClick={() => dispatch(setType('none'))}>Changer de rôle</Button>}
+      {!hasPaid && <Button onClick={() => dispatch(setType(undefined))}>Changer de rôle</Button>}
     </div>
   );
 };
 
-export default Coach;
+export default Spectator;

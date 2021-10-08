@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,37 +17,52 @@ const Account = () => {
   const [oldpassword, setOldpassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [discordLink, setDiscordLink] = useState('');
+  const discordLinkRef = useRef(null);
+
+  useEffect(() => {
+    API.get('discord/connect').then((res) => {
+      setDiscordLink(res.data.link);
+    });
+    // Scroll to discord section (as it may be below information section)
+    if (window.location.href.endsWith('#discord')) discordLinkRef.current.scrollIntoView();
+  }, []);
 
   const edit = () => {
-    if (password === confirmPassword) {
+    if (password && password !== confirmPassword) return toast.error('Les mots de passe ne correspondent pas');
+    else if (oldpassword) {
       const data = {
-        firstname,
-        lastname,
-        username,
+        username: username,
+        password: oldpassword,
+        newPassword: password,
       };
 
-      if (oldpassword !== '' && password !== '') {
-        data.oldpassword = oldpassword;
-        data.password = password;
+      // Remove null fields from `data`
+      for (const key in data) if (!data[key]) delete data[key];
+
+      // Stop request if the user only filled the `oldPassword`
+      if (Object.keys(data).length < 2) {
+        toast.error('Si tu veux modifier ton compte, mets à jour une information');
+      } else {
+        // Send the request to the api
+        dispatch(editUser(data, user.id));
+
+        // Reset password fields
+        setOldpassword('');
+        setPassword('');
+        setConfirmPassword('');
       }
-
-      dispatch(editUser(data, user.id));
-
-      // Reset password fields
-      setOldpassword('');
-      setPassword('');
-      setConfirmPassword('');
     } else {
-      toast.error('Les mots de passe ne correspondent pas');
+      toast.error('Tu dois rentrer ton mot de passe actuel pour modifier ces informations');
     }
   };
 
   const downloadTicket = async () => {
-    const res = await API.get(`${apiUrl()}users/${user.id}/ticket`);
+    const res = await API.get(`tickets`);
 
     let element = document.createElement('a');
-    element.href = 'data:application/pdf;base64,' + res.data;
-    element.download = 'Billet UTT Arena 2019.pdf';
+    element.href = `data:application/pdf;base64,${res.data}`;
+    element.download = 'Billet UTT Arena 2021.pdf';
     element.style.display = 'none';
 
     document.body.appendChild(element);
@@ -57,20 +72,7 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
-      <div className="notif">
-        <Title level={4}>Notifications</Title>
-        <p>
-          N'hésite pas à activer les notifications pour recevoir en temps réel les dernières informations sur ton
-          tournoi et sur la LAN.
-          <br />
-          <strong>Pense à désactiver ton bloqueur de pub préféré.</strong>
-          <br />
-          Les notifications ne seront utilisées que pendant l'événement.
-        </p>
-      </div>
-      <hr />
-
-      {user.isPaid && (
+      {/* user.hasPaid && (
         <>
           <div className="ticket">
             <Title level={4}>Mon billet</Title>
@@ -80,22 +82,15 @@ const Account = () => {
           </div>
           <hr />
         </>
-      )}
+      )*/}
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
         <Input label="Place" value={user.place} autocomplete="off" disabled />
         <Input label="Email" value={user.email} autocomplete="off" disabled />
-        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" />
-        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
+        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
         <Input label="Pseudo (Nom d'invocateur pour LoL)" value={username} onChange={setUsername} autocomplete="off" />
-        <Input
-          label="Mot de passe actuel"
-          value={oldpassword}
-          onChange={setOldpassword}
-          autocomplete="off"
-          type="password"
-        />
         <Input
           label="Nouveau mot de passe"
           value={password}
@@ -111,9 +106,32 @@ const Account = () => {
           type="password"
         />
 
+        <br />
+        <Input
+          label="Pour modifier ton profil, entre ton mot de passe actuel"
+          value={oldpassword}
+          onChange={setOldpassword}
+          autocomplete="off"
+          type="password"
+        />
+
         <Button primary onClick={edit}>
           Modifier
         </Button>
+      </div>
+
+      <div className="infos" ref={discordLinkRef}>
+        <Title level={4}>Mon compte Discord</Title>
+        {user.discordId ? (
+          <p>
+            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
+          </p>
+        ) : (
+          ''
+        )}
+        <a href={discordLink}>
+          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
+        </a>
       </div>
     </div>
   );

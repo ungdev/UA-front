@@ -45,7 +45,7 @@
   .shop-footer {
     text-align: right;
 
-    .shop-button {
+    .shop-button.buttonWrapper {
       margin-left: 16px;
     }
   }
@@ -55,9 +55,29 @@
   }
 
   .scoup {
-    width: 600px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+
     max-width: 100%;
     margin: 0 auto;
+    padding: 10px 15px;
+    border: solid #c8c8c8 1px;
+    border-radius: 16px;
+
+    & > img {
+      height: 60px;
+      border-radius: 15px;
+    }
+
+    & > p {
+      flex: 1 1 500px;
+      margin: 0;
+      text-align: center;
+    }
   }
 
   .item-preview-modal-container {
@@ -68,5 +88,13 @@
   .item-preview-image {
     max-width: 1000px;
     width: 100%;
+  }
+
+  .cgvCheckbox {
+    display: block ruby;
+  }
+
+  .attendant-warning {
+    margin-bottom: 10px;
   }
 }

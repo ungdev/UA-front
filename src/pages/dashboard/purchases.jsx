@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Table, Card, Title } from '../../components/UI';
 import { fetchAllCarts } from '../../modules/carts';
+import { fetchItems } from '../../modules/items';
 
 const columns = [
   { title: '', key: 'name' },
@@ -13,38 +14,52 @@ const columns = [
 
 const Purchases = () => {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.login.user.id);
   const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
+  const items = useSelector((state) => state.items.items);
   useEffect(() => {
     dispatch(fetchAllCarts());
+    dispatch(fetchItems());
   }, []);
 
-  const displayCarts = carts.map((cart) => {
-    const dataSource = cart.cartItems.map((cartItem) => ({
-      name: cartItem.item.name,
-      quantity: cartItem.quantity,
-      price: `${cartItem.item.price} €`,
-      total: `${cartItem.quantity * cartItem.item.price} €`,
-      totalInt: cartItem.quantity * cartItem.item.price,
-    }));
-    const date = new Date(cart.paidAt);
+  const displayCarts = !items
+    ? []
+    : carts.map((cart) => {
+        const dataSource = cart.cartItems.map((cartItem) => {
+          const item = items.find((item) => cartItem.itemId === item.id);
+          let itemName = item.name;
+          if (item.id.startsWith('ticket')) {
+            itemName =
+              `${item.name} | ` +
+              (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
+          }
+          return {
+            name: itemName,
+            quantity: cartItem.quantity,
+            price: `${(item.price / 100).toFixed(2)} €`,
+            total: `${((cartItem.quantity * item.price) / 100).toFixed(2)} €`,
+            totalInt: cartItem.quantity * item.price,
+          };
+        });
+        const date = new Date(cart.paidAt);
 
-    const total = dataSource.reduce((previousValue, data) => (previousValue += data.totalInt), 0);
-    return (
-      <Card
-        className="card-cart"
-        key={cart.id}
-        content={
-          <>
-            <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
-            <Table columns={columns} dataSource={dataSource} />
-            <p className="cart-total">
-              <strong>Total: {total} €</strong>
-            </p>
-          </>
-        }
-      />
-    );
-  });
+        const total = dataSource.reduce((previousValue, data) => (previousValue += data.totalInt), 0);
+        return (
+          <Card
+            className="card-cart"
+            key={cart.id}
+            content={
+              <>
+                <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
+                <Table columns={columns} dataSource={dataSource} className="cart" />
+                <p className="cart-total">
+                  <strong>Total: {(total / 100).toFixed(2)} €</strong>
+                </p>
+              </>
+            }
+          />
+        );
+      });
 
   return <div id="dashboard-purchases">{carts.length ? displayCarts : <Title level={4}>Aucun achat</Title>}</div>;
 };

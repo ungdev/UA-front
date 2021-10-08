@@ -22,7 +22,7 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
   ));
 
   const tabsContent = tabs.map((tab, i) => (
-    <div className={`tab-content ${index === i ? 'active' : ''}`} key={tab.title}>
+    <div className={`tab-content ${index === i ? 'active' : ''}`} key={tab.key}>
       {tab.content}
     </div>
   ));

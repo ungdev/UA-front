@@ -13,7 +13,7 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
     ) : (
       <>
         <Button onClick={onCancel}>Annuler</Button>
-        <Button onClick={onOk} primary>
+        <Button onClick={onOk} primary className="ok-button">
           Ok
         </Button>
       </>

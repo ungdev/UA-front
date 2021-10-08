@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 /**
  * Displays a title
  */
-const Title = ({ level, children, gutterBottom, align, className }) => {
+const Title = ({ level, children, gutterBottom, align, className, id }) => {
   const Component = `h${level}`;
 
   return (
-    <Component className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
+    <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
       {level === 1 ? (
         <div className={`title-wrapper ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
           <div className="title-content">{children}</div>
@@ -42,6 +42,10 @@ Title.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Id of the container
+   */
+  id: PropTypes.string,
 };
 
 Title.defaultProps = {
@@ -49,6 +53,7 @@ Title.defaultProps = {
   gutterBottom: true,
   align: 'inherit',
   className: '',
+  id: undefined,
 };
 
 export default Title;

@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { setLoginModalVisible } from '../modules/loginModal';
-import { Button, Title } from './UI';
+import { Button, Title, Table } from './UI';
+import { isLoginAllowed as fetchIsLoginAllowed } from '../utils/settings';
 import { API } from '../utils/api';
-import { isLoginAllowed as fetchIsLogginAllowed } from '../utils/settings';
 
 const columns = [
   { title: 'Équipe', key: 'name' },
@@ -17,20 +17,26 @@ const Tournament = ({ assets, tournamentId, alt }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [isLogginAllowed, setIsLogginAllowed] = useState(false);
+  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formatTeams, setFormatTeam] = useState([]);
+  const [tournament, setTournament] = useState();
 
-  fetchIsLogginAllowed().then((result) => {
-    setIsLogginAllowed(result);
+  fetchIsLoginAllowed().then((result) => {
+    setIsLoginAllowed(result);
   });
 
-  const fetchFullTeam = async () => {
-    const res = await API.get(`tournaments/${tournamentId}/teams?paidOnly=true`);
-    const teams = res.data.map(({ name, users }) => ({
-      name,
-      players: users.map(({ username }) => username).join(', '),
-    }));
+  // Fetch the tournaments from the API, and update the state with the tournament object and a map of locked teams / players
+  const fetchTournament = async () => {
+    const res = await API.get(`/tournaments`);
+    const tournament = res.data.filter((tournament) => tournament.id === tournamentId);
+    const teams = tournament[0].teams
+      .filter((team) => team.lockedAt !== null)
+      .map(({ name, players }) => ({
+        name,
+        players: players.map(({ username }) => username).join(', '),
+      }));
+    setTournament(tournament[0]);
     setFormatTeam(teams);
   };
 
@@ -40,15 +46,16 @@ const Tournament = ({ assets, tournamentId, alt }) => {
     }
   });
 
+  // Fetch the tournaments once, after the first render
   useEffect(() => {
-    if (isLoggedIn) {
-      fetchFullTeam();
+    if (!tournament) {
+      fetchTournament();
     }
-  }, [isLoggedIn]);
+  }, []);
 
   const buttonClick = () => {
     if (isLoggedIn) {
-      router.push('/dashboard');
+      router.push(`/dashboard/register?tournamentId=${tournamentId}`);
     } else {
       dispatch(setLoginModalVisible(true));
     }
@@ -61,18 +68,14 @@ const Tournament = ({ assets, tournamentId, alt }) => {
       <div className="tournament-content">
         <Title align="center">{assets.name}</Title>
 
-        {/* TODO : Redirect to tournament register (not toornament) */}
-        {/* {isLogginAllowed ? (
+        {/* Redirect to tournament register. The button is only display if Login is allowed (api call). */}
+        {isLoginAllowed ? (
           <div className="tournament-signin">
-            <a href={`https://www.toornament.com/fr/tournaments/${assets.toornamentId}/information`}>
-              <Button primary disabled>
-                S'inscrire
-              </Button>
-            </a>
+            <Button primary onClick={buttonClick}>
+              S'inscrire
+            </Button>
           </div>
-        ) : (
-          <></>
-        )} */}
+        ) : null}
 
         <Title level={2}>Format</Title>
         <div className="tournament-section">
@@ -84,30 +87,42 @@ const Tournament = ({ assets, tournamentId, alt }) => {
           <p>{assets.rewards}</p>
         </div>
 
-        <Title level={2}>Règlement</Title>
-        {!assets.rules ? (
-          'Le règlement sera bientôt disponible.'
-        ) : (
+        <Title level={2}>Liens utiles</Title>
+        <div className="tournament-section">
+          <ul>
+            {!assets.rules ? (
+              <li>Le règlement sera bientôt disponible.</li>
+            ) : (
+              <li>
+                <a href={assets.rules} target="_blank" rel="noopener noreferrer">
+                  Règlement du tournoi
+                </a>
+              </li>
+            )}
+            {assets.toornamentId && (
+              <li>
+                <a
+                  href={`https://play.toornament.com/fr/tournaments/${assets.toornamentId}`}
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  Page Toornament
+                </a>
+              </li>
+            )}
+          </ul>
+        </div>
+
+        {/* If tournament is defined (if the fetch has finished and succeeded) then render a table with the list of the validated players / teams */}
+        {tournament ? (
           <>
-            <div className="tournament-section">
-              <a href={assets.rules} target="_blank" rel="noopener noreferrer">
-                Le règlement est disponible ici.
-              </a>
-            </div>
-          </>
-        )}
-        {/* {assets.toornamentId &&
-          assets.stages &&
-          assets.stages.map((stage) => (
-            <iframe
-              key={stage}
-              width="100%"
-              height="500"
-              src={`https://widget.toornament.com/tournaments/${assets.toornamentId}/stages/${stage}/?_locale=fr`}
-              allowFullscreen
-              frameBorder="0"
+            <Title level={2}>{tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'}</Title>
+            <Table
+              columns={tournament.playersPerTeam === 1 ? [{ title: 'Joueurs', key: 'players' }] : columns}
+              dataSource={formatTeams}
+              className="table-tournament"
             />
-          ))} */}
+          </>
+        ) : null}
       </div>
     </div>
   );
