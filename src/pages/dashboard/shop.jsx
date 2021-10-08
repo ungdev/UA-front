@@ -518,7 +518,7 @@ const Shop = () => {
         onCancel={() => setItemPreview(null)}
         buttons={null}
         containerClassName="item-preview-modal-container">
-        {itemPreview && <img src={`/uploads/files/images/${itemPreview}`} className="item-preview-image" />}
+        {itemPreview && <img src={`/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
   );
