@@ -116,7 +116,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="nickname"
           />
           <Input
-            label="Email"
+            label="Email (utilise ton adresse étudiante si tu es dans une UT)"
             value={signupForm.email}
             onChange={(value) => updateSignup('email', value)}
             type="email"
@@ -137,7 +137,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="new-password"
           />
           <Radio
-            label="Le 26 Novembre 2021, vous serez :"
+            label="Le 26 Novembre 2021, tu seras :"
             options={[
               { value: 'child', name: 'Mineur' },
               { value: 'adult', name: 'Majeur' },

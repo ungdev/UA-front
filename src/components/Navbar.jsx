@@ -201,7 +201,7 @@ const Navbar = ({ isLoggedIn, action }) => {
             © 2021 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal">
-              <a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a>
+              <a onClick={() => setMobileMenuVisible(false)}>Mentions légales / CGV</a>
             </Link>
           </div>
         </footer>
@@ -218,7 +218,7 @@ const Navbar = ({ isLoggedIn, action }) => {
               Fermer
             </Button>
           }>
-          Les inscriptions ouvriront le Vendredi 8 Octobre 2021 à 19h.
+          Les inscriptions ouvriront le vendredi 8 octobre 2021 à 19h00.
         </Modal>
       )}
       <UserModal isVisible={isUserVisible} />

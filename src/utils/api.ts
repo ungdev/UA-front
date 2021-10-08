@@ -5,7 +5,7 @@ import { apiUrl, uploadsUrl } from './environment';
 let token = null as string | null;
 
 // Send request to API and handle errors
-const requestAPI = <T>(method: Method, baseURL: string, route: string, authorizationHeader: boolean, body?: object) =>
+const requestAPI = <T>(method: Method, baseURL: string, route: string, authorizationHeader: boolean, body?: T | undefined) =>
   new Promise<AxiosResponse<T>>((resolve, reject) => {
     // Create the request
     axios
@@ -43,9 +43,9 @@ export const setAuthorizationToken = (_token: string) => {
 // Access the API through different HTTP methods
 export const API = {
   get: <T>(route: string) => requestAPI<T>('GET', apiUrl(), route, true),
-  post: <T>(route: string, body: object) => requestAPI<T>('POST', apiUrl(), route, true, body),
-  put: <T>(route: string, body: object) => requestAPI<T>('PUT', apiUrl(), route, true, body),
-  patch: <T>(route: string, body: object) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
+  post: <T>(route: string, body: T | undefined) => requestAPI<T>('POST', apiUrl(), route, true, body),
+  put: <T>(route: string, body: T | undefined) => requestAPI<T>('PUT', apiUrl(), route, true, body),
+  patch: <T>(route: string, body: T | undefined) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
   delete: <T>(route: string) => requestAPI<T>('DELETE', apiUrl(), route, true),
 };
 

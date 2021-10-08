@@ -31,7 +31,7 @@ const Purchases = () => {
           if (item.id.startsWith('ticket')) {
             itemName =
               `${item.name} | ` +
-              (cartItem.forUser.id === userId ? `Vous (${cartItem.forUser.username})` : cartItem.forUser.username);
+              (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
           }
           return {
             name: itemName,
@@ -51,7 +51,7 @@ const Purchases = () => {
             content={
               <>
                 <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
-                <Table columns={columns} dataSource={dataSource} />
+                <Table columns={columns} dataSource={dataSource} className="cart" />
                 <p className="cart-total">
                   <strong>Total: {(total / 100).toFixed(2)} €</strong>
                 </p>

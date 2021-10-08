@@ -144,13 +144,13 @@ const Shop = () => {
     if (placeFor === 'attendant') {
       const { firstname, lastname } = attendant;
       if (firstname == '' || lastname == '') {
-        toast.error('Vous devez renseigner le prénom et le nom de votre accompagnateur.');
+        toast.error('Tu dois renseigner le prénom et le nom de ton accompagnateur.');
         return;
       }
       setCart({ ...cart, attendant });
     } else {
       // Get user id
-      let ticketType = undefined;
+      let ticketType;
       if (place === userId) {
         setWillBePaid(true);
         ticketType = type;
@@ -177,9 +177,7 @@ const Shop = () => {
     return {
       type:
         `${ticket.item.name} | ` +
-        (ticket.for === userId
-          ? `Vous (${username})`
-          : teamMembers.find((member) => member.id === ticket.for).username),
+        (ticket.for === userId ? `Toi (${username})` : teamMembers.find((member) => member.id === ticket.for).username),
       price: `${(ticket.item.price / 100).toFixed(2)}€`,
       delete: (
         <Button
@@ -233,7 +231,7 @@ const Shop = () => {
     }
     if (age === 'child' && !cart.attendant && !hasAttendant) {
       options.push({
-        name: 'Un accompagnateur',
+        name: 'Un accompagnateur (majeur)',
         value: 'attendant',
       });
     }
@@ -276,7 +274,7 @@ const Shop = () => {
   });
 
   // We display the supplementTypes we have just defined, and not the items
-  const supplementRows = supplementTypes.slice(2).map((supplement, i) => {
+  const supplementRows = supplementTypes.map((supplement, i) => {
     // Get cart supplement we are managing
     let cartSupplement = cart.supplements.find(
       (cartSupplement) => cartSupplement.item && cartSupplement.item.id === supplement.id,
@@ -364,7 +362,7 @@ const Shop = () => {
             }
           }}
           min={0}
-          max={100}
+          max={cartSupplement.item.id === 'discount-switch-ssbu' ? 1 : 100}
           className="shop-input"
         />
       ),
@@ -384,12 +382,18 @@ const Shop = () => {
         <Table columns={ticketColumns} dataSource={ticketRows} className="shop-table" />
         <Button
           onClick={() => {
-            if ((hasPaid || willBePaid) && !membersWithoutTicket.length) {
+            if (!hasPaid && !willBePaid) {
+              setPlaceFor('me');
+            } else if (membersWithoutTicket.length) {
+              setPlaceFor('other');
+            } else if (age === 'child' && !cart.attendant & !hasAttendant) {
+              setPlaceFor('attendant');
+            } else {
               toast.info("Tous les membres de l'équipe ont déjà une place !");
               return;
             }
             if (hasPaid || willBePaid) {
-              setPlace(membersWithoutTicket[0].id);
+              setPlace(membersWithoutTicket.length ? membersWithoutTicket[0].id : undefined);
             } else {
               setPlace(userId);
             }
@@ -401,7 +405,10 @@ const Shop = () => {
       <div className="scoup">
         <img src="/scoup.jpg" alt="" />
         <p>
-          Notre partenaire Scoup Esport <a href="https://www.weezevent.com/utt-arena-2">loue du matériel</a>{' '}
+          Notre partenaire Scoup Esport{' '}
+          <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
+            loue du matériel
+          </a>{' '}
           supplémentaire pendant l'UTT Arena.
         </p>
       </div>
@@ -412,8 +419,10 @@ const Shop = () => {
       <div className="shop-footer">
         {cart.attendant && (
           <>
-            <i className="fas fa-exclamation-triangle red-icon"></i> Si vous cliquez sur payer, vous ne pourrez plus
-            modifier votre accompagnateur.
+            <div className="attendant-warning">
+              <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras plus
+              modifier ton accompagnateur.
+            </div>
           </>
         )}
         <Checkbox
@@ -454,7 +463,7 @@ const Shop = () => {
           value={placeFor}
           onChange={(v) => {
             setPlaceFor(v);
-            setPlace(v === 'me' ? userId : membersWithoutTicket[0].id);
+            setPlace(v === 'me' ? userId : v === 'other' ? membersWithoutTicket[0].id : undefined);
           }}
           className="add-place-input"
         />
@@ -492,7 +501,7 @@ const Shop = () => {
         onCancel={() => setItemPreview(null)}
         buttons={null}
         containerClassName="item-preview-modal-container">
-        {itemPreview && <img src={`/${itemPreview}`} className="item-preview-image" />}
+        {itemPreview && <img src={`/uploads/files/images/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
   );

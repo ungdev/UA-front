@@ -114,7 +114,7 @@ const Wrapper = ({ Component }) => {
           redirect = pathname;
           break;
         case '4':
-          toast.error("Vous avez refusé à nos services l'accès à votre compte Discord");
+          toast.error("Tu as refusé à nos services l'accès à ton compte Discord");
           redirect = pathname;
           break;
         case '5':

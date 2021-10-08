@@ -4,16 +4,14 @@
   flex-wrap: wrap;
 
   .card-cart {
-    width: 45%;
-  }
-
-  .cart-total {
-    text-align: right;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  #dashboard-purchases .card-cart {
     width: 100%;
+
+    .cart {
+      width: 100%;
+    }
+
+    .cart-total {
+      text-align: right;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,11 +18,14 @@ const Account = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [discordLink, setDiscordLink] = useState('');
+  const discordLinkRef = useRef(null);
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
       setDiscordLink(res.data.link);
     });
+    // Scroll to discord section (as it may be below information section)
+    if (window.location.href.endsWith('#discord')) discordLinkRef.current.scrollIntoView();
   }, []);
 
   const edit = () => {
@@ -69,7 +72,7 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
-      {user.hasPaid && (
+      {/* user.hasPaid && (
         <>
           <div className="ticket">
             <Title level={4}>Mon billet</Title>
@@ -79,7 +82,7 @@ const Account = () => {
           </div>
           <hr />
         </>
-      )}
+      )*/}
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
@@ -105,7 +108,7 @@ const Account = () => {
 
         <br />
         <Input
-          label="Pour modifier votre profil, entrez votre mot de passe actuel"
+          label="Pour modifier ton profil, entre ton mot de passe actuel"
           value={oldpassword}
           onChange={setOldpassword}
           autocomplete="off"
@@ -115,20 +118,20 @@ const Account = () => {
         <Button primary onClick={edit}>
           Modifier
         </Button>
+      </div>
 
+      <div className="infos" ref={discordLinkRef}>
+        <Title level={4}>Mon compte Discord</Title>
         {user.discordId ? (
           <p>
-            Vous êtes connecté à votre compte Discord ! <i className="fas fa-check green-icon" />
+            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
           </p>
         ) : (
           ''
         )}
-
-        <p>
-          <a className="discord-button" href={discordLink}>
-            {user.discordId ? 'Changez votre compte Discord' : 'Connectez-vous à votre compte Discord'}
-          </a>
-        </p>
+        <a href={discordLink}>
+          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
+        </a>
       </div>
     </div>
   );

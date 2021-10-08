@@ -5,14 +5,14 @@ import { Partner } from '../types';
 import { uploads } from '../utils/api';
 
 const Partners = () => {
-  const [partners, setPartners] = useState<Partner[]>();
+  const [partners, setPartners] = useState<Array<Partner>>([]);
 
   useEffect(() => {
     fetchPartners();
   }, []);
 
   const fetchPartners = async () => {
-    const request = await uploads.get<Partner[]>('/partners/list.json');
+    const request = await uploads.get<Array<Partner>>('/partners/list.json');
 
     setPartners(request.data);
   };
@@ -27,7 +27,7 @@ const Partners = () => {
         {!partners ? (
           <Loader />
         ) : (
-          partners.map(({name, description, image, link}) => (
+          partners.map(({ name, description, image, link }) => (
             <div className="partner" key={link}>
               <Card
                 imgSrc={image}

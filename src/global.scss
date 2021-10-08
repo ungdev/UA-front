@@ -37,6 +37,11 @@ img {
   max-height: 100%;
 }
 
+ul > li,
+ol > li {
+  margin-bottom: 8px;
+}
+
 .page-padding {
   /* page-padding should be applied to every page except home page */
   padding: 2em 5em;

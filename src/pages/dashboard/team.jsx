@@ -151,7 +151,7 @@ const Team = () => {
                     dispatch(kickUser(user.id, team.id));
                     setModal(initialModal);
                   },
-                  content: "Confirmez l'exclusion du coach / manager",
+                  content: "Confirme l'exclusion du coach / manager",
                   title: 'Exclure un coach / manager',
                 })
               }>
@@ -186,7 +186,7 @@ const Team = () => {
                       dispatch(refuseUser(user, team.id));
                       setModal(initialModal);
                     },
-                    content: `Voulez-vous refuser ${user.username} ?`,
+                    content: `Veux-tu refuser ${user.username} ?`,
                     title: 'Refuser un joueur',
                   })
                 }>
@@ -220,7 +220,7 @@ const Team = () => {
                       dispatch(refuseUser(user, team.id));
                       setModal(initialModal);
                     },
-                    content: `Voulez-vous refuser ${user.username} ?`,
+                    content: `Veux-tu refuser ${user.username} ?`,
                     title: 'Refuser un coach / manager',
                   })
                 }>
@@ -389,7 +389,7 @@ const Team = () => {
                           dispatch(deleteTeam(team.id));
                           setModal(initialModal);
                         },
-                        content: "Êtes-vous sûr de vouloir dissoudre l'équipe ?",
+                        content: "Es-tu sûr de vouloir dissoudre l'équipe ?",
                         title: "Dissoudre l'équipe",
                       })
                     : setModal({
@@ -398,7 +398,7 @@ const Team = () => {
                           dispatch(kickUser(id, team.id));
                           setModal(initialModal);
                         },
-                        content: "Êtes-vous sûr de vouloir quitter l'équipe ?",
+                        content: "Es-tu sûr de vouloir quitter l'équipe ?",
                         title: "Quitter l'équipe",
                       })
                 }>
@@ -421,7 +421,7 @@ const Team = () => {
                     dispatch(deleteTeam(team.id));
                     setModal(initialModal);
                   },
-                  content: 'Êtes-vous sûr de vouloir quitter le tournoi ?',
+                  content: 'Es-tu sûr de vouloir quitter le tournoi ?',
                   title: 'Quitter le tournoi',
                 })
               }>

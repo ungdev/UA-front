@@ -47,7 +47,6 @@ const App = ({ Component, reduxStore }) => {
           content={
             'Venez participer au célèbre tournoi du Grand-Est ! ' +
             "L'UTT Arena revient pour sa 18ème édition les 26, 27 et 28 novembre 2021. " +
-            'Cette édition spéciale aura lieu en ligne et sera 100% gratuite ! ' +
             "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"

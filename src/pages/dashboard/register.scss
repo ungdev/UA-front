@@ -44,6 +44,23 @@
       width: 45%;
     }
   }
+
+  & > .banner {
+    padding: 10px;
+    border-radius: $buttonRadius;
+    background-color: $primary-color;
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  & > .banner a {
+    color: inherit !important;
+  }
 }
 
 @media screen and (max-width: 1200px) {
