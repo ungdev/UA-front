@@ -114,7 +114,7 @@ const content = [
               <li>12€ en tant que spectateur</li>
               <li>
                 Pour les étudiants des écoles partenaires (réseau UT) : 15€ en tant que joueur et 10€ en tant que
-                spectateur. Pensez à vous inscrire avec votre adresse mail étudiante.
+                spectateur. Pense à t'inscrire avec ton adresse mail étudiante.
               </li>
             </ul>
           </>

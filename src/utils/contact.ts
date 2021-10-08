@@ -6,12 +6,12 @@ import { emailIsValid } from './email';
 export const sendMessage = async (name: string, email: string, subject: string, message: string) => {
   // Check if fields are filled
   if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || message.trim() === '') {
-    toast.error('Veuillez remplir tous les champs');
+    toast.error('Merci de remplir tous les champs');
     return false;
   }
   // Check if email is valid
   if (!emailIsValid(email)) {
-    toast.error('Veuillez entrer une adresse email valide');
+    toast.error("Merci d'entrer une adresse email valide");
     return false;
   }
 

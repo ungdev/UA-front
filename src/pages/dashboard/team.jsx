@@ -86,7 +86,7 @@ const Team = () => {
                     dispatch(setCaptain(user.id, team.id));
                     setModal(initialModal);
                   },
-                  content: "Confirmez le nouveau chef d'équipe",
+                  content: "Confirme le nouveau chef d'équipe",
                   title: "Changer de chef d'équipe",
                 })
               }>
@@ -101,7 +101,7 @@ const Team = () => {
                     dispatch(kickUser(user.id, team.id));
                     setModal(initialModal);
                   },
-                  content: "Confirmez l'exclusion du joueur",
+                  content: "Confirme l'exclusion du joueur",
                   title: 'Exclure un joueur',
                 })
               }>
@@ -136,7 +136,7 @@ const Team = () => {
                     dispatch(setCaptain(user.id, team.id));
                     setModal(initialModal);
                   },
-                  content: "Confirmez le nouveau chef d'équipe",
+                  content: "Confirme le nouveau chef d'équipe",
                   title: "Changer de chef d'équipe",
                 })
               }>

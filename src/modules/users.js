@@ -16,7 +16,7 @@ const format = (users) => {
     ...user,
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.shortName : '',
-    teamName: user.team ? user.team.name : user.type === 'visitor' ? '(visiteur)' : '',
+    teamName: user.team ? user.team.name : user.type === 'visitor' ? '(spectateur)' : '',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scanned ? '✔' : '✖',
     permissionsLabel: user.permissions || '',
