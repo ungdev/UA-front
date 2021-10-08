@@ -201,7 +201,7 @@ const Navbar = ({ isLoggedIn, action }) => {
             © 2021 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal">
-              <a onClick={() => setMobileMenuVisible(false)}>Mentions légales</a>
+              <a onClick={() => setMobileMenuVisible(false)}>Mentions légales / CGV</a>
             </Link>
           </div>
         </footer>
