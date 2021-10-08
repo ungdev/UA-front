@@ -9,7 +9,7 @@ const options = [
   'Tournoi Rocket League',
   'Tournoi Counter-Strike : Global Offensive',
   'Tournoi SSBU by Murex',
-  'Tournoi Osu!',
+  'Tournoi osu!',
   'Tournoi Libre',
   'Problème sur le site',
   'Autre',
