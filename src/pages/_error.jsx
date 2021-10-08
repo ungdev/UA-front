@@ -5,18 +5,6 @@ import PropTypes from 'prop-types';
 import { Title, Button } from '../components/UI';
 
 class Error extends React.Component {
-  static getStaticProps({ res, err }) {
-    let statusCode = null;
-
-    if (res) {
-      statusCode = res.statusCode;
-    } else if (err) {
-      statusCode = err.statusCode;
-    }
-
-    return { statusCode };
-  }
-
   render() {
     return (
       <>
@@ -42,3 +30,19 @@ Error.defaultProps = {
 };
 
 export default Error;
+
+export const getStaticProps = ({ res, err }) => {
+  let statusCode = null;
+
+  if (res) {
+    statusCode = res.statusCode;
+  } else if (err) {
+    statusCode = err.statusCode;
+  }
+
+  return {
+    props: {
+      statusCode,
+    },
+  };
+};

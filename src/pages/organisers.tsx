@@ -7,7 +7,7 @@ import { uploadsUrl } from '../utils/environment';
 import { getShortName } from '../utils/strings';
 
 const Organisers = () => {
-  const [organisers, setOrganisers] = useState<OrganisersType>();
+  const [organisers, setOrganisers] = useState<OrganisersType | null>(null);
 
   useEffect(() => {
     fetchOrganisers();

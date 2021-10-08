@@ -2,11 +2,6 @@ import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
-  static async getStaticProps(ctx) {
-    const initialProps = await Document.getStaticProps(ctx);
-    return { ...initialProps };
-  }
-
   render() {
     return (
       <Html lang="fr">
@@ -21,3 +16,12 @@ class MyDocument extends Document {
 }
 
 export default MyDocument;
+
+export const getStaticProps = async (ctx) => {
+  const initialProps = await Document.getStaticProps(ctx);
+  return {
+    props: {
+      ...initialProps.props,
+    },
+  };
+};

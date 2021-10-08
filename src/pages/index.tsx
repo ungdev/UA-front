@@ -7,10 +7,10 @@ import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG, Loader 
 import { uploads } from '../utils/api';
 
 const Home = () => {
-  const [partners, setPartners] = useState<Partner[]>();
+  const [partners, setPartners] = useState<Array<Partner>>([]);
 
   const fetchPartners = async () => {
-    const request = await uploads.get<Partner[]>('/partners/list.json');
+    const request = await uploads.get<Array<Partner>>('/partners/list.json');
 
     setPartners(request.data);
   };
@@ -55,11 +55,11 @@ const Home = () => {
             <span className="accent">
               2000 m<sup>2</sup> de gaming
             </span>{' '}
-            t'attendent pendant ces 3 jours de folie ! Au programme : <span className="accent">5 tournois</span> sur
-            tes jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">450 joueurs</span> qui
+            t'attendent pendant ces 3 jours de folie ! Au programme : <span className="accent">5 tournois</span> sur tes
+            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">450 joueurs</span> qui
             composeront l’évènement et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
-            <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !{' '}
+            <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !
             Alors prépare tout ton stuff et <span className="accent">impose toi dans l’arène !</span>
           </p>
 

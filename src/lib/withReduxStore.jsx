@@ -19,25 +19,6 @@ function getOrCreateStore(initialState) {
 
 export default (App) =>
   class AppWithRedux extends React.Component {
-    static async getStaticProps(appContext) {
-      // Get or Create the store with `undefined` as initialState
-      // This allows you to set a custom default initialState
-      const reduxStore = getOrCreateStore();
-
-      // Provide the store to getStaticProps of pages
-      appContext.ctx.reduxStore = reduxStore;
-
-      let appProps = {};
-      if (typeof App.getStaticProps === 'function') {
-        appProps = await App.getStaticProps(appContext);
-      }
-
-      return {
-        ...appProps,
-        initialReduxState: reduxStore.getState(),
-      };
-    }
-
     constructor(props) {
       super(props);
       this.reduxStore = getOrCreateStore(props.initialReduxState); // eslint-disable-line react/prop-types
@@ -47,3 +28,24 @@ export default (App) =>
       return <App {...this.props} reduxStore={this.reduxStore} />;
     }
   };
+
+export const getStaticProps = async (appContext) => {
+  // Get or Create the store with `undefined` as initialState
+  // This allows you to set a custom default initialState
+  const reduxStore = getOrCreateStore();
+
+  // Provide the store to getStaticProps of pages
+  appContext.ctx.reduxStore = reduxStore;
+
+  let appProps = {};
+  if (typeof App.getStaticProps === 'function') {
+    appProps = await App.getStaticProps(appContext);
+  }
+
+  return {
+    props: {
+      ...appProps.props,
+      initialReduxState: reduxStore.getState(),
+    },
+  };
+};
