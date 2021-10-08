@@ -130,7 +130,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="password"
           />
           <Input
-            label="Confirmez le mot de passe"
+            label="Confirme ton mot de passe"
             value={signupForm.passwordConfirmation}
             onChange={(value) => updateSignup('passwordConfirmation', value)}
             type="password"

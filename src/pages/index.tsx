@@ -82,7 +82,7 @@ const Home = () => {
                 description: 'Vendredi 26 novembre à 17h',
               },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre à 10h' },
-              { title: <strong>Places</strong>, description: '450 joueurs + 50 visiteurs' },
+              { title: <strong>Places</strong>, description: '450 joueurs + 50 spectateurs' },
               { title: <strong>Tarif</strong>, description: '20 €' },
               { title: <strong>Âge minimum</strong>, description: "15 ans le jour de l'évènement" },
               {

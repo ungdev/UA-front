@@ -4,8 +4,8 @@ import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { sendMessage } from '../utils/contact';
 
 const options = [
-  'Tournoi League of Legends pro',
-  'Tournoi League of Legends amateur',
+  'Tournoi League of Legends Compétitif',
+  'Tournoi League of Legends Loisir',
   'Tournoi Rocket League',
   'Tournoi Counter-Strike : Global Offensive',
   'Tournoi SSBU by Murex',

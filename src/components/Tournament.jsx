@@ -34,8 +34,12 @@ const Tournament = ({ assets, tournamentId, alt }) => {
       .filter((team) => team.lockedAt !== null)
       .map(({ name, players }) => ({
         name,
-        players: players.map(({ username }) => username).join(', '),
-      }));
+        players: players
+          .map(({ username }) => username)
+          .sort()
+          .join(', '),
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
     setTournament(tournament[0]);
     setFormatTeam(teams);
   };
