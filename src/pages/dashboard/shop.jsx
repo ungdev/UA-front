@@ -383,7 +383,7 @@ const Shop = () => {
   const totalPrice =
     cart.tickets.reduce((acc, cartTicket) => {
       if (cartTicket.for === userId && type !== 'coach' && hasDiscount) {
-        return acc + (type === 'player' ? 15 : 12);
+        return acc + (type === 'player' ? 1500 : 1000);
       }
       return acc + cartTicket.item.price;
     }, 0) +
