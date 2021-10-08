@@ -33,15 +33,7 @@ const Home = () => {
 
       <div className="home-container page-padding">
         <div className="home-info">
-          <Title align="center">Stream</Title>
-
           <Countdown date={new Date('November 26 2021 17:00:00 UTC+1')} className="home-countdown" />
-
-          <a href="https://www.twitch.tv/uttarena">
-            <Button primary leftIcon="fab fa-twitch" className="stream-link">
-              Voir le stream
-            </Button>
-          </a>
 
           <Title align="center">Informations</Title>
           <Title level={4} align="center" className="uppercase">
@@ -63,11 +55,17 @@ const Home = () => {
             Alors prépare tout ton stuff et <span className="accent">impose toi dans l’arène !</span>
           </p>
 
-          {/* <VideoContainer
-            src="https://www.youtube.com/embed/bjBwMWQX-DY"
-            title="Trailer UTT Arena 2020"
+          <VideoContainer
+            src="https://www.youtube.com/embed/IdwHDWNprFY"
+            title="Trailer UTT Arena 2021"
             className="video-container"
-          /> */}
+          />
+
+          <a href="https://www.twitch.tv/uttarena">
+            <Button primary leftIcon="fab fa-twitch" className="stream-link">
+              Voir le stream
+            </Button>
+          </a>
 
           <Table
             columns={[
