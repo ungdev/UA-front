@@ -14,7 +14,7 @@ const columns = [
 
 const Purchases = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.login.user.id);
+  const { id: userId, email, type } = useSelector((state) => state.login.user);
   const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
   const items = useSelector((state) => state.items.items);
   useEffect(() => {
@@ -22,23 +22,32 @@ const Purchases = () => {
     dispatch(fetchItems());
   }, []);
 
+  const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
+  console.log(hasDiscount);
+
   const displayCarts = !items
     ? []
     : carts.map((cart) => {
         const dataSource = cart.cartItems.map((cartItem) => {
           const item = items.find((item) => cartItem.itemId === item.id);
           let itemName = item.name;
+          let price = item.price;
           if (item.id.startsWith('ticket')) {
             itemName =
               `${item.name} | ` +
               (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
+            console.log(cartItem);
+            console.log(userId);
+            if (cartItem.forUser.id === userId && type !== 'coach' && hasDiscount) {
+              price = type === 'player' ? 1500 : 1000;
+            }
           }
           return {
             name: itemName,
             quantity: cartItem.quantity,
-            price: `${(item.price / 100).toFixed(2)} €`,
-            total: `${((cartItem.quantity * item.price) / 100).toFixed(2)} €`,
-            totalInt: cartItem.quantity * item.price,
+            price: `${(price / 100).toFixed(2)} €`,
+            total: `${((cartItem.quantity * price) / 100).toFixed(2)} €`,
+            totalInt: cartItem.quantity * price,
           };
         });
         const date = new Date(cart.paidAt);
