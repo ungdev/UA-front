@@ -23,7 +23,6 @@ const Purchases = () => {
   }, []);
 
   const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
-  console.log(hasDiscount);
 
   const displayCarts = !items
     ? []
@@ -36,8 +35,6 @@ const Purchases = () => {
             itemName =
               `${item.name} | ` +
               (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
-            console.log(cartItem);
-            console.log(userId);
             if (cartItem.forUser.id === userId && type !== 'coach' && hasDiscount) {
               price = type === 'player' ? 1500 : 1000;
             }
