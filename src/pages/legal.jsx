@@ -228,8 +228,8 @@ const Legal = () => (
         17:00 CET
       </li>
       <li>
-        50% (cinquante pourcent) du montant payé si la demande est faite entre le 05/11/2021 17:00 CET et le
-        12/11/2021 17:00 CET
+        50% (cinquante pourcent) du montant payé si la demande est faite entre le 05/11/2021 17:00 CET et le 12/11/2021
+        17:00 CET
       </li>
       <li>
         75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 12/11/2021 17:00 CET et le
