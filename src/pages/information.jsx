@@ -28,11 +28,11 @@ const Information = () => (
       les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
       l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
       contribuent à le rendre exceptionnel ! Un grand merci également à{' '}
-      {/* <Link href="/organisers">
-        <a> */}
-      <span className="accent">tous les bénévoles</span>{' '}
-      {/* </a>
-      </Link>{' '} */}
+      <Link href="/organisers">
+        <a>
+          <span className="accent">tous les bénévoles</span>
+        </a>
+      </Link>{' '}
       qui rendent possible l'organisation de ce beau projet.
     </div>
 
