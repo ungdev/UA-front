@@ -5,7 +5,14 @@ import { apiUrl, uploadsUrl } from './environment';
 let token = null as string | null;
 
 // Send request to API and handle errors
-const requestAPI = <T>(method: Method, baseURL: string, route: string, authorizationHeader: boolean, body?: T | undefined) =>
+const requestAPI = <T>(
+  method: Method,
+  baseURL: string,
+  route: string,
+  authorizationHeader: boolean,
+  body?: T | undefined,
+  disableCache?: boolean,
+) =>
   new Promise<AxiosResponse<T>>((resolve, reject) => {
     // Create the request
     axios
@@ -17,7 +24,7 @@ const requestAPI = <T>(method: Method, baseURL: string, route: string, authoriza
               Authorization: token ? `Bearer ${token}` : '',
             }
           : {},
-        url: route,
+        url: route + (disableCache ? '?nocache=' + new Date().getTime() : ''),
         data: body,
         timeout: 5000,
       })
@@ -50,5 +57,7 @@ export const API = {
 };
 
 export const uploads = {
-  get: <T>(route: string) => requestAPI<T>('GET', uploadsUrl(), route, false),
+  get: <T>(route: string, disableCache: boolean = false) =>
+    requestAPI<T>('GET', uploadsUrl(), route, false, undefined, disableCache),
+  getWithoutCache: <T>(route: string) => requestAPI<T>('GET', uploadsUrl(), route, false, undefined, true),
 };

@@ -10,7 +10,7 @@ const Home = () => {
   const [partners, setPartners] = useState<Array<Partner>>([]);
 
   const fetchPartners = async () => {
-    const request = await uploads.get<Array<Partner>>('/partners/list.json');
+    const request = await uploads.get<Array<Partner>>('/partners/list.json', true);
 
     setPartners(request.data);
   };
