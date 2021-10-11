@@ -14,7 +14,7 @@ const Organisers = () => {
   }, []);
 
   const fetchOrganisers = async () => {
-    const request = await uploads.get<OrganisersType>('/organisers/list.json');
+    const request = await uploads.get<OrganisersType>('/organisers/list.json', true);
 
     setOrganisers(request.data);
   };
