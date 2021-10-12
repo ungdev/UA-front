@@ -15,7 +15,7 @@ const format = (users) => {
   return users.map((user) => ({
     ...user,
     fullname: `${user.firstname} ${user.lastname}`,
-    tournamentName: user.team ? user.team.tournament.shortName : '',
+    tournamentName: user.team ? user.team.tournamentId : '',
     teamName: user.team ? user.team.name : user.type === 'visitor' ? '(spectateur)' : '',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scanned ? '✔' : '✖',
