@@ -20,8 +20,10 @@ const columns = [
 const statusOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'Joueur', value: 'player' },
-  { name: 'Visiteur', value: 'visitor' },
+  { name: 'Spectateur', value: 'spectator' },
   { name: 'Orga', value: 'orga' },
+  { name: 'Coach', value: 'coach' },
+  { name: 'Accompagnateur', value: 'attendant' },
 ];
 
 const paymentOptions = [
@@ -48,10 +50,10 @@ const tournamentOptions = [
 ];
 
 const INITIAL_FILTERS = {
-  status: 'all',
+  type: 'all',
   payment: 'all',
   scan: 'all',
-  tournamentId: 'all',
+  tournament: 'all',
 };
 
 const Users = () => {
@@ -68,7 +70,7 @@ const Users = () => {
   }, [isLoggedIn]);
 
   const setFilters = (filters) => {
-    setSearch('');
+    //setSearch('');
     _setFilters(filters);
   };
 
@@ -78,7 +80,7 @@ const Users = () => {
   };
 
   const applySearch = () => {
-    dispatch(fetchUsers(null, search));
+    dispatch(fetchUsers(filters, search));
     _setFilters(INITIAL_FILTERS);
   };
 
@@ -97,19 +99,19 @@ const Users = () => {
           name="statusFilter"
           row
           options={statusOptions}
-          value={filters.status}
-          onChange={(v) => updateFilter({ ...filters, status: v })}
+          value={filters.type}
+          onChange={(v) => updateFilter({ ...filters, type: v })}
         />
         <br />
-        <Radio
+        {/*<Radio
           label="Paiement"
           name="paymentFilter"
           row
           options={paymentOptions}
           value={filters.payment}
           onChange={(v) => updateFilter({ ...filters, payment: v })}
-        />
-        <br />
+        />*/}
+        {/*<br />
         {filters.payment === 'paid' && (
           <>
             <Radio
@@ -122,14 +124,14 @@ const Users = () => {
             />
             <br />
           </>
-        )}
+        )}*/}
         <Radio
           label="Tournoi"
           name="tournamentFilter"
           row
           options={tournamentOptions}
-          value={filters.tournamentId}
-          onChange={(v) => updateFilter({ ...filters, tournamentId: v })}
+          value={filters.tournament}
+          onChange={(v) => updateFilter({ ...filters, tournament: v })}
         />
 
         <hr />

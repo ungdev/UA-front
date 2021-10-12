@@ -39,7 +39,7 @@ export const fetchUsers =
   (filters, search, page = 0) =>
   async (dispatch, getState) => {
     const { total } = getState().users;
-    const pageCount = Math.ceil(total / 25);
+    const pageCount = Math.ceil(total / 50);
     if (page !== 0 && (page < 0 || page + 1 > pageCount)) {
       return;
     }
@@ -48,7 +48,19 @@ export const fetchUsers =
     if (search && search !== '') {
       res = await API.get('admin/users/search', { search, page });
     } else {
-      res = await API.get('admin/users', { ...filters, page });
+      if (!filters) {
+        return;
+      }
+      const searchFilters = {};
+      Object.keys(filters).forEach((filter) => {
+        if (filters[filter] !== 'all') {
+          searchFilters[filter] = filters[filter];
+        }
+      });
+      // for (const filter in filters) {
+      //   if (filter.)
+      // };
+      res = await API.get(`admin/users?page=${page}&${new URLSearchParams(searchFilters).toString()}`);
     }
 
     const formatUsers = format(res.data.users);
