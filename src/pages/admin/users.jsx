@@ -40,13 +40,13 @@ const scannedOptions = [
 
 const tournamentOptions = [
   { name: 'Tous', value: 'all' },
-  { name: 'LoL (pro)', value: '1' },
-  { name: 'LoL (amateur)', value: '2' },
-  { name: 'Fortnite', value: '3' },
-  { name: 'CS:GO', value: '4' },
-  { name: 'SSBU', value: '5' },
-  { name: 'osu!', value: '6' },
-  { name: 'Libre', value: '7' },
+  { name: 'LoL (compétitif)', value: 'lolCompetitive' },
+  { name: 'LoL (loisir)', value: 'lolLeisure' },
+  { name: 'Rocket League', value: 'rl' },
+  { name: 'CS:GO', value: 'csgo' },
+  { name: 'SSBU', value: 'ssbu' },
+  { name: 'osu!', value: 'osu' },
+  { name: 'Libre', value: 'open' },
 ];
 
 const INITIAL_FILTERS = {
