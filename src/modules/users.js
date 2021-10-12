@@ -55,8 +55,9 @@ export const fetchUsers =
     dispatch({
       type: SET_USERS,
       users: formatUsers,
-      total: res.data.total,
+      total: res.data.totalItems,
       page,
+      isFetched: true,
     });
   };
 
