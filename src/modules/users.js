@@ -36,32 +36,23 @@ export default (state = initialState, action) => {
 };
 
 export const fetchUsers =
-  (filters, search, page = 0) =>
+  (filters, search, page = 1) =>
   async (dispatch, getState) => {
-    const { total } = getState().users;
-    const pageCount = Math.ceil(total / 50);
-    if (page !== 0 && (page < 0 || page + 1 > pageCount)) {
+    if (!filters) {
       return;
     }
-
-    let res;
-    if (search && search !== '') {
-      res = await API.get('admin/users/search', { search, page });
-    } else {
-      if (!filters) {
-        return;
+    const searchFilters = {};
+    Object.keys(filters).forEach((filter) => {
+      if (filters[filter] !== 'all') {
+        searchFilters[filter] = filters[filter];
       }
-      const searchFilters = {};
-      Object.keys(filters).forEach((filter) => {
-        if (filters[filter] !== 'all') {
-          searchFilters[filter] = filters[filter];
-        }
-      });
-      // for (const filter in filters) {
-      //   if (filter.)
-      // };
-      res = await API.get(`admin/users?page=${page}&${new URLSearchParams(searchFilters).toString()}`);
-    }
+    });
+    let res = await API.get(
+      `admin/users` +
+        `?page=${page}` +
+        (search === '' ? '' : '&search=' + search) +
+        (!searchFilters.length ? '' : '&' + new URLSearchParams(searchFilters).toString()),
+    );
 
     const formatUsers = format(res.data.users);
     dispatch({

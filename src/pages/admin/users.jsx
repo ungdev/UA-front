@@ -69,6 +69,10 @@ const Users = () => {
     }
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    dispatch(fetchUsers(filters, search));
+  }, [filters]);
+
   const setFilters = (filters) => {
     //setSearch('');
     _setFilters(filters);
@@ -76,7 +80,6 @@ const Users = () => {
 
   const updateFilter = (v) => {
     setFilters(v);
-    dispatch(fetchUsers(v));
   };
 
   const applySearch = () => {
