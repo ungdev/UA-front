@@ -1,7 +1,10 @@
 import { toast } from 'react-toastify';
 
+import Router from 'next/router';
+
 import { API } from '../utils/api';
 import { updateUser } from './users';
+import { saveToken, SET_USER } from './login';
 
 export const SET_VISIBLE = 'userEntry/SET_VISIBLE';
 export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
@@ -93,5 +96,18 @@ export const refundCart = (id) => async (dispatch, getState) => {
   dispatch({
     type: SET_VISIBLE,
     visible: false,
+  });
+};
+
+export const connectAs = (id) => async (dispatch, getState) => {
+  console.log(getState());
+  localStorage.setItem('utt-arena-admin-token', getState().login.user.token);
+  const res = await API.post(`admin/auth/login/${id}`);
+  dispatch(saveToken(res.data.token));
+  localStorage.setItem('utt-arena-userid', res.data.user.id);
+  Router.push('/dashboard');
+  dispatch({
+    type: SET_USER,
+    user: res.data.user,
   });
 };

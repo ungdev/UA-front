@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserModalVisible, validatePay, saveUser, refundCart } from '../modules/userEntry';
+import { setUserModalVisible, validatePay, saveUser, refundCart, connectAs } from '../modules/userEntry';
 import { fetchTournaments } from '../modules/tournament';
 import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
@@ -109,7 +109,7 @@ const UserModal = ({ searchUser, onClose }) => {
             </Button>
           )}
           {isAdmin && (
-            <Button primary onClick={() => }>
+            <Button primary onClick={() => dispatch(connectAs(searchUser.id))}>
               Se connecter en tant que cet utilisateur
             </Button>
           )}
