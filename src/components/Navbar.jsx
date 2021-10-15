@@ -7,7 +7,6 @@ import SimpleBar from 'simplebar-react';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
-import UserModal from './UserModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
@@ -221,7 +220,6 @@ const Navbar = ({ isLoggedIn, action }) => {
           Les inscriptions ouvriront le vendredi 8 octobre 2021 à 19h00.
         </Modal>
       )}
-      <UserModal isVisible={isUserVisible} />
       {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}
     </div>
   );

@@ -4,7 +4,16 @@ import PropTypes from 'prop-types';
 /**
  * Displays a table
  */
-const Table = ({ columns, dataSource, className, alignRight, emptyText, pagination, paginationOptions }) => (
+const Table = ({
+  columns,
+  dataSource,
+  className,
+  alignRight,
+  emptyText,
+  pagination,
+  paginationOptions,
+  onRowClicked,
+}) => (
   <div className="table-container">
     <table className={`table ${className}`}>
       <thead>
@@ -20,7 +29,7 @@ const Table = ({ columns, dataSource, className, alignRight, emptyText, paginati
       <tbody>
         {dataSource.length > 0 ? (
           dataSource.map((row, i) => (
-            <tr key={`${row.key}-${i}`}>
+            <tr key={`${row.key}-${i}`} onClick={() => onRowClicked(i)}>
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (
@@ -97,6 +106,11 @@ Table.propTypes = {
     pageSize: PropTypes.number,
     total: PropTypes.number,
   }),
+
+  /*
+   * Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked
+   */
+  onRowClicked: PropTypes.func,
 };
 
 Table.defaultProps = {
@@ -105,6 +119,7 @@ Table.defaultProps = {
   emptyText: '(Vide)',
   pagination: false,
   paginationOptions: {},
+  onRowClicked: undefined,
 };
 
 export default Table;

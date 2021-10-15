@@ -2,21 +2,22 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserModalVisible, validatePay, saveUser, refundCart } from '../modules/userEntry';
+import { fetchTournaments } from '../modules/tournament';
 import { Modal, Button, Radio, Input, Card } from './UI';
 import moment from 'moment';
+import { API } from '../utils/api';
+import { toast } from 'react-toastify';
 
 const options = [
   { name: 'Aucune', value: '' },
   { name: 'Stream', value: 'stream' },
-  { name: 'Orga', value: 'staff' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
 ];
 
-const UserModal = ({ isVisible }) => {
+const UserModal = ({ searchUser, onClose }) => {
   const dispatch = useDispatch();
-  const searchUser = useSelector((state) => state.userEntry.searchUser);
   const isAdmin = useSelector(
     (state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'),
   );
@@ -27,20 +28,31 @@ const UserModal = ({ isVisible }) => {
   const [permissions, setPermissions] = useState('');
   const [place, setPlace] = useState('');
 
-  useEffect(() => {
-    if (searchUser) {
-      setPermissions(searchUser.permissions || '');
-      setPlace(searchUser.place || '');
-    }
-  }, [searchUser]);
-
   const displayCarts = () => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
         <li key={cartItem.id}>
-          {cartItem.quantity}x {cartItem.item.name} {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}
+          {cartItem.quantity}x {cartItem.itemId /*item.name*/}{' '}
+          {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}
           <br />
-          (Pour {cartItem.forUser.email})
+          (Pour{' '}
+          <a
+            className="link-to-seller"
+            onClick={async () => {
+              const res = await API.get(`admin/users?page=1&username=${cartItem.forUser.username}`);
+              if (res.data.users.length !== 1) {
+                if (res.data.users.length) {
+                  toast.error('Plusieurs utilisateurs ont ce pseudo');
+                } else {
+                  toast.error("Cet utilisateur n'existe pas");
+                }
+              }
+              //searchUser = res.data;
+              searchUser.username = 'salut !';
+            }}>
+            {cartItem.forUser.username}
+          </a>
+          )
         </li>
       ));
       const date = new Date(cart.paidAt);
@@ -81,9 +93,9 @@ const UserModal = ({ isVisible }) => {
 
   return (
     <Modal
-      visible={isVisible}
+      visible={true}
       title="Utilisateur"
-      onCancel={() => dispatch(setUserModalVisible(false))}
+      onCancel={onClose}
       buttons={
         <>
           {hasEntryPermission && searchUser && !searchUser.hasPaid && (
@@ -94,6 +106,11 @@ const UserModal = ({ isVisible }) => {
               primary
               onClick={() => dispatch(saveUser(searchUser.id, { permissions, place }, searchUser.username))}>
               Enregistrer
+            </Button>
+          )}
+          {isAdmin && (
+            <Button primary onClick={() => }>
+              Se connecter en tant que cet utilisateur
             </Button>
           )}
         </>
@@ -116,9 +133,10 @@ const UserModal = ({ isVisible }) => {
           <strong>Équipe :</strong> {searchUser && searchUser.team && searchUser.team.name}
         </p>
         <p>
-          <strong>Tournoi :</strong> {searchUser && searchUser.team && searchUser.team.tournament.shortName}
+          <strong>Tournoi :</strong> {searchUser && searchUser.team && searchUser.team.tournament.name}
         </p>
-        {searchUser && !!searchUser.forUser.length && <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>}
+        <p>(Place payée par : pas encore implémenté)</p>
+        {/*searchUser && !!searchUser.forUser.length && <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>*/}
         {isAdmin && (
           <>
             <Radio
@@ -140,9 +158,29 @@ const UserModal = ({ isVisible }) => {
 
 UserModal.propTypes = {
   /**
-   * Is the modal visible ?
+   * The user we have to display information about
    */
-  isVisible: PropTypes.bool.isRequired,
+  searchUser: PropTypes.shape({
+    id: PropTypes.string,
+    lastname: PropTypes.string,
+    firstname: PropTypes.string,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    permissions: PropTypes.string,
+    hasPaid: PropTypes.bool,
+    place: PropTypes.string,
+    team: PropTypes.object,
+    forUser: PropTypes.object,
+    carts: PropTypes.object,
+  }).isRequired,
+  /**
+   * The callback function to call when the modal is closed
+   */
+  onClose: PropTypes.func,
+};
+
+UserModal.defaultProps = {
+  onClose: undefined,
 };
 
 export default UserModal;

@@ -1,10 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Radio, Input, Button, Table } from '../../components/UI';
+import { Radio, Input, Button, Table, Checkbox } from '../../components/UI';
+import UserModal from '../../components/UserModal';
+import { setUserModalVisible } from '../../modules/userEntry';
 import { fetchUsers, displayUser } from '../../modules/users';
+import { API } from '../../utils/api';
 
-const columns = [
+const columnTitles = {
+  fullname: 'Nom',
+  username: 'Pseudo',
+  email: 'Email',
+  paidLabel: 'Payé',
+  scannedLabel: 'Scanné',
+  permissionsLabel: 'Permissions',
+  teamName: 'Équipe',
+  tournamentName: 'Tournoi',
+  place: 'Place',
+};
+
+/*const columns = [
   { title: 'Nom', key: 'fullname' },
   { title: 'Pseudo', key: 'username' },
   { title: 'Email', key: 'email' },
@@ -15,7 +30,7 @@ const columns = [
   { title: 'Tournoi', key: 'tournamentName' },
   { title: 'Place', key: 'place' },
   { title: '', key: 'action' },
-];
+];*/
 
 const statusOptions = [
   { name: 'Tous', value: 'all' },
@@ -62,6 +77,20 @@ const Users = () => {
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector((state) => state.login.user);
   const { users, isFetched, total, page } = useSelector((state) => state.users);
+  // The user that is displayed in the modal. If undefined, the modal is not shown
+  const [searchingUser, setSearchingUser] = useState();
+  // The information that is displayed in the table
+  const [infoToDisplay, setInfoToDisplay] = useState({
+    fullname: true,
+    username: true,
+    email: true,
+    paidLabel: true,
+    scannedLabel: true,
+    permissionsLabel: true,
+    teamName: true,
+    tournamentName: true,
+    place: true,
+  });
 
   useEffect(() => {
     if (isLoggedIn && !isFetched) {
@@ -74,7 +103,6 @@ const Users = () => {
   }, [filters]);
 
   const setFilters = (filters) => {
-    //setSearch('');
     _setFilters(filters);
   };
 
@@ -85,6 +113,26 @@ const Users = () => {
   const applySearch = () => {
     dispatch(fetchUsers(filters, search));
     _setFilters(INITIAL_FILTERS);
+  };
+
+  // Update only 1 information display state
+  const updateInfoToDisplay = (info, display) => {
+    const infoToDisplayUpdated = infoToDisplay;
+    console.log(infoToDisplayUpdated);
+    infoToDisplayUpdated[info] = display;
+    console.log(infoToDisplayUpdated);
+    setInfoToDisplay(infoToDisplayUpdated);
+  };
+
+  console.log(infoToDisplay);
+
+  const getTableColumns = () => {
+    return Object.entries(infoToDisplay).reduce((tableColumns, entry) => {
+      if (entry[1]) {
+        tableColumns.push({ title: columnTitles[entry[0]], key: entry[0] });
+      }
+      return tableColumns;
+    }, []);
   };
 
   const formatUsers = users
@@ -153,8 +201,26 @@ const Users = () => {
 
       <p>{`${total} résultat${total > 1 ? 's' : ''}`}</p>
 
+      <div className="info-to-display">
+        {Object.entries(infoToDisplay).map(([infoKey, display]) => {
+          return (
+            <Checkbox
+              key={infoKey}
+              label={columnTitles[infoKey]}
+              value={display}
+              onChange={(state) => {
+                console.log('koukou');
+                console.log(infoKey);
+                console.log(state);
+                console.log(display);
+                updateInfoToDisplay(infoKey, state);
+              }}></Checkbox>
+          );
+        })}
+      </div>
+
       <Table
-        columns={columns}
+        columns={getTableColumns()}
         dataSource={formatUsers}
         className="users-table"
         pagination
@@ -164,7 +230,25 @@ const Users = () => {
           pageSize: 25,
           goToPage: (page) => dispatch(fetchUsers(filters, search, page)),
         }}
+        onRowClicked={async (i) => {
+          const user = users[i];
+          const res = await API.get(`admin/users/${user.id}/carts`);
+          setSearchingUser({
+            id: user.id,
+            lastname: user.lastname,
+            firstname: user.firstname,
+            username: user.username,
+            email: user.email,
+            permissions: user.permissions,
+            hasPaid: user.hasPaid,
+            place: user.place,
+            team: user.team,
+            forUser: undefined,
+            carts: res.data,
+          });
+        }}
       />
+      {searchingUser && <UserModal searchUser={searchingUser} onClose={() => setSearchingUser(undefined)}></UserModal>}
     </div>
   );
 };

@@ -65,7 +65,7 @@ export const scan = (barcode) => async (dispatch) => {
 
 export const validatePay = (id) => async (dispatch, getState) => {
   const userModal = getState().userEntry.searchUser;
-  await API.post(`entry/forcePay/${id}`);
+  await API.post(`admin/users/${id}/force-pay`);
   toast.success('Paiement validé');
   dispatch(updateUser({ ...userModal, hasPaid: true }));
   dispatch({

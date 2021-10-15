@@ -53,7 +53,6 @@ export const fetchUsers =
         (search === '' ? '' : '&search=' + search) +
         (!searchFilters.length ? '' : '&' + new URLSearchParams(searchFilters).toString()),
     );
-
     const formatUsers = format(res.data.users);
     dispatch({
       type: SET_USERS,

@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
 };
 
 export const fetchTournaments = () => async (dispatch) => {
-  const res = await API.get('/tournaments?notFull=true');
+  const res = await API.get('/tournaments');
   dispatch({
     type: SET_TOURNAMENTS,
     tournaments: res.data,

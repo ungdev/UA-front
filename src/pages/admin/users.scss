@@ -10,6 +10,11 @@
   .users-table {
     width: 100%;
     margin: 20px 0;
+
+    tbody tr:hover {
+      background-color: #cccccc;
+      cursor: pointer;
+    }
   }
 
   .pointer {
