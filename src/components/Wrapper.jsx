@@ -45,7 +45,7 @@ const Wrapper = ({ Component }) => {
       setHasPaid(user.hasPaid);
     }
     if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-      setIsAdmin(true);
+      setIsAdmin(!isAdmin);
     }
   });
 

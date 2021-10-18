@@ -100,14 +100,13 @@ export const refundCart = (id) => async (dispatch, getState) => {
 };
 
 export const connectAs = (id) => async (dispatch, getState) => {
-  console.log(getState());
   localStorage.setItem('utt-arena-admin-token', getState().login.user.token);
   const res = await API.post(`admin/auth/login/${id}`);
-  dispatch(saveToken(res.data.token));
   localStorage.setItem('utt-arena-userid', res.data.user.id);
-  Router.push('/dashboard');
+  dispatch(saveToken(res.data.token));
   dispatch({
     type: SET_USER,
     user: res.data.user,
   });
+  Router.push('/dashboard');
 };

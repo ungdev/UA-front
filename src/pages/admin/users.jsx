@@ -118,13 +118,9 @@ const Users = () => {
   // Update only 1 information display state
   const updateInfoToDisplay = (info, display) => {
     const infoToDisplayUpdated = infoToDisplay;
-    console.log(infoToDisplayUpdated);
     infoToDisplayUpdated[info] = display;
-    console.log(infoToDisplayUpdated);
     setInfoToDisplay(infoToDisplayUpdated);
   };
-
-  console.log(infoToDisplay);
 
   const getTableColumns = () => {
     return Object.entries(infoToDisplay).reduce((tableColumns, entry) => {
@@ -209,10 +205,6 @@ const Users = () => {
               label={columnTitles[infoKey]}
               value={display}
               onChange={(state) => {
-                console.log('koukou');
-                console.log(infoKey);
-                console.log(state);
-                console.log(display);
                 updateInfoToDisplay(infoKey, state);
               }}></Checkbox>
           );
