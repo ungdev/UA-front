@@ -19,19 +19,6 @@ const columnTitles = {
   place: 'Place',
 };
 
-/*const columns = [
-  { title: 'Nom', key: 'fullname' },
-  { title: 'Pseudo', key: 'username' },
-  { title: 'Email', key: 'email' },
-  { title: 'Payé', key: 'paidLabel' },
-  { title: 'Scanné', key: 'scannedLabel' },
-  { title: 'Permissions', key: 'permissionsLabel' },
-  { title: 'Équipe', key: 'teamName' },
-  { title: 'Tournoi', key: 'tournamentName' },
-  { title: 'Place', key: 'place' },
-  { title: '', key: 'action' },
-];*/
-
 const statusOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'Joueur', value: 'player' },
@@ -117,7 +104,8 @@ const Users = () => {
 
   // Update only 1 information display state
   const updateInfoToDisplay = (info, display) => {
-    const infoToDisplayUpdated = infoToDisplay;
+    const infoToDisplayUpdated = {};
+    Object.entries(infoToDisplay).forEach((entry) => (infoToDisplayUpdated[entry[0]] = entry[1]));
     infoToDisplayUpdated[info] = display;
     setInfoToDisplay(infoToDisplayUpdated);
   };
