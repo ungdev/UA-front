@@ -10,7 +10,7 @@ import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
-import { logout } from '../modules/login';
+import { logout, tryLogin, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
@@ -101,8 +101,13 @@ const Navbar = ({ isLoggedIn, action }) => {
           tabIndex="0"
           className="logout"
           onClick={() => {
-            dispatch(logout);
-            setMobileMenuVisible(false);
+            if (isFakeConnection()) {
+              dispatch(logBackToAdmin);
+              setMobileMenuVisible(false);
+            } else {
+              dispatch(logout);
+              setMobileMenuVisible(false);
+            }
           }}>
           Déconnexion
         </a>

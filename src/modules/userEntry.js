@@ -100,7 +100,7 @@ export const refundCart = (id) => async (dispatch, getState) => {
 };
 
 export const connectAs = (id) => async (dispatch, getState) => {
-  localStorage.setItem('utt-arena-admin-token', getState().login.user.token);
+  localStorage.setItem('utt-arena-admin-token', getState().login.token);
   const res = await API.post(`admin/auth/login/${id}`);
   localStorage.setItem('utt-arena-userid', res.data.user.id);
   dispatch(saveToken(res.data.token));
