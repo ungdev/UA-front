@@ -119,7 +119,7 @@ Table.defaultProps = {
   emptyText: '(Vide)',
   pagination: false,
   paginationOptions: {},
-  onRowClicked: undefined,
+  onRowClicked: () => {},
 };
 
 export default Table;
