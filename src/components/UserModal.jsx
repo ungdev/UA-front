@@ -3,17 +3,29 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserModalVisible, validatePay, saveUser, refundCart, connectAs } from '../modules/userEntry';
 import { fetchTournaments } from '../modules/tournament';
-import { Modal, Button, Radio, Input, Card } from './UI';
+import { Modal, Button, Radio, Checkbox, Input, Card } from './UI';
 import moment from 'moment';
 import { API } from '../utils/api';
 import { toast } from 'react-toastify';
 
-const options = [
-  { name: 'Aucune', value: '' },
+const permissionOptions = [
   { name: 'Stream', value: 'stream' },
   { name: 'Entrée', value: 'entry' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
+];
+
+const typeOptions = [
+  { name: 'Joueur', value: 'player' },
+  { name: 'Organisateur', value: 'orga' },
+  { name: 'Coach', value: 'coach' },
+  { name: 'Spectateur', value: 'spectator' },
+  { name: 'Accompagnateur', value: 'attendant' },
+];
+
+const ageOptions = [
+  { name: 'Mineur', value: 'child' },
+  { name: 'Majeur', value: 'adult' },
 ];
 
 const UserModal = ({ searchUser, onClose }) => {
@@ -25,8 +37,26 @@ const UserModal = ({ searchUser, onClose }) => {
     (state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('entry'),
   );
   hasEntryPermission = isAdmin || hasEntryPermission;
-  const [permissions, setPermissions] = useState('');
+  const [permissions, setPermissions] = useState([]);
   const [place, setPlace] = useState('');
+  const [type, setType] = useState(searchUser.type);
+  const [age, setAge] = useState(searchUser.age);
+  const [discordId, setDiscordId] = useState(searchUser.discordId);
+
+  const addPermission = (permission) => {
+    const permissionsUpdated = Array.from(permissions);
+    permissionsUpdated.push(permission);
+    setPermissions(permissionsUpdated);
+  };
+
+  const removePermission = (permission) => {
+    const permissionsUpdated = Array.from(permissions);
+    permissionsUpdated.splice(
+      permissions.findIndex((p) => p === permission),
+      2,
+    );
+    setPermissions(permissionsUpdated);
+  };
 
   const displayCarts = () => {
     return searchUser.carts.map((cart) => {
@@ -104,7 +134,13 @@ const UserModal = ({ searchUser, onClose }) => {
           {isAdmin && (
             <Button
               primary
-              onClick={() => dispatch(saveUser(searchUser.id, { permissions, place }, searchUser.username))}>
+              onClick={() => {
+                const body = { permissions, type, discordId, age };
+                if (place) {
+                  body.place = place;
+                }
+                dispatch(saveUser(searchUser.id, body, searchUser.username));
+              }}>
               Enregistrer
             </Button>
           )}
@@ -139,15 +175,25 @@ const UserModal = ({ searchUser, onClose }) => {
         {/*searchUser && !!searchUser.forUser.length && <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>*/}
         {isAdmin && (
           <>
-            <Radio
-              label="Permission"
-              name="permission"
-              row
-              options={options}
-              value={permissions}
-              onChange={setPermissions}
-            />
+            {permissionOptions.map((option) => (
+              <Checkbox
+                key={option.value}
+                label={option.name}
+                value={permissions.find((permission) => permission === option.value)}
+                onChange={(v) => {
+                  if (v) {
+                    addPermission(option.value);
+                  } else {
+                    removePermission(option.value);
+                  }
+                }}
+                options={permissionOptions}
+              />
+            ))}
+            <Radio label="Type" name="type" row options={typeOptions} value={type} onChange={setType}></Radio>
+            <Radio label="Âge" name="age" row options={ageOptions} value={age} onChange={setAge}></Radio>
             <Input label="Place" value={place} onChange={setPlace} />
+            <Input label="Discord Id" value={discordId} onChange={setDiscordId}></Input>
             {searchUser && displayCarts()}
           </>
         )}
@@ -166,9 +212,12 @@ UserModal.propTypes = {
     firstname: PropTypes.string,
     username: PropTypes.string,
     email: PropTypes.string,
+    type: PropTypes.string,
+    age: PropTypes.string,
     permissions: PropTypes.string,
     hasPaid: PropTypes.bool,
     place: PropTypes.string,
+    discordId: PropTypes.string,
     team: PropTypes.object,
     forUser: PropTypes.object,
     carts: PropTypes.object,
