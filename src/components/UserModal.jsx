@@ -129,7 +129,15 @@ const UserModal = ({ searchUser, onClose }) => {
       buttons={
         <>
           {hasEntryPermission && searchUser && !searchUser.hasPaid && (
-            <Button onClick={() => dispatch(validatePay(searchUser.id))}>Valider le paiement</Button>
+            <Button
+              onClick={() => {
+                dispatch(validatePay(searchUser.id));
+                API.get(`admin/users/${searchUser.id}/carts`).then((res) => {
+                  searchUser.carts = res.data;
+                });
+              }}>
+              Valider le paiement
+            </Button>
           )}
           {isAdmin && (
             <Button
@@ -169,7 +177,7 @@ const UserModal = ({ searchUser, onClose }) => {
           <strong>Équipe :</strong> {searchUser && searchUser.team && searchUser.team.name}
         </p>
         <p>
-          <strong>Tournoi :</strong> {searchUser && searchUser.team && searchUser.team.tournament.name}
+          <strong>Tournoi :</strong> {/*searchUser && searchUser.team && searchUser.team.tournament.name*/}
         </p>
         <p>(Place payée par : pas encore implémenté)</p>
         {/*searchUser && !!searchUser.forUser.length && <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>*/}
