@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
 };
 
 export const fetchUsers =
-  (filters, search, page = 1) =>
+  (filters, search, page = 0) =>
   async (dispatch, getState) => {
     if (!filters) {
       return;
@@ -47,6 +47,7 @@ export const fetchUsers =
         searchFilters[filter] = filters[filter];
       }
     });
+    console.log(page);
     let res = await API.get(
       `admin/users` +
         `?page=${page}` +
