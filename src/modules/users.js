@@ -51,7 +51,7 @@ export const fetchUsers =
       `admin/users` +
         `?page=${page}` +
         (search === '' ? '' : '&search=' + search) +
-        (!searchFilters.length ? '' : '&' + new URLSearchParams(searchFilters).toString()),
+        (!searchFilters.type && !searchFilters.tournament ? '' : '&' + new URLSearchParams(searchFilters).toString()),
     );
     const formatUsers = format(res.data.users);
     dispatch({
