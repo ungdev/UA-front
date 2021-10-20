@@ -47,7 +47,6 @@ export const fetchUsers =
         searchFilters[filter] = filters[filter];
       }
     });
-    console.log(page);
     let res = await API.get(
       `admin/users` +
         `?page=${page}` +
