@@ -62,23 +62,20 @@ const UserModal = ({ searchUser, onClose }) => {
     return searchUser.carts.map((cart) => {
       const cartItems = cart.cartItems.map((cartItem) => (
         <li key={cartItem.id}>
-          {cartItem.quantity}x {cartItem.itemId /*item.name*/}{' '}
-          {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}
+          {cartItem.quantity}x {cartItem.item.name} {cartItem.attribute ? `(${cartItem.attribute.label})` : ''}
           <br />
           (Pour{' '}
           <a
             className="link-to-seller"
             onClick={async () => {
-              const res = await API.get(`admin/users?page=1&username=${cartItem.forUser.username}`);
-              if (res.data.users.length !== 1) {
-                if (res.data.users.length) {
-                  toast.error('Plusieurs utilisateurs ont ce pseudo');
-                } else {
-                  toast.error("Cet utilisateur n'existe pas");
-                }
-              }
-              //searchUser = res.data;
-              searchUser.username = 'salut !';
+              const res = await API.get(`admin/users?userId=${cartItem.forUser.id}`);
+              if (res.data.users.length !== 1) return toast.error("Cet utilisateur n'existe pas");
+              const [targetUser] = res.data.users;
+              const { data: carts } = await API.get(`admin/users/${targetUser.id}/carts`);
+              onClose?.(null, {
+                ...targetUser,
+                carts,
+              });
             }}>
             {cartItem.forUser.username}
           </a>
@@ -106,7 +103,12 @@ const UserModal = ({ searchUser, onClose }) => {
                     <br />
                   </>
                 )}
-                <strong>Prix :</strong> {cart.price}€<br />
+                <strong>Prix :</strong>{' '}
+                {(cart.totalPrice / 100).toLocaleString(undefined, {
+                  style: 'currency',
+                  currency: 'EUR',
+                })}
+                <br />
               </p>
               <ul className="cart-items">{cartItems}</ul>
               {cart.transactionState === 'paid' && (

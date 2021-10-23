@@ -231,7 +231,9 @@ const Users = () => {
           });
         }}
       />
-      {searchingUser && <UserModal searchUser={searchingUser} onClose={() => setSearchingUser(undefined)}></UserModal>}
+      {searchingUser && (
+        <UserModal searchUser={searchingUser} onClose={(...[, user]) => setSearchingUser(user)}></UserModal>
+      )}
     </div>
   );
 };
