@@ -192,6 +192,10 @@ const Wrapper = ({ Component }) => {
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
 
+    if (permissions.includes('admin')) {
+      menu.push({ title: 'Mails', href: '/admin/mails' });
+    }
+
     if (permissions.includes('entry') || permissions.includes('admin')) {
       menu.push({ title: 'Entrée', href: '/admin/entry' });
     }
