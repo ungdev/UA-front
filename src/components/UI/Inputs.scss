@@ -1,6 +1,7 @@
 .input,
 .select,
-.textarea {
+.textarea,
+.rich-textarea {
   display: block;
   position: relative;
   margin: 14px 0;
@@ -9,7 +10,8 @@
 
 .input .input-label,
 .select .select-label,
-.textarea .textarea-label {
+.textarea .textarea-label,
+.rich-textarea .rich-textarea-label {
   display: block;
   padding-bottom: 2px;
   color: #858585;
@@ -18,7 +20,8 @@
 
 .input input,
 .select select,
-.textarea textarea {
+.textarea textarea,
+.rich-textarea-editor {
   width: calc(100% - 16px);
   border: none;
   border-radius: 0;
@@ -32,15 +35,21 @@
   width: 100%;
 }
 
-.textarea textarea {
+.textarea textarea,
+.rich-textarea .rich-textarea-editor {
   resize: vertical;
   height: 100px;
   min-height: 50px;
 }
 
+.rich-textarea-editor:hover {
+  cursor: text;
+}
+
 .input .line,
 .select .line,
-.textarea .line {
+.textarea .line,
+.rich-textarea .line {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -51,7 +60,8 @@
 
 .input .line::after,
 .select .line::after,
-.textarea .line::after {
+.textarea .line::after,
+.rich-textarea .line::after {
   content: '';
   display: block;
   position: absolute;
@@ -66,6 +76,7 @@
 
 .input input:focus + .line::after,
 .select select:focus + .line::after,
-.textarea textarea:focus + .line::after {
+.textarea textarea:focus + .line::after,
+.rich-textarea .rich-textarea-editor:focus + .line::after {
   opacity: 1;
 }
