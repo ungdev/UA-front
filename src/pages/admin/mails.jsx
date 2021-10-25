@@ -15,12 +15,12 @@ const Mails = () => {
   return (
     <div id="admin-mails">
       <Input label="Objet :" value={subject} onChange={setSubject}></Input>
-      <Button leftIcon="fas fa-paper-plane" onClick={() => {}}>
-        Envoyer
-      </Button>
       <RichTextArea onChange={setMail} label="Corps du mail">
         {mail}
       </RichTextArea>
+      <Button leftIcon="fas fa-paper-plane" primary={true} onClick={() => {}}>
+        Envoyer
+      </Button>
     </div>
   );
 };

@@ -1,0 +1,47 @@
+.rich-textarea {
+  & > .wrapper {
+    border: 1px solid $light-color;
+    border-radius: 3px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+
+    &:focus-within {
+      box-shadow: 0px 0px 5px #ccc;
+    }
+
+    & > .header {
+      display: flex;
+      flex-flow: row wrap;
+      padding: 5px;
+      gap: 5px;
+      align-items: center;
+      border-bottom: 1px solid $light-color;
+
+      & > .buttonWrapper {
+        margin: 0 !important;
+      }
+
+      & button.button.empty {
+        border: none !important;
+        width: 2em !important;
+        height: 2em !important;
+        border-radius: 3px !important;
+        padding: 0 !important;
+        background-color: inherit !important;
+      }
+
+      & button.button.empty:hover {
+        background-color: #e4e4e4 !important;
+      }
+
+      & button.button.empty[active] {
+        background-color: #dedede !important;
+      }
+    }
+
+    & > .rich-textarea-editor {
+      overflow: hidden auto;
+      min-height: 150px !important;
+    }
+  }
+}

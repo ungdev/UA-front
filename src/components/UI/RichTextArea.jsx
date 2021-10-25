@@ -108,9 +108,11 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    * enclosing the current user selection (along with the position of the selection bounds in these nodes)
    */
   const getSelection = () => {
+    const selection = window.getSelection();
+    if (!ref.current.contains(selection.anchorNode || !ref.current.contains(selection.focusNode))) return;
+
     // Update computed node positions
     updateTreeView();
-    const selection = window.getSelection();
     // Anchor node is the node where selection begins
     const anchorNodeId = findNodeId(selection.anchorNode);
     // Focus node is the node where selection ends
@@ -285,19 +287,21 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const setStyleInSelection = (style) => {
     const selection = getSelection();
+    if (!selection) return;
     setStyle(style, selection);
     onChange(buildContent());
   };
 
   return (
     <div className={`rich-textarea ${className}`}>
-      <Button leftIcon="fas fa-italic" onClick={() => setStyleInSelection('italic')}></Button>
-      <Button leftIcon="fas fa-bold" onClick={() => setStyleInSelection('bold')}></Button>
-      <label>
-        <div className="rich-textarea-label">{label}</div>
+      <div className="rich-textarea-label">{label}</div>
+      <div className="wrapper">
+        <div className="header">
+          <Button leftIcon="fas fa-bold" onClick={() => setStyleInSelection('bold')}></Button>
+          <Button leftIcon="fas fa-italic" onClick={() => setStyleInSelection('italic')}></Button>
+        </div>
         {editor}
-        <div className="line" />
-      </label>
+      </div>
     </div>
   );
 };
