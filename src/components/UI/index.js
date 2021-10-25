@@ -15,7 +15,7 @@ import Textarea from './Textarea';
 import Title from './Title';
 import VideoContainer from './VideoContainer';
 import LogoSVG from './LogoSVG';
-import RichTextarea from './RichTextarea';
+import RichTextArea from './RichTextArea';
 
 export {
   Button,
@@ -35,5 +35,5 @@ export {
   Title,
   VideoContainer,
   LogoSVG,
-  RichTextarea,
+  RichTextArea,
 };
