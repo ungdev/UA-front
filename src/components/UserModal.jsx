@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserModalVisible, validatePay, saveUser, refundCart, connectAs } from '../modules/userEntry';
-import { fetchTournaments } from '../modules/tournament';
+import { validatePay, saveUser, refundCart, connectAs } from '../modules/userEntry';
 import { Modal, Button, Radio, Checkbox, Input, Card } from './UI';
 import moment from 'moment';
 import { API } from '../utils/api';
@@ -30,18 +29,22 @@ const ageOptions = [
 
 const UserModal = ({ searchUser, onClose }) => {
   const dispatch = useDispatch();
-  const isAdmin = useSelector(
-    (state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('admin'),
-  );
-  let hasEntryPermission = useSelector(
-    (state) => state.login.user && state.login.user.permissions && state.login.user.permissions.includes('entry'),
-  );
-  hasEntryPermission = isAdmin || hasEntryPermission;
+  const isAdmin = useSelector((state) => state.login.user?.permissions?.includes?.('admin'));
+  let hasEntryPermission =
+    useSelector((state) => state.login.user?.permissions?.includes?.('entry')) || hasEntryPermission;
   const [permissions, setPermissions] = useState([]);
   const [place, setPlace] = useState('');
-  const [type, setType] = useState(searchUser.type);
-  const [age, setAge] = useState(searchUser.age);
-  const [discordId, setDiscordId] = useState(searchUser.discordId);
+  const [type, setType] = useState();
+  const [age, setAge] = useState();
+  const [discordId, setDiscordId] = useState('');
+
+  useEffect(() => {
+    setPermissions(searchUser.permissions);
+    setPlace(searchUser.place || '');
+    setType(searchUser.type);
+    setAge(searchUser.age);
+    setDiscordId(searchUser.discordId || '');
+  }, [searchUser]);
 
   const addPermission = (permission) => {
     const permissionsUpdated = Array.from(permissions);
@@ -51,10 +54,7 @@ const UserModal = ({ searchUser, onClose }) => {
 
   const removePermission = (permission) => {
     const permissionsUpdated = Array.from(permissions);
-    permissionsUpdated.splice(
-      permissions.findIndex((p) => p === permission),
-      2,
-    );
+    permissionsUpdated.splice(permissionsUpdated.indexOf(permission), 1);
     setPermissions(permissionsUpdated);
   };
 
@@ -77,7 +77,7 @@ const UserModal = ({ searchUser, onClose }) => {
                 carts,
               });
             }}>
-            {cartItem.forUser.username}
+            {cartItem.forUser.username ?? `${searchUser.attendant.firstname} ${searchUser.attendant.lastname}`}
           </a>
           )
         </li>
@@ -145,17 +145,17 @@ const UserModal = ({ searchUser, onClose }) => {
             <Button
               primary
               onClick={() => {
-                const body = { permissions, type, discordId, age };
-                if (place) {
-                  body.place = place;
-                }
+                const body = { permissions, type, discordId: discordId || null, age, place: place || null };
                 dispatch(saveUser(searchUser.id, body, searchUser.username));
               }}>
               Enregistrer
             </Button>
           )}
           {isAdmin && (
-            <Button primary onClick={() => dispatch(connectAs(searchUser.id))}>
+            <Button
+              primary
+              onClick={() => dispatch(connectAs(searchUser.id))}
+              disabled={searchUser.type === 'attendant'}>
               Se connecter en tant que cet utilisateur
             </Button>
           )}
@@ -164,46 +164,90 @@ const UserModal = ({ searchUser, onClose }) => {
       containerClassName="user-modal">
       <>
         <p>
-          <strong>Nom :</strong> {searchUser && searchUser.lastname}
+          <strong>Nom :</strong> {searchUser?.lastname}
         </p>
         <p>
-          <strong>Prénom :</strong> {searchUser && searchUser.firstname}
+          <strong>Prénom :</strong> {searchUser?.firstname}
         </p>
-        <p>
-          <strong>Pseudo :</strong> {searchUser && searchUser.username}
-        </p>
-        <p>
-          <strong>Email :</strong> {searchUser && searchUser.email}
-        </p>
-        <p>
-          <strong>Équipe :</strong> {searchUser && searchUser.team && searchUser.team.name}
-        </p>
-        <p>
-          <strong>Tournoi :</strong> {/*searchUser && searchUser.team && searchUser.team.tournament.name*/}
-        </p>
-        <p>(Place payée par : pas encore implémenté)</p>
-        {/*searchUser && !!searchUser.forUser.length && <p>(Place payée par : {searchUser.forUser[0].userCart.email})</p>*/}
+        {searchUser.type !== 'attendant' && (
+          <>
+            <p>
+              <strong>Pseudo :</strong> {searchUser?.username}
+            </p>
+            <p>
+              <strong>Email :</strong> {searchUser?.email}
+            </p>
+            <p>
+              <strong>Équipe :</strong>{' '}
+              {searchUser?.team?.name ?? (
+                <>
+                  <em className="default">N'a pas encore d'équipe</em>
+                </>
+              )}
+            </p>
+            <p>
+              <strong>Tournoi :</strong>{' '}
+              {searchUser?.team?.tournament?.name ?? (
+                <>
+                  <em className="default">N'est pas encore inscrit à un tournoi</em>
+                </>
+              )}
+            </p>
+            {searchUser.attendant && (
+              <>
+                <p>
+                  <strong>Accompagnateur :</strong> {searchUser.attendant.lastname} {searchUser.attendant.firstname}
+                </p>
+              </>
+            )}
+          </>
+        )}
         {isAdmin && (
           <>
-            {permissionOptions.map((option) => (
-              <Checkbox
-                key={option.value}
-                label={option.name}
-                value={permissions.find((permission) => permission === option.value)}
-                onChange={(v) => {
-                  if (v) {
-                    addPermission(option.value);
-                  } else {
-                    removePermission(option.value);
-                  }
-                }}
-                options={permissionOptions}
-              />
-            ))}
-            <Radio label="Type" name="type" row options={typeOptions} value={type} onChange={setType}></Radio>
-            <Radio label="Âge" name="age" row options={ageOptions} value={age} onChange={setAge}></Radio>
-            <Input label="Place" value={place} onChange={setPlace} />
-            <Input label="Discord Id" value={discordId} onChange={setDiscordId}></Input>
+            <div className="row">
+              <div className="key">Permissions :</div>
+              <div className="checkbox-container">
+                {permissionOptions.map((option) => (
+                  <Checkbox
+                    key={option.value}
+                    label={option.name}
+                    value={permissions.find((permission) => permission === option.value)}
+                    onChange={(v) => {
+                      if (v) {
+                        addPermission(option.value);
+                      } else {
+                        removePermission(option.value);
+                      }
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+            <Radio
+              label="Type"
+              name="type"
+              row
+              options={typeOptions}
+              value={type}
+              onChange={setType}
+              disabled={searchUser.type === 'attendant'}></Radio>
+            <Radio
+              label="Âge"
+              name="age"
+              row
+              options={ageOptions}
+              value={age}
+              onChange={setAge}
+              disabled={
+                searchUser.type === 'attendant' ||
+                (searchUser.hasPaid && searchUser.age === 'child' && searchUser.attendant != null)
+              }></Radio>
+            {searchUser.type !== 'attendant' && (
+              <>
+                <Input label="Place" value={place} onChange={setPlace} />
+                <Input label="Discord Id" value={discordId} onChange={setDiscordId}></Input>
+              </>
+            )}
             {searchUser && displayCarts()}
           </>
         )}
@@ -224,12 +268,12 @@ UserModal.propTypes = {
     email: PropTypes.string,
     type: PropTypes.string,
     age: PropTypes.string,
-    permissions: PropTypes.string,
+    attendant: PropTypes.object,
+    permissions: PropTypes.arrayOf(PropTypes.string),
     hasPaid: PropTypes.bool,
     place: PropTypes.string,
     discordId: PropTypes.string,
     team: PropTypes.object,
-    forUser: PropTypes.object,
     carts: PropTypes.object,
   }).isRequired,
   /**

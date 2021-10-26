@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Radio, Input, Button, Table, Checkbox } from '../../components/UI';
 import UserModal from '../../components/UserModal';
-import { setUserModalVisible } from '../../modules/userEntry';
 import { fetchUsers, displayUser } from '../../modules/users';
 import { API } from '../../utils/api';
+import { SET_SEARCH_USER } from '../../modules/userEntry';
 
 const columnTitles = {
   fullname: 'Nom',
@@ -63,7 +63,7 @@ const Users = () => {
   const [filters, _setFilters] = useState(INITIAL_FILTERS);
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector((state) => state.login.user);
-  const { users, isFetched, total, page } = useSelector((state) => state.users);
+  const { users, isFetched, total, page, itemsPerPage } = useSelector((state) => state.users);
   // The user that is displayed in the modal. If undefined, the modal is not shown
   const [searchingUser, setSearchingUser] = useState();
   // The information that is displayed in the table
@@ -100,6 +100,14 @@ const Users = () => {
   const applySearch = () => {
     dispatch(fetchUsers(filters, search));
     _setFilters(INITIAL_FILTERS);
+  };
+
+  const openSearchModal = (searchUser) => {
+    dispatch({
+      type: SET_SEARCH_USER,
+      searchUser,
+    });
+    setSearchingUser(searchUser);
   };
 
   // Update only 1 information display state
@@ -207,13 +215,13 @@ const Users = () => {
         paginationOptions={{
           total,
           page,
-          pageSize: 25,
+          pageSize: itemsPerPage,
           goToPage: (page) => dispatch(fetchUsers(filters, search, page)),
         }}
         onRowClicked={async (i) => {
           const user = users[i];
           const res = await API.get(`admin/users/${user.id}/carts`);
-          setSearchingUser({
+          openSearchModal({
             id: user.id,
             lastname: user.lastname,
             firstname: user.firstname,
@@ -226,13 +234,13 @@ const Users = () => {
             place: user.place,
             discordId: user.discordId,
             team: user.team,
-            forUser: undefined,
+            attendant: user.attendant,
             carts: res.data,
           });
         }}
       />
       {searchingUser && (
-        <UserModal searchUser={searchingUser} onClose={(...[, user]) => setSearchingUser(user)}></UserModal>
+        <UserModal searchUser={searchingUser} onClose={(...[, user]) => openSearchModal(user)}></UserModal>
       )}
     </div>
   );

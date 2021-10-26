@@ -36,6 +36,17 @@
       font-size: 14px;
       margin: 5px 5px 0 0;
       z-index: 0;
+      cursor: pointer;
+    }
+
+    &[disabled] {
+      + .radio-value {
+        cursor: not-allowed;
+      }
+
+      + .radio-value::before {
+        filter: grayscale(0.1) brightness(0.7);
+      }
     }
 
     &:checked {

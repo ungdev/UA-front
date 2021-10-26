@@ -52,15 +52,18 @@ const Table = ({
     {pagination && (
       <div className="table-footer">
         <p>
-          Page {paginationOptions.page + 1} / {Math.ceil(paginationOptions.total / paginationOptions.pageSize)}
+          Page {paginationOptions.page + 1} / {Math.ceil(paginationOptions.total / paginationOptions.pageSize) || 1}
         </p>
         <i
           className="fas fa-chevron-left pointer"
-          onClick={() => paginationOptions.goToPage(paginationOptions.page - 1)}
+          onClick={() => paginationOptions.page < 1 || paginationOptions.goToPage(paginationOptions.page - 1)}
         />
         <i
           className="fas fa-chevron-right pointer"
-          onClick={() => paginationOptions.goToPage(paginationOptions.page + 1)}
+          onClick={() =>
+            paginationOptions.page >= paginationOptions.total / paginationOptions.pageSize - 1 ||
+            paginationOptions.goToPage(paginationOptions.page + 1)
+          }
         />
       </div>
     )}

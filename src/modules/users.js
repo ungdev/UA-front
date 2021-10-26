@@ -8,6 +8,7 @@ const initialState = {
   users: [],
   total: 0,
   page: 0,
+  itemsPerPage: 25,
   filters: {},
 };
 
@@ -19,7 +20,7 @@ const format = (users) => {
     teamName: user.team ? user.team.name : user.type === 'visitor' ? '(spectateur)' : '',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scanned ? '✔' : '✖',
-    permissionsLabel: user.permissions || '',
+    permissionsLabel: user.permissions.join(', ') || '',
   }));
 };
 
@@ -59,6 +60,7 @@ export const fetchUsers =
       users: formatUsers,
       total: res.data.totalItems,
       page,
+      itemsPerPage: res.data.itemsPerPage,
       isFetched: true,
     });
   };

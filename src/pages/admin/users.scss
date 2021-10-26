@@ -5,6 +5,16 @@
     margin-bottom: 25px;
     border: 2px solid $primary-color;
     border-radius: 4px;
+
+    hr {
+      background: $primary-color !important;
+    }
+  }
+
+  .info-to-display {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
   }
 
   .users-table {
@@ -14,6 +24,13 @@
     tbody tr:hover {
       background-color: #cccccc;
       cursor: pointer;
+    }
+
+    tbody > tr > td:nth-child(4),
+    tbody > tr > td:nth-child(5),
+    tbody > tr > td:nth-child(6),
+    tbody > tr > td:nth-child(9) {
+      text-align: center;
     }
   }
 

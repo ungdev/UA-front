@@ -79,9 +79,9 @@ export const validatePay = (id) => async (dispatch, getState) => {
 
 export const saveUser = (id, body, username) => async (dispatch, getState) => {
   const userModal = getState().userEntry.searchUser;
-  await API.patch(`admin/users/${id}`, body);
+  const { data: user } = await API.patch(`admin/users/${id}`, body);
   toast.success(`${username} mis à jour`);
-  dispatch(updateUser({ ...userModal, ...body }));
+  dispatch(updateUser({ ...userModal, ...user }));
   dispatch({
     type: SET_VISIBLE,
     visible: false,
