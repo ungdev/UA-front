@@ -10,7 +10,7 @@ import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
-import { logout, tryLogin, isFakeConnection, logBackToAdmin } from '../modules/login';
+import { logout, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
@@ -54,7 +54,6 @@ const Navbar = ({ isLoggedIn, action }) => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
-  const isUserVisible = useSelector((state) => state.userEntry.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
   const hasOrgaPermission = useSelector(
     (state) => state.login.user && _hasOrgaPermission(state.login.user.permissions),
@@ -102,7 +101,7 @@ const Navbar = ({ isLoggedIn, action }) => {
           className="logout"
           onClick={() => {
             if (isFakeConnection()) {
-              dispatch(logBackToAdmin);
+              dispatch(logBackToAdmin());
               setMobileMenuVisible(false);
             } else {
               dispatch(logout);

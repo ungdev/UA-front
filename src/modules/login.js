@@ -162,7 +162,7 @@ export const isFakeConnection = () => {
   return localStorage.hasOwnProperty('utt-arena-admin-token');
 };
 
-export const logBackToAdmin = async (dispatch) => {
+export const logBackToAdmin = () => async (dispatch) => {
   dispatch(saveToken(localStorage.getItem('utt-arena-admin-token')));
   localStorage.removeItem('utt-arena-admin-token');
   const res = await API.get('users/current');
