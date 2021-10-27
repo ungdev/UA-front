@@ -128,13 +128,7 @@ const UserModal = ({ searchUser, onClose }) => {
       buttons={
         <>
           {hasEntryPermission && searchUser && !searchUser.hasPaid && (
-            <Button
-              onClick={() => {
-                dispatch(validatePay(searchUser.id));
-                API.get(`admin/users/${searchUser.id}/carts`).then((res) => {
-                  searchUser.carts = res.data;
-                });
-              }}>
+            <Button onClick={() => dispatch(validatePay(searchUser.id))} disabled={!searchUser.type}>
               Valider le paiement
             </Button>
           )}
