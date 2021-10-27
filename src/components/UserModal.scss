@@ -1,6 +1,19 @@
 .user-modal {
   width: 500px !important;
 
+  .cart-refused,
+  .cart-canceled,
+  .cart-refunded,
+  .cart-pending {
+    opacity: 0.6;
+  }
+
+  .cart-refused,
+  .cart-canceled,
+  .cart-refunded {
+    background: repeating-linear-gradient(45deg, $light-color, $light-color 10px, transparent 10px, transparent 20px);
+  }
+
   .cart-items > li {
     margin-bottom: 10px;
   }

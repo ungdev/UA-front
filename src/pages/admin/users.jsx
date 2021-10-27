@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { Radio, Input, Button, Table, Checkbox } from '../../components/UI';
 import UserModal from '../../components/UserModal';
-import { fetchUsers, displayUser } from '../../modules/users';
-import { API } from '../../utils/api';
-import { SET_SEARCH_USER } from '../../modules/userEntry';
+import { fetchUsers, lookupUser } from '../../modules/users';
 
 const columnTitles = {
   fullname: 'Nom',
@@ -65,7 +63,7 @@ const Users = () => {
   const isLoggedIn = useSelector((state) => state.login.user);
   const { users, isFetched, total, page, itemsPerPage } = useSelector((state) => state.users);
   // The user that is displayed in the modal. If undefined, the modal is not shown
-  const [searchingUser, setSearchingUser] = useState();
+  const searchUser = useSelector((state) => state.users.lookupUser);
   // The information that is displayed in the table
   const [infoToDisplay, setInfoToDisplay] = useState({
     fullname: true,
@@ -102,14 +100,6 @@ const Users = () => {
     _setFilters(INITIAL_FILTERS);
   };
 
-  const openSearchModal = (searchUser) => {
-    dispatch({
-      type: SET_SEARCH_USER,
-      searchUser,
-    });
-    setSearchingUser(searchUser);
-  };
-
   // Update only 1 information display state
   const updateInfoToDisplay = (info, display) => {
     const infoToDisplayUpdated = {};
@@ -126,13 +116,6 @@ const Users = () => {
       return tableColumns;
     }, []);
   };
-
-  const formatUsers = users
-    ? users.map((user) => ({
-        ...user,
-        action: <i className="fas fa-cog pointer" onClick={() => dispatch(displayUser(user))} />,
-      }))
-    : [];
 
   return (
     <div id="admin-users">
@@ -209,7 +192,7 @@ const Users = () => {
 
       <Table
         columns={getTableColumns()}
-        dataSource={formatUsers}
+        dataSource={users}
         className="users-table"
         pagination
         paginationOptions={{
@@ -218,30 +201,9 @@ const Users = () => {
           pageSize: itemsPerPage,
           goToPage: (page) => dispatch(fetchUsers(filters, search, page)),
         }}
-        onRowClicked={async (i) => {
-          const user = users[i];
-          const res = await API.get(`admin/users/${user.id}/carts`);
-          openSearchModal({
-            id: user.id,
-            lastname: user.lastname,
-            firstname: user.firstname,
-            username: user.username,
-            email: user.email,
-            type: user.type,
-            age: user.age,
-            permissions: user.permissions,
-            hasPaid: user.hasPaid,
-            place: user.place,
-            discordId: user.discordId,
-            team: user.team,
-            attendant: user.attendant,
-            carts: res.data,
-          });
-        }}
+        onRowClicked={(i) => dispatch(lookupUser(users[i]))}
       />
-      {searchingUser && (
-        <UserModal searchUser={searchingUser} onClose={(...[, user]) => openSearchModal(user)}></UserModal>
-      )}
+      {searchUser && <UserModal searchUser={searchUser} onClose={() => dispatch(lookupUser())}></UserModal>}
     </div>
   );
 };

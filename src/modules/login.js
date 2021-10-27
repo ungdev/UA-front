@@ -173,3 +173,15 @@ export const logBackToAdmin = async (dispatch) => {
   });
   Router.push('/admin');
 };
+
+export const connectAs = (id) => async (dispatch, getState) => {
+  localStorage.setItem('utt-arena-admin-token', getState().login.token);
+  const res = await API.post(`admin/auth/login/${id}`);
+  localStorage.setItem('utt-arena-userid', res.data.user.id);
+  dispatch(saveToken(res.data.token));
+  dispatch({
+    type: SET_USER,
+    user: res.data.user,
+  });
+  Router.push('/dashboard');
+};

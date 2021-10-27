@@ -19,7 +19,9 @@ const Table = ({
       <thead>
         <tr className="table-header">
           {columns.map((column) => (
-            <th key={column.key}>{column.title}</th>
+            <th className={`table-column-${column.key}`} key={column.key}>
+              {column.title}
+            </th>
           ))}
         </tr>
         <tr>
@@ -33,7 +35,9 @@ const Table = ({
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (
-                  <td key={`${row[column.key]}-${i}${j}`} className={lastColumn ? 'align-right' : ''}>
+                  <td
+                    key={`${row[column.key]}-${i}${j}`}
+                    className={`table-column-${column.key}` + (lastColumn ? ' align-right' : '')}>
                     {row[column.key]}
                   </td>
                 );
@@ -52,7 +56,7 @@ const Table = ({
     {pagination && (
       <div className="table-footer">
         <p>
-          Page {paginationOptions.page + 1} / {Math.ceil(paginationOptions.total / paginationOptions.pageSize) || 1}
+          Page {paginationOptions.page + 1} / {Math.ceil(paginationOptions.total / paginationOptions.pageSize)}
         </p>
         <i
           className="fas fa-chevron-left pointer"

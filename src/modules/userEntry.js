@@ -1,10 +1,6 @@
 import { toast } from 'react-toastify';
 
-import Router from 'next/router';
-
 import { API } from '../utils/api';
-import { updateUser } from './users';
-import { saveToken, SET_USER } from './login';
 
 export const SET_VISIBLE = 'userEntry/SET_VISIBLE';
 export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
@@ -64,49 +60,4 @@ export const scan = (barcode) => async (dispatch) => {
     type: SET_BARCODE_USER,
     barcodeUser: res.data,
   });
-};
-
-export const validatePay = (id) => async (dispatch, getState) => {
-  const userModal = getState().userEntry.searchUser;
-  await API.post(`admin/users/${id}/force-pay`);
-  toast.success('Paiement validé');
-  dispatch(updateUser({ ...userModal, hasPaid: true }));
-  dispatch({
-    type: SET_VISIBLE,
-    visible: false,
-  });
-};
-
-export const saveUser = (id, body, username) => async (dispatch, getState) => {
-  const userModal = getState().userEntry.searchUser;
-  const { data: user } = await API.patch(`admin/users/${id}`, body);
-  toast.success(`${username} mis à jour`);
-  dispatch(updateUser({ ...userModal, ...user }));
-  dispatch({
-    type: SET_VISIBLE,
-    visible: false,
-  });
-};
-
-export const refundCart = (id) => async (dispatch, getState) => {
-  await API.put(`carts/${id}`);
-  const userModal = getState().userEntry.searchUser;
-  toast.success('Le panier a été marqué comme remboursé');
-  dispatch(updateUser({ ...userModal, hasPaid: false }));
-  dispatch({
-    type: SET_VISIBLE,
-    visible: false,
-  });
-};
-
-export const connectAs = (id) => async (dispatch, getState) => {
-  localStorage.setItem('utt-arena-admin-token', getState().login.token);
-  const res = await API.post(`admin/auth/login/${id}`);
-  localStorage.setItem('utt-arena-userid', res.data.user.id);
-  dispatch(saveToken(res.data.token));
-  dispatch({
-    type: SET_USER,
-    user: res.data.user,
-  });
-  Router.push('/dashboard');
 };

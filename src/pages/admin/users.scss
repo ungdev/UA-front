@@ -26,10 +26,10 @@
       cursor: pointer;
     }
 
-    tbody > tr > td:nth-child(4),
-    tbody > tr > td:nth-child(5),
-    tbody > tr > td:nth-child(6),
-    tbody > tr > td:nth-child(9) {
+    tr > .table-column-paidLabel,
+    tr > .table-column-scannedLabel,
+    tr > .table-column-permissionsLabel,
+    tr > .table-column-place {
       text-align: center;
     }
   }

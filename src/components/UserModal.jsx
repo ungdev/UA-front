@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { validatePay, saveUser, refundCart, connectAs } from '../modules/userEntry';
+import { validatePay, saveUser, refundCart, lookupUser } from '../modules/users';
+import { connectAs } from '../modules/login';
 import { Modal, Button, Radio, Checkbox, Input, Card } from './UI';
 import moment from 'moment';
 import { API } from '../utils/api';
@@ -30,8 +31,7 @@ const ageOptions = [
 const UserModal = ({ searchUser, onClose }) => {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.login.user?.permissions?.includes?.('admin'));
-  let hasEntryPermission =
-    useSelector((state) => state.login.user?.permissions?.includes?.('entry')) || hasEntryPermission;
+  let hasEntryPermission = useSelector((state) => state.login.user?.permissions?.includes?.('entry')) || isAdmin;
   const [permissions, setPermissions] = useState([]);
   const [place, setPlace] = useState('');
   const [type, setType] = useState();
@@ -71,11 +71,7 @@ const UserModal = ({ searchUser, onClose }) => {
               const res = await API.get(`admin/users?userId=${cartItem.forUser.id}`);
               if (res.data.users.length !== 1) return toast.error("Cet utilisateur n'existe pas");
               const [targetUser] = res.data.users;
-              const { data: carts } = await API.get(`admin/users/${targetUser.id}/carts`);
-              onClose?.(null, {
-                ...targetUser,
-                carts,
-              });
+              return dispatch(lookupUser(targetUser));
             }}>
             {cartItem.forUser.username ?? `${searchUser.attendant.firstname} ${searchUser.attendant.lastname}`}
           </a>
@@ -91,6 +87,7 @@ const UserModal = ({ searchUser, onClose }) => {
 
       return (
         <Card
+          className={`cart-${cart.transactionState}`}
           key={cart.transactionId}
           content={
             <>
@@ -146,7 +143,7 @@ const UserModal = ({ searchUser, onClose }) => {
               primary
               onClick={() => {
                 const body = { permissions, type, discordId: discordId || null, age, place: place || null };
-                dispatch(saveUser(searchUser.id, body, searchUser.username));
+                dispatch(saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname));
               }}>
               Enregistrer
             </Button>
@@ -196,7 +193,7 @@ const UserModal = ({ searchUser, onClose }) => {
             {searchUser.attendant && (
               <>
                 <p>
-                  <strong>Accompagnateur :</strong> {searchUser.attendant.lastname} {searchUser.attendant.firstname}
+                  <strong>Accompagnateur :</strong> {searchUser.attendant.firstname} {searchUser.attendant.lastname}
                 </p>
               </>
             )}
