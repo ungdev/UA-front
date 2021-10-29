@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { validatePay, saveUser, refundCart, lookupUser } from '../modules/users';
 import { connectAs } from '../modules/login';
-import { Modal, Button, Radio, Checkbox, Input, Card } from './UI';
+import { Modal, Button, Radio, Checkbox, Input, Card, Textarea } from './UI';
 import moment from 'moment';
 import { API } from '../utils/api';
 import { toast } from 'react-toastify';
@@ -31,7 +31,13 @@ const ageOptions = [
 const UserModal = ({ searchUser, onClose }) => {
   const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.login.user?.permissions?.includes?.('admin'));
+  const isAnim = useSelector((state) => state.login.user?.permissions?.includes?.('anim'));
   let hasEntryPermission = useSelector((state) => state.login.user?.permissions?.includes?.('entry')) || isAdmin;
+  const [lastname, setLastname] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [customMessage, setCustomMessage] = useState('');
   const [permissions, setPermissions] = useState([]);
   const [place, setPlace] = useState('');
   const [type, setType] = useState();
@@ -39,6 +45,11 @@ const UserModal = ({ searchUser, onClose }) => {
   const [discordId, setDiscordId] = useState('');
 
   useEffect(() => {
+    setLastname(searchUser.lastname);
+    setFirstname(searchUser.firstname);
+    setUsername(searchUser.username);
+    setEmail(searchUser.email);
+    setCustomMessage(searchUser.customMessage);
     setPermissions(searchUser.permissions);
     setPlace(searchUser.place || '');
     setType(searchUser.type);
@@ -132,11 +143,22 @@ const UserModal = ({ searchUser, onClose }) => {
               Valider le paiement
             </Button>
           )}
-          {isAdmin && (
+          {(isAdmin || isAnim) && (
             <Button
               primary
               onClick={() => {
-                const body = { permissions, type, discordId: discordId || null, age, place: place || null };
+                const body = {
+                  type,
+                  discordId: discordId || null,
+                  age,
+                  place: place || null,
+                  username,
+                  lastname,
+                  firstname,
+                  email,
+                  customMessage,
+                };
+                if (isAdmin) body.permissions = permissions;
                 dispatch(saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname));
               }}>
               Enregistrer
@@ -154,20 +176,18 @@ const UserModal = ({ searchUser, onClose }) => {
       }
       containerClassName="user-modal">
       <>
-        <p>
-          <strong>Nom :</strong> {searchUser?.lastname}
-        </p>
-        <p>
-          <strong>Prénom :</strong> {searchUser?.firstname}
-        </p>
+        <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin && !isAnim} />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin && !isAnim} />
         {searchUser.type !== 'attendant' && (
           <>
-            <p>
-              <strong>Pseudo :</strong> {searchUser?.username}
-            </p>
-            <p>
-              <strong>Email :</strong> {searchUser?.email}
-            </p>
+            <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin && !isAnim} />
+            <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin && !isAnim} />
+            <Textarea
+              label="Infos complémentaires"
+              value={customMessage}
+              onChange={setCustomMessage}
+              disabled={!isAdmin && !isAnim}
+            />
             <p>
               <strong>Équipe :</strong>{' '}
               {searchUser?.team?.name ?? (
@@ -214,6 +234,10 @@ const UserModal = ({ searchUser, onClose }) => {
                 ))}
               </div>
             </div>
+          </>
+        )}
+        {(isAnim || isAdmin) && (
+          <>
             <Radio
               label="Type"
               name="type"
@@ -221,7 +245,7 @@ const UserModal = ({ searchUser, onClose }) => {
               options={typeOptions}
               value={type}
               onChange={setType}
-              disabled={searchUser.type === 'attendant'}></Radio>
+              disabled={searchUser.hasPaid}></Radio>
             <Radio
               label="Âge"
               name="age"
@@ -239,9 +263,9 @@ const UserModal = ({ searchUser, onClose }) => {
                 <Input label="Discord Id" value={discordId} onChange={setDiscordId}></Input>
               </>
             )}
-            {searchUser && displayCarts()}
           </>
         )}
+        {isAdmin && searchUser && displayCarts()}
       </>
     </Modal>
   );
@@ -266,6 +290,7 @@ UserModal.propTypes = {
     discordId: PropTypes.string,
     team: PropTypes.object,
     carts: PropTypes.object,
+    customMessage: PropTypes.string,
   }).isRequired,
   /**
    * The callback function to call when the modal is closed

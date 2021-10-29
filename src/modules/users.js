@@ -72,8 +72,11 @@ export const fetchUsers =
     });
   };
 
-export const lookupUser = (user) => async (dispatch) => {
-  const res = user ? await API.get(`admin/users/${user.id}/carts`) : null;
+export const lookupUser = (user) => async (dispatch, getState) => {
+  const res =
+    user && getState().login.user?.permissions?.includes?.('admin')
+      ? await API.get(`admin/users/${user.id}/carts`)
+      : null;
   dispatch({
     type: SET_LOOKUP_USER,
     lookupUser: user
@@ -91,7 +94,8 @@ export const lookupUser = (user) => async (dispatch) => {
           discordId: user.discordId,
           team: user.team,
           attendant: user.attendant,
-          carts: res.data,
+          customMessage: user.customMessage,
+          carts: res?.data,
         }
       : null,
   });
