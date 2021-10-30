@@ -79,10 +79,10 @@ const Wrapper = ({ Component }) => {
     }
     if (!isAdmin && isAdminPanel) {
       redirect = '/dashboard';
+    } else if (pathname === '/admin' && (permissions.includes('admin') || permissions.includes('anim'))) {
+      redirect = '/admin/users';
     } else if (pathname === '/admin' && permissions.includes('entry')) {
       redirect = '/admin/entry';
-    } else if (pathname === '/admin' && permissions.includes('admin')) {
-      redirect = '/admin/users';
     }
   }
 
