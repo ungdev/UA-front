@@ -11,7 +11,6 @@ import PanelHeader from './PanelHeader';
 import { autoLogin, validate } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed, isShopAllowed } from '../utils/settings';
-import { API } from '../utils/api';
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -45,7 +44,7 @@ const Wrapper = ({ Component }) => {
       setHasPaid(user.hasPaid);
     }
     if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-      setIsAdmin(true);
+      setIsAdmin(!isAdmin);
     }
   });
 
@@ -80,10 +79,10 @@ const Wrapper = ({ Component }) => {
     }
     if (!isAdmin && isAdminPanel) {
       redirect = '/dashboard';
-    } else if (pathname === '/admin' && permissions === 'entry') {
-      redirect = '/admin/entry';
-    } else if (pathname === '/admin' && permissions === 'admin') {
+    } else if (pathname === '/admin' && (permissions.includes('admin') || permissions.includes('anim'))) {
       redirect = '/admin/users';
+    } else if (pathname === '/admin' && permissions.includes('entry')) {
+      redirect = '/admin/entry';
     }
   }
 
@@ -181,11 +180,11 @@ const Wrapper = ({ Component }) => {
   const linksAdmin = () => {
     const menu = [];
 
-    if (permissions === 'anim' || permissions === 'admin') {
+    if (permissions.includes('anim') || permissions.includes('admin')) {
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
     }
 
-    if (permissions === 'entry' || permissions === 'admin') {
+    if (permissions.includes('entry') || permissions.includes('admin')) {
       menu.push({ title: 'Entrée', href: '/admin/entry' });
     }
 

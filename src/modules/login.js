@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.payload,
+        token: action.token,
       };
     case SET_USER:
       return {
@@ -68,6 +68,7 @@ export const autoLogin = () => async (dispatch) => {
       // Delete not working values
       localStorage.removeItem('utt-arena-token');
       localStorage.removeItem('utt-arena-userid');
+      localStorage.removeItem('utt-arena-admin-token');
     }
   }
   dispatch({
@@ -113,6 +114,7 @@ export const logout = async (dispatch) => {
   setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
+  localStorage.removeItem('utt-arena-admin-token');
   Router.push('/');
 };
 
@@ -154,4 +156,32 @@ export const validate = (registerToken) => async (dispatch, getState) => {
     type: SET_USER,
     user: res.data.user,
   });
+};
+
+export const isFakeConnection = () => {
+  return localStorage.hasOwnProperty('utt-arena-admin-token');
+};
+
+export const logBackToAdmin = () => async (dispatch) => {
+  dispatch(saveToken(localStorage.getItem('utt-arena-admin-token')));
+  localStorage.removeItem('utt-arena-admin-token');
+  const res = await API.get('users/current');
+  localStorage.setItem('utt-arena-userid', res.data.id);
+  dispatch({
+    type: SET_USER,
+    user: res.data,
+  });
+  Router.push('/admin');
+};
+
+export const connectAs = (id) => async (dispatch, getState) => {
+  localStorage.setItem('utt-arena-admin-token', getState().login.token);
+  const res = await API.post(`admin/auth/login/${id}`);
+  localStorage.setItem('utt-arena-userid', res.data.user.id);
+  dispatch(saveToken(res.data.token));
+  dispatch({
+    type: SET_USER,
+    user: res.data.user,
+  });
+  Router.push('/dashboard');
 };
