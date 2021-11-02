@@ -7,11 +7,10 @@ import SimpleBar from 'simplebar-react';
 
 import { Button, Modal } from './UI';
 import LoginModal from './LoginModal';
-import UserModal from './UserModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
-import { logout } from '../modules/login';
+import { logout, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
 import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
@@ -55,7 +54,6 @@ const Navbar = ({ isLoggedIn, action }) => {
 
   const dispatch = useDispatch();
   const isVisible = useSelector((state) => state.loginModal.visible);
-  const isUserVisible = useSelector((state) => state.userEntry.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
   const hasOrgaPermission = useSelector(
     (state) => state.login.user && _hasOrgaPermission(state.login.user.permissions),
@@ -102,8 +100,13 @@ const Navbar = ({ isLoggedIn, action }) => {
           tabIndex="0"
           className="logout"
           onClick={() => {
-            dispatch(logout);
-            setMobileMenuVisible(false);
+            if (isFakeConnection()) {
+              dispatch(logBackToAdmin());
+              setMobileMenuVisible(false);
+            } else {
+              dispatch(logout);
+              setMobileMenuVisible(false);
+            }
           }}>
           Déconnexion
         </a>
@@ -221,7 +224,6 @@ const Navbar = ({ isLoggedIn, action }) => {
           Les inscriptions ouvriront le vendredi 8 octobre 2021 à 19h00.
         </Modal>
       )}
-      <UserModal isVisible={isUserVisible} />
       {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}
     </div>
   );

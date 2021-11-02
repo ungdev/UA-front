@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Radio = ({ label, options, name, value, onChange, row, className }) => (
+const Radio = ({ label, options, name, value, onChange, row, className, disabled }) => (
   <div className={`radio ${row ? 'row' : ''} ${className}`}>
     <div className="radio-label">{label}</div>
 
@@ -14,6 +14,7 @@ const Radio = ({ label, options, name, value, onChange, row, className }) => (
             value={option.value}
             checked={value === option.value}
             onChange={(e) => onChange(e.target.value)}
+            disabled={disabled}
           />
 
           <div className="radio-value">
@@ -61,6 +62,10 @@ Radio.propTypes = {
    * Class to apply to the container
    */
   className: PropTypes.string,
+  /**
+   * Whether the input should be disabled
+   */
+  disabled: PropTypes.bool,
 };
 
 Radio.defaultProps = {
@@ -68,6 +73,7 @@ Radio.defaultProps = {
   onChange: () => {},
   row: false,
   className: '',
+  disabled: false,
 };
 
 export default Radio;

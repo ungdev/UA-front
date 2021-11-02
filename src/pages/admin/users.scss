@@ -5,11 +5,33 @@
     margin-bottom: 25px;
     border: 2px solid $primary-color;
     border-radius: 4px;
+
+    hr {
+      background: $primary-color !important;
+    }
+  }
+
+  .info-to-display {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
   }
 
   .users-table {
     width: 100%;
     margin: 20px 0;
+
+    tbody tr:hover {
+      background-color: #cccccc;
+      cursor: pointer;
+    }
+
+    tr > .table-column-paidLabel,
+    tr > .table-column-scannedLabel,
+    tr > .table-column-permissionsLabel,
+    tr > .table-column-place {
+      text-align: center;
+    }
   }
 
   .pointer {

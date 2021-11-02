@@ -1,2 +1,2 @@
-export const hasOrgaPermission = (permission: string) =>
-  permission === 'admin' || permission === 'anim' || permission === 'entry' || permission === 'orga';
+export const hasOrgaPermission = (permissions: string[]) =>
+  permissions.includes('admin') || permissions.includes('anim') || permissions.includes('entry');
