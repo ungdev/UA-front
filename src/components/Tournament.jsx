@@ -121,7 +121,7 @@ const Tournament = ({ assets, tournamentId, alt }) => {
           <>
             <Title level={2}>
               {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} (
-              {tournament.lockedTeamsCount}/${tournament.lockedTeamsCount + tournament.placesLeft})
+              {tournament.lockedTeamsCount}/{tournament.lockedTeamsCount + tournament.placesLeft})
             </Title>
             <Table
               columns={tournament.playersPerTeam === 1 ? [{ title: 'Joueurs', key: 'players' }] : columns}
