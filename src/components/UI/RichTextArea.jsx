@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '.';
 
@@ -8,17 +8,55 @@ import { Button } from '.';
  */
 const RichTextArea = ({ label, className, children, onChange }) => {
   let content = [];
-  const ref = React.useRef();
+  const editorRef = React.useRef();
+  const bufferRef = React.useRef();
+  const [loading, setLoading] = useState(true);
+  /**
+   * Remembering of last children permits to know if editor DOM should be reloaded
+   * (more information in the next comment)
+   * If it is not the same as the property, then we should reload the DOM.
+   */
+  const [lastChildren, setLastChildren] = useState(children);
+  if (lastChildren !== children) {
+    setLastChildren(children);
+    setLoading(true);
+  }
+  /**
+   * At the beginning, the editor must be empty.
+   * If there is already text in it, if user removes this text, React could throw an error : on reload,
+   * it will try to remove each removed element. If the parent of an element is already removed
+   * (for example a <strong> in a <em>, which have both be deleted by the user),
+   * then removing the child element will result in a crash.
+   * So we put that in a buffer, that we render just during the loading of the DOM, controled by state "loading".
+   * When DOM is entirely loaded for the first time, we can copy the buffer into the textarea.
+   */
   const editor = (
     <div
       className="rich-textarea-editor"
       contentEditable={true}
       spellCheck={true}
-      ref={ref}
-      suppressContentEditableWarning={true}>
-      {children}
-    </div>
+      ref={editorRef}
+      suppressContentEditableWarning={true}></div>
   );
+
+  // Called when DOM loaded the editor or the buffer.
+  // We need both to have been loaded.
+  useEffect(() => {
+    if (editorRef.current && bufferRef.current && loading) {
+      // Reset editor
+      while (editorRef.current.lastChild) {
+        editorRef.current.removeChild(editorRef.current.lastChild);
+      }
+      // Initialize editor
+      for (let i = bufferRef.current.childNodes.length - 1; i >= 0; i--) {
+        editorRef.current.insertBefore(bufferRef.current.childNodes[i].cloneNode(true), editorRef.current.firstChild);
+      }
+      // Remove buffer from DOM (and from React DOM)
+      setLoading(false);
+    }
+  }, [editorRef, bufferRef, loading]);
+
+  const [renderBuffer, setRenderBuffer] = useState(false);
 
   /**
    * A Node computed by a {@link RichTextArea} when applying styles on
@@ -56,7 +94,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const updateTreeView = () => {
     content = [];
-    if (!!ref.current) updateTreeViewNode(ref.current, -1);
+    if (!!editorRef.current) updateTreeViewNode(editorRef.current, -1);
   };
 
   /**
@@ -109,7 +147,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const getSelection = () => {
     const selection = window.getSelection();
-    if (!ref.current.contains(selection.anchorNode || !ref.current.contains(selection.focusNode))) return;
+    if (!editorRef.current.contains(selection.anchorNode || !editorRef.current.contains(selection.focusNode))) return;
 
     // Update computed node positions
     updateTreeView();
@@ -141,13 +179,17 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   const findNodeId = (searchedNode) => {
     return content.find((node) => {
       const genealogy = getNodeGenealogy(node);
-      let currentHTMLNode = ref.current;
+      let currentHTMLNode = editorRef.current;
       genealogy.forEach((nodeId) => {
         const childId = getChildId(content[nodeId]);
         currentHTMLNode = currentHTMLNode.childNodes[childId];
       });
       return currentHTMLNode === searchedNode;
     }).id;
+  };
+
+  const getSiblings = (node) => {
+    return node.parent === -1 ? content.filter((n) => n.parent === -1).map((n) => n.id) : content[node.parent].children;
   };
 
   /**
@@ -214,7 +256,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
     content.push(newStyleNode, newTextNode);
 
     // Adding the new id to the parent's children array
-    const siblings = content[node.parent].children;
+    const siblings = getSiblings(node);
     const originatingSiblingId = siblings.indexOf(node.id);
     siblings.splice(originatingSiblingId + 1, 0, newStyleNode.id);
     if (end !== node.children.length) {
@@ -302,6 +344,20 @@ const RichTextArea = ({ label, className, children, onChange }) => {
         </div>
         {editor}
       </div>
+      {(() => {
+        if (loading) {
+          return (
+            <div className="rich-textarea-buffer" ref={bufferRef}>
+              {children}
+            </div>
+          );
+        }
+        return (
+          <div className="rich-textarea-buffer" ref={bufferRef}>
+            {children}
+          </div>
+        );
+      })()}
     </div>
   );
 };
