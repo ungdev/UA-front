@@ -147,7 +147,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const getSelection = () => {
     const selection = window.getSelection();
-    if (!editorRef.current.contains(selection.anchorNode || !editorRef.current.contains(selection.focusNode))) return;
+    if (!editorRef.current.contains(selection.anchorNode) || !editorRef.current.contains(selection.focusNode)) return;
 
     // Update computed node positions
     updateTreeView();
@@ -155,10 +155,25 @@ const RichTextArea = ({ label, className, children, onChange }) => {
     const anchorNodeId = findNodeId(selection.anchorNode);
     // Focus node is the node where selection ends
     const focusNodeId = findNodeId(selection.focusNode);
-    return {
-      from: { nodeId: anchorNodeId, offset: selection.anchorOffset },
-      to: { nodeId: focusNodeId, offset: selection.focusOffset },
-    };
+    const result = {};
+    const anchorNodePosition = { nodeId: anchorNodeId, offset: selection.anchorOffset };
+    const focusNodePosition = { nodeId: focusNodeId, offset: selection.focusOffset };
+    if (anchorNodeId === focusNodeId) {
+      if (selection.anchorOffset <= selection.focusOffset) {
+        result.from = anchorNodePosition;
+        result.to = focusNodePosition;
+      } else {
+        result.from = focusNodePosition;
+        result.to = anchorNodePosition;
+      }
+    } else if (content[anchorNodeId].startsAt < content[focusNodeId].startsAt) {
+      result.from = anchorNodePosition;
+      result.to = focusNodePosition;
+    } else {
+      result.from = focusNodePosition;
+      result.to = anchorNodePosition;
+    }
+    return result;
   };
 
   /**
@@ -235,6 +250,14 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   const addStyleOnText = (style, node, start, end) => {
     if (end === -1) {
       end = node.children.length;
+    }
+
+    let parent = node.parent;
+    while (parent !== -1) {
+      if (content[parent].type === style) {
+        return;
+      }
+      parent = content[parent].parent;
     }
 
     const newTextNode = {
