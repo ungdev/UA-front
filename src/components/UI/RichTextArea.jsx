@@ -375,6 +375,11 @@ const RichTextArea = ({ label, className, children, onChange }) => {
 
     // Now let's compute the cursor text position
     const node = content[findNodeId(domNode)];
+    if (!node)
+      return {
+        position: 0,
+        line: 0,
+      };
     if (node.type === 'container') {
       const child = content[node.children[offset]];
       return { position: (child ?? node).startsAt + (child ?? node).textLength, line };
@@ -390,7 +395,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const setCursorPosition = (selection, position, line) => {
     const range = document.createRange();
-    let cursor = content.filter((node) => node.parent < 0 && node.type === 'container')[line].startsAt;
+    let cursor = content.filter((node) => node.parent < 0 && node.type === 'container')[line]?.startsAt ?? 0;
     const findNode = (parent) => {
       const elem = {
         node: parent,
@@ -408,7 +413,8 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       }
       return elem;
     };
-    const { node: targetNode } = findNode(ref.current.childNodes[line]);
+    const lineNode = ref.current.childNodes[line];
+    const { node: targetNode } = lineNode ? findNode(lineNode) : { node: ref.current };
     range.setStart(targetNode, position - cursor);
     range.collapse(true);
 
