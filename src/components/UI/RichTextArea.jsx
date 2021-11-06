@@ -192,6 +192,19 @@ const RichTextArea = ({ label, className, children, onChange }) => {
     const result = {};
     const anchorNodePosition = { nodeId: anchorNodeId, offset: selection.anchorOffset };
     const focusNodePosition = { nodeId: focusNodeId, offset: selection.focusOffset };
+
+    // If the selection has not been done on a textNode we have to get textNode bounds
+    if (anchorNodeId === focusNodeId && content[anchorNodeId].type !== 'text') {
+      do {
+        anchorNodePosition.nodeId = content[anchorNodePosition.nodeId].children[anchorNodePosition.offset];
+        anchorNodePosition.offset = 0;
+      } while (content[anchorNodePosition.nodeId].type !== 'text');
+      do {
+        focusNodePosition.nodeId = content[focusNodePosition.nodeId].children[focusNodePosition.offset - 1];
+        focusNodePosition.offset = content[focusNodePosition.nodeId].children.length;
+      } while (content[focusNodePosition.nodeId].type !== 'text');
+    }
+
     if (anchorNodeId === focusNodeId) {
       if (selection.anchorOffset <= selection.focusOffset) {
         result.from = anchorNodePosition;
