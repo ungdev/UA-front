@@ -35,11 +35,11 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       const selection = window.getSelection();
       const userSelection =
         ref.current.contains(selection.anchorNode) && ref.current.contains(selection.focusNode)
-          ? Math.max(
-              content[findNodeId(selection.anchorNode)]?.startsAt + selection.anchorOffset,
-              content[findNodeId(selection.focusNode)]?.startsAt + selection.focusOffset,
-            )
-          : 0;
+          ? computeSelectionPosition(selection.anchorNode, selection.anchorOffset)
+          : {
+              position: 0,
+              line: 0,
+            };
 
       for (const mutation of mutations.reverse())
         if (mutation.type === 'childList') {
@@ -68,6 +68,9 @@ const RichTextArea = ({ label, className, children, onChange }) => {
             startsAt: rootTextNode.startsAt,
           }) - 1;
 
+      // Flat content (ie. merge siblings that should be merged)
+      content.filter((node) => node.parent < 0).forEach(flatten);
+
       // Wake up React, we need you for once !
       onChange(buildContent());
 
@@ -75,33 +78,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       observer.takeRecords();
 
       // Replace user selection at proper position
-      if (selection && userSelection) {
-        const range = document.createRange();
-        let cursor = 0;
-        const findNode = (parent) => {
-          const elem = {
-            node: parent,
-            found: false,
-          };
-          for (const child of parent.childNodes) {
-            if (child.nodeName === '#text') {
-              if (cursor + child.length > userSelection) return { node: child, found: true };
-              cursor += child.length;
-            } else {
-              const finds = findNode(child);
-              if (finds.found) return finds;
-            }
-            elem.node = child;
-          }
-          return elem;
-        };
-        const { node: targetNode } = findNode(ref.current);
-        range.setStart(targetNode, userSelection - cursor);
-        range.collapse(true);
-
-        selection.removeAllRanges();
-        selection.addRange(range);
-      }
+      if (selection && userSelection) setCursorPosition(selection, userSelection.position, userSelection.line);
     });
 
     // Start watching for DOM updates
@@ -378,6 +355,92 @@ const RichTextArea = ({ label, className, children, onChange }) => {
         startNode.startsAt < node.startsAt &&
         endNode.startsAt + endNode.textLength > node.startsAt + node.textLength,
     );
+
+  /**
+   * Computes the position of the cursor
+   * @param {Node} domNode the node to look for
+   * @param {number} offset the offset of the selection in the {@link node}
+   * @returns {{ position: number; line: number; }} the selection position
+   */
+  const computeSelectionPosition = (domNode, offset) => {
+    // At first, compute paragraph position
+    let line = 0;
+    for (let i = 0; i < ref.current.childNodes.length; i++) {
+      const child = ref.current.childNodes[i];
+      if (child.contains(domNode)) {
+        line = i;
+        break;
+      }
+    }
+
+    // Now let's compute the cursor text position
+    const node = content[findNodeId(domNode)];
+    if (node.type === 'container') {
+      const child = content[node.children[offset]];
+      return { position: (child ?? node).startsAt + (child ?? node).textLength, line };
+    }
+    return { position: node.startsAt + offset, line };
+  };
+
+  /**
+   * Places the cursor at the chosen position
+   * @param {Selection} selection the initial user {@link Selection}
+   * @param {number} position the position of the cursor in the text
+   * @param {number} line the number of the line selected by the cursor
+   */
+  const setCursorPosition = (selection, position, line) => {
+    const range = document.createRange();
+    let cursor = content.filter((node) => node.parent < 0 && node.type === 'container')[line].startsAt;
+    const findNode = (parent) => {
+      const elem = {
+        node: parent,
+        found: false,
+      };
+      for (const child of parent.childNodes) {
+        if (child.nodeName === '#text') {
+          if (cursor + child.length >= position) return { node: child, found: true };
+          cursor += child.length;
+        } else {
+          const finds = findNode(child);
+          if (finds.found) return finds;
+        }
+        elem.node = child;
+      }
+      return elem;
+    };
+    const { node: targetNode } = findNode(ref.current.childNodes[line]);
+    range.setStart(targetNode, position - cursor);
+    range.collapse(true);
+
+    selection.removeAllRanges();
+    selection.addRange(range);
+  };
+
+  /**
+   * Flattens node hierarchy (recursively)
+   * @param {RichTextAreaNode} node the node to flatten
+   */
+  const flatten = (node) => {
+    if (Array.isArray(node.children)) {
+      node.children = node.children.reduce((flattened, next) => {
+        const currentSigbling = content[next];
+        if (!flattened.length) {
+          flatten(currentSigbling);
+          return [next];
+        }
+        const previousSibling = content[flattened[flattened.length - 1]];
+        if (previousSibling.type !== currentSigbling.type) {
+          flatten(currentSigbling);
+          return [...flattened, next];
+        }
+        previousSibling.textLength += currentSigbling.textLength;
+        if (typeof previousSibling.children === 'string') previousSibling.children += currentSigbling.children;
+        else previousSibling.children = [...previousSibling.children, ...currentSigbling.children];
+        flatten(previousSibling);
+        return flattened;
+      }, []);
+    }
+  };
 
   /**
    * Builds the content of the {@link RichTextArea} into react elements.
