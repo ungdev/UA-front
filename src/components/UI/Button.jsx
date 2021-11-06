@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, className }) => {
+const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, className, tooltip }) => {
   return (
     <div
       className={`buttonWrapper ${primary ? 'primary' : ''} ${className} ${noStyle ? 'no-style' : ''} ${
@@ -23,6 +23,7 @@ const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disable
             className={`button ${primary ? 'primary' : ''} ${className ? className : ''} ${noStyle ? 'no-style' : ''} ${
               !children ? 'empty' : ''
             }`}
+            data-tooltip={tooltip}
             onClick={onClick}
             disabled={disabled}>
             {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
@@ -72,6 +73,10 @@ Button.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Tooltip
+   */
+  tooltip: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -84,6 +89,7 @@ Button.defaultProps = {
   disabled: false,
   noStyle: false,
   className: '',
+  tooltip: null,
 };
 
 export default Button;

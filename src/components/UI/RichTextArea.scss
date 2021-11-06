@@ -2,7 +2,6 @@
   & > .wrapper {
     border: 1px solid $light-color;
     border-radius: 3px;
-    overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
 
     &:focus-within {

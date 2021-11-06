@@ -87,6 +87,48 @@
     transition: all 0.3s, color 0s;
     transform: translate(2 * $buttonLength, 2 * $buttonLength) scale(1);
   }
+
+  & > [data-tooltip] {
+    position: relative;
+  }
+
+  & > [data-tooltip]::before,
+  & > [data-tooltip]::after {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s 1.5s ease-in-out;
+  }
+
+  & > [data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: $dark-color;
+    color: $light-color;
+    padding: 5px 8px;
+    border-radius: $buttonRadius;
+    font-size: 12px;
+    width: max-content;
+    max-width: 200px;
+  }
+
+  & > [data-tooltip]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%) translateY(1px);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent transparent $dark-color transparent;
+  }
+
+  &:hover > [data-tooltip]::before,
+  &:hover > [data-tooltip]::after {
+    opacity: 1;
+  }
 }
 
 .disabled {

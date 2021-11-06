@@ -512,8 +512,11 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       <div className="rich-textarea-label">{label}</div>
       <div className="wrapper">
         <div className="header">
-          <Button leftIcon="fas fa-bold" onClick={() => setStyleInSelection('bold')}></Button>
-          <Button leftIcon="fas fa-italic" onClick={() => setStyleInSelection('italic')}></Button>
+          <Button leftIcon="fas fa-bold" tooltip="Mettre en gras" onClick={() => setStyleInSelection('bold')}></Button>
+          <Button
+            leftIcon="fas fa-italic"
+            tooltip="Mettre en italique"
+            onClick={() => setStyleInSelection('italic')}></Button>
         </div>
         {editor}
       </div>
