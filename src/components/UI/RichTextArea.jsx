@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '.';
 
@@ -7,56 +7,112 @@ import { Button } from '.';
  * that you can add html elements in it so that text can be styled.
  */
 const RichTextArea = ({ label, className, children, onChange }) => {
+  /** @type {RichTextAreaNode[]} */
   let content = [];
-  const editorRef = React.useRef();
-  const bufferRef = React.useRef();
-  const [loading, setLoading] = useState(true);
-  /**
-   * Remembering of last children permits to know if editor DOM should be reloaded
-   * (more information in the next comment)
-   * If it is not the same as the property, then we should reload the DOM.
-   */
-  const [lastChildren, setLastChildren] = useState(children);
-  if (lastChildren !== children) {
-    setLastChildren(children);
-    setLoading(true);
-  }
-  /**
-   * At the beginning, the editor must be empty.
-   * If there is already text in it, if user removes this text, React could throw an error : on reload,
-   * it will try to remove each removed element. If the parent of an element is already removed
-   * (for example a <strong> in a <em>, which have both be deleted by the user),
-   * then removing the child element will result in a crash.
-   * So we put that in a buffer, that we render just during the loading of the DOM, controled by state "loading".
-   * When DOM is entirely loaded for the first time, we can copy the buffer into the textarea.
-   */
+  const ref = useRef();
+  const reactFeedback = useRef(false);
+
   const editor = (
     <div
       className="rich-textarea-editor"
       contentEditable={true}
       spellCheck={true}
-      ref={editorRef}
-      suppressContentEditableWarning={true}></div>
+      ref={ref}
+      suppressContentEditableWarning={true}>
+      {children}
+    </div>
   );
 
-  // Called when DOM loaded the editor or the buffer.
-  // We need both to have been loaded.
   useEffect(() => {
-    if (editorRef.current && bufferRef.current && loading) {
-      // Reset editor
-      while (editorRef.current.lastChild) {
-        editorRef.current.removeChild(editorRef.current.lastChild);
-      }
-      // Initialize editor
-      for (let i = bufferRef.current.childNodes.length - 1; i >= 0; i--) {
-        editorRef.current.insertBefore(bufferRef.current.childNodes[i].cloneNode(true), editorRef.current.firstChild);
-      }
-      // Remove buffer from DOM (and from React DOM)
-      setLoading(false);
-    }
-  }, [editorRef, bufferRef, loading]);
+    const observer = new MutationObserver((mutations, observer) => {
+      // If we trigger a manual React update, we must not execute the callback
+      if (reactFeedback.current) return (reactFeedback.current = false);
 
-  const [renderBuffer, setRenderBuffer] = useState(false);
+      // Update computed content
+      updateTreeView();
+
+      // Find cursor position
+      const selection = window.getSelection();
+      const userSelection =
+        ref.current.contains(selection.anchorNode) && ref.current.contains(selection.focusNode)
+          ? Math.max(
+              content[findNodeId(selection.anchorNode)]?.startsAt + selection.anchorOffset,
+              content[findNodeId(selection.focusNode)]?.startsAt + selection.focusOffset,
+            )
+          : 0;
+
+      for (const mutation of mutations.reverse())
+        if (mutation.type === 'childList') {
+          // Revert all changes as React will handle them
+          for (const addedNode of mutation.addedNodes) addedNode.remove();
+
+          // Restore removed nodes to allow React to remove them (because he feels very easily offended)
+          for (const removedNode of mutation.removedNodes)
+            if (mutation.nextSibling && mutation.nextSibling.parentNode)
+              mutation.target.insertBefore(removedNode, mutation.nextSibling);
+            else if (mutation.previousSibling && mutation.previousSibling.parentNode)
+              mutation.previousSibling.after(removedNode);
+            else mutation.target.prepend(removedNode);
+        }
+
+      // If the user added text with no parent, wrap it into a <p> element
+      const rootTextNodes = content.filter((node) => node.parent < 0 && node.type === 'text');
+      for (const rootTextNode of rootTextNodes)
+        rootTextNode.parent =
+          content.push({
+            id: content.length,
+            children: [rootTextNode.id],
+            parent: -1,
+            type: 'container',
+            textLength: rootTextNode.textLength,
+            startsAt: rootTextNode.startsAt,
+          }) - 1;
+
+      // Wake up React, we need you for once !
+      onChange(buildContent());
+
+      // Clear observer records as we don't want React updates to trigger this callback
+      observer.takeRecords();
+
+      // Replace user selection at proper position
+      if (selection && userSelection) {
+        const range = document.createRange();
+        let cursor = 0;
+        const findNode = (parent) => {
+          const elem = {
+            node: parent,
+            found: false,
+          };
+          for (const child of parent.childNodes) {
+            if (child.nodeName === '#text') {
+              if (cursor + child.length > userSelection) return { node: child, found: true };
+              cursor += child.length;
+            } else {
+              const finds = findNode(child);
+              if (finds.found) return finds;
+            }
+            elem.node = child;
+          }
+          return elem;
+        };
+        const { node: targetNode } = findNode(ref.current);
+        range.setStart(targetNode, userSelection - cursor);
+        range.collapse(true);
+
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    });
+
+    // Start watching for DOM updates
+    observer.observe(ref.current, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Release observer when Component is destroyed
+    return () => observer.disconnect();
+  }, []);
 
   /**
    * A Node computed by a {@link RichTextArea} when applying styles on
@@ -73,7 +129,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    *  id: number;
    *  type: string;
    *  parent: number;
-   *  children: RichTextAreaNode[];
+   *  children: number[];
    *  textLength: number;
    *  startsAt: number;
    * }} RichTextAreaNode
@@ -94,7 +150,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const updateTreeView = () => {
     content = [];
-    if (!!editorRef.current) updateTreeViewNode(editorRef.current, -1);
+    if (!!ref.current) updateTreeViewNode(ref.current, -1);
   };
 
   /**
@@ -107,6 +163,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   const updateTreeViewNode = (parentNode, parentId, cascadedData = { currentId: 0, cumulativeLength: 0 }) =>
     Array.from(parentNode.childNodes).map((element) => {
       // Reserving this place for later (if we don't do that, child nodes will take it)
+      /** @type {RichTextAreaNode} */
       const node = {
         id: -1,
         type: 'undefined',
@@ -147,7 +204,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    */
   const getSelection = () => {
     const selection = window.getSelection();
-    if (!editorRef.current.contains(selection.anchorNode) || !editorRef.current.contains(selection.focusNode)) return;
+    if (!ref.current.contains(selection.anchorNode) || !ref.current.contains(selection.focusNode)) return;
 
     // Update computed node positions
     updateTreeView();
@@ -194,15 +251,20 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   const findNodeId = (searchedNode) => {
     return content.find((node) => {
       const genealogy = getNodeGenealogy(node);
-      let currentHTMLNode = editorRef.current;
+      let currentHTMLNode = ref.current;
       genealogy.forEach((nodeId) => {
         const childId = getChildId(content[nodeId]);
         currentHTMLNode = currentHTMLNode.childNodes[childId];
       });
       return currentHTMLNode === searchedNode;
-    }).id;
+    })?.id;
   };
 
+  /**
+   * Retrieves the siblings of the targeted {@link node}
+   * @param {RichTextAreaNode} node the node to retrieves siblings of
+   * @returns {number[]} the id of the siblings of the {@link node}
+   */
   const getSiblings = (node) => {
     return node.parent === -1 ? content.filter((n) => n.parent === -1).map((n) => n.id) : content[node.parent].children;
   };
@@ -326,7 +388,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   /**
    * Builds a single node (contained in {@link content}) into a react HTML Element.
    * @param {RichTextAreaNode} node the node to build into a react element
-   * @returns {JSX.Element} a react HTML Element containing the whole {@link node}
+   * @returns {JSX.Element | string} a react HTML Element containing the whole {@link node}
    */
   const buildNode = (node) => {
     if (node.type === 'text') {
@@ -335,7 +397,12 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       const children = node.children.map((child) => buildNode(content[child]));
       switch (node.type) {
         case 'container':
-          return <p key={node.id}>{children}</p>;
+          return (
+            <p key={node.id}>
+              {children}
+              <br />
+            </p>
+          );
         case 'italic':
           return <em key={node.id}>{children}</em>;
         case 'bold':
@@ -354,6 +421,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
     const selection = getSelection();
     if (!selection) return;
     setStyle(style, selection);
+    reactFeedback.current = true;
     onChange(buildContent());
   };
 
@@ -367,20 +435,6 @@ const RichTextArea = ({ label, className, children, onChange }) => {
         </div>
         {editor}
       </div>
-      {(() => {
-        if (loading) {
-          return (
-            <div className="rich-textarea-buffer" ref={bufferRef}>
-              {children}
-            </div>
-          );
-        }
-        return (
-          <div className="rich-textarea-buffer" ref={bufferRef}>
-            {children}
-          </div>
-        );
-      })()}
     </div>
   );
 };
