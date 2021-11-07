@@ -73,15 +73,15 @@ const Mails = () => {
                       {tournamentRecipientOptions.find((option) => option.value === tournamentRecipient).label}
                     </>
                   )}
-                  {lockedTeamRecipient === 'unlocked' && tournamentRecipient === 'all' && (
-                    <> qui n'ont pas d'équipe ou</>
-                  )}
                   {lockedTeamRecipient === 'all' || (
                     <> dont l'équipe {lockedTeamRecipient === 'locked' ? 'est' : "n'est pas"} verrouillée</>
                   )}
-                  {lockedTeamRecipient === 'unlocked' && tournamentRecipient === 'all' && (
-                    <> (cela inclut tous les spectateurs)</>
-                  )}
+                </>
+              )}
+              {lockedTeamRecipient === 'all' && tournamentRecipient === 'all' && (
+                <>
+                  <br />
+                  Les utilisateurs dont l'adresse mail n'a pas été vérifiée ne recevront pas ce mail.
                 </>
               )}
             </span>
@@ -101,7 +101,18 @@ const Mails = () => {
               locked: lockedTeamRecipient === 'all' ? null : lockedTeamRecipient === 'locked',
               preview: isPreview,
               subject: subject,
-              content: [], // TODO: serialize content here
+              highlight: {
+                intro: subject, // TODO: implement this
+                title: subject, // TODO: implement this
+              },
+              reason: null, // TODO: implement this
+              content: [
+                // TODO: serialize content here
+                {
+                  title: 'Test section',
+                  components: ['Test content !', 'This should appear as another paragraph'],
+                },
+              ],
             }),
           )
         }>

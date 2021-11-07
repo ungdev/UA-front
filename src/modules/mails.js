@@ -107,8 +107,18 @@ import { API } from '../utils/api';
  * will receive the mail). This can be used to test the layout of the mail before
  * sending it to users.
  * @property {string} subject the title of the mail. At the moment this property
- * will be displayed as the title and as the header of the mail. This will most
- * likely change in a near future.
+ * will be displayed as the subject (that you can read from your mail list)
+ * and as the title of the mail (the text in the dark header, next to the logo).
+ * @property {{
+ *  intro: string;
+ *  title: string;
+ * }} highlight the small "section" right after the dark header. This highlight
+ * section includes two items: the `intro` (a small - contextual - text used to
+ * introduce the &lt;next | end of the&gt; sentence) followed by the `title` (a
+ * huge text)
+ * @property {string} [reason] the reason why this mail was sent to the user.
+ * This value will be written in the footer of the mail (right after the "This
+ * mail has been sent to {{user.email}}" text)
  * @property {MailSection[]} content the sections of the mail. A section is a
  * part of the mail with a bigger title. They are separated by $accent-color
  * dotted lines.
@@ -163,25 +173,36 @@ export const fetchMails = () => async (dispatch) => {
  * @param {Mail} params the details/content of the mail
  */
 export const sendMail =
-  ({ locked, tournamentId, preview, subject, content }) =>
+  ({ locked, tournamentId, preview, subject, content, reason, highlight }) =>
   async (dispatch) => {
     /** @type {Mail} */
     const mailBody = {
       content,
       subject,
       preview,
+      highlight,
     };
     if (tournamentId) mailBody.tournamentId = tournamentId;
     if (typeof locked === 'boolean') mailBody.locked = locked;
+    if (reason) mailBody.reason = reason;
     try {
-      const { malformed, delivered, undelivered } = await API.post('admin/emails', mailBody);
+      toast.info('Envoi des mails en cours...');
+      const {
+        data: { malformed, delivered, undelivered },
+      } = await API.post('admin/emails', mailBody, 60000);
       if (malformed)
-        toast.error(`${malformed} mail${malformed > 1 ? 's' : ''} n'ont pas pu être envoyés (syntaxe invalide)`);
+        toast.error(
+          `${malformed} mail${
+            malformed > 1 ? "s n'ont pas pu être envoyés" : "n'a pas pu être envoyé"
+          } (syntaxe invalide)`,
+        );
       if (undelivered)
-        toast.warning(`${undelivered} mail${malformed > 1 ? 's' : ''} n'ont pas réussi à atteindre leur destination !`);
+        toast.warning(
+          `${undelivered} mail${undelivered > 1 ? "s n'ont" : " n'a"} pas réussi à atteindre leur destination !`,
+        );
       if (delivered) {
         dispatch(() => fetchMails());
-        toast.success(`${delivered} mail${malformed > 1 ? 's' : ''} ont bien été envoyés`);
+        toast.success(`${delivered} mail${delivered > 1 ? 's ont bien été envoyés' : ' a bien été envoyé'}`);
       }
     } catch {}
   };

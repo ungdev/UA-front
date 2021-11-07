@@ -12,6 +12,7 @@ const requestAPI = <T>(
   authorizationHeader: boolean,
   body?: T | undefined,
   disableCache?: boolean,
+  customTimeout?: number,
 ) =>
   new Promise<AxiosResponse<T>>((resolve, reject) => {
     // Create the request
@@ -26,7 +27,7 @@ const requestAPI = <T>(
           : {},
         url: route + (disableCache ? '?nocache=' + new Date().getTime() : ''),
         data: body,
-        timeout: 5000,
+        timeout: customTimeout || 5000,
       })
       // Success
       .then((response) => resolve(response))
@@ -50,7 +51,8 @@ export const setAuthorizationToken = (_token: string) => {
 // Access the API through different HTTP methods
 export const API = {
   get: <T>(route: string) => requestAPI<T>('GET', apiUrl(), route, true),
-  post: <T>(route: string, body: T | undefined) => requestAPI<T>('POST', apiUrl(), route, true, body),
+  post: <T>(route: string, body: T | undefined, timeout?: number) =>
+    requestAPI<T>('POST', apiUrl(), route, true, body, undefined, timeout),
   put: <T>(route: string, body: T | undefined) => requestAPI<T>('PUT', apiUrl(), route, true, body),
   patch: <T>(route: string, body: T | undefined) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
   delete: <T>(route: string) => requestAPI<T>('DELETE', apiUrl(), route, true),
