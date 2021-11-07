@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, RichTextArea, Input, Select, Checkbox } from '../../components/UI';
+import { sendMail } from '../../modules/mails';
 
 const tournamentRecipientOptions = [
   { label: 'Tous', value: 'all' },
@@ -19,6 +21,7 @@ const lockRecipientOptions = [
 ];
 
 const Mails = () => {
+  const dispatch = useDispatch();
   const [subject, setSubject] = useState('');
   const [mail, setMail] = useState(
     <>
@@ -88,7 +91,20 @@ const Mails = () => {
       <RichTextArea onChange={setMail} label="Corps du mail">
         {mail}
       </RichTextArea>
-      <Button leftIcon="fas fa-paper-plane" primary={true} onClick={() => {}}>
+      <Button
+        leftIcon="fas fa-paper-plane"
+        primary={true}
+        onClick={() =>
+          dispatch(
+            sendMail({
+              tournamentId: tournamentRecipient === 'all' ? null : tournamentRecipient,
+              locked: lockedTeamRecipient === 'all' ? null : lockedTeamRecipient === 'locked',
+              preview: isPreview,
+              subject: subject,
+              content: [], // TODO: serialize content here
+            }),
+          )
+        }>
         Envoyer
       </Button>
     </div>
