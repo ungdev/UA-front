@@ -194,7 +194,8 @@ const Users = () => {
               value={display}
               onChange={(state) => {
                 updateInfoToDisplay(infoKey, state);
-              }}></Checkbox>
+              }}
+            />
           );
         })}
       </div>

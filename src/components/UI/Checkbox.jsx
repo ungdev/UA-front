@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 /**
  * Displays a checkbox
  */
-const Checkbox = ({ label, value, onChange, className, autoFocus }) => {
+const Checkbox = ({ label, value, onChange, className, autoFocus, disabled }) => {
   return (
     <label className={`checkbox ${className}`}>
       <input
         type="checkbox"
         checked={value}
-        value={value.toString()}
         onChange={() => {
           onChange(!value);
         }}
+        disabled={disabled}
         autoFocus={autoFocus}
       />
       <div className="ui"></div>
@@ -31,7 +31,7 @@ Checkbox.propTypes = {
   /**
    * Value of the input
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
+  value: PropTypes.bool,
   /**
    * Function called when the value change,
    * the new value is passed as parameter
@@ -45,14 +45,19 @@ Checkbox.propTypes = {
    * Should the input have the focus by default ?
    */
   autoFocus: PropTypes.bool,
+  /**
+   * Should be disabled ?
+   */
+  disabled: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   label: '',
-  value: '',
+  value: false,
   onChange: () => {},
   className: '',
   autoFocus: false,
+  disabled: false,
 };
 
 export default Checkbox;
