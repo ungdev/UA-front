@@ -78,7 +78,7 @@ const Mails = () => {
                   )}
                 </>
               )}
-              {lockedTeamRecipient === 'all' && tournamentRecipient === 'all' && (
+              {lockedTeamRecipient === 'all' && tournamentRecipient === 'all' && !isPreview && (
                 <>
                   <br />
                   Les utilisateurs dont l'adresse mail n'a pas été vérifiée ne recevront pas ce mail.

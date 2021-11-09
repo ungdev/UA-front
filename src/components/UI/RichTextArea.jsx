@@ -55,8 +55,8 @@ const RichTextArea = ({ label, className, children, onChange }) => {
             else mutation.target.prepend(removedNode);
         }
 
-      // If the user added text with no parent, wrap it into a <p> element
-      const rootTextNodes = content.filter((node) => node.parent < 0 && node.type === 'text');
+      // If the user added non-container node with no parent, wrap it into a <p> element
+      const rootTextNodes = content.filter((node) => node.parent < 0 && node.type !== 'container');
       for (const rootTextNode of rootTextNodes)
         rootTextNode.parent =
           content.push({
@@ -102,9 +102,9 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    *  children: string;
    *  textLength: number;
    *  startsAt: number;
-   * } & {
+   * } | {
    *  id: number;
-   *  type: string;
+   *  type: 'container' | 'italic' | 'bold' | 'undefined';
    *  parent: number;
    *  children: number[];
    *  textLength: number;
@@ -150,19 +150,21 @@ const RichTextArea = ({ label, className, children, onChange }) => {
         startsAt: -1,
       };
       content.push(node);
-      node.type = (() => {
-        switch (element.nodeName) {
-          case 'DIV':
-          case 'P':
-            return 'container';
-          case '#text':
-            return 'text';
-          case 'EM':
-            return 'italic';
-          case 'STRONG':
-            return 'bold';
-        }
-      })();
+      switch (element.nodeName) {
+        case 'DIV':
+        case 'P':
+          node.type = 'container';
+          break;
+        case '#text':
+          node.type = 'text';
+          break;
+        case 'EM':
+          node.type = 'italic';
+          break;
+        case 'STRONG':
+          node.type = 'bold';
+          break;
+      }
       node.id = cascadedData.currentId++;
       node.startsAt = cascadedData.cumulativeLength;
       node.children = node.type === 'text' ? element.data : updateTreeViewNode(element, node.id, cascadedData);
@@ -295,7 +297,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
   /**
    * Adds a style on a text node
    * @param {string} style the style to apply on text (eg. italic or bold)
-   * @param {RichTextAreaNode} node the node apply the {@link style} on
+   * @param {Extract<RichTextAreaNode, { type: 'text' }>} node the node apply the {@link style} on
    * @param {number} start the position in the {@link node} where style should start (inclusive)
    * @param {number} end the position in the {@link node} where style should end (exclusive)
    */
@@ -440,9 +442,23 @@ const RichTextArea = ({ label, className, children, onChange }) => {
    * @param {RichTextAreaNode} node the node to flatten
    */
   const flatten = (node) => {
+    let rerun = false;
     if (Array.isArray(node.children)) {
       node.children = node.children.reduce((flattened, next) => {
         const currentSigbling = content[next];
+        if (currentSigbling.type === 'undefined' || currentSigbling.type === 'container') {
+          // Node type is not recognized (or there is a nested container): drop node and insert children into parent
+          // Rerun flattener after updates
+          rerun = true;
+          return [
+            ...flattened,
+            ...currentSigbling.children.filter((subChildId) => {
+              const subChild = content[subChildId];
+              if (subChild) subChild.parent = node.id;
+              return subChild;
+            }),
+          ];
+        }
         if (!flattened.length) {
           flatten(currentSigbling);
           return [next];
@@ -459,6 +475,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
         return flattened;
       }, []);
     }
+    if (rerun) flatten(node);
   };
 
   /**
