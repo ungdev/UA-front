@@ -24,7 +24,9 @@ export default [
     toornamentId: '5045521366727811072',
     format: (
       <>
-        16 équipes de 5 joueurs.<br /><br />
+        16 équipes de 5 joueurs.
+        <br />
+        <br />
         Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports.
       </>
     ),
@@ -52,7 +54,9 @@ export default [
     toornamentId: '5045525084995133440',
     format: (
       <>
-        16 équipes de 5 joueurs.<br /><br />
+        16 équipes de 5 joueurs.
+        <br />
+        <br />
         Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports.
       </>
     ),
@@ -61,7 +65,7 @@ export default [
   {
     name: 'Rocket League',
     shortName: 'rl',
-    players: 96,
+    players: 48,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: '1200€ + lots',
     rewards: (
@@ -78,13 +82,13 @@ export default [
       </ul>
     ),
     toornamentId: '4958829017709346816',
-    format: '32 équipes de 3 joueurs',
+    format: '16 équipes de 3 joueurs',
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
-    players: 80,
+    players: 120,
     image: '/tournaments/csgo.jpg',
     shortRewards: '1600€ + lots',
     rewards: (
@@ -101,7 +105,7 @@ export default [
       </ul>
     ),
     toornamentId: '5045528654683340800',
-    format: '16 équipes de 5 joueurs',
+    format: '24 équipes de 5 joueurs',
     rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
@@ -151,7 +155,10 @@ export default [
     ),
     toornamentId: null,
     format: (
-      <>24 joueurs qualifiés. <a href="https://osu.ppy.sh/community/forums/topics/1409204">Inscription aux qualifications ici.</a></>
+      <>
+        24 joueurs qualifiés.{' '}
+        <a href="https://osu.ppy.sh/community/forums/topics/1409204">Inscription aux qualifications ici.</a>
+      </>
     ),
     rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
   },
