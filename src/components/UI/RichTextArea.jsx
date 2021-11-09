@@ -6,7 +6,7 @@ import { Button } from '.';
  * A {@link RichTextArea} is the equivalent of a regular textarea to the difference
  * that you can add html elements in it so that text can be styled.
  */
-const RichTextArea = ({ label, className, children, onChange }) => {
+const RichTextArea = ({ label, className, children, onChange, placeholder }) => {
   /** @type {RichTextAreaNode[]} */
   let content = [];
   const ref = useRef();
@@ -17,6 +17,7 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       className="rich-textarea-editor"
       contentEditable={true}
       spellCheck={true}
+      data-placeholder={placeholder}
       ref={ref}
       suppressContentEditableWarning={true}>
       {children}
@@ -34,12 +35,9 @@ const RichTextArea = ({ label, className, children, onChange }) => {
       // Find cursor position
       const selection = window.getSelection();
       const userSelection =
-        ref.current.contains(selection.anchorNode) && ref.current.contains(selection.focusNode)
-          ? computeSelectionPosition(selection.anchorNode, selection.anchorOffset)
-          : {
-              position: 0,
-              line: 0,
-            };
+        ref.current.contains(selection.anchorNode) &&
+        ref.current.contains(selection.focusNode) &&
+        computeSelectionPosition(selection.anchorNode, selection.anchorOffset);
 
       for (const mutation of mutations.reverse())
         if (mutation.type === 'childList') {
@@ -546,11 +544,13 @@ RichTextArea.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 RichTextArea.defaultProps = {
   className: '',
   children: '',
+  placeholder: null,
 };
 
 export default RichTextArea;

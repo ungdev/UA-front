@@ -42,13 +42,16 @@
       overflow: hidden auto;
       min-height: 150px !important;
       white-space: pre-line;
-    }
-  }
 
-  & > .rich-textarea-buffer {
-    visibility: hidden;
-    height: 0;
-    margin: 0;
-    padding: 0;
+      &[data-placeholder]:empty::before {
+        content: attr(data-placeholder);
+        color: #858585;
+        font-style: italic;
+      }
+
+      & > p {
+        margin: 0;
+      }
+    }
   }
 }

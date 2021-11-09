@@ -88,7 +88,7 @@ const Mails = () => {
           </div>
         </div>
       </div>
-      <RichTextArea onChange={setMail} label="Corps du mail">
+      <RichTextArea onChange={setMail} placeholder="Entre ton message ici…" label="Corps du mail">
         {mail}
       </RichTextArea>
       <Button

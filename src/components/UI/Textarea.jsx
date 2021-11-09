@@ -4,20 +4,15 @@ import PropTypes from 'prop-types';
 /**
  * Displays a textarea
  */
-const Textarea = ({ label, placeholder, value, onChange, className }) => {
-  Textarea.textarea = <textarea value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />;
-  return (
-    <div className={`textarea ${className}`}>
-      <label>
-        <div className="textarea-label">{label}</div>
-
-        {Textarea.textarea}
-
-        <div className="line" />
-      </label>
-    </div>
-  );
-};
+const Textarea = ({ label, placeholder, value, onChange, className }) => (
+  <div className={`textarea ${className}`}>
+    <label>
+      <div className="textarea-label">{label}</div>
+      <textarea value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+      <div className="line" />
+    </label>
+  </div>
+);
 
 Textarea.propTypes = {
   /**
