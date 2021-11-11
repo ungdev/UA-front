@@ -1,4 +1,4 @@
-import axios, { Method } from 'axios';
+import axios, { AxiosResponse, Method } from 'axios';
 import { toast } from 'react-toastify';
 import { apiUrl, uploadsUrl } from './environment';
 
@@ -15,7 +15,7 @@ const requestAPI = <TResponse, TBody = never>(
   customTimeout?: number,
 ) =>
   axios
-    .request<TBody, TResponse>({
+    .request<TBody, AxiosResponse<TResponse>>({
       baseURL,
       method,
       headers: authorizationHeader
