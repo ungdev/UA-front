@@ -28,6 +28,12 @@
   padding: 8px;
   background: #fff;
   font-size: 1em;
+}
+
+.input input,
+.select select,
+.textarea textarea,
+.rich-textarea > .wrapper:not(.discreet) .rich-textarea-editor {
   font-family: 'Roboto', sans-serif;
 }
 

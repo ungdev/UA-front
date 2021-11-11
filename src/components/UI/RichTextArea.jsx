@@ -1,16 +1,52 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '.';
 
 /**
+ * @template T the serialized data model
+ * @typedef RichTextAreaOptions
+ *
+ * @property {(node: RichTextAreaNode, content: T[]) => T} serializer the serializer used to convert nodes
+ * to application models (in which all the outputs of the {@link RichTextArea} are provided)
+ * @property {(source: T) => [Pick<RichTextAreaNode, 'type' | 'children' | 'textLength'>, T][]} deserializer
+ * the deserializer used to convert application models to {@link RichTextAreaNode}s
+ * @property {(content: T[]) => void} onChange a callback used to retrieve up-to-date serialized data
+ * @property {T[]} initialValue the initial value of the {@link RichTextArea}. Updating this value won't
+ * update the {@link RichTextArea}. Default to `[]`
+ * @property {boolean} discreet whether the {@link RichTextArea} layout should be hidden when not focused
+ * (and not being edited). Default to `false`
+ * @property {string} [placeholder] the text to display in the {@link RichTextArea} when empty
+ * @property {string} className the class names to apply on root element of the {@link RichTextArea}
+ * @property {string} [label] the label of the {@link RichTextArea}. Displayed the same way as all the other inputs
+ */
+
+/**
  * A {@link RichTextArea} is the equivalent of a regular textarea to the difference
  * that you can add html elements in it so that text can be styled.
+ * @template T the serialized data type
+ * @param {RichTextAreaOptions<T>}
  */
-const RichTextArea = ({ label, className, children, onChange, placeholder }) => {
+const RichTextArea = ({
+  label,
+  className,
+  initialValue,
+  onChange,
+  placeholder,
+  serializer,
+  deserializer,
+  discreet,
+}) => {
   /** @type {RichTextAreaNode[]} */
   let content = [];
   const ref = useRef();
   const reactFeedback = useRef(false);
+  const [children, updateChildren] = useState();
+
+  useEffect(() => {
+    deserialize(initialValue, content);
+    reactFeedback.current = initialValue && initialValue.length > 0;
+    updateChildren(buildContent());
+  }, []);
 
   const editor = (
     <div
@@ -19,7 +55,11 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
       spellCheck={true}
       data-placeholder={placeholder}
       ref={ref}
-      suppressContentEditableWarning={true}>
+      suppressContentEditableWarning={true}
+      onInput={() => {
+        updateTreeView();
+        onChange(serialize(content.filter((node) => node.parent < 0)));
+      }}>
       {children}
     </div>
   );
@@ -70,13 +110,16 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
       content.filter((node) => node.parent < 0).forEach(flatten);
 
       // Wake up React, we need you for once !
-      onChange(buildContent());
+      updateChildren(buildContent());
 
       // Clear observer records as we don't want React updates to trigger this callback
       observer.takeRecords();
 
       // Replace user selection at proper position
       if (selection && userSelection) setCursorPosition(selection, userSelection.position, userSelection.line);
+
+      // Update parent
+      onChange(serialize(content.filter((node) => node.parent < 0)));
     });
 
     // Start watching for DOM updates
@@ -194,26 +237,24 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
     const focusNodePosition = { nodeId: focusNodeId, offset: selection.focusOffset };
 
     // If the selection has not been done on a textNode we have to get textNode bounds
-    if (anchorNodeId === focusNodeId && content[anchorNodeId].type !== 'text') {
-      do {
-        anchorNodePosition.nodeId = content[anchorNodePosition.nodeId].children[anchorNodePosition.offset];
-        anchorNodePosition.offset = 0;
-      } while (content[anchorNodePosition.nodeId].type !== 'text');
-      do {
-        focusNodePosition.nodeId = content[focusNodePosition.nodeId].children[focusNodePosition.offset - 1];
-        focusNodePosition.offset = content[focusNodePosition.nodeId].children.length;
-      } while (content[focusNodePosition.nodeId].type !== 'text');
+    while (content[anchorNodePosition.nodeId].type !== 'text') {
+      anchorNodePosition.nodeId = content[anchorNodePosition.nodeId].children[anchorNodePosition.offset];
+      anchorNodePosition.offset = 0;
+    }
+    while (content[focusNodePosition.nodeId].type !== 'text') {
+      focusNodePosition.nodeId = content[focusNodePosition.nodeId].children[focusNodePosition.offset - 1];
+      focusNodePosition.offset = content[focusNodePosition.nodeId].children.length;
     }
 
-    if (anchorNodeId === focusNodeId) {
-      if (selection.anchorOffset <= selection.focusOffset) {
+    if (anchorNodePosition.nodeId === focusNodePosition.nodeId) {
+      if (anchorNodePosition.offset <= focusNodePosition.offset) {
         result.from = anchorNodePosition;
         result.to = focusNodePosition;
       } else {
         result.from = focusNodePosition;
         result.to = anchorNodePosition;
       }
-    } else if (content[anchorNodeId].startsAt < content[focusNodeId].startsAt) {
+    } else if (content[anchorNodePosition.nodeId].startsAt < content[focusNodePosition.nodeId].startsAt) {
       result.from = anchorNodePosition;
       result.to = focusNodePosition;
     } else {
@@ -510,6 +551,54 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
   };
 
   /**
+   * Deserializes raw content to {@link RichTextAreaNode}s and pushes all nodes in {@link store}
+   * @param {T} raw the raw content to deserialize
+   * @param {RichTextAreaNode[]} store an array where to push all nodes to
+   * @returns {RichTextAreaNode[]} the deserialized nodes
+   */
+  const deserialize = (raw, store) => {
+    const nodes = [];
+    const deserializedRoots = deserializer(raw);
+    for (const [deserializedRoot, deserializedRootContent] of deserializedRoots) {
+      const node = {
+        ...deserializedRoot,
+        id: store.length,
+        parent: -1,
+        startsAt: 0,
+      };
+      nodes.push(node);
+      store.push(node);
+      if (deserializedRootContent) {
+        const parsedChildren = deserialize(deserializedRootContent, store);
+        let cursor = 0;
+        parsedChildren.forEach((child) => {
+          child.parent = node.id;
+          child.startsAt += cursor;
+          node.children.push(child.id);
+          cursor += child.textLength;
+        });
+        node.textLength = cursor;
+      }
+    }
+    return nodes;
+  };
+
+  /**
+   * Serializes nodes
+   * @param {RichTextAreaNode[]} nodes the nodes to serialize
+   * @returns {T[]} the serialized nodes
+   */
+  const serialize = (nodes) => {
+    return nodes.map((workingNode) => {
+      const serializedChildren =
+        workingNode.type !== 'text'
+          ? serialize(workingNode.children.map((nodeId) => content[nodeId]).sort((a, b) => a.startsAt - b.startsAt))
+          : [];
+      return serializer(workingNode, serializedChildren);
+    });
+  };
+
+  /**
    * Applies style to the current user selection
    * @param {string} style the style to apply
    * @see {@link addStyleOnText}
@@ -519,13 +608,14 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
     if (!selection) return;
     setStyle(style, selection);
     reactFeedback.current = true;
-    onChange(buildContent());
+    updateChildren(buildContent());
+    onChange(serialize(content.filter((node) => node.parent < 0)));
   };
 
   return (
     <div className={`rich-textarea ${className}`}>
-      <div className="rich-textarea-label">{label}</div>
-      <div className="wrapper">
+      {label && <div className="rich-textarea-label">{label}</div>}
+      <div className={['wrapper', ...(discreet ? ['discreet'] : [])].join(' ')}>
         <div className="header">
           <Button leftIcon="fas fa-bold" tooltip="Mettre en gras" onClick={() => setStyleInSelection('bold')}></Button>
           <Button
@@ -540,17 +630,22 @@ const RichTextArea = ({ label, className, children, onChange, placeholder }) => 
 };
 
 RichTextArea.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node,
+  initialValue: PropTypes.any,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  serializer: PropTypes.func.isRequired,
+  deserializer: PropTypes.func.isRequired,
+  discreet: PropTypes.bool,
 };
 
 RichTextArea.defaultProps = {
   className: '',
-  children: '',
+  initialValue: [],
+  label: null,
   placeholder: null,
+  discreet: false,
 };
 
 export default RichTextArea;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, RichTextArea, Input, Select, Checkbox } from '../../components/UI';
+import MailEditor from '../../components/MailEditor';
+import { Button, Select, Checkbox } from '../../components/UI';
 import { sendMail } from '../../modules/mails';
 
 const tournamentRecipientOptions = [
@@ -22,22 +23,19 @@ const lockRecipientOptions = [
 
 const Mails = () => {
   const dispatch = useDispatch();
-  const [subject, setSubject] = useState('');
-  const [mail, setMail] = useState(
-    <>
-      <p>Hello World !</p>
-      <p>
-        This is <em>italic</em> style !
-      </p>
-    </>,
-  );
   const [tournamentRecipient, setTournamentRecipient] = useState(tournamentRecipientOptions[0].value);
   const [lockedTeamRecipient, setLockedTeamRecipient] = useState(lockRecipientOptions[0].value);
   const [isPreview, setPreview] = useState(false);
+  const [mail, setMail] = useState({
+    title: '',
+    intro: '',
+    highlight: '',
+    reason: '',
+    sections: [],
+  });
 
   return (
     <div id="admin-mails">
-      <Input label="Objet :" value={subject} onChange={setSubject}></Input>
       <div className="section">
         <div>Destinataires :</div>
         <div className="recipients">
@@ -88,36 +86,34 @@ const Mails = () => {
           </div>
         </div>
       </div>
-      <RichTextArea onChange={setMail} placeholder="Entre ton message ici…" label="Corps du mail">
-        {mail}
-      </RichTextArea>
-      <Button
-        leftIcon="fas fa-paper-plane"
-        primary={true}
-        onClick={() =>
-          dispatch(
-            sendMail({
-              tournamentId: tournamentRecipient === 'all' ? null : tournamentRecipient,
-              locked: lockedTeamRecipient === 'all' ? null : lockedTeamRecipient === 'locked',
-              preview: isPreview,
-              subject: subject,
-              highlight: {
-                intro: subject, // TODO: implement this
-                title: subject, // TODO: implement this
-              },
-              reason: null, // TODO: implement this
-              content: [
-                // TODO: serialize content here
-                {
-                  title: 'Test section',
-                  components: ['Test content !', 'This should appear as another paragraph'],
+      <MailEditor onChange={setMail} />
+      <div className="button-wrapper">
+        <Button
+          className=""
+          leftIcon="fas fa-paper-plane"
+          primary={true}
+          onClick={() =>
+            dispatch(
+              sendMail({
+                tournamentId: tournamentRecipient === 'all' ? null : tournamentRecipient,
+                locked: lockedTeamRecipient === 'all' ? null : lockedTeamRecipient === 'locked',
+                preview: isPreview,
+                subject: mail.title,
+                highlight: {
+                  intro: mail.intro,
+                  title: mail.highlight,
                 },
-              ],
-            }),
-          )
-        }>
-        Envoyer
-      </Button>
+                reason: mail.reason,
+                content: mail.sections.map((section) => ({
+                  title: section.title,
+                  components: section.components,
+                })),
+              }),
+            )
+          }>
+          Envoyer
+        </Button>
+      </div>
     </div>
   );
 };

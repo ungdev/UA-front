@@ -1,47 +1,39 @@
-import axios, { Method, AxiosResponse } from 'axios';
+import axios, { Method } from 'axios';
 import { toast } from 'react-toastify';
 import { apiUrl, uploadsUrl } from './environment';
 
 let token = null as string | null;
 
 // Send request to API and handle errors
-const requestAPI = <T>(
+const requestAPI = <TResponse, TBody = never>(
   method: Method,
   baseURL: string,
   route: string,
   authorizationHeader: boolean,
-  body?: T | undefined,
+  body?: TBody,
   disableCache?: boolean,
   customTimeout?: number,
 ) =>
-  new Promise<AxiosResponse<T>>((resolve, reject) => {
-    // Create the request
-    axios
-      .request<T>({
-        baseURL,
-        method,
-        headers: authorizationHeader
-          ? {
-              Authorization: token ? `Bearer ${token}` : '',
-            }
-          : {},
-        url: route + (disableCache ? '?nocache=' + new Date().getTime() : ''),
-        data: body,
-        timeout: customTimeout || 5000,
-      })
-      // Success
-      .then((response) => resolve(response))
-      // Error
-      .catch((error) => {
-        if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
-          toast.error('Connexion au serveur impossible');
-        } else {
-          toast.error(error.response ? error.response.data.error : 'Une erreur est survenue');
-        }
-
-        reject();
-      });
-  });
+  axios
+    .request<TBody, TResponse>({
+      baseURL,
+      method,
+      headers: authorizationHeader
+        ? {
+            Authorization: token ? `Bearer ${token}` : '',
+          }
+        : {},
+      url: route + (disableCache ? '?nocache=' + new Date().getTime() : ''),
+      data: body,
+      timeout: customTimeout || 5000,
+    })
+    // Handle errors
+    .catch((error) => {
+      if (error.message === 'Network Error' || error.code === 'ECONNABORTED')
+        toast.error('Connexion au serveur impossible');
+      else toast.error(error.response ? error.response.data.error : 'Une erreur est survenue');
+      throw undefined;
+    });
 
 // Set the authorization header with the given token for next requests
 export const setAuthorizationToken = (_token: string) => {
@@ -51,10 +43,10 @@ export const setAuthorizationToken = (_token: string) => {
 // Access the API through different HTTP methods
 export const API = {
   get: <T>(route: string) => requestAPI<T>('GET', apiUrl(), route, true),
-  post: <T>(route: string, body: T | undefined, timeout?: number) =>
-    requestAPI<T>('POST', apiUrl(), route, true, body, undefined, timeout),
-  put: <T>(route: string, body: T | undefined) => requestAPI<T>('PUT', apiUrl(), route, true, body),
-  patch: <T>(route: string, body: T | undefined) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
+  post: <T, K>(route: string, body?: K, timeout?: number) =>
+    requestAPI<T, K>('POST', apiUrl(), route, true, body, undefined, timeout),
+  put: <T, K>(route: string, body?: K) => requestAPI<T, K>('PUT', apiUrl(), route, true, body),
+  patch: <T, K>(route: string, body?: K) => requestAPI<T, K>('PATCH', apiUrl(), route, true, body),
   delete: <T>(route: string) => requestAPI<T>('DELETE', apiUrl(), route, true),
 };
 
