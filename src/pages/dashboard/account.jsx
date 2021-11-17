@@ -5,11 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
 import { API } from '../../utils/api';
-import { apiUrl } from '../../utils/environment';
+import { fetchCurrentTeam } from '../../modules/team';
 
 const Account = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
+  const team = useSelector((state) => state.team.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -26,6 +27,10 @@ const Account = () => {
     });
     // Scroll to discord section (as it may be below information section)
     if (window.location.href.endsWith('#discord')) discordLinkRef.current.scrollIntoView();
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchCurrentTeam());
   }, []);
 
   const edit = () => {
@@ -72,7 +77,7 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
-      {/* user.hasPaid && (
+      {user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
         <>
           <div className="ticket">
             <Title level={4}>Mon billet</Title>
@@ -82,7 +87,7 @@ const Account = () => {
           </div>
           <hr />
         </>
-      )*/}
+      )}
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 

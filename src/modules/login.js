@@ -163,6 +163,7 @@ export const isFakeConnection = () => {
 };
 
 export const logBackToAdmin = () => async (dispatch) => {
+  dispatch({ type: SET_TEAM, team: null });
   dispatch(saveToken(localStorage.getItem('utt-arena-admin-token')));
   localStorage.removeItem('utt-arena-admin-token');
   const res = await API.get('users/current');
