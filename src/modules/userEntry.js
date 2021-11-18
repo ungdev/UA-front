@@ -53,13 +53,12 @@ export const searchUser = (name) => async (dispatch) => {
   });
 };
 
-export const scan = (barcode) => async (dispatch) => {
-  const res = await API.post(`entry/scan?barcode=${barcode}`);
-  toast.success('Utilisateur scanné');
-  dispatch({
-    type: SET_BARCODE_USER,
-    barcodeUser: res.data,
+export const scan = async (qrcode) => {
+  const res = await API.post(`admin/scan`, {
+    qrcode: window.btoa(String.fromCharCode.apply(null, qrcode)),
   });
+  toast.success('Utilisateur scanné');
+  return res;
 };
 
 export default userEntry;
