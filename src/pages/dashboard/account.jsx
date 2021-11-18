@@ -10,7 +10,7 @@ import { fetchCurrentTeam } from '../../modules/team';
 const Account = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
-  const team = useSelector((state) => state.team.team);
+  const team = useSelector((state) => state.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);

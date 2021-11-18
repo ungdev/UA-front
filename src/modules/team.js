@@ -7,16 +7,14 @@ import { fetchSlots } from './tournament';
 export const SET_TEAM = 'team/SET_TEAM';
 export const SET_USER = 'login/SET_USER';
 
-const initialState = {
-  team: null,
-};
+const initialState = null;
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_TEAM:
       return {
         ...state,
-        team: action.team,
+        ...action.team,
       };
     default:
       return state;
@@ -52,14 +50,6 @@ export const joinTeam = (teamId, name, userType) => async (dispatch, getState) =
   });
 };
 
-export const fetchTeam = (id) => async (dispatch) => {
-  const res = await API.get(`teams/${id}`);
-  dispatch({
-    type: SET_TEAM,
-    team: res.data,
-  });
-};
-
 export const fetchCurrentTeam = () => async (dispatch) => {
   const res = await API.get(`teams/current`);
   dispatch({
@@ -79,7 +69,7 @@ export const cancelJoin = (teamId, name) => async (dispatch, getState) => {
 };
 
 export const setCaptain = (id, teamId) => async (dispatch, getState) => {
-  const team = getState().team.team;
+  const team = getState().team;
   await API.put(`teams/current/captain/${id}`);
   dispatch({
     type: SET_TEAM,
@@ -88,7 +78,7 @@ export const setCaptain = (id, teamId) => async (dispatch, getState) => {
 };
 
 export const acceptUser = (user, teamId) => async (dispatch, getState) => {
-  const team = getState().team.team;
+  const team = getState().team;
   await API.post(`teams/current/join-requests/${user.id}`);
   user.type === 'player' ? team.players.push(user) : team.coaches.push(user);
 
@@ -100,7 +90,7 @@ export const acceptUser = (user, teamId) => async (dispatch, getState) => {
 };
 
 export const kickUser = (userId) => async (dispatch, getState) => {
-  const team = getState().team.team;
+  const team = getState().team;
   const user = getState().login.user;
   if (user.id === userId) {
     await API.delete('teams/current/users/current');
@@ -124,7 +114,7 @@ export const kickUser = (userId) => async (dispatch, getState) => {
 };
 
 export const refuseUser = (user) => async (dispatch, getState) => {
-  const team = getState().team.team;
+  const team = getState().team;
   await API.delete(`teams/current/join-requests/${user.id}`);
   team.askingUsers = team.askingUsers.filter(({ id }) => id !== user.id);
   dispatch({

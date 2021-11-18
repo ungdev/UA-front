@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  fetchTeam,
   setCaptain,
   acceptUser,
   kickUser,
@@ -11,9 +10,10 @@ import {
   fetchCurrentTeam,
   lockTeam,
 } from '../../modules/team';
+
+import { fetchSettings } from '../../modules/settings';
 import tournament, { fetchSlots, fetchTournaments } from '../../modules/tournament';
 import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
-import { isShopAllowed } from '../../utils/settings';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -31,8 +31,9 @@ const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 const Team = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useDispatch();
+  const isShopAllowed = useSelector((state) => state.settings.shop);
   const { id, teamId } = useSelector((state) => state.login.user || { id: '', teamId: null });
-  const { team } = useSelector((state) => state.team);
+  const team = useSelector((state) => state.team);
   const slotsTournament = useSelector((state) => state.tournament.slots);
 
   const isCaptain = team && team.captainId === id;
@@ -41,6 +42,10 @@ const Team = () => {
   const tournaments = useSelector((state) => state.tournament.tournaments);
   const tournament = team && tournaments && tournaments.filter((tournament) => tournament.id === team.tournamentId)[0];
   const tournamentName = tournament && tournament.name;
+
+  useEffect(() => {
+    isShopAllowed || dispatch(fetchSettings());
+  }, []);
 
   useEffect(() => {
     if (!team && teamId) {
@@ -76,7 +81,7 @@ const Team = () => {
       email: user.email,
       hasPaid: user.hasPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
       action:
-        user.id !== team.captainId && isCaptain && isShopAllowed() && !team.lockedAt ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
             <Button
               onClick={() =>
@@ -126,7 +131,7 @@ const Team = () => {
       email: user.email,
       hasPaid: user.hasPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
       action:
-        user.id !== team.captainId && isCaptain && isShopAllowed() && !team.lockedAt ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
             <Button
               onClick={() =>
@@ -277,7 +282,7 @@ const Team = () => {
           <div>
             <strong>Tournoi :</strong> {tournamentName}
           </div>
-          {isShopAllowed() && (
+          {isShopAllowed && (
             <>
               <div>
                 <strong>Statut</strong>{' '}
@@ -360,7 +365,7 @@ const Team = () => {
               Verrouiller l'équipe
             </Button>
           )}
-          {isShopAllowed() && !team.lockedAt && (
+          {isShopAllowed && !team.lockedAt && (
             <>
               <div className="players-list">
                 <Title level={4}>Joueurs en attente</Title>
