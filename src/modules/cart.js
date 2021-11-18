@@ -8,7 +8,7 @@ const initialState = {
   cartItems: null,
 };
 
-export default (state = initialState, action) => {
+const carts = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
       return {
@@ -44,3 +44,5 @@ export const cartPay = (cart) => async (dispatch, getState) => {
   const res = await API.post(`users/current/carts`, sendableCart);
   window.location = res.data.url;
 };
+
+export default carts;

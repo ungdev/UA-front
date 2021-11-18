@@ -17,7 +17,7 @@ const initialState = {
   loading: true,
 };
 
-export default (state = initialState, action) => {
+const login = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOKEN:
       return {
@@ -186,3 +186,5 @@ export const connectAs = (id) => async (dispatch, getState) => {
   });
   Router.push('/dashboard');
 };
+
+export default login;

@@ -3,8 +3,7 @@ import { API } from '../utils/api';
 export const SET_ITEMS = 'items/SET_ITEMS';
 
 const initialState = null;
-
-export default (state = initialState, action) => {
+const items = (state = initialState, action) => {
   switch (action.type) {
     case SET_ITEMS:
       return [...action.items];
@@ -20,3 +19,5 @@ export const fetchItems = () => async (dispatch) => {
     items: res.data,
   });
 };
+
+export default items;

@@ -9,7 +9,7 @@ export const SET_USER = 'login/SET_USER';
 
 const initialState = null;
 
-export default (state = initialState, action) => {
+const team = (state = initialState, action) => {
   switch (action.type) {
     case SET_TEAM:
       return {
@@ -147,3 +147,5 @@ export const lockTeam = (teamId) => async (dispatch, getState) => {
   dispatch(fetchSlots());
   toast.success("L'équipe a bien été verrouillée");
 };
+
+export default team;

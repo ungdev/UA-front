@@ -7,7 +7,7 @@ const initialState = {
   shop: false,
 };
 
-export default (state = initialState, action) => {
+const settings = (state = initialState, action) => {
   switch (action.type) {
     case SET_SETTINGS:
       return action.settings;
@@ -33,3 +33,5 @@ export const fetchSettings = () => async (dispatch) => {
     });
   }
 };
+
+export default settings;
