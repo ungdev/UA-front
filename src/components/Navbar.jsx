@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar-react';
 
@@ -46,6 +46,7 @@ const links = [
 ];
 
 const Navbar = ({ isLoggedIn, action }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
