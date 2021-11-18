@@ -31,7 +31,7 @@ Checkbox.propTypes = {
   /**
    * Value of the input
    */
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.bool]),
   /**
    * Function called when the value change,
    * the new value is passed as parameter

@@ -156,55 +156,57 @@ const Information = () => (
     <Title align="center">Planning</Title>
     <div className="information-section">
       <table className="timetable">
-        <tr className="accent-line">
-          <td colSpan="2">Vendredi</td>
-        </tr>
-        <tr>
-          <td>17h</td>
-          <td>Ouverture, discours et concert</td>
-        </tr>
-        <tr className="accent-line">
-          <td colSpan="2">Samedi</td>
-        </tr>
-        <tr>
-          <td>9h30</td>
-          <td>Check-in des équipes</td>
-        </tr>
-        <tr>
-          <td>10h</td>
-          <td>Début des tournois</td>
-        </tr>
-        <tr>
-          <td>10h-21h</td>
-          <td>Se référer au règlement de ton tournoi pour les horaires des matchs</td>
-        </tr>
-        <tr>
-          <td>10h-21h</td>
-          <td>Matchs castés sur scène</td>
-        </tr>
-        <tr>
-          <td>22h-23h</td>
-          <td>Finale osu! sur scène</td>
-        </tr>
-        <tr>
-          <td>Jusqu'à 01h30</td>
-          <td>Soirée au Meltdown Troyes avec boisson offerte</td>
-        </tr>
-        <tr className="accent-line">
-          <td colSpan="2">Dimanche</td>
-        </tr>
-        <tr>
-          <td>10h</td>
-          <td>Début des matchs de la journée (se référer au règlement de tournoi)</td>
-        </tr>
-        <tr>
-          <td>10h-17h</td>
-          <td>Finales castées sur scène, remises des prix</td>
-        </tr>
-        <tr>
-          <td>17h-18h</td>
-          <td>Discours de remerciement, fermeture de l'UTT Arena 2021</td>
-        </tr>
+        <tbody>
+          <tr className="accent-line">
+            <td colSpan="2">Vendredi</td>
+          </tr>
+          <tr>
+            <td>17h</td>
+            <td>Ouverture, discours et concert</td>
+          </tr>
+          <tr className="accent-line">
+            <td colSpan="2">Samedi</td>
+          </tr>
+          <tr>
+            <td>9h30</td>
+            <td>Check-in des équipes</td>
+          </tr>
+          <tr>
+            <td>10h</td>
+            <td>Début des tournois</td>
+          </tr>
+          <tr>
+            <td>10h-21h</td>
+            <td>Se référer au règlement de ton tournoi pour les horaires des matchs</td>
+          </tr>
+          <tr>
+            <td>10h-21h</td>
+            <td>Matchs castés sur scène</td>
+          </tr>
+          <tr>
+            <td>22h-23h</td>
+            <td>Finale osu! sur scène</td>
+          </tr>
+          <tr>
+            <td>Jusqu'à 01h30</td>
+            <td>Soirée au Meltdown Troyes avec boisson offerte</td>
+          </tr>
+          <tr className="accent-line">
+            <td colSpan="2">Dimanche</td>
+          </tr>
+          <tr>
+            <td>10h</td>
+            <td>Début des matchs de la journée (se référer au règlement de tournoi)</td>
+          </tr>
+          <tr>
+            <td>10h-17h</td>
+            <td>Finales castées sur scène, remises des prix</td>
+          </tr>
+          <tr>
+            <td>17h-18h</td>
+            <td>Discours de remerciement, fermeture de l'UTT Arena 2021</td>
+          </tr>
+        </tbody>
       </table>
     </div>
 

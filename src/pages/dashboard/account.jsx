@@ -30,7 +30,7 @@ const Account = () => {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCurrentTeam());
+    user && user.teamId && dispatch(fetchCurrentTeam());
   }, []);
 
   const edit = () => {
@@ -91,7 +91,7 @@ const Account = () => {
       <div className="infos">
         <Title level={4}>Mes informations</Title>
 
-        <Input label="Place" value={user.place} autocomplete="off" disabled />
+        <Input label="Place" value={user.place || ''} autocomplete="off" disabled />
         <Input label="Email" value={user.email} autocomplete="off" disabled />
         <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
         <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
