@@ -58,7 +58,7 @@ export const scan = async (qrcode) => {
     qrcode: window.btoa(String.fromCharCode.apply(null, qrcode)),
   });
   toast.success('Utilisateur scanné');
-  return res;
+  return res.data;
 };
 
 export default userEntry;

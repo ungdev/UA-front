@@ -2,18 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { cssTransition, toast } from 'react-toastify';
-import { Button, Modal } from '../components/UI';
+import { Button, Modal, QRCodeReader } from '../components/UI';
 import { scan } from '../modules/userEntry';
 
 const Scan = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [order, setOrder] = useState();
   const [checkedUsers, setCheckedUsers] = useState([]);
-  const { items } = useSelector((state) => state.items);
-  const login = useSelector((state) => state.login);
-  const [isModalVisible, setModalVisible] = useState(false);
-
   // useEffect(() => {
   //   dispatch(fetchItems());
   // }, [dispatch]);
@@ -21,27 +15,6 @@ const Scan = () => {
   // useEffect(() => {
   //   checkPermission('orga', login, router, '/scan');
   // }, [router, login]);
-
-  useEffect(() => {
-    window.onmessage = async (e) => {
-      // If the message is from the QR code scanner page
-      if (window.location.hostname === e.source.location.hostname && e.source.location.pathname === '/scanner.html') {
-        // If the user is not checking an order currently
-        if (order || checkedUsers.indexOf(e.data) !== -1) {
-          return;
-        }
-
-        const res = await scan(e.data);
-
-        if (!res) {
-          return;
-        }
-
-        setOrder(res.data);
-        setCheckedUsers([...checkedUsers, e.data]);
-      }
-    };
-  });
 
   useEffect(() => {
     if (order) {
@@ -75,6 +48,18 @@ const Scan = () => {
   //   closeValidation();
   // };
 
+  const onCodeScanned = async (code) => {
+    if (order || checkedUsers.indexOf(code.binaryData) !== -1) {
+      return;
+    }
+    const res = scan(code.binaryData);
+    if (!res) {
+      return;
+    }
+    setOrder(res);
+    setCheckedUsers([...checkedUsers, code.binaryData]);
+  };
+
   return (
     <div id="scan">
       <div className="scanner">
@@ -82,7 +67,7 @@ const Scan = () => {
           <i className="fas fa-video scanner-placeholder-icon" />
           Veuillez activer votre caméra
         </div>
-        <iframe src="/scanner.html" className="scanner-preview" />
+        <QRCodeReader onCode={onCodeScanned} activated={!order} className="scanner-preview"></QRCodeReader>
       </div>
       {order && (
         <Modal
