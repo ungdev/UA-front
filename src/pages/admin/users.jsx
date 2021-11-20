@@ -9,6 +9,7 @@ const columnTitles = {
   fullname: 'Nom',
   username: 'Pseudo',
   email: 'Email',
+  lockedLabel: 'Lock',
   paidLabel: 'Payé',
   scannedLabel: 'Scanné',
   permissionsLabel: 'Permissions',
@@ -26,10 +27,16 @@ const statusOptions = [
   { name: 'Accompagnateur', value: 'attendant' },
 ];
 
+const lockedOptions = [
+  { name: 'Tous', value: 'all' },
+  { name: 'Verrouillé', value: 'true' },
+  { name: 'Non verrouillé', value: 'false' },
+];
+
 const paymentOptions = [
   { name: 'Tous', value: 'all' },
-  { name: 'Payé', value: 'paid' },
-  { name: 'Non payé', value: 'noPaid' },
+  { name: 'Payé', value: 'true' },
+  { name: 'Non payé', value: 'false' },
 ];
 
 const scannedOptions = [
@@ -52,13 +59,14 @@ const tournamentOptions = [
 const INITIAL_FILTERS = {
   type: 'all',
   payment: 'all',
+  locked: 'all',
   scan: 'all',
   tournament: 'all',
 };
 
 const Users = () => {
   const dispatch = useDispatch();
-  const [filters, _setFilters] = useState(INITIAL_FILTERS);
+  const [filters, setFilters] = useState(INITIAL_FILTERS);
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector((state) => state.login.user);
   const { users, isFetched, total, page, itemsPerPage } = useSelector((state) => state.users);
@@ -69,6 +77,7 @@ const Users = () => {
     fullname: true,
     username: true,
     email: true,
+    lockedLabel: true,
     paidLabel: true,
     scannedLabel: true,
     permissionsLabel: true,
@@ -87,17 +96,8 @@ const Users = () => {
     dispatch(fetchUsers(filters, search));
   }, [filters]);
 
-  const setFilters = (filters) => {
-    _setFilters(filters);
-  };
-
-  const updateFilter = (v) => {
-    setFilters(v);
-  };
-
   const applySearch = () => {
     dispatch(fetchUsers(filters, search));
-    _setFilters(INITIAL_FILTERS);
   };
 
   // Update only 1 information display state
@@ -126,19 +126,28 @@ const Users = () => {
           row
           options={statusOptions}
           value={filters.type}
-          onChange={(v) => updateFilter({ ...filters, type: v })}
+          onChange={(v) => setFilters({ ...filters, type: v })}
         />
         <br />
-        {/*<Radio
+        <Radio
+          label="Verrouillage"
+          name="lockedFilter"
+          row
+          options={lockedOptions}
+          value={filters.locked}
+          onChange={(v) => setFilters({ ...filters, locked: v })}
+        />
+        <br />
+        <Radio
           label="Paiement"
           name="paymentFilter"
           row
           options={paymentOptions}
           value={filters.payment}
-          onChange={(v) => updateFilter({ ...filters, payment: v })}
-        />*/}
-        {/*<br />
-        {filters.payment === 'paid' && (
+          onChange={(v) => setFilters({ ...filters, payment: v })}
+        />
+        <br />
+        {filters.payment === 'true' && (
           <>
             <Radio
               label="Scanné"
@@ -146,18 +155,18 @@ const Users = () => {
               row
               options={scannedOptions}
               value={filters.scan}
-              onChange={(v) => updateFilter({ ...filters, scan: v })}
+              onChange={(v) => setFilters({ ...filters, scan: v })}
             />
             <br />
           </>
-        )}*/}
+        )}
         <Radio
           label="Tournoi"
           name="tournamentFilter"
           row
           options={tournamentOptions}
           value={filters.tournament}
-          onChange={(v) => updateFilter({ ...filters, tournament: v })}
+          onChange={(v) => setFilters({ ...filters, tournament: v })}
         />
 
         <hr />

@@ -20,6 +20,7 @@ const format = (users) => {
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.name : '',
     teamName: user.team ? user.team.name : user.type === 'spectator' ? '(spectateur)' : '',
+    lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scanned ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',
@@ -59,7 +60,13 @@ export const fetchUsers =
       `admin/users` +
         `?page=${page}` +
         (search === '' ? '' : '&search=' + search) +
-        (!searchFilters.type && !searchFilters.tournament ? '' : '&' + new URLSearchParams(searchFilters).toString()),
+        (!searchFilters.type &&
+        !searchFilters.tournament &&
+        !searchFilters.locked &&
+        !searchFilters.payment &&
+        !searchFilters.scan
+          ? ''
+          : '&' + new URLSearchParams(searchFilters).toString()),
     );
     const formatUsers = format(res.data.users);
     dispatch({
