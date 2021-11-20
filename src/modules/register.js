@@ -6,7 +6,7 @@ import { API } from '../utils/api';
 
 const initialState = {};
 
-export default (state = initialState, action) => {
+const register = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
@@ -46,3 +46,5 @@ export const validate = (slug) => async () => {
     Router.replace('/');
   }
 };
+
+export default register;

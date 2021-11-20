@@ -45,7 +45,7 @@ Radio.propTypes = {
   /**
    * Value of the field
    */
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   /**
    * Function triggered when the value change
    */
@@ -70,6 +70,7 @@ Radio.propTypes = {
 
 Radio.defaultProps = {
   label: '',
+  value: '',
   onChange: () => {},
   row: false,
   className: '',

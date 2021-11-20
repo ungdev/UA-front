@@ -16,7 +16,7 @@ const Purchases = () => {
   const dispatch = useDispatch();
   const { id: userId, email, type } = useSelector((state) => state.login.user);
   const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
-  const items = useSelector((state) => state.items.items);
+  const items = useSelector((state) => state.items);
   useEffect(() => {
     dispatch(fetchAllCarts());
     dispatch(fetchItems());

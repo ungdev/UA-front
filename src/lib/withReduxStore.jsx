@@ -17,7 +17,7 @@ function getOrCreateStore(initialState) {
   return window[__NEXT_REDUX_STORE__];
 }
 
-export default (App) =>
+const AppWithRedux = (App) =>
   class AppWithRedux extends React.Component {
     constructor(props) {
       super(props);
@@ -49,3 +49,5 @@ export const getStaticProps = async (appContext) => {
     },
   };
 };
+
+export default AppWithRedux;

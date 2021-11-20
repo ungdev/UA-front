@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,9 +10,9 @@ import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
+import { fetchSettings } from '../modules/settings';
 import { logout, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
-import { isLoginAllowed as isLoginAllowedFunction } from '../utils/settings';
 
 const links = [
   {
@@ -46,22 +46,19 @@ const links = [
 ];
 
 const Navbar = ({ isLoggedIn, action }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const shortPath = router.pathname.match(/(\/[a-z]*)/)[0];
 
   // Is the mobile menu visible ?
   const [mobileMenuVisible, _setMobileMenuVisible] = useState(false);
 
-  const dispatch = useDispatch();
+  const isLoginAllowed = useSelector((state) => state.settings.login);
   const isVisible = useSelector((state) => state.loginModal.visible);
   const username = useSelector((state) => state.login.user && state.login.user.username);
   const hasOrgaPermission = useSelector(
     (state) => state.login.user && _hasOrgaPermission(state.login.user.permissions),
   );
-  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
-  isLoginAllowedFunction().then((result) => {
-    setIsLoginAllowed(result);
-  });
 
   // Set mobile menu visibility
   const setMobileMenuVisible = (visible) => {

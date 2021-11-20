@@ -46,8 +46,8 @@ const Shop = () => {
   const dispatch = useDispatch();
   const { id: userId, type, hasPaid, username, age, email } = useSelector((state) => state.login.user);
   // The list of all items available
-  const items = useSelector((state) => state.items.items);
-  const team = useSelector((state) => state.team.team);
+  const items = useSelector((state) => state.items);
+  const team = useSelector((state) => state.team);
   // The members of the team are the players and the coaches
   const [teamMembers, setTeamMembers] = useState([]);
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
@@ -262,26 +262,27 @@ const Shop = () => {
   //  * they don't have category (because they must be supplements)
   // This list will display instead of the items list.
   const supplementTypes = [];
-  items.forEach((item) => {
-    if (item.category === 'supplement') {
-      // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
-      // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
-      // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
-      const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
-      const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
-      if (!supplementType) {
-        const newSupplementType = { ...item, id: itemId, attributes: [] };
-        delete newSupplementType.attribute;
-        delete newSupplementType.category;
-        if (item.attribute) {
-          newSupplementType.attributes = [item.attribute];
+  items &&
+    items.forEach((item) => {
+      if (item.category === 'supplement') {
+        // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
+        // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
+        // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
+        const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
+        const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
+        if (!supplementType) {
+          const newSupplementType = { ...item, id: itemId, attributes: [] };
+          delete newSupplementType.attribute;
+          delete newSupplementType.category;
+          if (item.attribute) {
+            newSupplementType.attributes = [item.attribute];
+          }
+          supplementTypes.push(newSupplementType);
+        } else {
+          supplementType.attributes.push(item.attribute);
         }
-        supplementTypes.push(newSupplementType);
-      } else {
-        supplementType.attributes.push(item.attribute);
       }
-    }
-  });
+    });
 
   // We display the supplementTypes we have just defined, and not the items
   const supplementRows = supplementTypes.map((supplement, i) => {
@@ -301,6 +302,7 @@ const Shop = () => {
     supplement.attributes.forEach((attribute) => {
       availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
     });
+
     // Return the row
     return {
       name: (
@@ -329,7 +331,11 @@ const Shop = () => {
             );
             setCart({ ...cart, supplements: newCartSupplements });
           }}
+<<<<<<< HEAD
           value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
+=======
+          value={''}
+>>>>>>> dd8671e (Misc-fixes (#203))
           className="shop-input"
         />
       ) : (
@@ -370,7 +376,7 @@ const Shop = () => {
             }
           }}
           min={0}
-          max={cartSupplement.item.id === 'discount-switch-ssbu' ? 1 : 100}
+          max={supplement.id === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
           className="shop-input"
         />
       ),
@@ -444,7 +450,10 @@ const Shop = () => {
           className="cgvCheckbox"
           label={
             <>
-              J'accepte les <a href="/legal#CGV">Conditions Générales de Vente</a>
+              J'accepte les{' '}
+              <a href="/legal#CGV" target="_blank">
+                Conditions Générales de Vente
+              </a>
             </>
           }
           value={isCgvAccepted}

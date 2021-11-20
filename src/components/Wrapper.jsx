@@ -8,9 +8,9 @@ import Navbar from './Navbar';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import PanelHeader from './PanelHeader';
+import { fetchSettings } from '../modules/settings';
 import { autoLogin, validate } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
-import { isLoginAllowed, isShopAllowed } from '../utils/settings';
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -48,6 +48,9 @@ const Wrapper = ({ Component }) => {
     }
   });
 
+  const isLoginAllowed = useSelector((state) => state.settings.login);
+  const isShopAllowed = useSelector((state) => state.settings.shop);
+
   const isLoading = useSelector((state) => state.login.loading);
 
   // Handle redirections
@@ -55,12 +58,12 @@ const Wrapper = ({ Component }) => {
 
   if (isAdminPanel && !isLoggedIn) {
     redirect = '/';
-  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed())) {
+  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
     redirect = '/';
   } else if (isLoggedIn) {
     if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/team';
-    } else if (pathname === '/dashboard/shop' && !isShopAllowed()) {
+    } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
       redirect = '/dashboard';
     } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/spectator';
@@ -131,6 +134,11 @@ const Wrapper = ({ Component }) => {
     }
   }, [isLoading]);
 
+  // Fetch Settings
+  useEffect(() => {
+    isLoginAllowed || dispatch(fetchSettings());
+  }, []);
+
   // Redirect to desired path
   useEffect(() => {
     if (redirect && !isLoading) {
@@ -165,7 +173,7 @@ const Wrapper = ({ Component }) => {
     }
 
     if (hasTeam || isSpectator || hasPaid) {
-      if (isShopAllowed()) {
+      if (isShopAllowed) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
       menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });

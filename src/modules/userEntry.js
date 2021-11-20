@@ -12,7 +12,7 @@ const initialState = {
   barcodeUser: null,
 };
 
-export default (state = initialState, payload) => {
+const userEntry = (state = initialState, payload) => {
   switch (payload.type) {
     case SET_VISIBLE:
       return {
@@ -61,3 +61,5 @@ export const scan = (barcode) => async (dispatch) => {
     barcodeUser: res.data,
   });
 };
+
+export default userEntry;

@@ -4,7 +4,7 @@ const initialState = {
   visible: false,
 };
 
-export default (state = initialState, { type, visible }) => {
+const loginModal = (state = initialState, { type, visible }) => {
   switch (type) {
     case SET_VISIBLE:
       return {
@@ -21,3 +21,5 @@ export const setLoginModalVisible = (visible) => (dispatch) => {
     visible,
   });
 };
+
+export default loginModal;

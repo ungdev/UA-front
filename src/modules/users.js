@@ -26,7 +26,7 @@ const format = (users) => {
   }));
 };
 
-export default (state = initialState, action) => {
+const users = (state = initialState, action) => {
   switch (action.type) {
     case SET_USERS:
       return {
@@ -133,3 +133,5 @@ export const refundCart = (id) => async (dispatch, getState) => {
   dispatch(updateUser({ ...userModal, hasPaid: false }));
   dispatch(lookupUser({ ...userModal, hasPaid: false }));
 };
+
+export default users;
