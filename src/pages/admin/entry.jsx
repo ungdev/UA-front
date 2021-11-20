@@ -1,57 +1,23 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { searchUser, scan, SET_BARCODE_USER } from '../../modules/userEntry.js';
-import { Input, Title, Button, Card } from '../../components/UI';
+import { searchUser, scan } from '../../modules/userEntry.js';
+import { Input, Title, Button, Card, QRCodeReader } from '../../components/UI';
 
 const Entry = () => {
-  const [barcode, _setBarcode] = useState('');
   const [paymentSearch, setPaymentSearch] = useState('');
-
   const dispatch = useDispatch();
-  const barcodeUser = useSelector((state) => state.userEntry.barcodeUser);
 
-  const setBarcode = (barcode) => {
-    _setBarcode(barcode);
+  const [order, setOrder] = useState();
+  const lastCode = useRef();
 
-    if (barcode === '') {
-      resetBarcodeUser();
-      return;
-    }
+  const onCodeScanned = async (code) => {
+    const base64Code = window.btoa(String.fromCharCode.apply(null, code.binaryData));
+    if (order || base64Code === lastCode.current) return;
+    lastCode.current = base64Code;
 
-    const isValid = /^\d{13}$/.test(barcode);
-    if (isValid) {
-      dispatch(scan(barcode.substring(0, 12)));
-    }
-  };
-
-  const resetBarcodeUser = () => {
-    dispatch({
-      type: SET_BARCODE_USER,
-      barcodeUser: null,
-    });
-  };
-
-  const onBarcodeChange = (_text) => {
-    const mappings = [
-      ['&', '1'],
-      ['é', '2'],
-      ['"', '3'],
-      ["'", '4'],
-      ['(', '5'],
-      ['-', '6'],
-      ['è', '7'],
-      ['_', '8'],
-      ['ç', '9'],
-      ['à', 0],
-    ];
-    let text = _text;
-
-    mappings.forEach((mapping) => {
-      text = text.replace(mapping[0], mapping[1]);
-    });
-
-    _setBarcode(text);
+    const res = await scan(base64Code);
+    if (res) setOrder(res);
   };
 
   return (
@@ -60,43 +26,70 @@ const Entry = () => {
         <Title level={2}>Scanner une place</Title>
         <div className="entry-content">
           <Card
+            className={order ? '' : 'borderless'}
             content={
-              <>
-                <p>
-                  <strong>Pseudo :</strong> {barcodeUser && barcodeUser.username}
-                </p>
-                <p>
-                  <strong>Nom :</strong> {barcodeUser && barcodeUser.lastname}
-                </p>
-                <p>
-                  <strong>Prénom :</strong> {barcodeUser && barcodeUser.firstname}
-                </p>
-                <p>
-                  <strong>Email :</strong> {barcodeUser && barcodeUser.email}
-                </p>
-                <p>
-                  <strong>Équipe :</strong> {barcodeUser && barcodeUser.team ? barcodeUser.team.name : 'Accompagnateur'}
-                </p>
-                <p>
-                  <strong>Tournoi :</strong> {barcodeUser && barcodeUser.team && barcodeUser.team.tournament.shortName}
-                </p>
-                <p>
-                  <strong>Place :</strong> {barcodeUser && barcodeUser.place}
-                </p>
-              </>
+              !order ? (
+                <div className="scanner">
+                  <div className="scanner-placeholder">
+                    <i className="fas fa-video scanner-placeholder-icon" />
+                    Veuillez activer votre caméra
+                  </div>
+                  <QRCodeReader onCode={onCodeScanned} activated={!order} className="scanner-preview"></QRCodeReader>
+                </div>
+              ) : (
+                <>
+                  <p>
+                    <strong>Pseudo :</strong> {order && order.username}
+                  </p>
+                  <p>
+                    <strong>Nom :</strong> {order && order.lastname}
+                  </p>
+                  <p>
+                    <strong>Prénom :</strong> {order && order.firstname}
+                  </p>
+                  <p>
+                    <strong>Type :</strong> {order && order.type}
+                  </p>
+                  <p>
+                    <strong>Permissions :</strong>{' '}
+                    {order && order.permissions.length ? order.permissions.join(', ') : 'Aucune'}
+                  </p>
+                  <p>
+                    <strong>Âge :</strong> {order && order.age}
+                  </p>
+                  <p>
+                    <strong>Email :</strong> {order && order.email}
+                  </p>
+                  <p>
+                    <strong>Équipe :</strong> {order && order.team ? order.team.name : 'Accompagnateur'}
+                  </p>
+                  <p>
+                    <strong>Tournoi :</strong> {order && order.team && order.team.tournament.shortName}
+                  </p>
+                  <p>
+                    <strong>Place :</strong> {order && order.place}
+                  </p>
+                  <p>
+                    <strong>Infos complémentaires :</strong> {(order && order.customMessage) || <span>N/A</span>}
+                  </p>
+                  <p>
+                    <strong>Team :</strong> {order?.teamName}
+                  </p>
+                  <p>
+                    <strong>Tournoi :</strong> {order?.tournamentName}
+                  </p>
+                  {order?.attendant?.id && (
+                    <p>
+                      <strong>Accompagnateur :</strong> {order.attendant.firstname} {order.attendant.lastname}
+                    </p>
+                  )}
+                </>
+              )
             }
           />
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setBarcode(barcode);
-            }}>
-            <Input value={barcode} label="Code-barres" onChange={onBarcodeChange} autoFocus />
-            <Button primary type="submit">
-              Valider
-            </Button>
-            <Button onClick={() => setBarcode('')}>Réinitialiser</Button>
-          </form>
+          <Button onClick={() => setOrder(undefined)}>
+            {order ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
+          </Button>
         </div>
       </div>
       <div>

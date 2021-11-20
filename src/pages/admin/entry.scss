@@ -9,4 +9,96 @@
     max-width: 1000px;
     margin: 0 auto;
   }
+
+  .scanner {
+    position: relative;
+    z-index: 0;
+
+    .scanner-placeholder {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: -1;
+
+      .scanner-placeholder-icon {
+        display: block;
+        font-size: 3em;
+        margin-bottom: 14px;
+      }
+    }
+
+    .scanner-preview,
+    .scanner-preview > canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  .validation {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .validation-info {
+      position: relative;
+      background: $secondary-color;
+      padding: 14px 34px 14px 14px;
+      box-shadow: 0 0 6px #000;
+      z-index: 1;
+
+      .validation-close-button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 1.3em;
+        padding: 8px 10px;
+      }
+    }
+
+    .validation-users {
+      flex-grow: 1;
+      user-select: none;
+      background: #efefef;
+      z-index: 0;
+
+      .validation-user {
+        padding: 18px 10px;
+        border-bottom: 2px solid #888;
+
+        &.scanned {
+          background: #cbcbcb;
+        }
+
+        &.checked {
+          background: #00ca00;
+        }
+
+        .validation-user-name {
+          color: #333;
+        }
+
+        .validation-user-type {
+          font-weight: bold;
+          margin-top: 5px;
+
+          .validation-user-type-attention {
+            color: $primary-color;
+            margin-right: 3px;
+          }
+        }
+      }
+    }
+
+    .validation-button {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+}
+
+.card.borderless > .card-content {
+  padding: 0 !important;
 }
