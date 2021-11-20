@@ -8,7 +8,7 @@ const initialState = {
   slots: null,
 };
 
-export default (state = initialState, action) => {
+const tournament = (state = initialState, action) => {
   switch (action.type) {
     case SET_TOURNAMENTS:
       return {
@@ -46,3 +46,5 @@ export const fetchSlots = () => async (dispatch) => {
     slots,
   });
 };
+
+export default tournament;

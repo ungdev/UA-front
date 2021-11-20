@@ -6,7 +6,7 @@ const initialState = {
   allCarts: [],
 };
 
-export default (state = initialState, action) => {
+const carts = (state = initialState, action) => {
   switch (action.type) {
     case SET_ALLCARTS:
       return {
@@ -25,3 +25,5 @@ export const fetchAllCarts = () => async (dispatch) => {
     allCarts: res.data,
   });
 };
+
+export default carts;

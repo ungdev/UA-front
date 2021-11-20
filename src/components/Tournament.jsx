@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { fetchSettings } from '../modules/settings';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { Button, Title, Table } from './UI';
-import { isLoginAllowed as fetchIsLoginAllowed } from '../utils/settings';
 import { API } from '../utils/api';
 
 const columns = [
@@ -17,14 +17,15 @@ const Tournament = ({ assets, tournamentId, alt }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const [isLoginAllowed, setIsLoginAllowed] = useState(false);
+  const isLoginAllowed = useSelector((state) => state.settings.login);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [formatTeams, setFormatTeam] = useState([]);
   const [tournament, setTournament] = useState();
 
-  fetchIsLoginAllowed().then((result) => {
-    setIsLoginAllowed(result);
-  });
+  useEffect(() => {
+    isLoginAllowed || dispatch(fetchSettings());
+  }, []);
 
   // Fetch the tournaments from the API, and update the state with the tournament object and a map of locked teams / players
   const fetchTournament = async () => {
