@@ -138,6 +138,17 @@ const Account = () => {
           <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
         </a>
       </div>
+      {user.compumsaCode ? (
+        <div>
+          <Title level={4}>Code de réduction Compumsa</Title>
+          Remise/min. d'achat sur www.compumsa.eu : 15 €/50 € ; 20 €/150 € et 30 €/300 € Le meilleur e-commerce IT en
+          Belgique et un des meilleurs en Europe ! Bon de réduction pour la UTT Arena. Valable jusqu'au 30/06/2022, 1
+          bon max par personne. Envoyez un email avant de commander en indiquant votre code personnel :{' '}
+          <b>{user.compumsaCode}</b>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
