@@ -78,6 +78,7 @@ const Entry = () => {
                     <strong>Prénom :</strong> {scannedUser.firstname}
                   </p>
                   <p>
+                    {scannedUser.age === 'child' && <i className="fas fa-exclamation-triangle red" />}
                     <strong>Âge :</strong> {scannedUser.age === 'child' ? 'Mineur' : 'Majeur'}
                   </p>
                   <p>
@@ -119,6 +120,7 @@ const Entry = () => {
                     )}
                   </p>
                   <p>
+                    {scannedUser.customMessage && <i className="fas fa-exclamation-triangle red" />}
                     <strong>Infos complémentaires :</strong>{' '}
                     {scannedUser.customMessage || (
                       <>
