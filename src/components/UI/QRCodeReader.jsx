@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { PropTypes } from 'prop-types';
+import { toast } from 'react-toastify';
 
 const QRCodeReader = ({ onCode, className }) => {
   const ref = useRef();
@@ -18,13 +19,16 @@ const QRCodeReader = ({ onCode, className }) => {
     };
 
     // Retrieve video stream from camera
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then((stream) => {
-      streamRef.current = stream;
-      wrappingRef.current.video.srcObject = stream;
-      wrappingRef.current.video.setAttribute('playsinline', true);
-      wrappingRef.current.video.play();
-      requestAnimationFrame(tick);
-    });
+    navigator.mediaDevices
+      .getUserMedia({ video: { facingMode: 'environment' } })
+      .then((stream) => {
+        streamRef.current = stream;
+        wrappingRef.current.video.srcObject = stream;
+        wrappingRef.current.video.setAttribute('playsinline', true);
+        wrappingRef.current.video.play();
+        requestAnimationFrame(tick);
+      })
+      .catch(() => toast.error("Impossible d'accéder à la caméra de l'appareil"));
 
     // Disable camera (by stopping stream tracks) when component is destroyed
     return () => {

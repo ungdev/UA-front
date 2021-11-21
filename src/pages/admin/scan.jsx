@@ -81,9 +81,6 @@ const Entry = () => {
                     <strong>Âge :</strong> {scannedUser.age === 'child' ? 'Mineur' : 'Majeur'}
                   </p>
                   <p>
-                    <strong>Email :</strong> {scannedUser.email}
-                  </p>
-                  <p>
                     <strong>Type :</strong>{' '}
                     {scannedUser.type === 'player' ? (
                       'Joueur'
@@ -96,10 +93,6 @@ const Entry = () => {
                     ) : (
                       <em className="default">Mais qui est cette étrange personne ?!</em>
                     )}
-                  </p>
-                  <p>
-                    <strong>Permissions :</strong>{' '}
-                    {scannedUser.permissions?.length ? scannedUser.permissions.join(', ') : 'Aucune'}
                   </p>
                   <p>
                     <strong>Équipe :</strong>{' '}
