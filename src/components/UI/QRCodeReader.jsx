@@ -1,52 +1,73 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { PropTypes } from 'prop-types';
 
-const QRCodeReader = ({ onCode, activated, className }) => {
+const QRCodeReader = ({ onCode, className }) => {
   const ref = useRef();
-  const [elements, setElements] = useState({ video: undefined, canvasElement: undefined, canvas: undefined });
+  const streamRef = useRef();
+  const wrappingRef = useRef({
+    video: undefined,
+    canvasElement: undefined,
+    canvas: undefined,
+  });
+
   useEffect(() => {
-    setElements({
+    wrappingRef.current = {
       video: document.createElement('video'),
       canvasElement: ref.current,
       canvas: ref.current.getContext('2d'),
-    });
-  }, []);
-  useEffect(() => {
-    if (!elements.video) {
-      return;
-    }
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function (stream) {
-      elements.video.srcObject = stream;
-      elements.video.setAttribute('playsinline', true);
-      elements.video.play();
+    };
+
+    // Retrieve video stream from camera
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then((stream) => {
+      streamRef.current = stream;
+      wrappingRef.current.video.srcObject = stream;
+      wrappingRef.current.video.setAttribute('playsinline', true);
+      wrappingRef.current.video.play();
       requestAnimationFrame(tick);
     });
-  }, [elements]);
+
+    // Disable camera (by stopping stream tracks) when component is destroyed
+    return () => {
+      const tracks = streamRef.current?.getTracks() ?? [];
+      for (const track of tracks) if (track.enabled) track.stop();
+    };
+  }, []);
+
   function drawLine(begin, end, color) {
-    elements.canvas.beginPath();
-    elements.canvas.moveTo(begin.x, begin.y);
-    elements.canvas.lineTo(end.x, end.y);
-    elements.canvas.lineWidth = 4;
-    elements.canvas.strokeStyle = color;
-    elements.canvas.stroke();
+    wrappingRef.current.canvas.beginPath();
+    wrappingRef.current.canvas.moveTo(begin.x, begin.y);
+    wrappingRef.current.canvas.lineTo(end.x, end.y);
+    wrappingRef.current.canvas.lineWidth = 4;
+    wrappingRef.current.canvas.strokeStyle = color;
+    wrappingRef.current.canvas.stroke();
   }
+
   function tick() {
-    if (activated) {
-      if (elements.video.readyState === elements.video.HAVE_ENOUGH_DATA) {
-        elements.canvasElement.width = elements.video.videoWidth;
-        elements.canvasElement.height = elements.video.videoHeight;
-        elements.canvas.drawImage(elements.video, 0, 0, elements.canvasElement.width, elements.canvasElement.height);
-        var imageData = elements.canvas.getImageData(0, 0, elements.canvasElement.width, elements.canvasElement.height);
-        var code = jsQR(imageData.data, imageData.width, imageData.height, {
-          inversionAttempts: 'dontInvert',
-        });
-        if (code) {
-          drawLine(code.location.topLeftCorner, code.location.topRightCorner, '#FF3B58');
-          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, '#FF3B58');
-          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, '#FF3B58');
-          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, '#FF3B58');
-          onCode(code);
-        }
+    if (wrappingRef.current.video.readyState === wrappingRef.current.video.HAVE_ENOUGH_DATA) {
+      wrappingRef.current.canvasElement.width = wrappingRef.current.video.videoWidth;
+      wrappingRef.current.canvasElement.height = wrappingRef.current.video.videoHeight;
+      wrappingRef.current.canvas.drawImage(
+        wrappingRef.current.video,
+        0,
+        0,
+        wrappingRef.current.canvasElement.width,
+        wrappingRef.current.canvasElement.height,
+      );
+      var imageData = wrappingRef.current.canvas.getImageData(
+        0,
+        0,
+        wrappingRef.current.canvasElement.width,
+        wrappingRef.current.canvasElement.height,
+      );
+      var code = jsQR(imageData.data, imageData.width, imageData.height, {
+        inversionAttempts: 'dontInvert',
+      });
+      if (code) {
+        drawLine(code.location.topLeftCorner, code.location.topRightCorner, '#FF3B58');
+        drawLine(code.location.topRightCorner, code.location.bottomRightCorner, '#FF3B58');
+        drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, '#FF3B58');
+        drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, '#FF3B58');
+        onCode(code);
       }
     }
     requestAnimationFrame(tick);
@@ -60,12 +81,10 @@ const QRCodeReader = ({ onCode, activated, className }) => {
 
 QRCodeReader.propTypes = {
   onCode: PropTypes.func.isRequired,
-  activated: PropTypes.bool,
   className: PropTypes.string,
 };
 
 QRCodeReader.defaultProps = {
-  activated: true,
   className: '',
 };
 

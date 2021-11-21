@@ -20,25 +20,60 @@ const userEntry = (state = initialState, payload) => {
   }
 };
 
-export const searchUser = (name) => async (dispatch) => {
-  const res = await API.get(`entry/user?search=${name}`);
+export const registerCashPayment = () => async (dispatch, getState) => {
+  const currentUser = getState().userEntry.searchUser;
+  if (!currentUser?.id) throw new Error('Cannot validate payment of undefined user');
+  const { data: updatedUser } = await API.post(`admin/users/${currentUser.id}/force-pay`, {
+    consume: true,
+  });
+  toast.success('Paiement validé');
   dispatch({
     type: SET_SEARCH_USER,
-    searchUser: res.data,
-  });
-  dispatch({
-    type: SET_VISIBLE,
-    visible: true,
+    searchUser: {
+      ...currentUser,
+      hasPaid: updatedUser.hasPaid,
+      scannedAt: updatedUser.scannedAt,
+    },
   });
 };
 
-export const scan = async (qrcode) => {
+export const searchUser = (userIdentifiable) => async (dispatch) => {
+  const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
+  if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
+  else
+    dispatch({
+      type: SET_SEARCH_USER,
+      searchUser: list.users[0],
+    });
+};
+
+export const scan = (qrcode) => async (dispatch) => {
   try {
-    const res = await API.post(`admin/scan`, {
+    const { data: user } = await API.post(`admin/scan`, {
       qrcode,
     });
     toast.success('Utilisateur scanné');
-    return res.data;
+    dispatch({
+      type: SET_SEARCH_USER,
+      searchUser: user,
+    });
+  } catch (error) {
+    toast.error(error);
+  }
+};
+
+export const bypassQrScan = () => async (dispatch, getState) => {
+  const currentUser = getState().userEntry.searchUser;
+  if (!currentUser?.id) throw new Error('Cannot validate entry of undefined user');
+  try {
+    const { data: user } = await API.post(`admin/scan`, {
+      userId: currentUser.id,
+    });
+    toast.success('Utilisateur scanné');
+    dispatch({
+      type: SET_SEARCH_USER,
+      searchUser: user,
+    });
   } catch (error) {
     toast.error(error);
   }

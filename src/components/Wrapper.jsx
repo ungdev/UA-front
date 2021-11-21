@@ -85,7 +85,7 @@ const Wrapper = ({ Component }) => {
     } else if (pathname === '/admin' && (permissions.includes('admin') || permissions.includes('anim'))) {
       redirect = '/admin/users';
     } else if (pathname === '/admin' && permissions.includes('entry')) {
-      redirect = '/admin/entry';
+      redirect = '/admin/scan';
     }
   }
 
@@ -193,7 +193,7 @@ const Wrapper = ({ Component }) => {
     }
 
     if (permissions.includes('entry') || permissions.includes('admin')) {
-      menu.push({ title: 'Entrée', href: '/admin/entry' });
+      menu.push({ title: 'Entrée', href: '/admin/scan' });
     }
 
     menu.push({ title: 'Mon compte', href: '/admin/account' });
