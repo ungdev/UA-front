@@ -323,13 +323,11 @@ const Shop = () => {
         <Select
           options={availableAttributes}
           onChange={(value) => {
-            if (cartSupplement.quantity) {
-              cartSupplement.attribute = value;
-              const newCartSupplements = cart.supplements.map((supplement) =>
-                supplement.item.id === cartSupplement.item.id ? cartSupplement : supplement,
-              );
-              setCart({ ...cart, supplements: newCartSupplements });
-            }
+            cartSupplement.attribute = value;
+            const newCartSupplements = cart.supplements.map((supplement) =>
+              supplement.item.id === cartSupplement.item.id ? cartSupplement : supplement,
+            );
+            setCart({ ...cart, supplements: newCartSupplements });
           }}
           value={undefined}
           className="shop-input"
