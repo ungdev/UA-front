@@ -329,7 +329,7 @@ const Shop = () => {
             );
             setCart({ ...cart, supplements: newCartSupplements });
           }}
-          value={undefined}
+          value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
           className="shop-input"
         />
       ) : (
