@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Input, Button, Title } from '../../components/UI';
+import { Input, Button, Title, Collapse } from '../../components/UI';
 import { editUser } from '../../modules/login';
 import { API } from '../../utils/api';
 import { fetchCurrentTeam } from '../../modules/team';
@@ -79,6 +79,63 @@ const Account = () => {
     <div id="dashboard-account">
       {user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
         <>
+          <div className="to-bring">
+            <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
+            <Collapse title="Pour te restaurer">
+              <ul>
+                <li>Gourde</li>
+                <li>Tupperware</li>
+                <li>
+                  Apporter de la nourriture est <strong>interdit</strong>
+                </li>
+              </ul>
+            </Collapse>
+            <Collapse title="Pour rentrer dans l'espace Argence">
+              <ul>
+                <li>Ton pass sanitaire</li>
+                <li>Ton billet</li>
+                <li>Ta pièce d’identité</li>
+                {user.age === 'child' && <li>Une attestation parentale</li>}
+              </ul>
+            </Collapse>
+            <Collapse title="Pour jouer">
+              <ul>
+                <li>
+                  Une multiprise : il n'y a qu'une seule prise par joueur donc si tu veux brancher plusieurs choses,
+                  elle sera ta meilleure amie
+                </li>
+                <li>Un câble ethernet</li>
+                <li>
+                  Ton setup complet (sauf si tu l'as loué) :
+                  <ul>
+                    <li>Tour</li>
+                    <li>Écran</li>
+                    <li>Câble HDMI / VGA</li>
+                    <li>Souris</li>
+                    <li>Clavier</li>
+                    <li>Manette</li>
+                  </ul>
+                </li>
+                <li>Si tu as pris la réduction SSBU, ta Switch</li>
+              </ul>
+            </Collapse>
+            <Collapse
+              title={
+                <span>
+                  D'autres trucs qui <del>pourraient</del> <strong>te seront</strong> utiles
+                </span>
+              }>
+              <ul>
+                <li>De quoi te laver</li>
+                <li>De quoi dormir</li>
+                <li>
+                  Des masques : prends en plusieurs, ça peut toujours casser, et on n'en aura pas forcément en rab ! Pas
+                  de masque, pas de LAN !
+                </li>
+              </ul>
+            </Collapse>
+          </div>
+          <hr />
           <div className="ticket">
             <Title level={4}>Mon billet</Title>
             <Button primary onClick={downloadTicket}>
