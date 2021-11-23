@@ -61,11 +61,20 @@ const content = [
     entries: [
       {
         question: 'Le pass sanitaire sera-t-il requis ?',
-        answer: 'Cela dépendra des annonces gouvernentales à venir.',
+        answer: (
+          <>
+            Oui. Sans pass sanitaire, tu ne pourras pas participer à l'événement. Ton pass sanitaire doit être valide.
+            Pour plus d'informations sur la validité des pass sanitaires :{' '}
+            <a href="https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations">
+              https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations
+            </a>
+          </>
+        ),
       },
       {
         question: 'Le port du masque sera-t-il obligatoire ?',
-        answer: 'Cela dépendra des annonces gouvernentales à venir.',
+        answer:
+          "Il sera obligatoire pendant tout l'événement. Tu pourras l'enlever quand tu te restaurera, mais tu devras le remettre tout de suite après.",
       },
     ],
   },
