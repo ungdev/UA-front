@@ -21,6 +21,11 @@ const Account = () => {
   const [discordLink, setDiscordLink] = useState('');
   const discordLinkRef = useRef(null);
 
+  //console.log pour penser à l'enlever ^^
+  useEffect(() => {
+    user.compumsaCode = 'ABCDEF';
+  });
+
   useEffect(() => {
     API.get('discord/connect').then((res) => {
       setDiscordLink(res.data.link);
@@ -77,6 +82,73 @@ const Account = () => {
 
   return (
     <div id="dashboard-account">
+      <div className="infos">
+        <Title level={4}>Mes informations</Title>
+
+        <Input label="Place" value={user.place || ''} autocomplete="off" disabled />
+        <Input label="Email" value={user.email} autocomplete="off" disabled />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
+        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
+        <Input label="Pseudo (Nom d'invocateur pour LoL)" value={username} onChange={setUsername} autocomplete="off" />
+        <Input
+          label="Nouveau mot de passe"
+          value={password}
+          onChange={setPassword}
+          autocomplete="off"
+          type="password"
+        />
+        <Input
+          label="Confirmer le nouveau mot de passe"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+          autocomplete="off"
+          type="password"
+        />
+
+        <br />
+        <Input
+          label="Pour modifier ton profil, entre ton mot de passe actuel"
+          value={oldpassword}
+          onChange={setOldpassword}
+          autocomplete="off"
+          type="password"
+        />
+
+        <Button primary onClick={edit}>
+          Modifier
+        </Button>
+      </div>
+
+      <div className="infos" ref={discordLinkRef}>
+        <Title level={4}>Mon compte Discord</Title>
+        {user.discordId ? (
+          <p>
+            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
+          </p>
+        ) : (
+          ''
+        )}
+        <a href={discordLink}>
+          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
+        </a>
+      </div>
+      <hr />
+      {user.compumsaCode ? (
+        <>
+          <div>
+            <Title level={4}>Code de réduction Compumsa</Title>
+            Remise/min. d'achat sur www.compumsa.eu : 15 €/50 € ; 20 €/150 € et 30 €/300 €
+            <br />
+            Le meilleur e-commerce IT en Belgique et un des meilleurs en Europe !
+            <br />
+            Bon de réduction pour l'UTT Arena. Valable jusqu'au 30/06/2022, 1 bon max par personne. Envoyez un email
+            avant de commander en indiquant votre code personnel : <b>{user.compumsaCode}</b>
+          </div>
+          <hr />
+        </>
+      ) : (
+        ''
+      )}
       {user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
         <>
           <div className="to-bring">
@@ -142,69 +214,7 @@ const Account = () => {
               Télécharger mon billet
             </Button>
           </div>
-          <hr />
         </>
-      )}
-      <div className="infos">
-        <Title level={4}>Mes informations</Title>
-
-        <Input label="Place" value={user.place || ''} autocomplete="off" disabled />
-        <Input label="Email" value={user.email} autocomplete="off" disabled />
-        <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
-        <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
-        <Input label="Pseudo (Nom d'invocateur pour LoL)" value={username} onChange={setUsername} autocomplete="off" />
-        <Input
-          label="Nouveau mot de passe"
-          value={password}
-          onChange={setPassword}
-          autocomplete="off"
-          type="password"
-        />
-        <Input
-          label="Confirmer le nouveau mot de passe"
-          value={confirmPassword}
-          onChange={setConfirmPassword}
-          autocomplete="off"
-          type="password"
-        />
-
-        <br />
-        <Input
-          label="Pour modifier ton profil, entre ton mot de passe actuel"
-          value={oldpassword}
-          onChange={setOldpassword}
-          autocomplete="off"
-          type="password"
-        />
-
-        <Button primary onClick={edit}>
-          Modifier
-        </Button>
-      </div>
-
-      <div className="infos" ref={discordLinkRef}>
-        <Title level={4}>Mon compte Discord</Title>
-        {user.discordId ? (
-          <p>
-            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
-          </p>
-        ) : (
-          ''
-        )}
-        <a href={discordLink}>
-          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
-        </a>
-      </div>
-      {user.compumsaCode ? (
-        <div>
-          <Title level={4}>Code de réduction Compumsa</Title>
-          Remise/min. d'achat sur www.compumsa.eu : 15 €/50 € ; 20 €/150 € et 30 €/300 € Le meilleur e-commerce IT en
-          Belgique et un des meilleurs en Europe ! Bon de réduction pour la UTT Arena. Valable jusqu'au 30/06/2022, 1
-          bon max par personne. Envoyez un email avant de commander en indiquant votre code personnel :{' '}
-          <b>{user.compumsaCode}</b>
-        </div>
-      ) : (
-        ''
       )}
     </div>
   );
