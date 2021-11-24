@@ -21,11 +21,6 @@ const Account = () => {
   const [discordLink, setDiscordLink] = useState('');
   const discordLinkRef = useRef(null);
 
-  //console.log pour penser à l'enlever ^^
-  useEffect(() => {
-    user.compumsaCode = 'ABCDEF';
-  });
-
   useEffect(() => {
     API.get('discord/connect').then((res) => {
       setDiscordLink(res.data.link);
