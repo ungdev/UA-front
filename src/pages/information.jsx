@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
+import { Icons } from 'react-toastify';
 
 import { Title, Table } from '../components/UI';
 
@@ -151,6 +152,29 @@ const Information = () => (
         Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>. Tu
         recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.
       </p>
+
+      <Title level={4}>Ce que tu devras amener</Title>
+      <ul>
+        <li>
+          Si tu veux manger pendant l'événement, tu devras venir avec ton tupperware. Dans tous les cas, viens avec une
+          goudre. Tu ne pourras pas apporter ta propre nourriture.
+        </li>
+        <li>
+          Pour rentrer dans l'espace Argence, tu devras avoir ton billet, un pass sanitaire valide, une pièce
+          d'identité. N'oublie pas ton attestation parentale si tu es mineur.
+        </li>
+        <li>
+          Tu devras amener une multiprise, nous ne fournissons qu'une prise par personne. Pour te connecter à la LAN, tu
+          auras besoin d'un câble ethernet d'au moins 7 mètres, et ton ordinateur devra avoir une prise ethernet. Enfin,
+          surement le plus important : tu dois ramener ton setup complet (sauf si tu l'as loué) : ta tour, ton écran, un
+          câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta manette. Si tu as pris la réduction
+          SSBU, tu devras apporter ta Switch.
+        </li>
+        <li>
+          Enfin, il te faudra de quoi te laver et de quoi dormir. Tu devras aussi avoir plusieurs masques : nous n'en
+          auront pas forcément en rab si le tien casse. Tu ne pourras pas rester dans l'espace Argence sans masque !
+        </li>
+      </ul>
     </div>
 
     <Title align="center">Planning</Title>
