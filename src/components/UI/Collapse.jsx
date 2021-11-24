@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * Display an extension panel
  */
-const Collapse = ({ title, children, className }) => {
+const Collapse = ({ title, children, className, initVisible }) => {
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
   const [contentVisible, setContentVisible] = useState(false);
@@ -19,6 +19,10 @@ const Collapse = ({ title, children, className }) => {
   useEffect(() => {
     setContentHeight(contentRef.current.scrollHeight);
   }, [children]);
+
+  useEffect(() => {
+    setVisible(initVisible);
+  }, []);
 
   return (
     <div className={`collapse ${className} ${contentVisible ? 'active' : ''}`}>
@@ -50,10 +54,15 @@ Collapse.propTypes = {
    * Class of the container
    */
   className: PropTypes.string,
+  /**
+   * Initialise visible
+   */
+  initVisible: PropTypes.bool,
 };
 
 Collapse.defaultProps = {
   className: '',
+  initVisible: false,
 };
 
 export default Collapse;

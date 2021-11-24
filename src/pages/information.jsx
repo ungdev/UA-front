@@ -119,9 +119,10 @@ const Information = () => (
           <strong>Aucune manette ou adaptateur ne sera mis à disposition pendant l'événement.</strong>
         </li>
         <li>
-          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, une réduction de 3€ leur sera
-          accordée lors de son inscription. Pour cela il faut ajouter le supplément "Réduction si tu amènes ta propre
-          Nintendo Switch" dans ton panier au moment de payer ta place.
+          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec tous les
+          personnages et un câble HDMI, une réduction de 3€ leur sera accordée lors de son inscription. Pour cela il
+          faut ajouter le supplément "Réduction si tu amènes ta propre Nintendo Switch" dans ton panier au moment de
+          payer ta place.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay pendant l'UTT Arena.
           <br />
@@ -161,14 +162,14 @@ const Information = () => (
         </li>
         <li>
           Pour rentrer dans l'espace Argence, tu devras avoir ton billet, un pass sanitaire valide, une pièce
-          d'identité. N'oublie pas ton attestation parentale si tu es mineur.
+          d'identité. N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.
         </li>
         <li>
           Tu devras amener une multiprise, nous ne fournissons qu'une prise par personne. Pour te connecter à la LAN, tu
           auras besoin d'un câble ethernet d'au moins 7 mètres, et ton ordinateur devra avoir une prise ethernet. Enfin,
           surement le plus important : tu dois ramener ton setup complet (sauf si tu l'as loué) : ta tour, ton écran, un
           câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta manette. Si tu as pris la réduction
-          SSBU, tu devras apporter ta Switch.
+          SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI.
         </li>
         <li>
           Enfin, il te faudra de quoi te laver et de quoi dormir. Tu devras aussi avoir plusieurs masques : nous n'en

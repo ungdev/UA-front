@@ -148,7 +148,7 @@ const Account = () => {
         <>
           <div className="to-bring">
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
-            <Collapse title="Pour te restaurer">
+            <Collapse title="Pour te restaurer" initVisible={true}>
               <ul>
                 <li>Gourde</li>
                 <li>Tupperware</li>
@@ -157,15 +157,15 @@ const Account = () => {
                 </li>
               </ul>
             </Collapse>
-            <Collapse title="Pour rentrer dans l'espace Argence">
+            <Collapse title="Pour rentrer dans l'espace Argence" initVisible={true}>
               <ul>
                 <li>Ton pass sanitaire</li>
                 <li>Ton billet</li>
                 <li>Ta pièce d’identité</li>
-                {user.age === 'child' && <li>Une attestation parentale</li>}
+                {user.age === 'child' && <li>Une attestation parentale et les documents demandés dessus</li>}
               </ul>
             </Collapse>
-            <Collapse title="Pour jouer">
+            <Collapse title="Pour jouer" initVisible={true}>
               <ul>
                 <li>
                   Une multiprise : il n'y a qu'une seule prise par joueur donc si tu veux brancher plusieurs choses,
@@ -183,7 +183,9 @@ const Account = () => {
                     <li>Manette</li>
                   </ul>
                 </li>
-                <li>Si tu as pris la réduction SSBU, ta Switch</li>
+                <li>
+                  Si tu as pris la réduction SSBU, ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI
+                </li>
               </ul>
             </Collapse>
             <Collapse
@@ -191,7 +193,8 @@ const Account = () => {
                 <span>
                   D'autres trucs qui <del>pourraient</del> <strong>te seront</strong> utiles
                 </span>
-              }>
+              }
+              initVisible={true}>
               <ul>
                 <li>De quoi te laver</li>
                 <li>De quoi dormir</li>

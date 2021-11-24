@@ -30,8 +30,8 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
-            Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.
+            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Les demandes de stream sont
+            closes.
           </>
         ),
       },
@@ -166,9 +166,9 @@ const content = [
         question: 'Dois-je apporter ma console ?',
         answer: (
           <>
-            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta
-            Switch, et tu bénéficies d'une réduction sur le prix de ton billet. Cette option est disponible pour les
-            plus rapides seulement.
+            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta , le
+            jeu SSBU avec tous les personnages et un câble HDMI, et tu bénéficies d'une réduction sur le prix de ton
+            billet. Cette option est disponible pour les plus rapides seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
             <br />

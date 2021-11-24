@@ -331,11 +331,7 @@ const Shop = () => {
             );
             setCart({ ...cart, supplements: newCartSupplements });
           }}
-<<<<<<< HEAD
           value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
-=======
-          value={''}
->>>>>>> dd8671e (Misc-fixes (#203))
           className="shop-input"
         />
       ) : (
