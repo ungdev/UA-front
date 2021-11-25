@@ -8,9 +8,7 @@ const Textarea = ({ label, placeholder, value, onChange, className }) => (
   <div className={`textarea ${className}`}>
     <label>
       <div className="textarea-label">{label}</div>
-
       <textarea value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
-
       <div className="line" />
     </label>
   </div>

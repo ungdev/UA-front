@@ -1,0 +1,221 @@
+.mail-template {
+  --text-color: #202020;
+  --title-color: #{$secondary-color};
+  --button-color: #fff;
+  --separator-background: #{$accent-color};
+  --button-background: #{$primary-color};
+  --text-font: Nunito, Roboto, Arial, sans-serif;
+  --title-font: Montserrat, Roboto, Arial, sans-serif;
+  cursor: default;
+
+  & .separator {
+    border-bottom: 4px dotted var(--separator-background);
+    position: relative;
+
+    .insert {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      transform: translateY(calc(50% + 2px));
+      font-size: 1em;
+      border-radius: 50%;
+      color: $accent-color;
+      background-color: $dark-color;
+      cursor: pointer;
+      z-index: 1;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+
+      i {
+        margin-top: 50%;
+        transform: translateY(calc(-50% - 1px));
+      }
+    }
+  }
+
+  & .size-medium {
+    min-width: min(200px, 20vw);
+  }
+
+  & .size-full {
+    width: 100%;
+    margin: 0 !important;
+  }
+
+  & .centered {
+    text-align: center;
+  }
+
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  & .section {
+    position: relative;
+
+    .delete {
+      position: absolute;
+      right: 0px;
+      top: 5px;
+      color: $accent-color;
+      background-color: $dark-color;
+      width: 25px;
+      height: 25px;
+      font-size: 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1;
+      text-align: center;
+
+      i {
+        margin-top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .title {
+      font-family: var(--title-font);
+      line-height: 29px;
+      font-size: 24px;
+      color: var(--title-color);
+      padding-bottom: 10px;
+    }
+
+    .text {
+      color: var(--text-color);
+      -webkit-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+      position: relative;
+      font-family: var(--text-font);
+    }
+  }
+
+  & .footer {
+    & > table > tbody > tr:first-child > td {
+      padding-top: 15px;
+    }
+    & > table > tbody > tr:nth-child(2) > td {
+      padding: 10px 0 0;
+    }
+    & > table > tbody > tr:nth-child(3) > td {
+      padding-block: 10px;
+    }
+
+    .section {
+      color: #696969;
+      line-height: 18px;
+      font-size: 12px;
+      text-align: center;
+      -webkit-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+      font-family: var(--text-font);
+    }
+
+    .socials {
+      font-size: 32px;
+      text-align: center;
+
+      & > i {
+        cursor: pointer;
+        vertical-align: middle;
+
+        &.fa-facebook {
+          color: #1278f3;
+        }
+
+        &.fa-twitter {
+          color: #1da1f2;
+        }
+
+        &.fa-instagram {
+          color: #c13584;
+        }
+
+        &.fa-discord {
+          color: #7289da;
+        }
+
+        &.fa-youtube {
+          color: #ff0000;
+        }
+
+        &.fa-twitch {
+          color: #6441a5;
+        }
+      }
+    }
+  }
+
+  & span.link {
+    text-decoration: none;
+    border-bottom: 1px solid;
+    color: var(--button-background);
+    cursor: pointer;
+  }
+
+  & > table {
+    background-color: #ffffff;
+    max-width: 600px;
+    text-align: left;
+    margin: auto;
+
+    & > tbody > tr:first-child {
+      background-color: var(--text-color);
+
+      & > td:first-child {
+        text-align: right;
+
+        & > img {
+          width: 140px;
+          border: 0;
+          outline: none;
+          text-decoration: none;
+          -ms-interpolation-mode: bicubic;
+          padding: 20px;
+        }
+      }
+
+      & > td:last-child {
+        font-family: var(--title-font);
+        color: var(--button-color);
+        font-size: 22px;
+        padding: 20px;
+      }
+    }
+
+    & > tbody > tr:nth-child(2) {
+      color: var(--text-color);
+      -webkit-text-size-adjust: none;
+      -ms-text-size-adjust: none;
+      position: relative;
+
+      & > td > table {
+        border-spacing: 20px;
+        border-collapse: initial;
+
+        & > tbody > tr:first-child > td > table > tbody {
+          & > tr:first-child > td {
+            font-family: var(--text-font);
+            line-height: 21px;
+            font-size: 14px;
+            text-align: center;
+          }
+          & > tr:last-child > td {
+            text-align: center;
+            line-height: 36px;
+            font-size: 30px;
+            font-style: normal;
+            font-family: var(--title-font);
+            color: var(--text-color);
+          }
+        }
+      }
+    }
+
+    & > tbody > tr:last-child > td {
+      padding: 0 20px 20px;
+    }
+  }
+}

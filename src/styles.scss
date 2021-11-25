@@ -12,6 +12,7 @@
 @import './pages/partners.scss';
 @import './pages/admin/entry.scss';
 @import './pages/admin/users.scss';
+@import './pages/admin/mails.scss';
 @import './pages/dashboard/account.scss';
 @import './pages/dashboard/purchases.scss';
 @import './pages/dashboard/register.scss';
@@ -28,6 +29,7 @@
 @import './components/TournamentCards.scss';
 @import './components/UserModal.scss';
 @import './components/ResetModal.scss';
+@import './components/MailEditor.scss';
 
 // UI Components
 @import './components/UI/Button.scss';
@@ -39,6 +41,7 @@
 @import './components/UI/Inputs.scss';
 @import './components/UI/Modal.scss';
 @import './components/UI/Radio.scss';
+@import './components/UI/RichTextArea.scss';
 @import './components/UI/Table.scss';
 @import './components/UI/Tabs.scss';
 @import './components/UI/Title.scss';

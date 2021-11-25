@@ -222,7 +222,7 @@ const UserModal = ({ searchUser, onClose }) => {
                   <Checkbox
                     key={option.value}
                     label={option.name}
-                    value={permissions.find((permission) => permission === option.value)}
+                    value={permissions.some((permission) => permission === option.value)}
                     onChange={(v) => {
                       if (v) {
                         addPermission(option.value);
