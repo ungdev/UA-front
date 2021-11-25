@@ -22,7 +22,7 @@ const format = (users) => {
     teamName: user.team ? user.team.name : user.type === 'spectator' ? '(spectateur)' : '',
     lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
-    scannedLabel: user.scanned ? '✔' : '✖',
+    scannedLabel: user.scannedAt ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',
   }));
 };
