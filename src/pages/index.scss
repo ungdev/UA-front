@@ -38,7 +38,7 @@
       p {
         font-family: $ua-font;
         text-align: center;
-        color: #fff;
+        color: $primary-color;
         transform: skew(-15deg);
         margin: 0;
         font-size: calc(0.029 * (100vw - 280px));
