@@ -8,6 +8,18 @@
     background-size: cover;
     margin-bottom: 3em;
 
+    &:before {
+      content: '';
+      background-color: #8767aa;
+      opacity: 0.4;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+    }
+
     #logo {
       max-height: 50%;
       max-width: 75%;
