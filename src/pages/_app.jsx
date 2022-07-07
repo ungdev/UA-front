@@ -10,7 +10,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
-import { googleAnalyticsId, googleVerification, nodeEnv, uploadsUrl } from '../utils/environment';
+import { googleVerification, uploadsUrl } from '../utils/environment';
 import Router from 'next/router';
 
 // Import all CSS files
@@ -38,23 +38,22 @@ const App = ({ Component, reduxStore }) => {
     <div>
       <Head>
         <script src="/matomo.js"></script>
-        <script src="/jsQR.js"></script>
-        <title>UTT Arena 2021 - 26, 27 et 28 novembre 2021</title>
+        <title>UTT Arena 2022 - 2, 3 et 4 décembre 2022</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta
           name="description"
           content={
             'Viens participer au célèbre tournoi du Grand-Est ! ' +
-            "L'UTT Arena revient pour sa 18ème édition les 26, 27 et 28 novembre 2021. " +
-            "Au programme, 6 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
+            "L'UTT Arena revient pour sa 19ème édition les 2, 3 et 4 décembre 2022. " +
+            "Au programme, 8 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"
           }
         />
 
-        <meta property="og:site_name" content="UTT Arena 2021" />
-        <meta property="og:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
+        <meta property="og:site_name" content="UTT Arena 2022" />
+        <meta property="og:title" content="UTT Arena 2022 - 2, 3 et 4 décembre 2022" />
         <meta property="og:url" content="https://arena.utt.fr/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
@@ -64,17 +63,17 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:image:height" content="1500" />
         <meta
           property="og:description"
-          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
+          content="Entrez dans l’arène les 2, 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
         />
 
-        <meta name="twitter:title" content="UTT Arena 2021 - 26, 27 et 28 novembre 2021" />
+        <meta name="twitter:title" content="UTT Arena 2022 - 2, 3 et 4 Décembre 2022" />
         <meta name="twitter:site" content="@UTTArena" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
-        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2021, le 26, 27 et 28 Novembre" />
+        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2022, le 2, 3 et 4 Décembre" />
         <meta
           property="twitter:description"
-          content="Entrez dans l’arène les 26, 27 et 28 novembre pour le retour de la compétition e-sport Troyenne !"
+          content="Entrez dans l’arène les 2, 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
         />
 
         <meta name="google-site-verification" content={googleVerification()} />
@@ -82,16 +81,6 @@ const App = ({ Component, reduxStore }) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/logo-notext.png" />
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-          crossOrigin="anonymous"
-        />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
       </Head>
 
       <Provider store={reduxStore}>

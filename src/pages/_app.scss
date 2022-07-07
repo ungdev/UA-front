@@ -7,11 +7,3 @@
   background-color: #f5f5f5;
   overflow-x: hidden;
 }
-
-@media screen and (max-width: 1000px) {
-  .page-container {
-    top: 60px;
-    left: 0;
-    width: calc(100%);
-  }
-}

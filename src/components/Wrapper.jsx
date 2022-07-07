@@ -1,11 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-
-import Header from './Header';
-import CookieConsent from './CookieConsent';
-import PanelHeader from './PanelHeader';
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -16,7 +11,7 @@ const Wrapper = ({ Component }) => {
 
   useEffect(() => {
     if (!isHome) {
-      redirect = "/";
+      redirect = '/';
     }
   }, []);
 
@@ -28,18 +23,8 @@ const Wrapper = ({ Component }) => {
     }
   }, [replace, redirect]);
 
-  // Do not display the page content if the user will be redirected
-  if (redirect) {
-    return (
-      <>
-        <CookieConsent />
-      </>
-    );
-  }
-
   return (
     <>
-      <CookieConsent />
       <div className="page-container">
         <main>
           <Component />
