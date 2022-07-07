@@ -14,8 +14,8 @@ const Home = () => {
           <LogoSVG />
         </div>
         <div className="home-title">
-          <p className="main">UTT Arena</p>
-          <p>26, 27, 28 novembre 2021</p>
+          <p className="main">L'UTT Arena revient</p>
+          <p>les 2, 3 et 4 décembre 2022 !</p>
         </div>
       </div>
 
