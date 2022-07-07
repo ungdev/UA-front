@@ -11,7 +11,6 @@ import 'simplebar/dist/simplebar.min.css';
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
 import { googleAnalyticsId, googleVerification, nodeEnv, uploadsUrl } from '../utils/environment';
-import { API } from '../utils/api';
 import Router from 'next/router';
 
 // Import all CSS files

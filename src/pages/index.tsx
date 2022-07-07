@@ -4,20 +4,8 @@ import Link from 'next/link';
 import { Partner } from '../types';
 import TournamentCards from '../components/TournamentCards';
 import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG, Loader } from '../components/UI';
-import { uploads } from '../utils/api';
 
 const Home = () => {
-  const [partners, setPartners] = useState<Array<Partner>>([]);
-
-  const fetchPartners = async () => {
-    const request = await uploads.get<Array<Partner>>('/partners/list.json', true);
-
-    setPartners(request.data);
-  };
-
-  useEffect(() => {
-    fetchPartners();
-  }, []);
 
   return (
     <div id="home">
@@ -106,34 +94,6 @@ const Home = () => {
           <TournamentCards />
         </div>
 
-        <div className="home-partners">
-          <Title align="center">Partenaires</Title>
-          <div className="list-partners">
-            {!partners ? (
-              <Loader />
-            ) : (
-              partners.map((partner) => (
-                <div className="partner" key={partner.link}>
-                  <a
-                    href={partner.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Partenaire ${partner.name}`}>
-                    <Card imgSrc={partner.image} classNameImg="partner-img" alt={`Partenaire ${partner.name}`} />
-                  </a>
-                </div>
-              ))
-            )}
-          </div>
-
-          <Link href="/partners">
-            <a>
-              <Button primary className="partners-button" rightIcon="fas fa-chevron-right">
-                Voir les partenaires
-              </Button>
-            </a>
-          </Link>
-        </div>
       </div>
     </div>
   );

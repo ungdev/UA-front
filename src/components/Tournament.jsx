@@ -14,57 +14,6 @@ const columns = [
 ];
 
 const Tournament = ({ assets, tournamentId, alt }) => {
-  const router = useRouter();
-  const dispatch = useDispatch();
-
-  const isLoginAllowed = useSelector((state) => state.settings.login);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [formatTeams, setFormatTeam] = useState([]);
-  const [tournament, setTournament] = useState();
-
-  useEffect(() => {
-    isLoginAllowed || dispatch(fetchSettings());
-  }, []);
-
-  // Fetch the tournaments from the API, and update the state with the tournament object and a map of locked teams / players
-  const fetchTournament = async () => {
-    const res = await API.get(`/tournaments`);
-    const tournament = res.data.filter((tournament) => tournament.id === tournamentId);
-    const teams = tournament[0].teams
-      .filter((team) => team.lockedAt !== null)
-      .map(({ name, players }) => ({
-        name,
-        players: players
-          .map(({ username }) => username)
-          .sort()
-          .join(', '),
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-    setTournament(tournament[0]);
-    setFormatTeam(teams);
-  };
-
-  useSelector((state) => {
-    if (isLoggedIn !== !!state.login.user) {
-      setIsLoggedIn(!!state.login.user);
-    }
-  });
-
-  // Fetch the tournaments once, after the first render
-  useEffect(() => {
-    if (!tournament) {
-      fetchTournament();
-    }
-  }, []);
-
-  const buttonClick = () => {
-    if (isLoggedIn) {
-      router.push(`/dashboard/register?tournamentId=${tournamentId}`);
-    } else {
-      dispatch(setLoginModalVisible(true));
-    }
-  };
 
   return (
     <div className="tournament">

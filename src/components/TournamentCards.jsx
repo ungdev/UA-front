@@ -1,20 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
-import { fetchSlots } from '../modules/tournament';
 import { Card, Title } from './UI';
 import tournaments from '../utils/tournaments';
 
 const TournamentCards = () => {
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.login.user);
-  const slotsTournaments = useSelector((state) => state.tournament.slots);
-
-  useEffect(() => {
-    if (isLoggedIn && !slotsTournaments) {
-      dispatch(fetchSlots());
-    }
-  }, [isLoggedIn]);
 
   return (
     <div className="tournament-cards">

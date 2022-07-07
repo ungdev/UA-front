@@ -4,14 +4,8 @@
 @import './pages/_app.scss';
 
 // Pages
-@import './pages/faq.scss';
 @import './pages/index.scss';
-@import './pages/information.scss';
 @import './pages/legal.scss';
-@import './pages/organisers.scss';
-@import './pages/partners.scss';
-@import './pages/admin/scan.scss';
-@import './pages/admin/users.scss';
 @import './pages/dashboard/account.scss';
 @import './pages/dashboard/purchases.scss';
 @import './pages/dashboard/register.scss';
@@ -21,8 +15,6 @@
 // Components
 @import './components/CookieConsent.scss';
 @import './components/Header.scss';
-@import './components/LoginModal.scss';
-@import './components/Navbar.scss';
 @import './components/PanelHeader.scss';
 @import './components/Tournament.scss';
 @import './components/TournamentCards.scss';
