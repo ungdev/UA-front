@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Title, Button } from '../components/UI';
+import { Button } from '../components/UI';
 
 const Error404 = () => (
   <>
-    <Title level={2}>Page introuvable</Title>
+    <h2>Page introuvable</h2>
     <p>Erreur 404</p>
 
     <Link href="/">
