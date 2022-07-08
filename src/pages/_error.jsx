@@ -2,13 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-import { Title, Button } from '../components/UI';
+import { Button } from '../components/UI';
 
 class Error extends React.Component {
   render() {
     return (
       <>
-        <Title level={2}>Une erreur est survenue...</Title>
+        <h2>Une erreur est survenue...</h2>
         <p>{this.props.statusCode && `Erreur ${this.props.statusCode}`}</p>
 
         <Link href="/">
