@@ -42,19 +42,47 @@
         color: white;
         transform: skew(-15deg);
         margin: 0;
-        font-size: min(3.5em, calc(0.029 * (100vw - 280px)));
+        font-size: 3.5em;
+
+        span.date {
+          color: $superposed-color !important;
+        }
       }
 
       .main {
-        font-size: min(5em, calc(0.065 * (100vw - 280px)));
+        font-size: 5em;
         text-transform: uppercase;
         margin-bottom: 10px;
+      }
+    }
+
+    .social {
+      display: flex;
+      padding: 0 1em;
+      flex-flow: row wrap;
+      position: absolute;
+      font-size: 1.5em;
+      gap: 1em;
+      bottom: 1em;
+      left: 0;
+      z-index: 1;
+      justify-content: center;
+      width: 100%;
+      box-sizing: border-box;
+
+      a > i {
+        color: white;
+        transition: color 200ms ease-in-out;
+
+        &:hover {
+          color: $secondary-color;
+        }
       }
     }
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
   #home .home-header {
     .home-title {
       padding: 1.5em 0;
@@ -64,11 +92,11 @@
 
       p {
         transform: skew(0deg);
-        font-size: 5.5vw;
+        font-size: min(3em, 5.5vw);
       }
 
       .main {
-        font-size: 12vw;
+        font-size: min(5em, 12vw);
       }
     }
   }
