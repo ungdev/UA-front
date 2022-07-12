@@ -22,7 +22,9 @@ const userEntry = (state = initialState, payload) => {
 
 export const registerCashPayment = () => async (dispatch, getState) => {
   const currentUser = getState().userEntry.searchUser;
-  if (!currentUser?.id) throw new Error('Cannot validate payment of undefined user');
+  if (!currentUser?.id) {
+    throw new Error('Cannot validate payment of undefined user');
+  }
   const { data: updatedUser } = await API.post(`admin/users/${currentUser.id}/force-pay`, {
     consume: true,
   });

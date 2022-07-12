@@ -68,17 +68,13 @@ const Wrapper = ({ Component }) => {
     } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
       redirect = '/dashboard/spectator';
     } else if (!isSpectator && !hasTeam) {
-      if (pathname === '/dashboard/spectator' || pathname === '/dashboard') {
+      if (
+        pathname === '/dashboard/spectator' ||
+        pathname === '/dashboard' ||
+        (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+      ) {
         redirect = '/dashboard/register';
       }
-    } else if (
-      !isSpectator &&
-      !hasTeam &&
-      isDashboard &&
-      pathname !== '/dashboard/register' &&
-      pathname !== '/dashboard/account'
-    ) {
-      redirect = '/dashboard/register';
     }
     if (!isAdmin && isAdminPanel) {
       redirect = '/dashboard';

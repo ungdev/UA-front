@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
-import { fetchTournaments } from '../../modules/tournament';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

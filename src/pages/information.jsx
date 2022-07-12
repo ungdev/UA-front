@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import { Icons } from 'react-toastify';
 
-import { Title, Table } from '../components/UI';
+import { Title } from '../components/UI';
 
 const Information = () => (
   <div id="information">

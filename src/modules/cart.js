@@ -25,7 +25,7 @@ const carts = (state = initialState, action) => {
   }
 };
 
-export const cartPay = (cart) => async (dispatch, getState) => {
+export const cartPay = (cart) => async () => {
   const sendableCart = {
     tickets: {
       userIds: [],

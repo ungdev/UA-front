@@ -12,8 +12,8 @@ import {
 } from '../../modules/team';
 
 import { fetchSettings } from '../../modules/settings';
-import tournament, { fetchSlots, fetchTournaments } from '../../modules/tournament';
-import { Title, Table, Button, Modal, Helper, Card } from '../../components/UI';
+import { fetchSlots, fetchTournaments } from '../../modules/tournament';
+import { Title, Table, Button, Modal, Helper } from '../../components/UI';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -237,34 +237,35 @@ const Team = () => {
           ),
       }));
 
-  const diplayMatches =
-    team &&
-    team.matches &&
-    team.matches.length &&
-    team.matches.map(({ opponents, note, id }) => {
-      const displayOpponents = opponents.map(({ name, result, rank }) => {
-        return (
-          <div key={name} className="opponent">
-            <div>{name}</div>
-            {result && <div className={result}>{result[0].toUpperCase()}</div>}
-            {rank && <div className="circle">{rank}</div>}
-          </div>
-        );
-      });
-      return (
-        <Card
-          className="team-match"
-          content={
-            <>
-              {displayOpponents}
-              {note && <div className="divider" />}
-              {note && <p className="match-note">Note : {note}</p>}
-            </>
-          }
-          key={id}
-        />
-      );
-    });
+  // This variable is unused
+  // const diplayMatches =
+  //   team &&
+  //   team.matches &&
+  //   team.matches.length &&
+  //   team.matches.map(({ opponents, note, id }) => {
+  //     const displayOpponents = opponents.map(({ name, result, rank }) => {
+  //       return (
+  //         <div key={name} className="opponent">
+  //           <div>{name}</div>
+  //           {result && <div className={result}>{result[0].toUpperCase()}</div>}
+  //           {rank && <div className="circle">{rank}</div>}
+  //         </div>
+  //       );
+  //     });
+  //     return (
+  //       <Card
+  //         className="team-match"
+  //         content={
+  //           <>
+  //             {displayOpponents}
+  //             {note && <div className="divider" />}
+  //             {note && <p className="match-note">Note : {note}</p>}
+  //           </>
+  //         }
+  //         key={id}
+  //       />
+  //     );
+  //   });
 
   if (!team) {
     return null;

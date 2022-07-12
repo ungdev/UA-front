@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { PropTypes } from 'prop-types';
 import { toast } from 'react-toastify';
+import jsQR from 'jsqr';
 
 const QRCodeReader = ({ onCode, className }) => {
   const ref = useRef();

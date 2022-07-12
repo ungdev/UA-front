@@ -48,10 +48,9 @@ const login = (state = initialState, action) => {
 };
 
 export const autoLogin = () => async (dispatch) => {
+  // eslint-disable-next-line no-prototype-builtins
   if (localStorage.hasOwnProperty('utt-arena-token') && localStorage.hasOwnProperty('utt-arena-userid')) {
-    // eslint-disable-line no-prototype-builtins
     const localToken = localStorage.getItem('utt-arena-token');
-    const userId = localStorage.getItem('utt-arena-userid');
     dispatch(saveToken(localToken));
     try {
       const res = await API.get(`users/current`);
@@ -118,7 +117,7 @@ export const logout = async (dispatch) => {
   Router.push('/');
 };
 
-export const editUser = (data, userId) => async (dispatch) => {
+export const editUser = (data) => async (dispatch) => {
   const res = await API.patch(`/users/current`, data);
   toast.success('Tes informations ont été modifiées');
   dispatch({
@@ -134,7 +133,7 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
   resetFields();
 };
 
-export const setType = (type) => async (dispatch, getState) => {
+export const setType = (type) => async (dispatch) => {
   let res = undefined;
   if (type === 'spectator') {
     res = await API.post(`/users/current/spectate`);
@@ -147,7 +146,7 @@ export const setType = (type) => async (dispatch, getState) => {
   });
 };
 
-export const validate = (registerToken) => async (dispatch, getState) => {
+export const validate = (registerToken) => async (dispatch) => {
   const res = await API.post(`auth/validate/${registerToken}`);
   toast.success('Le compte a été confirmé !');
   dispatch(saveToken(res.data.token));
@@ -159,6 +158,7 @@ export const validate = (registerToken) => async (dispatch, getState) => {
 };
 
 export const isFakeConnection = () => {
+  // eslint-disable-next-line no-prototype-builtins
   return localStorage.hasOwnProperty('utt-arena-admin-token');
 };
 

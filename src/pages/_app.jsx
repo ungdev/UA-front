@@ -10,8 +10,7 @@ import 'simplebar/dist/simplebar.min.css';
 
 import withReduxStore from '../lib/withReduxStore';
 import Wrapper from '../components/Wrapper';
-import { googleAnalyticsId, googleVerification, nodeEnv, uploadsUrl } from '../utils/environment';
-import { API } from '../utils/api';
+import { googleVerification, uploadsUrl } from '../utils/environment';
 import Router from 'next/router';
 
 // Import all CSS files
@@ -39,7 +38,6 @@ const App = ({ Component, reduxStore }) => {
     <div>
       <Head>
         <script src="/matomo.js"></script>
-        <script src="/jsQR.js"></script>
         <title>UTT Arena 2021 - 26, 27 et 28 novembre 2021</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
