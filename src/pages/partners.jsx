@@ -5,14 +5,14 @@ import { Partner } from '../types';
 import { uploads } from '../utils/api';
 
 const Partners = () => {
-  const [partners, setPartners] = useState<Array<Partner>>([]);
+  const [partners, setPartners] = useState < Array < Partner >> [];
 
   useEffect(() => {
     fetchPartners();
   }, []);
 
   const fetchPartners = async () => {
-    const request = await uploads.get<Array<Partner>>('/partners/list.json', true);
+    const request = (await uploads.get) < Array < Partner >> ('/partners/list.json', true);
 
     setPartners(request.data);
   };

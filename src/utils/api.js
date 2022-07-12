@@ -2,21 +2,14 @@ import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { apiUrl, uploadsUrl } from './environment';
 
-let token = null as string | null;
+let token = null;
 
 // Send request to API and handle errors
-const requestAPI = <T>(
-  method: Method,
-  baseURL: string,
-  route: string,
-  authorizationHeader: boolean,
-  body?: T | undefined,
-  disableCache?: boolean,
-) =>
-  new Promise<AxiosResponse<T>>((resolve, reject) => {
+const requestAPI = (method, baseURL, route, authorizationHeader, body = null, disableCache = null) =>
+  new Promise((resolve, reject) => {
     // Create the request
     axios
-      .request<T>({
+      .request({
         baseURL,
         method,
         headers: authorizationHeader
@@ -43,21 +36,20 @@ const requestAPI = <T>(
   });
 
 // Set the authorization header with the given token for next requests
-export const setAuthorizationToken = (_token: string) => {
+export const setAuthorizationToken = (_token) => {
   token = _token;
 };
 
 // Access the API through different HTTP methods
 export const API = {
-  get: <T>(route: string) => requestAPI<T>('GET', apiUrl(), route, true),
-  post: <T>(route: string, body: T | undefined) => requestAPI<T>('POST', apiUrl(), route, true, body),
-  put: <T>(route: string, body: T | undefined) => requestAPI<T>('PUT', apiUrl(), route, true, body),
-  patch: <T>(route: string, body: T | undefined) => requestAPI<T>('PATCH', apiUrl(), route, true, body),
-  delete: <T>(route: string) => requestAPI<T>('DELETE', apiUrl(), route, true),
+  get: (route) => requestAPI('GET', apiUrl(), route, true),
+  post: (route, body) => requestAPI('POST', apiUrl(), route, true, body),
+  put: (route, body) => requestAPI('PUT', apiUrl(), route, true, body),
+  patch: (route, body) => requestAPI('PATCH', apiUrl(), route, true, body),
+  delete: (route) => requestAPI('DELETE', apiUrl(), route, true),
 };
 
 export const uploads = {
-  get: <T>(route: string, disableCache: boolean = false) =>
-    requestAPI<T>('GET', uploadsUrl(), route, false, undefined, disableCache),
-  getWithoutCache: <T>(route: string) => requestAPI<T>('GET', uploadsUrl(), route, false, undefined, true),
+  get: (route, disableCache = false) => requestAPI('GET', uploadsUrl(), route, false, undefined, disableCache),
+  getWithoutCache: (route) => requestAPI('GET', uploadsUrl(), route, false, undefined, true),
 };

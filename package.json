@@ -13,8 +13,6 @@
     "build-docs": "node generateDocs.js"
   },
   "dependencies": {
-    "@types/node": "^16.10.3",
-    "@types/react": "^17.0.27",
     "axios": "^0.22.0",
     "dotenv": "^10.0.0",
     "dotenv-webpack": "^7.0.3",
@@ -34,10 +32,8 @@
     "sass": "^1.42.1",
     "simplebar": "^5.3.6",
     "simplebar-react": "^2.3.6",
-    "typescript": "^4.4.3"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^4.33.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
