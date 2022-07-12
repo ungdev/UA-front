@@ -20,7 +20,6 @@
     "lazysizes": "^5.3.2",
     "moment": "^2.29.1",
     "next": "^11.1.2",
-    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-countdown": "^2.3.2",
     "react-dom": "17.0.2",
@@ -31,7 +30,7 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.42.1",
     "simplebar": "^5.3.6",
-    "simplebar-react": "^2.3.6",
+    "simplebar-react": "^2.3.6"
   },
   "devDependencies": {
     "eslint": "7.32.0",
