@@ -8,6 +8,8 @@
     background-size: cover;
     gap: 2em;
     align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 2em;
 
     &:before {
       content: '';
@@ -42,7 +44,7 @@
         color: white;
         transform: skew(-15deg);
         margin: 0;
-        font-size: 3.5em;
+        font-size: 3em;
 
         span.date {
           color: $superposed-color !important;
@@ -92,11 +94,11 @@
 
       p {
         transform: skew(0deg);
-        font-size: min(3em, 5.5vw);
+        font-size: min(2.5em, 5.5vw);
       }
 
       .main {
-        font-size: min(5em, 12vw);
+        font-size: min(4em, 12vw);
       }
     }
   }

@@ -11,7 +11,7 @@ const Home = () => {
         <div className="home-title">
           <p className="main">L'UTT Arena revient</p>
           <p>
-            les <span className="date">2</span>, <span className="date">3</span> et <span className="date">4</span>{' '}
+            les <span className="date">02</span>, <span className="date">03</span> et <span className="date">04</span>{' '}
             décembre 2022&nbsp;!
           </p>
         </div>
