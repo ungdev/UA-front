@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,6 @@ import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
 
-import { fetchSettings } from '../modules/settings';
 import { logout, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
 

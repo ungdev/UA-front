@@ -46,7 +46,7 @@ const users = (state = initialState, action) => {
 
 export const fetchUsers =
   (filters, search, page = 0) =>
-  async (dispatch, getState) => {
+  async (dispatch) => {
     if (!filters) {
       return;
     }

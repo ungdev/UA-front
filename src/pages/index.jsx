@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import { Partner } from '../types';
 import TournamentCards from '../components/TournamentCards';
 import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG, Loader } from '../components/UI';
 import { uploads } from '../utils/api';
 
 const Home = () => {
-  const [partners, setPartners] = useState<Array<Partner>>([]);
+  const [partners, setPartners] = useState([]);
 
   const fetchPartners = async () => {
-    const request = await uploads.get<Array<Partner>>('/partners/list.json', true);
+    const request = await uploads.get('/partners/list.json', true);
 
     setPartners(request.data);
   };

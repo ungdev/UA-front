@@ -285,7 +285,7 @@ const Shop = () => {
     });
 
   // We display the supplementTypes we have just defined, and not the items
-  const supplementRows = supplementTypes.map((supplement, i) => {
+  const supplementRows = supplementTypes.map((supplement) => {
     // Get cart supplement we are managing
     let cartSupplement = cart.supplements.find(
       (cartSupplement) => cartSupplement.item && cartSupplement.item.id === supplement.id,
@@ -521,7 +521,7 @@ const Shop = () => {
         onCancel={() => setItemPreview(null)}
         buttons={null}
         containerClassName="item-preview-modal-container">
-        {itemPreview && <img src={`/${itemPreview}`} className="item-preview-image" />}
+        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
   );

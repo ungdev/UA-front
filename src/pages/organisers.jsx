@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
 import { Title, Loader } from '../components/UI';
-import { Organisers as OrganisersType } from '../types';
 import { uploads } from '../utils/api';
 import { uploadsUrl } from '../utils/environment';
 import { getOrganiserShortName } from '../utils/strings';
 
 const Organisers = () => {
-  const [organisers, setOrganisers] = useState<OrganisersType | null>(null);
+  const [organisers, setOrganisers] = useState(null);
 
   useEffect(() => {
     fetchOrganisers();
   }, []);
 
   const fetchOrganisers = async () => {
-    const request = await uploads.get<OrganisersType>('/organisers/list.json', true);
+    const request = await uploads.get('/organisers/list.json', true);
 
     setOrganisers(request.data);
   };
@@ -43,8 +42,9 @@ const Organisers = () => {
                 <div className="member" key={member.name}>
                   <img
                     src={`${uploadsUrl()}/organisers/${getOrganiserShortName(member.name)}.jpg`}
+                    alt="Organisateur"
                     onError={(e) => {
-                      const imageElement = e.target as HTMLImageElement;
+                      const imageElement = e.target;
 
                       if (imageElement.src !== '/question-mark.png') {
                         imageElement.onerror = null;

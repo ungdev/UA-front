@@ -6,7 +6,6 @@ import { Modal, Button, Input, Radio } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
 import { tryLogin, resetPassword } from '../modules/login';
-import { toast } from 'react-toastify';
 
 const initialSignup = {
   firstname: '',

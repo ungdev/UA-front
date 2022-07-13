@@ -1,7 +1,7 @@
 import React from 'react';
 import { uploadsUrl } from './environment';
 
-export default [
+const tournaments = [
   {
     name: 'League of Legends compétitif',
     shortName: 'lolCompetitive',
@@ -186,3 +186,5 @@ export default [
     rules: `${uploadsUrl()}/rules/open.pdf`,
   },
 ];
+
+export default tournaments;
