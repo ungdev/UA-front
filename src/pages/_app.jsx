@@ -60,7 +60,7 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:image:alt" content="Logo de l'UTT Arena" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="1500" />
-        <meta property="og:image:height" content="1500" />
+        <meta property="og:image:height" content="500" />
         <meta
           property="og:description"
           content="Entrez dans l’arène les 2, 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
