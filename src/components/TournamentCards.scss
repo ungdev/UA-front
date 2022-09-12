@@ -27,10 +27,20 @@
     .tournament-name {
       font-family: 'Montserrat', sans-serif;
       font-weight: bold;
-      font-size: 1.4em;
+      font-size: 1.6em;
       text-align: center;
       color: $primary-color;
-      margin: 10px 0 20px 0;
+      margin: 20px 0 10px 0;
+    }
+
+    .tournament-details {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .tournament-details p {
+      font-size: 1.2em;
+      margin: 20px 10px 10px 10px;
     }
   }
 }
@@ -38,5 +48,14 @@
 @media screen and (max-width: 1200px) {
   .tournament-cards .tournament-card {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 1550px) {
+  .tournament-details {
+    flex-direction: column;
+  }
+  .tournament-details p {
+    text-align: center;
   }
 }

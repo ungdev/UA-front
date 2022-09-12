@@ -3,24 +3,25 @@ import { uploadsUrl } from './environment';
 
 const tournaments = [
   {
-    name: 'League of Legends compétitif',
-    shortName: 'lolCompetitive',
+    name: 'Valorant',
+    shortName: 'Valorant',
     players: 80,
     image: '/tournaments/lol-competitive.jpg',
-    shortRewards: '1600€ + lots',
-    rewards: (
-      <ul>
-        <li>
-          1<sup>ère</sup> place : 925€ + lots
-        </li>
-        <li>
-          2<sup>ème</sup> place : 450€ + lots
-        </li>
-        <li>
-          3<sup>ème</sup> place : 225€ + lots
-        </li>
-      </ul>
-    ),
+    shortRewards: 'À venir',
+    rewards: <sup>À venir</sup>,
+    // (
+    //   <ul>
+    //     <li>
+    //       1<sup>ère</sup> place : 925€ + lots
+    //     </li>
+    //     <li>
+    //       2<sup>ème</sup> place : 450€ + lots
+    //     </li>
+    //     <li>
+    //       3<sup>ème</sup> place : 225€ + lots
+    //     </li>
+    //   </ul>
+    // ),
     toornamentId: '5045521366727811072',
     format: (
       <>
@@ -30,14 +31,14 @@ const tournaments = [
         Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports.
       </>
     ),
-    rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
+    // rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
   },
   {
     name: 'League of Legends loisir',
     shortName: 'lolLeisure',
     players: 80,
     image: '/tournaments/lol-leisure.jpg',
-    shortRewards: 'lots',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -67,7 +68,7 @@ const tournaments = [
     shortName: 'rl',
     players: 48,
     image: '/tournaments/rocket-league.jpg',
-    shortRewards: '1200€ + lots',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -83,14 +84,14 @@ const tournaments = [
     ),
     toornamentId: '4958829017709346816',
     format: '16 équipes de 3 joueurs',
-    rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
+    // rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
     players: 120,
     image: '/tournaments/csgo.jpg',
-    shortRewards: '1600€ + lots',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -106,14 +107,14 @@ const tournaments = [
     ),
     toornamentId: '5045528654683340800',
     format: '24 équipes de 5 joueurs',
-    rules: `${uploadsUrl()}/rules/csgo.pdf`,
+    // rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
     name: 'SSBU by Murex',
     shortName: 'ssbu',
     players: 64,
     image: '/tournaments/ssbu.jpg',
-    shortRewards: '650€',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -129,14 +130,14 @@ const tournaments = [
     ),
     toornamentId: '5045512183706099712',
     format: '64 joueurs',
-    rules: `${uploadsUrl()}/rules/ssbu.pdf`,
+    // rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
   {
     name: 'osu!',
     shortName: 'osu',
     players: 24,
     image: '/tournaments/osu.jpg',
-    shortRewards: '300€',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -160,14 +161,14 @@ const tournaments = [
         <a href="https://osu.ppy.sh/community/forums/topics/1409204">Inscription aux qualifications ici.</a>
       </>
     ),
-    rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
+    // rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
   },
   {
     name: 'Libre',
     shortName: 'open',
     players: 24,
     image: '/tournaments/open.jpg',
-    shortRewards: 'lots',
+    shortRewards: 'À venir',
     rewards: (
       <ul>
         <li>
@@ -183,7 +184,7 @@ const tournaments = [
     ),
     toornamentId: null,
     format: '24 joueurs',
-    rules: `${uploadsUrl()}/rules/open.pdf`,
+    // rules: `${uploadsUrl()}/rules/open.pdf`,
   },
 ];
 

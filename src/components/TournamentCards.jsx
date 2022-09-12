@@ -30,14 +30,21 @@ const TournamentCards = () => {
             content={
               <>
                 <div className="tournament-name">{name}</div>
-                <p>
-                  <strong>Places :</strong> {players} joueurs
-                </p>
-                {shortRewards && (
+                <div className="tournament-details">
                   <p>
-                    <strong>Récompenses :</strong> {shortRewards}
+                    <strong>Places :</strong> {players} joueurs
                   </p>
-                )}
+                  {shortRewards && (
+                    <p>
+                      <strong>Récompenses :</strong> {shortRewards}
+                    </p>
+                  )}
+                </div>
+                <div className="tournament-details">
+                  <p>
+                    <strong>Casters :</strong> TBD
+                  </p>
+                </div>
               </>
             }
             imgSrc={image}
