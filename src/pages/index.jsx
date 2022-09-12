@@ -111,6 +111,9 @@ const Home = () => {
             {!partners ? (
               <Loader />
             ) : (
+              partners.length == 0 ?  
+                <div>A venir</div>
+              : (
               partners.map((partner) => (
                 <div className="partner" key={partner.link}>
                   <a
@@ -122,6 +125,7 @@ const Home = () => {
                   </a>
                 </div>
               ))
+              )
             )}
           </div>
 

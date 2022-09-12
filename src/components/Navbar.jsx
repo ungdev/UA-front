@@ -30,14 +30,14 @@ const links = [
     title: 'FAQ',
     href: '/faq',
   },
-  {
-    title: 'Partenaires',
-    href: '/partners',
-  },
-  {
-    title: 'Organisateurs',
-    href: '/organisers',
-  },
+  // {
+  //   title: 'Partenaires',
+  //   href: '/partners',
+  // },
+  // {
+  //   title: 'Organisateurs',
+  //   href: '/organisers',
+  // },
   {
     title: 'Contact',
     href: '/contact',
