@@ -26,22 +26,7 @@ const carts = (state = initialState, action) => {
 };
 
 export const cartPay = (cart) => async () => {
-  const sendableCart = {
-    tickets: {
-      userIds: [],
-      //attendant: {},
-    },
-    supplements: [],
-  };
-  cart.tickets.forEach((ticket) => {
-    sendableCart.tickets.userIds.push(ticket.for);
-  });
-  if (cart.attendant) sendableCart.tickets.attendant = cart.attendant;
-  cart.supplements.forEach((supplement) => {
-    const itemId = supplement.attribute ? `${supplement.item.id}-${supplement.attribute}` : supplement.item.id;
-    sendableCart.supplements.push({ itemId, quantity: supplement.quantity });
-  });
-  const res = await API.post(`users/current/carts`, sendableCart);
+  const res = await API.post(`users/current/carts`, cart);
   window.location = res.data.url;
 };
 

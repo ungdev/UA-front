@@ -54,7 +54,7 @@ const Shop = () => {
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   const [place, setPlace] = useState(userId);
-  // If the user already paid for his attendant, or the place is in the current cart
+  // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
   const [hasAttendant, setHasAttendant] = useState(false);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
   const cartInitialValue = { tickets: {userIds: [], attendant: undefined}, supplements: [] };
@@ -65,12 +65,27 @@ const Shop = () => {
   const [placeFor, setPlaceFor] = useState(hasPaid ? 'other' : 'me');
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState([]);
+  // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
+  // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
+  const [supplementTypes, setSupplementTypes] = useState([]);
+  // The currently selected attribute for each item that has attributes.
+  // This is an object. Keys are the item ids, and values are the current attributes.
+  const [selectedAttributes, setSelectedAttributes] = useState({});
 
-  console.log(`isPlaceInCart=${isPlaceInCart}`);
+  // Fetch items, team and checks if user already have an intendant.
   useEffect(() => {
     dispatch(fetchItems());
     if (type !== 'spectator') {
       dispatch(fetchCurrentTeam());
+    }
+    if (age === 'child') {
+      API.get('/users/current/carts').then((res) => {
+        res.data.map((paidCart) => {
+          paidCart.cartItems.map((cartItem) => {
+            cartItem.itemId === 'ticket-attendant' && setHasAttendant(true);
+          });
+        });
+      });
     }
   }, []);
 
@@ -92,26 +107,62 @@ const Shop = () => {
     );
   }, [teamMembers]);
 
-  // verify if an attendant ticket has been paid
+  // Fills supplementTypes
   useEffect(() => {
-    API.get('/users/current/carts').then((res) => {
-      res.data.map((paidCart) => {
-        paidCart.cartItems.map((cartItem) => {
-          cartItem.itemId === 'ticket-attendant' && setHasAttendant(true);
-        });
-      });
+    if (!items) return;
+    const newSupplementTypes = []
+    items.forEach((item) => {
+      if (item.category === 'supplement') {
+        // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
+        // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
+        // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
+        const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
+        const supplementType = newSupplementTypes.find((supplement) => supplement.id === itemId);
+        if (!supplementType) {
+          const newSupplementType = { ...item, id: itemId, attributes: [] };
+          delete newSupplementType.attribute;
+          delete newSupplementType.category;
+          if (item.attribute) {
+            newSupplementType.attributes = [item.attribute];
+          }
+          newSupplementTypes.push(newSupplementType);
+        } else {
+          supplementType.attributes.push(item.attribute);
+        }
+      }
     });
-  }, []);
+    setSupplementTypes(newSupplementTypes);
+  }, [items])
+
+  // Fills selectedAttributes
+  useEffect(() => {
+    let newSelectedAttributes = {};
+    supplementTypes.forEach(supplement => {
+      if (supplement.attributes.length) {
+        newSelectedAttributes[supplement.id] = supplement.attributes[0];
+      }
+    });
+    setSelectedAttributes(newSelectedAttributes);
+  }, [supplementTypes])
 
   if (!items) {
     return null;
   }
 
+  // Does the user have a discount on his ticket ? (Is he in a UT school ?)
   const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
+
+  // Returns a supplement id according to the supplement and the attribute given to the function.
+  // Supplement.id should be the id of the supplement type of the item. You should call this with a supplementType, not an item
+  // If attribute is undefined, then it simply returns supplement.id
+  // If it isn't, it returns `${supplement.id}-${attribute}`
+  const getSupplementId = (supplement, attribute) => {
+    return `${supplement.id}` + (attribute ? `-${attribute}` : '');
+  }
 
   // When the user removes a ticket.
   // 'user' is either a user object, or undefined if it is the ticket of an attendant
-  // 'ticketIndex' is the index of the ticket in the cart
+  // 'ticketIndex' is the index of the ticket in the cart if user is not undefined
   const onRemoveTicket = (user, ticketIndex) => {
     if (user === undefined) {
       setHasAttendant(false);
@@ -177,78 +228,16 @@ const Shop = () => {
     return ticketRows;
   }
 
-  const getPeopleWhoNeedPlace = () => {
-    const people = [];
-    people['me'] = (!hasPaid && !isPlaceInCart) ? username : '';
-    people['attendant'] = (age === 'child' && !cart.attendant && !hasAttendant)
-    people['other'] = teamMembersWithoutTicket;
-    return people;
-  }
-
-  const getOptions = () => {
-    const options = [];
-    if (!hasPaid && !isPlaceInCart) {
-      options.push({
-        name: `Moi-même (${username})`,
-        value: 'me',
-      });
-    }
-    if (age === 'child' && !cart.attendant && !hasAttendant) {
-      options.push({
-        name: 'Un accompagnateur (majeur)',
-        value: 'attendant',
-      });
-    }
-    if (teamMembersWithoutTicket.length) {
-      options.push({
-        name: 'Autre utilisateur',
-        value: 'other',
-      });
-    }
-    return options;
-  };
-
-  // In the database, every t-shirt size has it's own entry.
-  // We need to display all of the woman t-shirts in a single row, and all of the man t-shirts in an other row.
-  // So we need to know which items must be rendered in the same row.
-  // We need to create supplement types, which are normal items, except :
-  //  * they don't have an attribute field, instead they have a list of attributes that the supplement type can take.
-  //  * they don't have category (because they must be supplements)
-  // This list will display instead of the items list.
-  const supplementTypes = [];
-  items &&
-    items.forEach((item) => {
-      if (item.category === 'supplement') {
-        // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
-        // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
-        // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
-        const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
-        const supplementType = supplementTypes.find((supplement) => supplement.id === itemId);
-        if (!supplementType) {
-          const newSupplementType = { ...item, id: itemId, attributes: [] };
-          delete newSupplementType.attribute;
-          delete newSupplementType.category;
-          if (item.attribute) {
-            newSupplementType.attributes = [item.attribute];
-          }
-          supplementTypes.push(newSupplementType);
-        } else {
-          supplementType.attributes.push(item.attribute);
-        }
-      }
-    });
-
-  // We display the supplementTypes we have just defined, and not the items
+  // We display the supplementTypes
   const supplementRows = supplementTypes.map((supplement) => {
+    // The id we have to find in the cart
+    let supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
     // Get cart supplement we are managing
-    let cartSupplement = cart.supplements.find(
-      (cartSupplement) => cartSupplement.item && cartSupplement.item.id === supplement.id,
-    );
-    if (cartSupplement === undefined) {
+    let cartSupplement = cart.supplements.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
+    if (!cartSupplement) {
       cartSupplement = {
-        item: supplement,
+        item: supplementFullId,
         quantity: 0,
-        attribute: supplement.attributes.length ? supplement.attributes[0] : null,
       };
     }
     // Get attributes
@@ -279,11 +268,19 @@ const Shop = () => {
         <Select
           options={availableAttributes}
           onChange={(value) => {
-            cartSupplement.attribute = value;
-            const newCartSupplements = cart.supplements.map((supplement) =>
-              supplement.item.id === cartSupplement.item.id ? cartSupplement : supplement,
-            );
-            setCart({ ...cart, supplements: newCartSupplements });
+            const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
+            const newSupplementId = getSupplementId(supplement, value);
+            let newCartSupplements = cart.supplements.map(cartSupplement => {
+              let newCartSupplement = {...cartSupplement};
+              if (newCartSupplement.itemId === previousSupplementId) {
+                newCartSupplement.itemId = newSupplementId;
+              }
+              return newCartSupplement;
+            });
+            setCart({...cart, supplements: newCartSupplements});
+            let newSelectedAttributes = {...selectedAttributes};
+            newSelectedAttributes[supplement.id] = value;
+            setSelectedAttributes(newSelectedAttributes)
           }}
           value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
           className="shop-input"
@@ -297,36 +294,26 @@ const Shop = () => {
           placeholder="0"
           value={cartSupplement.quantity}
           onChange={(strQuantity) => {
-            let quantity = parseInt(strQuantity, 10);
-            if (strQuantity === '') {
-              quantity = 0;
-            }
-            if (Number.isInteger(quantity)) {
-              const previousQuantity = cartSupplement.quantity;
-              cartSupplement.quantity = quantity;
-              if (cartSupplement.quantity) {
-                if (previousQuantity) {
-                  const newCartSupplements = cart.supplements.map((previousCartSupplement) =>
-                    previousCartSupplement.item.id === supplement.id ? cartSupplement : previousCartSupplement,
-                  );
-                  setCart({ ...cart, supplements: newCartSupplements });
-                } else {
-                  setCart({ ...cart, supplements: [...cart.supplements, cartSupplement] });
-                }
+            // If the parse result is NaN, then quantity defaults to 0
+            let quantity = parseInt(strQuantity, 10) || 0;
+            let newCartSupplements = [...cart.supplements]
+            if (cartSupplement.quantity) {
+              if (quantity) {
+                newCartSupplements.forEach(cartSupplement => cartSupplement.quantity = cartSupplement.itemId === supplementFullId ? quantity : cartSupplement.quantity);
               } else {
-                const newCartSupplements = cart.supplements;
-                const index = newCartSupplements.findIndex(
-                  (previousCartSupplement) => previousCartSupplement.item.id === supplement.id,
-                );
-                if (index !== -1) {
-                  newCartSupplements.splice(index, 1);
-                  setCart({ ...cart, supplements: newCartSupplements });
-                }
+                newCartSupplements = cart.supplements.filter(cartSupplement => cartSupplement.itemId !== supplementFullId);
               }
+              setCart({...cart, supplements: newCartSupplements});
+            } else if (quantity !== 0) {
+              const newSupplement = {
+                itemId: supplementFullId,
+                quantity: quantity
+              }
+              setCart({...cart, supplements: [...cart.supplements, newSupplement]});
             }
           }}
           min={0}
-          max={supplement.id === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
+          max={supplementFullId === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
           className="shop-input"
         />
       ),
@@ -362,15 +349,17 @@ const Shop = () => {
       return acc + items.find(item => item.id === `ticket-${userType}`).price;
     }, 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
-      return acc + cartSupplement.quantity * cartSupplement.item.price;
+      const item = items.find(item => item.id == cartSupplement.itemId);
+      if (!item) {
+        toast.warn("Une erreur s'est produite lors du calcul du prix. Le prix affiché n'est peut-être pas exact. Si ce problème se reproduit, contacte le support");
+        return acc;
+      }
+      return acc + cartSupplement.quantity * item.price;
     }, 0) +
     (cart.attendant ? items.find(item => item.id === 'ticket-attendant').price : 0);
 
   const onAddPlaceModalQuit = (placeFor, placeId) => {
     setAddPlaceVisible(false);
-    console.log('dans le callback');
-    console.log(placeFor);
-    console.log(placeId);
     if (placeFor === undefined)
       return;
     if (placeFor === 'me') {
@@ -384,8 +373,6 @@ const Shop = () => {
       setHasAttendant(true);
     }
   }
-
-  console.log(`addPlaceModalVisible : ${addPlaceVisible}`)
 
   return (
     <div id="dashboard-shop">
@@ -428,7 +415,7 @@ const Shop = () => {
             </>
           }
           value={isCgvAccepted}
-          onChange={(value) => setIsCgvAccepted(value)}
+          onChange={setIsCgvAccepted}
         />
         <br />
         <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>

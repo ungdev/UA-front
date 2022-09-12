@@ -27,11 +27,11 @@ const AddPlaceModal = ({userId, hasTicket, teamMembersWithoutTicket, needsAttend
   const canPayTo = () => {
     let canPayTo = [];
     if (!hasTicket)
-      canPayTo.push({value: 'me', name: 'Moi'});
-    if (teamMembersWithoutTicket.length)
-      canPayTo.push({value: 'other', name: "Membre de l'équipe"});
+      canPayTo.push({value: 'me', name: `Moi-même (${username})`});
     if (needsAttendant)
-      canPayTo.push({value: 'attendant', name: 'Accompagnateur'});
+      canPayTo.push({value: 'attendant', name: 'Un accompagnateur (majeur)'});
+    if (teamMembersWithoutTicket.length)
+      canPayTo.push({value: 'other', name: 'Autre utilisateur'});
     return canPayTo;
   }
 
