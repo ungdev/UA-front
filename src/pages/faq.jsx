@@ -30,8 +30,7 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Les demandes de stream sont
-            closes.
+            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
           </>
         ),
       },
@@ -47,34 +46,12 @@ const content = [
       {
         question: 'Qui contacter si j’ai des questions avant ou pendant l’UTT Arena ?',
         answer:
-          'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi].',
+          'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l’UTT Arena.',
       },
       {
         question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
         answer:
           "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
-      },
-    ],
-  },
-  {
-    title: 'Situation sanitaire',
-    entries: [
-      {
-        question: 'Le pass sanitaire sera-t-il requis ?',
-        answer: (
-          <>
-            Oui. Sans pass sanitaire, tu ne pourras pas participer à l'événement. Ton pass sanitaire doit être valide.
-            Pour plus d'informations sur la validité des pass sanitaires :{' '}
-            <a href="https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations">
-              https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations
-            </a>
-          </>
-        ),
-      },
-      {
-        question: 'Le port du masque sera-t-il obligatoire ?',
-        answer:
-          "Il sera obligatoire pendant tout l'événement. Tu pourras l'enlever quand tu te restaurera, mais tu devras le remettre tout de suite après.",
       },
     ],
   },
@@ -85,7 +62,7 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure
+            Ouverture des inscriptions le <span className="accent">vendredi 7 octobre 2022, à 19h00 </span>(heure
             française) !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
@@ -118,12 +95,11 @@ const content = [
         answer: (
           <>
             <ul>
-              <li>20 € en tant que joueur</li>
-              <li>12 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
-              <li>12€ en tant que spectateur</li>
+              <li>25 € en tant que joueur</li>
+              <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+              <li>15 € en tant que spectateur</li>
               <li>
-                Pour les étudiants des écoles partenaires (réseau UT) : 15€ en tant que joueur et 10€ en tant que
-                spectateur. Pense à t'inscrire avec ton adresse mail étudiante.
+                Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton adresse mail étudiante.
               </li>
             </ul>
           </>
@@ -166,8 +142,8 @@ const content = [
         question: 'Dois-je apporter ma console ?',
         answer: (
           <>
-            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta , le
-            jeu SSBU avec tous les personnages et un câble HDMI, et tu bénéficies d'une réduction sur le prix de ton
+            Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au tournoi, tu dois en effet apporter ta , le
+            jeu SSBU avec <strong>tous</strong> les personnages et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le prix de ton
             billet. Cette option est disponible pour les plus rapides seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.

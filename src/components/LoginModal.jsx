@@ -136,7 +136,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="new-password"
           />
           <Radio
-            label="Le 26 Novembre 2021, tu seras :"
+            label="Le 2 décembre 2022, tu seras :"
             options={[
               { value: 'child', name: 'Mineur' },
               { value: 'adult', name: 'Majeur' },

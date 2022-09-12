@@ -17,17 +17,13 @@ const Information = () => (
       <br />
       L'UTT Arena revient cette année pour sa{' '}
       <span className="accent">
-        19<sup>ème</sup> édition
+        20<sup>ème</sup> édition
       </span>{' '}
-      ! D'une simple salle d'examen de l'UTT à 2000m² de gaming à l'espace Argence, en passant par le festival des jeux,
-      l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
+      ! D'une simple salle d'examen de l'UTT à 8000m² de gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
       <br />
-      <br />À présent l'UTT Arena c'est <span className="accent">450 joueurs</span>,{' '}
-      <span className="accent">5 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
-      tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
-      les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
-      l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
-      contribuent à le rendre exceptionnel ! Un grand merci également à{' '}
+      <br />À présent l'UTT Arena c'est <span className="accent">632 joueurs</span>,{' '}
+      <span className="accent">8 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
+      tournois <span className="accent">commentés en direct par les casteurs </span>!  Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement contribuent à le rendre exceptionnel ! Un grand merci également à {' '}
       <Link href="/organisers">
         <a>
           <span className="accent">tous les bénévoles</span>
@@ -39,7 +35,7 @@ const Information = () => (
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
       <p>
-        Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure française)
+        Ouverture des inscriptions le <span className="accent">vendredi 7 octobre 2022, à 19h00 </span>(heure française)
         !
       </p>
       <ol>
@@ -72,12 +68,12 @@ const Information = () => (
         <tbody>
           <tr>
             <td>Joueur</td>
-            <td>20€</td>
+            <td>25€ (22€ pour les joueurs SSBU)</td>
             <td>Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante.</td>
           </tr>
           <tr>
             <td>Coach / manager</td>
-            <td>12€</td>
+            <td>15€</td>
             <td>
               Un justificatif pourra vous être demandé.
               <br />
@@ -88,13 +84,13 @@ const Information = () => (
           </tr>
           <tr>
             <td>Accompagnateur</td>
-            <td>12€</td>
+            <td>15€</td>
             <td>Réservé aux accompagnateurs de joueurs mineurs.</td>
           </tr>
           <tr>
             <td>Spectateur</td>
-            <td>12€</td>
-            <td>Limité à 50 places.</td>
+            <td>15€</td>
+            <td>Illimité</td>
           </tr>
         </tbody>
       </table>
@@ -102,11 +98,27 @@ const Information = () => (
 
     <Title align="center">Infos joueurs</Title>
     <div className="information-section">
+      <Title level={4}>Joueurs mineurs</Title>
+      <p>
+      Pour participer au tournoi il faut avoir au <strong>minimum 15 ans</strong> lors de l'événement. 
+      Il faudra que tu présentes <strong>l'autorisation parentale</strong> (<a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf" className="">disponible ici</a>) ainsi qu'une photocopie de la <strong>pièce d'identité de ton responsable légal et de la tienne</strong> avant d'accéder à l'UTT Arena.
+      </p>
+
+      <br />
+
       <Title level={4}>Salle de repos</Title>
       <p>
         L’UTT Arena propose aux joueurs trois loges collectives à l’étage de l’Espace Argence. Ces loges feront office
         de salles de repos. Les joueurs souhaitant dormir sur place devront prévoir un tapis de sol, sac de couchage ou
         tout autre matériel pour passer la nuit au sol. L’UTT Arena décline toute responsabilité en cas de vol.
+      </p>
+
+      <br />
+
+      <Title level={4}>Vestiaire</Title>
+      <p>
+      Des vestiaires à disposition des joueurs afin qu’ils puissent ranger leur matériel. Ils seront surveillés par l’équipe de sécurité de l’UTT Arena.
+      L’UTT Arena décline toute responsabilité en cas de vol.
       </p>
 
       <br />
@@ -118,9 +130,9 @@ const Information = () => (
           <strong>Aucune manette ou adaptateur ne sera mis à disposition pendant l'événement.</strong>
         </li>
         <li>
-          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec tous les
-          personnages et un câble HDMI, une réduction de 3€ leur sera accordée lors de son inscription. Pour cela il
-          faut ajouter le supplément "Réduction si tu amènes ta propre Nintendo Switch" dans ton panier au moment de
+          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
+          personnages et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera accordée lors de son inscription. Pour cela il
+          faut ajouter le supplément <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de
           payer ta place.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay pendant l'UTT Arena.
@@ -134,19 +146,6 @@ const Information = () => (
 
       <br />
 
-      <Title level={4}>Joueurs mineurs</Title>
-      <p>
-        Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra que
-        tu présentes l'autorisation parentale (
-        <strong>
-          <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">disponible ici</a>
-        </strong>
-        ) <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong> avant
-        d'accéder à l'UTT Arena.
-      </p>
-
-      <br />
-
       <Title level={4}>Streaming</Title>
       <p>
         Un formulaire de demande de streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>. Tu
@@ -157,89 +156,33 @@ const Information = () => (
       <ul>
         <li>
           Si tu veux manger pendant l'événement, tu devras venir avec ton tupperware. Dans tous les cas, viens avec une
-          goudre. Tu ne pourras pas apporter ta propre nourriture.
+          goudre. <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
         </li>
         <li>
-          Pour rentrer dans l'espace Argence, tu devras avoir ton billet, un pass sanitaire valide, une pièce
-          d'identité. N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.
+          Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité. <strong>N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.</strong>
         </li>
         <li>
-          Tu devras amener une multiprise, nous ne fournissons qu'une prise par personne. Pour te connecter à la LAN, tu
-          auras besoin d'un câble ethernet d'au moins 7 mètres, et ton ordinateur devra avoir une prise ethernet. Enfin,
-          surement le plus important : tu dois ramener ton setup complet (sauf si tu l'as loué) : ta tour, ton écran, un
-          câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta manette. Si tu as pris la réduction
-          SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI.
+          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus <strong>amène une multiprise</strong>. Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton ordinateur devra avoir une prise ethernet. Enfin, surement le plus important : tu dois ramener ton setup complet (sauf si tu l'as loué) : ta tour, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta manette.
+          <br />
+          Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI.
         </li>
         <li>
-          Enfin, il te faudra de quoi te laver et de quoi dormir. Tu devras aussi avoir plusieurs masques : nous n'en
-          auront pas forcément en rab si le tien casse. Tu ne pourras pas rester dans l'espace Argence sans masque !
+          Enfin, il te faudra de quoi te laver et de quoi dormir. 
         </li>
       </ul>
     </div>
 
     <Title align="center">Planning</Title>
     <div className="information-section">
-      <table className="timetable">
-        <tbody>
-          <tr className="accent-line">
-            <td colSpan="2">Vendredi</td>
-          </tr>
-          <tr>
-            <td>17h</td>
-            <td>Ouverture, discours et concert</td>
-          </tr>
-          <tr className="accent-line">
-            <td colSpan="2">Samedi</td>
-          </tr>
-          <tr>
-            <td>9h30</td>
-            <td>Check-in des équipes</td>
-          </tr>
-          <tr>
-            <td>10h</td>
-            <td>Début des tournois</td>
-          </tr>
-          <tr>
-            <td>10h-21h</td>
-            <td>Se référer au règlement de ton tournoi pour les horaires des matchs</td>
-          </tr>
-          <tr>
-            <td>10h-21h</td>
-            <td>Matchs castés sur scène</td>
-          </tr>
-          <tr>
-            <td>22h-23h</td>
-            <td>Finale osu! sur scène</td>
-          </tr>
-          <tr>
-            <td>Jusqu'à 01h30</td>
-            <td>Soirée au Meltdown Troyes avec boisson offerte</td>
-          </tr>
-          <tr className="accent-line">
-            <td colSpan="2">Dimanche</td>
-          </tr>
-          <tr>
-            <td>10h</td>
-            <td>Début des matchs de la journée (se référer au règlement de tournoi)</td>
-          </tr>
-          <tr>
-            <td>10h-17h</td>
-            <td>Finales castées sur scène, remises des prix</td>
-          </tr>
-          <tr>
-            <td>17h-18h</td>
-            <td>Discours de remerciement, fermeture de l'UTT Arena 2021</td>
-          </tr>
-        </tbody>
-      </table>
+      A venir
     </div>
 
     <Title align="center">Emplacement</Title>
     <div className="information-section">
       <p>
-        Espace Argence
+        Le Cube - Parc des Expositions de Troyes
         <br />
-        20 bis Bd Gambetta
+        20 Rue des Gayettes
         <br />
         10000 Troyes
         <br />
