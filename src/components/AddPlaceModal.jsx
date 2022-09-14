@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Modal, Button, Input, Select, Radio } from './UI'
 
-const AddPlaceModal = ({userId, hasTicket, teamMembersWithoutTicket, needsAttendant, onQuit}) => {
+const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, needsAttendant, onQuit}) => {
   
   // Either 'me', 'other' or 'attendant'
   const [placeFor, setPlaceFor] = useState('');

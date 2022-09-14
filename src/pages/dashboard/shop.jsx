@@ -320,25 +320,6 @@ const Shop = () => {
     };
   });
 
-  const onAddPlace = () => {
-    if (!hasPaid && !isPlaceInCart) {
-      setPlaceFor('me');
-    } else if (teamMembersWithoutTicket.length) {
-      setPlaceFor('other');
-    } else if (age === 'child' && !cart.attendant & !hasAttendant) {
-      setPlaceFor('attendant');
-    } else {
-      toast.info("Tous les membres de l'équipe ont déjà une place !");
-      return;
-    }
-    if (hasPaid || isPlaceInCart) {
-      setPlace(teamMembersWithoutTicket.length ? teamMembersWithoutTicket[0].id : undefined);
-    } else {
-      setPlace(userId);
-    }
-    setAddPlaceVisible(true);
-  }
-
   // Compute total price
   const totalPrice =
     cart.tickets.userIds.reduce((acc, cartTicket) => {
@@ -356,7 +337,7 @@ const Shop = () => {
       }
       return acc + cartSupplement.quantity * item.price;
     }, 0) +
-    (cart.attendant ? items.find(item => item.id === 'ticket-attendant').price : 0);
+    (cart.tickets.attendant ? items.find(item => item.id === 'ticket-attendant').price : 0);
 
   const onAddPlaceModalQuit = (placeFor, placeId) => {
     setAddPlaceVisible(false);
@@ -379,7 +360,7 @@ const Shop = () => {
       <div className="shop-section">
         <Title level={4}>Places</Title>
         <Table columns={ticketColumns} dataSource={getTicketRows()} className="shop-table" />
-        <Button onClick={onAddPlace}>Ajouter une place</Button>
+        <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
       </div>
       <div className="scoup">
         <img src="/scoup.jpg" alt="" />
@@ -431,6 +412,7 @@ const Shop = () => {
       {addPlaceVisible &&
         <AddPlaceModal
           userId={userId}
+          username={username}
           hasTicket={isPlaceInCart}
           teamMembersWithoutTicket={teamMembersWithoutTicket}
           needsAttendant={age === 'child' && !hasAttendant}
