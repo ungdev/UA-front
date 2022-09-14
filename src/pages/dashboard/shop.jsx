@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchItems } from '../../modules/items';
 import { cartPay } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
-import { Table, Input, Button, Title, Modal, Radio, Select, Checkbox } from '../../components/UI';
+import { Table, Input, Button, Title, Modal, Select, Checkbox } from '../../components/UI';
 import AddPlaceModal from '../../components/AddPlaceModal';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
