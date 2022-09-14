@@ -10,27 +10,17 @@ const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disable
       className={`buttonWrapper ${primary ? 'primary' : ''} ${className} ${noStyle ? 'no-style' : ''} ${
         disabled && 'disabled'
       }`}>
-      <div
-        className={`topButtonDiv ${primary ? 'primary' : ''} ${className ? className : ''} ${
-          noStyle ? 'no-style' : ''
-        }`}>
-        <div
-          className={`bottomButtonDiv ${primary ? 'primary' : ''} ${className ? className : ''} ${
-            noStyle ? 'no-style' : ''
-          }`}>
-          <button
-            type={type}
-            className={`button ${primary ? 'primary' : ''} ${className ? className : ''} ${noStyle ? 'no-style' : ''} ${
-              !children ? 'empty' : ''
-            }`}
-            onClick={onClick}
-            disabled={disabled}>
-            {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
-            {children}
-            {rightIcon && <i className={`button-icon-right ${rightIcon}`} />}
-          </button>
-        </div>
-      </div>
+      <button
+        type={type}
+        className={`button ${primary ? 'primary' : ''} ${className ? className : ''} ${noStyle ? 'no-style' : ''} ${
+          !children ? 'empty' : ''
+        }`}
+        onClick={onClick}
+        disabled={disabled}>
+        {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
+        {children}
+        {rightIcon && <i className={`button-icon-right ${rightIcon}`} />}
+      </button>
     </div>
   );
 };

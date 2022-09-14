@@ -1,10 +1,10 @@
-$primary-color: #8767AA;
+$primary-color: #8767aa;
 $secondary-color: #ac6aca;
 $superposed-color: #ba78d4;
-$accent-color: #8767AA;
+$accent-color: #8767aa;
 $light-color: #ccc;
-$dark-color: #29292A;
-$gradient: linear-gradient(135deg, $primary-color 15%, $secondary-color 85%);
+$dark-color: #29292a;
+$gradient: linear-gradient(135deg, $accent-color 15%, $dark-color 85%);
 $ua-font: 'LemonMilk', sans-serif;
 
 $buttonLength: 2px;

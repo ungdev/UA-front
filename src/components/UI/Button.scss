@@ -15,10 +15,48 @@
     color: unset;
     border: none;
     padding: 10px 22px;
-    background: $superposed-color;
+    background-color: $accent-color;
     font-weight: bolder;
-    border-radius: $buttonRadius 0 $buttonRadius 0;
-    transform: translate(-$buttonLength, -$buttonLength);
+    transition: all 0.25s ease-in-out;
+
+    &::before {
+      content: '';
+      background-color: #efd6e7;
+      width: 95%;
+      height: 98%;
+      position: absolute;
+      left: -3px;
+      top: 0;
+      z-index: -1;
+      transform: rotate(2deg);
+      transition: all 0.25s ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      background-color: #beceea;
+      width: 95%;
+      height: 95%;
+      position: absolute;
+      right: -3px;
+      top: 0;
+      z-index: -1;
+      transform: rotate(-1.5deg);
+      transition: all 0.25s ease-in-out;
+    }
+
+    &:hover {
+      background-color: $superposed-color;
+
+      &::before {
+        transform: rotate(0);
+        left: 0;
+      }
+      &::after {
+        transform: rotate(0);
+        right: 0;
+      }
+    }
   }
 
   &.no-style {
@@ -54,38 +92,11 @@
   &:hover {
     cursor: pointer;
     filter: brightness(1);
-    color: $accent-color;
   }
 
   &.disabled {
     filter: grayscale(0.5) brightness(0.7);
     cursor: default;
-  }
-}
-
-.topButtonDiv {
-  display: inline-block;
-  box-sizing: border-box;
-
-  &.primary {
-    &:not(.no-style) {
-      border-radius: $buttonRadius;
-      background-color: $primary-color;
-      transition: all 0.3s, color 0s;
-      transform: translate(-$buttonLength, -$buttonLength) scale(1);
-    }
-  }
-}
-
-.bottomButtonDiv {
-  display: inline-block;
-  box-sizing: border-box;
-  &:not(.no-style).primary {
-    border-radius: $buttonRadius;
-    padding: $buttonLength;
-    background-color: $secondary-color;
-    transition: all 0.3s, color 0s;
-    transform: translate(2 * $buttonLength, 2 * $buttonLength) scale(1);
   }
 }
 

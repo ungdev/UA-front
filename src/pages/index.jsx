@@ -35,9 +35,6 @@ const Home = () => {
           <Countdown date={new Date('November 26 2021 17:00:00 UTC+1')} className="home-countdown" />
 
           <Title align="center">Informations</Title>
-          <Title level={4} align="center" className="uppercase">
-            L'UTT Arena de retour en présentiel
-          </Title>
 
           <p>
             LE rendez-vous gaming annuel de la région Auboise aura lieu les{' '}
@@ -125,13 +122,13 @@ const Home = () => {
             )}
           </div>
 
-          <Link href="/partners">
+          {/* <Link href="/partners">
             <a>
               <Button primary className="partners-button" rightIcon="fas fa-chevron-right">
                 Voir les partenaires
               </Button>
             </a>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
