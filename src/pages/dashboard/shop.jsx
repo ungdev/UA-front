@@ -53,7 +53,6 @@ const Shop = () => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
-  const [place, setPlace] = useState(userId);
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
   const [hasAttendant, setHasAttendant] = useState(false);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
@@ -62,7 +61,6 @@ const Shop = () => {
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
   const [itemPreview, setItemPreview] = useState(null);
-  const [placeFor, setPlaceFor] = useState(hasPaid ? 'other' : 'me');
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState([]);
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
