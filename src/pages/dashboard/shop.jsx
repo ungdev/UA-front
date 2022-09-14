@@ -56,7 +56,7 @@ const Shop = () => {
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
   const [hasAttendant, setHasAttendant] = useState(false);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
-  const cartInitialValue = { tickets: {userIds: [], attendant: undefined}, supplements: [] };
+  const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   const [cart, setCart] = useState(cartInitialValue);
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
@@ -108,7 +108,7 @@ const Shop = () => {
   // Fills supplementTypes
   useEffect(() => {
     if (!items) return;
-    const newSupplementTypes = []
+    const newSupplementTypes = [];
     items.forEach((item) => {
       if (item.category === 'supplement') {
         // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
@@ -130,18 +130,18 @@ const Shop = () => {
       }
     });
     setSupplementTypes(newSupplementTypes);
-  }, [items])
+  }, [items]);
 
   // Fills selectedAttributes
   useEffect(() => {
     let newSelectedAttributes = {};
-    supplementTypes.forEach(supplement => {
+    supplementTypes.forEach((supplement) => {
       if (supplement.attributes.length) {
         newSelectedAttributes[supplement.id] = supplement.attributes[0];
       }
     });
     setSelectedAttributes(newSelectedAttributes);
-  }, [supplementTypes])
+  }, [supplementTypes]);
 
   if (!items) {
     return null;
@@ -156,7 +156,7 @@ const Shop = () => {
   // If it isn't, it returns `${supplement.id}-${attribute}`
   const getSupplementId = (supplement, attribute) => {
     return `${supplement.id}` + (attribute ? `-${attribute}` : '');
-  }
+  };
 
   // When the user removes a ticket.
   // 'user' is either a user object, or undefined if it is the ticket of an attendant
@@ -164,7 +164,7 @@ const Shop = () => {
   const onRemoveTicket = (user, ticketIndex) => {
     if (user === undefined) {
       setHasAttendant(false);
-      setCart({ ...cart, tickets: {...cart.tickets, attendant: undefined }});
+      setCart({ ...cart, tickets: { ...cart.tickets, attendant: undefined } });
     } else {
       // Modify the states
       if (user.id === userId) {
@@ -177,14 +177,14 @@ const Shop = () => {
       // Modify the cart
       const updatedCartTickets = cart.tickets.userIds;
       updatedCartTickets.splice(ticketIndex, 1);
-      setCart({ ...cart, tickets: {...cart.tickets, userIds: updatedCartTickets }});
+      setCart({ ...cart, tickets: { ...cart.tickets, userIds: updatedCartTickets } });
     }
-  }
+  };
 
   const getTicketRows = () => {
     let ticketRows = cart.tickets.userIds.map((ticket, i) => {
-      let user = teamMembers.find(member => member.id === ticket);
-      let ticketItem = items.find(ticket => ticket.id === `ticket-${user.type}`);
+      let user = teamMembers.find((member) => member.id === ticket);
+      let ticketItem = items.find((ticket) => ticket.id === `ticket-${user.type}`);
       let price = `${(ticketItem.price / 100).toFixed(2)}€`;
       if (ticket === userId && type !== 'coach' && hasDiscount) {
         // NOTE : the value there is hardcoded. It would probably be better to have a route that gives us the discount
@@ -195,27 +195,29 @@ const Shop = () => {
         );
       }
       return {
-        type:
-          `${ticketItem.name} | ` +
-          (ticket.for === userId ? `Toi (${username})` : user.username),
+        type: `${ticketItem.name} | ` + (ticket.for === userId ? `Toi (${username})` : user.username),
         price: price,
         delete: (
           <Button
-            onClick={() => { onRemoveTicket(user, i); }}
+            onClick={() => {
+              onRemoveTicket(user, i);
+            }}
             rightIcon="fas fa-trash-alt"
             className="delete-button"
             noStyle
           />
         ),
       };
-    })
+    });
     if (cart.tickets.attendant) {
       ticketRows.push({
         type: `Place accompagnateur | ${cart.tickets.attendant.firstname} ${cart.tickets.attendant.lastname}`,
         price: '12.00€',
         delete: (
           <Button
-            onClick={() => { onRemoveTicket(undefined, 0); }}
+            onClick={() => {
+              onRemoveTicket(undefined, 0);
+            }}
             rightIcon="fas fa-trash-alt"
             className="delete-button"
             noStyle
@@ -224,7 +226,7 @@ const Shop = () => {
       });
     }
     return ticketRows;
-  }
+  };
 
   // We display the supplementTypes
   const supplementRows = supplementTypes.map((supplement) => {
@@ -268,17 +270,17 @@ const Shop = () => {
           onChange={(value) => {
             const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
             const newSupplementId = getSupplementId(supplement, value);
-            let newCartSupplements = cart.supplements.map(cartSupplement => {
-              let newCartSupplement = {...cartSupplement};
+            let newCartSupplements = cart.supplements.map((cartSupplement) => {
+              let newCartSupplement = { ...cartSupplement };
               if (newCartSupplement.itemId === previousSupplementId) {
                 newCartSupplement.itemId = newSupplementId;
               }
               return newCartSupplement;
             });
-            setCart({...cart, supplements: newCartSupplements});
-            let newSelectedAttributes = {...selectedAttributes};
+            setCart({ ...cart, supplements: newCartSupplements });
+            let newSelectedAttributes = { ...selectedAttributes };
             newSelectedAttributes[supplement.id] = value;
-            setSelectedAttributes(newSelectedAttributes)
+            setSelectedAttributes(newSelectedAttributes);
           }}
           value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
           className="shop-input"
@@ -294,20 +296,26 @@ const Shop = () => {
           onChange={(strQuantity) => {
             // If the parse result is NaN, then quantity defaults to 0
             let quantity = parseInt(strQuantity, 10) || 0;
-            let newCartSupplements = [...cart.supplements]
+            let newCartSupplements = [...cart.supplements];
             if (cartSupplement.quantity) {
               if (quantity) {
-                newCartSupplements.forEach(cartSupplement => cartSupplement.quantity = cartSupplement.itemId === supplementFullId ? quantity : cartSupplement.quantity);
+                newCartSupplements.forEach(
+                  (cartSupplement) =>
+                    (cartSupplement.quantity =
+                      cartSupplement.itemId === supplementFullId ? quantity : cartSupplement.quantity),
+                );
               } else {
-                newCartSupplements = cart.supplements.filter(cartSupplement => cartSupplement.itemId !== supplementFullId);
+                newCartSupplements = cart.supplements.filter(
+                  (cartSupplement) => cartSupplement.itemId !== supplementFullId,
+                );
               }
-              setCart({...cart, supplements: newCartSupplements});
+              setCart({ ...cart, supplements: newCartSupplements });
             } else if (quantity !== 0) {
               const newSupplement = {
                 itemId: supplementFullId,
-                quantity: quantity
-              }
-              setCart({...cart, supplements: [...cart.supplements, newSupplement]});
+                quantity: quantity,
+              };
+              setCart({ ...cart, supplements: [...cart.supplements, newSupplement] });
             }
           }}
           min={0}
@@ -324,34 +332,35 @@ const Shop = () => {
       if (cartTicket === userId && type !== 'coach' && hasDiscount) {
         return acc + (type === 'player' ? 1500 : 1000);
       }
-      let userType = (cartTicket === userId ? type : teamMembers.find((member) => member.id === cartTicket).type);
-      return acc + items.find(item => item.id === `ticket-${userType}`).price;
+      let userType = cartTicket === userId ? type : teamMembers.find((member) => member.id === cartTicket).type;
+      return acc + items.find((item) => item.id === `ticket-${userType}`).price;
     }, 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
-      const item = items.find(item => item.id == cartSupplement.itemId);
+      const item = items.find((item) => item.id == cartSupplement.itemId);
       if (!item) {
-        toast.warn("Une erreur s'est produite lors du calcul du prix. Le prix affiché n'est peut-être pas exact. Si ce problème se reproduit, contacte le support");
+        toast.warn(
+          "Une erreur s'est produite lors du calcul du prix. Le prix affiché n'est peut-être pas exact. Si ce problème se reproduit, contacte le support",
+        );
         return acc;
       }
       return acc + cartSupplement.quantity * item.price;
     }, 0) +
-    (cart.tickets.attendant ? items.find(item => item.id === 'ticket-attendant').price : 0);
+    (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant').price : 0);
 
   const onAddPlaceModalQuit = (placeFor, placeId) => {
     setAddPlaceVisible(false);
-    if (placeFor === undefined)
-      return;
+    if (placeFor === undefined) return;
     if (placeFor === 'me') {
-      setCart({...cart, tickets: {...cart.tickets, userIds: [...cart.tickets.userIds, userId]}});
+      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, userId] } });
       setIsPlaceInCart(true);
     } else if (placeFor === 'other') {
-      setCart({...cart, tickets: {...cart.tickets, userIds: [...cart.tickets.userIds, placeId]}});
-      setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter(member => member.id !== placeId));
+      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId] } });
+      setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter((member) => member.id !== placeId));
     } else {
-      setCart({...cart, tickets: {...cart.tickets, attendant: placeId}});
+      setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId } });
       setHasAttendant(true);
     }
-  }
+  };
 
   return (
     <div id="dashboard-shop">
@@ -407,14 +416,16 @@ const Shop = () => {
           Payer
         </Button>
       </div>
-      {addPlaceVisible &&
+      {addPlaceVisible && (
         <AddPlaceModal
           userId={userId}
           username={username}
           hasTicket={isPlaceInCart}
           teamMembersWithoutTicket={teamMembersWithoutTicket}
           needsAttendant={age === 'child' && !hasAttendant}
-          onQuit={onAddPlaceModalQuit} />}
+          onQuit={onAddPlaceModalQuit}
+        />
+      )}
       <Modal
         visible={!!itemPreview}
         onCancel={() => setItemPreview(null)}

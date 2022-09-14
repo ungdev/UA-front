@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { Modal, Button, Input, Select, Radio } from './UI'
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { Modal, Button, Input, Select, Radio } from './UI';
 
-const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, needsAttendant, onQuit}) => {
-  
+const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, needsAttendant, onQuit }) => {
   // Either 'me', 'other' or 'attendant'
   const [placeFor, setPlaceFor] = useState('');
   // The id of the person.
   // If placeFor is 'attendant', then placeId is an object with 2 values : 'firstname' and 'lastname'
   const [placeId, setPlaceId] = useState(undefined);
-  
+
   useEffect(() => {
     if (!hasTicket) {
       setPlaceFor('me');
@@ -22,18 +21,15 @@ const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, n
       onQuit(undefined, undefined);
       return;
     }
-  }, [])
+  }, []);
 
   const canPayTo = () => {
     let canPayTo = [];
-    if (!hasTicket)
-      canPayTo.push({value: 'me', name: `Moi-même (${username})`});
-    if (needsAttendant)
-      canPayTo.push({value: 'attendant', name: 'Un accompagnateur (majeur)'});
-    if (teamMembersWithoutTicket.length)
-      canPayTo.push({value: 'other', name: 'Autre utilisateur'});
+    if (!hasTicket) canPayTo.push({ value: 'me', name: `Moi-même (${username})` });
+    if (needsAttendant) canPayTo.push({ value: 'attendant', name: 'Un accompagnateur (majeur)' });
+    if (teamMembersWithoutTicket.length) canPayTo.push({ value: 'other', name: 'Autre utilisateur' });
     return canPayTo;
-  }
+  };
 
   useEffect(() => {
     if (placeFor === 'me') {
@@ -46,12 +42,11 @@ const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, n
       }
       setPlaceId(teamMembersWithoutTicket[0].id);
     } else {
-      setPlaceId({firstname: '', lastname: ''});
+      setPlaceId({ firstname: '', lastname: '' });
     }
   }, [placeFor]);
 
-  if (!placeFor || placeId === undefined)
-    return null;
+  if (!placeFor || placeId === undefined) return null;
 
   const addPlace = async () => {
     if (placeFor === 'attendant') {
@@ -61,15 +56,19 @@ const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, n
       }
     }
     onQuit(placeFor, placeId);
-  }
+  };
 
-	return (
+  return (
     <Modal
       title="Ajouter une place"
       className="add-place-modal"
       visible={true}
       onCancel={() => onQuit(undefined, undefined)}
-      buttons={<Button primary onClick={addPlace}>Ajouter</Button>}>
+      buttons={
+        <Button primary onClick={addPlace}>
+          Ajouter
+        </Button>
+      }>
       <Radio
         label="Pour"
         name="for"
@@ -83,12 +82,12 @@ const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, n
           <Input
             label="Prénom"
             value={placeId.firstname}
-            onChange={(value) => setPlaceId({...placeId, firstname: value})}
+            onChange={(value) => setPlaceId({ ...placeId, firstname: value })}
           />
           <Input
             label="Nom"
             value={placeId.lastname}
-            onChange={(value) => setPlaceId({ ...placeId, lastname: value})}
+            onChange={(value) => setPlaceId({ ...placeId, lastname: value })}
           />
         </>
       )}
@@ -105,7 +104,7 @@ const AddPlaceModal = ({userId, username, hasTicket, teamMembersWithoutTicket, n
         />
       )}
     </Modal>
-	)
-}
+  );
+};
 
 export default AddPlaceModal;
