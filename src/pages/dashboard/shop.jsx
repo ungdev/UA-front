@@ -130,7 +130,8 @@ const Shop = () => {
   // Returns an object that contains information about how to display each ticket.
   const getTicketRows = () => {
     let ticketRows = cart.tickets.userIds.map((ticket, i) => {
-      let user = teamMembers.find((member) => member.id === ticket);
+      // If the user is a spectator, he is not in a team. To avoid accessing the team, we simply use informations we already have
+      let user = ticket === userId ? { type, username } : teamMembers.find((member) => member.id === ticket);
       let ticketItem = items.find((ticket) => ticket.id === `ticket-${user.type}`);
       let price = `${(ticketItem.price / 100).toFixed(2)}€`;
       if (ticket === userId && type !== 'coach' && hasDiscount) {
