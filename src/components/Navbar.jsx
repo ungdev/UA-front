@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar-react';
 
-import { Button, Modal } from './UI';
+import { Button, Modal, Divider } from './UI';
 import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
@@ -30,14 +30,14 @@ const links = [
     title: 'FAQ',
     href: '/faq',
   },
-  {
-    title: 'Partenaires',
-    href: '/partners',
-  },
-  {
-    title: 'Organisateurs',
-    href: '/organisers',
-  },
+  // {
+  //   title: 'Partenaires',
+  //   href: '/partners',
+  // },
+  // {
+  //   title: 'Organisateurs',
+  //   href: '/organisers',
+  // },
   {
     title: 'Contact',
     href: '/contact',
@@ -75,7 +75,10 @@ const Navbar = ({ isLoggedIn, action }) => {
   const navLinks = links.map((link) => (
     <Link href={link.href} key={link.href}>
       <a onClick={() => setMobileMenuVisible(false)}>
-        <div className={`nav-button ${link.href === shortPath ? 'active' : ''}`}>{link.title}</div>
+        <div className={`nav-button ${link.href === shortPath ? 'active' : ''}`}>
+          {link.title}
+          <Divider />
+        </div>
       </a>
     </Link>
   ));
@@ -197,7 +200,7 @@ const Navbar = ({ isLoggedIn, action }) => {
           </div>
 
           <div className="footer-text">
-            © 2021 <a href="https://ung.utt.fr">UTT Net Group</a>
+            © 2022 <a href="https://ung.utt.fr">UTT Net Group</a>
             {' - '}
             <Link href="/legal">
               <a onClick={() => setMobileMenuVisible(false)}>Mentions légales / CGV</a>
@@ -217,7 +220,7 @@ const Navbar = ({ isLoggedIn, action }) => {
               Fermer
             </Button>
           }>
-          Les inscriptions ouvriront le vendredi 8 octobre 2021 à 19h00.
+          Les inscriptions ouvriront le vendredi 7 octobre 2022 à 19h00.
         </Modal>
       )}
       {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}

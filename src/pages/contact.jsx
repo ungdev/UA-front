@@ -4,11 +4,12 @@ import { Title, Input, Textarea, Button, Select } from '../components/UI';
 import { sendMessage } from '../utils/contact';
 
 const options = [
-  'Tournoi League of Legends Compétitif',
-  'Tournoi League of Legends Loisir',
+  'Tournoi League of Legends',
+  'Tournoi Teamfight Tactics',
   'Tournoi Rocket League',
   'Tournoi Counter-Strike : Global Offensive',
-  'Tournoi SSBU by Murex',
+  'Tournoi Valorant',
+  'Tournoi SSBU',
   'Tournoi osu!',
   'Tournoi Libre',
   'Problème sur le site',
@@ -51,7 +52,7 @@ const Contact = () => {
         <a href="tel:+33325718550">+33 (0) 3 25 71 85 50</a>
       </p>
 
-      <p>Tu peux également nous contacter via ce formulaire, nous te répondrons dans les meilleurs délais.</p>
+      <p>Tu peux nous contacter via ce formulaire, nous te répondrons dans les meilleurs délais.</p>
 
       <Input label="Nom" value={name} onChange={setName} />
       <Input label="Email" value={email} onChange={setEmail} type="email" />

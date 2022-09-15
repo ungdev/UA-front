@@ -32,7 +32,7 @@ const Legal = () => (
       de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut exercer ce droit
       en effectuant une demande par mail à l’adresse arena@utt.fr
       <br />
-      Le responsable du traitement des données est Lucien CHARLEUX.
+      Le responsable du traitement des données est Camille MOUSSOU.
       <br />
       L’équipe technique et les administrateurs du site pourront accéder aux données.
       <br />
@@ -93,13 +93,13 @@ const Legal = () => (
       réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès leur mise en
       ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les usages en
       vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes conditions
-      générales de vente sont valables jusqu'au 28 novembre 2021 inclus.
+      générales de vente sont valables jusqu'au 4 décembre 2022 inclus.
     </p>
     <Title level={2}>Article 2 - Contenu</Title>
     Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre de
     la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
     présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
-    concernent les produits suivants : place pour l’événement UTT Arena 2021 et matériel en prévente.
+    concernent les produits suivants : place pour l’événement UTT Arena 2022 et matériel en prévente.
     <Title level={2}>Article 3 - Informations précontractuelles</Title>
     L'acheteur reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du
     contrat, d'une manière lisible et compréhensible, des présentes conditions générales de vente et de toutes les
@@ -109,7 +109,7 @@ const Legal = () => (
     et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du contenu
     numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions contractuelles. Les
     produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de place pour l’événement UTT
-    Arena 2021, l’UNG se réserve le droit de demander un justificatif pour les coachs et managers, et si le justificatif
+    Arena 2022, l’UNG se réserve le droit de demander un justificatif pour les coachs et managers, et si le justificatif
     n’est pas suffisant, peut annuler l’achat de la place et procéder à son remboursement intégral sans dédommagement.
     <Title level={2}>Article 4 - Commande</Title>
     L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son
@@ -121,7 +121,7 @@ const Legal = () => (
     Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans certains cas,
     notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le vendeur se
     réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation de la
-    commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2021. Seul le statut “Inscrit” sur la
+    commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2022. Seul le statut “Inscrit” sur la
     page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de place pour
     l’événement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque de
     disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
@@ -270,7 +270,7 @@ const Legal = () => (
     </p>
     <Title level={2}>Article 16 - Mentions Légales</Title>
     <p>
-      L’événement UTT Arena 2021 est organisé par :<br />
+      L’événement UTT Arena 2022 est organisé par :<br />
       <br />
       UTT Net Group, association loi 1901
       <br />

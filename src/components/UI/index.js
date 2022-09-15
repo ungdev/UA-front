@@ -16,6 +16,7 @@ import Title from './Title';
 import VideoContainer from './VideoContainer';
 import LogoSVG from './LogoSVG';
 import QRCodeReader from './QRCodeReader';
+import Divider from './Divider';
 
 export {
   Button,
@@ -23,6 +24,7 @@ export {
   Checkbox,
   Collapse,
   Countdown,
+  Divider,
   Helper,
   Input,
   Loader,

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Divider from './Divider';
 
 /**
  * Displays a table
@@ -25,7 +26,9 @@ const Table = ({
           ))}
         </tr>
         <tr>
-          <td className="table-divider" colSpan={columns.length} />
+          <td className="table-divider" colSpan={columns.length}>
+            <Divider />
+          </td>
         </tr>
       </thead>
       <tbody>

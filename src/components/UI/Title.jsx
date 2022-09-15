@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Divider from './Divider';
 
 /**
  * Displays a title
@@ -10,9 +11,12 @@ const Title = ({ level, children, gutterBottom, align, className, id }) => {
   return (
     <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
       {level === 1 ? (
-        <div className={`title-wrapper ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
-          <div className="title-content">{children}</div>
-        </div>
+        <>
+          <Divider />
+          <div className={`title-wrapper ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
+            <div className="title-content">{children}</div>
+          </div>
+        </>
       ) : (
         <div className="title-content">{children}</div>
       )}

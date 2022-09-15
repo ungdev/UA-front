@@ -22,7 +22,7 @@
   .desktop-logo {
     width: 140px;
     height: 140px;
-    margin: 20px 0 30px 0;
+    margin: 20px -3px 30px 0;
     background: url('/logo.png') no-repeat center;
     background-size: 140px;
   }
@@ -163,18 +163,16 @@
       width: 100%;
     }
 
-    &::after {
+    & > .divider {
       content: '';
       position: absolute;
       bottom: 0;
       left: -10px;
       width: 0;
-      height: 3px;
-      border-bottom: dotted $accent-color 5px;
       transition: all 0.3s;
     }
 
-    &.active::after {
+    &.active > .divider {
       left: 0;
       width: 100%;
     }
