@@ -28,7 +28,7 @@ const supplementColumns = [
 //   The format is the same as in the route POST users/current/carts
 // * onItemPreview : is called when the user wants to preview an item.
 //   It takes one parameter : the relative path to the image file, starting in the public/ directory
-const SupplementList = ({ onSupplementCartChanges, onItemPreview }) => {
+const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItemPreview }) => {
   const items = useSelector((state) => state.items);
 
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
@@ -36,8 +36,8 @@ const SupplementList = ({ onSupplementCartChanges, onItemPreview }) => {
   const [supplementTypes, setSupplementTypes] = useState([]);
   // The currently selected attribute for each item that has attributes.
   // This is an object. Keys are the item ids, and values are the current attributes.
-  const [selectedAttributes, setSelectedAttributes] = useState({});
-  const [supplementCart, setSupplementCart] = useState([]);
+  const [selectedAttributes, setSelectedAttributes] = useState(undefined);
+  const [supplementCart, setSupplementCart] = useState(initialSupplementCart);
 
   // Fills supplementTypes
   useEffect(() => {
@@ -68,12 +68,28 @@ const SupplementList = ({ onSupplementCartChanges, onItemPreview }) => {
 
   // Fills selectedAttributes
   useEffect(() => {
+    if (!supplementTypes.length) return;
     let newSelectedAttributes = {};
     supplementTypes.forEach((supplement) => {
       if (supplement.attributes.length) {
-        newSelectedAttributes[supplement.id] = supplement.attributes[0];
+        // First we find if there is already a supplement of this type in the cart
+        if (
+          !supplement.attributes.find((attr) => {
+            if (supplementCart.find((cartSupplement) => cartSupplement.itemId === supplement.id + '-' + attr)) {
+              // If there is one, then this attribute is selected
+              newSelectedAttributes[supplement.id] = attr;
+              return true;
+            }
+            return false;
+          })
+        ) {
+          // If there is not, we default the value to the first attribute
+          newSelectedAttributes[supplement.id] = supplement.attributes[0];
+        }
       }
     });
+    //console.log('donc on a newSelectedAttributes= ');
+    //console.log(newSelectedAttributes);
     setSelectedAttributes(newSelectedAttributes);
   }, [supplementTypes]);
 
@@ -81,6 +97,10 @@ const SupplementList = ({ onSupplementCartChanges, onItemPreview }) => {
   useEffect(() => {
     onSupplementCartChanges(supplementCart);
   }, [supplementCart]);
+
+  if (!selectedAttributes) {
+    return null;
+  }
 
   // Returns a supplement id according to the supplement and the attribute given to the function.
   // Supplement.id should be the id of the supplement type of the item. You should call this with a supplementType, not an item
@@ -144,7 +164,7 @@ const SupplementList = ({ onSupplementCartChanges, onItemPreview }) => {
             newSelectedAttributes[supplement.id] = value;
             setSelectedAttributes(newSelectedAttributes);
           }}
-          value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
+          value={selectedAttributes[supplement.id]}
           className="shop-input"
         />
       ) : (

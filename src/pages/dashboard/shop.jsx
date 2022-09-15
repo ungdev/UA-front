@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchItems } from '../../modules/items';
-import { cartPay } from '../../modules/cart';
+import { cartPay, deleteCart, loadCart, saveCart } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
 import { Table, Button, Title, Modal, Checkbox } from '../../components/UI';
 import AddPlaceModal from '../../components/AddPlaceModal';
@@ -12,7 +12,6 @@ import SupplementList from '../../components/SupplementList';
 
 // Hello there ! This is a big file, I commented it as well as I could, hope you'll understand :)
 
-// Ok, these values are not great there.
 // These reprensent the columns of the tables that list tickets and columns in the current cart.
 // The 'title' field is what is displayed, and 'key' is the internal name of the column.
 const ticketColumns = [
@@ -47,9 +46,9 @@ const Shop = () => {
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
   const [hasAttendant, setHasAttendant] = useState(false);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
-  const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
+  //const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   // The content of the current cart. The API doesn't know about this before the player clicks on the pay button
-  const [cart, setCart] = useState(cartInitialValue);
+  const [cart, setCart] = useState(loadCart());
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
   // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
@@ -62,7 +61,7 @@ const Shop = () => {
   // if they click multiple times, they could send multiple requests
   const [hasRequestedPayment, setHasRequestedPayment] = useState(false);
 
-  // Fetch items, team and checks if user already have an intendant.
+  // Fetch items, team and checks if user already have an intendant
   useEffect(() => {
     dispatch(fetchItems());
     if (type !== 'spectator') {
@@ -76,6 +75,12 @@ const Shop = () => {
           });
         });
       });
+      if (cart.tickets.userIds.find((id) => id === userId)) {
+        setIsPlaceInCart(true);
+      }
+      if (cart.tickets.attendant) {
+        setHasAttendant(true);
+      }
     }
   }, []);
 
@@ -96,6 +101,13 @@ const Shop = () => {
       ),
     );
   }, [teamMembers]);
+
+  // Save the cart everytime it is modified
+  useEffect(() => {
+    if (cart) {
+      saveCart(cart);
+    }
+  }, [cart]);
 
   if (!items) {
     return null;
@@ -234,6 +246,7 @@ const Shop = () => {
   const onPay = () => {
     setHasRequestedPayment(true);
     dispatch(cartPay(cart));
+    setCart(deleteCart());
   };
 
   return (
@@ -254,7 +267,11 @@ const Shop = () => {
         </p>
       </div>
       <div className="shop-section">
-        <SupplementList onSupplementCartChanges={onSupplementCartChanges} onItemPreview={onItemPreview} />
+        <SupplementList
+          initialSupplementCart={cart.supplements}
+          onSupplementCartChanges={onSupplementCartChanges}
+          onItemPreview={onItemPreview}
+        />
       </div>
       <div className="shop-footer">
         {cart.attendant && (
