@@ -9,6 +9,11 @@ import AddPlaceModal from '../../components/AddPlaceModal';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
 
+// Hello there ! This is a big file, I commented it as well as I could, hope you'll understand :)
+
+// Ok, these values are not great there.
+// These reprensent the columns of the tables that list tickets and columns in the current cart.
+// The 'title' field is what is displayed, and 'key' is the internal name of the column.
 const ticketColumns = [
   {
     title: 'Bénéficiaire',
@@ -45,21 +50,28 @@ const supplementColumns = [
 
 const Shop = () => {
   const dispatch = useDispatch();
+  // Informations about the user
   const { id: userId, type, hasPaid, username, age, email } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items);
+  // The team the player is in
   const team = useSelector((state) => state.team);
   // The members of the team are the players and the coaches
   const [teamMembers, setTeamMembers] = useState([]);
+  // If the CGV case is checked or not
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
+  // If the modal to add a place is visible
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
   const [hasAttendant, setHasAttendant] = useState(false);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
   const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
+  // The content of the current cart. The API doesn't know about this before the player clicks on the pay button
   const [cart, setCart] = useState(cartInitialValue);
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
+  // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
+  // If itemPreview is null, then there is nothing to preview, and thus the modal for the preview is not displayed
   const [itemPreview, setItemPreview] = useState(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState([]);
@@ -69,6 +81,9 @@ const Shop = () => {
   // The currently selected attribute for each item that has attributes.
   // This is an object. Keys are the item ids, and values are the current attributes.
   const [selectedAttributes, setSelectedAttributes] = useState({});
+  // This is used to avoid users to be able to send multiple requests when paying :
+  // if they click multiple times, they could send multiple requests
+  const [hasRequestedPayment, setHasRequestedPayment] = useState(false);
 
   // Fetch items, team and checks if user already have an intendant.
   useEffect(() => {
@@ -181,6 +196,7 @@ const Shop = () => {
     }
   };
 
+  // Returns an object that contains information about how to display each ticket.
   const getTicketRows = () => {
     let ticketRows = cart.tickets.userIds.map((ticket, i) => {
       let user = teamMembers.find((member) => member.id === ticket);
@@ -327,6 +343,7 @@ const Shop = () => {
   });
 
   // Compute total price
+  // It is computed in 3 parts : player tickets, the attendant ticket, and supplements
   const totalPrice =
     cart.tickets.userIds.reduce((acc, cartTicket) => {
       if (cartTicket === userId && type !== 'coach' && hasDiscount) {
@@ -335,6 +352,7 @@ const Shop = () => {
       let userType = cartTicket === userId ? type : teamMembers.find((member) => member.id === cartTicket).type;
       return acc + items.find((item) => item.id === `ticket-${userType}`).price;
     }, 0) +
+    (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant').price : 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
       const item = items.find((item) => item.id == cartSupplement.itemId);
       if (!item) {
@@ -344,9 +362,12 @@ const Shop = () => {
         return acc;
       }
       return acc + cartSupplement.quantity * item.price;
-    }, 0) +
-    (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant').price : 0);
+    }, 0);
 
+  // When the AddPlaceModal is exited.
+  // If it was exited by clicking out of the window or by quiting, then placeFor is undefined.
+  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' or 'attendant', and placeId is the id of the player
+  // (or an object containing the firstnam and the second name of the person if the ticket is for an attendant)
   const onAddPlaceModalQuit = (placeFor, placeId) => {
     setAddPlaceVisible(false);
     if (placeFor === undefined) return;
@@ -360,6 +381,13 @@ const Shop = () => {
       setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId } });
       setHasAttendant(true);
     }
+  };
+
+  // Called when the user clicks on the pay button
+  // Sets hasRequestedPayment to true to disable the pay button, and requests the payment to the API
+  const onPay = () => {
+    setHasRequestedPayment(true);
+    dispatch(cartPay(cart));
   };
 
   return (
@@ -411,8 +439,8 @@ const Shop = () => {
           primary
           rightIcon="fas fa-shopping-cart"
           className="shop-button"
-          onClick={() => dispatch(cartPay(cart))}
-          disabled={!totalPrice || !isCgvAccepted}>
+          onClick={onPay}
+          disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
           Payer
         </Button>
       </div>
