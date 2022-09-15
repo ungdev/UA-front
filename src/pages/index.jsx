@@ -43,7 +43,7 @@ const Home = () => {
             <span className="accent">
               3000 m<sup>2</sup>
             </span>{' '}
-            t'attendent pour passer  3 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
+            t'attendent pour passer 3 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
             jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">632 joueurs</span> qui
             composeront l’évènement, et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
@@ -71,7 +71,7 @@ const Home = () => {
             dataSource={[
               {
                 title: <strong>Lieu</strong>,
-                description: "Au Parc des Expositions  de Troyes !",
+                description: 'Au Parc des Expositions  de Troyes !',
               },
               {
                 title: <strong>Ouverture de l'UTT Arena, discours et concert</strong>,
@@ -107,6 +107,8 @@ const Home = () => {
           <div className="list-partners">
             {!partners ? (
               <Loader />
+            ) : !partners.length ? (
+              <i>Les partenaires seront bientôt annoncés</i>
             ) : (
               partners.map((partner) => (
                 <div className="partner" key={partner.link}>

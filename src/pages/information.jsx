@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import React from 'react';
 
 import { Title } from '../components/UI';
@@ -19,17 +19,22 @@ const Information = () => (
       <span className="accent">
         20<sup>ème</sup> édition
       </span>{' '}
-      ! D'une simple salle d'examen de l'UTT à 8000m² de gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
+      ! D'une simple salle d'examen de l'UTT à 8000m² de gaming au Parc des Expositions de Troyes, le Cube, en passant
+      par le festival des jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure
+      qualité à ses joueurs !
       <br />
       <br />À présent l'UTT Arena c'est <span className="accent">632 joueurs</span>,{' '}
       <span className="accent">8 tournois spotlights</span>, des <span className="accent">prix à gagner</span> et des
-      tournois <span className="accent">commentés en direct par les casteurs </span>!  Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement contribuent à le rendre exceptionnel ! Un grand merci également à {' '}
-      <Link href="/organisers">
+      tournois <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous,
+      les joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
+      l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
+      contribuent à le rendre exceptionnel ! Un grand merci également à{' '}
+      {/* <Link href="/organisers">
         <a>
           <span className="accent">tous les bénévoles</span>
         </a>
-      </Link>{' '}
-      qui rendent possible l'organisation de ce beau projet.
+      </Link>{' '} */}
+      <span className="accent">tous les bénévoles</span> qui rendent possible l'organisation de ce beau projet.
     </div>
 
     <Title align="center">Inscriptions</Title>
@@ -100,8 +105,13 @@ const Information = () => (
     <div className="information-section">
       <Title level={4}>Joueurs mineurs</Title>
       <p>
-      Pour participer au tournoi il faut avoir au <strong>minimum 15 ans</strong> lors de l'événement. 
-      Il faudra que tu présentes <strong>l'autorisation parentale</strong> (<a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf" className="">disponible ici</a>) ainsi qu'une photocopie de la <strong>pièce d'identité de ton responsable légal et de la tienne</strong> avant d'accéder à l'UTT Arena.
+        Pour participer au tournoi il faut avoir au <strong>minimum 15 ans</strong> lors de l'événement. Il faudra que
+        tu présentes <strong>l'autorisation parentale</strong> (
+        <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf" className="">
+          disponible ici
+        </a>
+        ) ainsi qu'une photocopie de la <strong>pièce d'identité de ton responsable légal et de la tienne</strong> avant
+        d'accéder à l'UTT Arena.
       </p>
 
       <br />
@@ -117,8 +127,8 @@ const Information = () => (
 
       <Title level={4}>Vestiaire</Title>
       <p>
-      Des vestiaires à disposition des joueurs afin qu’ils puissent ranger leur matériel. Ils seront surveillés par l’équipe de sécurité de l’UTT Arena.
-      L’UTT Arena décline toute responsabilité en cas de vol.
+        Des vestiaires à disposition des joueurs afin qu’ils puissent ranger leur matériel. Ils seront surveillés par
+        l’équipe de sécurité de l’UTT Arena. L’UTT Arena décline toute responsabilité en cas de vol.
       </p>
 
       <br />
@@ -130,10 +140,11 @@ const Information = () => (
           <strong>Aucune manette ou adaptateur ne sera mis à disposition pendant l'événement.</strong>
         </li>
         <li>
-          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
-          personnages et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera accordée lors de son inscription. Pour cela il
-          faut ajouter le supplément <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de
-          payer ta place.
+          Pour les 16 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
+          <strong>tous</strong> les personnages et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera
+          accordée lors de son inscription. Pour cela il faut ajouter le supplément{' '}
+          <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de payer ta
+          place.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay pendant l'UTT Arena.
           <br />
@@ -159,23 +170,25 @@ const Information = () => (
           goudre. <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
         </li>
         <li>
-          Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité. <strong>N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.</strong>
+          Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité.{' '}
+          <strong>N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.</strong>
         </li>
         <li>
-          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus <strong>amène une multiprise</strong>. Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton ordinateur devra avoir une prise ethernet. Enfin, surement le plus important : tu dois ramener ton setup complet (sauf si tu l'as loué) : ta tour, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta manette.
+          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus <strong>amène une multiprise</strong>.
+          Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton
+          ordinateur devra avoir une prise ethernet. Enfin, surement le plus important : tu dois ramener ton setup
+          complet (sauf si tu l'as loué) : ta tour, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris,
+          ton clavier et ta manette.
           <br />
-          Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI.
+          Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un
+          câble HDMI.
         </li>
-        <li>
-          Enfin, il te faudra de quoi te laver et de quoi dormir. 
-        </li>
+        <li>Enfin, il te faudra de quoi te laver et de quoi dormir.</li>
       </ul>
     </div>
 
     <Title align="center">Planning</Title>
-    <div className="information-section">
-      A venir
-    </div>
+    <div className="information-section">A venir</div>
 
     <Title align="center">Emplacement</Title>
     <div className="information-section">
