@@ -43,9 +43,9 @@ export const setAuthorizationToken = (_token) => {
 // Access the API through different HTTP methods
 export const API = {
   get: (route) => requestAPI('GET', apiUrl(), route, true),
-  post: (route, body) => requestAPI('POST', apiUrl(), route, true, body),
-  put: (route, body) => requestAPI('PUT', apiUrl(), route, true, body),
-  patch: (route, body) => requestAPI('PATCH', apiUrl(), route, true, body),
+  post: (route, body = {}) => requestAPI('POST', apiUrl(), route, true, body),
+  put: (route, body = {}) => requestAPI('PUT', apiUrl(), route, true, body),
+  patch: (route, body = {}) => requestAPI('PATCH', apiUrl(), route, true, body),
   delete: (route) => requestAPI('DELETE', apiUrl(), route, true),
 };
 
