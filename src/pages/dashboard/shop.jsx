@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchItems } from '../../modules/items';
 import { cartPay } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
-import { Table, Input, Button, Title, Modal, Select, Checkbox } from '../../components/UI';
+import { Table, Button, Title, Modal, Checkbox } from '../../components/UI';
 import AddPlaceModal from '../../components/AddPlaceModal';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
+import SupplementList from '../../components/SupplementList';
 
 // Hello there ! This is a big file, I commented it as well as I could, hope you'll understand :)
 
@@ -26,25 +27,6 @@ const ticketColumns = [
   {
     title: '',
     key: 'delete',
-  },
-];
-
-const supplementColumns = [
-  {
-    title: '',
-    key: 'name',
-  },
-  {
-    title: 'Prix unitaire',
-    key: 'price',
-  },
-  {
-    title: '',
-    key: 'attributes',
-  },
-  {
-    title: 'Quantité',
-    key: 'quantity',
   },
 ];
 
@@ -75,12 +57,7 @@ const Shop = () => {
   const [itemPreview, setItemPreview] = useState(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState([]);
-  // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
-  // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
-  const [supplementTypes, setSupplementTypes] = useState([]);
-  // The currently selected attribute for each item that has attributes.
-  // This is an object. Keys are the item ids, and values are the current attributes.
-  const [selectedAttributes, setSelectedAttributes] = useState({});
+
   // This is used to avoid users to be able to send multiple requests when paying :
   // if they click multiple times, they could send multiple requests
   const [hasRequestedPayment, setHasRequestedPayment] = useState(false);
@@ -120,58 +97,12 @@ const Shop = () => {
     );
   }, [teamMembers]);
 
-  // Fills supplementTypes
-  useEffect(() => {
-    if (!items) return;
-    const newSupplementTypes = [];
-    items.forEach((item) => {
-      if (item.category === 'supplement') {
-        // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
-        // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
-        // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
-        const itemId = item.id.replace(new RegExp(`-${item.attribute}$`), '');
-        const supplementType = newSupplementTypes.find((supplement) => supplement.id === itemId);
-        if (!supplementType) {
-          const newSupplementType = { ...item, id: itemId, attributes: [] };
-          delete newSupplementType.attribute;
-          delete newSupplementType.category;
-          if (item.attribute) {
-            newSupplementType.attributes = [item.attribute];
-          }
-          newSupplementTypes.push(newSupplementType);
-        } else {
-          supplementType.attributes.push(item.attribute);
-        }
-      }
-    });
-    setSupplementTypes(newSupplementTypes);
-  }, [items]);
-
-  // Fills selectedAttributes
-  useEffect(() => {
-    let newSelectedAttributes = {};
-    supplementTypes.forEach((supplement) => {
-      if (supplement.attributes.length) {
-        newSelectedAttributes[supplement.id] = supplement.attributes[0];
-      }
-    });
-    setSelectedAttributes(newSelectedAttributes);
-  }, [supplementTypes]);
-
   if (!items) {
     return null;
   }
 
   // Does the user have a discount on his ticket ? (Is he in a UT school ?)
   const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
-
-  // Returns a supplement id according to the supplement and the attribute given to the function.
-  // Supplement.id should be the id of the supplement type of the item. You should call this with a supplementType, not an item
-  // If attribute is undefined, then it simply returns supplement.id
-  // If it isn't, it returns `${supplement.id}-${attribute}`
-  const getSupplementId = (supplement, attribute) => {
-    return `${supplement.id}` + (attribute ? `-${attribute}` : '');
-  };
 
   // When the user removes a ticket.
   // 'user' is either a user object, or undefined if it is the ticket of an attendant
@@ -244,104 +175,6 @@ const Shop = () => {
     return ticketRows;
   };
 
-  // We display the supplementTypes
-  const supplementRows = supplementTypes.map((supplement) => {
-    // The id we have to find in the cart
-    let supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
-    // Get cart supplement we are managing
-    let cartSupplement = cart.supplements.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
-    if (!cartSupplement) {
-      cartSupplement = {
-        item: supplementFullId,
-        quantity: 0,
-      };
-    }
-    // Get attributes
-    const availableAttributes = [];
-    supplement.attributes.forEach((attribute) => {
-      availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
-    });
-
-    // Return the row
-    return {
-      name: (
-        <>
-          {supplement.name}
-          {supplement.image && (
-            <Button
-              className="item-preview-button"
-              onClick={() => setItemPreview(supplement.image)}
-              leftIcon="far fa-image"
-              noStyle>
-              Voir le design
-            </Button>
-          )}
-          <div className="item-description">{supplement.infos}</div>
-        </>
-      ),
-      price: `${(supplement.price / 100).toFixed(2)}€`,
-      attributes: supplement.attributes.length ? (
-        <Select
-          options={availableAttributes}
-          onChange={(value) => {
-            const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
-            const newSupplementId = getSupplementId(supplement, value);
-            let newCartSupplements = cart.supplements.map((cartSupplement) => {
-              let newCartSupplement = { ...cartSupplement };
-              if (newCartSupplement.itemId === previousSupplementId) {
-                newCartSupplement.itemId = newSupplementId;
-              }
-              return newCartSupplement;
-            });
-            setCart({ ...cart, supplements: newCartSupplements });
-            let newSelectedAttributes = { ...selectedAttributes };
-            newSelectedAttributes[supplement.id] = value;
-            setSelectedAttributes(newSelectedAttributes);
-          }}
-          value={cartSupplement.quantity ? cartSupplement.attribute : undefined}
-          className="shop-input"
-        />
-      ) : (
-        ''
-      ),
-      quantity: (
-        <Input
-          type="number"
-          placeholder="0"
-          value={cartSupplement.quantity}
-          onChange={(strQuantity) => {
-            // If the parse result is NaN, then quantity defaults to 0
-            let quantity = parseInt(strQuantity, 10) || 0;
-            let newCartSupplements = [...cart.supplements];
-            if (cartSupplement.quantity) {
-              if (quantity) {
-                newCartSupplements.forEach(
-                  (cartSupplement) =>
-                    (cartSupplement.quantity =
-                      cartSupplement.itemId === supplementFullId ? quantity : cartSupplement.quantity),
-                );
-              } else {
-                newCartSupplements = cart.supplements.filter(
-                  (cartSupplement) => cartSupplement.itemId !== supplementFullId,
-                );
-              }
-              setCart({ ...cart, supplements: newCartSupplements });
-            } else if (quantity !== 0) {
-              const newSupplement = {
-                itemId: supplementFullId,
-                quantity: quantity,
-              };
-              setCart({ ...cart, supplements: [...cart.supplements, newSupplement] });
-            }
-          }}
-          min={0}
-          max={supplementFullId === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
-          className="shop-input"
-        />
-      ),
-    };
-  });
-
   // Compute total price
   // It is computed in 3 parts : player tickets, the attendant ticket, and supplements
   const totalPrice =
@@ -383,6 +216,18 @@ const Shop = () => {
     }
   };
 
+  // Callback of SupplementList. It is called when the user changes its cart (the supplement part)
+  // supplementCart is the new value of cart.supplements
+  const onSupplementCartChanges = (supplementCart) => {
+    setCart({ ...cart, supplements: supplementCart });
+  };
+
+  // Callback of SupplementList. It is called when the user wants to preview an item
+  // newItemPreview is the new value of itemPreview.
+  const onItemPreview = (newItemPreview) => {
+    setItemPreview(newItemPreview);
+  };
+
   // Called when the user clicks on the pay button
   // Sets hasRequestedPayment to true to disable the pay button, and requests the payment to the API
   const onPay = () => {
@@ -408,8 +253,7 @@ const Shop = () => {
         </p>
       </div>
       <div className="shop-section">
-        <Title level={4}>Accessoires</Title>
-        <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
+        <SupplementList onSupplementCartChanges={onSupplementCartChanges} onItemPreview={onItemPreview} />
       </div>
       <div className="shop-footer">
         {cart.attendant && (
