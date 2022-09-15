@@ -49,20 +49,12 @@ $radius: 8px;
       position: relative;
       background: #f5f5f5;
       padding: 14px;
-      transform: translate(-$length, -$length);
-      border-radius: $radius 0 $radius 0;
-      //box-shadow: 0 0 10px 6px #f5f5f5;
     }
 
-    &::before {
-      content: '';
+    .divider {
       position: absolute;
-      width: calc(100% - 20px);
-      height: 3px;
-      top: 40%;
-      left: 0;
-      border-bottom: dotted 10px $accent-color;
-      margin: 0 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 

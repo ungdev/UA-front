@@ -5,23 +5,23 @@
   border-radius: 0;
   padding: 8px 20px;
   background: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-size: 1em;
   cursor: pointer;
   user-select: none;
   transition: all 0.3s, color 0s;
+  text-transform: uppercase;
 
   &.primary {
     color: unset;
     border: none;
     padding: 10px 22px;
     background-color: $accent-color;
-    font-weight: bolder;
     transition: all 0.25s ease-in-out;
 
     &::before {
       content: '';
-      background-color: #efd6e7;
+      background-color: $light-color-alt;
       width: 95%;
       height: 98%;
       position: absolute;

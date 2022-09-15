@@ -57,6 +57,7 @@ const TournamentCards = () => {
             className="tournament-card"
             key={shortName}
             alt={`Tournoi ${name}`}
+            divider="belowImage"
           />
         ))}
       </div>

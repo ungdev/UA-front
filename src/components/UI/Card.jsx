@@ -5,11 +5,24 @@ import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import Button from './Button';
+import Divider from './Divider';
 
 /**
  * Displays a card which can contain an image, a content and a button
  */
-const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, className, classNameImg, alt }) => {
+const Card = ({
+  dark,
+  imgSrc,
+  content,
+  buttonContent,
+  onClick,
+  href,
+  target,
+  className,
+  classNameImg,
+  alt,
+  divider,
+}) => {
   let button = (
     <Button primary onClick={onClick}>
       {buttonContent}
@@ -29,13 +42,19 @@ const Card = ({ dark, imgSrc, content, buttonContent, onClick, href, target, cla
 
   return (
     <div className={`card ${className} ${dark ? 'dark' : ''}`}>
-      {imgSrc && <img className={`lazyload card-image ${classNameImg}`} alt={alt} data-src={imgSrc} />}
+      {imgSrc && (
+        <>
+          <img className={`lazyload card-image ${classNameImg}`} alt={alt} data-src={imgSrc} />
+          {divider === 'belowImage' && <Divider />}
+        </>
+      )}
       {content && (
         <>
           <div className="card-content">{content}</div>
           {buttonContent !== '' && <div className="card-button">{button}</div>}
         </>
       )}
+      {divider === 'bottom' && <Divider />}
     </div>
   );
 };
@@ -81,6 +100,10 @@ Card.propTypes = {
    * alt
    */
   alt: PropTypes.string,
+  /**
+   * Where the divider should be located
+   */
+  divider: PropTypes.oneOf(['belowImage', 'bottom', 'nowhere']),
 };
 
 Card.defaultProps = {
@@ -94,6 +117,7 @@ Card.defaultProps = {
   className: '',
   classNameImg: '',
   alt: '',
+  divider: 'bottom',
 };
 
 export default Card;

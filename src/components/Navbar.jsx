@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar-react';
 
-import { Button, Modal } from './UI';
+import { Button, Modal, Divider } from './UI';
 import LoginModal from './LoginModal';
 import ResetModal from './ResetModal';
 import { setLoginModalVisible } from '../modules/loginModal';
@@ -75,7 +75,10 @@ const Navbar = ({ isLoggedIn, action }) => {
   const navLinks = links.map((link) => (
     <Link href={link.href} key={link.href}>
       <a onClick={() => setMobileMenuVisible(false)}>
-        <div className={`nav-button ${link.href === shortPath ? 'active' : ''}`}>{link.title}</div>
+        <div className={`nav-button ${link.href === shortPath ? 'active' : ''}`}>
+          {link.title}
+          <Divider />
+        </div>
       </a>
     </Link>
   ));
