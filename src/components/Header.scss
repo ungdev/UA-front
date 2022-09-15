@@ -35,6 +35,10 @@
       transform: skew(-15deg);
       margin: 0;
       font-size: 1.25rem;
+
+      .accent {
+        color: $blue-color;
+      }
     }
 
     .main {
