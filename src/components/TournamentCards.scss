@@ -1,12 +1,15 @@
 .tournament-cards {
   .tournaments-list {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 40px;
     flex-wrap: wrap;
   }
 
   .tournament-card {
     width: 45%;
+    flex: 0 1 500px;
+    margin: 0;
 
     .card-image {
       background: rgba(255, 255, 255, 0.2);
@@ -33,6 +36,10 @@
       text-transform: uppercase;
       margin: 20px 0 10px 0;
 
+      &.smaller {
+        font-size: 1.3em;
+      }
+
       &::first-letter {
         font-size: 1.3em;
       }
@@ -41,16 +48,27 @@
     .tournament-details {
       display: flex;
       justify-content: space-evenly;
-    }
+      gap: 10px;
 
-    .tournament-details p {
-      font-size: 1.2em;
-      margin: 20px 10px 10px 10px;
-      text-transform: uppercase;
-      font-style: italic;
+      &:nth-child(2) {
+        margin-bottom: 10px;
+      }
 
-      &::first-letter {
-        font-size: 1.3em;
+      p {
+        font-size: 1.2em;
+        text-transform: uppercase;
+        font-style: italic;
+        margin: 0;
+        transform: scaleY(1.2);
+        text-align: center;
+
+        .unit {
+          font-size: 0.9em;
+        }
+
+        &::first-letter {
+          font-size: 1.3em;
+        }
       }
     }
   }
@@ -65,8 +83,5 @@
 @media screen and (max-width: 1550px) {
   .tournament-details {
     flex-direction: column;
-  }
-  .tournament-details p {
-    text-align: center;
   }
 }

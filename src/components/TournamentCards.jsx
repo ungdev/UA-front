@@ -19,20 +19,20 @@ const TournamentCards = () => {
   return (
     <div className="tournament-cards">
       <Title align="center">Tournois</Title>
-      <Title level={4} align="center" className="uppercase">
+      <Title level={3} align="center" className="uppercase">
         Les 8 tournois à l'UTT Arena 2022
       </Title>
 
       <div className="tournaments-list">
-        {tournaments.map(({ name, shortName, players, image, shortRewards }) => (
+        {tournaments.map(({ name, shortName, players, image, shortRewards, casters }) => (
           <Card
             dark
             content={
               <>
-                <div className="tournament-name">{name}</div>
+                <div className={'tournament-name' + `${shortName === 'csgo' ? ' smaller' : ''}`}>{name}</div>
                 <div className="tournament-details">
                   <p>
-                    <strong>Places :</strong> {players} joueurs
+                    <strong>Places :</strong> {players} <span className="unit">joueurs</span>
                   </p>
                   {shortRewards && (
                     <p>
@@ -40,11 +40,13 @@ const TournamentCards = () => {
                     </p>
                   )}
                 </div>
-                <div className="tournament-details">
-                  <p>
-                    <strong>Casters :</strong> TBD
-                  </p>
-                </div>
+                {casters && (
+                  <div className="tournament-details">
+                    <p>
+                      <strong>Casters :</strong> {casters}
+                    </p>
+                  </div>
+                )}
               </>
             }
             imgSrc={image}

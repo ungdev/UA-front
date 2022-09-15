@@ -9,6 +9,7 @@ const tournaments = [
     image: '/tournaments/lol.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -34,12 +35,13 @@ const tournaments = [
     // rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
-    name: 'SSBU',
+    name: 'Super Smash Bros. Ultimate',
     shortName: 'ssbu',
     players: 128,
     image: '/tournaments/ssbu.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -64,6 +66,7 @@ const tournaments = [
     image: '/tournaments/csgo.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -88,6 +91,7 @@ const tournaments = [
     image: '/tournaments/valorant.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -101,7 +105,6 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: '5045521366727811072',
     format: <>16 équipes de 5 joueurs</>,
     // rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
   },
@@ -112,6 +115,7 @@ const tournaments = [
     image: '/tournaments/rocket-league.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -136,6 +140,7 @@ const tournaments = [
     image: '/tournaments/osu.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     //  (
     //   <ul>
     //     <li>
@@ -169,6 +174,7 @@ const tournaments = [
     image: '/tournaments/tft.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -192,6 +198,7 @@ const tournaments = [
     image: '/tournaments/open.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
+    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
