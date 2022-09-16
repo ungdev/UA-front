@@ -83,7 +83,7 @@ const Information = () => (
               <br />
               Limité à 2 coachs / managers par équipe.
               <br />
-              Pas de coach / manager autorisé pour les tournois solo (SSBU, osu! et libre).
+              Pas de coach / manager autorisé pour les tournois solo (SSBU, TFT, osu! et libre).
             </td>
           </tr>
           <tr>
@@ -175,8 +175,7 @@ const Information = () => (
       <Title level={4}>Ce que tu devras amener</Title>
       <ul>
         <li>
-          Si tu veux manger pendant l'événement, tu devras venir avec ton tupperware. Dans tous les cas, viens avec une
-          goudre. <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
+          <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
         </li>
         <li>
           Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité.{' '}

@@ -220,7 +220,7 @@ const Navbar = ({ isLoggedIn, action }) => {
               Fermer
             </Button>
           }>
-          Les inscriptions ouvriront le vendredi 7 octobre 2022 à 19h00.
+          Les inscriptions ouvriront bientôt !
         </Modal>
       )}
       {action.action === 'pwd-reset' && <ResetModal resetToken={action.state} />}
