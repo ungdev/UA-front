@@ -8,20 +8,25 @@ const content = [
     entries: [
       {
         question: 'Quand commencent les tournois ?',
-        answer: 'Les tournois commencent le samedi à 10h.',
+        answer:
+          'Les tournois commencent le samedi à 10h mais les participants des tournois devront être présents le samedi à 9h pour effectuer un check-in.',
       },
       {
         question: "Quel est l'âge minimum pour participer aux tournois ?",
         answer: (
           <>
             Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
-            que tu présentes l'autorisation parentale (
+            que tu présentes l'autorisation parentale
+            {/*(
             <strong>
+              Mise
               <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
                 disponible ici
-              </a>
+            </a>
             </strong>
-            ) <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            )*/}
+            , fournie lors de l’inscription,{' '}
+            <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
             avant d'accéder à l'UTT Arena.
           </>
         ),
@@ -30,8 +35,15 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
-            streaming est <a href="https://forms.gle/K3AbKdtb6Nvp3NQ7A">disponible ici</a>.
+            {/*Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
+            streaming est{' '}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+              disponible ici
+            </a>
+        .*/}
+            Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de
+            l’UTT Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne
+            faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
           </>
         ),
       },
@@ -52,7 +64,7 @@ const content = [
       {
         question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
         answer:
-          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
+          "Les règlements sont encore en cours d'écriture. Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
     ],
   },
@@ -63,8 +75,7 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions le <span className="accent">vendredi 7 octobre 2022, à 19h00 </span>(heure
-            française) !
+            Ouverture des inscriptions <span className="accent">à venir</span> !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
@@ -96,7 +107,8 @@ const content = [
         answer: (
           <>
             <ul>
-              <li>25 € en tant que joueur</li>
+              <li>22 € pour les joueurs du tournoi Super Smash Bros Ultimate</li>
+              <li>25 € pour les joueurs des autres tournois</li>
               <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
               <li>15 € en tant que spectateur</li>
               <li>
@@ -133,7 +145,7 @@ const content = [
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer:
-          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau.',
+          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau, sauf pour le tournoi Super Smash Bros Ultimate.',
       },
     ],
   },
