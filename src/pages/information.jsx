@@ -91,11 +91,6 @@ const Information = () => (
             <td>15€</td>
             <td>Réservé aux accompagnateurs de joueurs mineurs.</td>
           </tr>
-          <tr>
-            <td>Spectateur</td>
-            <td>15€</td>
-            <td>Illimité</td>
-          </tr>
         </tbody>
       </table>
     </div>
