@@ -127,10 +127,11 @@ const Information = () => (
 
       <br />
 
-      <Title level={4}>Vestiaire</Title>
+      <Title level={4}>Salles de stockage</Title>
       <p>
-        Des vestiaires à disposition des joueurs afin qu’ils puissent ranger leur matériel. Ils seront surveillés par
-        l’équipe de sécurité de l’UTT Arena. L’UTT Arena décline toute responsabilité en cas de vol.
+        Des salles de stockage sont mises à disposition des joueurs afin qu’ils puissent ranger leur matériel s'ils le
+        souhaitent. Elles seront surveillées par l’équipe de sécurité de l’UTT Arena. L’UTT Arena décline toute
+        responsabilité en cas de vol.
       </p>
 
       <br />
