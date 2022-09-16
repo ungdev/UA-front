@@ -93,7 +93,7 @@ const Legal = () => (
       réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès leur mise en
       ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les usages en
       vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes conditions
-      générales de vente sont valables jusqu'au 4 décembre 2022 inclus.
+      générales de vente sont valables jusqu'au 31 décembre 2022 inclus.
     </p>
     <Title level={2}>Article 2 - Contenu</Title>
     Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre de
@@ -216,26 +216,26 @@ const Legal = () => (
     <p>
       Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
       de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
-      demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 7 jours calendaires
-      avant la date de l'événement, soit le 19/11/2021 17:00 CET. Toute demande doit être formulée par courriel adressé
+      demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours calendaires
+      avant la date de l'événement, soit le 19/11/2022 17:00 CET. Toute demande doit être formulée par courriel adressé
       à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. Le remboursement
       sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bancaire ayant servi au
       paiement. Tout remboursement fera l'objet d'une retenue de :
     </p>
     <ul>
       <li>
-        25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 22/10/2021 17:00 CET et le 05/11/2021
+        25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 14/10/2022 17:00 CET et le 22/10/2022
         17:00 CET
       </li>
       <li>
-        50% (cinquante pourcent) du montant payé si la demande est faite entre le 05/11/2021 17:00 CET et le 12/11/2021
+        50% (cinquante pourcent) du montant payé si la demande est faite entre le 22/10/2022 17:00 CET et le 05/11/2022
         17:00 CET
       </li>
       <li>
-        75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 12/11/2021 17:00 CET et le
-        19/11/2021 17:00 CET
+        75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 05/11/2022 17:00 CET et le
+        19/11/2022 17:00 CET
       </li>
-      <li>Aucun remboursement ne sera accepté au-delà du 19/11/2021 17:00 CET.</li>
+      <li>Aucun remboursement ne sera accepté au-delà du 19/11/2022 17:00 CET.</li>
     </ul>
     <Title level={2}>Article 13 - Force majeure</Title>
     <p>
@@ -245,7 +245,7 @@ const Legal = () => (
       leur survenance, ainsi que de leur disparition. Seront considérés comme cas de force majeure tous faits ou
       circonstances irrésistibles, extérieurs aux parties, imprévisibles, inévitables, indépendants de la volonté des
       parties et qui ne pourront être empêchés par ces dernières, malgré tous les efforts retenus par la jurisprudence
-      des cours et des tribunaux français : catastrophes naturelle, arrêt des réseaux de télécommunication ou
+      des cours et des tribunaux français : catastrophes naturelles, arrêt des réseaux de télécommunication ou
       difficultés propres aux réseaux de télécommunication externes aux clients. Les parties se rapprocheront pour
       examiner l'incidence de l'événement et convenir des conditions dans lesquelles l'exécution du contrat sera
       poursuivie. Si le cas de force majeure a une durée supérieure à trois mois, les présentes conditions générales

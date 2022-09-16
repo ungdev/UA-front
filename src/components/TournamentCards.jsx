@@ -24,7 +24,7 @@ const TournamentCards = () => {
       </Title>
 
       <div className="tournaments-list">
-        {tournaments.map(({ name, shortName, players, image, shortRewards, casters }) => (
+        {tournaments.map(({ name, shortName, players, teamCount, image, shortRewards, casters }) => (
           <Card
             dark
             content={
@@ -32,7 +32,8 @@ const TournamentCards = () => {
                 <div className={'tournament-name' + `${shortName === 'csgo' ? ' smaller' : ''}`}>{name}</div>
                 <div className="tournament-details">
                   <p>
-                    <strong>Places :</strong> {players} <span className="unit">joueurs</span>
+                    <strong>Places :</strong> {teamCount ?? players}{' '}
+                    <span className="unit">{teamCount ? 'équipes' : 'joueurs'}</span>
                   </p>
                   {shortRewards && (
                     <p>

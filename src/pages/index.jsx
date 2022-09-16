@@ -44,10 +44,10 @@ const Home = () => {
             <span className="accent">2, 3 et 4 décembre 2022</span> dans un lieu que vous connaissez bien : le Cube !{' '}
             Plus de{' '}
             <span className="accent">
-              3000 m<sup>2</sup>
+              7500 m<sup>2</sup>
             </span>{' '}
             t'attendent pour passer 3 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
-            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">632 joueurs</span> qui
+            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">630 joueurs</span> qui
             composeront l’évènement, et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
             <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !

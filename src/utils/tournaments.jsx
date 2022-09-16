@@ -6,6 +6,7 @@ const tournaments = [
     name: 'League of Legends',
     shortName: 'lol',
     players: 160,
+    teamCount: 32,
     image: '/tournaments/lol.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
@@ -23,7 +24,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: '5045525084995133440',
+    // toornamentId: '5045525084995133440',
     format: (
       <>
         32 équipes de 5 joueurs
@@ -55,7 +56,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: '5045512183706099712',
+    // toornamentId: '5045512183706099712',
     format: <>128 joueurs</>,
     // rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
@@ -63,6 +64,7 @@ const tournaments = [
     name: 'Counter-Strike: Global Offensive',
     shortName: 'csgo',
     players: 80,
+    teamCount: 16,
     image: '/tournaments/csgo.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
@@ -80,7 +82,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: '5045528654683340800',
+    // toornamentId: '5045528654683340800',
     format: <>16 équipes de 5 joueurs</>,
     // rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
@@ -88,6 +90,7 @@ const tournaments = [
     name: 'Valorant',
     shortName: 'Valorant',
     players: 80,
+    teamCount: 16,
     image: '/tournaments/valorant.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
@@ -112,6 +115,7 @@ const tournaments = [
     name: 'Rocket League',
     shortName: 'rl',
     players: 48,
+    teamCount: 16,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
@@ -129,7 +133,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: '4958829017709346816',
+    // toornamentId: '4958829017709346816',
     format: <>16 équipes de 3 joueurs</>,
     // rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
@@ -157,7 +161,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: null,
+    // toornamentId: null,
     format: (
       <>
         48 joueurs
@@ -212,7 +216,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    toornamentId: null,
+    // toornamentId: null,
     format: <>56 joueurs</>,
     // rules: `${uploadsUrl()}/rules/open.pdf`,
   },

@@ -46,7 +46,7 @@ const App = ({ Component, reduxStore }) => {
           content={
             'Viens participer au célèbre tournoi du Grand-Est ! ' +
             "L'UTT Arena revient pour sa 20ème édition les 2, 3 et 4 décembre 2022. " +
-            "Au programme, 8 tournois spotlights sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
+            "Au programme, 8 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"
           }
