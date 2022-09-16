@@ -81,7 +81,7 @@ const Home = () => {
                 description: 'Vendredi 2 décembre à 18h',
               },
               { title: <strong>Début des tournois</strong>, description: 'Samedi 3 décembre à 10h' },
-              { title: <strong>Places</strong>, description: '632 joueurs + spectateurs (non limité)' },
+              { title: <strong>Places</strong>, description: '632 joueurs' },
               { title: <strong>Tarif</strong>, description: '25 € (22 € pour SSBU)' },
               { title: <strong>Âge minimum</strong>, description: "15 ans le jour de l'évènement" },
               {

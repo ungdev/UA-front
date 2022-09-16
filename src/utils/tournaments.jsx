@@ -178,7 +178,6 @@ const tournaments = [
     image: '/tournaments/tft.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
-    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
@@ -202,7 +201,6 @@ const tournaments = [
     image: '/tournaments/open.jpg',
     shortRewards: 'À venir',
     rewards: <>À venir</>,
-    casters: <>À venir</>,
     // (
     //   <ul>
     //     <li>
