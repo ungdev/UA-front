@@ -8,20 +8,25 @@ const content = [
     entries: [
       {
         question: 'Quand commencent les tournois ?',
-        answer: 'Les tournois commencent le samedi à 10h.',
+        answer:
+          'Les tournois commencent le samedi à 10h mais les participants des tournois devront être présents le samedi à 9h pour effectuer un check-in.',
       },
       {
         question: "Quel est l'âge minimum pour participer aux tournois ?",
         answer: (
           <>
             Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
-            que tu présentes l'autorisation parentale (
+            que tu présentes l'autorisation parentale
+            {/*(
             <strong>
+              Mise
               <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
                 disponible ici
-              </a>
+            </a>
             </strong>
-            ) <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            )*/}
+            , fournie lors de l’inscription,{' '}
+            <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
             avant d'accéder à l'UTT Arena.
           </>
         ),
@@ -30,8 +35,15 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Les demandes de stream sont
-            closes.
+            {/*Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
+            streaming est{' '}
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+              disponible ici
+            </a>
+        .*/}
+            Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de
+            l’UTT Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne
+            faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
           </>
         ),
       },
@@ -47,34 +59,12 @@ const content = [
       {
         question: 'Qui contacter si j’ai des questions avant ou pendant l’UTT Arena ?',
         answer:
-          'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi].',
+          'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l’UTT Arena.',
       },
       {
         question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
         answer:
-          "Tu peux télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
-      },
-    ],
-  },
-  {
-    title: 'Situation sanitaire',
-    entries: [
-      {
-        question: 'Le pass sanitaire sera-t-il requis ?',
-        answer: (
-          <>
-            Oui. Sans pass sanitaire, tu ne pourras pas participer à l'événement. Ton pass sanitaire doit être valide.
-            Pour plus d'informations sur la validité des pass sanitaires :{' '}
-            <a href="https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations">
-              https://www.gouvernement.fr/info-coronavirus/pass-sanitaire#cinformations
-            </a>
-          </>
-        ),
-      },
-      {
-        question: 'Le port du masque sera-t-il obligatoire ?',
-        answer:
-          "Il sera obligatoire pendant tout l'événement. Tu pourras l'enlever quand tu te restaurera, mais tu devras le remettre tout de suite après.",
+          "Les règlements sont encore en cours d'écriture. Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
     ],
   },
@@ -85,8 +75,7 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions le <span className="accent">vendredi 8 octobre 2021, à 19h00 </span>(heure
-            française) !
+            Ouverture des inscriptions <span className="accent">à venir</span> !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
@@ -118,12 +107,13 @@ const content = [
         answer: (
           <>
             <ul>
-              <li>20 € en tant que joueur</li>
-              <li>12 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
-              <li>12€ en tant que spectateur</li>
+              <li>22 € pour les joueurs du tournoi Super Smash Bros Ultimate</li>
+              <li>25 € pour les joueurs des autres tournois</li>
+              <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+              <li>15 € en tant que spectateur</li>
               <li>
-                Pour les étudiants des écoles partenaires (réseau UT) : 15€ en tant que joueur et 10€ en tant que
-                spectateur. Pense à t'inscrire avec ton adresse mail étudiante.
+                Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
+                adresse mail étudiante.
               </li>
             </ul>
           </>
@@ -155,7 +145,7 @@ const content = [
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer:
-          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau.',
+          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau, sauf pour le tournoi Super Smash Bros Ultimate.',
       },
     ],
   },
@@ -166,9 +156,10 @@ const content = [
         question: 'Dois-je apporter ma console ?',
         answer: (
           <>
-            Si tu as coché la case "Je ramène ma console" à l'inscription au tournoi, tu dois en effet apporter ta , le
-            jeu SSBU avec tous les personnages et un câble HDMI, et tu bénéficies d'une réduction sur le prix de ton
-            billet. Cette option est disponible pour les plus rapides seulement.
+            Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription
+            au tournoi, tu dois en effet apporter ta , le jeu SSBU avec <strong>tous</strong> les personnages et un
+            câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le prix de ton billet. Cette option
+            est disponible pour les plus rapides seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
             <br />

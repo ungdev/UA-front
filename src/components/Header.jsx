@@ -4,7 +4,10 @@ const Header = () => (
   <header id="header">
     <div className="home-title">
       <p className="main">UTT Arena</p>
-      <p>26, 27 et 28 novembre 2021</p>
+      <p>
+        <span className="accent">2</span>, <span className="accent">3</span> et <span className="accent">4</span>{' '}
+        décembre 2022
+      </p>
     </div>
   </header>
 );

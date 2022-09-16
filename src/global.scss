@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'UA_Title';
+  font-family: 'LemonMilk';
   font-display: swap;
-  src: url('/UA_Title.ttf');
+  src: url('/fonts/LemonMilk.ttf');
 }
 
 @font-face {
-  font-family: 'Nunito';
+  font-family: 'Kanit';
   font-display: swap;
-  src: url('/Nunito-Regular.ttf');
+  src: url('/fonts/Kanit.ttf');
 }
 
 * {
@@ -19,7 +19,7 @@ body {
   margin: 0;
   padding: 0;
   color: #212121;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Kanit', sans-serif;
   text-align: justify;
   overflow-x: hidden;
 }

@@ -6,7 +6,6 @@ import { Modal, Button, Input, Radio } from './UI';
 import { setLoginModalVisible } from '../modules/loginModal';
 import { registerUser } from '../modules/register';
 import { tryLogin, resetPassword } from '../modules/login';
-import { toast } from 'react-toastify';
 
 const initialSignup = {
   firstname: '',
@@ -137,7 +136,7 @@ const LoginModal = ({ isVisible }) => {
             autocomplete="new-password"
           />
           <Radio
-            label="Le 26 Novembre 2021, tu seras :"
+            label="Le 2 décembre 2022, tu seras :"
             options={[
               { value: 'child', name: 'Mineur' },
               { value: 'adult', name: 'Majeur' },

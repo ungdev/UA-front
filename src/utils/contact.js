@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { API } from './api';
 import { emailIsValid } from './email';
 
-export const sendMessage = async (name: string, email: string, subject: string, message: string) => {
+export const sendMessage = async (name, email, subject, message) => {
   // Check if fields are filled
   if (name.trim() === '' || email.trim() === '' || subject.trim() === '' || message.trim() === '') {
     toast.error('Merci de remplir tous les champs');

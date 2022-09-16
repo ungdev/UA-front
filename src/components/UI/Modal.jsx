@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from './Button';
+import Divider from './Divider';
 
 /**
  * Displays a modal window
@@ -36,6 +37,7 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
 
           <div className="modal-content">{children}</div>
           {buttonsContent && <div className="modal-buttons">{buttonsContent}</div>}
+          <Divider />
         </div>
       </div>
     </div>

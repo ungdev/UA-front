@@ -29,7 +29,7 @@ const AppWithRedux = (App) =>
     }
   };
 
-export const getStaticProps = async (appContext) => {
+export const getStaticProps = async (App, appContext) => {
   // Get or Create the store with `undefined` as initialState
   // This allows you to set a custom default initialState
   const reduxStore = getOrCreateStore();

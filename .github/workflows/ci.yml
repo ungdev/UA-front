@@ -1,9 +1,9 @@
 name: CI
 on:
   push:
-    branches: [master, dev]
+    branches: [master, dev, teaser]
   pull_request:
-    branches: [master, dev]
+    branches: [master, dev, teaser]
 
 jobs:
   lint:
@@ -17,7 +17,7 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn lint
       - uses: lazy-actions/slatify@master
-        if: failure()
+        if: ${{ failure() }}
         with:
           type: ${{ job.status }}
           job_name: '*Job ${{ github.job }}*'
@@ -36,7 +36,7 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn build
       - uses: lazy-actions/slatify@master
-        if: failure()
+        if: ${{ failure() }}
         with:
           type: ${{ job.status }}
           job_name: '*Job ${{ github.job }}*'
@@ -45,13 +45,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
-    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/dev'
+    if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/teaser' || github.ref == 'refs/heads/dev') }}
     runs-on: ubuntu-latest
     needs:
       - lint
       - build
     env:
-      RESOURCE_NAME: ${{ github.ref == 'refs/heads/master' && 'prod-front' || 'dev-front' }}
+      RESOURCE_NAME: ${{ github.ref == 'refs/heads/master' && 'prod-front' || github.ref == 'refs/heads/teaser' && 'prod-teaser' || 'dev-front' }}
     steps:
       - uses: actions/checkout@v2
       - name: Install oc
@@ -68,7 +68,7 @@ jobs:
         run: oc start-build ${{ env.RESOURCE_NAME }} --follow
 
       - uses: lazy-actions/slatify@master
-        if: always()
+        if: ${{ always() }}
         with:
           type: ${{ job.status }}
           job_name: '*Deployment to ${{ env.RESOURCE_NAME }}*'

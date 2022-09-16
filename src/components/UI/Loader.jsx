@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Loader = (): JSX.Element => (
+const Loader = () => (
   <div className="loader">
     <i className="fas fa-spinner fa-spin" /> Chargement...
   </div>

@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React /*, { useEffect, useState } */ from 'react';
 import Link from 'next/link';
 
-import { Partner } from '../types';
 import TournamentCards from '../components/TournamentCards';
-import { Title, VideoContainer, Table, Countdown, Button, Card, LogoSVG, Loader } from '../components/UI';
-import { uploads } from '../utils/api';
+import { Title, VideoContainer, Table, Countdown, Button, LogoSVG } from '../components/UI';
+// import { uploads } from '../utils/api';
 
 const Home = () => {
-  const [partners, setPartners] = useState<Array<Partner>>([]);
+  // const [partners, setPartners] = useState([]);
 
-  const fetchPartners = async () => {
-    const request = await uploads.get<Array<Partner>>('/partners/list.json', true);
+  // const fetchPartners = async () => {
+  //   const request = await uploads.get('/partners/list.json', true);
 
-    setPartners(request.data);
-  };
+  //   setPartners(request.data);
+  // };
 
-  useEffect(() => {
-    fetchPartners();
-  }, []);
+  // useEffect(() => {
+  //   fetchPartners();
+  // }, []);
 
   return (
     <div id="home">
@@ -27,37 +26,37 @@ const Home = () => {
         </div>
         <div className="home-title">
           <p className="main">UTT Arena</p>
-          <p>26, 27, 28 novembre 2021</p>
+          <p>
+            <span className="accent">2</span>, <span className="accent">3</span> et <span className="accent">4</span>{' '}
+            décembre 2022
+          </p>
         </div>
       </div>
 
       <div className="home-container page-padding">
         <div className="home-info">
-          <Countdown date={new Date('November 26 2021 17:00:00 UTC+1')} className="home-countdown" />
+          <Countdown date={new Date('December 2 2022 18:00:00 UTC+1')} className="home-countdown" />
 
           <Title align="center">Informations</Title>
-          <Title level={4} align="center" className="uppercase">
-            L'UTT Arena de retour en présentiel
-          </Title>
 
           <p>
             LE rendez-vous gaming annuel de la région Auboise aura lieu les{' '}
-            <span className="accent">26, 27 et 28 novembre 2021</span> à l’espace Argence en{' '}
-            <span className="accent">plein centre ville de Troyes</span> ! Plus de{' '}
+            <span className="accent">2, 3 et 4 décembre 2022</span> dans un lieu que vous connaissez bien : le Cube !{' '}
+            Plus de{' '}
             <span className="accent">
-              2000 m<sup>2</sup> de gaming
+              7500m<sup>2</sup>
             </span>{' '}
-            t'attendent pendant ces 3 jours de folie ! Au programme : <span className="accent">5 tournois</span> sur tes
-            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">450 joueurs</span> qui
-            composeront l’évènement et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
+            t'attendent pour passer 3 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
+            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">630 joueurs</span> qui
+            composeront l’évènement, et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
             <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !
             Alors prépare tout ton stuff et <span className="accent">impose toi dans l’arène !</span>
           </p>
 
           <VideoContainer
-            src="https://www.youtube.com/embed/IdwHDWNprFY"
-            title="Trailer UTT Arena 2021"
+            src="https://www.youtube.com/embed/xSqpmjGI9VA"
+            title="Aftermovie UTT Arena 2021"
             className="video-container"
           />
 
@@ -75,19 +74,19 @@ const Home = () => {
             dataSource={[
               {
                 title: <strong>Lieu</strong>,
-                description: "A l'espace Argence !",
+                description: 'Au Parc des Expositions  de Troyes !',
               },
               {
                 title: <strong>Ouverture de l'UTT Arena, discours et concert</strong>,
-                description: 'Vendredi 26 novembre à 17h',
+                description: 'Vendredi 2 décembre à 18h',
               },
-              { title: <strong>Début des tournois</strong>, description: 'Samedi 27 novembre à 10h' },
-              { title: <strong>Places</strong>, description: '450 joueurs + 50 spectateurs' },
-              { title: <strong>Tarif</strong>, description: '20 €' },
+              { title: <strong>Début des tournois</strong>, description: 'Samedi 3 décembre à 10h' },
+              { title: <strong>Places</strong>, description: '632 joueurs + spectateurs (non limité)' },
+              { title: <strong>Tarif</strong>, description: '25 € (22 € pour SSBU)' },
               { title: <strong>Âge minimum</strong>, description: "15 ans le jour de l'évènement" },
               {
                 title: <strong>Tournois</strong>,
-                description: 'LoL compétitif, LoL loisir, Rocket League, CS:GO, SSBU by Murex, osu!, Libre',
+                description: 'SSBU, CS:GO, RL, LoL, Valorant, TFT, osu!, Libre',
               },
             ]}
             className="info-table"
@@ -106,11 +105,13 @@ const Home = () => {
           <TournamentCards />
         </div>
 
-        <div className="home-partners">
+        {/* <div className="home-partners">
           <Title align="center">Partenaires</Title>
           <div className="list-partners">
             {!partners ? (
               <Loader />
+            ) : !partners.length ? (
+              <i>Les partenaires seront bientôt annoncés</i>
             ) : (
               partners.map((partner) => (
                 <div className="partner" key={partner.link}>
@@ -133,7 +134,7 @@ const Home = () => {
               </Button>
             </a>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

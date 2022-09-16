@@ -32,7 +32,7 @@ const Legal = () => (
       de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut exercer ce droit
       en effectuant une demande par mail à l’adresse arena@utt.fr
       <br />
-      Le responsable du traitement des données est Lucien CHARLEUX.
+      Le responsable du traitement des données est Camille MOUSSOU.
       <br />
       L’équipe technique et les administrateurs du site pourront accéder aux données.
       <br />
@@ -93,13 +93,13 @@ const Legal = () => (
       réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès leur mise en
       ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les usages en
       vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes conditions
-      générales de vente sont valables jusqu'au 28 novembre 2021 inclus.
+      générales de vente sont valables jusqu'au 31 décembre 2022 inclus.
     </p>
     <Title level={2}>Article 2 - Contenu</Title>
     Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre de
     la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
     présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
-    concernent les produits suivants : place pour l’événement UTT Arena 2021 et matériel en prévente.
+    concernent les produits suivants : place pour l’événement UTT Arena 2022 et matériel en prévente.
     <Title level={2}>Article 3 - Informations précontractuelles</Title>
     L'acheteur reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du
     contrat, d'une manière lisible et compréhensible, des présentes conditions générales de vente et de toutes les
@@ -109,7 +109,7 @@ const Legal = () => (
     et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du contenu
     numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions contractuelles. Les
     produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de place pour l’événement UTT
-    Arena 2021, l’UNG se réserve le droit de demander un justificatif pour les coachs et managers, et si le justificatif
+    Arena 2022, l’UNG se réserve le droit de demander un justificatif pour les coachs et managers, et si le justificatif
     n’est pas suffisant, peut annuler l’achat de la place et procéder à son remboursement intégral sans dédommagement.
     <Title level={2}>Article 4 - Commande</Title>
     L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son
@@ -121,7 +121,7 @@ const Legal = () => (
     Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans certains cas,
     notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le vendeur se
     réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation de la
-    commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2021. Seul le statut “Inscrit” sur la
+    commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2022. Seul le statut “Inscrit” sur la
     page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de place pour
     l’événement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque de
     disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
@@ -216,26 +216,26 @@ const Legal = () => (
     <p>
       Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
       de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
-      demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 7 jours calendaires
-      avant la date de l'événement, soit le 19/11/2021 17:00 CET. Toute demande doit être formulée par courriel adressé
+      demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours calendaires
+      avant la date de l'événement, soit le 19/11/2022 17:00 CET. Toute demande doit être formulée par courriel adressé
       à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour l'inscription. Le remboursement
       sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra sur la carte bancaire ayant servi au
       paiement. Tout remboursement fera l'objet d'une retenue de :
     </p>
     <ul>
       <li>
-        25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 22/10/2021 17:00 CET et le 05/11/2021
+        25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 14/10/2022 17:00 CET et le 22/10/2022
         17:00 CET
       </li>
       <li>
-        50% (cinquante pourcent) du montant payé si la demande est faite entre le 05/11/2021 17:00 CET et le 12/11/2021
+        50% (cinquante pourcent) du montant payé si la demande est faite entre le 22/10/2022 17:00 CET et le 05/11/2022
         17:00 CET
       </li>
       <li>
-        75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 12/11/2021 17:00 CET et le
-        19/11/2021 17:00 CET
+        75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 05/11/2022 17:00 CET et le
+        19/11/2022 17:00 CET
       </li>
-      <li>Aucun remboursement ne sera accepté au-delà du 19/11/2021 17:00 CET.</li>
+      <li>Aucun remboursement ne sera accepté au-delà du 19/11/2022 17:00 CET.</li>
     </ul>
     <Title level={2}>Article 13 - Force majeure</Title>
     <p>
@@ -245,7 +245,7 @@ const Legal = () => (
       leur survenance, ainsi que de leur disparition. Seront considérés comme cas de force majeure tous faits ou
       circonstances irrésistibles, extérieurs aux parties, imprévisibles, inévitables, indépendants de la volonté des
       parties et qui ne pourront être empêchés par ces dernières, malgré tous les efforts retenus par la jurisprudence
-      des cours et des tribunaux français : catastrophes naturelle, arrêt des réseaux de télécommunication ou
+      des cours et des tribunaux français : catastrophes naturelles, arrêt des réseaux de télécommunication ou
       difficultés propres aux réseaux de télécommunication externes aux clients. Les parties se rapprocheront pour
       examiner l'incidence de l'événement et convenir des conditions dans lesquelles l'exécution du contrat sera
       poursuivie. Si le cas de force majeure a une durée supérieure à trois mois, les présentes conditions générales
@@ -270,7 +270,7 @@ const Legal = () => (
     </p>
     <Title level={2}>Article 16 - Mentions Légales</Title>
     <p>
-      L’événement UTT Arena 2021 est organisé par :<br />
+      L’événement UTT Arena 2022 est organisé par :<br />
       <br />
       UTT Net Group, association loi 1901
       <br />
