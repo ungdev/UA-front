@@ -66,6 +66,11 @@ const content = [
         answer:
           "Les règlements sont encore en cours d'écriture. Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
+      {
+        question: "Puis-je assister à l'UTT Arena en tant que spectateur ?",
+        answer:
+          "Cette année, l'UTT Arena s'inscrivant dans le Festival des Jeux de Troyes, les spectateurs voulant assister à l'UTT Arena devront acheter leur place pour le Festival des jeux. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires.",
+      },
     ],
   },
   {

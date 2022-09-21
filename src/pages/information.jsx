@@ -190,6 +190,13 @@ const Information = () => (
       </ul>
     </div>
 
+    <Title align="center">Spectateurs</Title>
+    <div className="information-section">
+      Cette année, l'UTT Arena s'inscrivant dans le Festival des Jeux de Troyes, les spectateurs voulant assister à
+      l'UTT Arena devront acheter leur place pour le Festival des jeux. Venez profiter de l'ambiance de la scène, du
+      Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires.
+    </div>
+
     <Title align="center">Planning</Title>
     <div className="information-section">A venir</div>
 
