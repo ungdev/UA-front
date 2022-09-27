@@ -148,8 +148,11 @@ const content = [
       },
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
-        answer:
-          'Oui, la place payée est rattachée à un compte et non à un tournoi. Il est donc possible de changer de tournoi sans payer à nouveau, sauf pour le tournoi Super Smash Bros Ultimate.',
+        answer: (
+          <>
+            Oui, c'est possible. Contacte-nous via le <a href="/contact">formulaire de contact</a>.
+          </>
+        ),
       },
     ],
   },
