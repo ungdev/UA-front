@@ -1,65 +1,88 @@
 #dashboard-register {
-  .table-join {
-    margin-top: 20px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
 
-    .coachJoinButton.buttonWrapper {
-      margin-left: 10px;
-    }
-  }
-
-  .team-tournament {
+  /* Stepper */
+  .steps {
+    overflow: hidden;
     display: flex;
+    width: 300px;
     justify-content: space-between;
-    flex-wrap: wrap;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-
-    > div {
-      width: 45%;
-    }
-  }
-
-  .center {
-    margin: 0 auto;
-    display: block;
-
-    &.buttonWrapper {
-      display: table;
-      margin: 10px auto;
-    }
-  }
-
-  .select {
-    max-width: 600px;
-  }
-
-  .join-solo {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    > div {
-      width: 45%;
-    }
-  }
-
-  & > .banner {
-    padding: 10px;
-    border-radius: $buttonRadius;
-    background-color: $primary-color;
-    color: #fff;
-    display: flex;
-    gap: 10px;
-    flex-flow: row wrap;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    counter-reset: step;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      color: white;
+      text-transform: uppercase;
+      font-size: 9px;
+      width: 33.33%;
+      float: left;
+      position: relative;
+    }
+
+    li:before {
+      content: counter(step);
+      counter-increment: step;
+      width: 20px;
+      line-height: 20px;
+      font-size: 10px;
+      color: #333;
+      background: white;
+      border-radius: 3px;
+      margin: 0 auto 5px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    li:after {
+      content: '';
+      width: calc(100% - 20px);
+      height: 2px;
+      background: white;
+      position: absolute;
+      left: -50%;
+      margin-left: 10px;
+      top: 9px;
+    }
+
+    li:first-child:after {
+      /*connector not needed before the first step*/
+      content: none; 
+    }
+
+    li.active:before, li.active:after{
+      background: $secondary-color;
+      color: white;
+    }
   }
 
-  & > .banner a {
-    color: inherit !important;
+  .card-container {
+    display: flex;
+    gap: 1rem;
+    
+    div {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      background-color: #fff;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 3px solid white;
+      cursor: pointer;
+    }
+
+    div:hover {
+      border: 3px solid $secondary-color;
+    }
   }
 }
 
