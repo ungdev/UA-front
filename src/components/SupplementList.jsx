@@ -16,8 +16,8 @@ const supplementColumns = [
     key: 'attributes',
   },
   {
-    title: 'Quantité',
-    key: 'quantity',
+    title: '',
+    key: 'add_to_cart',
   },
 ];
 
@@ -88,8 +88,6 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
         }
       }
     });
-    //console.log('donc on a newSelectedAttributes= ');
-    //console.log(newSelectedAttributes);
     setSelectedAttributes(newSelectedAttributes);
   }, [supplementTypes]);
 
@@ -150,7 +148,7 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
         <Select
           options={availableAttributes}
           onChange={(value) => {
-            const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
+            /*const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
             const newSupplementId = getSupplementId(supplement, value);
             let newCartSupplements = supplementCart.map((cartSupplement) => {
               let newCartSupplement = { ...cartSupplement };
@@ -159,7 +157,7 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
               }
               return newCartSupplement;
             });
-            setSupplementCart(newCartSupplements);
+            setSupplementCart(newCartSupplements);*/
             let newSelectedAttributes = { ...selectedAttributes };
             newSelectedAttributes[supplement.id] = value;
             setSelectedAttributes(newSelectedAttributes);
@@ -170,8 +168,29 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
       ) : (
         ''
       ),
-      quantity: (
-        <Input
+      add_to_cart: (
+        <Button
+          onClick={() => {
+            let newCartSupplements = [...supplementCart];
+            if (cartSupplement.quantity) {
+              newCartSupplements.forEach(
+                (cartSupplement) =>
+                  (cartSupplement.quantity =
+                    cartSupplement.itemId === supplementFullId ? cartSupplement.quantity + 1 : cartSupplement.quantity),
+              );
+              setSupplementCart(newCartSupplements);
+            } else {
+              const newSupplement = {
+                itemId: supplementFullId,
+                quantity: 1,
+              };
+              setSupplementCart([...supplementCart, newSupplement]);
+            }
+          }}>
+          Ajouter au panier
+        </Button>
+      ),
+      /*<Input
           type="number"
           placeholder="0"
           value={cartSupplement.quantity}
@@ -204,7 +223,7 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
           max={supplementFullId === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
           className="shop-input"
         />
-      ),
+      ),*/
     };
   });
 

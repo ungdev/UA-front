@@ -9,6 +9,7 @@ import AddPlaceModal from '../../components/AddPlaceModal';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
 import SupplementList from '../../components/SupplementList';
+import Cart from '../../components/Cart';
 
 // Hello there ! This is a big file, I commented it as well as I could, hope you'll understand :)
 
@@ -38,7 +39,7 @@ const Shop = () => {
   // The team the player is in
   const team = useSelector((state) => state.team);
   // The members of the team are the players and the coaches
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [teamMembers, setTeamMembers] = useState(null);
   // If the CGV case is checked or not
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   // If the modal to add a place is visible
@@ -94,10 +95,13 @@ const Shop = () => {
 
   // Initializing teamMembersWithoutTicket
   useEffect(() => {
+    if (!teamMembers) return;
     setTeamMembersWithoutTicket(
       teamMembers.filter(
         (member) =>
-          !member.hasPaid && member.id !== userId && !cart.tickets.includes((ticket) => ticket.for === member.id),
+          !member.hasPaid &&
+          member.id !== userId &&
+          !cart.tickets.userIds.includes((ticket) => ticket.for === member.id),
       ),
     );
   }, [teamMembers]);
@@ -109,7 +113,7 @@ const Shop = () => {
     }
   }, [cart]);
 
-  if (!items) {
+  if (!items || !teamMembers) {
     return null;
   }
 
@@ -251,6 +255,89 @@ const Shop = () => {
 
   return (
     <div id="dashboard-shop">
+      <div>
+        <div className="shop-section">
+          <Title level={4}>Places</Title>
+          <Table columns={ticketColumns} dataSource={getTicketRows()} className="shop-table" />
+          <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+        </div>
+        <div className="scoup">
+          <img src="/scoup.jpg" alt="" />
+          <p>
+            Notre partenaire Scoup Esport{' '}
+            <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
+              loue du matériel
+            </a>{' '}
+            supplémentaire pendant l'UTT Arena.
+          </p>
+        </div>
+        <div className="shop-section">
+          <SupplementList
+            initialSupplementCart={cart.supplements}
+            onSupplementCartChanges={onSupplementCartChanges}
+            onItemPreview={onItemPreview}
+          />
+        </div>
+      </div>
+      <div className="bill">
+        <div>
+          <Cart cart={cart} items={items} />
+        </div>
+        <div className="shop-footer">
+          {cart.attendant && (
+            <>
+              <div className="attendant-warning">
+                <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras
+                plus modifier ton accompagnateur.
+              </div>
+            </>
+          )}
+          <Checkbox
+            className="cgvCheckbox"
+            label={
+              <>
+                J'accepte les{' '}
+                <a href="/legal#CGV" target="_blank">
+                  Conditions Générales de Vente
+                </a>
+              </>
+            }
+            value={isCgvAccepted}
+            onChange={setIsCgvAccepted}
+          />
+          <br />
+          <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
+          <Button
+            primary
+            rightIcon="fas fa-shopping-cart"
+            className="shop-button"
+            onClick={onPay}
+            disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+            Payer
+          </Button>
+        </div>
+      </div>
+      {addPlaceVisible && (
+        <AddPlaceModal
+          userId={userId}
+          username={username}
+          hasTicket={isPlaceInCart}
+          teamMembersWithoutTicket={teamMembersWithoutTicket}
+          needsAttendant={age === 'child' && !hasAttendant}
+          onQuit={onAddPlaceModalQuit}
+        />
+      )}
+      <Modal
+        visible={!!itemPreview}
+        onCancel={() => setItemPreview(null)}
+        buttons={null}
+        containerClassName="item-preview-modal-container">
+        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className="item-preview-image" />}
+      </Modal>
+    </div>
+  );
+  /*return (
+    <div id="dashboard-shop">
       <div className="shop-section">
         <Title level={4}>Places</Title>
         <Table columns={ticketColumns} dataSource={getTicketRows()} className="shop-table" />
@@ -272,6 +359,9 @@ const Shop = () => {
           onSupplementCartChanges={onSupplementCartChanges}
           onItemPreview={onItemPreview}
         />
+      </div>
+      <div>
+        <Cart cart={cart} items={items} />
       </div>
       <div className="shop-footer">
         {cart.attendant && (
@@ -324,7 +414,7 @@ const Shop = () => {
         {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className="item-preview-image" />}
       </Modal>
     </div>
-  );
+  );*/
 };
 
 export default Shop;

@@ -1,4 +1,8 @@
 #dashboard-shop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
   .shop-section {
     margin-bottom: 40px;
   }
@@ -99,5 +103,11 @@
 
   .attendant-warning {
     margin-bottom: 10px;
+  }
+
+  .bill {
+    border: 1px solid;
+    padding: 10px;
+    height: fit-content;
   }
 }
