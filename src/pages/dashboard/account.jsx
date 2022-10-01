@@ -18,8 +18,8 @@ const Account = () => {
   const [oldpassword, setOldpassword] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-    const [discordLink, setDiscordLink] = useState('');
-    const discordLinkRef = useRef(null);
+  const [discordLink, setDiscordLink] = useState('');
+  const discordLinkRef = useRef(null);
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {

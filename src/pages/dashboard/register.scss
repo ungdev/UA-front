@@ -53,10 +53,11 @@
 
     li:first-child:after {
       /*connector not needed before the first step*/
-      content: none; 
+      content: none;
     }
 
-    li.active:before, li.active:after{
+    li.active:before,
+    li.active:after {
       background: $secondary-color;
       color: white;
     }
@@ -68,7 +69,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    
+
     div {
       width: 150px;
       height: 150px;
