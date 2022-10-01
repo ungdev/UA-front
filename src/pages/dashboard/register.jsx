@@ -5,18 +5,30 @@ import { Input, Select, Button, Tabs, Table } from '../../components/UI';
 import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import { API } from '../../utils/api';
+
+const columns = [
+  { title: 'Équipe', key: 'team' },
+  { title: 'Joueurs', key: 'players' },
+  { title: '', key: 'action' },
+];
 
 const Register = () => {
   const { query } = useRouter();
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.login.user);
   const [discordLink, setDiscordLink] = useState('');
   const discordLinkRef = useRef(null);
   const [userType, setUserType] = useState('');
   const [step, setStep] = useState(1);
   const soloTeamName = `${user.username}-solo-team`;
+  const [teamName, setTeamName] = useState('');
   const [tournaments, setTournaments] = useState([]);
+  const [tournament, setTournament] = useState('');
+  const [tournamentSolo, setTournamentSolo] = useState(false);
+  const [createTeam, setCreateTeam] = useState(false);
+  
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -55,6 +67,14 @@ const Register = () => {
     if(user.discordId) setStep(2);
 
     setStep(2);
+
+    if(user.askingTeamId) { 
+      // (async () => {
+      //   let tID = (await API.get('/teams/' + user.askingTeamId)).data.tournamentId;
+      //   setTournament(tournaments.filter((t) => t == tID)[0]);
+      //   setStep(5);
+      // })();
+    }
   }, []);
 
   const Step1 = (
@@ -69,16 +89,16 @@ const Register = () => {
     <>
       <div className="card-container">
         <div onClick={() => {
-          setUserType('player')
-          setStep(3);
+          setUserType('player');
+          setStep(step + 1);
         }}>
           <i className="fa fa-gamepad"></i>
           <p>Joueur</p>
         </div>
 
         <div onClick={() => {
-          setUserType('coach')
-          setStep(3);
+          setUserType('coach');
+          setStep(step + 1);
         }}>
           <i className="fa fa-headset"></i>
           <p>Coach / Manager</p>
@@ -90,8 +110,9 @@ const Register = () => {
   const loadTournaments = () => {
     let list = tournamentsOptions.map((element,i) => {
       return (<div key={i} onClick={() => {
-        setTournamentId(element.value)
-        setStep(4);
+        setTournament(element.value);
+        setStep(step + 1);
+        setTournamentSolo(false);
       }}>
         <p>{element.label}</p>
       </div>);
@@ -100,8 +121,10 @@ const Register = () => {
     if (userType === 'player') {
       list.push(tournamentsSoloOptions.map((element,i) => {
         return (<div key={i} onClick={() => {
-          setTournamentSolo(element.value)
-          setStep(4);
+          setTournament(element.value);
+          setCreateTeam(true);
+          setStep(step + 2);
+          setTournamentSolo(true);
         }}>
           <p>{element.label}</p>
         </div>);
@@ -118,6 +141,84 @@ const Register = () => {
     </>
   );
 
+  const Step4 = (
+    <>
+    <div className="card-container">
+      <div onClick={() => {
+        setCreateTeam(true);
+        setStep(step + 1);
+      }}>
+        <i className="fa fa-gamepad"></i>
+        <p>Créer une équipe</p>
+      </div>
+
+      <div onClick={() => {
+        setCreateTeam(false);
+        setStep(step + 1);
+      }}>
+        <i className="fa fa-headset"></i>
+        <p>Rejoindre une équipe</p>
+      </div>
+    </div>
+  </>
+  );
+
+  const tournamentTable = () => {
+    let tournamentOption = tournaments.filter((tr) => tr.playersPerTeam > 1 && tr.id == tournament)[0];
+    const tournamentTeamsRender = (tournamentOption.teams === undefined ? [] : tournamentOption.teams)
+      .filter((team) => !team.lockedAt)
+      .map((team) => ({
+        team: user.askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
+        players: team.players.map(({ username }) => username).join(', '),
+        action:
+          user.askingTeamId === team.id ? (
+            <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+          ) : (
+            <>
+              <Button primary onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))} disabled={!user.discordId}>
+                Rejoindre
+              </Button>
+              <Button
+                className="coachJoinButton"
+                primary
+                onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
+                disabled={!user.discordId}>
+                Rejoindre (coach / manager)
+              </Button>
+            </>
+          ),
+      }));
+    return {
+      title: tournamentOption.label,
+      key: tournamentOption.value,
+      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
+    };
+  }
+
+  const Step5 = (
+    <>
+      {createTeam ? (
+        <div>
+          {!tournamentSolo ? (
+            <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
+          ) : null}
+          <Button
+            primary
+            className="center"
+            onClick={() => dispatch(createTeam({ name: tournamentSolo ? soloTeamName : teamName, tournament, userType: userType }))}
+            rightIcon="fas fa-plus"
+            disabled={!user.discordId}>
+            Créer mon équipe
+          </Button>
+        </div>
+      ) : (
+        <div>
+          {tournament ? tournamentTable().content : ''}
+        </div>
+      )}
+    </>
+  );
+
   const renderSwitch = (param) => {
     switch(param) {
       case 1:
@@ -126,6 +227,10 @@ const Register = () => {
         return Step2;
       case 3:
         return Step3;
+      case 4:
+        return Step4;
+      case 5:
+        return Step5;
       default:
         break;
     }
@@ -133,17 +238,19 @@ const Register = () => {
 
   const backButton = () => {
     if((step == 2 && !user.discordId) || step > 2) {
-      return <Button primary onClick={() => setStep(step - 1) }>{'Retour'}</Button>;
+      return <Button primary onClick={() => setStep(tournamentSolo && step == 5 ? (step - 2) : (step - 1)) }>{'Retour'}</Button>;
     }
   }
   
   const Stepper = () => {
     return (
       <>
-        <ul class="steps">
-          <li class="active"></li>
+        <ul className="steps">
+          <li className="active"></li>
           <li className={step > 1 ? `active` : ``}></li>
           <li className={step > 2 ? `active` : ``}></li>
+          <li className={step > 3 ? `active` : ``}></li>
+          <li className={step > 4 ? `active` : ``}></li>
         </ul>
         { renderSwitch(step) }
         { backButton() }

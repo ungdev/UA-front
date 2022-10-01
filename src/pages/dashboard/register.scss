@@ -64,12 +64,15 @@
 
   .card-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem;
     
     div {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
+      padding: 25px;
       border-radius: 10px;
       transition: all 0.3s ease-in-out;
       display: flex;
@@ -79,6 +82,7 @@
       flex-direction: column;
       border: 3px solid white;
       cursor: pointer;
+      text-align: center;
     }
 
     div:hover {
