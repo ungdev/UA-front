@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Input, Select, Button, Tabs, Table } from '../../components/UI';
-import { createTeam, joinTeam, cancelJoin } from '../../modules/team';
+import { createTeam as cT, joinTeam, cancelJoin } from '../../modules/team';
 import { setType } from '../../modules/login';
 import { useRouter } from 'next/router';
 import { API } from '../../utils/api';
@@ -69,11 +69,10 @@ const Register = () => {
     setStep(2);
 
     if(user.askingTeamId) { 
-      // (async () => {
-      //   let tID = (await API.get('/teams/' + user.askingTeamId)).data.tournamentId;
-      //   setTournament(tournaments.filter((t) => t == tID)[0]);
-      //   setStep(5);
-      // })();
+      (async () => {
+        setTournament((await API.get('/teams/' + user.askingTeamId)).data.tournamentId);
+        setStep(5);
+      })();
     }
   }, []);
 
@@ -205,7 +204,7 @@ const Register = () => {
           <Button
             primary
             className="center"
-            onClick={() => dispatch(createTeam({ name: tournamentSolo ? soloTeamName : teamName, tournament, userType: userType }))}
+            onClick={() => dispatch(cT({ name: tournamentSolo ? soloTeamName : teamName, tournamentId: tournament, userType: userType }))}
             rightIcon="fas fa-plus"
             disabled={!user.discordId}>
             Créer mon équipe
@@ -237,7 +236,7 @@ const Register = () => {
   }
 
   const backButton = () => {
-    if((step == 2 && !user.discordId) || step > 2) {
+    if(((step == 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
       return <Button primary onClick={() => setStep(tournamentSolo && step == 5 ? (step - 2) : (step - 1)) }>{'Retour'}</Button>;
     }
   }
