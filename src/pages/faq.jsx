@@ -150,7 +150,10 @@ const content = [
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer: (
           <>
-            Non, la place payée est rattachée à un tournoi. Il  te faudra donc contacter l'équipe organisatrice sur <a href="https://arena.utt.fr/contact"> la page de contact </a>, pour demander à changer de tournois, en spécifiant le nom de ton compte, le tournoi dans lequel tu es, et le tournoi dans lequel tu souhaites aller."
+            Non, la place payée est rattachée à un tournoi. Il te faudra donc contacter l'équipe organisatrice sur{' '}
+            <a href="https://arena.utt.fr/contact"> la page de contact </a>, pour demander à changer de tournois, en
+            spécifiant le nom de ton compte, le tournoi dans lequel tu es, et le tournoi dans lequel tu souhaites
+            aller."
           </>
         ),
       },
