@@ -9,7 +9,7 @@ const tournaments = [
     teamCount: 32,
     image: '/tournaments/lol.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>1600€</>,
     casters: <>À venir</>,
     // (
     //   <ul>
@@ -41,7 +41,7 @@ const tournaments = [
     players: 128,
     image: '/tournaments/ssbu.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>1000€</>,
     casters: <>À venir</>,
     // (
     //   <ul>
@@ -67,7 +67,7 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/csgo.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>1600€</>,
     casters: <>À venir</>,
     // (
     //   <ul>
@@ -93,7 +93,7 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/valorant.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>1500€</>,
     casters: <>À venir</>,
     // (
     //   <ul>
@@ -118,7 +118,7 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>1200€</>,
     casters: <>À venir</>,
     // (
     //   <ul>
@@ -177,7 +177,7 @@ const tournaments = [
     players: 32,
     image: '/tournaments/tft.jpg',
     shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    rewards: <>500€</>,
     // (
     //   <ul>
     //     <li>
