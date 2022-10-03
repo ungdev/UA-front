@@ -55,8 +55,8 @@ const Home = () => {
           </p>
 
           <VideoContainer
-            src="https://www.youtube.com/embed/xSqpmjGI9VA"
-            title="Aftermovie UTT Arena 2021"
+            src="https://www.youtube.com/embed/t_QP8_bYJ1c"
+            title="Trailer UTT Arena 2022"
             className="video-container"
           />
 
