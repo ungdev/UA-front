@@ -228,7 +228,9 @@ const Shop = () => {
       <div className="shop-and-bill">
         <div>
           <div className="shop-section">
-            <Title level={4}>Places</Title>
+            <Title className="place-title" level={4}>
+              Places
+            </Title>
             <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
           </div>
           <div className="scoup">
