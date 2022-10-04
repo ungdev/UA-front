@@ -69,6 +69,8 @@ const Register = () => {
     }
   }, []);
 
+  if (!tournaments.length) return null;
+
   const Step1 = (
     <>
       <a href={discordLink}>
