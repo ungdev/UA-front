@@ -214,8 +214,8 @@ const Shop = () => {
   // Sets hasRequestedPayment to true to disable the pay button, and requests the payment to the API
   const onPay = () => {
     setHasRequestedPayment(true);
-    dispatch(cartPay(cart));
     deleteCart();
+    dispatch(cartPay(cart));
   };
 
   return (

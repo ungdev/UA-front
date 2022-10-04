@@ -85,6 +85,8 @@ export const deleteCart = () => {
     let key = localStorage.key(i);
     if (key.startsWith('cart.')) {
       localStorage.removeItem(key);
+      // We removed an item, so we don't want to move forward : the next item took the index we are currently at
+      i--;
     }
   }
   return { tickets: { userIds: [], attendant: undefined }, supplements: [] };
