@@ -124,7 +124,10 @@ const Account = () => {
           ''
         )}
         <a href={discordLink}>
-          <Button primary>{user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}</Button>
+          <Button primary>
+            <i className="fab fa-discord"></i>&nbsp;&nbsp;
+            {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
+          </Button>
         </a>
       </div>
       <hr />

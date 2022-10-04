@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTransition, animated } from 'react-spring';
 
 import { Input, Button, Table } from '../../components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '../../modules/team';
@@ -40,6 +41,15 @@ const Register = () => {
     value: tournament.id,
   }));
 
+  const transitions = useTransition(step, {
+    from: { opacity: 0, transform: `translate3d(100%,0,0)` },
+    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    leave: { position: 'absolute', display: 'none' },
+    config: {
+      duration: 250,
+    },
+  });
+
   useEffect(() => {
     API.get('discord/connect').then((res) => {
       setDiscordLink(res.data.link);
@@ -62,7 +72,9 @@ const Register = () => {
   const Step1 = (
     <>
       <a href={discordLink}>
-        <Button primary>{'Connecte-toi à ton compte Discord'}</Button>
+        <Button primary>
+          <i className="fab fa-discord"></i>&nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
+        </Button>
       </a>
     </>
   );
@@ -101,6 +113,12 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
+          <img
+            src={'/tournaments/' + element.value + '.svg'}
+            alt={element.label + ' icon'}
+            height="24px"
+            width="24px"
+          />
           <p>{element.label}</p>
         </div>
       );
@@ -118,6 +136,12 @@ const Register = () => {
                 setStep(step + 2);
                 setTournamentSolo(true);
               }}>
+              <img
+                src={'/tournaments/' + element.value + '.svg'}
+                alt={element.label + ' icon'}
+                height="24px"
+                width="24px"
+              />
               <p>{element.label}</p>
             </div>
           );
@@ -141,7 +165,7 @@ const Register = () => {
             setCreateTeam(true);
             setStep(step + 1);
           }}>
-          <i className="fa fa-gamepad"></i>
+          <i className="fas fa-plus-square"></i>
           <p>Créer une équipe</p>
         </div>
 
@@ -150,7 +174,7 @@ const Register = () => {
             setCreateTeam(false);
             setStep(step + 1);
           }}>
-          <i className="fa fa-headset"></i>
+          <i className="fas fa-sign-in-alt"></i>
           <p>Rejoindre une équipe</p>
         </div>
       </div>
@@ -195,9 +219,15 @@ const Register = () => {
   const Step5 = (
     <>
       {createTeam ? (
-        <div>
-          {!tournamentSolo ? (
-            <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} className="select" />
+        <div className="create-team">
+          {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
+          {tournament == 'osu' ? (
+            <>
+              <div>
+                Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Pour s'incrire à cette qualification
+                merci de remplir <a href="https://forms.gle/LNXdooZGcNFwTSkV9">ce formulaire.</a>
+              </div>
+            </>
           ) : null}
           <Button
             primary
@@ -255,7 +285,15 @@ const Register = () => {
           <li className={step > 3 ? `active` : ``}></li>
           <li className={step > 4 ? `active` : ``}></li>
         </ul>
-        {renderSwitch(step)}
+        {transitions(
+          (styles, item, key) =>
+            item && (
+              <animated.div key={key} style={styles}>
+                {renderSwitch(step)}
+              </animated.div>
+            ),
+        )}
+
         {backButton()}
       </>
     );
