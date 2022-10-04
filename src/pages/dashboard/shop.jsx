@@ -6,7 +6,6 @@ import { cartPay, deleteCart, loadCart, saveCart } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
 import { Button, Title, Modal, Checkbox } from '../../components/UI';
 import AddPlaceModal from '../../components/AddPlaceModal';
-import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
 import SupplementList from '../../components/SupplementList';
 import Cart from '../../components/Cart';
@@ -17,7 +16,7 @@ import { getTicketPrice } from '../../modules/users';
 const Shop = () => {
   const dispatch = useDispatch();
   // Informations about the user
-  const { id: userId, type, hasPaid, username, age } = useSelector((state) => state.login.user);
+  const { id: userId, type, hasPaid, username, age, attendant } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items);
   // The team the player is in
@@ -29,7 +28,7 @@ const Shop = () => {
   // If the modal to add a place is visible
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
-  const [hasAttendant, setHasAttendant] = useState(false);
+  const [hasAttendant, setHasAttendant] = useState(!!attendant);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
   //const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   // The content of the current cart. The API doesn't know about this before the player clicks on the pay button
@@ -52,15 +51,6 @@ const Shop = () => {
     dispatch(fetchItems());
     if (type !== 'spectator') {
       dispatch(fetchCurrentTeam());
-    }
-    if (age === 'child') {
-      API.get('/users/current/carts').then((res) => {
-        res.data.map((paidCart) => {
-          paidCart.cartItems.map((cartItem) => {
-            cartItem.itemId === 'ticket-attendant' && setHasAttendant(true);
-          });
-        });
-      });
     }
   }, []);
 
@@ -114,7 +104,6 @@ const Shop = () => {
         }
         return true;
       });
-    console.log(ticketsArray);
     setTickets(ticketsArray.reduce((prev, curr, i) => ({ ...prev, [cart.tickets.userIds[i]]: curr }), {}));
   }, [cart, teamMembers]);
 
