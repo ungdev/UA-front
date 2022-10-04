@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    column-gap: 35px;
 
     .shop-section {
       margin-bottom: 40px;
@@ -14,32 +15,6 @@
 
     .place-title {
       margin-bottom: 20px;
-    }
-
-    .scoup {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      position: relative;
-
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 10px 15px;
-      border: solid #c8c8c8 1px;
-      border-radius: 16px;
-
-      & > img {
-        height: 60px;
-        border-radius: 15px;
-      }
-
-      & > p {
-        flex: 1 1 500px;
-        margin: 0;
-        text-align: center;
-      }
     }
 
     .bill {
