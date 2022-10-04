@@ -19,17 +19,18 @@
 @import './pages/dashboard/team.scss';
 
 // Components
+@import './components/Cart.scss';
+@import './components/CartItem.scss';
 @import './components/CookieConsent.scss';
 @import './components/Header.scss';
 @import './components/LoginModal.scss';
 @import './components/Navbar.scss';
 @import './components/PanelHeader.scss';
+@import './components/ResetModal.scss';
+@import './components/SupplementList.scss';
 @import './components/Tournament.scss';
 @import './components/TournamentCards.scss';
 @import './components/UserModal.scss';
-@import './components/ResetModal.scss';
-@import './components/Cart.scss';
-@import './components/CartItem.scss';
 
 // UI Components
 @import './components/UI/Button.scss';

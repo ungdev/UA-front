@@ -32,6 +32,7 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
   };
 
   useEffect(() => {
+    if (!placeFor) return;
     if (placeFor === 'me') {
       setPlaceId(userId);
     } else if (placeFor === 'other') {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Input, Select, Table, Title } from './UI';
+import { Button, Select, Table, Title } from './UI';
 
 const supplementColumns = [
   {
@@ -28,16 +28,21 @@ const supplementColumns = [
 //   The format is the same as in the route POST users/current/carts
 // * onItemPreview : is called when the user wants to preview an item.
 //   It takes one parameter : the relative path to the image file, starting in the public/ directory
-const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItemPreview }) => {
+const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview }) => {
+  // The items available
   const items = useSelector((state) => state.items);
-
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
   // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
   const [supplementTypes, setSupplementTypes] = useState([]);
   // The currently selected attribute for each item that has attributes.
   // This is an object. Keys are the item ids, and values are the current attributes.
   const [selectedAttributes, setSelectedAttributes] = useState(undefined);
-  const [supplementCart, setSupplementCart] = useState(initialSupplementCart);
+
+  // Modifies the cart, and sends the new value to the shop
+  const setSupplementCart = (newSupplementCart) => {
+    supplementCart = newSupplementCart;
+    onSupplementCartChanges(supplementCart);
+  };
 
   // Fills supplementTypes
   useEffect(() => {
@@ -91,11 +96,6 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
     setSelectedAttributes(newSelectedAttributes);
   }, [supplementTypes]);
 
-  // When the cart is changed, we send this to the shop
-  useEffect(() => {
-    onSupplementCartChanges(supplementCart);
-  }, [supplementCart]);
-
   if (!selectedAttributes) {
     return null;
   }
@@ -148,16 +148,6 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
         <Select
           options={availableAttributes}
           onChange={(value) => {
-            /*const previousSupplementId = getSupplementId(supplement, selectedAttributes[supplement.id]);
-            const newSupplementId = getSupplementId(supplement, value);
-            let newCartSupplements = supplementCart.map((cartSupplement) => {
-              let newCartSupplement = { ...cartSupplement };
-              if (newCartSupplement.itemId === previousSupplementId) {
-                newCartSupplement.itemId = newSupplementId;
-              }
-              return newCartSupplement;
-            });
-            setSupplementCart(newCartSupplements);*/
             let newSelectedAttributes = { ...selectedAttributes };
             newSelectedAttributes[supplement.id] = value;
             setSelectedAttributes(newSelectedAttributes);
@@ -190,48 +180,14 @@ const SupplementList = ({ initialSupplementCart, onSupplementCartChanges, onItem
           Ajouter au panier
         </Button>
       ),
-      /*<Input
-          type="number"
-          placeholder="0"
-          value={cartSupplement.quantity}
-          onChange={(strQuantity) => {
-            // If the parse result is NaN, then quantity defaults to 0
-            let quantity = parseInt(strQuantity, 10) || 0;
-            let newCartSupplements = [...supplementCart];
-            if (cartSupplement.quantity) {
-              if (quantity) {
-                newCartSupplements.forEach(
-                  (cartSupplement) =>
-                    (cartSupplement.quantity =
-                      cartSupplement.itemId === supplementFullId ? quantity : cartSupplement.quantity),
-                );
-              } else {
-                newCartSupplements = supplementCart.filter(
-                  (cartSupplement) => cartSupplement.itemId !== supplementFullId,
-                );
-              }
-              setSupplementCart(newCartSupplements);
-            } else if (quantity !== 0) {
-              const newSupplement = {
-                itemId: supplementFullId,
-                quantity: quantity,
-              };
-              setSupplementCart([...supplementCart, newSupplement]);
-            }
-          }}
-          min={0}
-          max={supplementFullId === 'discount-switch-ssbu' ? 1 : supplement.left ? supplement.left : 30}
-          className="shop-input"
-        />
-      ),*/
     };
   });
 
   return (
-    <>
+    <div className="supplement-list">
       <Title level={4}>Accessoires</Title>
       <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
-    </>
+    </div>
   );
 };
 

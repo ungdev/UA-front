@@ -72,7 +72,7 @@ export const loadCart = () => {
           };
           break;
         default:
-          cart.supplements.push({ itemId: key.substring(5), quantity: localStorage.getItem(key) });
+          cart.supplements.push({ itemId: key.substring(5), quantity: parseInt(localStorage.getItem(key)) });
       }
     }
   }

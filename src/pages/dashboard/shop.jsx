@@ -4,36 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchItems } from '../../modules/items';
 import { cartPay, deleteCart, loadCart, saveCart } from '../../modules/cart';
 import { fetchCurrentTeam } from '../../modules/team';
-import { Table, Button, Title, Modal, Checkbox } from '../../components/UI';
+import { Button, Title, Modal, Checkbox } from '../../components/UI';
 import AddPlaceModal from '../../components/AddPlaceModal';
 import { API } from '../../utils/api';
 import { toast } from 'react-toastify';
 import SupplementList from '../../components/SupplementList';
 import Cart from '../../components/Cart';
+import { getTicketPrice } from '../../modules/users';
 
-// Hello there ! This is a big file, I commented it as well as I could, hope you'll understand :)
-
-// These reprensent the columns of the tables that list tickets and columns in the current cart.
-// The 'title' field is what is displayed, and 'key' is the internal name of the column.
-const ticketColumns = [
-  {
-    title: 'Bénéficiaire',
-    key: 'type',
-  },
-  {
-    title: 'Prix',
-    key: 'price',
-  },
-  {
-    title: '',
-    key: 'delete',
-  },
-];
+// Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
 const Shop = () => {
   const dispatch = useDispatch();
   // Informations about the user
-  const { id: userId, type, hasPaid, username, age, email } = useSelector((state) => state.login.user);
+  const { id: userId, type, hasPaid, username, age } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items);
   // The team the player is in
@@ -57,12 +41,13 @@ const Shop = () => {
   const [itemPreview, setItemPreview] = useState(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState([]);
-
   // This is used to avoid users to be able to send multiple requests when paying :
   // if they click multiple times, they could send multiple requests
   const [hasRequestedPayment, setHasRequestedPayment] = useState(false);
+  // Contains the ticket items for each ticket in the cart. This is an object, keys are userIds and values are the items
+  const [tickets, setTickets] = useState(undefined);
 
-  // Fetch items, team and checks if user already have an intendant
+  // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
     dispatch(fetchItems());
     if (type !== 'spectator') {
@@ -76,12 +61,6 @@ const Shop = () => {
           });
         });
       });
-      if (cart.tickets.userIds.find((id) => id === userId)) {
-        setIsPlaceInCart(true);
-      }
-      if (cart.tickets.attendant) {
-        setHasAttendant(true);
-      }
     }
   }, []);
 
@@ -93,19 +72,6 @@ const Shop = () => {
     setTeamMembers(team.players.concat(team.coaches));
   }, [team]);
 
-  // Initializing teamMembersWithoutTicket
-  useEffect(() => {
-    if (!teamMembers) return;
-    setTeamMembersWithoutTicket(
-      teamMembers.filter(
-        (member) =>
-          !member.hasPaid &&
-          member.id !== userId &&
-          !cart.tickets.userIds.includes((ticket) => ticket.for === member.id),
-      ),
-    );
-  }, [teamMembers]);
-
   // Save the cart everytime it is modified
   useEffect(() => {
     if (cart) {
@@ -113,12 +79,34 @@ const Shop = () => {
     }
   }, [cart]);
 
-  if (!items || !teamMembers) {
+  // Checks if the place of the user is already in the cart
+  // Checks if the user already have an attendant
+  // Initializes teamMembersWithoutTicket
+  // Fills tickets
+  useEffect(async () => {
+    if (!cart || !teamMembers || tickets) return;
+    // Checking if place is in cart
+    if (cart.tickets.userIds.find((id) => id === userId)) {
+      setIsPlaceInCart(true);
+    }
+    // Checking if user has an attendant in the cart
+    if (cart.tickets.attendant) {
+      setHasAttendant(true);
+    }
+    // Initializing teamMembersWithoutTicket
+    setTeamMembersWithoutTicket(
+      teamMembers.filter(
+        (member) => !cart.tickets.userIds.includes(member.id) && member.id !== userId && !member.hasPaid,
+      ),
+    );
+    // Fill the tickets state
+    let ticketsArray = await Promise.all(cart.tickets.userIds.map((user) => getTicketPrice(user)));
+    setTickets(ticketsArray.reduce((prev, curr, i) => ({ ...prev, [cart.tickets.userIds[i]]: curr }), {}));
+  }, [cart, teamMembers]);
+
+  if (!items || !teamMembers || !tickets) {
     return null;
   }
-
-  // Does the user have a discount on his ticket ? (Is he in a UT school ?)
-  const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
 
   // When the user removes a ticket.
   // 'user' is either a user object, or undefined if it is the ticket of an attendant
@@ -132,7 +120,7 @@ const Shop = () => {
       if (user.id === userId) {
         setIsPlaceInCart(false);
       } else {
-        const newMembersWithoutTicket = teamMembersWithoutTicket;
+        const newMembersWithoutTicket = [...teamMembersWithoutTicket];
         newMembersWithoutTicket.push(user);
         setTeamMembersWithoutTicket(newMembersWithoutTicket);
       }
@@ -140,67 +128,30 @@ const Shop = () => {
       const updatedCartTickets = cart.tickets.userIds;
       updatedCartTickets.splice(ticketIndex, 1);
       setCart({ ...cart, tickets: { ...cart.tickets, userIds: updatedCartTickets } });
+      // Remove the item from the tickets
+      let newTickets = { ...tickets };
+      delete newTickets[user.id];
+      setTickets(newTickets);
     }
   };
 
-  // Returns an object that contains information about how to display each ticket.
-  const getTicketRows = () => {
-    let ticketRows = cart.tickets.userIds.map((ticket, i) => {
-      // If the user is a spectator, he is not in a team. To avoid accessing the team, we simply use informations we already have
-      let user = ticket === userId ? { type, username } : teamMembers.find((member) => member.id === ticket);
-      let ticketItem = items.find((ticket) => ticket.id === `ticket-${user.type}`);
-      let price = `${(ticketItem.price / 100).toFixed(2)}€`;
-      if (ticket === userId && type !== 'coach' && hasDiscount) {
-        // NOTE : the value there is hardcoded. It would probably be better to have a route that gives us the discount
-        price = (
-          <>
-            {type === 'player' ? '15.00€' : '10.00€'} <span className="reducted-price">{price}</span>
-          </>
-        );
-      }
-      return {
-        type: `${ticketItem.name} | ` + (ticket.for === userId ? `Toi (${username})` : user.username),
-        price: price,
-        delete: (
-          <Button
-            onClick={() => {
-              onRemoveTicket(user, i);
-            }}
-            rightIcon="fas fa-trash-alt"
-            className="delete-button"
-            noStyle
-          />
-        ),
-      };
-    });
-    if (cart.tickets.attendant) {
-      ticketRows.push({
-        type: `Place accompagnateur | ${cart.tickets.attendant.firstname} ${cart.tickets.attendant.lastname}`,
-        price: '12.00€',
-        delete: (
-          <Button
-            onClick={() => {
-              onRemoveTicket(undefined, 0);
-            }}
-            rightIcon="fas fa-trash-alt"
-            className="delete-button"
-            noStyle
-          />
-        ),
-      });
+  // Removes 1 of the item with id itemId. This is a callback from the Cart node.
+  const onRemoveItem = (itemId) => {
+    let cartSupplementIndex = cart.supplements.findIndex((supplement) => supplement.itemId === itemId);
+    let newCartSupplements = [...cart.supplements];
+    if (newCartSupplements[cartSupplementIndex].quantity <= 1) {
+      newCartSupplements.splice(cartSupplementIndex, 1);
+    } else {
+      newCartSupplements[cartSupplementIndex].quantity--;
     }
-    return ticketRows;
+    onSupplementCartChanges(newCartSupplements);
   };
 
   // Compute total price
   // It is computed in 3 parts : player tickets, the attendant ticket, and supplements
   const totalPrice =
-    cart.tickets.userIds.reduce((acc, cartTicket) => {
-      if (cartTicket === userId && type !== 'coach' && hasDiscount) {
-        return acc + (type === 'player' ? 1500 : 1000);
-      }
-      let userType = cartTicket === userId ? type : teamMembers.find((member) => member.id === cartTicket).type;
-      return acc + items.find((item) => item.id === `ticket-${userType}`).price;
+    Object.values(tickets).reduce((acc, ticket) => {
+      return acc + (ticket.reducedPrice || ticket.price);
     }, 0) +
     (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant').price : 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
@@ -216,25 +167,30 @@ const Shop = () => {
 
   // When the AddPlaceModal is exited.
   // If it was exited by clicking out of the window or by quiting, then placeFor is undefined.
-  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' or 'attendant', and placeId is the id of the player
-  // (or an object containing the firstnam and the second name of the person if the ticket is for an attendant)
-  const onAddPlaceModalQuit = (placeFor, placeId) => {
+  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' or 'attendant', and placeId is the id of the user
+  // (or an object containing the firstname and the lastname of the person if the ticket is for an attendant)
+  const onAddPlaceModalQuit = async (placeFor, placeId) => {
     setAddPlaceVisible(false);
     if (placeFor === undefined) return;
-    if (placeFor === 'me') {
-      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, userId] } });
-      setIsPlaceInCart(true);
-    } else if (placeFor === 'other') {
-      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId] } });
-      setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter((member) => member.id !== placeId));
-    } else {
+    if (placeFor === 'attendant') {
       setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId } });
       setHasAttendant(true);
+    } else {
+      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId] } });
+      let newTickets = { ...tickets };
+      newTickets[placeId] = await getTicketPrice(placeId);
+      setTickets(newTickets);
+      if (placeFor === 'me') {
+        setIsPlaceInCart(true);
+      } else {
+        setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter((member) => member.id !== placeId));
+      }
     }
   };
 
   // Callback of SupplementList. It is called when the user changes its cart (the supplement part)
   // supplementCart is the new value of cart.supplements
+  // This is also used to update the supplement list of the cart when we remove an element
   const onSupplementCartChanges = (supplementCart) => {
     setCart({ ...cart, supplements: supplementCart });
   };
@@ -255,66 +211,74 @@ const Shop = () => {
 
   return (
     <div id="dashboard-shop">
-      <div>
-        <div className="shop-section">
-          <Title level={4}>Places</Title>
-          <Table columns={ticketColumns} dataSource={getTicketRows()} className="shop-table" />
-          <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
-        </div>
-        <div className="scoup">
-          <img src="/scoup.jpg" alt="" />
-          <p>
-            Notre partenaire Scoup Esport{' '}
-            <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
-              loue du matériel
-            </a>{' '}
-            supplémentaire pendant l'UTT Arena.
-          </p>
-        </div>
-        <div className="shop-section">
-          <SupplementList
-            initialSupplementCart={cart.supplements}
-            onSupplementCartChanges={onSupplementCartChanges}
-            onItemPreview={onItemPreview}
-          />
-        </div>
-      </div>
-      <div className="bill">
+      <div className="shop-and-bill">
         <div>
-          <Cart cart={cart} items={items} />
+          <div className="shop-section">
+            <Title level={4}>Places</Title>
+            <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+          </div>
+          <div className="scoup">
+            <img src="/scoup.jpg" alt="" />
+            <p>
+              Notre partenaire Scoup Esport{' '}
+              <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
+                loue du matériel
+              </a>{' '}
+              supplémentaire pendant l'UTT Arena.
+            </p>
+          </div>
+          <div className="shop-section">
+            <SupplementList
+              supplementCart={cart.supplements}
+              onSupplementCartChanges={onSupplementCartChanges}
+              onItemPreview={onItemPreview}
+            />
+          </div>
         </div>
-        <div className="shop-footer">
-          {cart.attendant && (
-            <>
-              <div className="attendant-warning">
-                <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras
-                plus modifier ton accompagnateur.
-              </div>
-            </>
-          )}
-          <Checkbox
-            className="cgvCheckbox"
-            label={
+        <div className="bill">
+          <div>
+            <Cart
+              cart={cart}
+              tickets={tickets}
+              items={items}
+              teamMembers={teamMembers}
+              onItemRemoved={onRemoveItem}
+              onTicketRemoved={onRemoveTicket}
+            />
+          </div>
+          <div className="shop-footer">
+            {cart.attendant && (
               <>
-                J'accepte les{' '}
-                <a href="/legal#CGV" target="_blank">
-                  Conditions Générales de Vente
-                </a>
+                <div className="attendant-warning">
+                  <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras
+                  plus modifier ton accompagnateur.
+                </div>
               </>
-            }
-            value={isCgvAccepted}
-            onChange={setIsCgvAccepted}
-          />
-          <br />
-          <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
-          <Button
-            primary
-            rightIcon="fas fa-shopping-cart"
-            className="shop-button"
-            onClick={onPay}
-            disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
-            Payer
-          </Button>
+            )}
+            <Checkbox
+              className="cgvCheckbox"
+              label={
+                <>
+                  J'accepte les{' '}
+                  <a href="/legal#CGV" target="_blank">
+                    Conditions Générales de Vente
+                  </a>
+                </>
+              }
+              value={isCgvAccepted}
+              onChange={setIsCgvAccepted}
+            />
+            <br />
+            <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
+            <Button
+              primary
+              rightIcon="fas fa-shopping-cart"
+              className="shop-button"
+              onClick={onPay}
+              disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+              Payer
+            </Button>
+          </div>
         </div>
       </div>
       {addPlaceVisible && (
@@ -336,85 +300,6 @@ const Shop = () => {
       </Modal>
     </div>
   );
-  /*return (
-    <div id="dashboard-shop">
-      <div className="shop-section">
-        <Title level={4}>Places</Title>
-        <Table columns={ticketColumns} dataSource={getTicketRows()} className="shop-table" />
-        <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
-      </div>
-      <div className="scoup">
-        <img src="/scoup.jpg" alt="" />
-        <p>
-          Notre partenaire Scoup Esport{' '}
-          <a href="https://www.weezevent.com/utt-arena-2" target="_blank" rel="noreferrer noopener">
-            loue du matériel
-          </a>{' '}
-          supplémentaire pendant l'UTT Arena.
-        </p>
-      </div>
-      <div className="shop-section">
-        <SupplementList
-          initialSupplementCart={cart.supplements}
-          onSupplementCartChanges={onSupplementCartChanges}
-          onItemPreview={onItemPreview}
-        />
-      </div>
-      <div>
-        <Cart cart={cart} items={items} />
-      </div>
-      <div className="shop-footer">
-        {cart.attendant && (
-          <>
-            <div className="attendant-warning">
-              <span className="fas fa-exclamation-triangle red-icon"></span> Si tu cliques sur payer, tu ne pourras plus
-              modifier ton accompagnateur.
-            </div>
-          </>
-        )}
-        <Checkbox
-          className="cgvCheckbox"
-          label={
-            <>
-              J'accepte les{' '}
-              <a href="/legal#CGV" target="_blank">
-                Conditions Générales de Vente
-              </a>
-            </>
-          }
-          value={isCgvAccepted}
-          onChange={setIsCgvAccepted}
-        />
-        <br />
-        <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
-        <Button
-          primary
-          rightIcon="fas fa-shopping-cart"
-          className="shop-button"
-          onClick={onPay}
-          disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
-          Payer
-        </Button>
-      </div>
-      {addPlaceVisible && (
-        <AddPlaceModal
-          userId={userId}
-          username={username}
-          hasTicket={isPlaceInCart}
-          teamMembersWithoutTicket={teamMembersWithoutTicket}
-          needsAttendant={age === 'child' && !hasAttendant}
-          onQuit={onAddPlaceModalQuit}
-        />
-      )}
-      <Modal
-        visible={!!itemPreview}
-        onCancel={() => setItemPreview(null)}
-        buttons={null}
-        containerClassName="item-preview-modal-container">
-        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className="item-preview-image" />}
-      </Modal>
-    </div>
-  );*/
 };
 
 export default Shop;

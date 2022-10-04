@@ -44,6 +44,11 @@ const users = (state = initialState, action) => {
   }
 };
 
+export const getTicketPrice = async (userId) => {
+  let res = await API.get(`/users/${userId}/ticket`);
+  return res.data;
+};
+
 export const fetchUsers =
   (filters, search, page = 0) =>
   async (dispatch) => {

@@ -1,90 +1,65 @@
 #dashboard-shop {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  .shop-section {
-    margin-bottom: 40px;
-  }
-
-  .title {
-    margin: 20px 0 0 0;
-  }
-
-  .shop-table {
-    width: 100%;
-    margin-bottom: 20px;
-
-    tbody tr {
-      height: 64px;
-    }
-
-    td:first-child {
-      min-width: 300px;
-    }
-
-    .reducted-price {
-      text-decoration: line-through;
-      color: $primary-color;
-      font-size: 10px;
-      vertical-align: super;
-    }
-  }
-
-  .delete-button {
-    color: #333;
-  }
-
-  .item-preview-button {
-    font-size: 0.9em;
-    padding: 0;
-    margin: 0 0 0 8px;
-    color: $primary-color;
-  }
-
-  .item-description {
-    font-size: 0.9em;
-    margin-top: 6px;
-    color: #555555;
-  }
-
-  .shop-input {
-    width: 100px;
-    margin: 0;
-  }
-
-  .shop-footer {
-    text-align: right;
-
-    .shop-button.buttonWrapper {
-      margin-left: 16px;
-    }
-  }
-
-  .scoup {
+  .shop-and-bill {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    position: relative;
-
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 10px 15px;
-    border: solid #c8c8c8 1px;
-    border-radius: 16px;
-
-    & > img {
-      height: 60px;
-      border-radius: 15px;
+    flex-direction: row;
+    justify-content: space-between;
+    .shop-section {
+      margin-bottom: 40px;
     }
 
-    & > p {
-      flex: 1 1 500px;
-      margin: 0;
-      text-align: center;
+    .title {
+      margin: 20px 0 0 0;
     }
+
+    .scoup {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 10px 15px;
+      border: solid #c8c8c8 1px;
+      border-radius: 16px;
+
+      & > img {
+        height: 60px;
+        border-radius: 15px;
+      }
+
+      & > p {
+        flex: 1 1 500px;
+        margin: 0;
+        text-align: center;
+      }
+    }
+
+    .bill {
+      border: 1px solid;
+      padding: 10px;
+      height: fit-content;
+      width: 30%;
+
+      .shop-footer {
+        text-align: right;
+        margin-top: 38px;
+
+        .cgvCheckbox {
+          display: block ruby;
+        }
+
+        .shop-button.buttonWrapper {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+
+  .attendant-warning {
+    margin-bottom: 10px;
   }
 
   .item-preview-modal-container {
@@ -96,18 +71,13 @@
     max-width: 1000px;
     width: 100%;
   }
+}
 
-  .cgvCheckbox {
-    display: block ruby;
-  }
-
-  .attendant-warning {
-    margin-bottom: 10px;
-  }
-
-  .bill {
-    border: 1px solid;
-    padding: 10px;
-    height: fit-content;
+@media screen and (max-width: 1400px) {
+  #dashboard-shop {
+    flex-direction: column;
+    .bill {
+      width: 100%;
+    }
   }
 }
