@@ -100,7 +100,21 @@ const Shop = () => {
       ),
     );
     // Fill the tickets state
-    let ticketsArray = await Promise.all(cart.tickets.userIds.map((user) => getTicketPrice(user)));
+    // First, we make all the requests
+    let ticketsArray = (await Promise.allSettled(cart.tickets.userIds.map((user) => getTicketPrice(user))))
+      // Then, we only keep the return value of the Promises
+      .map((result) => result.value)
+      // And finally, we remove failed Promises
+      .filter((ticket, i) => {
+        if (!ticket) {
+          toast.error(
+            `Une erreur est survenue en cherchant le prix du ticket de l'utilisateur avec l'identifiant ${cart.tickets.userIds[i]}. Si ce problème persiste, contacte le support`,
+          );
+          return false;
+        }
+        return true;
+      });
+    console.log(ticketsArray);
     setTickets(ticketsArray.reduce((prev, curr, i) => ({ ...prev, [cart.tickets.userIds[i]]: curr }), {}));
   }, [cart, teamMembers]);
 
