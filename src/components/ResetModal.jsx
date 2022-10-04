@@ -25,6 +25,7 @@ const ResetModal = ({ resetToken }) => {
           event.preventDefault();
           if (newPassword !== newPasswordConfirmation) {
             toast.error('Les deux mots de passe ne sont pas identiques.');
+            return;
           }
           await API.post(`auth/reset-password/${resetToken}`, { password: newPassword });
           toast.success('Le mot de passe a été réinitialisé, tu peux maintenant te connecter.');

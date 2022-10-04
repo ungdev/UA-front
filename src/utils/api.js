@@ -20,6 +20,7 @@ const requestAPI = (method, baseURL, route, authorizationHeader, body = null, di
         url: route + (disableCache ? '?nocache=' + new Date().getTime() : ''),
         data: body,
         timeout: 5000,
+        'Content-Type': 'application/json',
       })
       // Success
       .then((response) => resolve(response))
