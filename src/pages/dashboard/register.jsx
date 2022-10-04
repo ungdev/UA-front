@@ -192,7 +192,7 @@ const Register = () => {
         players: team.players.map(({ username }) => username).join(', '),
         action:
           user.askingTeamId === team.id ? (
-            <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+            <Button onClick={() => dispatch(cancelJoin(team.name))}>Annuler</Button>
           ) : (
             <>
               <Button
