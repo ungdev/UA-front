@@ -12,7 +12,7 @@ const Cart = ({ cart, tickets, items, teamMembers, onItemRemoved, onTicketRemove
         <Button onClick={onCartReset} rightIcon="fas fa-trash-alt red-icon" noStyle />
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {
-        let i = cart.tickets.userIds.find(userId);
+        let i = cart.tickets.userIds.findIndex((id) => id === userId);
         let user = teamMembers.find((user) => user.id === userId);
         return (
           <CartItem
