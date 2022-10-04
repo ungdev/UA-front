@@ -39,7 +39,8 @@ const Cart = ({ cart, tickets, items, teamMembers, onItemRemoved, onTicketRemove
         return (
           <CartItem
             key={item.id}
-            itemName={item.name + (item.attribute ? `- ${item.attribute.toUpperCase()}` : '')}
+            // NOTE : For the moment, only t-shirts have attributes, but that may change in the future
+            itemName={item.name + (item.attribute ? `- Taille ${item.attribute.toUpperCase()}` : '')}
             quantity={supplement.quantity}
             unitPrice={item.price}
             onRemove={() => onItemRemoved(item.id)}
