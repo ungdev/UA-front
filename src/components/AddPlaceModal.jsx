@@ -12,10 +12,10 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
   useEffect(() => {
     if (!hasTicket) {
       setPlaceFor('me');
-    } else if (teamMembersWithoutTicket.length) {
-      setPlaceFor('other');
     } else if (needsAttendant) {
       setPlaceFor('attendant');
+    } else if (teamMembersWithoutTicket.length) {
+      setPlaceFor('other');
     } else {
       toast.info("Tous les membres de l'équipe ont déjà une place !");
       onQuit(undefined, undefined);
