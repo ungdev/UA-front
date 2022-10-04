@@ -16,7 +16,7 @@ import { getTicketPrice } from '../../modules/users';
 const Shop = () => {
   const dispatch = useDispatch();
   // Informations about the user
-  const { id: userId, type, hasPaid, username, age, attendant } = useSelector((state) => state.login.user);
+  const { id: userId, hasPaid, username, age, attendant } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items);
   // The team the player is in
@@ -49,9 +49,7 @@ const Shop = () => {
   // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
     dispatch(fetchItems());
-    if (type !== 'spectator') {
-      dispatch(fetchCurrentTeam());
-    }
+    dispatch(fetchCurrentTeam());
   }, []);
 
   // Initializing teamMembers
