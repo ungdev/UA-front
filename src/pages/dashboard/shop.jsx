@@ -206,8 +206,7 @@ const Shop = () => {
   const onPay = () => {
     setHasRequestedPayment(true);
     dispatch(cartPay(cart));
-    setCart(deleteCart());
-    setTickets([]);
+    deleteCart();
   };
 
   return (
