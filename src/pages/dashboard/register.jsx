@@ -51,8 +51,6 @@ const Register = () => {
 
     if (user.discordId) setStep(2);
 
-    setStep(2);
-
     if (user.askingTeamId) {
       (async () => {
         setTournament((await API.get('/teams/' + user.askingTeamId)).data.tournamentId);
