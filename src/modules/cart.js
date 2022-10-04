@@ -79,7 +79,7 @@ export const loadCart = () => {
   return cart;
 };
 
-export const deleteCart = async () => {
+export const deleteCart = () => {
   // Remove every value that starts with 'cart.'
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);

@@ -207,6 +207,7 @@ const Shop = () => {
     setHasRequestedPayment(true);
     dispatch(cartPay(cart));
     setCart(deleteCart());
+    setTickets([]);
   };
 
   return (

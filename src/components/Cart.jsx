@@ -32,7 +32,7 @@ const Cart = ({ cart, tickets, items, teamMembers, onItemRemoved, onTicketRemove
         return (
           <CartItem
             key={item.id}
-            itemName={item.name}
+            itemName={`${item.name} - ${item.attribute.toUpperCase()}`}
             quantity={supplement.quantity}
             unitPrice={item.price}
             onRemove={() => onItemRemoved(item.id)}
