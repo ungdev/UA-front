@@ -100,6 +100,7 @@ const Shop = () => {
           toast.error(
             `Une erreur est survenue en cherchant le prix du ticket de l'utilisateur avec l'identifiant ${cart.tickets.userIds[i]}. Si ce problème persiste, contacte le support`,
           );
+          cart.tickets.userIds.splice(i, 1);
           return false;
         }
         return true;
