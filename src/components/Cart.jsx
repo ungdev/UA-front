@@ -1,10 +1,14 @@
 import CartItem from './CartItem';
+import { Button } from './UI';
 
-const Cart = ({ cart, tickets, items, teamMembers, onItemRemoved, onTicketRemoved }) => {
+const Cart = ({ cart, tickets, items, teamMembers, onItemRemoved, onTicketRemoved, onCartReset }) => {
   let attendantTicket = items.find((ticket) => ticket.id === 'ticket-attendant');
   return (
     <div className="cart">
-      <h2>Panier</h2>
+      <div className="cart-header">
+        <h2>Panier</h2>
+        <Button onClick={onCartReset} rightIcon="fas fa-trash-alt red-icon" noStyle />
+      </div>
       {Object.entries(tickets).map(([userId, ticket], i) => {
         let user = teamMembers.find((user) => user.id === userId);
         return (

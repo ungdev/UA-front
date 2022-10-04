@@ -198,6 +198,13 @@ const Shop = () => {
     setCart({ ...cart, supplements: supplementCart });
   };
 
+  // Resets the cart. It removes the cart from the local storage, and resets the "cart" and "tickets" states.
+  // Callback of <Cart /> when the user decides to reset the entire cart
+  const onCartReset = () => {
+    setCart(deleteCart());
+    setTickets([]);
+  };
+
   // Callback of SupplementList. It is called when the user wants to preview an item
   // newItemPreview is the new value of itemPreview.
   const onItemPreview = (newItemPreview) => {
@@ -249,6 +256,7 @@ const Shop = () => {
               teamMembers={teamMembers}
               onItemRemoved={onRemoveItem}
               onTicketRemoved={onRemoveTicket}
+              onCartReset={onCartReset}
             />
           </div>
           <div className="shop-footer">
