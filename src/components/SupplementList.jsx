@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Button, Select, Table, Title } from './UI';
+import { toast } from 'react-toastify';
 
 const supplementColumns = [
   {
@@ -157,6 +158,14 @@ const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview
       add_to_cart: (
         <Button
           onClick={() => {
+            if (supplement.left <= cartSupplement.quantity) {
+              toast.warn('Le stock de cet item est épuisé');
+              return;
+            }
+            if (supplement.price < 0 && cartSupplement.quantity >= 1) {
+              toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
+              return;
+            }
             let newCartSupplements = [...supplementCart];
             if (cartSupplement.quantity) {
               newCartSupplements.forEach(
