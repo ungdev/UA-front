@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { Button, Select, Table, Title } from './UI';
 
 const supplementColumns = [
@@ -22,12 +24,6 @@ const supplementColumns = [
 ];
 
 // This represents the supplement list in the shop
-// It takes to arguments, which are both callback functions :
-// * onSupplementCartChanges : is called each time the user adds, remove or modify a supplement.
-//   It takes one parameter : the supplement cart, which is an array containing supplements that are in the cart.
-//   The format is the same as in the route POST users/current/carts
-// * onItemPreview : is called when the user wants to preview an item.
-//   It takes one parameter : the relative path to the image file, starting in the public/ directory
 const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview }) => {
   // The items available
   const items = useSelector((state) => state.items);
@@ -189,6 +185,23 @@ const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview
       <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
     </div>
   );
+};
+
+SupplementList.propTypes = {
+  /**
+   * The supplement part of the cart. It has the same shape as the one we need to send through the POST /users/current/carts route
+   */
+  supplementCart: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, quantity: PropTypes.number })).isRequired,
+  /**
+   * A callback called each time the user adds, removes or modifies a supplement.
+   * It takes one parameter : the supplement cart (their shape is the same as the one of supplementCart)
+   */
+  onSupplementCartChanges: PropTypes.func.isRequired,
+  /**
+   * A callback called when the user wants to preview an item
+   * It takes one parameter : the relative path to the image file, starting in the "public/" directory
+   */
+  onItemPreview: PropTypes.func.isRequired,
 };
 
 export default SupplementList;
