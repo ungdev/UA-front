@@ -1,0 +1,20 @@
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  align-items: center;
+
+  .item-name {
+    width: 80%;
+    font-weight: 900;
+  }
+
+  .reducted-price {
+    text-decoration: line-through;
+    color: $primary-color;
+    font-size: 10px;
+    vertical-align: super;
+  }
+}
