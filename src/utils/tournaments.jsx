@@ -1,5 +1,5 @@
 import React from 'react';
-// import { uploadsUrl } from './environment';
+import { uploadsUrl } from './environment';
 
 const tournaments = [
   {
@@ -8,7 +8,7 @@ const tournaments = [
     players: 160,
     teamCount: 32,
     image: '/tournaments/lol.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '1600€',
     rewards: <>1600€</>,
     casters: <>À venir</>,
     // (
@@ -25,22 +25,15 @@ const tournaments = [
     //   </ul>
     // ),
     // toornamentId: '5045525084995133440',
-    format: (
-      <>
-        32 équipes de 5 joueurs
-        {/* <br />
-        <br />
-        Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports. */}
-      </>
-    ),
-    // rules: `${uploadsUrl()}/rules/lol.pdf`,
+    format: <>32 équipes de 5 joueurs</>,
+    rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
     name: 'Super Smash Bros. Ultimate',
     shortName: 'ssbu',
     players: 128,
     image: '/tournaments/ssbu.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '1000€',
     rewards: <>1000€</>,
     casters: <>À venir</>,
     // (
@@ -58,7 +51,7 @@ const tournaments = [
     // ),
     // toornamentId: '5045512183706099712',
     format: <>128 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/ssbu.pdf`,
+    rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
   {
     name: 'Counter-Strike: Global Offensive',
@@ -66,7 +59,7 @@ const tournaments = [
     players: 80,
     teamCount: 16,
     image: '/tournaments/csgo.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '1600€',
     rewards: <>1600€</>,
     casters: <>À venir</>,
     // (
@@ -84,7 +77,7 @@ const tournaments = [
     // ),
     // toornamentId: '5045528654683340800',
     format: <>16 équipes de 5 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/csgo.pdf`,
+    rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
     name: 'Valorant',
@@ -92,7 +85,7 @@ const tournaments = [
     players: 80,
     teamCount: 16,
     image: '/tournaments/valorant.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '1500€',
     rewards: <>1500€</>,
     casters: <>À venir</>,
     // (
@@ -109,7 +102,7 @@ const tournaments = [
     //   </ul>
     // ),
     format: <>16 équipes de 5 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
+    rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
   {
     name: 'Rocket League',
@@ -117,7 +110,7 @@ const tournaments = [
     players: 48,
     teamCount: 16,
     image: '/tournaments/rocket-league.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '1200€',
     rewards: <>1200€</>,
     casters: <>À venir</>,
     // (
@@ -135,7 +128,7 @@ const tournaments = [
     // ),
     // toornamentId: '4958829017709346816',
     format: <>16 équipes de 3 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
+    rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
     name: 'osu!',
@@ -164,19 +157,17 @@ const tournaments = [
     // toornamentId: null,
     format: (
       <>
-        48 joueurs
-        {/* qualifiés.{' '}
-        <a href="https://osu.ppy.sh/community/forums/topics/1409204">Inscription aux qualifications ici.</a> */}
+        48 joueurs qualifiés. <a href="https://forms.gle/LNXdooZGcNFwTSkV9">Inscription aux qualifications ici.</a>
       </>
     ),
-    // rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
+    rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
   },
   {
     name: 'Teamfight Tactics',
     shortName: 'tft',
     players: 32,
     image: '/tournaments/tft.jpg',
-    shortRewards: 'À venir',
+    shortRewards: '500€',
     rewards: <>500€</>,
     // (
     //   <ul>
@@ -192,7 +183,7 @@ const tournaments = [
     //   </ul>
     // ),
     format: <>32 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/lol-competitive.pdf`,
+    rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
   {
     name: 'Libre',
@@ -216,7 +207,7 @@ const tournaments = [
     // ),
     // toornamentId: null,
     format: <>56 joueurs</>,
-    // rules: `${uploadsUrl()}/rules/open.pdf`,
+    rules: `${uploadsUrl()}/rules/open.pdf`,
   },
 ];
 

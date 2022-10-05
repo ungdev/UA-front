@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    column-gap: 35px;
+    gap: 35px;
 
     .shop-section {
       margin-bottom: 40px;
@@ -18,10 +18,13 @@
     }
 
     .bill {
-      border: 1px solid;
+      box-sizing: border-box;
       padding: 10px;
       height: fit-content;
       width: 30%;
+      border-radius: 2px;
+      background-color: #fbfbfb;
+      padding: 10px 30px;
 
       .shop-footer {
         text-align: right;
@@ -53,8 +56,8 @@
   }
 }
 
-@media screen and (max-width: 1400px) {
-  #dashboard-shop {
+@media screen and (max-width: 1600px) {
+  #dashboard-shop .shop-and-bill {
     flex-direction: column;
     .bill {
       width: 100%;

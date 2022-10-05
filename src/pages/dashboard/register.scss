@@ -50,7 +50,7 @@
       position: absolute;
       left: -50%;
       margin-left: 12px;
-      top: calc(24px/2 - 1px);
+      top: calc(24px / 2 - 1px);
       transition: all 0.2s ease-in-out 50ms;
     }
 
@@ -71,6 +71,23 @@
     li.active:after {
       background: $secondary-color;
       color: white;
+    }
+  }
+
+  .warning {
+    border-radius: 2px;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+
+    &.light {
+      background-color: $light-color-alt;
+      color: initial;
+    }
+    a {
+      color: inherit;
     }
   }
 
@@ -109,14 +126,14 @@
     }
   }
 
-  .table-column-action{
+  .table-column-action {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
   }
 
-  .create-team{
+  .create-team {
     display: flex;
     flex-direction: column;
     justify-content: center;

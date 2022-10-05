@@ -5,6 +5,7 @@ import { useTransition, animated } from 'react-spring';
 import { Input, Button, Table } from '../../components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '../../modules/team';
 import { API } from '../../utils/api';
+import { uploadsUrl } from '../../utils/environment';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -68,6 +69,8 @@ const Register = () => {
       })();
     }
   }, []);
+
+  if (!tournaments.length) return null;
 
   const Step1 = (
     <>
@@ -190,7 +193,7 @@ const Register = () => {
         players: team.players.map(({ username }) => username).join(', '),
         action:
           user.askingTeamId === team.id ? (
-            <Button onClick={() => dispatch(cancelJoin(team.id, team.name))}>Annuler</Button>
+            <Button onClick={() => dispatch(cancelJoin(team.name))}>Annuler</Button>
           ) : (
             <>
               <Button
@@ -218,14 +221,22 @@ const Register = () => {
 
   const Step5 = (
     <>
+      <div className="warning light">
+        En participant au tournoi, j'accepte le règlement du tournoi (disponible sur la page du tournoi) et le{' '}
+        <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
+      </div>
       {createTeam ? (
         <div className="create-team">
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
           {tournament == 'osu' ? (
             <>
-              <div>
-                Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Pour s'incrire à cette qualification
-                merci de remplir <a href="https://forms.gle/LNXdooZGcNFwTSkV9">ce formulaire.</a>
+              <div className="warning">
+                Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Tu peux t'inscrire aux qualifications
+                avec{' '}
+                <a href="https://forms.gle/LNXdooZGcNFwTSkV9" rel="noreferrer noopener">
+                  ce formulaire
+                </a>
+                .
               </div>
             </>
           ) : null}

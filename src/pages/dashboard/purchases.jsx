@@ -38,6 +38,8 @@ const Purchases = () => {
             if (cartItem.forUser.id === userId && type !== 'coach' && hasDiscount) {
               price = type === 'player' ? 1500 : 1000;
             }
+          } else if (item.attribute) {
+            itemName += ` - Taille ${item.attribute.toUpperCase()}`;
           }
           return {
             name: itemName,
