@@ -25,14 +25,7 @@ const tournaments = [
     //   </ul>
     // ),
     // toornamentId: '5045525084995133440',
-    format: (
-      <>
-        32 équipes de 5 joueurs
-        {/* <br />
-        <br />
-        Ce tournoi n'est ni affilié ni sponsorisé par Riot Games, Inc. ou League of Legends Esports. */}
-      </>
-    ),
+    format: <>32 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
   {
@@ -164,9 +157,7 @@ const tournaments = [
     // toornamentId: null,
     format: (
       <>
-        48 joueurs
-        {/* qualifiés.{' '}
-        <a href="https://osu.ppy.sh/community/forums/topics/1409204">Inscription aux qualifications ici.</a> */}
+        48 joueurs qualifiés. <a href="https://forms.gle/LNXdooZGcNFwTSkV9">Inscription aux qualifications ici.</a>
       </>
     ),
     rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
