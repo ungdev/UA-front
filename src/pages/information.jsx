@@ -138,8 +138,8 @@ const Information = () => (
           <strong>Aucune manette ou adaptateur ne sera mis à disposition pendant l'événement.</strong>
         </li>
         <li>
-          Pour les 20 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
-          <strong>tous</strong> les personnages et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera
+          Pour les 30 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
+          <strong>tous</strong> les personnages, <strong>DLCs inclus</strong>, et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera
           accordée lors de son inscription. Pour cela il faut ajouter le supplément{' '}
           <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de payer ta
           place.
@@ -173,14 +173,14 @@ const Information = () => (
           <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
         </li>
         <li>
-          Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité.{' '}
+          Pour entrer dans le Cube, tu devras avoir ton billet et une pièce d'identité.{' '}
           <strong>N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.</strong>
         </li>
         <li>
-          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus <strong>amène une multiprise</strong>.
+          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus, <strong>amène une multiprise</strong>.
           Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton
           ordinateur devra avoir une prise ethernet. Enfin, sûrement le plus important, tu dois ramener ton setup
-          complet : ta tour, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta
+          complet : ton ordinateur, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta
           manette.
           <br />
           Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un
