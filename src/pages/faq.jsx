@@ -165,8 +165,9 @@ const content = [
           <>
             Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription
             au tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
-            personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le prix de ton
-            billet. Cette option est disponible pour les 30 premiers seulement.
+            personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une{' '}
+            <strong>réduction</strong> de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers
+            seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
             <br />

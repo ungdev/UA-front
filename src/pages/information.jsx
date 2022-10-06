@@ -139,10 +139,10 @@ const Information = () => (
         </li>
         <li>
           Pour les 30 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
-          <strong>tous</strong> les personnages, <strong>DLCs inclus</strong>, et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera
-          accordée lors de son inscription. Pour cela il faut ajouter le supplément{' '}
-          <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de payer ta
-          place.
+          <strong>tous</strong> les personnages, <strong>DLCs inclus</strong>, et un câble HDMI, une{' '}
+          <strong>réduction</strong> de 3€ leur sera accordée lors de son inscription. Pour cela il faut ajouter le
+          supplément <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de
+          payer ta place.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay pendant l'UTT Arena.
           <br />
@@ -180,8 +180,8 @@ const Information = () => (
           Nous ne fournissons qu'une prise par personne, si tu as besoin de plus, <strong>amène une multiprise</strong>.
           Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton
           ordinateur devra avoir une prise ethernet. Enfin, sûrement le plus important, tu dois ramener ton setup
-          complet : ton ordinateur, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta
-          manette.
+          complet : ton ordinateur, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et
+          ta manette.
           <br />
           Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un
           câble HDMI.
