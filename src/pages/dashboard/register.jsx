@@ -197,21 +197,22 @@ const Register = () => {
             <Button onClick={() => dispatch(cancelJoin(team.name))}>Annuler</Button>
           ) : (
             <>
-              {userType == 'player' ? <Button
-                primary
-                onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))}
-                disabled={!user.discordId}>
-                Rejoindre
-              </Button> 
-              : 
-              <Button
-                className="coachJoinButton"
-                primary
-                onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
-                disabled={!user.discordId}>
-                Rejoindre
-              </Button>
-              }
+              {userType == 'player' ? (
+                <Button
+                  primary
+                  onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))}
+                  disabled={!user.discordId}>
+                  Rejoindre
+                </Button>
+              ) : (
+                <Button
+                  className="coachJoinButton"
+                  primary
+                  onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
+                  disabled={!user.discordId}>
+                  Rejoindre
+                </Button>
+              )}
             </>
           ),
       }));
