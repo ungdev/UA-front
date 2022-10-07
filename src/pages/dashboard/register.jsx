@@ -64,6 +64,7 @@ const Register = () => {
 
     if (user.askingTeamId) {
       (async () => {
+        setUserType(user.type);
         setTournament((await API.get('/teams/' + user.askingTeamId)).data.tournamentId);
         setStep(5);
       })();
@@ -196,19 +197,22 @@ const Register = () => {
             <Button onClick={() => dispatch(cancelJoin(team.name))}>Annuler</Button>
           ) : (
             <>
-              <Button
-                primary
-                onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))}
-                disabled={!user.discordId}>
-                Rejoindre
-              </Button>
-              <Button
-                className="coachJoinButton"
-                primary
-                onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
-                disabled={!user.discordId}>
-                Rejoindre (coach / manager)
-              </Button>
+              {userType == 'player' ? (
+                <Button
+                  primary
+                  onClick={() => dispatch(joinTeam(team.id, team.name, 'player'))}
+                  disabled={!user.discordId}>
+                  Rejoindre
+                </Button>
+              ) : (
+                <Button
+                  className="coachJoinButton"
+                  primary
+                  onClick={() => dispatch(joinTeam(team.id, team.name, 'coach'))}
+                  disabled={!user.discordId}>
+                  Rejoindre
+                </Button>
+              )}
             </>
           ),
       }));
