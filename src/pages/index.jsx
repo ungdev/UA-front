@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 import TournamentCards from '../components/TournamentCards';
-import { Title, VideoContainer, Table, Countdown, Button, LogoSVG, Loader, Card } from '../components/UI';
-import { uploads } from '../utils/api';
+import { Title, VideoContainer, Table, Countdown, Button, LogoSVG } from '../components/UI';
+// import { uploads } from '../utils/api';
 
 const Home = () => {
-  const [partners, setPartners] = useState([]);
+  // const [partners, setPartners] = useState([]);
 
-  const fetchPartners = async () => {
-    const request = await uploads.get('/partners/list.json', true);
+  // const fetchPartners = async () => {
+  //   const request = await uploads.get('/partners/list.json', true);
 
-    setPartners(request.data);
-  };
+  //   setPartners(request.data);
+  // };
 
-  useEffect(() => {
-    fetchPartners();
-  }, []);
+  // useEffect(() => {
+  //   fetchPartners();
+  // }, []);
 
   return (
     <div id="home">
@@ -105,7 +105,7 @@ const Home = () => {
           <TournamentCards />
         </div>
 
-        <div className="home-partners">
+        {/* <div className="home-partners">
           <Title align="center">Partenaires</Title>
           <div className="list-partners">
             {!partners ? (
@@ -125,16 +125,16 @@ const Home = () => {
                 </div>
               ))
             )}
-          </div>
+          </div> */}
 
-          <Link href="/partners">
+        {/* <Link href="/partners">
             <a>
               <Button primary className="partners-button" rightIcon="fas fa-chevron-right">
                 Voir les partenaires
               </Button>
             </a>
-          </Link>
-        </div>
+          </Link> */}
+        {/* </div> */}
       </div>
     </div>
   );

@@ -147,7 +147,6 @@ const UserModal = ({ searchUser, onClose }) => {
               primary
               onClick={() => {
                 const body = {
-                  type,
                   discordId: discordId || null,
                   age,
                   place: place || null,
@@ -157,6 +156,7 @@ const UserModal = ({ searchUser, onClose }) => {
                   email,
                   customMessage,
                 };
+                if (type) body.type = type;
                 if (isAdmin) body.permissions = permissions;
                 dispatch(saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname));
               }}>

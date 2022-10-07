@@ -72,7 +72,7 @@ const Shop = () => {
   // Initializes teamMembersWithoutTicket
   // Fills tickets
   useEffect(async () => {
-    if (!cart || !teamMembers || tickets) return;
+    if (!cart || !teamMembers) return;
     // Checking if place is in cart
     if (cart.tickets.userIds.find((id) => id === userId)) {
       setIsPlaceInCart(true);
@@ -87,6 +87,7 @@ const Shop = () => {
         (member) => !cart.tickets.userIds.includes(member.id) && member.id !== userId && !member.hasPaid,
       ),
     );
+    if (tickets) return;
     // Fill the tickets state
     // First, we make all the requests
     let ticketsArray = (await Promise.allSettled(cart.tickets.userIds.map((user) => getTicketPrice(user))))
@@ -98,7 +99,9 @@ const Shop = () => {
           toast.error(
             `Une erreur est survenue en cherchant le prix du ticket de l'utilisateur avec l'identifiant ${cart.tickets.userIds[i]}. Si ce problème persiste, contacte le support`,
           );
-          cart.tickets.userIds.splice(i, 1);
+          let newCart = { ...cart };
+          newCart.tickets.userIds.splice(i, 1);
+          saveCart(newCart);
           return false;
         }
         return true;
@@ -200,6 +203,16 @@ const Shop = () => {
   // Resets the cart. It removes the cart from the local storage, and resets the "cart" and "tickets" states.
   // Callback of <Cart /> when the user decides to reset the entire cart
   const onCartReset = () => {
+    let membersOfTickets = cart.tickets.userIds.map((ticket) => {
+      if (ticket === userId) {
+        setIsPlaceInCart(false);
+      }
+      return teamMembers.find((member) => member.id === ticket);
+    });
+    setTeamMembersWithoutTicket(teamMembersWithoutTicket.concat(membersOfTickets));
+    if (cart.tickets.attendant) {
+      setHasAttendant(false);
+    }
     setCart(deleteCart());
     setTickets([]);
   };
@@ -231,6 +244,7 @@ const Shop = () => {
           <div className="shop-section">
             <SupplementList
               supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
               onSupplementCartChanges={onSupplementCartChanges}
               onItemPreview={onItemPreview}
             />
