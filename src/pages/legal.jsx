@@ -126,7 +126,7 @@ const Legal = () => (
     l’événement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque de
     disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
     l'adresse : arena@utt.fr. Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro de
-    téléphone suivant : 03 26 40 60 00 (coût d'un appel local), aux jours et horaires suivants : du lundi au vendredi,
+    téléphone suivant : 03 25 71 85 50 (coût d'un appel local), aux jours et horaires suivants : du lundi au vendredi,
     de 9h à 18h, ou envoyer un email au vendeur à l'adresse email suivante : arena@utt.fr.
     <Title level={2}>Article 5 - Signature électronique</Title>
     <p>
