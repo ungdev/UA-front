@@ -106,8 +106,6 @@ const SupplementList = ({ supplementCart, hasTicket, onSupplementCartChanges, on
   };
 
   // We display the supplementTypes
-  console.log(supplementTypes);
-  console.log(hasTicket);
   const supplementRows = supplementTypes
     .filter((supplementType) => supplementType.price > 0 || hasTicket)
     .map((supplement) => {
