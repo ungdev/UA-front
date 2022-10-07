@@ -72,7 +72,7 @@ const Shop = () => {
   // Initializes teamMembersWithoutTicket
   // Fills tickets
   useEffect(async () => {
-    if (!cart || !teamMembers || tickets) return;
+    if (!cart || !teamMembers) return;
     // Checking if place is in cart
     if (cart.tickets.userIds.find((id) => id === userId)) {
       setIsPlaceInCart(true);
@@ -87,6 +87,7 @@ const Shop = () => {
         (member) => !cart.tickets.userIds.includes(member.id) && member.id !== userId && !member.hasPaid,
       ),
     );
+    if (tickets) return;
     // Fill the tickets state
     // First, we make all the requests
     let ticketsArray = (await Promise.allSettled(cart.tickets.userIds.map((user) => getTicketPrice(user))))
