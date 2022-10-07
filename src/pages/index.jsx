@@ -127,14 +127,14 @@ const Home = () => {
             )}
           </div> */}
 
-          {/* <Link href="/partners">
+        {/* <Link href="/partners">
             <a>
               <Button primary className="partners-button" rightIcon="fas fa-chevron-right">
                 Voir les partenaires
               </Button>
             </a>
           </Link> */}
-        </div>
+        {/* </div> */}
       </div>
     </div>
   );
