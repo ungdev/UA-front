@@ -52,7 +52,7 @@ const content = [
         answer: (
           <>
             Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre discord ici.</a>
+            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre Discord ici.</a>
           </>
         ),
       },
@@ -80,7 +80,6 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions <span className="accent">à venir</span> !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
@@ -144,14 +143,14 @@ const content = [
       {
         question: 'Puis-je payer pour toute mon équipe ?',
         answer:
-          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
+          "Oui, cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
       },
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer: (
           <>
             Oui, tu peux changer librement de tournoi à condition que le tournoi que tu veux rejoindre soit au même prix
-            que la place que tu as déjà payée. Si ce n'est pas le cas, contacte nous !
+            que la place que tu as déjà payée. Si ce n'est pas le cas, contacte-nous !
           </>
         ),
       },
@@ -166,8 +165,9 @@ const content = [
           <>
             Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription
             au tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
-            personnages et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le prix de ton
-            billet. Cette option est disponible pour les plus rapides seulement.
+            personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une{' '}
+            <strong>réduction</strong> de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers
+            seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
             <br />
