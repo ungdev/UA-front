@@ -31,15 +31,13 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            {/*Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
+            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
             streaming est{' '}
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform">
               disponible ici
             </a>
-        .*/}
-            Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de
-            l’UTT Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne
-            faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
+            . L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne faisant du
+            streaming sans autorisation validée par l’équipe se verra sanctionnée.
           </>
         ),
       },

@@ -155,14 +155,12 @@ const Information = () => (
 
       <Title level={4}>Streaming</Title>
       <p>
-        {/*Un formulaire de demande de streaming est{' '}
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+        Un formulaire de demande de streaming est{' '}
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform">
           disponible ici
         </a>
-        . Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.*/}
-        Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de l’UTT
-        Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne faisant
-        du streaming sans autorisation validée par l’équipe se verra sanctionnée.
+        . Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer. Toute personne
+        faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
       </p>
 
       <Title level={4}>Ce que tu devras amener</Title>
