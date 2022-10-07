@@ -157,7 +157,7 @@ const Wrapper = ({ Component }) => {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
-    if (hasTeam || hasPaid) {
+    if (hasTeam) {
       if (isShopAllowed) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
