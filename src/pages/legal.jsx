@@ -61,7 +61,7 @@ const Legal = () => (
       <br />
       12 rue Marie Curie, 10000 Troyes
       <br />
-      03 26 40 60 00
+      03 25 71 85 50
       <br />
       ung@utt.fr
     </p>
