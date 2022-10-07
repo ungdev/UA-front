@@ -101,11 +101,9 @@ const Information = () => (
       <p>
         Pour participer au tournoi il faut avoir au <strong>minimum 15 ans</strong> lors de l'événement. Il faudra que
         tu présentes <strong>l'autorisation parentale</strong>
-        {/*(
-        <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf" className="">
+        <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2022.pdf" className="">
           disponible ici
         </a>
-        )*/}
         , fournie lors de l’inscription, ainsi qu'une photocopie de la{' '}
         <strong>pièce d'identité de ton responsable légal et de la tienne</strong> avant d'accéder à l'UTT Arena.
       </p>
@@ -138,11 +136,11 @@ const Information = () => (
           <strong>Aucune manette ou adaptateur ne sera mis à disposition pendant l'événement.</strong>
         </li>
         <li>
-          Pour les 20 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
-          <strong>tous</strong> les personnages et un câble HDMI, une <strong>réduction</strong> de 3€ leur sera
-          accordée lors de son inscription. Pour cela il faut ajouter le supplément{' '}
-          <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de payer ta
-          place.
+          Pour les 30 premiers joueurs qui indiqueront apporter leur Nintendo Switch, le jeu SSBU avec{' '}
+          <strong>tous</strong> les personnages, <strong>DLCs inclus</strong>, et un câble HDMI, une{' '}
+          <strong>réduction</strong> de 3€ leur sera accordée lors de son inscription. Pour cela il faut ajouter le
+          supplément <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> dans ton panier au moment de
+          payer ta place.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay pendant l'UTT Arena.
           <br />
@@ -157,14 +155,12 @@ const Information = () => (
 
       <Title level={4}>Streaming</Title>
       <p>
-        {/*Un formulaire de demande de streaming est{' '}
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+        Un formulaire de demande de streaming est{' '}
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform">
           disponible ici
         </a>
-        . Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer.*/}
-        Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de l’UTT
-        Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne faisant
-        du streaming sans autorisation validée par l’équipe se verra sanctionnée.
+        . Tu recevras alors une confirmation une semaine avant l'événement si tu es autorisé à streamer. Toute personne
+        faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
       </p>
 
       <Title level={4}>Ce que tu devras amener</Title>
@@ -173,15 +169,15 @@ const Information = () => (
           <strong>Tu ne pourras pas apporter ta propre nourriture.</strong>
         </li>
         <li>
-          Pour entrer dans le Cube, tu devras avoir ton billet, une pièce d'identité.{' '}
+          Pour entrer dans le Cube, tu devras avoir ton billet et une pièce d'identité.{' '}
           <strong>N'oublie pas ton attestation parentale et les documents demandés dessus si tu es mineur.</strong>
         </li>
         <li>
-          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus <strong>amène une multiprise</strong>.
+          Nous ne fournissons qu'une prise par personne, si tu as besoin de plus, <strong>amène une multiprise</strong>.
           Pour te connecter à la LAN, tu auras besoin d'un <strong>câble ethernet d'au moins 7 mètres</strong>, et ton
           ordinateur devra avoir une prise ethernet. Enfin, sûrement le plus important, tu dois ramener ton setup
-          complet : ta tour, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et ta
-          manette.
+          complet : ton ordinateur, ton écran, un câble HDMI / VGA en fonction de ton écran, ta souris, ton clavier et
+          ta manette.
           <br />
           Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un
           câble HDMI.

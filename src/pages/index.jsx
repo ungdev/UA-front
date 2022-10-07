@@ -1,4 +1,4 @@
-import React /*, { useEffect, useState } */ from 'react';
+import React from 'react';
 import Link from 'next/link';
 
 import TournamentCards from '../components/TournamentCards';
@@ -125,16 +125,16 @@ const Home = () => {
                 </div>
               ))
             )}
-          </div>
+          </div> */}
 
-          <Link href="/partners">
+        {/* <Link href="/partners">
             <a>
               <Button primary className="partners-button" rightIcon="fas fa-chevron-right">
                 Voir les partenaires
               </Button>
             </a>
-          </Link>
-        </div> */}
+          </Link> */}
+        {/* </div> */}
       </div>
     </div>
   );

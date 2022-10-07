@@ -17,16 +17,12 @@ const content = [
           <>
             Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
             que tu présentes l'autorisation parentale
-            {/*(
             <strong>
-              Mise
-              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
+              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2022.pdf">
                 disponible ici
-            </a>
+              </a>
             </strong>
-            )*/}
-            , fournie lors de l’inscription,{' '}
-            <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            , <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
             avant d'accéder à l'UTT Arena.
           </>
         ),
@@ -35,15 +31,13 @@ const content = [
         question: 'Puis-je streamer pendant les tournois ?',
         answer: (
           <>
-            {/*Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
+            Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
             streaming est{' '}
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBJk9aVHftYELBDcN-E2qDQJejY0O6JWT3sTEQp6rtrnP8Jw/viewform">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform">
               disponible ici
             </a>
-        .*/}
-            Un formulaire sera mis à disposition lors des inscriptions afin de faire ta demande auprès de l’équipe de
-            l’UTT Arena. L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne
-            faisant du streaming sans autorisation validée par l’équipe se verra sanctionnée.
+            . L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne faisant du
+            streaming sans autorisation validée par l’équipe se verra sanctionnée.
           </>
         ),
       },
@@ -52,7 +46,7 @@ const content = [
         answer: (
           <>
             Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre discord ici.</a>
+            <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre Discord ici.</a>
           </>
         ),
       },
@@ -80,7 +74,6 @@ const content = [
         question: 'Comment se passent les inscriptions ?',
         answer: (
           <>
-            Ouverture des inscriptions <span className="accent">à venir</span> !
             <ol>
               <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
               <li>Crée ton compte et clique sur le lien envoyé par mail</li>
@@ -144,15 +137,14 @@ const content = [
       {
         question: 'Puis-je payer pour toute mon équipe ?',
         answer:
-          "Oui cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
+          "Oui, cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
       },
       {
         question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
         answer: (
           <>
-            Non, la place payée est rattachée à un tournoi. Il te faudra donc contacter l'équipe organisatrice sur{' '}
-            <a href="https://arena.utt.fr/contact"> la page de contact </a>, pour demander à changer de tournois, en
-            spécifiant le nom de ton compte, le tournoi dans lequel tu es, et le tournoi dans lequel tu souhaites aller.
+            Oui, tu peux changer librement de tournoi à condition que le tournoi que tu veux rejoindre soit au même prix
+            que la place que tu as déjà payée. Si ce n'est pas le cas, contacte-nous !
           </>
         ),
       },
@@ -167,8 +159,9 @@ const content = [
           <>
             Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription
             au tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
-            personnages et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le prix de ton
-            billet. Cette option est disponible pour les plus rapides seulement.
+            personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une{' '}
+            <strong>réduction</strong> de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers
+            seulement.
             <br />
             Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
             <br />

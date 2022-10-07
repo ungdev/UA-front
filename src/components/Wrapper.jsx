@@ -25,20 +25,14 @@ const Wrapper = ({ Component }) => {
   const [hasTeam, setHasTeam] = useState(false);
   const [hasPaid, setHasPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isSpectator, setIsSpectator] = useState(false);
 
   useSelector((state) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
       setHasTeam(!!user.teamId);
-      setIsSpectator(user.type === 'spectator');
     } else if (user && hasTeam !== !!user.teamId) {
       setHasTeam(!!user.teamId);
-    } else if (user && !isSpectator && user.type === 'spectator') {
-      setIsSpectator(true);
-    } else if (user && isSpectator && user.type !== 'spectator') {
-      setIsSpectator(false);
     }
     if (user && hasPaid !== user.hasPaid) {
       setHasPaid(user.hasPaid);
@@ -65,11 +59,8 @@ const Wrapper = ({ Component }) => {
       redirect = '/dashboard/team';
     } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
       redirect = '/dashboard';
-    } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-      redirect = '/dashboard/spectator';
-    } else if (!isSpectator && !hasTeam) {
+    } else if (!hasTeam) {
       if (
-        pathname === '/dashboard/spectator' ||
         pathname === '/dashboard' ||
         (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
       ) {
@@ -162,13 +153,11 @@ const Wrapper = ({ Component }) => {
 
     if (hasTeam) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
-    } else if (isSpectator) {
-      menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
     } else if (hasPaid) {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
-    if (hasTeam || isSpectator || hasPaid) {
+    if (hasTeam) {
       if (isShopAllowed) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }

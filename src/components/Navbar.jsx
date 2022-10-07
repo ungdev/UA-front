@@ -12,6 +12,7 @@ import { setLoginModalVisible } from '../modules/loginModal';
 
 import { logout, isFakeConnection, logBackToAdmin } from '../modules/login';
 import { hasOrgaPermission as _hasOrgaPermission } from '../utils/permission';
+import { deleteCart } from '../modules/cart';
 
 const links = [
   {
@@ -99,6 +100,8 @@ const Navbar = ({ isLoggedIn, action }) => {
           tabIndex="0"
           className="logout"
           onClick={() => {
+            // Remove the cart from the local storage, to avoid moving carts from one account to another
+            deleteCart();
             if (isFakeConnection()) {
               dispatch(logBackToAdmin());
               setMobileMenuVisible(false);

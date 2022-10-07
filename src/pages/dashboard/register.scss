@@ -1,65 +1,144 @@
 #dashboard-register {
-  .table-join {
-    margin-top: 20px;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
 
-    .coachJoinButton.buttonWrapper {
-      margin-left: 10px;
-    }
-  }
-
-  .team-tournament {
+  /* Stepper */
+  .steps {
+    overflow: hidden;
     display: flex;
+    width: 320px;
     justify-content: space-between;
-    flex-wrap: wrap;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    align-items: center;
+    counter-reset: step;
+    padding: 0;
+    margin: 1rem 0 0 0;
 
-    > div {
-      width: 45%;
+    li {
+      list-style-type: none;
+      color: white;
+      text-transform: uppercase;
+      font-size: 12px;
+      width: 33.33%;
+      float: left;
+      position: relative;
+    }
+
+    li:before {
+      content: counter(step);
+      counter-increment: step;
+      width: 24px;
+      line-height: 24px;
+      font-size: 12px;
+      color: #333;
+      background: white;
+      border-radius: 3px;
+      margin: 0 auto 5px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease-in-out 0ms;
+    }
+
+    li:after {
+      content: '';
+      width: calc(100% - 24px);
+      height: 2px;
+      background: white;
+      position: absolute;
+      left: -50%;
+      margin-left: 12px;
+      top: calc(24px / 2 - 1px);
+      transition: all 0.2s ease-in-out 50ms;
+    }
+
+    li:first-child:after {
+      /*connector not needed before the first step*/
+      content: none;
+    }
+
+    li.active:before {
+      transition: all 0.2s ease-in-out 50ms;
+    }
+
+    li.active:after {
+      transition: all 0.2s ease-in-out 0ms;
+    }
+
+    li.active:before,
+    li.active:after {
+      background: $secondary-color;
+      color: white;
     }
   }
 
-  .center {
-    margin: 0 auto;
-    display: block;
-
-    &.buttonWrapper {
-      display: table;
-      margin: 10px auto;
-    }
-  }
-
-  .select {
-    max-width: 600px;
-  }
-
-  .join-solo {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    > div {
-      width: 45%;
-    }
-  }
-
-  & > .banner {
+  .warning {
+    border-radius: 2px;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+    color: white;
     padding: 10px;
-    border-radius: $buttonRadius;
-    background-color: $primary-color;
-    color: #fff;
+    margin: 10px 0;
+
+    &.light {
+      background-color: $light-color-alt;
+      color: initial;
+    }
+    a {
+      color: inherit;
+    }
+  }
+
+  .card-container {
     display: flex;
-    gap: 10px;
-    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: calc(140px * 5 + 1.5rem * 7);
+
+    div {
+      width: clamp(125px, 5vw + 5vh, 140px);
+      height: clamp(125px, 5vw + 5vh, 140px);
+      padding: 25px;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      background-color: #fff;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 3px solid white;
+      cursor: pointer;
+      text-align: center;
+      color: $dark-color;
+      gap: 0.5rem;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    div:hover {
+      border: 3px solid $primary-color;
+    }
   }
 
-  & > .banner a {
-    color: inherit !important;
+  .table-column-action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .create-team {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
   }
 }
 
