@@ -98,7 +98,9 @@ const Shop = () => {
           toast.error(
             `Une erreur est survenue en cherchant le prix du ticket de l'utilisateur avec l'identifiant ${cart.tickets.userIds[i]}. Si ce problème persiste, contacte le support`,
           );
-          cart.tickets.userIds.splice(i, 1);
+          let newCart = { ...cart };
+          newCart.tickets.userIds.splice(i, 1);
+          saveCart(newCart);
           return false;
         }
         return true;
