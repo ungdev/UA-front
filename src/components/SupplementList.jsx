@@ -25,7 +25,7 @@ const supplementColumns = [
 ];
 
 // This represents the supplement list in the shop
-const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview }) => {
+const SupplementList = ({ supplementCart, hasTicket, onSupplementCartChanges, onItemPreview }) => {
   // The items available
   const items = useSelector((state) => state.items);
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
@@ -106,87 +106,93 @@ const SupplementList = ({ supplementCart, onSupplementCartChanges, onItemPreview
   };
 
   // We display the supplementTypes
-  const supplementRows = supplementTypes.map((supplement) => {
-    // The id we have to find in the cart
-    let supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
-    // Get cart supplement we are managing
-    let cartSupplement = supplementCart.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
-    if (!cartSupplement) {
-      cartSupplement = {
-        item: supplementFullId,
-        quantity: 0,
-      };
-    }
-    // Get attributes
-    const availableAttributes = [];
-    supplement.attributes.forEach((attribute) => {
-      availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
-    });
+  console.log(supplementTypes);
+  console.log(hasTicket);
+  const supplementRows = supplementTypes
+    .filter((supplementType) => supplementType.price > 0 || hasTicket)
+    .map((supplement) => {
+      // The id we have to find in the cart
+      let supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
+      // Get cart supplement we are managing
+      let cartSupplement = supplementCart.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
+      if (!cartSupplement) {
+        cartSupplement = {
+          item: supplementFullId,
+          quantity: 0,
+        };
+      }
+      // Get attributes
+      const availableAttributes = [];
+      supplement.attributes.forEach((attribute) => {
+        availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
+      });
 
-    // Return the row
-    return {
-      name: (
-        <>
-          {supplement.name}
-          {supplement.image && (
-            <Button
-              className="item-preview-button"
-              onClick={() => onItemPreview(supplement.image)}
-              leftIcon="far fa-image"
-              noStyle>
-              Voir le design
-            </Button>
-          )}
-          <div className="item-description">{supplement.infos}</div>
-        </>
-      ),
-      price: `${(supplement.price / 100).toFixed(2)}€`,
-      attributes: supplement.attributes.length ? (
-        <Select
-          options={availableAttributes}
-          onChange={(value) => {
-            let newSelectedAttributes = { ...selectedAttributes };
-            newSelectedAttributes[supplement.id] = value;
-            setSelectedAttributes(newSelectedAttributes);
-          }}
-          value={selectedAttributes[supplement.id]}
-          className="shop-input"
-        />
-      ) : (
-        ''
-      ),
-      add_to_cart: (
-        <Button
-          onClick={() => {
-            if (supplement.left <= cartSupplement.quantity) {
-              toast.warn('Le stock de cet item est épuisé');
-              return;
-            }
-            if (supplement.price < 0 && cartSupplement.quantity >= 1) {
-              toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
-              return;
-            }
-            let newCartSupplements = [...supplementCart];
-            if (cartSupplement.quantity) {
-              newCartSupplements.forEach(
-                (cartSupplement) =>
-                  (cartSupplement.quantity =
-                    cartSupplement.itemId === supplementFullId ? cartSupplement.quantity + 1 : cartSupplement.quantity),
-              );
-              setSupplementCart(newCartSupplements);
-            } else {
-              const newSupplement = {
-                itemId: supplementFullId,
-                quantity: 1,
-              };
-              setSupplementCart([...supplementCart, newSupplement]);
-            }
-          }}>
-          Ajouter au panier
-        </Button>
-      ),
-    };
-  });
+      // Return the row
+      return {
+        name: (
+          <>
+            {supplement.name}
+            {supplement.image && (
+              <Button
+                className="item-preview-button"
+                onClick={() => onItemPreview(supplement.image)}
+                leftIcon="far fa-image"
+                noStyle>
+                Voir le design
+              </Button>
+            )}
+            <div className="item-description">{supplement.infos}</div>
+          </>
+        ),
+        price: `${(supplement.price / 100).toFixed(2)}€`,
+        attributes: supplement.attributes.length ? (
+          <Select
+            options={availableAttributes}
+            onChange={(value) => {
+              let newSelectedAttributes = { ...selectedAttributes };
+              newSelectedAttributes[supplement.id] = value;
+              setSelectedAttributes(newSelectedAttributes);
+            }}
+            value={selectedAttributes[supplement.id]}
+            className="shop-input"
+          />
+        ) : (
+          ''
+        ),
+        add_to_cart: (
+          <Button
+            onClick={() => {
+              if (supplement.left <= cartSupplement.quantity) {
+                toast.warn('Le stock de cet item est épuisé');
+                return;
+              }
+              if (supplement.price < 0 && cartSupplement.quantity >= 1) {
+                toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
+                return;
+              }
+              let newCartSupplements = [...supplementCart];
+              if (cartSupplement.quantity) {
+                newCartSupplements.forEach(
+                  (cartSupplement) =>
+                    (cartSupplement.quantity =
+                      cartSupplement.itemId === supplementFullId
+                        ? cartSupplement.quantity + 1
+                        : cartSupplement.quantity),
+                );
+                setSupplementCart(newCartSupplements);
+              } else {
+                const newSupplement = {
+                  itemId: supplementFullId,
+                  quantity: 1,
+                };
+                setSupplementCart([...supplementCart, newSupplement]);
+              }
+            }}>
+            Ajouter au panier
+          </Button>
+        ),
+      };
+    });
 
   return (
     <div className="supplement-list">

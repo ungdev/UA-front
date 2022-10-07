@@ -244,6 +244,7 @@ const Shop = () => {
           <div className="shop-section">
             <SupplementList
               supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
               onSupplementCartChanges={onSupplementCartChanges}
               onItemPreview={onItemPreview}
             />
