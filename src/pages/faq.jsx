@@ -17,16 +17,12 @@ const content = [
           <>
             Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra
             que tu présentes l'autorisation parentale
-            {/*(
             <strong>
-              Mise
-              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2021.pdf">
+              <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2022.pdf">
                 disponible ici
-            </a>
+              </a>
             </strong>
-            )*/}
-            , fournie lors de l’inscription,{' '}
-            <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+            , <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
             avant d'accéder à l'UTT Arena.
           </>
         ),
