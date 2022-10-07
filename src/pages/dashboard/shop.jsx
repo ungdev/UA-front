@@ -203,6 +203,16 @@ const Shop = () => {
   // Resets the cart. It removes the cart from the local storage, and resets the "cart" and "tickets" states.
   // Callback of <Cart /> when the user decides to reset the entire cart
   const onCartReset = () => {
+    let membersOfTickets = cart.tickets.userIds.map((ticket) => {
+      if (ticket === userId) {
+        setIsPlaceInCart(false);
+      }
+      return teamMembers.find((member) => member.id === ticket);
+    });
+    setTeamMembersWithoutTicket(teamMembersWithoutTicket.concat(membersOfTickets));
+    if (cart.tickets.attendant) {
+      setHasAttendant(false);
+    }
     setCart(deleteCart());
     setTickets([]);
   };
