@@ -105,7 +105,7 @@ const Home = () => {
           <TournamentCards />
         </div>
 
-        <div className="home-partners">
+        {/* <div className="home-partners">
           <Title align="center">Partenaires</Title>
           <div className="list-partners">
             {!partners ? (
@@ -125,7 +125,7 @@ const Home = () => {
                 </div>
               ))
             )}
-          </div>
+          </div> */}
 
           {/* <Link href="/partners">
             <a>
