@@ -22,29 +22,31 @@ const Purchases = () => {
     dispatch(fetchItems());
   }, []);
 
-  const hasDiscount = email.endsWith('@utt.fr') || email.endsWith('@utc.fr') || email.endsWith('@utbm.fr');
-
   const displayCarts = !items
     ? []
     : carts.map((cart) => {
         const dataSource = cart.cartItems.map((cartItem) => {
           const item = items.find((item) => cartItem.itemId === item.id);
           let itemName = item.name;
-          let price = item.price;
+          let price = cartItem.reducedPrice || item.price;
           if (item.id.startsWith('ticket')) {
             itemName =
               `${item.name} | ` +
               (cartItem.forUser.id === userId ? `Toi (${cartItem.forUser.username})` : cartItem.forUser.username);
-            if (cartItem.forUser.id === userId && type !== 'coach' && hasDiscount) {
-              price = type === 'player' ? 1500 : 1000;
-            }
           } else if (item.attribute) {
             itemName += ` - Taille ${item.attribute.toUpperCase()}`;
           }
           return {
             name: itemName,
             quantity: cartItem.quantity,
-            price: `${(price / 100).toFixed(2)} €`,
+            price: cartItem.reducedPrice ? (
+              <>
+                {(cartItem.reducedPrice / 100).toFixed(2)}€
+                <span className="reducted-price">{(cartItem.price / 100).toFixed(2)}€</span>
+              </>
+            ) : (
+              `${(cartItem.reducedPrice / 100).toFixed(2)}€`
+            ),
             total: `${((cartItem.quantity * price) / 100).toFixed(2)} €`,
             totalInt: cartItem.quantity * price,
           };
