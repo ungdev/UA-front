@@ -81,7 +81,7 @@ const tournaments = [
   },
   {
     name: 'Valorant',
-    shortName: 'Valorant',
+    shortName: 'valorant',
     players: 80,
     teamCount: 16,
     image: '/tournaments/valorant.jpg',
