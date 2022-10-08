@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Input, Button, Title, Collapse } from '../../components/UI';
+import { Input, Button, Title } from '../../components/UI';
 import { editUser } from '../../modules/login';
 import { API } from '../../utils/api';
 import { fetchCurrentTeam } from '../../modules/team';
@@ -10,7 +10,7 @@ import { fetchCurrentTeam } from '../../modules/team';
 const Account = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
-  const team = useSelector((state) => state.team);
+  // const team = useSelector((state) => state.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -62,18 +62,18 @@ const Account = () => {
     }
   };
 
-  const downloadTicket = async () => {
-    const res = await API.get(`tickets`);
+  // const downloadTicket = async () => {
+  //   const res = await API.get(`tickets`);
 
-    let element = document.createElement('a');
-    element.href = `data:application/pdf;base64,${res.data}`;
-    element.download = 'Billet UTT Arena 2021.pdf';
-    element.style.display = 'none';
+  //   let element = document.createElement('a');
+  //   element.href = `data:application/pdf;base64,${res.data}`;
+  //   element.download = 'Billet UTT Arena 2021.pdf';
+  //   element.style.display = 'none';
 
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
+  //   document.body.appendChild(element);
+  //   element.click();
+  //   document.body.removeChild(element);
+  // };
 
   return (
     <div id="dashboard-account">
@@ -147,7 +147,7 @@ const Account = () => {
       ) : (
         ''
       )}
-      {user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
+      {/* user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
         <>
           <div className="to-bring">
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
@@ -216,7 +216,7 @@ const Account = () => {
             </Button>
           </div>
         </>
-      )}
+      ) */}
     </div>
   );
 };
