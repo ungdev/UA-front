@@ -160,7 +160,7 @@ const tournaments = [
         48 joueurs qualifiés. <a href="https://forms.gle/LNXdooZGcNFwTSkV9">Inscription aux qualifications ici.</a>
       </>
     ),
-    rules: `https://osu.ppy.sh/community/forums/topics/1409204`,
+    rules: `https://osu.ppy.sh/community/forums/topics/1661444`,
   },
   {
     name: 'Teamfight Tactics',
