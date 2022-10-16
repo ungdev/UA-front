@@ -254,7 +254,7 @@ const Register = () => {
             }
             rightIcon="fas fa-plus"
             disabled={!user.discordId}>
-            Créer mon équipe
+            {tournamentSolo ? 'Valider' : 'Créer mon équipe'}
           </Button>
         </div>
       ) : (
