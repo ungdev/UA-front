@@ -88,7 +88,7 @@ const Entry = () => {
                     ) : scannedUser.type === 'coach' ? (
                       'Coach/Manager'
                     ) : scannedUser.type === 'spectator' ? (
-                        'Spectateur'
+                      'Spectateur'
                     ) : scannedUser.type === 'orga' ? (
                       'Orga'
                     ) : (
