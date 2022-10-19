@@ -21,6 +21,7 @@ const columnTitles = {
 const statusOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'Joueur', value: 'player' },
+  { name: 'Spectateur', value: 'spectator' },
   { name: 'Orga', value: 'orga' },
   { name: 'Coach', value: 'coach' },
   { name: 'Accompagnateur', value: 'attendant' },

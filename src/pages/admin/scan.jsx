@@ -7,7 +7,7 @@ import { Input, Title, Button, Card, QRCodeReader } from '../../components/UI';
 /**
  * @typedef UserScan
  * @property {string} id
- * @property {'player'|'coach'|'orga'} type
+ * @property {'player'|'coach'|'orga'|'spectator'} type
  * @property {boolean} hasPaid
  * @property {string} username
  * @property {string} firstname
@@ -87,6 +87,8 @@ const Entry = () => {
                       'Joueur'
                     ) : scannedUser.type === 'coach' ? (
                       'Coach/Manager'
+                    ) : scannedUser.type === 'spectator' ? (
+                        'Spectateur'
                     ) : scannedUser.type === 'orga' ? (
                       'Orga'
                     ) : (
