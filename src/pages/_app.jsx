@@ -38,14 +38,14 @@ const App = ({ Component, reduxStore }) => {
     <div>
       <Head>
         <script src="/matomo.js"></script>
-        <title>UTT Arena 2022 - 2, 3 et 4 décembre 2022</title>
+        <title>UTT Arena 2022 - 3 et 4 décembre 2022</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
         <meta
           name="description"
           content={
             'Viens participer au célèbre tournoi du Grand-Est ! ' +
-            "L'UTT Arena revient pour sa 20ème édition les 2, 3 et 4 décembre 2022. " +
+            "L'UTT Arena revient pour sa 20ème édition les 3 et 4 décembre 2022. " +
             "Au programme, 8 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
             'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
             "Alors prépare tout ton stuff et impose-toi dans l'arène !"
@@ -53,7 +53,7 @@ const App = ({ Component, reduxStore }) => {
         />
 
         <meta property="og:site_name" content="UTT Arena 2022" />
-        <meta property="og:title" content="UTT Arena 2022 - 2, 3 et 4 décembre 2022" />
+        <meta property="og:title" content="UTT Arena 2022 - 3 et 4 décembre 2022" />
         <meta property="og:url" content="https://arena.utt.fr/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
@@ -63,17 +63,17 @@ const App = ({ Component, reduxStore }) => {
         <meta property="og:image:height" content="500" />
         <meta
           property="og:description"
-          content="Entrez dans l’arène les 2, 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
+          content="Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
         />
 
-        <meta name="twitter:title" content="UTT Arena 2022 - 2, 3 et 4 décembre 2022" />
+        <meta name="twitter:title" content="UTT Arena 2022 - 3 et 4 décembre 2022" />
         <meta name="twitter:site" content="@UTTArena" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:image" content={uploadsUrl() + '/images/banniere_SEO.png'} />
-        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2022, le 2, 3 et 4 décembre" />
+        <meta name="twitter:image:alt" content="Bannière de l'UTT Arena 2022, le 3 et 4 décembre" />
         <meta
           property="twitter:description"
-          content="Entrez dans l’arène les 2, 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
+          content="Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !"
         />
 
         <meta name="google-site-verification" content={googleVerification()} />
