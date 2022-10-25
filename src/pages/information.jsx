@@ -40,7 +40,7 @@ const Information = () => (
     <Title align="center">Inscriptions</Title>
     <div className="information-section">
       <p>
-        Ouverture des inscriptions <span className="accent">à venir</span> !
+        Tu peux t'inscrire <span className="accent">dès maintenant</span> sur notre site !
       </p>
       <ol>
         <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
@@ -108,7 +108,7 @@ const Information = () => (
       <Title level={4}>Joueurs mineurs</Title>
       <p>
         Pour participer au tournoi il faut avoir au <strong>minimum 15 ans</strong> lors de l'événement. Il faudra que
-        tu présentes <strong>l'autorisation parentale</strong>
+        tu présentes <strong>l'autorisation parentale</strong>{' '}
         <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2022.pdf" className="">
           disponible ici
         </a>

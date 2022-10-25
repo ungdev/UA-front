@@ -135,8 +135,8 @@ const tournaments = [
     shortName: 'osu',
     players: 48,
     image: '/tournaments/osu.jpg',
-    shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    shortRewards: '400€',
+    rewards: <>400€</>,
     casters: <>À venir</>,
     //  (
     //   <ul>

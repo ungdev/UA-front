@@ -45,8 +45,8 @@ const Home = () => {
             <span className="accent">
               2250m<sup>2</sup>
             </span>{' '}
-            t'attendent pour passer 3 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
-            jeux favoris, 3 jours pour montrer tes skills parmis les <span className="accent">630 joueurs</span> qui
+            t'attendent pour passer 2 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
+            jeux favoris, 2 jours pour montrer tes skills parmis les <span className="accent">630 joueurs</span> qui
             composeront l’évènement, et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
             <span className="accent">guests d’exception</span> viendront caster cette édition qui s’annonce enflammée !
@@ -87,6 +87,7 @@ const Home = () => {
               <br />
               Nous tenons à présenter nos excuses à tous, et ferons en sorte que ces deux jours de LAN se déroulent au
               mieux pour tous.
+              <br />
               <br />
               L'équipe organisatrice de l'UTT Arena
             </p>
