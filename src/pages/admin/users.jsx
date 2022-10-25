@@ -46,11 +46,12 @@ const scannedOptions = [
 
 const tournamentOptions = [
   { name: 'Tous', value: 'all' },
-  { name: 'LoL (compétitif)', value: 'lolCompetitive' },
-  { name: 'LoL (loisir)', value: 'lolLeisure' },
+  { name: 'LoL', value: 'lol' },
+  { name: 'Valorant', value: 'valorant' },
   { name: 'Rocket League', value: 'rl' },
   { name: 'CS:GO', value: 'csgo' },
   { name: 'SSBU', value: 'ssbu' },
+  { name: 'TFT', value: 'tft' },
   { name: 'osu!', value: 'osu' },
   { name: 'Libre', value: 'open' },
 ];
