@@ -19,7 +19,7 @@ const Information = () => (
       <span className="accent">
         20<sup>ème</sup> édition
       </span>{' '}
-      ! D'une simple salle d'examen de l'UTT à 7500m² de gaming au Parc des Expositions de Troyes, le Cube, en passant
+      ! D'une simple salle d'examen de l'UTT à 2250m² de gaming au Parc des Expositions de Troyes, le Cube, en passant
       par le festival des jeux, l'UTT Arena a évolué de manière à proposer chaque année des tournois de meilleure
       qualité à ses joueurs !
       <br />
@@ -90,6 +90,14 @@ const Information = () => (
             <td>Accompagnateur</td>
             <td>15€</td>
             <td>Réservé aux accompagnateurs de joueurs mineurs.</td>
+          </tr>
+          <tr>
+            <td>Spectateur</td>
+            <td>10€</td>
+            <td>
+              Possibilité d'accéder à l'UTT Arena et sa restauration le samedi de 9h à 20h, et le dimanche de 9h à 18h,
+              cependant, il sera impossible d'accéder aux espaces joueurs
+            </td>
           </tr>
         </tbody>
       </table>
@@ -188,9 +196,9 @@ const Information = () => (
 
     <Title align="center">Spectateurs</Title>
     <div className="information-section">
-      Cette année, l'UTT Arena s'inscrivant dans le Festival des Jeux de Troyes, les spectateurs voulant assister à
-      l'UTT Arena devront acheter leur place pour le Festival des jeux. Venez profiter de l'ambiance de la scène, du
-      Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires.
+      Cette année, les spectateurs voulant assister à l'UTT Arena devront acheter leur place à la billetterie de l'UTT
+      Arena. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu vidéo, et
+      visiter les stands de nos partenaires.
     </div>
 
     <Title align="center">Planning</Title>

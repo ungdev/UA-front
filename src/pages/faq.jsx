@@ -36,8 +36,8 @@ const content = [
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform">
               disponible ici
             </a>
-            . L’équipe de l’UTT Arena se réserve le droit d’accepter ou refuser ta demande, et toute personne faisant du
-            streaming sans autorisation validée par l’équipe se verra sanctionnée.
+            . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
+            streaming sans autorisation validée par l'équipe se verra sanctionnée.
           </>
         ),
       },
@@ -51,19 +51,19 @@ const content = [
         ),
       },
       {
-        question: 'Qui contacter si j’ai des questions avant ou pendant l’UTT Arena ?',
+        question: "Qui contacter si j'ai des questions avant ou pendant l'UTT Arena ?",
         answer:
-          'N’hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l’UTT Arena.',
+          "N'hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l'UTT Arena.",
       },
       {
         question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
         answer:
-          "Les règlements sont encore en cours d'écriture. Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
+          "Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !",
       },
       {
         question: "Puis-je assister à l'UTT Arena en tant que spectateur ?",
         answer:
-          "Cette année, l'UTT Arena s'inscrivant dans le Festival des Jeux de Troyes, les spectateurs voulant assister à l'UTT Arena devront acheter leur place pour le Festival des jeux. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires.",
+          "Cette année, les spectateurs voulant assister à l'UTT Arena devront acheter leur place à la billetterie de l'UTT Arena. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires.\nVous pouvez prendre votre place en vous inscrivant sur ce site.",
       },
     ],
   },
@@ -118,7 +118,7 @@ const content = [
       },
       {
         question: "Dans combien de tournois puis-je m'inscrire ?",
-        answer: 'Les tournois se jouant en simultané, tu ne peux t’inscrire qu’à un seul tournoi.',
+        answer: "Les tournois se jouant en simultané, tu ne peux t'inscrire qu'à un seul tournoi.",
       },
     ],
   },

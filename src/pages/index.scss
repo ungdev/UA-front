@@ -76,6 +76,17 @@
       background: #dadada;
     }
 
+    .team-message {
+      background-color: rgb(255, 251, 196);
+      margin-bottom: 20px;
+
+      p {
+        text-align: start;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+
     .info-table {
       max-width: 900px;
       margin: auto;
