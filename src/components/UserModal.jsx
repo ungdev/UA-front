@@ -19,6 +19,7 @@ const typeOptions = [
   { name: 'Joueur', value: 'player' },
   { name: 'Organisateur', value: 'orga' },
   { name: 'Coach', value: 'coach' },
+  { name: 'Spectateur', value: 'spectator' },
   { name: 'Accompagnateur', value: 'attendant' },
 ];
 

@@ -133,6 +133,19 @@ export const resetPassword = (email, resetFields) => async (dispatch) => {
   resetFields();
 };
 
+export const setType = (type) => async (dispatch) => {
+  let res = undefined;
+  if (type === 'spectator') {
+    res = await API.post(`/users/current/spectate`);
+  } else {
+    res = await API.delete(`/users/current/spectate`);
+  }
+  dispatch({
+    type: SET_USER,
+    user: res.data,
+  });
+};
+
 export const validate = (registerToken) => async (dispatch) => {
   const res = await API.post(`auth/validate/${registerToken}`);
   toast.success('Le compte a été confirmé !');
