@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Modal, Button, Input, Select, Radio } from './UI';
 
@@ -8,6 +9,10 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
   // The id of the person.
   // If placeFor is 'attendant', then placeId is an object with 2 values : 'firstname' and 'lastname'
   const [placeId, setPlaceId] = useState(undefined);
+  // The place step 0 for regular modal, 1 for text confirmation modal
+  const [step, setStep] = useState(0);
+  // The user type
+  const userType = useSelector((state) => state.login.user && state.login.user.type);
 
   useEffect(() => {
     if (!hasTicket) {
@@ -49,6 +54,14 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
 
   if (!placeFor || placeId === undefined) return null;
 
+  const nextStep = async () => {
+    if (!placeFor === 'me' || userType !== 'spectator' || step) {
+      setStep(0);
+      return addPlace();
+    }
+    setStep(step + 1);
+  };
+
   const addPlace = async () => {
     if (placeFor === 'attendant') {
       if (placeId.firstname == '' || placeId.lastname == '') {
@@ -66,43 +79,53 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
       visible={true}
       onCancel={() => onQuit(undefined, undefined)}
       buttons={
-        <Button primary onClick={addPlace}>
+        <Button primary onClick={nextStep}>
           Ajouter
         </Button>
       }>
-      <Radio
-        label="Pour"
-        name="for"
-        options={canPayTo()}
-        value={placeFor}
-        onChange={setPlaceFor}
-        className="add-place-input"
-      />
-      {placeFor === 'attendant' && (
+      {!step ? (
         <>
-          <Input
-            label="Prénom"
-            value={placeId.firstname}
-            onChange={(value) => setPlaceId({ ...placeId, firstname: value })}
+          <Radio
+            label="Pour"
+            name="for"
+            options={canPayTo()}
+            value={placeFor}
+            onChange={setPlaceFor}
+            className="add-place-input"
           />
-          <Input
-            label="Nom"
-            value={placeId.lastname}
-            onChange={(value) => setPlaceId({ ...placeId, lastname: value })}
-          />
+          {placeFor === 'attendant' && (
+            <>
+              <Input
+                label="Prénom"
+                value={placeId.firstname}
+                onChange={(value) => setPlaceId({ ...placeId, firstname: value })}
+              />
+              <Input
+                label="Nom"
+                value={placeId.lastname}
+                onChange={(value) => setPlaceId({ ...placeId, lastname: value })}
+              />
+            </>
+          )}
+          {placeFor === 'other' && (
+            <Select
+              label="Membre"
+              options={teamMembersWithoutTicket.map((member) => ({
+                value: member.id,
+                label: `${member.username} (${member.type === 'player' ? 'Joueur' : 'Coach'})`,
+              }))}
+              value={placeId}
+              onChange={setPlaceId}
+              className="add-place-input"
+            />
+          )}
         </>
-      )}
-      {placeFor === 'other' && (
-        <Select
-          label="Membre"
-          options={teamMembersWithoutTicket.map((member) => ({
-            value: member.id,
-            label: `${member.username} (${member.type === 'player' ? 'Joueur' : 'Coach'})`,
-          }))}
-          value={placeId}
-          onChange={setPlaceId}
-          className="add-place-input"
-        />
+      ) : (
+        <>
+          En prenant une place spectateur, vous acceptez de devoir quitter l'enceinte de l'UTT Arena du samedi 3
+          décembre à 20h au dimanche 4 décembre à 9h, et de pouvoir accéder à tous les espaces de l'UTT Arena, excepté
+          les espaces reservés aux joueurs.
+        </>
       )}
     </Modal>
   );

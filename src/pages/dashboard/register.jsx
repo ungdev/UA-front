@@ -240,13 +240,14 @@ const Register = () => {
   const Step5 = (
     <>
       <div className="warning light">
-        En participant au tournoi, j'accepte le règlement du tournoi (disponible sur la page du tournoi) et le{' '}
+        En participant {userType === 'spectator' ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
+        {userType !== 'spectator' && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
         <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
       </div>
-      {createTeam ? (
+      {createTeam || userType === 'spectator' ? (
         <div className="create-team">
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
-          {tournament == 'osu' ? (
+          {tournament == 'osu' && userType !== 'spectator' ? (
             <>
               <div className="warning">
                 Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Tu peux t'inscrire aux qualifications
