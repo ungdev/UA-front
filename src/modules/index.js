@@ -5,7 +5,6 @@ import register from './register';
 import team from './team';
 import tournament from './tournament';
 import carts from './carts';
-import items from './items';
 import cart from './cart';
 import userEntry from './userEntry';
 import users from './users';
@@ -18,7 +17,6 @@ export default combineReducers({
   team,
   tournament,
   carts,
-  items,
   cart,
   userEntry,
   users,

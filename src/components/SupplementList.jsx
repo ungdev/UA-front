@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Button, Select, Table, Title } from './UI';
@@ -25,9 +24,7 @@ const supplementColumns = [
 ];
 
 // This represents the supplement list in the shop
-const SupplementList = ({ supplementCart, hasTicket, onSupplementCartChanges, onItemPreview }) => {
-  // The items available
-  const items = useSelector((state) => state.items);
+const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChanges, onItemPreview }) => {
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
   // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
   const [supplementTypes, setSupplementTypes] = useState([]);
@@ -205,6 +202,18 @@ SupplementList.propTypes = {
    * The supplement part of the cart. It has the same shape as the one we need to send through the POST /users/current/carts route
    */
   supplementCart: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string, quantity: PropTypes.number })).isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      category: PropTypes.string,
+      attribute: PropTypes.string,
+      price: PropTypes.number,
+      reducedPrice: PropTypes.number,
+      infos: PropTypes.string,
+      image: PropTypes.string,
+    }),
+  ).isRequired,
   /**
    * A callback called each time the user adds, removes or modifies a supplement.
    * It takes one parameter : the supplement cart (their shape is the same as the one of supplementCart)

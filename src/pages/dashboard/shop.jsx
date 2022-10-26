@@ -18,7 +18,7 @@ const Shop = () => {
   // Informations about the user
   const { id: userId, hasPaid, username, age, attendant, type: userType } = useSelector((state) => state.login.user);
   // The list of all items available
-  const items = useSelector((state) => state.items);
+  const [items, setItems] = useState(null);
   // The team the player is in
   const team = useSelector((state) => state.team);
   // The members of the team are the players and the coaches
@@ -47,8 +47,7 @@ const Shop = () => {
   const [tickets, setTickets] = useState(undefined);
 
   // Fetch items, team and checks if user already have an attendant
-  useEffect(() => {
-    dispatch(fetchItems());
+  useEffect(async () => {
     if (userType !== 'spectator') dispatch(fetchCurrentTeam());
     else
       setTeamMembers([
@@ -61,6 +60,7 @@ const Shop = () => {
           type: userType,
         },
       ]);
+    setItems(await fetchItems());
   }, []);
 
   // Initializing teamMembers
@@ -73,10 +73,12 @@ const Shop = () => {
 
   // Save the cart everytime it is modified
   useEffect(() => {
-    if (cart) {
+    if (cart && items) {
+      // Check supplements are still there or remove them
+      cart.supplements = cart.supplements.filter(({ itemId }) => items.some((item) => item.id === itemId));
       saveCart(cart);
     }
-  }, [cart]);
+  }, [cart, items]);
 
   // Checks if the place of the user is already in the cart
   // Checks if the user already have an attendant
@@ -261,6 +263,7 @@ const Shop = () => {
           </div>
           <div className="shop-section">
             <SupplementList
+              items={items}
               supplementCart={cart.supplements}
               hasTicket={isPlaceInCart}
               onSupplementCartChanges={onSupplementCartChanges}
