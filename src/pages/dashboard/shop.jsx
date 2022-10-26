@@ -16,7 +16,7 @@ import { getTicketPrice } from '../../modules/users';
 const Shop = () => {
   const dispatch = useDispatch();
   // Informations about the user
-  const { id: userId, hasPaid, username, age, attendant } = useSelector((state) => state.login.user);
+  const { id: userId, hasPaid, username, age, attendant, type: userType } = useSelector((state) => state.login.user);
   // The list of all items available
   const items = useSelector((state) => state.items);
   // The team the player is in
@@ -49,7 +49,18 @@ const Shop = () => {
   // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
     dispatch(fetchItems());
-    dispatch(fetchCurrentTeam());
+    if (userType !== 'spectator') dispatch(fetchCurrentTeam());
+    else
+      setTeamMembers([
+        {
+          id: userId,
+          hasPaid,
+          username,
+          age,
+          attendant,
+          type: userType,
+        },
+      ]);
   }, []);
 
   // Initializing teamMembers
@@ -72,7 +83,7 @@ const Shop = () => {
   // Initializes teamMembersWithoutTicket
   // Fills tickets
   useEffect(async () => {
-    if (!cart || !teamMembers) return;
+    if (!cart || !teamMembers || !items) return;
     // Checking if place is in cart
     if (cart.tickets.userIds.find((id) => id === userId)) {
       setIsPlaceInCart(true);
@@ -90,7 +101,13 @@ const Shop = () => {
     if (tickets) return;
     // Fill the tickets state
     // First, we make all the requests
-    let ticketsArray = (await Promise.allSettled(cart.tickets.userIds.map((user) => getTicketPrice(user))))
+    let ticketsArray = (
+      await Promise.allSettled(
+        cart.tickets.userIds.map((user) =>
+          user === userId ? items.find((item) => item.id === `ticket-${userType}`) : getTicketPrice(user),
+        ),
+      )
+    )
       // Then, we only keep the return value of the Promises
       .map((result) => result.value)
       // And finally, we remove failed Promises
@@ -107,7 +124,7 @@ const Shop = () => {
         return true;
       });
     setTickets(ticketsArray.reduce((prev, curr, i) => ({ ...prev, [cart.tickets.userIds[i]]: curr }), {}));
-  }, [cart, teamMembers]);
+  }, [items, cart, teamMembers]);
 
   if (!items || !teamMembers || !tickets) {
     return null;
@@ -183,7 +200,8 @@ const Shop = () => {
     } else {
       setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId] } });
       let newTickets = { ...tickets };
-      newTickets[placeId] = await getTicketPrice(placeId);
+      newTickets[placeId] =
+        placeFor === 'me' ? items.find((item) => item.id === `ticket-${userType}`) : await getTicketPrice(placeId);
       setTickets(newTickets);
       if (placeFor === 'me') {
         setIsPlaceInCart(true);

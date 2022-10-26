@@ -45,7 +45,7 @@ const Purchases = () => {
                 <span className="reducted-price">{(cartItem.price / 100).toFixed(2)}€</span>
               </>
             ) : (
-              `${(cartItem.reducedPrice / 100).toFixed(2)}€`
+              `${(cartItem.price / 100).toFixed(2)}€`
             ),
             total: `${((cartItem.quantity * price) / 100).toFixed(2)} €`,
             totalInt: cartItem.quantity * price,

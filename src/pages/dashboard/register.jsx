@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransition, animated } from 'react-spring';
 
+import { setType } from '../../modules/login';
+
 import { Input, Button, Table } from '../../components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '../../modules/team';
 import { API } from '../../utils/api';
@@ -90,6 +92,7 @@ const Register = () => {
           onClick={() => {
             setUserType('player');
             setStep(step + 1);
+            setTournamentSolo(false);
           }}>
           <i className="fa fa-gamepad"></i>
           <p>Joueur</p>
@@ -99,9 +102,20 @@ const Register = () => {
           onClick={() => {
             setUserType('coach');
             setStep(step + 1);
+            setTournamentSolo(false);
           }}>
           <i className="fa fa-headset"></i>
           <p>Coach / Manager</p>
+        </div>
+
+        <div
+          onClick={() => {
+            setUserType('spectator');
+            setStep(step + 3);
+            setTournamentSolo(true);
+          }}>
+          <i className="fa fa-user"></i>
+          <p>Spectator</p>
         </div>
       </div>
     </>
@@ -226,13 +240,14 @@ const Register = () => {
   const Step5 = (
     <>
       <div className="warning light">
-        En participant au tournoi, j'accepte le règlement du tournoi (disponible sur la page du tournoi) et le{' '}
+        En participant {userType === 'spectator' ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
+        {userType !== 'spectator' && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
         <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
       </div>
-      {createTeam ? (
+      {createTeam || userType === 'spectator' ? (
         <div className="create-team">
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
-          {tournament == 'osu' ? (
+          {tournament == 'osu' && userType !== 'spectator' ? (
             <>
               <div className="warning">
                 Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Tu peux t'inscrire aux qualifications
@@ -249,7 +264,13 @@ const Register = () => {
             className="center"
             onClick={() =>
               dispatch(
-                cT({ name: tournamentSolo ? soloTeamName : teamName, tournamentId: tournament, userType: userType }),
+                userType == 'spectator'
+                  ? setType('spectator')
+                  : cT({
+                      name: tournamentSolo ? soloTeamName : teamName,
+                      tournamentId: tournament,
+                      userType: userType,
+                    }),
               )
             }
             rightIcon="fas fa-plus"
@@ -283,7 +304,11 @@ const Register = () => {
   const backButton = () => {
     if (((step == 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
       return (
-        <Button primary onClick={() => setStep(tournamentSolo && step == 5 ? step - 2 : step - 1)}>
+        <Button
+          primary
+          onClick={() =>
+            setStep(userType == 'spectator' ? step - 3 : tournamentSolo && step == 5 ? step - 2 : step - 1)
+          }>
           {'Retour'}
         </Button>
       );
