@@ -115,7 +115,7 @@ const Register = () => {
             setTournamentSolo(true);
           }}>
           <i className="fa fa-user"></i>
-          <p>Spectator</p>
+          <p>Spectateur</p>
         </div>
       </div>
     </>
