@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Table, Card, Title } from '../../components/UI';
@@ -16,10 +16,11 @@ const Purchases = () => {
   const dispatch = useDispatch();
   const { id: userId } = useSelector((state) => state.login.user);
   const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
-  const items = useSelector((state) => state.items);
-  useEffect(() => {
+  const [items, setItems] = useState(null);
+
+  useEffect(async () => {
     dispatch(fetchAllCarts());
-    dispatch(fetchItems());
+    setItems(await fetchItems());
   }, []);
 
   const displayCarts = !items
