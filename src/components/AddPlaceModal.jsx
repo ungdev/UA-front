@@ -123,7 +123,7 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
       ) : (
         <>
           En prenant une place spectateur, vous acceptez de devoir quitter l'enceinte de l'UTT Arena du samedi 3
-          décembre à 20h au dimanche 4 décembre à 9h, et de pouvoir accéder à tous les espaces de l'UTT Arena, excepté
+          décembre à 23h59 au dimanche 4 décembre à 9h, et de pouvoir accéder à tous les espaces de l'UTT Arena, excepté
           les espaces reservés aux joueurs.
         </>
       )}
