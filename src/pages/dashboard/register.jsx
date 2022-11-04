@@ -249,14 +249,7 @@ const Register = () => {
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
           {tournament == 'osu' && userType !== 'spectator' ? (
             <>
-              <div className="warning">
-                Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi. Tu peux t'inscrire aux qualifications
-                avec{' '}
-                <a href="https://forms.gle/LNXdooZGcNFwTSkV9" rel="noreferrer noopener">
-                  ce formulaire
-                </a>
-                .
-              </div>
+              <div className="warning">Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
             </>
           ) : null}
           <Button
