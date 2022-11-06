@@ -155,11 +155,7 @@ const tournaments = [
     //   </ul>
     // ),
     // toornamentId: null,
-    format: (
-      <>
-        48 joueurs qualifiés. <a href="https://forms.gle/LNXdooZGcNFwTSkV9">Inscription aux qualifications ici.</a>
-      </>
-    ),
+    format: <>48 joueurs qualifiés</>,
     rules: `https://osu.ppy.sh/community/forums/topics/1661444`,
   },
   {
