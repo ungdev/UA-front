@@ -95,8 +95,8 @@ const Information = () => (
             <td>Spectateur</td>
             <td>10€</td>
             <td>
-              Possibilité d'accéder à l'UTT Arena et sa restauration le samedi de 9h à 20h, et le dimanche de 9h à 18h,
-              cependant, il sera impossible d'accéder aux espaces joueurs
+              Possibilité d'accéder à l'UTT Arena et sa restauration le samedi de 9h à 23h59, et le dimanche de 9h à
+              18h, cependant, il sera impossible d'accéder aux espaces joueurs
             </td>
           </tr>
         </tbody>
