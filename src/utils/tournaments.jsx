@@ -9,21 +9,20 @@ const tournaments = [
     teamCount: 32,
     image: '/tournaments/lol.jpg',
     shortRewards: '1600€',
-    rewards: <>1600€</>,
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 1000€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 400€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 200€
+        </li>
+      </ul>
+    ),
     casters: <>À venir</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : lots
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : lots
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : lots
-    //     </li>
-    //   </ul>
-    // ),
     // toornamentId: '5045525084995133440',
     format: <>32 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/lol.pdf`,
@@ -34,21 +33,35 @@ const tournaments = [
     players: 128,
     image: '/tournaments/ssbu.jpg',
     shortRewards: '1000€',
-    rewards: <>1000€</>,
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 400€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 250€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 150€
+        </li>
+        <li>
+          4<sup>ème</sup> place : 100€
+        </li>
+        <li>
+          5<sup>ème</sup> place : 30€
+        </li>
+        <li>
+          6<sup>ème</sup> place : 30€
+        </li>
+        <li>
+          7<sup>ème</sup> place : 20€
+        </li>
+        <li>
+          8<sup>ème</sup> place : 20€
+        </li>
+      </ul>
+    ),
     casters: <>À venir</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 375€
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 175€
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 100€
-    //     </li>
-    //   </ul>
-    // ),
     // toornamentId: '5045512183706099712',
     format: <>128 joueurs</>,
     rules: `${uploadsUrl()}/rules/ssbu.pdf`,
@@ -60,21 +73,20 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/csgo.jpg',
     shortRewards: '1600€',
-    rewards: <>1600€</>,
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 1000€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 400€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 200€
+        </li>
+      </ul>
+    ),
     casters: <>À venir</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 925€
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 450€
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 225€
-    //     </li>
-    //   </ul>
-    // ),
     // toornamentId: '5045528654683340800',
     format: <>16 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/csgo.pdf`,
@@ -86,21 +98,20 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/valorant.jpg',
     shortRewards: '1500€',
-    rewards: <>1500€</>,
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 950€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 350€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 200€
+        </li>
+      </ul>
+    ),
     casters: <>À venir</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 925€ + lots
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 450€ + lots
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 225€ + lots
-    //     </li>
-    //   </ul>
-    // ),
     format: <>16 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
@@ -111,21 +122,20 @@ const tournaments = [
     teamCount: 16,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: '1200€',
-    rewards: <>1200€</>,
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 720€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 300€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 180€
+        </li>
+      </ul>
+    ),
     casters: <>À venir</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 705€
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 345€
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 150€
-    //     </li>
-    //   </ul>
-    // ),
     // toornamentId: '4958829017709346816',
     format: <>16 équipes de 3 joueurs</>,
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
@@ -136,24 +146,35 @@ const tournaments = [
     players: 48,
     image: '/tournaments/osu.jpg',
     shortRewards: '400€',
-    rewards: <>400€</>,
+    rewards: (
+      <>
+        <span className="accent">Tournoi osu!</span> (à diviser en duo)
+        <ul className="rewards">
+          <li>
+            1<sup>ère</sup> place : 150€
+          </li>
+          <li>
+            2<sup>ème</sup> place : 70€
+          </li>
+          <li>
+            3<sup>ème</sup> place : 30€
+          </li>
+        </ul>
+        <span className="accent">Tournoi osu!mania</span>
+        <ul className="rewards">
+          <li>
+            1<sup>ère</sup> place : 100€
+          </li>
+          <li>
+            2<sup>ème</sup> place : 30€
+          </li>
+          <li>
+            3<sup>ème</sup> place : 20€
+          </li>
+        </ul>
+      </>
+    ),
     casters: <>À venir</>,
-    //  (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 150€
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 75€
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 45€
-    //     </li>
-    //     <li>
-    //       4<sup>ème</sup> place : 30€
-    //     </li>
-    //   </ul>
-    // ),
     // toornamentId: null,
     format: <>48 joueurs qualifiés</>,
     rules: `https://osu.ppy.sh/community/forums/topics/1661444`,
@@ -164,20 +185,22 @@ const tournaments = [
     players: 32,
     image: '/tournaments/tft.jpg',
     shortRewards: '500€',
-    rewards: <>500€</>,
-    // (
-    //   <ul>
-    //     <li>
-    //       1<sup>ère</sup> place : 925€ + lots
-    //     </li>
-    //     <li>
-    //       2<sup>ème</sup> place : 450€ + lots
-    //     </li>
-    //     <li>
-    //       3<sup>ème</sup> place : 225€ + lots
-    //     </li>
-    //   </ul>
-    // ),
+    rewards: (
+      <ul className="rewards">
+        <li>
+          1<sup>ère</sup> place : 250€
+        </li>
+        <li>
+          2<sup>ème</sup> place : 125€
+        </li>
+        <li>
+          3<sup>ème</sup> place : 75€
+        </li>
+        <li>
+          4<sup>ème</sup> place : 50€
+        </li>
+      </ul>
+    ),
     format: <>32 joueurs</>,
     rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
@@ -186,10 +209,10 @@ const tournaments = [
     shortName: 'open',
     players: 56,
     image: '/tournaments/open.jpg',
-    shortRewards: 'À venir',
-    rewards: <>À venir</>,
+    // shortRewards: 'À venir',
+    // rewards: <>À venir</>,
     // (
-    //   <ul>
+    //   <ul className="rewards">
     //     <li>
     //       1<sup>ère</sup> place : lots
     //     </li>

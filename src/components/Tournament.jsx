@@ -87,10 +87,14 @@ const Tournament = ({ assets, tournamentId, alt }) => {
           <strong>{assets.format}</strong>
         </div>
 
-        <Title level={2}>Récompenses</Title>
-        <div className="tournament-section">
-          <p>{assets.rewards}</p>
-        </div>
+        {assets.rewards && (
+          <>
+            <Title level={2}>Récompenses</Title>
+            <div className="tournament-section">
+              <p>{assets.rewards}</p>
+            </div>
+          </>
+        )}
 
         <Title level={2}>Liens utiles</Title>
         <div className="tournament-section">
