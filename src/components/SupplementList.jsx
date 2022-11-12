@@ -24,7 +24,15 @@ const supplementColumns = [
 ];
 
 // This represents the supplement list in the shop
-const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChanges, onItemPreview }) => {
+const SupplementList = ({
+  items,
+  supplementCart,
+  hasTicket,
+  onSupplementCartChanges,
+  onItemPreview,
+  itemType,
+  shopSectionName,
+}) => {
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
   // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
   const [supplementTypes, setSupplementTypes] = useState([]);
@@ -43,7 +51,7 @@ const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChan
     if (!items) return;
     const newSupplementTypes = [];
     items.forEach((item) => {
-      if (item.category === 'supplement') {
+      if (item.category === itemType) {
         // Every item that contains an attribute has an id that matches the syntax ${itemId}-${attribute}.
         // So to get the item type id, we just remove the end of the id, by replacing it with an empty string.
         // If the item has no attribute, then the regex `-${item.attribute}$` will not match, so nothing will be replaced, we will keep the item id
@@ -122,6 +130,17 @@ const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChan
         availableAttributes.push({ value: attribute, label: attribute.toUpperCase() });
       });
 
+      let description = supplement.infos.split('->');
+      if (description.length > 1)
+        description = [
+          description.shift(),
+          <ul key="description_list">
+            {description.map((content, ind) => (
+              <li key={ind}>{content}</li>
+            ))}
+          </ul>,
+        ];
+
       // Return the row
       return {
         name: (
@@ -136,7 +155,7 @@ const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChan
                 Voir le design
               </Button>
             )}
-            <div className="item-description">{supplement.infos}</div>
+            <div className="item-description">{description}</div>
           </>
         ),
         price: `${(supplement.price / 100).toFixed(2)}€`,
@@ -190,10 +209,12 @@ const SupplementList = ({ items, supplementCart, hasTicket, onSupplementCartChan
     });
 
   return (
-    <div className="supplement-list">
-      <Title level={4}>Accessoires</Title>
-      <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
-    </div>
+    supplementRows.length && (
+      <div className="supplement-list">
+        <Title level={4}>{shopSectionName}</Title>
+        <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
+      </div>
+    )
   );
 };
 
@@ -224,6 +245,8 @@ SupplementList.propTypes = {
    * It takes one parameter : the relative path to the image file, starting in the "public/" directory
    */
   onItemPreview: PropTypes.func.isRequired,
+  itemType: PropTypes.string.isRequired,
+  shopSectionName: PropTypes.string.isRequired,
 };
 
 export default SupplementList;
