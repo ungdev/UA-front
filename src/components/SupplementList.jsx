@@ -245,7 +245,14 @@ SupplementList.propTypes = {
    * It takes one parameter : the relative path to the image file, starting in the "public/" directory
    */
   onItemPreview: PropTypes.func.isRequired,
+  /**
+   * The type of item to display in this supplement. Ti display regular supplements, use `supplement`.
+   * However some other values like `rent` can also be used to display rental items only
+   */
   itemType: PropTypes.string.isRequired,
+  /**
+   * The title to display above the `SupplementList`
+   */
   shopSectionName: PropTypes.string.isRequired,
 };
 
