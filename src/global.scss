@@ -58,7 +58,7 @@ ol > li {
   font-weight: 700;
 }
 
-ul {
+ul:not(.steps) {
   list-style: none;
 
   & > li {
