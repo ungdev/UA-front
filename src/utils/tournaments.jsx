@@ -23,7 +23,7 @@ const tournaments = [
       </ul>
     ),
     casters: <>À venir</>,
-    // toornamentId: '5045525084995133440',
+    toornamentId: '6075789370007052288',
     format: <>32 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/lol.pdf`,
   },
@@ -62,7 +62,7 @@ const tournaments = [
       </ul>
     ),
     casters: <>À venir</>,
-    // toornamentId: '5045512183706099712',
+    toornamentId: '6075850592720207872',
     format: <>128 joueurs</>,
     rules: `${uploadsUrl()}/rules/ssbu.pdf`,
   },
@@ -87,7 +87,7 @@ const tournaments = [
       </ul>
     ),
     casters: <>À venir</>,
-    // toornamentId: '5045528654683340800',
+    toornamentId: '6075838913743224832',
     format: <>16 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
@@ -112,6 +112,7 @@ const tournaments = [
       </ul>
     ),
     casters: <>À venir</>,
+    toornamentId: '6075842198609117184',
     format: <>16 équipes de 5 joueurs</>,
     rules: `${uploadsUrl()}/rules/valorant.pdf`,
   },
@@ -136,7 +137,7 @@ const tournaments = [
       </ul>
     ),
     casters: <>À venir</>,
-    // toornamentId: '4958829017709346816',
+    toornamentId: '6075845290060611584',
     format: <>16 équipes de 3 joueurs</>,
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
@@ -175,7 +176,7 @@ const tournaments = [
       </>
     ),
     casters: <>À venir</>,
-    // toornamentId: null,
+    toornamentId: null,
     format: <>48 joueurs qualifiés</>,
     rules: `https://osu.ppy.sh/community/forums/topics/1661444`,
   },
@@ -201,6 +202,7 @@ const tournaments = [
         </li>
       </ul>
     ),
+    toornamentId: '6075854270634475520',
     format: <>32 joueurs</>,
     rules: `${uploadsUrl()}/rules/tft.pdf`,
   },
@@ -224,7 +226,7 @@ const tournaments = [
     //     </li>
     //   </ul>
     // ),
-    // toornamentId: null,
+    toornamentId: null,
     format: <>56 joueurs</>,
     rules: `${uploadsUrl()}/rules/open.pdf`,
   },
