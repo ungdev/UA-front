@@ -118,12 +118,13 @@ const Information = () => (
 
       <br />
 
-      <Title level={4}>Salle de repos</Title>
+      <Title level={4}>Repos sur place</Title>
       <p>
-        L’UTT Arena propose aux joueurs des loges collectives dans le Parc des Expositions de Troyes. Ces loges feront
-        office de salles de repos. Les joueurs souhaitant dormir sur place devront prévoir un tapis de sol, sac de
-        couchage ou tout autre matériel pour passer la nuit au sol. L’UTT Arena décline toute responsabilité en cas de
-        vol.
+        L’UTT Arena ne propose pas aux joueurs de loges collectives ou de salles de repos au sein du Parc des
+        Expositions de Troyes. Les joueurs souhaitant dormir sur place devront prévoir un tapis de sol, sac de couchage
+        ou tout autre matériel pour passer la nuit au sol, dans la salle principale de la LAN, qui restera ouverte toute
+        la nuit. L’UTT Arena décline toute responsabilité en cas de vol. Il n'y a pas de douche à disposition mais
+        seulement des éviers.
       </p>
 
       <br />
@@ -190,7 +191,7 @@ const Information = () => (
           Si tu as pris la réduction SSBU, tu devras apporter ta Switch, le jeu SSBU avec tous les personnages et un
           câble HDMI.
         </li>
-        <li>Enfin, il te faudra de quoi te laver et de quoi dormir.</li>
+        <li>Enfin, il te faudra de quoi dormir.</li>
       </ul>
     </div>
 

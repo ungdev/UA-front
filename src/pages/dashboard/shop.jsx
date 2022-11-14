@@ -268,6 +268,19 @@ const Shop = () => {
               hasTicket={isPlaceInCart}
               onSupplementCartChanges={onSupplementCartChanges}
               onItemPreview={onItemPreview}
+              itemType="supplement"
+              shopSectionName="Accessoires"
+            />
+          </div>
+          <div className="shop-section">
+            <SupplementList
+              items={items}
+              supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
+              onSupplementCartChanges={onSupplementCartChanges}
+              onItemPreview={onItemPreview}
+              itemType="rent"
+              shopSectionName="Location de matériel"
             />
           </div>
         </div>
