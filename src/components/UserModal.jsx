@@ -95,6 +95,7 @@ const UserModal = ({ searchUser, onClose }) => {
       if (cart.transactionState === 'refunded') transactionState = 'remboursé';
       if (cart.transactionState === 'canceled') transactionState = 'annulé';
       if (cart.transactionState === 'refused') transactionState = 'refusé';
+      if (cart.transactionState === 'authorization') transactionState = "en cours d'autorisation";
 
       return (
         <Card
@@ -104,7 +105,12 @@ const UserModal = ({ searchUser, onClose }) => {
             <>
               <p>
                 <strong>Statut :</strong> {transactionState} (
-                {cart.transactionId ? `#${cart.transactionId}` : 'Paiement validé manuellement'})<br />
+                {cart.transactionId
+                  ? `#${cart.transactionId}`
+                  : cart.transactionState != 'pending'
+                  ? 'Paiement validé manuellement'
+                  : 'En attente de paiement'}
+                )<br />
                 {(cart.transactionState === 'paid' || cart.transactionState === 'refunded') && (
                   <>
                     <strong>Date :</strong> {moment(date).format('DD/MM/YY [à] HH:mm')}
