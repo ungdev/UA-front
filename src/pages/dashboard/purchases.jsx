@@ -15,7 +15,11 @@ const columns = [
 const Purchases = () => {
   const dispatch = useDispatch();
   const { id: userId } = useSelector((state) => state.login.user);
-  const carts = useSelector((state) => state.carts.allCarts.filter((cart) => cart.transactionState === 'paid'));
+  const carts = useSelector((state) =>
+    state.carts.allCarts.filter(
+      (cart) => cart.transactionState === 'paid' || cart.transactionState === 'authorization',
+    ),
+  );
   const [items, setItems] = useState(null);
 
   useEffect(async () => {
@@ -57,11 +61,14 @@ const Purchases = () => {
         const total = dataSource.reduce((previousValue, data) => (previousValue += data.totalInt), 0);
         return (
           <Card
-            className="card-cart"
+            className={`card-cart${cart.transactionState === 'authorization' ? ' authorization' : ''}`}
             key={cart.id}
             content={
               <>
-                <p>Date: {moment(date).format('DD/MM/YYYY')}</p>
+                <p>
+                  Date: {moment(date).format('DD/MM/YYYY')}{' '}
+                  {cart.transactionState === 'authorization' ? '(Paiement en cours de traitement)' : ''}
+                </p>
                 <Table columns={columns} dataSource={dataSource} className="cart" />
                 <p className="cart-total">
                   <strong>Total: {(total / 100).toFixed(2)} €</strong>

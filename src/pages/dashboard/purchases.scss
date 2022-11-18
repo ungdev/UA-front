@@ -6,6 +6,10 @@
   .card-cart {
     width: 100%;
 
+    &.authorization {
+      opacity: 0.7;
+    }
+
     .cart {
       width: 100%;
 
