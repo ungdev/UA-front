@@ -92,31 +92,6 @@ const tournaments = [
     rules: `${uploadsUrl()}/rules/csgo.pdf`,
   },
   {
-    name: 'Valorant',
-    shortName: 'valorant',
-    players: 80,
-    teamCount: 16,
-    image: '/tournaments/valorant.jpg',
-    shortRewards: '1500€',
-    rewards: (
-      <ul className="rewards">
-        <li>
-          1<sup>ère</sup> place : 950€
-        </li>
-        <li>
-          2<sup>ème</sup> place : 350€
-        </li>
-        <li>
-          3<sup>ème</sup> place : 200€
-        </li>
-      </ul>
-    ),
-    casters: <>À venir</>,
-    toornamentId: '6075842198609117184',
-    format: <>16 équipes de 5 joueurs</>,
-    rules: `${uploadsUrl()}/rules/valorant.pdf`,
-  },
-  {
     name: 'Rocket League',
     shortName: 'rl',
     players: 48,

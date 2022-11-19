@@ -48,7 +48,6 @@ const scannedOptions = [
 const tournamentOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'LoL', value: 'lol' },
-  { name: 'Valorant', value: 'valorant' },
   { name: 'Rocket League', value: 'rl' },
   { name: 'CS:GO', value: 'csgo' },
   { name: 'SSBU', value: 'ssbu' },

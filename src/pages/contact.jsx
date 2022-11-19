@@ -8,7 +8,6 @@ const options = [
   'Tournoi Teamfight Tactics',
   'Tournoi Rocket League',
   'Tournoi Counter-Strike : Global Offensive',
-  'Tournoi Valorant',
   'Tournoi SSBU',
   'Tournoi osu!',
   'Tournoi Libre',

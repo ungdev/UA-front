@@ -45,7 +45,7 @@ const Home = () => {
             <span className="accent">
               2250m<sup>2</sup>
             </span>{' '}
-            t'attendent pour passer 2 jours de folie ! Au programme : <span className="accent">8 tournois</span> sur tes
+            t'attendent pour passer 2 jours de folie ! Au programme : <span className="accent">7 tournois</span> sur tes
             jeux favoris, 2 jours pour montrer tes skills parmis les <span className="accent">630 joueurs</span> qui
             composeront l’évènement, et tenter de remporter les <span className="accent">cashprizes, lots</span> et de
             nombreuses autres <span className="accent">surprises</span> ! Et pour animer cette édition, des{' '}
@@ -114,7 +114,7 @@ const Home = () => {
               { title: <strong>Âge minimum</strong>, description: "15 ans le jour de l'évènement" },
               {
                 title: <strong>Tournois</strong>,
-                description: 'SSBU, CS:GO, RL, LoL, Valorant, TFT, osu!, Libre',
+                description: 'SSBU, CS:GO, RL, LoL, TFT, osu!, Libre',
               },
             ]}
             className="info-table"
