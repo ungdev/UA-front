@@ -95,7 +95,7 @@ const tournaments = [
     name: 'Rocket League',
     shortName: 'rl',
     players: 48,
-    teamCount: 16,
+    teamCount: 20,
     image: '/tournaments/rocket-league.jpg',
     shortRewards: '1200€',
     rewards: (
@@ -113,7 +113,7 @@ const tournaments = [
     ),
     casters: <>À venir</>,
     toornamentId: '6075845290060611584',
-    format: <>16 équipes de 3 joueurs</>,
+    format: <>20 équipes de 3 joueurs</>,
     rules: `${uploadsUrl()}/rules/rocket-league.pdf`,
   },
   {
