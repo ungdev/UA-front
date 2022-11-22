@@ -20,7 +20,7 @@ const TournamentCards = () => {
     <div className="tournament-cards">
       <Title align="center">Tournois</Title>
       <Title level={3} align="center" className="uppercase">
-        Les 8 tournois à l'UTT Arena 2022
+        Les 7 tournois à l'UTT Arena 2022
       </Title>
 
       <div className="tournaments-list">

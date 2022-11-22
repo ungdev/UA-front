@@ -24,7 +24,7 @@ const Information = () => (
       qualité à ses joueurs !
       <br />
       <br />À présent l'UTT Arena c'est <span className="accent">630 joueurs</span>,{' '}
-      <span className="accent">8 tournois</span>, des <span className="accent">prix à gagner</span> et des tournois{' '}
+      <span className="accent">7 tournois</span>, des <span className="accent">prix à gagner</span> et des tournois{' '}
       <span className="accent">commentés en direct par les casteurs </span>! Et tout cela, c'est grâce à vous, les
       joueurs, coachs, simples curieux… qui nous faites confiance chaque année pour organiser cet événement dans
       l'ambiance qu'on lui connaît ! La confiance de nos partenaires et leur mobilisation autour de notre événement
