@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Input, Button, Title } from '../../components/UI';
+import { Input, Button, Title, Collapse } from '../../components/UI';
 import { editUser } from '../../modules/login';
 import { API } from '../../utils/api';
 import { fetchCurrentTeam } from '../../modules/team';
@@ -10,7 +10,7 @@ import { fetchCurrentTeam } from '../../modules/team';
 const Account = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.login.user);
-  // const team = useSelector((state) => state.team);
+  const team = useSelector((state) => state.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -62,18 +62,18 @@ const Account = () => {
     }
   };
 
-  // const downloadTicket = async () => {
-  //   const res = await API.get(`tickets`);
+  const downloadTicket = async () => {
+    const res = await API.get(`tickets`);
 
-  //   let element = document.createElement('a');
-  //   element.href = `data:application/pdf;base64,${res.data}`;
-  //   element.download = 'Billet UTT Arena 2021.pdf';
-  //   element.style.display = 'none';
+    let element = document.createElement('a');
+    element.href = `data:application/pdf;base64,${res.data}`;
+    element.download = 'Billet UTT Arena 2022.pdf';
+    element.style.display = 'none';
 
-  //   document.body.appendChild(element);
-  //   element.click();
-  //   document.body.removeChild(element);
-  // };
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
 
   return (
     <div id="dashboard-account">
@@ -113,7 +113,6 @@ const Account = () => {
           Modifier
         </Button>
       </div>
-
       <div className="infos" ref={discordLinkRef}>
         <Title level={4}>Mon compte Discord</Title>
         {user.discordId ? (
@@ -131,38 +130,22 @@ const Account = () => {
         </a>
       </div>
       <hr />
-      {user.compumsaCode ? (
-        <>
-          <div>
-            <Title level={4}>Code de réduction Compumsa</Title>
-            Remise/min. d'achat sur www.compumsa.eu : 15 €/50 € ; 20 €/150 € et 30 €/300 €
-            <br />
-            Le meilleur e-commerce IT en Belgique et un des meilleurs en Europe !
-            <br />
-            Bon de réduction pour l'UTT Arena. Valable jusqu'au 30/06/2022, 1 bon max par personne. Envoyez un email
-            avant de commander en indiquant votre code personnel : <b>{user.compumsaCode}</b>
-          </div>
-          <hr />
-        </>
-      ) : (
-        ''
-      )}
-      {/* user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
+      {user.hasPaid && ((user.type !== 'coach' && user.type !== 'player') || (team && team.lockedAt)) && (
         <>
           <div className="to-bring">
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
             <Collapse title="Pour te restaurer" initVisible={true}>
               <ul>
-                <li>Gourde</li>
-                <li>Tupperware</li>
+                <li>
+                  Gourde <strong>vide</strong>
+                </li>
                 <li>
                   Apporter de la nourriture est <strong>interdit</strong>
                 </li>
               </ul>
             </Collapse>
-            <Collapse title="Pour rentrer dans l'espace Argence" initVisible={true}>
+            <Collapse title="Pour rentrer dans le Cube Parc des expositions" initVisible={true}>
               <ul>
-                <li>Ton pass sanitaire</li>
                 <li>Ton billet</li>
                 <li>Ta pièce d’identité</li>
                 {user.age === 'child' && <li>Une attestation parentale et les documents demandés dessus</li>}
@@ -200,11 +183,7 @@ const Account = () => {
               initVisible={true}>
               <ul>
                 <li>De quoi te laver</li>
-                <li>De quoi dormir</li>
-                <li>
-                  Des masques : prends en plusieurs, ça peut toujours casser, et on n'en aura pas forcément en rab ! Pas
-                  de masque, pas de LAN !
-                </li>
+                <li>De quoi dormir : un sac de couchage et un tapis de sol</li>
               </ul>
             </Collapse>
           </div>
@@ -216,7 +195,7 @@ const Account = () => {
             </Button>
           </div>
         </>
-      ) */}
+      )}
     </div>
   );
 };
