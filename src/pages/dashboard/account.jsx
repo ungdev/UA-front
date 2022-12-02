@@ -136,9 +136,8 @@ const Account = () => {
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
             <Collapse title="Pour te restaurer" initVisible={true}>
               <ul>
-                <li>
-                  Gourde <strong>vide</strong>
-                </li>
+                <li>Gourde</li>
+                <li>Tupperware</li>
                 <li>
                   Apporter de la nourriture est <strong>interdit</strong>
                 </li>
@@ -183,7 +182,7 @@ const Account = () => {
               initVisible={true}>
               <ul>
                 <li>De quoi te laver</li>
-                <li>De quoi dormir : un sac de couchage et un tapis de sol</li>
+                <li>De quoi dormir</li>
               </ul>
             </Collapse>
           </div>
