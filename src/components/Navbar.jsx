@@ -31,10 +31,10 @@ const links = [
     title: 'FAQ',
     href: '/faq',
   },
-  // {
-  //   title: 'Partenaires',
-  //   href: '/partners',
-  // },
+  {
+    title: 'Partenaires',
+    href: '/partners',
+  },
   // {
   //   title: 'Organisateurs',
   //   href: '/organisers',
