@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 const permissionOptions = [
   { name: 'Stream', value: 'stream' },
   { name: 'Entrée', value: 'entry' },
+  { name: 'Vestiaire', value: 'repo' },
   { name: 'Animation', value: 'anim' },
   { name: 'Admin', value: 'admin' },
 ];
