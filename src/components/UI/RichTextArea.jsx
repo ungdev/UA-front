@@ -333,6 +333,20 @@ const RichTextArea = ({
     }
   };
 
+  const removeStyle = (style, selection) => {
+    console.log('removing style !');
+    const startNode = content[selection.from.nodeId];
+    const endNode = content[selection.to.nodeId];
+    if (startNode.id === endNode.id) {
+      // Prevent from un-styling the same tag twice with this check
+      removeStyleOnText(style, startNode, selection.from.offset, selection.to.offset);
+    } else {
+      getTextsBetween(startNode, endNode).forEach((text) => removeStyleOnText(style, text, 0, -1));
+      removeStyleOnText(style, startNode, selection.from.offset, -1);
+      removeStyleOnText(style, endNode, 0, selection.to.offset);
+    }
+  };
+
   /**
    * Adds a style on a text node
    * @param {string} style the style to apply on text (eg. italic or bold)
@@ -393,6 +407,101 @@ const RichTextArea = ({
       node.children = node.children.substr(0, start);
       node.textLength = start;
     }
+  };
+
+  const removeStyleOnText = (style, node, start, end) => {
+    if (end === -1) {
+      end = node.children.length;
+    }
+    //return;
+    const absoluteStart = node.startsAt + start;
+    const absoluteEnd = node.startsAt + end;
+    const genealogy = getNodeGenealogy(node);
+    const styleNodePosition = genealogy.findIndex((id) => content[id].type === style);
+    console.log('position du style :');
+    console.log(styleNodePosition);
+    console.log(genealogy);
+    const styleNode = content[genealogy[styleNodePosition]];
+    genealogy.splice(0, styleNodePosition);
+    // Copy the part of the text that still has the style at the beginning of the style node
+    let untouchedParentBeginning = content[styleNode.parent];
+    console.log("ok, le debug du removeStyleOnText");
+    console.log(structuredClone(content));
+    console.log(structuredClone(genealogy));
+    for (let parentId of genealogy) {
+      const parent = content[parentId];
+      if (absoluteStart <= parent.startsAt) {
+        console.log(
+          `le parent ${parent.id} est le premier parent qui contient le début de la sélection. On commence à ${absoluteStart}, et le parent à ${parent.startsAt}`,
+        );
+        break;
+      }
+      console.log("donc on s'occupe du parent avec l'id " + parent.id + " dans le content il a l'id " + parentId);
+      console.log(parent);
+      const untouchedNodeBeginning = {
+        id: content.length,
+        type: parent.type,
+        parent: untouchedParentBeginning.id,
+        // The children of the style node that start before the start of the selection
+        children:
+          parent.type !== 'text'
+            ? parent.children.filter(
+                (childIndex) => content[childIndex].startsAt + content[childIndex].textLength < absoluteStart,
+              )
+            : parent.children.substring(0, absoluteStart - parent.startsAt),
+        textLength: parent.textLength - (absoluteStart - parent.startsAt) - 1,
+        startsAt: parent.startsAt,
+      };
+      content.push(untouchedNodeBeginning);
+      parent.textLength -= untouchedNodeBeginning.textLength;
+      parent.children =
+        parent.type !== 'text'
+          ? parent.children.filter((child) => untouchedParentBeginning.children.indexOf(child) === -1)
+          : parent.children.substring(absoluteStart - parent.startsAt);
+      parent.startsAt += untouchedNodeBeginning.textLength;
+      const siblings = getSiblings(parent);
+      siblings.splice(siblings.indexOf(parentId) - 1, 0, untouchedNodeBeginning.id);
+      untouchedParentBeginning = untouchedNodeBeginning;
+    }
+    console.log("et a la fin");
+    console.log(structuredClone(content));
+    // Copy the part of the text that still has the style at the end of the style node
+    let untouchedParentEnd = content[styleNode.parent];
+    for (let ancestorId in genealogy) {
+      const ancestor = content[ancestorId];
+      if (absoluteEnd >= ancestor.startsAt + ancestor.textLength) {
+        break;
+      }
+      const untouchedNodeEnd = {
+        id: content.length,
+        type: ancestor.type,
+        parent: untouchedParentEnd.id,
+        // The children of the style node that start before the start of the selection
+        children: parent.type !== 'text' ? ancestor.children.filter(
+          (childIndex) => content[childIndex].startsAt + content[childIndex].textLength < absoluteStart,
+        ) : parent.children.substring(),
+        textLength: ancestor.textLength - (absoluteStart - ancestor.startsAt),
+        startsAt: ancestor.startsAt,
+      };
+      content.push(untouchedNodeEnd);
+      ancestor.textLength -= untouchedNodeEnd.textLength;
+      ancestor.children = ancestor.children.filter((child) => untouchedParentEnd.children.indexOf(child) === -1);
+      const siblings = getSiblings(ancestor);
+      siblings.splice(siblings.indexOf(ancestorId) - 1, 0, untouchedNodeEnd.id);
+      untouchedParentEnd = untouchedNodeEnd;
+    }
+    console.log("une fois qu'on a bien tout séparé :");
+    console.log(structuredClone(content));
+    // Remove the style node
+    const styleNodeParent = content[styleNode.parent];
+    const styleNodeChildId = getChildId(styleNode);
+    // There should be only one child
+    styleNode.children.forEach((childId) => {
+      content[childId].parent = styleNodeParent.id;
+      styleNodeParent.children.splice(styleNodeChildId, 1, childId);
+    });
+    styleNode.children = [];
+    styleNode.textLength = 0;
   };
 
   /**
@@ -606,7 +715,19 @@ const RichTextArea = ({
   const setStyleInSelection = (style) => {
     const selection = getSelection();
     if (!selection) return;
-    setStyle(style, selection);
+    console.log(selection);
+    console.log(structuredClone(content));
+    if (
+      [
+        content[selection.from.nodeId],
+        content[selection.to.nodeId],
+        ...getTextsBetween(selection.from, selection.to),
+      ].every((textNode) => getNodeGenealogy(textNode).some((nodeId) => content[nodeId].type === style))
+    ) {
+      removeStyle(style, selection);
+    } else {
+      setStyle(style, selection);
+    }
     reactFeedback.current = true;
     updateChildren(buildContent());
     onChange(serialize(content.filter((node) => node.parent < 0)));
