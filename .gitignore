@@ -14,3 +14,6 @@
 .env
 .vscode/
 yarn-error.log
+
+# WebStorm
+.idea/
