@@ -118,7 +118,6 @@ const Wrapper = ({ Component }) => {
     return (
       <>
         <CookieConsent />
-        <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       </>
     );
   }
@@ -126,7 +125,6 @@ const Wrapper = ({ Component }) => {
   return (
     <>
       <CookieConsent />
-      <Navbar isLoggedIn={isLoggedIn} action={{ action: query.action, state: query.state }} />
       <div className="page-container">
         <Header />
         <main>

@@ -1,3 +1,37 @@
-#header {
+header {
+  position: relative;
+  height: 103px;
+  background-color: $background;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+
+  .left {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+
+    img {
+      width: 66px;
+    }
+  }
+
+  .right {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /*nav {
+    //margin-right: 50%;
+  }
+
+  .about {
+    justify-self: end;
+  }
+
+  .connection {
+    justify-self: end;
+  }*/
 
 }

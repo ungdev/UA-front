@@ -1,22 +1,12 @@
-import PropTypes from 'prop-types';
+import Button from './UI/Button';
 
-const Navbar = ({ isLoggedIn, action }) => {
-  return 'Navbar';
-};
-
-Navbar.propTypes = {
-  /**
-   * Is the user logged in ?
-   */
-  isLoggedIn: PropTypes.bool.isRequired,
-  /**
-   * An object reprensenting the action and state parameters passed in the url
-   */
-  action: PropTypes.shape({ action: PropTypes.string, state: PropTypes.string }),
-};
-
-Navbar.defaultProps = {
-  action: { action: '', state: '' },
-};
+const Navbar = () => (
+  <nav>
+    <Button className="home">Accueil</Button>
+    <Button className="event">Event</Button>
+    <Button className="tournament">Tournois</Button>
+    <Button className="help">Aide</Button>
+  </nav>
+);
 
 export default Navbar;
