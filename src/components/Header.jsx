@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import logo from '../../public/logo.png';
 import Navbar from './Navbar';
 import Button from './UI/Button';
@@ -6,11 +7,16 @@ import Button from './UI/Button';
 const Header = () => (
   <header id="header">
     <div className="left">
-      <img src={logo.src} alt="Logo UA23" />
+      <Link href="/">
+        <img src={logo.src} alt="Logo UA23" />
+      </Link>
       <Navbar />
     </div>
     <div className="right">
-      <Button className="about">A propos</Button>
+      <Link href="/">
+        <Button className="about">A propos</Button>
+      </Link>
+      
       <Button primary className="connection">
         Connexion
       </Button>

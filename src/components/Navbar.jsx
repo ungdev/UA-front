@@ -1,11 +1,20 @@
 import Button from './UI/Button';
+import Link from 'next/link';
 
 const Navbar = () => (
   <nav>
-    <Button className="home">Accueil</Button>
-    <Button className="event">Event</Button>
-    <Button className="tournament">Tournois</Button>
-    <Button className="help">Aide</Button>
+    <Link href="/">
+      <Button className="home">Accueil</Button>
+    </Link>
+    <Link href="/">
+      <Button className="event">Événement</Button>
+    </Link>
+    <Link href="/">
+      <Button className="tournament">Tournois</Button>
+    </Link>
+    <Link href="/">
+      <Button className="help">Aide</Button>
+    </Link>
   </nav>
 );
 

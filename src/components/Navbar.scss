@@ -1,9 +1,10 @@
 nav {
   display: inline-block;
 
-  button {
+  .button {
 
     position: relative;
+    transition: color 0.2s ease-in-out;
 
     &:hover {
       &:after {
@@ -14,7 +15,7 @@ nav {
     &:after {
       content: '';
       position: absolute;
-      bottom: -41px;
+      bottom: -32px;
       left: 0;
       width: 0;
       height: 2px;

@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import { uploads } from '../utils/api';
+import Slider from '../components/landing/Slider';
+
 const Home = () => {
-  const [partners, setPartners] = useState([]);
-
-  const fetchPartners = async () => {
-    const request = await uploads.get('/partners/list.json', true);
-
-    setPartners(request.data);
-  };
-
-  useEffect(() => {
-    fetchPartners();
-  }, []);
-
   return (
     <div id="home">
-      HOME
+      <Slider slides={[
+        <div style={{ backgroundColor: 'red', width: '100%', height: '100%' }}>Test 1</div>,
+        <div style={{ backgroundColor: 'green', width: '100%', height: '100%' }}>Test 2</div>,
+        <div style={{ backgroundColor: 'blue', width: '100%', height: '100%' }}>Test 3</div>,
+      ]} />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Title, Button } from '../components/UI';
 
 class Error extends React.Component {
+  
   render() {
     return (
       <>
