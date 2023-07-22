@@ -10,6 +10,7 @@ import CookieConsent from './CookieConsent';
 import { fetchSettings } from '../modules/settings';
 import { autoLogin, validate } from '../modules/login';
 import { hasOrgaPermission } from '../utils/permission';
+import Footer from "./Footer";
 
 const Wrapper = ({ Component }) => {
   const { pathname, query, replace } = useRouter();
@@ -131,6 +132,7 @@ const Wrapper = ({ Component }) => {
           {/*<main className='page-padding' />*/}
           <Component />
         </main>
+        <Footer />
       </div>
     </>
   );

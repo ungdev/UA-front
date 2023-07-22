@@ -1,0 +1,30 @@
+footer {
+  display: flex;
+  height: 237px;
+  background-color: $secondary-background;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px;
+
+  img {
+    height: 139px;
+  }
+
+  h3 {
+    color: $title-color;
+    margin-left: 20px;
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+
+  .middle {
+    display: block;
+  }
+
+  .lecarreblanc {
+    width: 430px;
+    height: 39px;
+    background-color: white;
+    margin-left: 20px;
+  }
+}
