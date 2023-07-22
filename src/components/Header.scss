@@ -5,7 +5,7 @@ header {
   height: 103px;
   background-color: $background;
   align-items: center;
-  padding: 30px;
+  padding: 0 30px 0 30px;
 
   .left {
     display: flex;
@@ -24,17 +24,5 @@ header {
   .right {
     display: inline-block;
   }
-
-  /*nav {
-    //margin-right: 50%;
-  }
-
-  .about {
-    justify-self: end;
-  }
-
-  .connection {
-    justify-self: end;
-  }*/
 
 }
