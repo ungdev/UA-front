@@ -1,0 +1,11 @@
+.partners {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 60px 146px;
+  margin: 0 15%;
+
+  img {
+    height: 50px;
+  }
+}

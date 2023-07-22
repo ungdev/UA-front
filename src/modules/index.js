@@ -9,6 +9,7 @@ import cart from './cart';
 import userEntry from './userEntry';
 import users from './users';
 import settings from './settings';
+import partners from './partners';
 
 export default combineReducers({
   loginModal,
@@ -21,4 +22,5 @@ export default combineReducers({
   userEntry,
   users,
   settings,
+  partners,
 });

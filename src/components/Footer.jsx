@@ -1,6 +1,6 @@
-import logo from '../../public/logo-footer.png'
+import logo from '../../public/logo-footer.png';
 import Button from './UI/Button';
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 const Footer = () => {
   const router = useRouter();
