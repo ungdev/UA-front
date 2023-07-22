@@ -3,6 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import { toast, Flip } from 'react-toastify';
 import { Provider } from 'react-redux';
+import Script from 'next/script'
 
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,7 +38,7 @@ const App = ({ Component, reduxStore }) => {
   return (
     <div>
       <Head>
-        <script src="/matomo.js"></script>
+        <Script src="/matomo.js" />
         <title>UTT Arena 2022 - 3 et 4 décembre 2022</title>
         <meta charSet="utf-8" />
         <meta name="theme-color" content="#202020" />
@@ -81,16 +82,6 @@ const App = ({ Component, reduxStore }) => {
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/logo-notext.png" />
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-          crossOrigin="anonymous"
-        />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
       </Head>
 
       <Provider store={reduxStore}>

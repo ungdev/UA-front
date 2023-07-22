@@ -32,7 +32,7 @@ const CookieConsent = () => {
       Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consens
       {' à'} l'utilisation de ces cookies.{' '}
       <Link href="/legal">
-        <a>En&nbsp;savoir&nbsp;plus</a>
+        En&nbsp;savoir&nbsp;plus
       </Link>
       <br />
       <div className="button-row">

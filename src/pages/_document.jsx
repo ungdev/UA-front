@@ -5,7 +5,11 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="fr">
-        <Head />
+        <Head>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        </Head>
         <body>
           <Main />
           <NextScript />

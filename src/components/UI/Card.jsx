@@ -35,7 +35,7 @@ const Card = ({
       </a>
     ) : (
       <Link href={href}>
-        <a>{button}</a>
+        {button}
       </Link>
     );
   }
