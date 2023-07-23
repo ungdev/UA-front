@@ -26,7 +26,7 @@ const requestAPI = (method, baseURL, route, authorizationHeader, body = null, di
       // Error
       .catch((error) => {
         if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
-          toast.error('Connexion au serveur impossible');
+          //toast.error('Connexion au serveur impossible');
         } else {
           toast.error(error.response ? error.response.data.error : 'Une erreur est survenue');
         }
