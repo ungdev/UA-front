@@ -1,5 +1,35 @@
 #home {
-  .home-header {
-  }
+  background-color: $primary-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10rem;
 }
 
+.cta-main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  text-align: center;
+  width: clamp(300px, 80%, 1200px);
+
+  .cta-main-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    @include stroke(6, #000);
+    font-family: "Lexend", sans-serif;
+    text-transform: uppercase;
+  }
+
+  .cta-main-subtitle {
+    color: $accent-color;
+    font-family: "Lexend", sans-serif;
+    font-size: 2.125rem;
+    font-style: normal;
+    font-weight: 500;
+  }
+}

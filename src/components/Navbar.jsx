@@ -9,7 +9,7 @@ const Navbar = () => (
     <Link href="/">
       <Button className="event">Événement</Button>
     </Link>
-    <Link href="/">
+    <Link href="/tournaments">
       <Button className="tournament">Tournois</Button>
     </Link>
     <Link href="/">

@@ -6,6 +6,7 @@
 // Pages
 @import './pages/index.scss';
 @import './pages/legal.scss';
+@import './pages/tournaments.scss';
 @import './pages/admin/scan.scss';
 @import './pages/admin/users.scss';
 
@@ -19,6 +20,8 @@
 @import './components/ResetModal.scss';
 
 // Landing Components
+@import './components/landing/BoxContainer.scss';
+@import './components/landing/Counter.scss';
 @import './components/landing/Slider.scss';
 
 // UI Components
@@ -35,4 +38,5 @@
 @import './components/UI/Table.scss';
 @import './components/UI/Tabs.scss';
 @import './components/UI/Title.scss';
+@import './components/UI/VerticalDivider.scss';
 @import './components/UI/VideoContainer.scss';

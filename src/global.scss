@@ -1,13 +1,23 @@
-@font-face {
-  font-family: 'LemonMilk';
-  font-display: swap;
-  src: url('/fonts/LemonMilk.ttf');
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {List}            - text-shadow list
+@function stroke($stroke, $color) {
+  $shadow: ();
+  $from: $stroke * -1;
+  @for $i from $from through $stroke {
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
+    }
+  }
+  @return $shadow;
 }
-
-@font-face {
-  font-family: 'Kanit';
-  font-display: swap;
-  src: url('/fonts/Kanit.ttf');
+/// Stroke font-character
+/// @param  {Integer} $stroke - Stroke width
+/// @param  {Color}   $color  - Stroke color
+/// @return {Style}           - text-shadow
+@mixin stroke($stroke, $color) {
+  text-shadow: stroke($stroke, $color);
 }
 
 * {
@@ -56,6 +66,14 @@ ol > li {
 .accent {
   color: $primary-color;
   font-weight: 700;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-center {
+  text-align: center;
 }
 
 // ul:not(.steps) {

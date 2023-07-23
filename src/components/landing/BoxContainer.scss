@@ -1,0 +1,26 @@
+.box-container {
+    border: 8px solid #000;
+    background: #D9D9D9;
+    width: 80%;
+    margin: auto;
+
+    .box-title {
+        background-color: $secondary-color;
+        border-bottom: 8px solid #000;
+
+        text-transform: uppercase;
+        padding: 5px 0 5px 10px;
+
+        font-family: "Lexend", sans-serif;
+        font-size: 1.25rem;
+    }
+
+    .box-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        flex-wrap: wrap;
+        padding: 50px 50px;
+    }
+}

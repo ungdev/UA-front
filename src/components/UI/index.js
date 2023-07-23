@@ -17,6 +17,7 @@ import VideoContainer from './VideoContainer';
 import LogoSVG from './LogoSVG';
 import QRCodeReader from './QRCodeReader';
 import Divider from './Divider';
+import VerticalDivider from './VerticalDivider';
 
 export {
   Button,
@@ -38,4 +39,5 @@ export {
   VideoContainer,
   LogoSVG,
   QRCodeReader,
+  VerticalDivider,
 };
