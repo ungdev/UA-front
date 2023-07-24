@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import Router from 'next/router';
+import Router from 'next/navigation';
 
 import { setLoginModalVisible } from './loginModal';
 import { API, setAuthorizationToken } from '../utils/api';

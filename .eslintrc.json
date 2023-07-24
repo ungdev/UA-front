@@ -5,7 +5,7 @@
     "plugin:import/warnings",
     "plugin:import/react",
     "eslint:recommended",
-    "next",
+    "next/core-web-vitals",
     "prettier"
   ],
   "plugins": ["react-hooks", "react", "prettier"],
@@ -38,7 +38,6 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "import/default": "off",
-    "@next/next/no-img-element": "off"
+    "import/default": "off"
   }
 }

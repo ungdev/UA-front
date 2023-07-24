@@ -14,7 +14,6 @@ const VideoContainer = ({ title, src, className }) => (
           className="lazyload"
           title={title}
           data-src={src}
-          frameBorder="0"
           allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
           allowFullScreen
         />

@@ -7,7 +7,8 @@ $accent-color: #1aa6b7;
 // $light-color-alt: #efd6e7;
  $dark-color: #29292a;
 $gradient: linear-gradient(135deg, $accent-color 15%, $dark-color 85%);
-$ua-font: 'Montserrat', sans-serif;
+$montserrat: var(--font-montserrat);
+$lexend: var(--font-lexend);
 
 $primary-background: #002231;
 $secondary-background: #002D40;

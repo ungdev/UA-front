@@ -1,0 +1,88 @@
+.tournaments {
+
+  .top {
+    background-color: $primary-background;
+    color: white;
+
+    .title {
+      font-size: 3.25em;
+      text-align: center;
+      font-weight: bold;
+      padding: 100px 20% 50px 20%;
+      width: 60%;
+    }
+
+    .text {
+      font-size: 1.25em;
+      text-align: center;
+      font-weight: 500;
+      margin: 0 27%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      column-gap: 92px;
+      padding: 50px 0;
+
+      .button {
+        //flex-grow: 1;
+        width: 328px;
+        height: 66px
+      }
+    }
+  }
+
+  .tournaments-part {
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      transition: background 0.25s ease-in-out;
+
+      .tournaments-list {
+
+        width: 20%;
+        margin-left: 5%;
+
+        .tournament {
+          margin: 20px 0 20px 0;
+          display: block;
+          border-radius: 16px;
+          padding: 4px;
+          transition: margin 0.25s ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &.selected {
+            margin-left: 30%;
+            border: 4px solid $title-color;
+            padding: 0;
+
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+      }
+
+      .tournament-info {
+        flex-grow: 1;
+        text-align: right;
+        margin-right: 15%;
+        color: white;
+        font-size: 2.25em;
+        font-weight: bold;
+
+        h2 {
+          color: $title-color;
+          font-size: 3rem;
+          font-weight: 800;
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+import Wrapper from '@/components/Wrapper';
+import '@/styles.scss';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Providers } from '@/lib/provider';
+import { ToastContainer, Flip } from 'react-toastify';
+import { googleVerification, uploadsUrl } from '@/utils/environment';
+// Dependencies CSS files
+import 'react-toastify/dist/ReactToastify.css';
+import 'simplebar/dist/simplebar.min.css';
+import 'modern-normalize/modern-normalize.css';
+import Script from 'next/script';
+import { Montserrat, Lexend } from 'next/font/google';
+
+const montserrat = Montserrat({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  fallback: ['sans-serif'],
+  display: 'swap',
+});
+
+const lexend = Lexend({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-lexend',
+  fallback: ['sans-serif'],
+  display: 'swap',
+});
+
+export const metadata: Metadata = {
+  title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+  description:
+    'Viens participer au célèbre tournoi du Grand-Est ! ' +
+    "L'UTT Arena revient pour sa 20ème édition les 3 et 4 décembre 2022. " +
+    "Au programme, 7 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
+    'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
+    "Alors prépare tout ton stuff et impose-toi dans l'arène !",
+  openGraph: {
+    siteName: 'UTT Arena 2022',
+    title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+    url: 'https://arena.utt.fr/',
+    type: 'website',
+    images: [
+      {
+        url: uploadsUrl() + '/images/banniere_SEO.png',
+        alt: "Logo de l'UTT Arena",
+        width: 1500,
+        height: 500,
+      },
+    ],
+    description: 'Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !',
+  },
+  twitter: {
+    title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+    site: '@UTTArena',
+    card: 'summary_large_image',
+    images: [
+      {
+        url: uploadsUrl() + '/images/banniere_SEO.png',
+        alt: "Bannière de l'UTT Arena 2022, le 3 et 4 décembre",
+      },
+    ],
+    description: 'Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !',
+  },
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/images/icon.png',
+    apple: '/images/icon.png',
+  },
+  keywords: [
+    'UTT',
+    'UTT Arena',
+    'UTT Arena 2022',
+    'esport',
+    'e-sport',
+    'gaming',
+    'tournoi',
+    'tournoi esport',
+    'LAN',
+    'LAN Troyes',
+  ],
+  themeColor: '#202020',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  verification: {
+    google: googleVerification(),
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="fr" className={`${montserrat.variable} ${lexend.variable}`}>
+      <body>
+        <Script src="/matomo.js" />
+        <Providers>
+          <Wrapper>{children}</Wrapper>
+        </Providers>
+        <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
+      </body>
+    </html>
+  );
+}

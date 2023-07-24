@@ -1,21 +1,18 @@
 // Global
 @import './variables.scss';
 @import './global.scss';
-@import './pages/_app.scss';
 
-// Pages
-@import './pages/index.scss';
-@import './pages/legal.scss';
-@import './pages/tournaments.scss';
-@import './pages/admin/scan.scss';
-@import './pages/admin/users.scss';
-@import './pages/tournaments/index.scss';
+// App
+@import './app/admin/scan/style.scss';
+@import './app/admin/users/style.scss';
+@import './app/style.scss';
+@import './app/legal/style.scss';
+@import './app/tournaments/style.scss';
 
 // Components
 @import './components/CookieConsent.scss';
 @import './components/Footer.scss';
 @import './components/Header.scss';
-@import './components/LoginModal.scss';
 @import './components/Navbar.scss';
 @import './components/Partners.scss';
 @import './components/ResetModal.scss';
@@ -23,6 +20,7 @@
 // Landing Components
 @import './components/landing/BoxContainer.scss';
 @import './components/landing/Counter.scss';
+@import './components/landing/LoginModal.scss';
 @import './components/landing/Slider.scss';
 
 // UI Components

@@ -2,14 +2,14 @@
     text-align: center;
 
     .counter-value {
-        font-family: Montserrat;
+        font-family: $montserrat;
         font-size: 6.875rem;
         font-weight: 800;
         margin-bottom: 15px;
     }
 
     .counter-label {
-        font-family: Montserrat;
+        font-family: $montserrat;
         font-size: 2rem;
         font-weight: 600;
         text-transform: uppercase;

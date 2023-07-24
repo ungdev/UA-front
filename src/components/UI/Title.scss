@@ -6,7 +6,7 @@ $radius: 8px;
 
 .title {
   margin-top: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: $montserrat;
   font-weight: normal;
   width: 100%;
 
@@ -43,12 +43,12 @@ $radius: 8px;
     font-weight: 700;
     color: #fff;
     @include stroke(6, #000);
-    font-family: "Lexend", sans-serif;
+    font-family: $lexend;
     text-transform: uppercase;
   }
 
   &.title-2 {
-    font-family: $ua-font;
+    font-family: $montserrat;
     text-transform: uppercase;
     overflow: hidden;
     color: $primary-color;
