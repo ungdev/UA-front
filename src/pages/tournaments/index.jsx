@@ -1,34 +1,45 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../components/UI/Button';
 import Title from '../../components/UI/Title';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchTournaments } from '../../modules/tournament';
+import { generateTextBorderStyle } from '../../utils/styles';
 
 const TournamentHome = () => {
   const dispatch = useDispatch();
-  const tournaments = useSelector((state) => state.tournament.tournaments);
+  //const tournaments = useSelector((state) => state.tournament.tournaments);
+  const tournaments = [
+    {
+      id: 'tft',
+      name: 'Teamfight Tactics',
+      cashprize: 1600,
+      maxPlayers: 80,
+      playersPerTeam: 5,
+      image: 'https://arena.utt.fr/tournaments/tft.jpg',
+      backgroundImage: 'https://arena.utt.fr/tournaments/tft.jpg',
+    },
+    {
+      id: 'csgo',
+      name: 'Counter-Strike: Global Offsensive',
+      cashprize: 1600,
+      maxPlayers: 80,
+      playersPerTeam: 5,
+      image: 'https://arena.utt.fr/tournaments/csgo.jpg',
+      backgroundImage: '../../../tournaments/csgo-background.png',
+    },
+  ];
+  const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
 
   useEffect(async () => {
     if (!tournaments) {
-      dispatch(fetchTournaments());
+      //dispatch(fetchTournaments());
     }
   }, []);
 
-  const generateTextBorderStyle = (size) => {
-    const totalArraySize = (2 * size + 1) ** 2 - 1;
-    const shadows = [...Array(totalArraySize).keys()].map((i) => {
-      let y = i % (2 * size + 1);
-      let x = (i - y) / (2 * size + 1);
-      y -= size;
-      x -= size;
-      if ((x > 0 && y > 0) || (x === 0 && y === 0)) {
-        x++;
-        y++;
-      }
-      return `${x}px ${y}px 0 #000`;
-    });
-    return { textShadow: shadows.join(',') };
-  };
+  const backgroundGradient =
+    'linear-gradient(180deg, rgba(1, 3, 7, 0.73) 0%, rgba(11, 15, 24, 0.56) 41.15%, rgba(11, 15, 24, 0.00) 89.34%)';
+
+  const selectedTournament = tournaments[selectedTournamentIndex];
 
   return (
     <div className="tournaments">
@@ -50,11 +61,33 @@ const TournamentHome = () => {
           </Button>
         </div>
       </div>
-      <div className="tournaments-part">
+      <div
+        className="tournaments-part"
+        style={{
+          background: `${backgroundGradient}, url("${selectedTournament.backgroundImage}")`,
+        }}>
         <Title>Tournois</Title>
-        {!tournaments
-          ? 'Chargement des tournois...'
-          : tournaments.map((tournament) => <div key={tournament.name}>{tournament.name}</div>)}
+        <div className="content">
+          <div className="tournaments-list">
+            {!tournaments
+              ? 'Chargement des tournois...'
+              : tournaments.map((tournament, i) => (
+                  <img
+                    key={tournament.id}
+                    src={tournament.image}
+                    alt={`Logo ${tournament.name}`}
+                    className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
+                    onClick={() => setSelectedTournamentIndex(i)}
+                  />
+                ))}
+          </div>
+          <div className="tournament-info">
+            <h2>{selectedTournament.name}</h2>
+            {selectedTournament.cashprize}€ de cashprize ·{' '}
+            {selectedTournament.maxPlayers / selectedTournament.playersPerTeam} <br />
+            Casté par {selectedTournament.caster}
+          </div>
+        </div>
       </div>
     </div>
   );
