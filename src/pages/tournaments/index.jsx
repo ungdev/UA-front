@@ -1,8 +1,18 @@
-import { useSelector } from 'react-redux';
-import Button from "../../components/UI/Button";
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../components/UI/Button';
+import Title from '../../components/UI/Title';
+import { useEffect } from 'react';
+import { fetchTournaments } from '../../modules/tournament';
 
 const TournamentHome = () => {
+  const dispatch = useDispatch();
   const tournaments = useSelector((state) => state.tournament.tournaments);
+
+  useEffect(async () => {
+    if (!tournaments) {
+      dispatch(fetchTournaments());
+    }
+  }, []);
 
   const generateTextBorderStyle = (size) => {
     const totalArraySize = (2 * size + 1) ** 2 - 1;
@@ -17,7 +27,7 @@ const TournamentHome = () => {
       }
       return `${x}px ${y}px 0 #000`;
     });
-    return { 'text-shadow': shadows.join(',') };
+    return { textShadow: shadows.join(',') };
   };
 
   return (
@@ -39,6 +49,12 @@ const TournamentHome = () => {
             Se connecter
           </Button>
         </div>
+      </div>
+      <div className="tournaments-part">
+        <Title>Tournois</Title>
+        {!tournaments
+          ? 'Chargement des tournois...'
+          : tournaments.map((tournament) => <div key={tournament.name}>{tournament.name}</div>)}
       </div>
     </div>
   );
