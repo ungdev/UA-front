@@ -1,7 +1,6 @@
 import Wrapper from '@/components/Wrapper';
 import '@/styles.scss';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl } from '@/utils/environment';

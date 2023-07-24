@@ -22,7 +22,7 @@ export const fetchAllCarts = () => async (dispatch) => {
   const res = await API.get('users/current/carts');
   dispatch({
     type: SET_ALLCARTS,
-    allCarts: res.data,
+    allCarts: res,
   });
 };
 

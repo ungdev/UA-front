@@ -31,11 +31,11 @@ export const createTeam = (bodyTeam) => async (dispatch, getState) => {
   }
   dispatch({
     type: SET_TEAM,
-    team: res.data,
+    team: res,
   });
   dispatch({
     type: SET_USER,
-    user: { ...user, teamId: res.data.id, type: 'player' },
+    user: { ...user, teamId: res.id, type: 'player' },
   });
   Router.push('/dashboard/team');
 };
@@ -54,7 +54,7 @@ export const fetchCurrentTeam = () => async (dispatch) => {
   const res = await API.get(`teams/current`);
   dispatch({
     type: SET_TEAM,
-    team: res.data,
+    team: res,
   });
 };
 
@@ -142,7 +142,7 @@ export const lockTeam = () => async (dispatch) => {
   const res = await API.post('teams/current/lock');
   dispatch({
     type: SET_TEAM,
-    team: res.data,
+    team: res,
   });
   dispatch(fetchSlots());
   toast.success("L'équipe a bien été verrouillée");

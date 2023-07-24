@@ -56,7 +56,7 @@ export const autoLogin = () => async (dispatch) => {
       const res = await API.get(`users/current`);
       dispatch({
         type: SET_USER,
-        user: res.data,
+        user: res,
       });
     } catch (err) {
       dispatch({
@@ -78,19 +78,19 @@ export const autoLogin = () => async (dispatch) => {
 
 export const tryLogin = (user) => async (dispatch) => {
   const res = await API.post('auth/login', user);
-  dispatch(saveToken(res.data.token));
-  localStorage.setItem('utt-arena-userid', res.data.user.id);
+  dispatch(saveToken(res.token));
+  localStorage.setItem('utt-arena-userid', res.user.id);
   dispatch({
     type: SET_USER,
-    user: res.data.user,
+    user: res.user,
   });
   dispatch(setLoginModalVisible(false));
-  if (hasOrgaPermission(res.data.user.permissions)) {
+  if (hasOrgaPermission(res.user.permissions)) {
     Router.push('/admin');
   } else {
     Router.push('/dashboard');
   }
-  if (res.data.captivePortalSuccess) {
+  if (res.captivePortalSuccess) {
     toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   return true;
@@ -122,7 +122,7 @@ export const editUser = (data) => async (dispatch) => {
   toast.success('Tes informations ont été modifiées');
   dispatch({
     type: UPDATE_USER,
-    user: res.data,
+    user: res,
   });
 };
 
@@ -142,18 +142,18 @@ export const setType = (type) => async (dispatch) => {
   }
   dispatch({
     type: SET_USER,
-    user: res.data,
+    user: res,
   });
 };
 
 export const validate = (registerToken) => async (dispatch) => {
   const res = await API.post(`auth/validate/${registerToken}`);
   toast.success('Le compte a été confirmé !');
-  dispatch(saveToken(res.data.token));
-  localStorage.setItem('utt-arena-userid', res.data.user.id);
+  dispatch(saveToken(res.token));
+  localStorage.setItem('utt-arena-userid', res.user.id);
   dispatch({
     type: SET_USER,
-    user: res.data.user,
+    user: res.user,
   });
 };
 
@@ -167,10 +167,10 @@ export const logBackToAdmin = () => async (dispatch) => {
   dispatch(saveToken(localStorage.getItem('utt-arena-admin-token')));
   localStorage.removeItem('utt-arena-admin-token');
   const res = await API.get('users/current');
-  localStorage.setItem('utt-arena-userid', res.data.id);
+  localStorage.setItem('utt-arena-userid', res.id);
   dispatch({
     type: SET_USER,
-    user: res.data,
+    user: res,
   });
   Router.push('/admin');
 };
@@ -178,11 +178,11 @@ export const logBackToAdmin = () => async (dispatch) => {
 export const connectAs = (id) => async (dispatch, getState) => {
   localStorage.setItem('utt-arena-admin-token', getState().login.token);
   const res = await API.post(`admin/auth/login/${id}`);
-  localStorage.setItem('utt-arena-userid', res.data.user.id);
-  dispatch(saveToken(res.data.token));
+  localStorage.setItem('utt-arena-userid', res.user.id);
+  dispatch(saveToken(res.token));
   dispatch({
     type: SET_USER,
-    user: res.data.user,
+    user: res.user,
   });
   Router.push('/dashboard');
 };

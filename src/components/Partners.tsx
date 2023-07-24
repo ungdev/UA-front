@@ -19,7 +19,7 @@ export default function Partners() {
         ? 'Chargement des partenaires...'
         : partners?.map((partner: any, i: number) => (
             <a key={i} href={partner.link}>
-              <img src={partner.image} alt={`Logo ${partner.name}`}  width={10} />
+              <img src={partner.image} alt={`Logo ${partner.name}`} />
             </a>
           ))}
     </div>

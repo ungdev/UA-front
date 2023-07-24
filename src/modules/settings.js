@@ -21,7 +21,7 @@ export const fetchSettings = () => async (dispatch) => {
     const res = await API.get(`settings`);
     dispatch({
       type: SET_SETTINGS,
-      settings: res.data,
+      settings: res,
     });
   } catch (err) {
     dispatch({

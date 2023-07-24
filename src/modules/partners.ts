@@ -6,7 +6,7 @@ const initialState = {
   partners: undefined,
 };
 
-const partners = (state = initialState, action) => {
+const partners = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_PARTNERS:
       return {
@@ -18,12 +18,12 @@ const partners = (state = initialState, action) => {
   }
 };
 
-export const fetchPartners = async (dispatch) => {
+export const fetchPartners = async (dispatch: any) => {
   const request = await uploads.get('/partners/list.json', true);
-  console.log(request.data);
+  console.log(request);
   dispatch({
     type: SET_PARTNERS,
-    partners: request.data,
+    partners: request,
   });
 };
 

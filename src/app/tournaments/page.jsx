@@ -1,6 +1,6 @@
+'use client'
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@/components/UI/Button';
-import Title from '@/components/UI/Title';
 import { useEffect, useState } from 'react';
 import { fetchTournaments } from '@/modules/tournament';
 import { Title } from '@/components/UI';
@@ -30,7 +30,7 @@ const TournamentHome = () => {
   ];
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!tournaments) {
       //dispatch(fetchTournaments());
     }
@@ -43,20 +43,22 @@ const TournamentHome = () => {
 
   return (
     <div className="tournaments">
-      <div className="top">
-        <Title level={1}>Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !</Title>
-        <div className="text">
-          Rejoins-nous dès maintenant pour vivre une expérience inoubliable, où l'amitié, la stratégie, et l'adrénaline
-          se mêlent pour créer des souvenirs inégalables. C'est l'occasion parfaite de mettre en avant tes talents, de
-          relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
-        </div>
-        <div className="buttons">
-          <Button isPink primary>
-            Découvrir les tournois
-          </Button>
-          <Button isPink primary>
-            Se connecter
-          </Button>
+      <div className="top-container">
+        <div className="top">
+          <Title level={1} align={"center"}>Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !</Title>
+          <div className="text">
+            Rejoins-nous dès maintenant pour vivre une expérience inoubliable, où l'amitié, la stratégie, et l'adrénaline
+            se mêlent pour créer des souvenirs inégalables. C'est l'occasion parfaite de mettre en avant tes talents, de
+            relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
+          </div>
+          <div className="buttons">
+            <Button isPink primary>
+              Découvrir les tournois
+            </Button>
+            <Button isPink primary>
+              Se connecter
+            </Button>
+          </div>
         </div>
       </div>
       <div

@@ -37,8 +37,8 @@ export const registerUser = (user) => async (dispatch) => {
 export const validate = (slug) => async () => {
   try {
     const res = await API.post('auth/validation', { slug });
-    localStorage.setItem('utt-arena-userid', res.data.user.id);
-    localStorage.setItem('utt-arena-token', res.data.token);
+    localStorage.setItem('utt-arena-userid', res.user.id);
+    localStorage.setItem('utt-arena-token', res.token);
 
     // Refresh page to autoLogin
     window.location = '/dashboard';

@@ -46,7 +46,7 @@ const users = (state = initialState, action: any) => {
 
 export const getTicketPrice = async (userId: string) => {
   let res = await API.get(`/users/${userId}/ticket`);
-  return res.data;
+  return res;
 };
 
 export const fetchUsers =
@@ -73,13 +73,13 @@ export const fetchUsers =
           ? ''
           : '&' + new URLSearchParams(searchFilters).toString()),
     );
-    const formatUsers = format(res.data.users);
+    const formatUsers = format(res.users);
     dispatch({
       type: SET_USERS,
       users: formatUsers,
-      total: res.data.totalItems,
+      total: res.totalItems,
       page,
-      itemsPerPage: res.data.itemsPerPage,
+      itemsPerPage: res.itemsPerPage,
       isFetched: true,
     });
   };
@@ -107,7 +107,7 @@ export const lookupUser = (user: any) => async (dispatch: any, getState: any) =>
           team: user.team,
           attendant: user.attendant,
           customMessage: user.customMessage,
-          carts: res?.data,
+          carts: res,
         }
       : null,
   });

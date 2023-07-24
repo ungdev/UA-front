@@ -7,6 +7,10 @@ let token: string | null = null;
 const requestAPI = (method: string, baseURL: string, route: string, authorizationHeader: boolean, body = null, disableCache = false): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
+
+    // if base url last char is not a slash, add it
+    if (baseURL[baseURL.length - 1] !== '/') baseURL += '/';
+
     fetch(baseURL + route + (disableCache ? '?nocache=' + new Date().getTime() : ''), {
       method,
       headers: authorizationHeader
@@ -21,11 +25,15 @@ const requestAPI = (method: string, baseURL: string, route: string, authorizatio
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
+
+      console.log(JSON.stringify(response));
+
       clearTimeout(timeout);
       return response.json();
     })
     .then((data) => {
       if(!didTimeOut) {
+        didTimeOut = true; // Prevents timeout
         resolve(data);
       }
     })
@@ -36,16 +44,19 @@ const requestAPI = (method: string, baseURL: string, route: string, authorizatio
         toast.error('Une erreur est survenue');
       }
 
+      console.error(error);
+
       if(didTimeOut) return;
       reject();
     });
 
     // Add manual timeout as not supported by fetch
     const timeout = setTimeout(function() {
-      didTimeOut = true;
-      toast.error('Connexion au serveur impossible');
-      console.log('timeout');
-      reject(new Error('Request timed out'));
+      if(didTimeOut != true) {
+        didTimeOut = true;
+        toast.error('Connexion au serveur impossible');
+        reject(new Error('Request timed out'));
+      }
     }, 10000);
   });
 

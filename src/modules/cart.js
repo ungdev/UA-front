@@ -27,7 +27,7 @@ const carts = (state = initialState, action) => {
 
 export const cartPay = (cart) => async () => {
   const res = await API.post(`users/current/carts`, cart);
-  window.location = res.data.url;
+  window.location = res.url;
 };
 
 export const saveCart = (cart) => {
