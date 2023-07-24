@@ -4,13 +4,12 @@ import PropTypes from 'prop-types';
 /**
  * Displays a button that triggers an action when clicked
  */
-const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, className }) => {
+const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, isPink, className }) => {
   return (
     <button
       type={type}
-      className={`button ${primary ? 'primary' : ''} ${className ? className : ''} ${noStyle ? 'no-style' : ''} ${
-        !children ? 'empty' : ''
-      }`}
+      className={`button ${primary ? 'primary' : ''} ${isPink ? 'pink' : ''} ${className ? className : ''}
+       ${noStyle ? 'no-style' : ''} ${!children ? 'empty' : ''}`}
       onClick={onClick}
       disabled={disabled}>
       {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
@@ -54,6 +53,10 @@ Button.propTypes = {
    */
   noStyle: PropTypes.bool,
   /**
+   * Is the button pink or blue/without color (depending on whether the button is primary)
+   */
+  isPink: PropTypes.bool,
+  /**
    * Class of the container
    */
   className: PropTypes.string,
@@ -68,6 +71,7 @@ Button.defaultProps = {
   rightIcon: '',
   disabled: false,
   noStyle: false,
+  isPink: false,
   className: '',
 };
 

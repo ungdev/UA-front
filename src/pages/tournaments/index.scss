@@ -1,0 +1,29 @@
+.tournaments {
+
+  .top {
+    background-color: $secondary-background;
+    color: white;
+
+    .title {
+      font-size: 3.25em;
+      text-align: center;
+      font-weight: bold;
+      padding: 100px 20% 50px 20%;
+    }
+
+    .text {
+      font-size: 1.25em;
+      text-align: center;
+      font-weight: 500;
+      margin: 0 27%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      column-gap: 10px;
+      padding: 50px 0;
+    }
+  }
+
+}
