@@ -1,6 +1,10 @@
 import Button from './UI/Button';
 import Link from 'next/link';
 
+/**
+ * Navbar component that displays a navigation bar with links to different pages.
+ * @returns JSX.Element
+ */
 export default function Navbar() {
   return (
     <nav>

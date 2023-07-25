@@ -1,3 +1,13 @@
+/**
+ * Slider component for displaying a slideshow of React nodes.
+ *
+ * @component
+ * @param {Object} props
+ * @param {React.ReactNode[]} props.slides - An array of React nodes to be displayed as slides.
+ * @example
+ * const slides = [<div>Slide 1</div>, <div>Slide 2</div>, <div>Slide 3</div>];
+ * return <Slider slides={slides} />;
+ */
 import React, { useState, useEffect } from 'react';
 
 export default function Slider({ slides }: { slides: React.ReactNode[] }) {

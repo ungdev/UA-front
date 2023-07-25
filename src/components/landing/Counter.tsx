@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 
+/**
+ * Counter component that animates a number from 0 to a given value when it becomes visible on the screen.
+ * @param value The value to animate the counter to.
+ * @param name The label to display below the counter.
+ * @param className An optional class name to apply to the component.
+ */
 export default function Counter({ value, name, className = "" }: { value: number, name: string, className?: string }) {
     const [counter, setCounter] = useState(0);
     const [visible, setVisible] = useState(false);
     const [locked, setLocked] = useState(false);
 
+    /**
+     * Animates the counter from a start value to an end value over a given duration.
+     * @param start The starting value of the counter.
+     * @param end The ending value of the counter.
+     * @param duration The duration of the animation in milliseconds.
+     */
     const counterAnim = (start = 0, end: number, duration = 1000) => {
         let startTimestamp: number | null = null;
         const step = (timestamp: number) => {

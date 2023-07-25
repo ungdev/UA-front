@@ -6,6 +6,10 @@ import { getCookie } from '../utils/cookies';
 
 const cookieName = 'cookie-consent';
 
+/**
+ * Component that displays a cookie consent banner and sets a cookie when the user accepts.
+ * The banner is only displayed if the user has not previously accepted the cookie policy.
+ */
 export default function CookieConsent() {
   const [display, setDisplay] = useState(false);
 

@@ -12,7 +12,13 @@ import Footer from "./Footer";
 
 import { toast } from 'react-toastify';
 
+/**
+ * Wrapper component that provides common layout and functionality for all pages.
+ * @param children The child components to be rendered within the layout.
+ * @returns The Wrapper component.
+ */
 export default function Wrapper({ children } : { children: any }) {
+  // Import necessary hooks and modules
   const { replace } = useRouter();
   const pathname = usePathname();
   const query: any = useSearchParams();
@@ -20,12 +26,14 @@ export default function Wrapper({ children } : { children: any }) {
   const isDashboard = pathname.substring(0, 10) === '/dashboard';
   const permissions = useSelector((state: any) => state.login.user && state.login.user.permissions);
 
+  // Define state variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasTeam, setHasTeam] = useState(false);
   const [hasPaid, setHasPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
 
+  // Update state variables based on changes to the login state
   useSelector((state: any) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
@@ -47,6 +55,7 @@ export default function Wrapper({ children } : { children: any }) {
     }
   });
 
+  // Get settings from Redux store
   const isLoginAllowed = useSelector((state: any) => state.settings.login);
   const isShopAllowed = useSelector((state: any) => state.settings.shop);
 
@@ -112,6 +121,7 @@ export default function Wrapper({ children } : { children: any }) {
     }
   }, [replace, redirect, isLoading]);
 
+  // Automatically log in the user
   useEffect(() => {
     dispatch(autoLogin() as any);
   }, []);
@@ -125,6 +135,7 @@ export default function Wrapper({ children } : { children: any }) {
     );
   }
 
+  // Render the layout with child components
   return (
     <>
       <CookieConsent />

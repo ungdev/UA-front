@@ -21,6 +21,11 @@ const initialLogin = {
   password: '',
 };
 
+/**
+ * LoginModal component that displays a modal with login, signup and forgot password forms.
+ * @param {boolean} isVisible - Determines whether the modal is visible or not.
+ * @returns {JSX.Element} - Returns the LoginModal component.
+ */
 export default function LoginModal({ isVisible }: { isVisible: boolean }) {
   const dispatch = useDispatch();
 

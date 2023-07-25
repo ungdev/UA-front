@@ -2,6 +2,9 @@ import logo from '../../public/images/logo-footer.png';
 import Button from './UI/Button';
 import { useRouter } from 'next/navigation';
 
+/**
+ * Footer component that displays legal information and contact details.
+ */
 export default function Footer() {
   const router = useRouter();
 
