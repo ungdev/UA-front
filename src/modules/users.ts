@@ -1,5 +1,7 @@
 import { toast } from 'react-toastify';
 import { API } from '../utils/api';
+import { Action, Dispatch } from '@reduxjs/toolkit';
+import { RootState } from '@/lib/store';
 
 export const SET_USERS = 'users/SET_USERS';
 export const SET_LOOKUP_USER = 'users/LOOKUP_USER';
@@ -27,7 +29,11 @@ const format = (users: Array<any>) => {
   }));
 };
 
-const users = (state = initialState, action: any) => {
+interface LookupUserAction extends Action {
+  lookupUser: any;
+}
+
+const users = (state = initialState, action: LookupUserAction) => {
   switch (action.type) {
     case SET_USERS:
       return {
@@ -51,7 +57,7 @@ export const getTicketPrice = async (userId: string) => {
 
 export const fetchUsers =
   (filters: any, search: string, page = 0) =>
-  async (dispatch: any) => {
+  async (dispatch: Dispatch) => {
     if (!filters) {
       return;
     }
@@ -84,7 +90,7 @@ export const fetchUsers =
     });
   };
 
-export const lookupUser = (user: any) => async (dispatch: any, getState: any) => {
+export const lookupUser = (user: any) => async (dispatch: Dispatch, getState: RootState) => {
   const res =
     user && getState().login.user?.permissions?.includes?.('admin')
       ? await API.get(`admin/users/${user.id}/carts`)
@@ -113,7 +119,7 @@ export const lookupUser = (user: any) => async (dispatch: any, getState: any) =>
   });
 };
 
-export const updateUser = (updateUser: any) => async (dispatch: any, getState: any) => {
+export const updateUser = (updateUser: any) => async (dispatch: Dispatch, getState: RootState) => {
   const users: Array<any> = getState().users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
@@ -123,7 +129,7 @@ export const updateUser = (updateUser: any) => async (dispatch: any, getState: a
   });
 };
 
-export const validatePay = (id: string) => async (dispatch: any, getState: any) => {
+export const validatePay = (id: string) => async (dispatch: any, getState: RootState) => {
   const userModal = getState().users.lookupUser;
   await API.post(`admin/users/${id}/force-pay`, {});
   toast.success('Paiement validé');
@@ -131,14 +137,14 @@ export const validatePay = (id: string) => async (dispatch: any, getState: any) 
   dispatch(lookupUser({ ...userModal, hasPaid: true }));
 };
 
-export const saveUser = (id: string, body: any, username: string) => async (dispatch: any, getState: any) => {
+export const saveUser = (id: string, body: any, username: string) => async (dispatch: any, getState: RootState) => {
   const userModal = getState().users.lookupUser;
   const { data: user } = await API.patch(`admin/users/${id}`, body);
   toast.success(`${username} mis à jour`);
   dispatch(updateUser({ ...userModal, ...user }));
 };
 
-export const refundCart = (id: string) => async (dispatch: any, getState: any) => {
+export const refundCart = (id: string) => async (dispatch: any, getState: RootState) => {
   await API.post(`admin/carts/${id}/refund`, {});
   const userModal = getState().users.lookupUser;
   toast.success('Le panier a été marqué comme remboursé');

@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+
 /**
  * Slider component for displaying a slideshow of React nodes.
  *
@@ -8,8 +10,6 @@
  * const slides = [<div>Slide 1</div>, <div>Slide 2</div>, <div>Slide 3</div>];
  * return <Slider slides={slides} />;
  */
-import React, { useState, useEffect } from 'react';
-
 export default function Slider({ slides }: { slides: React.ReactNode[] }) {
   const [active, setActive] = useState(0);
   const max = slides.length;

@@ -1,3 +1,5 @@
+import { Dispatch } from "@reduxjs/toolkit";
+
 const SET_VISIBLE = 'loginModal/SET_VISIBLE';
 
 const initialState = {
@@ -15,7 +17,7 @@ const loginModal = (state = initialState, { type, visible }: { type: string; vis
   }
 };
 
-export const setLoginModalVisible = (visible: boolean) => (dispatch: any) => {
+export const setLoginModalVisible = (visible: boolean) => (dispatch: Dispatch) => {
   dispatch({
     type: SET_VISIBLE,
     visible,

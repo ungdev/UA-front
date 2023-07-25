@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/nextjs';
+const path = require('path');
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -8,14 +9,27 @@ const config: StorybookConfig = {
     '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    '@storybook/addon-coverage',
+    '@storybook/addon-coverage'
   ],
   framework: {
     name: '@storybook/nextjs',
-    options: {},
+    options: {
+    },
   },
   docs: {
     autodocs: 'tag',
   },
+  webpackFinal: (config) => {
+    /**
+     * Add support for alias-imports
+     * @see https://github.com/storybookjs/storybook/issues/11989#issuecomment-715524391
+     */
+    config!.resolve!.alias = {
+      ...config.resolve?.alias,
+      '@': [path.resolve(__dirname, '../src/'), path.resolve(__dirname, '../')],
+    };
+
+    return config;
+  }
 };
 export default config;

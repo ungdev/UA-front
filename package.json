@@ -10,14 +10,15 @@
     "start": "next start -p 8080",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "docs": "storybook dev -p 6006",
-    "docs:build": "storybook build",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build --output-dir docs",
     "test": "test-storybook",
     "test:watch": "test-storybook --watch",
-    "test:coverage": "test-storybook --coverage"
+    "test:coverage": "test-storybook --coverage && nyc report --reporter html --reporter text -t .nyc_output --report-dir .nyc_output/report"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@storybook/addon-coverage": "^0.0.9",
     "jsqr": "^1.4.0",
     "lazysizes": "^5.3.2",
     "modern-normalize": "^2.0.0",
@@ -52,6 +53,7 @@
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "eslint-plugin-storybook": "^0.6.13",
+    "nyc": "^15.1.0",
     "sass": "^1.64.1",
     "storybook": "^7.1.1",
     "typescript": "5.1.6"

@@ -36,8 +36,8 @@ cp .env.example .env
 - `pnpm start` : permet de servir le build
 - `pnpm lint` : permet d'afficher les recommendations de formatage du code
 - `pnpm lint:fix` : permet de corriger le formatage du code
-- `pnpm docs` : permet de lancer une version locale de Storybook pour visualiser la documentation des composants
-- `pnpm docs:build` : permet de générer la documentation des composants via Storybook. La documentation est générée dans le dossier `docs`
+- `pnpm storybook` : permet de lancer une version locale de Storybook pour visualiser la documentation des composants
+- `pnpm storybook:build` : permet de générer la documentation des composants via Storybook. La documentation est générée dans le dossier `docs`
 - `pnpm test` : permet de lancer les tests unitaires
 - `pnpm test:watch` : permet de lancer les tests unitaires en mode watch
 - `pnpm test:coverage` : permet de lancer les tests unitaires et d'afficher la couverture de code

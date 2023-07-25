@@ -1,7 +1,7 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
 import CookieConsent from './CookieConsent';
@@ -12,19 +12,24 @@ import Footer from "./Footer";
 
 import { toast } from 'react-toastify';
 
+interface SearchParams extends ReadonlyURLSearchParams {
+  action?: string;
+  state?: string;
+}
+
 /**
  * Wrapper component that provides common layout and functionality for all pages.
  * @param children The child components to be rendered within the layout.
  * @returns The Wrapper component.
  */
-export default function Wrapper({ children } : { children: any }) {
+export default function Wrapper({ children } : { children: ReactNode }) {
   // Import necessary hooks and modules
   const { replace } = useRouter();
   const pathname = usePathname();
-  const query: any = useSearchParams();
-  const dispatch = useDispatch();
+  const query: SearchParams = useSearchParams();
+  const dispatch = useAppDispatch();
   const isDashboard = pathname.substring(0, 10) === '/dashboard';
-  const permissions = useSelector((state: any) => state.login.user && state.login.user.permissions);
+  const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
 
   // Define state variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +39,7 @@ export default function Wrapper({ children } : { children: any }) {
   const [isSpectator, setIsSpectator] = useState(false);
 
   // Update state variables based on changes to the login state
-  useSelector((state: any) => {
+  useAppSelector((state) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
@@ -56,13 +61,13 @@ export default function Wrapper({ children } : { children: any }) {
   });
 
   // Get settings from Redux store
-  const isLoginAllowed = useSelector((state: any) => state.settings.login);
-  const isShopAllowed = useSelector((state: any) => state.settings.shop);
+  const isLoginAllowed = useAppSelector((state) => state.settings.login);
+  const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
-  const isLoading = useSelector((state: any) => state.login.loading);
+  const isLoading = useAppSelector((state) => state.login.loading);
 
   // Handle redirections
-  let redirect: any = null;
+  let redirect: string | null = null;
 
   useEffect(() => {
     if (isLoading) {

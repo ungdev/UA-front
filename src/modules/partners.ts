@@ -1,4 +1,6 @@
+import { Action, Dispatch } from '@reduxjs/toolkit';
 import { uploads } from '../utils/api';
+import { Partner } from '@/types';
 
 export const SET_PARTNERS = 'partners/SET_PARTNERS';
 
@@ -6,7 +8,11 @@ const initialState = {
   partners: undefined,
 };
 
-const partners = (state = initialState, action: any) => {
+interface PartnersAction extends Action {
+  partners: Partner[];
+}
+
+const partners = (state = initialState, action: PartnersAction) => {
   switch (action.type) {
     case SET_PARTNERS:
       return {
@@ -18,7 +24,7 @@ const partners = (state = initialState, action: any) => {
   }
 };
 
-export const fetchPartners = async (dispatch: any) => {
+export const fetchPartners = async (dispatch: Dispatch) => {
   const request = await uploads.get('/partners/list.json', true);
   console.log(request);
   dispatch({
