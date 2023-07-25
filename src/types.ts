@@ -63,5 +63,5 @@ export interface CartItem {
 }
 
 export interface Supplement {
-    any
+
 }
