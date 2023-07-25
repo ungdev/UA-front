@@ -9,9 +9,12 @@
     "build": "next build",
     "start": "next start -p 8080",
     "lint": "next lint",
-    "lint-fix": "next lint --fix",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "lint:fix": "next lint --fix",
+    "docs": "storybook dev -p 6006",
+    "docs:build": "storybook build",
+    "test": "test-storybook",
+    "test:watch": "test-storybook --watch",
+    "test:coverage": "test-storybook --coverage"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -31,13 +34,16 @@
     "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^7.1.1",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.1.1",
+    "@storybook/jest": "^0.1.0",
     "@storybook/nextjs": "^7.1.1",
     "@storybook/react": "^7.1.1",
+    "@storybook/test-runner": "^0.11.0",
     "@storybook/testing-library": "^0.2.0",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",

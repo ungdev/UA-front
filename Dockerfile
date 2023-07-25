@@ -7,12 +7,12 @@ RUN chown node:node .
 
 USER node
 
-COPY --chown=node:node package.json yarn.lock ./
+COPY --chown=node:node package.json pnpm-lock.yaml ./
 
-RUN yarn --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 COPY --chown=node:node ./ ./
 
-RUN yarn build
+RUN pnpm build
 
-CMD yarn start
+CMD pnpm start

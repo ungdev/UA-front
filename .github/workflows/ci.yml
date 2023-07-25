@@ -13,9 +13,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn --frozen-lockfile
-      - run: yarn lint
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yml') }}
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
       - uses: lazy-actions/slatify@master
         if: ${{ failure() }}
         with:
@@ -32,9 +32,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn --frozen-lockfile
-      - run: yarn build
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yml') }}
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
       - uses: lazy-actions/slatify@master
         if: ${{ failure() }}
         with:

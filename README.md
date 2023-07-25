@@ -9,7 +9,7 @@ Nouvelle version du site de l'UTT Arena ([https://arena.utt.fr](https://arena.ut
 
 ## Pré-requis
 
-- [Yarn](https://yarnpkg.com/fr/)
+- [Pnpm](https://pnpm.io/)
 
 ## Installation
 
@@ -18,7 +18,7 @@ Nouvelle version du site de l'UTT Arena ([https://arena.utt.fr](https://arena.ut
 ```
 git clone https://github.com/ungdev/UA-front.git
 cd UA-front
-yarn
+pnpm install
 ```
 
 ### Modification de la configuration
@@ -31,9 +31,13 @@ cp .env.example .env
 
 ## Scripts disponibles
 
-- `yarn dev` : permet de lancer une version locale de développement
-- `yarn build` : permet de build l'application
-- `yarn start` : permet de servir le build
-- `yarn build-docs` : permet de générer la documentation des composants situés dans le dossier /src/components/UI. La documentation se situera dans le dossier /docs.
-- `yarn lint` : permet d'afficher les recommendations de formatage du code
-- `yarn lint-fix` : permet de corriger le formatage du code
+- `pnpm dev` : permet de lancer une version locale de développement
+- `pnpm build` : permet de build l'application
+- `pnpm start` : permet de servir le build
+- `pnpm lint` : permet d'afficher les recommendations de formatage du code
+- `pnpm lint:fix` : permet de corriger le formatage du code
+- `pnpm docs` : permet de lancer une version locale de Storybook pour visualiser la documentation des composants
+- `pnpm docs:build` : permet de générer la documentation des composants via Storybook. La documentation est générée dans le dossier `docs`
+- `pnpm test` : permet de lancer les tests unitaires
+- `pnpm test:watch` : permet de lancer les tests unitaires en mode watch
+- `pnpm test:coverage` : permet de lancer les tests unitaires et d'afficher la couverture de code
