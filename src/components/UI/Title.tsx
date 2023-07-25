@@ -11,13 +11,20 @@ import Divider from './Divider';
  * @param {string} id - The HTML id attribute to be added to the title component.
  * @returns {JSX.Element} - The rendered title component.
  */
-const Title = ({ level, children, gutterBottom, align, className, id }: {
-  level?: number,
-  children: React.ReactNode,
-  gutterBottom?: boolean,
-  align?: 'inherit' | 'center' | 'justify' | 'left' | 'right',
-  className?: string,
-  id?: string,
+const Title = ({
+  level,
+  children,
+  gutterBottom,
+  align,
+  className,
+  id,
+}: {
+  level?: number;
+  children: React.ReactNode;
+  gutterBottom?: boolean;
+  align?: 'inherit' | 'center' | 'justify' | 'left' | 'right';
+  className?: string;
+  id?: string;
 }) => {
   const Component: any = `h${level}`;
 

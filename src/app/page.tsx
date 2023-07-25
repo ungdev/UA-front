@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import Partners from '@/components/Partners';
 
@@ -19,23 +19,19 @@ const Home = () => {
       />
 
       <div className="cta-main">
-        <Title level={1}>
-          LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST
-        </Title>
-        <div className="cta-main-subtitle">
-          Prépare toi à entrer dans l’arène !
-        </div>
+        <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
+        <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
         <Button primary className="connection">
           Découvrir l’événement
         </Button>
       </div>
 
       <BoxContainer title="Quelques chiffres">
-        <Counter value={7} name="Jeux" className='flex-1' />
+        <Counter value={7} name="Jeux" className="flex-1" />
         <VerticalDivider />
         <Counter value={10000} name="Euros de cashprize" />
         <VerticalDivider />
-        <Counter value={500} name="Participants" className='flex-1' />
+        <Counter value={500} name="Participants" className="flex-1" />
       </BoxContainer>
       <Partners />
     </div>

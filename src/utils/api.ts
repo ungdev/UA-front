@@ -4,7 +4,14 @@ import { apiUrl, uploadsUrl } from './environment';
 let token: string | null = null;
 
 // Send request to API and handle errors
-const requestAPI = (method: string, baseURL: string, route: string, authorizationHeader: boolean, body = null, disableCache = false): Promise<any> =>
+const requestAPI = (
+  method: string,
+  baseURL: string,
+  route: string,
+  authorizationHeader: boolean,
+  body = null,
+  disableCache = false,
+): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
 
@@ -18,41 +25,40 @@ const requestAPI = (method: string, baseURL: string, route: string, authorizatio
             Authorization: token ? `Bearer ${token}` : '',
           }
         : {},
-      body: (method === 'GET' || method === 'DELETE') ? undefined : JSON.stringify(body),
-
+      body: method === 'GET' || method === 'DELETE' ? undefined : JSON.stringify(body),
     })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
 
-      console.log(JSON.stringify(response));
+        console.log(JSON.stringify(response));
 
-      clearTimeout(timeout);
-      return response.json();
-    })
-    .then((data) => {
-      if(!didTimeOut) {
-        didTimeOut = true; // Prevents timeout
-        resolve(data);
-      }
-    })
-    .catch((error) => {
-      if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
-        toast.error('Connexion au serveur impossible');
-      } else {
-        toast.error('Une erreur est survenue');
-      }
+        clearTimeout(timeout);
+        return response.json();
+      })
+      .then((data) => {
+        if (!didTimeOut) {
+          didTimeOut = true; // Prevents timeout
+          resolve(data);
+        }
+      })
+      .catch((error) => {
+        if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
+          toast.error('Connexion au serveur impossible');
+        } else {
+          toast.error('Une erreur est survenue');
+        }
 
-      console.error(error);
+        console.error(error);
 
-      if(didTimeOut) return;
-      reject();
-    });
+        if (didTimeOut) return;
+        reject();
+      });
 
     // Add manual timeout as not supported by fetch
-    const timeout = setTimeout(function() {
-      if(didTimeOut != true) {
+    const timeout = setTimeout(function () {
+      if (didTimeOut != true) {
         didTimeOut = true;
         toast.error('Connexion au serveur impossible');
         reject(new Error('Request timed out'));

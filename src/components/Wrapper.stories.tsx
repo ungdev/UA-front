@@ -3,26 +3,26 @@ import Wrapper from './Wrapper';
 import { Providers } from '@/lib/provider';
 
 const meta = {
-    title: 'Main/Wrapper',
-    component: Wrapper,
-    tags: ['autodocs'],
-    parameters: {
-        nextjs: {
-            appDirectory: true,
-        },
+  title: 'Main/Wrapper',
+  component: Wrapper,
+  tags: ['autodocs'],
+  parameters: {
+    nextjs: {
+      appDirectory: true,
     },
-    render: (args: any) => (
-        <Providers>
-            <Wrapper {...args} />
-        </Providers>
-    ),
+  },
+  render: (args: any) => (
+    <Providers>
+      <Wrapper {...args} />
+    </Providers>
+  ),
 } satisfies Meta<typeof Wrapper>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    args: {
-        children: <h1>Hello World!</h1>,
-    },
+  args: {
+    children: <h1>Hello World!</h1>,
+  },
 };

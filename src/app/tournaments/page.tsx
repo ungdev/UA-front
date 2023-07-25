@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Button from '@/components/UI/Button';
 import { useEffect, useState } from 'react';
@@ -17,7 +17,7 @@ const TournamentHome = () => {
       playersPerTeam: 5,
       image: 'https://arena.utt.fr/tournaments/tft.jpg',
       backgroundImage: 'https://arena.utt.fr/tournaments/tft.jpg',
-      caster: "Caster1",
+      caster: 'Caster1',
     },
     {
       id: 'csgo',
@@ -27,7 +27,7 @@ const TournamentHome = () => {
       playersPerTeam: 5,
       image: 'https://arena.utt.fr/tournaments/csgo.jpg',
       backgroundImage: '../../../tournaments/csgo-background.png',
-      caster: "Caster2",
+      caster: 'Caster2',
     },
   ];
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
@@ -47,11 +47,13 @@ const TournamentHome = () => {
     <div className="tournaments">
       <div className="top-container">
         <div className="top">
-          <Title level={1} align={"center"}>Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !</Title>
+          <Title level={1} align={'center'}>
+            Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !
+          </Title>
           <div className="text">
-            Rejoins-nous dès maintenant pour vivre une expérience inoubliable, où l'amitié, la stratégie, et l'adrénaline
-            se mêlent pour créer des souvenirs inégalables. C'est l'occasion parfaite de mettre en avant tes talents, de
-            relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
+            Rejoins-nous dès maintenant pour vivre une expérience inoubliable, où l'amitié, la stratégie, et
+            l'adrénaline se mêlent pour créer des souvenirs inégalables. C'est l'occasion parfaite de mettre en avant
+            tes talents, de relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
           </div>
           <div className="buttons">
             <Button isPink primary>

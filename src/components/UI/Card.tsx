@@ -33,17 +33,17 @@ const Card = ({
   alt,
   divider,
 }: {
-  dark?: boolean,
-  imgSrc?: string,
-  content?: React.ReactNode,
-  buttonContent?: React.ReactNode,
-  onClick?: () => void,
-  href?: string,
-  target?: string,
-  className?: string,
-  classNameImg?: string,
-  alt?: string,
-  divider?: 'belowImage' | 'bottom',
+  dark?: boolean;
+  imgSrc?: string;
+  content?: React.ReactNode;
+  buttonContent?: React.ReactNode;
+  onClick?: () => void;
+  href?: string;
+  target?: string;
+  className?: string;
+  classNameImg?: string;
+  alt?: string;
+  divider?: 'belowImage' | 'bottom';
 }) => {
   let button = (
     <Button primary onClick={onClick}>
@@ -56,9 +56,7 @@ const Card = ({
         {button}
       </a>
     ) : (
-      <Link href={href}>
-        {button}
-      </Link>
+      <Link href={href}>{button}</Link>
     );
   }
 

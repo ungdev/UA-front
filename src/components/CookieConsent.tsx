@@ -34,10 +34,7 @@ export default function CookieConsent() {
   return (
     <div className="cookie-consent">
       Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consens
-      {' à'} l'utilisation de ces cookies.{' '}
-      <Link href="/legal">
-        En&nbsp;savoir&nbsp;plus
-      </Link>
+      {' à'} l'utilisation de ces cookies. <Link href="/legal">En&nbsp;savoir&nbsp;plus</Link>
       <br />
       <div className="button-row">
         <Button onClick={buttonClick} className="cookie-button consent">
@@ -49,4 +46,4 @@ export default function CookieConsent() {
       </div>
     </div>
   );
-};
+}

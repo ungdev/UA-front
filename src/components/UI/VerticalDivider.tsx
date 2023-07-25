@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Divider = () => {
-  return (
-    <div className="vertical-divider"></div>
-  );
+  return <div className="vertical-divider"></div>;
 };
 
 export default Divider;

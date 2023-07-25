@@ -1,4 +1,4 @@
-import { Dispatch } from "@reduxjs/toolkit";
+import { Dispatch } from '@reduxjs/toolkit';
 
 const SET_VISIBLE = 'loginModal/SET_VISIBLE';
 

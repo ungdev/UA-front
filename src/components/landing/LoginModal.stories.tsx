@@ -3,27 +3,27 @@ import LoginModal from './LoginModal';
 import { Providers } from '@/lib/provider';
 
 const meta = {
-    title: 'Landing/LoginModal',
-    component: LoginModal,
-    tags: ['autodocs'],
-    render: (args: any) => (
-        <Providers>
-            <LoginModal {...args} />
-        </Providers>
-    )
+  title: 'Landing/LoginModal',
+  component: LoginModal,
+  tags: ['autodocs'],
+  render: (args: any) => (
+    <Providers>
+      <LoginModal {...args} />
+    </Providers>
+  ),
 } satisfies Meta<typeof LoginModal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    args: {
-        isVisible: true,
-    },
+  args: {
+    isVisible: true,
+  },
 };
 
 export const Hidden: Story = {
-    args: {
-        isVisible: false,
-    },
+  args: {
+    isVisible: false,
+  },
 };

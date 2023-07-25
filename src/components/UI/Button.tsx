@@ -14,17 +14,28 @@ import React from 'react';
  * @param {string} className - The class name(s) to be added to the button.
  * @returns {JSX.Element} - A button element with the specified props.
  */
-const Button = ({ primary, onClick, children, type, leftIcon, rightIcon, disabled, noStyle, isPink, className }: {
-  primary?: boolean,
-  onClick?: () => void,
-  children?: React.ReactNode,
-  type?: 'submit' | 'reset' | 'button',
-  leftIcon?: string,
-  rightIcon?: string,
-  disabled?: boolean,
-  noStyle?: boolean,
-  isPink?: boolean,
-  className?: string,
+const Button = ({
+  primary,
+  onClick,
+  children,
+  type,
+  leftIcon,
+  rightIcon,
+  disabled,
+  noStyle,
+  isPink,
+  className,
+}: {
+  primary?: boolean;
+  onClick?: () => void;
+  children?: React.ReactNode;
+  type?: 'submit' | 'reset' | 'button';
+  leftIcon?: string;
+  rightIcon?: string;
+  disabled?: boolean;
+  noStyle?: boolean;
+  isPink?: boolean;
+  className?: string;
 }) => {
   return (
     <button

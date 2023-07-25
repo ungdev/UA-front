@@ -73,7 +73,11 @@ export default function LoginModal({ isVisible }: { isVisible: boolean }) {
       title: 'Connexion',
       content: (
         <>
-          <Input label="Pseudo / Email" value={loginForm.login} onChange={(value: string) => updateLogin('login', value)} />
+          <Input
+            label="Pseudo / Email"
+            value={loginForm.login}
+            onChange={(value: string) => updateLogin('login', value)}
+          />
           <Input
             label="Mot de passe"
             value={loginForm.password}
@@ -204,4 +208,4 @@ export default function LoginModal({ isVisible }: { isVisible: boolean }) {
       </form>
     </Modal>
   );
-};
+}

@@ -10,7 +10,6 @@
     "plugin:storybook/recommended"
   ],
   "plugins": [
-    "react-hooks",
     "react",
     "prettier"
   ],

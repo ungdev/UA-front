@@ -8,11 +8,16 @@ import React, { useState, useEffect, useRef } from 'react';
  * @param {boolean} initVisible - The initial visibility state of the collapsible component.
  * @returns {JSX.Element} - The Collapse component.
  */
-const Collapse = ({ title, children, className, initVisible }: {
-  title: string,
-  children: React.ReactNode,
-  className?: string,
-  initVisible?: boolean,
+const Collapse = ({
+  title,
+  children,
+  className,
+  initVisible,
+}: {
+  title: string;
+  children: React.ReactNode;
+  className?: string;
+  initVisible?: boolean;
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState(0);

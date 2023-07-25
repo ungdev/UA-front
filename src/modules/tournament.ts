@@ -14,7 +14,6 @@ export interface TournamentAction extends Action {
   slots: any;
 }
 
-
 const tournament = (state = initialState, action: TournamentAction) => {
   switch (action.type) {
     case SET_TOURNAMENTS:
@@ -42,12 +41,23 @@ export const fetchTournaments = () => async (dispatch: Dispatch) => {
 
 export const fetchSlots = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments?paidOnly=true');
-  const slots = res.reduce((previous: any, { maxPlayers, playersPerTeam, lockedTeamsCount, id }: { maxPlayers: number; playersPerTeam: number; lockedTeamsCount: number; id: string }) => {
-    const total = maxPlayers / playersPerTeam;
-    const available = total - lockedTeamsCount;
-    previous[id] = { total, available };
-    return previous;
-  }, {});
+  const slots = res.reduce(
+    (
+      previous: any,
+      {
+        maxPlayers,
+        playersPerTeam,
+        lockedTeamsCount,
+        id,
+      }: { maxPlayers: number; playersPerTeam: number; lockedTeamsCount: number; id: string },
+    ) => {
+      const total = maxPlayers / playersPerTeam;
+      const available = total - lockedTeamsCount;
+      previous[id] = { total, available };
+      return previous;
+    },
+    {},
+  );
   dispatch({
     type: SET_SLOTS,
     slots,

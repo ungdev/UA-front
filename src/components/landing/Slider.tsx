@@ -86,4 +86,4 @@ export default function Slider({ slides }: { slides: React.ReactNode[] }) {
       <ul className="dots-container">{renderDots()}</ul>
     </section>
   );
-};
+}

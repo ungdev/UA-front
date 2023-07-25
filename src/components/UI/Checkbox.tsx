@@ -9,7 +9,19 @@ import React from 'react';
  * @param {boolean} autoFocus - Whether the checkbox should be focused on mount.
  * @returns {JSX.Element} - The rendered Checkbox component.
  */
-const Checkbox = ({ label, value, onChange, className, autoFocus }: { label: string; value: boolean; onChange: (value: boolean) => void; className?: string; autoFocus?: boolean }) => {
+const Checkbox = ({
+  label,
+  value,
+  onChange,
+  className,
+  autoFocus,
+}: {
+  label: string;
+  value: boolean;
+  onChange: (value: boolean) => void;
+  className?: string;
+  autoFocus?: boolean;
+}) => {
   return (
     <label className={`checkbox ${className}`}>
       <input

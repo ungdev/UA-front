@@ -8,7 +8,7 @@ import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
 import { autoLogin, validate } from '@/modules/login';
 import { hasOrgaPermission } from '@/utils/permission';
-import Footer from "./Footer";
+import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 
@@ -22,7 +22,7 @@ interface SearchParams extends ReadonlyURLSearchParams {
  * @param children The child components to be rendered within the layout.
  * @returns The Wrapper component.
  */
-export default function Wrapper({ children } : { children: ReactNode }) {
+export default function Wrapper({ children }: { children: ReactNode }) {
   // Import necessary hooks and modules
   const { replace } = useRouter();
   const pathname = usePathname();
@@ -146,11 +146,9 @@ export default function Wrapper({ children } : { children: ReactNode }) {
       <CookieConsent />
       <div className="page-container">
         <Header />
-        <main>
-          { children }
-        </main>
+        <main>{children}</main>
         <Footer />
       </div>
     </>
   );
-};
+}
