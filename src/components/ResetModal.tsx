@@ -3,7 +3,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Modal from './UI/Modal';
 import Button from './UI/Button';
 import Input from './UI/Input';
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
 import { toast } from 'react-toastify';
 
 /**

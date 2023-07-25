@@ -1,8 +1,8 @@
 import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import rootReducer from '../modules';
-import { nodeEnv } from '../utils/environment';
+import rootReducer from '@/modules';
+import { nodeEnv } from '@/utils/environment';
 
 const enhancers: any[] = [];
 const middleware = [thunk];

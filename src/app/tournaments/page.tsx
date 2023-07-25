@@ -17,6 +17,7 @@ const TournamentHome = () => {
       playersPerTeam: 5,
       image: 'https://arena.utt.fr/tournaments/tft.jpg',
       backgroundImage: 'https://arena.utt.fr/tournaments/tft.jpg',
+      caster: "Caster1",
     },
     {
       id: 'csgo',
@@ -26,6 +27,7 @@ const TournamentHome = () => {
       playersPerTeam: 5,
       image: 'https://arena.utt.fr/tournaments/csgo.jpg',
       backgroundImage: '../../../tournaments/csgo-background.png',
+      caster: "Caster2",
     },
   ];
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);

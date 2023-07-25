@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import logo from '../../public/images/logo.png';
 import Navbar from './Navbar';
 import Button from './UI/Button';
+
+import logo from '../../public/images/logo.png';
 
 /**
  * Header component that displays the logo, navigation bar, and buttons for about and login.

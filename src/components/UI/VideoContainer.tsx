@@ -1,12 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 /**
- * Displays iframe and keeps 16:9 ratio
+ * A container for displaying videos with a responsive aspect ratio.
+ * @param title - The title of the video.
+ * @param src - The URL of the video.
+ * @param className - An optional class name to apply to the container.
  */
-const VideoContainer = ({ title, src, className }) => (
+const VideoContainer = ({ title, src, className }: { title: string, src: string, className: string }) => (
   <div className={`video-container ${className}`}>
     <div className="video-container-ratio">
       <div className="video-container-full">
@@ -21,25 +23,5 @@ const VideoContainer = ({ title, src, className }) => (
     </div>
   </div>
 );
-
-VideoContainer.propTypes = {
-  /**
-   * Title of the iframe
-   */
-  title: PropTypes.string,
-  /**
-   * Source of the iframe
-   */
-  src: PropTypes.string.isRequired,
-  /**
-   * Class of the container
-   */
-  className: PropTypes.string,
-};
-
-VideoContainer.defaultProps = {
-  title: '',
-  className: '',
-};
 
 export default VideoContainer;

@@ -2,18 +2,20 @@ import { toast } from 'react-toastify';
 import Router from 'next/navigation';
 
 import { setLoginModalVisible } from './loginModal';
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
+import { Action, Dispatch } from '@reduxjs/toolkit';
+import { RegisterUser, User } from '@/types';
 
 const initialState = {};
 
-const register = (state = initialState, action) => {
+const register = (state = initialState, action: Action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export const registerUser = (user) => async (dispatch) => {
+export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');
     return;
@@ -30,20 +32,20 @@ export const registerUser = (user) => async (dispatch) => {
   delete user.passwordConfirmation;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, vérifie tes emails');
-  dispatch(setLoginModalVisible(false));
+  dispatch(setLoginModalVisible(false) as any);
   return true;
 };
 
-export const validate = (slug) => async () => {
+export const validate = (slug: string) => async () => {
   try {
     const res = await API.post('auth/validation', { slug });
     localStorage.setItem('utt-arena-userid', res.user.id);
     localStorage.setItem('utt-arena-token', res.token);
 
     // Refresh page to autoLogin
-    window.location = '/dashboard';
+    Router.redirect('/dashboard');
   } catch (err) {
-    Router.replace('/');
+    Router.redirect('/');
   }
 };
 

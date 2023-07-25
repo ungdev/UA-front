@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
 import { Action, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 

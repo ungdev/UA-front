@@ -2,8 +2,8 @@ import { toast } from 'react-toastify';
 import Router from 'next/navigation';
 
 import { setLoginModalVisible } from './loginModal';
-import { API, setAuthorizationToken } from '../utils/api';
-import { hasOrgaPermission } from '../utils/permission';
+import { API, setAuthorizationToken } from '@/utils/api';
+import { hasOrgaPermission } from '@/utils/permission';
 import { SET_TEAM } from './team';
 
 export const SET_TOKEN = 'login/SET_TOKEN';

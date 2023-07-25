@@ -1,4 +1,4 @@
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
 
 export const fetchItems = async () => {
   const res = await API.get('items');

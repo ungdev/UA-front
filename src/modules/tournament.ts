@@ -1,4 +1,5 @@
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
 export const SET_SLOTS = 'tournament/SET_SLOTS';
@@ -8,7 +9,13 @@ const initialState = {
   slots: null,
 };
 
-const tournament = (state = initialState, action) => {
+export interface TournamentAction extends Action {
+  tournaments: any;
+  slots: any;
+}
+
+
+const tournament = (state = initialState, action: TournamentAction) => {
   switch (action.type) {
     case SET_TOURNAMENTS:
       return {
@@ -25,7 +32,7 @@ const tournament = (state = initialState, action) => {
   }
 };
 
-export const fetchTournaments = () => async (dispatch) => {
+export const fetchTournaments = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments');
   dispatch({
     type: SET_TOURNAMENTS,
@@ -33,9 +40,9 @@ export const fetchTournaments = () => async (dispatch) => {
   });
 };
 
-export const fetchSlots = () => async (dispatch) => {
+export const fetchSlots = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments?paidOnly=true');
-  const slots = res.reduce((previous, { maxPlayers, playersPerTeam, lockedTeamsCount, id }) => {
+  const slots = res.reduce((previous: any, { maxPlayers, playersPerTeam, lockedTeamsCount, id }: { maxPlayers: number; playersPerTeam: number; lockedTeamsCount: number; id: string }) => {
     const total = maxPlayers / playersPerTeam;
     const available = total - lockedTeamsCount;
     previous[id] = { total, available };

@@ -1,4 +1,6 @@
-import { API } from '../utils/api';
+import { Settings } from '@/types';
+import { API } from '@/utils/api';
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 export const SET_SETTINGS = 'login/SET_SETTINGS';
 
@@ -7,7 +9,11 @@ const initialState = {
   shop: false,
 };
 
-const settings = (state = initialState, action) => {
+export interface SettingsAction extends Action {
+  settings: Settings;
+}
+
+const settings = (state = initialState, action: SettingsAction) => {
   switch (action.type) {
     case SET_SETTINGS:
       return action.settings;
@@ -16,7 +22,7 @@ const settings = (state = initialState, action) => {
   }
 };
 
-export const fetchSettings = () => async (dispatch) => {
+export const fetchSettings = () => async (dispatch: Dispatch) => {
   try {
     const res = await API.get(`settings`);
     dispatch({

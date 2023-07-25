@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardAccount from '../dashboard/account';
+import DashboardAccount from '@/dashboard/account';
 
 const Account = () => <DashboardAccount />;
 

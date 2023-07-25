@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Modal, Button, Input, Radio } from './../UI';
+import { Modal, Button, Input, Radio } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { registerUser } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';

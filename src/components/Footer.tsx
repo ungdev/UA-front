@@ -1,6 +1,7 @@
-import logo from '../../public/images/logo-footer.png';
 import Button from './UI/Button';
 import { useRouter } from 'next/navigation';
+
+import logo from '../../public/images/logo-footer.png';
 
 /**
  * Footer component that displays legal information and contact details.

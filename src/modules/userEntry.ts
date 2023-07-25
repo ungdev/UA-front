@@ -1,6 +1,9 @@
 import { toast } from 'react-toastify';
 
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
+import { User } from '@/types';
+import { Action, Dispatch } from '@reduxjs/toolkit';
+import { RootState } from '@/lib/store';
 
 export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
 
@@ -8,19 +11,23 @@ const initialState = {
   searchUser: null,
 };
 
-const userEntry = (state = initialState, payload) => {
-  switch (payload.type) {
+interface UserEntryAction extends Action {
+  searchUser: User;
+}
+
+const userEntry = (state = initialState, action: UserEntryAction) => {
+  switch (action.type) {
     case SET_SEARCH_USER:
       return {
         ...state,
-        searchUser: payload.searchUser,
+        searchUser: action.searchUser,
       };
     default:
       return state;
   }
 };
 
-export const registerCashPayment = () => async (dispatch, getState) => {
+export const registerCashPayment = () => async (dispatch: Dispatch, getState: RootState) => {
   const currentUser = getState().userEntry.searchUser;
   if (!currentUser?.id) {
     throw new Error('Cannot validate payment of undefined user');
@@ -39,7 +46,7 @@ export const registerCashPayment = () => async (dispatch, getState) => {
   });
 };
 
-export const searchUser = (userIdentifiable) => async (dispatch) => {
+export const searchUser = (userIdentifiable: any) => async (dispatch: Dispatch) => {
   const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
   if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
   else
@@ -49,7 +56,7 @@ export const searchUser = (userIdentifiable) => async (dispatch) => {
     });
 };
 
-export const scan = (qrcode) => async (dispatch) => {
+export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
   try {
     const { data: user } = await API.post(`admin/scan`, {
       qrcode,
@@ -59,12 +66,12 @@ export const scan = (qrcode) => async (dispatch) => {
       type: SET_SEARCH_USER,
       searchUser: user,
     });
-  } catch (error) {
+  } catch (error: any) {
     toast.error(error);
   }
 };
 
-export const bypassQrScan = () => async (dispatch, getState) => {
+export const bypassQrScan = () => async (dispatch: Dispatch, getState: RootState) => {
   const currentUser = getState().userEntry.searchUser;
   if (!currentUser?.id) throw new Error('Cannot validate entry of undefined user');
   try {
@@ -76,7 +83,7 @@ export const bypassQrScan = () => async (dispatch, getState) => {
       type: SET_SEARCH_USER,
       searchUser: user,
     });
-  } catch (error) {
+  } catch (error: any) {
     toast.error(error);
   }
 };

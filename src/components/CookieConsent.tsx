@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { Button } from './UI';
-import { getCookie } from '../utils/cookies';
+import { getCookie } from '@/utils/cookies';
 
 const cookieName = 'cookie-consent';
 

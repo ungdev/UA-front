@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import Router from 'next/navigation';
 
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
 import { fetchSlots } from './tournament';
 
 export const SET_TEAM = 'team/SET_TEAM';

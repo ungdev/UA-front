@@ -1,5 +1,5 @@
 import { Action, Dispatch } from '@reduxjs/toolkit';
-import { uploads } from '../utils/api';
+import { uploads } from '@/utils/api';
 import { Partner } from '@/types';
 
 export const SET_PARTNERS = 'partners/SET_PARTNERS';

@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
 import CookieConsent from './CookieConsent';
-import { fetchSettings } from '../modules/settings';
-import { autoLogin, validate } from '../modules/login';
-import { hasOrgaPermission } from '../utils/permission';
+import { fetchSettings } from '@/modules/settings';
+import { autoLogin, validate } from '@/modules/login';
+import { hasOrgaPermission } from '@/utils/permission';
 import Footer from "./Footer";
 
 import { toast } from 'react-toastify';
