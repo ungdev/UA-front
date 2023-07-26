@@ -30,15 +30,15 @@ const Input = ({
 }: {
   type: 'text' | 'email' | 'password' | 'number';
   label: ReactNode;
-  placeholder?: string;
+  placeholder: string;
   value: string | number;
   onChange: (value: string) => void;
-  min?: number;
-  max?: number;
-  className?: string;
-  autocomplete?: string;
-  disabled?: boolean;
-  autoFocus?: boolean;
+  min: number;
+  max: number;
+  className: string;
+  autocomplete: string;
+  disabled: boolean;
+  autoFocus: boolean;
 }) => {
   const handleChange = (newValue: string) => {
     if (
@@ -74,6 +74,20 @@ const Input = ({
       </label>
     </div>
   );
+};
+
+Input.defaultProps = {
+  type: 'text',
+  label: '',
+  placeholder: '',
+  value: '',
+  onChange: () => {},
+  min: undefined,
+  max: undefined,
+  className: '',
+  autocomplete: '',
+  disabled: false,
+  autoFocus: false,
 };
 
 export default Input;

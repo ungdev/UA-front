@@ -27,7 +27,7 @@ const initialLogin = {
  * @param {boolean} isVisible - Determines whether the modal is visible or not.
  * @returns {JSX.Element} - Returns the LoginModal component.
  */
-export default function LoginModal({ isVisible }: { isVisible: boolean }) {
+function LoginModal({ isVisible }: { isVisible: boolean }) {
   const dispatch = useDispatch();
 
   // Get panel key value
@@ -210,3 +210,9 @@ export default function LoginModal({ isVisible }: { isVisible: boolean }) {
     </Modal>
   );
 }
+
+LoginModal.defaultProps = {
+  isVisible: false,
+};
+
+export default LoginModal;

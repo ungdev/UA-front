@@ -42,4 +42,10 @@ const Select = ({
   </div>
 );
 
+Select.defaultProps = {
+  label: '',
+  disabled: false,
+  className: '',
+};
+
 export default Select;

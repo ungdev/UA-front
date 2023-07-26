@@ -38,4 +38,12 @@ const Checkbox = ({
   );
 };
 
+Checkbox.defaultProps = {
+  label: '',
+  value: '',
+  onChange: () => {},
+  className: '',
+  autoFocus: false,
+};
+
 export default Checkbox;

@@ -30,4 +30,10 @@ const Textarea = ({
   </div>
 );
 
+Textarea.defaultProps = {
+  placeholder: '',
+  value: '',
+  className: '',
+};
+
 export default Textarea;

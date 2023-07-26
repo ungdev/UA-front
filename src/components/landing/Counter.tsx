@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
  * @param name The label to display below the counter.
  * @param className An optional class name to apply to the component.
  */
-export default function Counter({ value, name, className = '' }: { value: number; name: string; className?: string }) {
+function Counter({ value, name, className = '' }: { value: number; name: string; className?: string }) {
   const [counter, setCounter] = useState(0);
   const [visible, setVisible] = useState(false);
   const [locked, setLocked] = useState(false);
@@ -60,3 +60,9 @@ export default function Counter({ value, name, className = '' }: { value: number
     </div>
   );
 }
+
+Counter.defaultProps = {
+  className: '',
+};
+
+export default Counter;

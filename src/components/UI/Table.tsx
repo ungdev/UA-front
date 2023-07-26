@@ -102,4 +102,13 @@ const Table = ({
   </div>
 );
 
+Table.defaultProps = {
+  className: '',
+  alignRight: false,
+  emptyText: '(Vide)',
+  pagination: false,
+  paginationOptions: {},
+  onRowClicked: () => {},
+};
+
 export default Table;

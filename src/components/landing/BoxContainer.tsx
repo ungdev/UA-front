@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
  * @param title The title to display in the box.
  * @param children The content to display in the box.
  */
-export default function BoxContainer({ title, children }: { title: string; children: ReactNode }) {
+function BoxContainer({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div className="box-container">
       <div className="box-title">{title}</div>
@@ -13,3 +13,9 @@ export default function BoxContainer({ title, children }: { title: string; child
     </div>
   );
 }
+
+BoxContainer.defaultProps = {
+  title: '',
+};
+
+export default BoxContainer;

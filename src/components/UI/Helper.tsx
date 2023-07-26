@@ -13,4 +13,8 @@ const Helper = ({ children, className }: { children: ReactNode; className: strin
   </div>
 );
 
+Helper.defaultProps = {
+  className: '',
+};
+
 export default Helper;

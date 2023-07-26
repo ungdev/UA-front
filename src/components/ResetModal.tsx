@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
  * @param {string} resetToken - The reset token for the user's password.
  * @returns {JSX.Element} - The ResetModal component.
  */
-export default function ResetModal({ resetToken }: { resetToken: string }) {
+function ResetModal({ resetToken }: { resetToken: string }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [newPassword, setResetPassword] = useState('');
@@ -58,3 +58,9 @@ export default function ResetModal({ resetToken }: { resetToken: string }) {
     </Modal>
   );
 }
+
+ResetModal.defaultProps = {
+  resetToken: '',
+};
+
+export default ResetModal;

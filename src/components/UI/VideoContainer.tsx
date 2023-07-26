@@ -23,4 +23,9 @@ const VideoContainer = ({ title, src, className }: { title: string; src: string;
   </div>
 );
 
+VideoContainer.defaultProps = {
+  title: '',
+  className: '',
+};
+
 export default VideoContainer;

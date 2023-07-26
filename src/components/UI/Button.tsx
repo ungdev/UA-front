@@ -50,4 +50,17 @@ const Button = ({
   );
 };
 
+Button.defaultProps = {
+  primary: false,
+  onClick: () => {},
+  children: '',
+  type: 'button',
+  leftIcon: '',
+  rightIcon: '',
+  disabled: false,
+  noStyle: false,
+  isPink: false,
+  className: '',
+};
+
 export default Button;

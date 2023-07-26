@@ -42,4 +42,12 @@ const Title = ({
   );
 };
 
+Title.defaultProps = {
+  level: 1,
+  gutterBottom: true,
+  align: 'inherit',
+  className: '',
+  id: undefined,
+};
+
 export default Title;

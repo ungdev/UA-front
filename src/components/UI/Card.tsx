@@ -80,4 +80,18 @@ const Card = ({
   );
 };
 
+Card.defaultProps = {
+  dark: false,
+  imgSrc: null,
+  content: null,
+  buttonContent: '',
+  onClick: () => {},
+  href: null,
+  target: '_self',
+  className: '',
+  classNameImg: '',
+  alt: '',
+  divider: 'bottom',
+};
+
 export default Card;

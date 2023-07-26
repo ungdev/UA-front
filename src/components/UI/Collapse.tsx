@@ -59,4 +59,9 @@ const Collapse = ({
   );
 };
 
+Collapse.defaultProps = {
+  className: '',
+  initVisible: false,
+};
+
 export default Collapse;

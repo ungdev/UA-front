@@ -72,4 +72,14 @@ const Modal = ({
   );
 };
 
+Modal.defaultProps = {
+  title: '',
+  children: '',
+  buttons: '',
+  closable: true,
+  onOk: () => {},
+  className: '',
+  containerClassName: '',
+};
+
 export default Modal;
