@@ -14,8 +14,6 @@ import Tabs from './Tabs';
 import Textarea from './Textarea';
 import Title from './Title';
 import VideoContainer from './VideoContainer';
-import LogoSVG from './LogoSVG';
-import QRCodeReader from './QRCodeReader';
 import Divider from './Divider';
 import VerticalDivider from './VerticalDivider';
 
@@ -37,7 +35,5 @@ export {
   Textarea,
   Title,
   VideoContainer,
-  LogoSVG,
-  QRCodeReader,
   VerticalDivider,
 };
