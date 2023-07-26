@@ -58,28 +58,28 @@ export const saveCart = (cart: CartPost) => {
 };
 
 export const loadCart = () => {
-  let cart = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
+  let cart = { tickets: { userIds: [], attendant: undefined }, supplements: [] } as unknown as CartPost;
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    if (key!.startsWith('cart.')) {
+    if (key && key.startsWith('cart.')) {
       switch (key) {
         case 'cart.tickets':
-          cart.tickets.userIds = localStorage.getItem(key).match(/.{6}/g) || [];
+          cart.tickets.userIds = (localStorage.getItem(key)!.match(/.{6}/g) || []) as string[];
           break;
         case 'cart.attendant.firstname':
           cart.tickets.attendant = {
             ...cart.tickets.attendant,
-            firstname: localStorage.getItem('cart.attendant.firstname'),
+            firstname: localStorage.getItem('cart.attendant.firstname')!,
           };
           break;
         case 'cart.attendant.lastname':
           cart.tickets.attendant = {
-            ...cart.tickets.attendant,
-            lastname: localStorage.getItem('cart.attendant.lastname'),
+            ...cart.tickets.attendant!,
+            lastname: localStorage.getItem('cart.attendant.lastname')!,
           };
           break;
         default:
-          cart.supplements.push({ itemId: key.substring(5), quantity: parseInt(localStorage.getItem(key)) });
+          cart.supplements.push({ itemId: key.substring(5), quantity: parseInt(localStorage.getItem(key)! ) });
       }
     }
   }

@@ -11,6 +11,7 @@ import { hasOrgaPermission } from '@/utils/permission';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
+import { Action } from '@reduxjs/toolkit';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -39,30 +40,31 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const [isSpectator, setIsSpectator] = useState(false);
 
   // Update state variables based on changes to the login state
-  useAppSelector((state) => {
-    const { user } = state.login;
-    if (isLoggedIn !== !!user) {
-      setIsLoggedIn(!!user);
-      setHasTeam(!!user.teamId);
-      setIsSpectator(user.type === 'spectator');
-    } else if (user && hasTeam !== !!user.teamId) {
-      setHasTeam(!!user.teamId);
-    } else if (user && !isSpectator && user.type === 'spectator') {
-      setIsSpectator(true);
-    } else if (user && isSpectator && user.type !== 'spectator') {
-      setIsSpectator(false);
-    }
-    if (user && hasPaid !== user.hasPaid) {
-      setHasPaid(user.hasPaid);
-    }
-    if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-      setIsAdmin(!isAdmin);
-    }
-  });
+  // TODO: uncomment
+  // useAppSelector((state) => {
+  //   const { user } = state.login;
+  //   if (isLoggedIn !== !!user) {
+  //     setIsLoggedIn(!!user);
+  //     setHasTeam(!!user.teamId);
+  //     setIsSpectator(user.type === 'spectator');
+  //   } else if (user && hasTeam !== !!user.teamId) {
+  //     setHasTeam(!!user.teamId);
+  //   } else if (user && !isSpectator && user.type === 'spectator') {
+  //     setIsSpectator(true);
+  //   } else if (user && isSpectator && user.type !== 'spectator') {
+  //     setIsSpectator(false);
+  //   }
+  //   if (user && hasPaid !== user.hasPaid) {
+  //     setHasPaid(user.hasPaid);
+  //   }
+  //   if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
+  //     setIsAdmin(!isAdmin);
+  //   }
+  // });
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
-  // const isShopAllowed = useAppSelector((state) => state.settings.shop);
+  const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
   const isLoading = useAppSelector((state) => state.login.loading);
 
@@ -109,14 +111,14 @@ export default function Wrapper({ children }: { children: ReactNode }) {
           break;
       }
     } else if (query.action === 'validate') {
-      dispatch(validate(query.state) as any);
+      dispatch(validate(query.state!) as unknown as Action);
       replace(pathname);
     }
   }, [isLoading]);
 
   // Fetch Settings
   useEffect(() => {
-    isLoginAllowed || dispatch(fetchSettings() as any);
+    isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
   }, []);
 
   // Redirect to desired path
@@ -128,7 +130,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   // Automatically log in the user
   useEffect(() => {
-    dispatch(autoLogin() as any);
+    dispatch(autoLogin() as unknown as Action);
   }, []);
 
   // Do not display the page content if the user will be redirected

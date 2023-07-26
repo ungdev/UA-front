@@ -1,3 +1,4 @@
+import { TournamentWithTeams } from '@/types';
 import { API } from '@/utils/api';
 import type { Action, Dispatch } from '@reduxjs/toolkit';
 
@@ -10,8 +11,13 @@ const initialState = {
 };
 
 export interface TournamentAction extends Action {
-  tournaments: any;
-  slots: any;
+  tournaments: TournamentWithTeams[];
+  slots: {
+    [key: string]: {
+      total: number;
+      available: number;
+    };
+  };
 }
 
 const tournament = (state = initialState, action: TournamentAction) => {

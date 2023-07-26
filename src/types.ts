@@ -44,11 +44,17 @@ export interface Team {
   locked: Date | null;
 }
 
+export interface TeamWithTournamentInfo extends Team {
+  tournament: {
+    id: string;
+    name: string;
+  };
+}
+
 export interface TeamWithUsersRestricted extends Team {
   players: UserRestricted[];
   coaches: UserRestricted[];
 }
-
 
 export interface TeamWithUsers extends Team {
   players: User[];
@@ -81,7 +87,7 @@ export interface UserRestricted {
 }
 
 export interface UserWithTeam extends User {
-  team: Team;
+  team: TeamWithTournamentInfo;
 }
 
 export interface UserWithMessage extends User {
@@ -133,7 +139,7 @@ export interface CartPost {
     };
   };
   supplements: {
-    itemId: number;
+    itemId: string;
     quantity: number;
   }[];
 }
@@ -161,6 +167,10 @@ export interface Tournament {
   playersPerTeam: number;
   lockedTeamsCount: number;
   placesLeft: number;
+}
+
+export interface TournamentWithTeams extends Tournament {
+  teams: Team[];
 }
 
 export enum UserType {

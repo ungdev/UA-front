@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
 import type { Action, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
+import { UserType, UserWithTeam } from '@/types';
 
 export const SET_USERS = 'users/SET_USERS';
 export const SET_LOOKUP_USER = 'users/LOOKUP_USER';
@@ -16,13 +17,13 @@ const initialState = {
   lookupUser: null,
 };
 
-const format = (users: Array<any>) => {
+const format = (users: Array<UserWithTeam>) => {
   return users.map((user) => ({
     ...user,
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.name : '',
-    teamName: user.team ? user.team.name : user.type === 'spectator' ? '(spectateur)' : '',
-    lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
+    teamName: user.team ? user.team.name : user.type === UserType.spectator ? '(spectateur)' : '',
+    lockedLabel: user.team && user.team.locked ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scannedAt ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',

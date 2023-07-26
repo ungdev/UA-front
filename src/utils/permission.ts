@@ -1,2 +1,4 @@
-export const hasOrgaPermission = (permissions: Array<string>) =>
-  permissions.includes('admin') || permissions.includes('anim') || permissions.includes('entry');
+import { Permission } from "@/types";
+
+export const hasOrgaPermission = (permissions: Permission[]) =>
+  (permissions.includes(Permission.admin) || permissions.includes(Permission.anim) || permissions.includes(Permission.entry));
