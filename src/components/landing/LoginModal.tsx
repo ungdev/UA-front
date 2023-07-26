@@ -6,6 +6,7 @@ import { Modal, Button, Input, Radio } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { registerUser } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';
+import { Action } from '@reduxjs/toolkit';
 
 const initialSignup = {
   firstname: '',
@@ -37,13 +38,13 @@ function LoginModal({ isVisible = false }: { isVisible?: boolean }) {
   const [forgotEmail, setForgotEmail] = useState('');
 
   const login = async () => {
-    if (await dispatch(tryLogin(loginForm) as any)) {
+    if (await dispatch(tryLogin(loginForm) as unknown as Action)) {
       resetFields();
     }
   };
 
   const signup = async () => {
-    if (await dispatch(registerUser(signupForm) as any)) {
+    if (await dispatch(registerUser(signupForm) as unknown as Action)) {
       resetFields();
     }
   };
@@ -175,7 +176,7 @@ function LoginModal({ isVisible = false }: { isVisible?: boolean }) {
 
           <Button
             primary
-            onClick={() => dispatch(resetPassword(forgotEmail, resetFields) as any)}
+            onClick={() => dispatch(resetPassword(forgotEmail, resetFields) as unknown as Action)}
             className="forgot-modal-button"
             type="submit">
             Envoyer
@@ -196,7 +197,7 @@ function LoginModal({ isVisible = false }: { isVisible?: boolean }) {
       visible={isVisible}
       buttons={null}
       onCancel={() => {
-        dispatch(setLoginModalVisible(false) as any);
+        dispatch(setLoginModalVisible(false) as unknown as Action);
         resetFields();
       }}
       className="login-modal">

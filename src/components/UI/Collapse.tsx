@@ -24,7 +24,7 @@ const Collapse = ({
   const [contentHeight, setContentHeight] = useState(0);
   const [contentVisible, setContentVisible] = useState(false);
 
-  const setVisible = (visible: any) => {
+  const setVisible = (visible: boolean) => {
     if (contentRef.current) {
       setContentHeight(contentRef.current.scrollHeight);
     }
