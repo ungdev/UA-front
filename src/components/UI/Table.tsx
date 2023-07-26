@@ -1,5 +1,5 @@
+'use client';
 import React from 'react';
-import PropTypes from 'prop-types';
 import Divider from './Divider';
 
 /**
@@ -14,6 +14,44 @@ const Table = ({
   pagination,
   paginationOptions,
   onRowClicked,
+}: {
+  /**
+   * Title and key of each column
+   */
+  columns: { key: string; title: string }[];
+  /**
+   * Data for each row, must follow the key of each column
+   */
+  dataSource: any[];
+  /**
+   * Class of the table
+   */
+  className?: string;
+  /**
+   * Align the last column to the right
+   */
+  alignRight?: boolean;
+  /**
+   * Text to display if there is no data
+   */
+  emptyText?: string;
+  /**
+   * Set pagination for the table
+   */
+  pagination?: boolean;
+  /**
+   *
+   */
+  paginationOptions?: {
+    goToPage: (number) => void;
+    page: number;
+    pageSize: number;
+    total: number;
+  };
+  /**
+   * Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked
+   */
+  onRowClicked?: (number) => void;
 }) => (
   <div className="table-container">
     <table className={`table ${className}`}>
@@ -76,52 +114,6 @@ const Table = ({
     )}
   </div>
 );
-
-Table.propTypes = {
-  /**
-   * Title and key of each column
-   */
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.any.isRequired,
-    }),
-  ).isRequired,
-  /**
-   * Data for each row, must follow the key of each column
-   */
-  dataSource: PropTypes.arrayOf(PropTypes.object).isRequired,
-  /**
-   * Class of the table
-   */
-  className: PropTypes.string,
-  /**
-   * Align the last column to the right
-   */
-  alignRight: PropTypes.bool,
-  /**
-   * Text to display if there is no data
-   */
-  emptyText: PropTypes.string,
-  /**
-   * Set pagination for the table
-   */
-  pagination: PropTypes.bool,
-  /**
-   *
-   */
-  paginationOptions: PropTypes.shape({
-    goToPage: PropTypes.func,
-    page: PropTypes.number,
-    pageSize: PropTypes.number,
-    total: PropTypes.number,
-  }),
-
-  /*
-   * Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked
-   */
-  onRowClicked: PropTypes.func,
-};
 
 Table.defaultProps = {
   className: '',

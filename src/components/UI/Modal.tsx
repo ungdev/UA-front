@@ -1,5 +1,5 @@
+'use client';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Button from './Button';
 import Divider from './Divider';
@@ -7,7 +7,55 @@ import Divider from './Divider';
 /**
  * Displays a modal window
  */
-const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, className, containerClassName }) => {
+const Modal = ({
+  title,
+  children,
+  buttons,
+  visible,
+  closable,
+  onCancel,
+  onOk,
+  className,
+  containerClassName,
+}: {
+  /**
+   * Modal window title
+   */
+  title?: Node;
+  /**
+   * Modal window content
+   */
+  children?: Node;
+  /**
+   * Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
+   */
+  buttons?: Node;
+  /**
+   * Whether the modal window is visible or not
+   */
+  visible: boolean;
+  /**
+   * Whether the modal window is closable or not
+   */
+  closable?: boolean;
+  /**
+   * Function called when the user clicks on "Annuler" default button,
+   * or outside the modal, or on the close button
+   */
+  onCancel: () => void;
+  /**
+   * Function called when the user clicks on "Ok" default button
+   */
+  onOk?: () => void;
+  /**
+   * Class of the modal
+   */
+  className?: string;
+  /**
+   * Class of the container
+   */
+  containerClassName?: string;
+}) => {
   const buttonsContent =
     buttons !== '' ? (
       buttons
@@ -42,46 +90,6 @@ const Modal = ({ title, children, buttons, visible, closable, onCancel, onOk, cl
       </div>
     </div>
   );
-};
-
-Modal.propTypes = {
-  /**
-   * Modal window title
-   */
-  title: PropTypes.node,
-  /**
-   * Modal window content
-   */
-  children: PropTypes.node,
-  /**
-   * Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
-   */
-  buttons: PropTypes.node,
-  /**
-   * Whether the modal window is visible or not
-   */
-  visible: PropTypes.bool.isRequired,
-  /**
-   * Whether the modal window is closable or not
-   */
-  closable: PropTypes.bool,
-  /**
-   * Function called when the user clicks on "Annuler" default button,
-   * or outside the modal, or on the close button
-   */
-  onCancel: PropTypes.func.isRequired,
-  /**
-   * Function called when the user clicks on "Ok" default button
-   */
-  onOk: PropTypes.func,
-  /**
-   * Class of the modal
-   */
-  className: PropTypes.string,
-  /**
-   * Class of the container
-   */
-  containerClassName: PropTypes.string,
 };
 
 Modal.defaultProps = {

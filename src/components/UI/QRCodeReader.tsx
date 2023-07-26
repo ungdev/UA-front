@@ -1,12 +1,16 @@
+'use client';
 import React, { useEffect, useRef } from 'react';
-import { PropTypes } from 'prop-types';
 import { toast } from 'react-toastify';
 import jsQR from 'jsqr';
 
-const QRCodeReader = ({ onCode, className }) => {
-  const ref = useRef();
-  const streamRef = useRef();
-  const wrappingRef = useRef({
+const QRCodeReader = ({ onCode, className }: { onCode: (QRCode) => void; className: string }) => {
+  const ref: React.MutableRefObject<HTMLCanvasElement> | undefined = useRef();
+  const streamRef: any = useRef();
+  const wrappingRef: React.MutableRefObject<{
+    canvas?: undefined;
+    video?: HTMLVideoElement;
+    canvasElement?: HTMLCanvasElement;
+  }> = useRef({
     video: undefined,
     canvasElement: undefined,
     canvas: undefined,
@@ -58,13 +62,13 @@ const QRCodeReader = ({ onCode, className }) => {
         wrappingRef.current.canvasElement.width,
         wrappingRef.current.canvasElement.height,
       );
-      var imageData = wrappingRef.current.canvas.getImageData(
+      const imageData = wrappingRef.current.canvas.getImageData(
         0,
         0,
         wrappingRef.current.canvasElement.width,
         wrappingRef.current.canvasElement.height,
       );
-      var code = jsQR(imageData.data, imageData.width, imageData.height, {
+      const code = jsQR(imageData.data, imageData.width, imageData.height, {
         inversionAttempts: 'dontInvert',
       });
       if (code) {
@@ -82,11 +86,6 @@ const QRCodeReader = ({ onCode, className }) => {
       <canvas className={`${className}-preview`} ref={ref}></canvas>
     </div>
   );
-};
-
-QRCodeReader.propTypes = {
-  onCode: PropTypes.func.isRequired,
-  className: PropTypes.string,
 };
 
 QRCodeReader.defaultProps = {

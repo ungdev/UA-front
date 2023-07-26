@@ -1,10 +1,27 @@
+'use client';
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 /**
  * Displays a menu with tabs
  */
-const Tabs = ({ tabs, defaultIndex, className }) => {
+const Tabs = ({
+  tabs,
+  defaultIndex,
+  className,
+}: {
+  /**
+   * Tabs title and content
+   */
+  tabs: { title: string; content: string; onClick: (number) => void }[];
+  /**
+   * Index of the default tab
+   */
+  defaultIndex: number;
+  /**
+   * Class of the container
+   */
+  className: string;
+}) => {
   const [index, setIndex] = useState(defaultIndex);
 
   const tabsNav = tabs.map((tab, i) => (
@@ -34,27 +51,6 @@ const Tabs = ({ tabs, defaultIndex, className }) => {
       <div className="tabs-content">{tabsContent}</div>
     </div>
   );
-};
-
-Tabs.propTypes = {
-  /**
-   * Tabs title and content
-   */
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      content: PropTypes.node.isRequired,
-      onClick: PropTypes.func,
-    }),
-  ).isRequired,
-  /**
-   * Index of the default tab
-   */
-  defaultIndex: PropTypes.number,
-  /**
-   * Class of the container
-   */
-  className: PropTypes.string,
 };
 
 Tabs.defaultProps = {
