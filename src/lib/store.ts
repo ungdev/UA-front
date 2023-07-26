@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/named
 import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';

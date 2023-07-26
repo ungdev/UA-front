@@ -16,29 +16,29 @@ import { ReactNode } from 'react';
  * @returns A React component that renders an input field with a label and optional min/max values.
  */
 const Input = ({
-  type,
-  label,
-  placeholder,
-  value,
-  onChange,
-  min,
-  max,
-  className,
-  autocomplete,
-  disabled,
-  autoFocus,
+  type = 'text',
+  label = '',
+  placeholder = '',
+  value = '',
+  onChange = () => {},
+  min = undefined,
+  max = undefined,
+  className = '',
+  autocomplete = '',
+  disabled = false,
+  autoFocus = false,
 }: {
-  type: 'text' | 'email' | 'password' | 'number';
-  label: ReactNode;
-  placeholder: string;
-  value: string | number;
-  onChange: (value: string) => void;
-  min: number;
-  max: number;
-  className: string;
-  autocomplete: string;
-  disabled: boolean;
-  autoFocus: boolean;
+  type?: 'text' | 'email' | 'password' | 'number';
+  label?: ReactNode;
+  placeholder?: string;
+  value?: string | number;
+  onChange?: (value: string) => void;
+  min?: number | undefined;
+  max?: number | undefined;
+  className?: string;
+  autocomplete?: string;
+  disabled?: boolean;
+  autoFocus?: boolean;
 }) => {
   const handleChange = (newValue: string) => {
     if (
@@ -74,20 +74,6 @@ const Input = ({
       </label>
     </div>
   );
-};
-
-Input.defaultProps = {
-  type: 'text',
-  label: '',
-  placeholder: '',
-  value: '',
-  onChange: () => {},
-  min: undefined,
-  max: undefined,
-  className: '',
-  autocomplete: '',
-  disabled: false,
-  autoFocus: false,
 };
 
 export default Input;

@@ -9,8 +9,8 @@ import { ReactNode, useState } from 'react';
  */
 const Tabs = ({
   tabs,
-  defaultIndex,
-  className,
+  defaultIndex = 0,
+  className = '',
 }: {
   tabs: { key: string; title: string; content: ReactNode; onClick?: (index: number) => void }[];
   defaultIndex: number;
@@ -45,11 +45,6 @@ const Tabs = ({
       <div className="tabs-content">{tabsContent}</div>
     </div>
   );
-};
-
-Tabs.defaultProps = {
-  defaultIndex: 0,
-  className: '',
 };
 
 export default Tabs;

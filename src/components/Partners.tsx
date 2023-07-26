@@ -10,7 +10,7 @@ import { Partner } from '@/types';
  */
 export default function Partners() {
   const dispatch = useAppDispatch();
-  const partners = useAppSelector((state) => state.partners.partners);
+  const partners = useAppSelector((state) => (state.partners as any).partners);
 
   useEffect(() => {
     if (!partners) {

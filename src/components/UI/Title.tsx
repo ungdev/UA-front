@@ -11,12 +11,12 @@ import Divider from './Divider';
  * @returns {JSX.Element} - The rendered title component.
  */
 const Title = ({
-  level,
+  level = 1,
   children,
-  gutterBottom,
-  align,
-  className,
-  id,
+  gutterBottom = true,
+  align = 'inherit',
+  className = '',
+  id = undefined,
 }: {
   level?: number;
   children: React.ReactNode;
@@ -40,14 +40,6 @@ const Title = ({
       {/* </div> */}
     </Component>
   );
-};
-
-Title.defaultProps = {
-  level: 1,
-  gutterBottom: true,
-  align: 'inherit',
-  className: '',
-  id: undefined,
 };
 
 export default Title;

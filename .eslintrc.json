@@ -50,7 +50,7 @@
       "warn",
       "unix"
     ],
-    "react/require-default-props": "error",
+    "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",

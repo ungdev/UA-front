@@ -61,8 +61,4 @@ function Counter({ value, name, className = '' }: { value: number; name: string;
   );
 }
 
-Counter.defaultProps = {
-  className: '',
-};
-
 export default Counter;

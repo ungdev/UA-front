@@ -8,12 +8,12 @@
  * @param className Class of the container
  */
 const Select = ({
-  label,
+  label = '',
   options,
   value,
   onChange,
-  disabled,
-  className,
+  disabled = false,
+  className = '',
 }: {
   label?: string;
   options: {
@@ -41,11 +41,5 @@ const Select = ({
     </label>
   </div>
 );
-
-Select.defaultProps = {
-  label: '',
-  disabled: false,
-  className: '',
-};
 
 export default Select;

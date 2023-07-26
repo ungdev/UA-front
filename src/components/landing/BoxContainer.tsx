@@ -14,8 +14,4 @@ function BoxContainer({ title, children }: { title: string; children: ReactNode 
   );
 }
 
-BoxContainer.defaultProps = {
-  title: '',
-};
-
 export default BoxContainer;

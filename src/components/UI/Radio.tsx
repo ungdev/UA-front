@@ -12,14 +12,14 @@ import { ReactNode } from 'react';
  * @param disabled Whether the input should be disabled
  */
 const Radio = ({
-  label,
+  label = '',
   options,
   name,
-  value,
-  onChange,
-  row,
-  className,
-  disabled,
+  value = '',
+  onChange = () => {},
+  row = false,
+  className = '',
+  disabled = false,
 }: {
   label?: ReactNode;
   options: {
@@ -58,14 +58,5 @@ const Radio = ({
     </div>
   </div>
 );
-
-Radio.defaultProps = {
-  label: '',
-  value: '',
-  onChange: () => {},
-  row: false,
-  className: '',
-  disabled: false,
-};
 
 export default Radio;

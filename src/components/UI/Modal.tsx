@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Button from './Button';
 import Divider from './Divider';
+import { KeyboardEvent } from 'react';
 
 /**
  * Displays a modal window
@@ -16,15 +17,15 @@ import Divider from './Divider';
  * @param containerClassName Class of the container
  */
 const Modal = ({
-  title,
-  children,
-  buttons,
-  visible,
-  closable,
-  onCancel,
-  onOk,
-  className,
-  containerClassName,
+  title = '',
+  children = '',
+  buttons = '',
+  visible = false,
+  closable = true,
+  onCancel = () => {},
+  onOk = () => {},
+  className = '',
+  containerClassName = '',
 }: {
   title?: ReactNode;
   children?: ReactNode;
@@ -48,8 +49,14 @@ const Modal = ({
       </>
     );
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Escape') {
+      onCancel();
+    }
+  };
+
   return (
-    <div className={`modal ${visible ? 'active' : ''} ${className}`}>
+    <div className={`modal ${visible ? 'active' : ''} ${className}`} onKeyDown={handleKeyDown}>
       <div className="modal-overflow">
         <div className="modal-overlay" onClick={() => closable && onCancel()} />
 
@@ -70,16 +77,6 @@ const Modal = ({
       </div>
     </div>
   );
-};
-
-Modal.defaultProps = {
-  title: '',
-  children: '',
-  buttons: '',
-  closable: true,
-  onOk: () => {},
-  className: '',
-  containerClassName: '',
 };
 
 export default Modal;

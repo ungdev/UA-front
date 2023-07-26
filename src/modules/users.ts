@@ -92,9 +92,7 @@ export const fetchUsers =
 
 export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootState) => {
   const res =
-    user && state.login.user?.permissions?.includes?.('admin')
-      ? await API.get(`admin/users/${user.id}/carts`)
-      : null;
+    user && state.login.user?.permissions?.includes?.('admin') ? await API.get(`admin/users/${user.id}/carts`) : null;
   dispatch({
     type: SET_LOOKUP_USER,
     lookupUser: user

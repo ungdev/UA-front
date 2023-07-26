@@ -59,8 +59,4 @@ function ResetModal({ resetToken }: { resetToken: string }) {
   );
 }
 
-ResetModal.defaultProps = {
-  resetToken: '',
-};
-
 export default ResetModal;

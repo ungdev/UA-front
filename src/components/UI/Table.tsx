@@ -19,12 +19,12 @@ import Divider from './Divider';
 const Table = ({
   columns,
   dataSource,
-  className,
-  alignRight,
-  emptyText,
-  pagination,
-  paginationOptions,
-  onRowClicked,
+  className = '',
+  alignRight = false,
+  emptyText = '(Vide)',
+  pagination = false,
+  paginationOptions = null,
+  onRowClicked = () => {},
 }: {
   columns: { key: string; title: string }[];
   dataSource: any[];
@@ -37,7 +37,7 @@ const Table = ({
     page: number;
     pageSize: number;
     total: number;
-  };
+  } | null;
   onRowClicked?: (number: number) => void;
 }) => (
   <div className="table-container">
@@ -101,14 +101,5 @@ const Table = ({
     )}
   </div>
 );
-
-Table.defaultProps = {
-  className: '',
-  alignRight: false,
-  emptyText: '(Vide)',
-  pagination: false,
-  paginationOptions: {},
-  onRowClicked: () => {},
-};
 
 export default Table;

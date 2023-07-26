@@ -49,4 +49,4 @@ export default function CookieConsent({ initialDisplay = false }: { initialDispl
       </div>
     </div>
   );
-};
+}

@@ -8,15 +8,15 @@
  * @returns {JSX.Element} - The rendered Checkbox component.
  */
 const Checkbox = ({
-  label,
-  value,
-  onChange,
-  className,
-  autoFocus,
+  label = '',
+  value = false,
+  onChange = () => {},
+  className = '',
+  autoFocus = false,
 }: {
-  label: string;
-  value: boolean;
-  onChange: (value: boolean) => void;
+  label?: string;
+  value?: boolean;
+  onChange?: (value: boolean) => void;
   className?: string;
   autoFocus?: boolean;
 }) => {
@@ -36,14 +36,6 @@ const Checkbox = ({
       <div className="checkbox-label">{label}</div>
     </label>
   );
-};
-
-Checkbox.defaultProps = {
-  label: '',
-  value: '',
-  onChange: () => {},
-  className: '',
-  autoFocus: false,
 };
 
 export default Checkbox;

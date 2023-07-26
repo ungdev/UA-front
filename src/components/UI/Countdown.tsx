@@ -5,7 +5,7 @@ import Countdown from 'react-countdown';
  * @param date The date to count down to.
  * @param className The CSS class name to apply to the component.
  */
-const CountdownComponent = ({ date, className }: { date: Date; className?: string }) => {
+const CountdownComponent = ({ date, className = '' }: { date: Date; className?: string }) => {
   const renderer = ({
     days,
     hours,
@@ -46,10 +46,6 @@ const CountdownComponent = ({ date, className }: { date: Date; className?: strin
   };
 
   return <Countdown date={date} renderer={renderer} />;
-};
-
-CountdownComponent.defaultProps = {
-  className: '',
 };
 
 export default CountdownComponent;

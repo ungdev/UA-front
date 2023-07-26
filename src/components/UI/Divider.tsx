@@ -7,8 +7,4 @@ const Divider = ({ is_white = false }: { is_white?: boolean }) => {
   return <div className={`divider ${is_white ? 'white' : ''}`}></div>;
 };
 
-Divider.defaultProps = {
-  is_white: false,
-};
-
 export default Divider;

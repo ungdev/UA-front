@@ -1,4 +1,6 @@
+import { Action } from '@reduxjs/toolkit';
 import { API } from '../utils/api';
+import { Cart, CartItem, CartPost } from '@/types';
 
 export const SET_CART = 'cart/SET_CART';
 export const SET_CARTITEMS = 'cart/SET_CARTITEMS';
@@ -8,7 +10,12 @@ const initialState = {
   cartItems: null,
 };
 
-const carts = (state = initialState, action) => {
+interface CartAction extends Action {
+  cart: Cart;
+  cartItems: CartItem[];
+}
+
+const carts = (state = initialState, action: CartAction) => {
   switch (action.type) {
     case SET_CART:
       return {
@@ -25,12 +32,12 @@ const carts = (state = initialState, action) => {
   }
 };
 
-export const cartPay = (cart) => async () => {
+export const cartPay = (cart: Cart) => async () => {
   const res = await API.post(`users/current/carts`, cart);
   window.location = res.url;
 };
 
-export const saveCart = (cart) => {
+export const saveCart = (cart: CartPost) => {
   deleteCart();
   // Every user id is a 6 characters long string, we just chain every user ids, without separators
   if (cart.tickets.userIds) {
@@ -54,7 +61,7 @@ export const loadCart = () => {
   let cart = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    if (key.startsWith('cart.')) {
+    if (key!.startsWith('cart.')) {
       switch (key) {
         case 'cart.tickets':
           cart.tickets.userIds = localStorage.getItem(key).match(/.{6}/g) || [];
@@ -83,8 +90,8 @@ export const deleteCart = () => {
   // Remove every value that starts with 'cart.'
   for (let i = 0; i < localStorage.length; i++) {
     let key = localStorage.key(i);
-    if (key.startsWith('cart.')) {
-      localStorage.removeItem(key);
+    if (key!.startsWith('cart.')) {
+      localStorage.removeItem(key!);
       // We removed an item, so we don't want to move forward : the next item took the index we are currently at
       i--;
     }

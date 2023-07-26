@@ -8,10 +8,10 @@
  */
 const Textarea = ({
   label,
-  placeholder,
-  value,
+  placeholder = '',
+  value = '',
   onChange,
-  className,
+  className = '',
 }: {
   label: string;
   placeholder?: string;
@@ -29,11 +29,5 @@ const Textarea = ({
     </label>
   </div>
 );
-
-Textarea.defaultProps = {
-  placeholder: '',
-  value: '',
-  className: '',
-};
 
 export default Textarea;

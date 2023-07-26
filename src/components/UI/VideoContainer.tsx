@@ -7,7 +7,7 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
  * @param src - The URL of the video.
  * @param className - An optional class name to apply to the container.
  */
-const VideoContainer = ({ title, src, className }: { title: string; src: string; className: string }) => (
+const VideoContainer = ({ title = '', src, className = '' }: { title?: string; src: string; className?: string }) => (
   <div className={`video-container ${className}`}>
     <div className="video-container-ratio">
       <div className="video-container-full">
@@ -22,10 +22,5 @@ const VideoContainer = ({ title, src, className }: { title: string; src: string;
     </div>
   </div>
 );
-
-VideoContainer.defaultProps = {
-  title: '',
-  className: '',
-};
 
 export default VideoContainer;

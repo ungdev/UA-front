@@ -12,8 +12,8 @@ import { useState, useEffect, useRef } from 'react';
 const Collapse = ({
   title,
   children,
-  className,
-  initVisible,
+  className = '',
+  initVisible = false,
 }: {
   title: string;
   children: React.ReactNode;
@@ -57,11 +57,6 @@ const Collapse = ({
       </div>
     </div>
   );
-};
-
-Collapse.defaultProps = {
-  className: '',
-  initVisible: false,
 };
 
 export default Collapse;

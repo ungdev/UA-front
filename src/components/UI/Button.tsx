@@ -14,16 +14,16 @@
  * @returns {JSX.Element} - A button element with the specified props.
  */
 const Button = ({
-  primary,
-  onClick,
-  children,
-  type,
-  leftIcon,
-  rightIcon,
-  disabled,
-  noStyle,
-  isPink,
-  className,
+  primary = false,
+  onClick = () => {},
+  children = '',
+  type = 'button',
+  leftIcon = '',
+  rightIcon = '',
+  disabled = false,
+  noStyle = false,
+  isPink = false,
+  className = '',
 }: {
   primary?: boolean;
   onClick?: () => void;
@@ -48,19 +48,6 @@ const Button = ({
       {rightIcon && <i className={`button-icon-right ${rightIcon}`} />}
     </button>
   );
-};
-
-Button.defaultProps = {
-  primary: false,
-  onClick: () => {},
-  children: '',
-  type: 'button',
-  leftIcon: '',
-  rightIcon: '',
-  disabled: false,
-  noStyle: false,
-  isPink: false,
-  className: '',
 };
 
 export default Button;

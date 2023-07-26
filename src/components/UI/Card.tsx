@@ -22,24 +22,24 @@ import { ReactNode } from 'react';
  * @param {string} divider - Where the divider should be located
  */
 const Card = ({
-  dark,
-  imgSrc,
-  content,
-  buttonContent,
-  onClick,
-  href,
-  target,
-  className,
-  classNameImg,
-  alt,
-  divider,
+  dark = false,
+  imgSrc = null,
+  content = null,
+  buttonContent = '',
+  onClick = () => {},
+  href = null,
+  target = '_self',
+  className = '',
+  classNameImg = '',
+  alt = '',
+  divider = 'bottom',
 }: {
   dark?: boolean;
-  imgSrc?: string;
+  imgSrc?: string | null;
   content?: ReactNode;
   buttonContent?: ReactNode;
   onClick?: () => void;
-  href?: string;
+  href?: string | null;
   target?: string;
   className?: string;
   classNameImg?: string;
@@ -78,20 +78,6 @@ const Card = ({
       {divider === 'bottom' && <Divider />}
     </div>
   );
-};
-
-Card.defaultProps = {
-  dark: false,
-  imgSrc: null,
-  content: null,
-  buttonContent: '',
-  onClick: () => {},
-  href: null,
-  target: '_self',
-  className: '',
-  classNameImg: '',
-  alt: '',
-  divider: 'bottom',
 };
 
 export default Card;
