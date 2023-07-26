@@ -102,10 +102,10 @@ export interface UserWithTeamAndMessageAndTournamentInfo extends User {
     tournament: {
       id: string;
       name: string;
-    },
+    };
     captainId: string;
     locked: Date | null;
-  }
+  };
 }
 
 export interface Cart {
@@ -126,8 +126,8 @@ export interface CartItem {
   itemId: number;
   forUser: {
     id: string;
-    username: string; 
-  }
+    username: string;
+  };
 }
 
 export interface CartPost {

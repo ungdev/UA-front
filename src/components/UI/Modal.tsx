@@ -1,7 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode, KeyboardEvent } from 'react';
 import Button from './Button';
 import Divider from './Divider';
-import { KeyboardEvent } from 'react';
 
 /**
  * Displays a modal window

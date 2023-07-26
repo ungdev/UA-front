@@ -58,9 +58,9 @@ export const saveCart = (cart: CartPost) => {
 };
 
 export const loadCart = () => {
-  let cart = { tickets: { userIds: [], attendant: undefined }, supplements: [] } as unknown as CartPost;
+  const cart = { tickets: { userIds: [], attendant: undefined }, supplements: [] } as unknown as CartPost;
   for (let i = 0; i < localStorage.length; i++) {
-    let key = localStorage.key(i);
+    const key = localStorage.key(i);
     if (key && key.startsWith('cart.')) {
       switch (key) {
         case 'cart.tickets':
@@ -79,7 +79,7 @@ export const loadCart = () => {
           };
           break;
         default:
-          cart.supplements.push({ itemId: key.substring(5), quantity: parseInt(localStorage.getItem(key)! ) });
+          cart.supplements.push({ itemId: key.substring(5), quantity: parseInt(localStorage.getItem(key)!) });
       }
     }
   }
@@ -89,7 +89,7 @@ export const loadCart = () => {
 export const deleteCart = () => {
   // Remove every value that starts with 'cart.'
   for (let i = 0; i < localStorage.length; i++) {
-    let key = localStorage.key(i);
+    const key = localStorage.key(i);
     if (key!.startsWith('cart.')) {
       localStorage.removeItem(key!);
       // We removed an item, so we don't want to move forward : the next item took the index we are currently at

@@ -53,15 +53,16 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, sta
   Router.redirect('/dashboard/team');
 };
 
-export const joinTeam = (teamId: string, name: string, userType: UserType) => async (dispatch: Dispatch, state: RootState) => {
-  const { user } = state.login;
-  await API.post(`/teams/${teamId}/join-requests`, { userType });
-  toast.success(`Ta demande pour rejoindre ${name} a été envoyée`);
-  dispatch({
-    type: SET_USER,
-    user: { ...user, askingTeamId: teamId },
-  });
-};
+export const joinTeam =
+  (teamId: string, name: string, userType: UserType) => async (dispatch: Dispatch, state: RootState) => {
+    const { user } = state.login;
+    await API.post(`/teams/${teamId}/join-requests`, { userType });
+    toast.success(`Ta demande pour rejoindre ${name} a été envoyée`);
+    dispatch({
+      type: SET_USER,
+      user: { ...user, askingTeamId: teamId },
+    });
+  };
 
 export const fetchCurrentTeam = () => async (dispatch: Dispatch) => {
   const res = await API.get(`teams/current`);
