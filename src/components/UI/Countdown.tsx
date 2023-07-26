@@ -1,10 +1,11 @@
 import Countdown from 'react-countdown';
+
 /**
  * A component that displays a countdown to a specific date.
  * @param date The date to count down to.
  * @param className The CSS class name to apply to the component.
  */
-const CountdownComponent = ({ date, className }: { date: Date; className: string }) => {
+const CountdownComponent = ({ date, className }: { date: Date; className?: string }) => {
   const renderer = ({
     days,
     hours,

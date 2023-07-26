@@ -27,8 +27,8 @@ const userEntry = (state = initialState, action: UserEntryAction) => {
   }
 };
 
-export const registerCashPayment = () => async (dispatch: Dispatch, getState: RootState) => {
-  const currentUser = getState().userEntry.searchUser;
+export const registerCashPayment = () => async (dispatch: Dispatch, state: RootState) => {
+  const currentUser = state.userEntry.searchUser;
   if (!currentUser?.id) {
     throw new Error('Cannot validate payment of undefined user');
   }
@@ -71,8 +71,8 @@ export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
   }
 };
 
-export const bypassQrScan = () => async (dispatch: Dispatch, getState: RootState) => {
-  const currentUser = getState().userEntry.searchUser;
+export const bypassQrScan = () => async (dispatch: Dispatch, state: RootState) => {
+  const currentUser = state.userEntry.searchUser;
   if (!currentUser?.id) throw new Error('Cannot validate entry of undefined user');
   try {
     const { data: user } = await API.post(`admin/scan`, {

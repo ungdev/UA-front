@@ -13,7 +13,7 @@ const cookieName = 'cookie-consent';
  *
  * @param {boolean} initialDisplay - Whether the banner should be displayed initially.
  */
-const CookieConsent = ({ initialDisplay }: { initialDisplay?: boolean }) => {
+export default function CookieConsent({ initialDisplay = false }: { initialDisplay?: boolean }) {
   const [display, setDisplay] = useState(initialDisplay ? initialDisplay : false);
 
   const buttonClick = () => {
@@ -50,9 +50,3 @@ const CookieConsent = ({ initialDisplay }: { initialDisplay?: boolean }) => {
     </div>
   );
 };
-
-CookieConsent.defaultProps = {
-  initialDisplay: false,
-};
-
-export default CookieConsent;
