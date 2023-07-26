@@ -1,5 +1,6 @@
-import React from 'react';
-
+/**
+ * A vertical divider component.
+ */
 const Divider = () => {
   return <div className="vertical-divider"></div>;
 };

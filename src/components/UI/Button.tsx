@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * A reusable button component that can be customized with different props.
  * @param {boolean} primary - Determines if the button is a primary button.

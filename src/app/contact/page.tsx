@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Title, Input, Textarea, Button, Select } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';

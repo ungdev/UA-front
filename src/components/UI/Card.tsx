@@ -1,10 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import Button from './Button';
 import Divider from './Divider';
+import { ReactNode } from 'react';
 
 /**
  * Card component that displays an image, content and a button.
@@ -35,8 +35,8 @@ const Card = ({
 }: {
   dark?: boolean;
   imgSrc?: string;
-  content?: React.ReactNode;
-  buttonContent?: React.ReactNode;
+  content?: ReactNode;
+  buttonContent?: ReactNode;
   onClick?: () => void;
   href?: string;
   target?: string;

@@ -1,5 +1,4 @@
-'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 /**
  * A collapsible component that displays a title and content that can be expanded or collapsed.

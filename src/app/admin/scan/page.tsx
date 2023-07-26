@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { bypassQrScan, registerCashPayment, scan, searchUser, SET_SEARCH_USER } from '@/modules/userEntry.js';

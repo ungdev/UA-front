@@ -1,4 +1,3 @@
-import React from 'react';
 import { uploadsUrl } from './environment';
 
 const tournaments = [

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Modal from './UI/Modal';
 import Button from './UI/Button';
@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
  * @param {string} resetToken - The reset token for the user's password.
  * @returns {JSX.Element} - The ResetModal component.
  */
-export default function ResetModal({ resetToken }: { resetToken: string }): JSX.Element {
+export default function ResetModal({ resetToken }: { resetToken: string }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [newPassword, setResetPassword] = useState('');

@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import Navbar from './Navbar';
 import Button from './UI/Button';

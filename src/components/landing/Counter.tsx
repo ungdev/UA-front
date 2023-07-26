@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 /**
  * Counter component that animates a number from 0 to a given value when it becomes visible on the screen.

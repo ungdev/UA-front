@@ -1,5 +1,4 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import jsQR from 'jsqr';
 
@@ -19,8 +18,8 @@ const QRCodeReader = ({ onCode, className }: { onCode: (QRCode) => void; classNa
   useEffect(() => {
     wrappingRef.current = {
       video: document.createElement('video'),
-      canvasElement: ref.current,
-      canvas: ref.current.getContext('2d'),
+      canvasElement: ref!.current,
+      canvas: ref!.current.getContext('2d'),
     };
 
     // Retrieve video stream from camera

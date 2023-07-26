@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * Checkbox component that displays a label and a checkbox input.
  * @param {string} label - The label to display next to the checkbox.

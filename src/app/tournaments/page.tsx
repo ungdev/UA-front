@@ -1,4 +1,3 @@
-'use client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Button from '@/components/UI/Button';
 import { useEffect, useState } from 'react';

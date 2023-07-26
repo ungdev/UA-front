@@ -1,5 +1,3 @@
-'use client';
-import React from 'react';
 import Partners from '@/components/Partners';
 
 import Slider from '@/components/landing/Slider';

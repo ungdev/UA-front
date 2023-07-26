@@ -1,8 +1,10 @@
-'use client';
-import React from 'react';
-
 /**
  * Displays a textarea
+ * @param label Label to display
+ * @param placeholder Text to show when field is blank
+ * @param value Value of the input
+ * @param onChange Function called when the value change, the new value is passed as parameter
+ * @param className Class of the container
  */
 const Textarea = ({
   label,
@@ -11,26 +13,10 @@ const Textarea = ({
   onChange,
   className,
 }: {
-  /**
-   * Label to display
-   */
   label: string;
-  /**
-   * Text to show when field is blank
-   */
   placeholder?: string;
-  /**
-   * Value of the input
-   */
   value?: string;
-  /**
-   * Function called when the value change,
-   * the new value is passed as parameter
-   */
-  onChange: (string) => void;
-  /**
-   * Class of the container
-   */
+  onChange: (value: string) => void;
   className?: string;
 }) => (
   <div className={`textarea ${className}`}>
@@ -43,11 +29,5 @@ const Textarea = ({
     </label>
   </div>
 );
-
-Textarea.defaultProps = {
-  placeholder: '',
-  value: '',
-  className: '',
-};
 
 export default Textarea;

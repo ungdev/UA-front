@@ -1,25 +1,18 @@
-'use client';
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 /**
- * Displays a menu with tabs
+ * A component that displays a set of tabs with associated content
+ * @param tabs An array of objects representing the tabs. Each object should have a `key` string, `title` string, a `content` ReactNode, and an optional `onClick` function that will be called when the tab is clicked
+ * @param defaultIndex The index of the default tab to display
+ * @param className The class name to apply to the container element
  */
 const Tabs = ({
   tabs,
   defaultIndex,
   className,
 }: {
-  /**
-   * Tabs title and content
-   */
-  tabs: { title: string; content: string; onClick: (number) => void }[];
-  /**
-   * Index of the default tab
-   */
+  tabs: { key: string; title: string; content: ReactNode; onClick?: (index: number) => void }[];
   defaultIndex: number;
-  /**
-   * Class of the container
-   */
   className: string;
 }) => {
   const [index, setIndex] = useState(defaultIndex);

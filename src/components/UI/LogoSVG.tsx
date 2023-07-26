@@ -1,6 +1,3 @@
-'use client';
-import React from 'react';
-
 const LogoSVG = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 660" width="100%" height="100%">
     <linearGradient id="A" gradientUnits="userSpaceOnUse" x1="649.684" y1="326.093" x2="9.923" y2="326.093">

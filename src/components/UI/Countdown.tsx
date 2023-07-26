@@ -1,25 +1,17 @@
-'use client';
-import React from 'react';
 import Countdown from 'react-countdown';
-import PropTypes from 'prop-types';
-
 /**
- * Displays a countdown to the specified date
+ * A component that displays a countdown to a specific date.
+ * @param date The date to count down to.
+ * @param className The CSS class name to apply to the component.
  */
 const CountdownComponent = ({
   date,
   className,
 }: {
-  /**
-   * The date from which the remaining time will be computed
-   */
   date: Date;
-  /**
-   * Class of the container
-   */
   className: string;
 }) => {
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+  const renderer = ({ days, hours, minutes, seconds, completed }: { days: number; hours: number; minutes: number; seconds: number; completed: boolean }) => {
     if (completed) {
       return null;
     }
@@ -46,19 +38,7 @@ const CountdownComponent = ({
     );
   };
 
-  renderer.propTypes = {
-    days: PropTypes.number.isRequired,
-    hours: PropTypes.number.isRequired,
-    minutes: PropTypes.number.isRequired,
-    seconds: PropTypes.number.isRequired,
-    completed: PropTypes.bool.isRequired,
-  };
-
   return <Countdown date={date} renderer={renderer} />;
-};
-
-CountdownComponent.defaultProps = {
-  className: '',
 };
 
 export default CountdownComponent;
