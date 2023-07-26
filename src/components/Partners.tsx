@@ -1,3 +1,4 @@
+'use client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useEffect } from 'react';
 import { fetchPartners } from '@/modules/partners';

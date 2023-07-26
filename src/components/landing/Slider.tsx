@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, ReactNode } from 'react';
 
 /**

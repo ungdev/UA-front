@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -9,9 +10,11 @@ const cookieName = 'cookie-consent';
 /**
  * Component that displays a cookie consent banner and sets a cookie when the user accepts.
  * The banner is only displayed if the user has not previously accepted the cookie policy.
+ * 
+ * @param {boolean} initialDisplay - Whether the banner should be displayed initially.
  */
-export default function CookieConsent() {
-  const [display, setDisplay] = useState(false);
+export default function CookieConsent({ initialDisplay } : { initialDisplay?: boolean }) {
+  const [display, setDisplay] = useState(initialDisplay ? initialDisplay : false);
 
   const buttonClick = () => {
     // Set expiration date in 1 year

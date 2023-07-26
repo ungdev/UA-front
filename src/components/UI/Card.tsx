@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
