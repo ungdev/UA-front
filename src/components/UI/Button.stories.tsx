@@ -19,7 +19,7 @@ export const Default: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };
 
@@ -29,7 +29,7 @@ export const Primary: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };
 
@@ -39,7 +39,7 @@ export const Secondary: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };
 
@@ -49,7 +49,7 @@ export const Disabled: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };
 
@@ -59,7 +59,7 @@ export const Pink: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };
 
@@ -69,6 +69,6 @@ export const Type: Story = {
     children: 'Button',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 };

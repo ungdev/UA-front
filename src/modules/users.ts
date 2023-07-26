@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
-import { Action, Dispatch } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 
 export const SET_USERS = 'users/SET_USERS';
@@ -51,7 +51,7 @@ const users = (state = initialState, action: LookupUserAction) => {
 };
 
 export const getTicketPrice = async (userId: string) => {
-  let res = await API.get(`/users/${userId}/ticket`);
+  const res = await API.get(`/users/${userId}/ticket`);
   return res;
 };
 
@@ -67,7 +67,7 @@ export const fetchUsers =
         searchFilters[filter] = filters[filter];
       }
     });
-    let res = await API.get(
+    const res = await API.get(
       `admin/users` +
         `?page=${page}` +
         (search === '' ? '' : '&search=' + search) +

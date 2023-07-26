@@ -1,5 +1,11 @@
 /**
  * Displays a select
+ * @param label Label to display
+ * @param options List of options
+ * @param value Value of the select
+ * @param onChange Function called when the value change, the new value is passed as parameter
+ * @param disabled Is the field disabled ?
+ * @param className Class of the container
  */
 const Select = ({
   label,
@@ -9,33 +15,14 @@ const Select = ({
   disabled,
   className,
 }: {
-  /**
-   * Label to display
-   */
   label?: string;
-  /**
-   * List of options
-   */
   options: {
     label: string;
     value: string;
   }[];
-  /**
-   * Value of the select
-   */
   value: string;
-  /**
-   * Function called when the value change,
-   * the new value is passed as parameter
-   */
-  onChange: (string) => void;
-  /**
-   * Is the field disabled ?
-   */
+  onChange: (value: string) => void;
   disabled: boolean;
-  /**
-   * Class of the container
-   */
   className: string;
 }) => (
   <div className={`select ${className}`}>
@@ -54,11 +41,5 @@ const Select = ({
     </label>
   </div>
 );
-
-Select.defaultProps = {
-  label: '',
-  disabled: false,
-  className: '',
-};
 
 export default Select;

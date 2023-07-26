@@ -81,5 +81,5 @@ export enum TransactionState {
   canceled,
   refused,
   refunded,
-  authorization
+  authorization,
 }

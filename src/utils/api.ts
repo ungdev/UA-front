@@ -32,8 +32,6 @@ const requestAPI = (
           throw new Error('Network response was not ok');
         }
 
-        console.log(JSON.stringify(response));
-
         clearTimeout(timeout);
         return response.json();
       })
@@ -49,8 +47,6 @@ const requestAPI = (
         } else {
           toast.error('Une erreur est survenue');
         }
-
-        console.error(error);
 
         if (didTimeOut) return;
         reject();

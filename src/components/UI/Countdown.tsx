@@ -4,14 +4,20 @@ import Countdown from 'react-countdown';
  * @param date The date to count down to.
  * @param className The CSS class name to apply to the component.
  */
-const CountdownComponent = ({
-  date,
-  className,
-}: {
-  date: Date;
-  className: string;
-}) => {
-  const renderer = ({ days, hours, minutes, seconds, completed }: { days: number; hours: number; minutes: number; seconds: number; completed: boolean }) => {
+const CountdownComponent = ({ date, className }: { date: Date; className: string }) => {
+  const renderer = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
     if (completed) {
       return null;
     }

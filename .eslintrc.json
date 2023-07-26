@@ -7,12 +7,16 @@
     "eslint:recommended",
     "next/core-web-vitals",
     "prettier",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "@typescript-eslint"
   ],
+  "root": true,
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -40,7 +44,7 @@
     "prettier/prettier": [
       "error"
     ],
-    "no-console": "error",
+    "no-console": "off",
     "no-alert": "error",
     "linebreak-style": [
       "warn",
@@ -50,6 +54,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "import/default": "off"
+    "import/default": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@next/next/no-img-element": "off"
   }
 }

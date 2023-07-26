@@ -12,7 +12,7 @@ const meta = {
     className: 'class',
     onClick: () => {
       console.log('onClick');
-    }
+    },
   },
 } satisfies Meta<typeof Card>;
 

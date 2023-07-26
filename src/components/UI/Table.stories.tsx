@@ -55,7 +55,7 @@ export const Empty: Story = {
     ],
     dataSource: [],
     emptyText: 'No data',
-  }
+  },
 };
 
 export const AlignRight: Story = {
@@ -194,4 +194,3 @@ export const OnRowClicked: Story = {
     onRowClicked: (id: number) => console.log(id),
   },
 };
-

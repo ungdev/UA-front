@@ -1,11 +1,9 @@
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Button from '@/components/UI/Button';
 import { useEffect, useState } from 'react';
-import { fetchTournaments } from '@/modules/tournament';
 import { Title } from '@/components/UI';
 
 const TournamentHome = () => {
-  const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
   //const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const tournaments = [
     {

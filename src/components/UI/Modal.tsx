@@ -1,8 +1,19 @@
+import { ReactNode } from 'react';
 import Button from './Button';
 import Divider from './Divider';
 
 /**
  * Displays a modal window
+ * @param title Modal window title
+ * @param children Modal window content
+ * @param buttons Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
+ * @param visible Whether the modal window is visible or not
+ * @param closable Whether the modal window is closable or not
+ * @param onCancel Function called when the user clicks on "Annuler" default button,
+ * or outside the modal, or on the close button
+ * @param onOk Function called when the user clicks on "Ok" default button
+ * @param className Class of the modal
+ * @param containerClassName Class of the container
  */
 const Modal = ({
   title,
@@ -15,42 +26,14 @@ const Modal = ({
   className,
   containerClassName,
 }: {
-  /**
-   * Modal window title
-   */
-  title?: Node;
-  /**
-   * Modal window content
-   */
-  children?: Node;
-  /**
-   * Modal window buttons. The default value is two buttons : "Annuler" and "Ok"
-   */
-  buttons?: Node;
-  /**
-   * Whether the modal window is visible or not
-   */
+  title?: ReactNode;
+  children?: ReactNode;
+  buttons?: ReactNode;
   visible: boolean;
-  /**
-   * Whether the modal window is closable or not
-   */
   closable?: boolean;
-  /**
-   * Function called when the user clicks on "Annuler" default button,
-   * or outside the modal, or on the close button
-   */
   onCancel: () => void;
-  /**
-   * Function called when the user clicks on "Ok" default button
-   */
   onOk?: () => void;
-  /**
-   * Class of the modal
-   */
   className?: string;
-  /**
-   * Class of the container
-   */
   containerClassName?: string;
 }) => {
   const buttonsContent =
@@ -87,16 +70,6 @@ const Modal = ({
       </div>
     </div>
   );
-};
-
-Modal.defaultProps = {
-  title: '',
-  children: '',
-  buttons: '',
-  closable: true,
-  onOk: () => {},
-  className: '',
-  containerClassName: '',
 };
 
 export default Modal;

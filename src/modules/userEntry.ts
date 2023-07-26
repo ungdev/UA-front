@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { API } from '@/utils/api';
 import { User } from '@/types';
-import { Action, Dispatch } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 
 export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';

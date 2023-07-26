@@ -3,8 +3,8 @@ import Router from 'next/navigation';
 
 import { setLoginModalVisible } from './loginModal';
 import { API } from '@/utils/api';
-import { Action, Dispatch } from '@reduxjs/toolkit';
-import { RegisterUser, User } from '@/types';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { RegisterUser } from '@/types';
 
 const initialState = {};
 

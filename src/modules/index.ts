@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import loginModal from './loginModal';
 import login from './login';
 import register from './register';

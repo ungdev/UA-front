@@ -1,4 +1,4 @@
-import { Action, Dispatch } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
 import { uploads } from '@/utils/api';
 import { Partner } from '@/types';
 
@@ -26,7 +26,6 @@ const partners = (state = initialState, action: PartnersAction) => {
 
 export const fetchPartners = async (dispatch: Dispatch) => {
   const request = await uploads.get('/partners/list.json', true);
-  console.log(request);
   dispatch({
     type: SET_PARTNERS,
     partners: request,

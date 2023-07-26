@@ -14,6 +14,10 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
       <Title level={2}>Une erreur est survenue...</Title>
       <p>{error.name && `Erreur ${error.name}`}</p>
 
+      <Button primary leftIcon="fas fa-chevron-left" onClick={reset}>
+        Réessayer
+      </Button>
+
       <Link href="/">
         <Button primary leftIcon="fas fa-chevron-left">
           Retour à l'accueil

@@ -1,5 +1,5 @@
 import { API } from '@/utils/api';
-import { Action, Dispatch } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
 
 export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
 export const SET_SLOTS = 'tournament/SET_SLOTS';

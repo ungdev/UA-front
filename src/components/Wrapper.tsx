@@ -29,7 +29,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const query: SearchParams = useSearchParams();
   const dispatch = useAppDispatch();
   const isDashboard = pathname.substring(0, 10) === '/dashboard';
-  const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
+  // const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
 
   // Define state variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,7 +62,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
-  const isShopAllowed = useAppSelector((state) => state.settings.shop);
+  // const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
   const isLoading = useAppSelector((state) => state.login.loading);
 

@@ -1,6 +1,6 @@
 import { Settings } from '@/types';
 import { API } from '@/utils/api';
-import { Action, Dispatch } from '@reduxjs/toolkit';
+import type { Action, Dispatch } from '@reduxjs/toolkit';
 
 export const SET_SETTINGS = 'login/SET_SETTINGS';
 

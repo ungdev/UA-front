@@ -14,20 +14,20 @@ export const Default: Story = {
   args: {
     tabs: [
       {
-        key: "1",
-        title: "Test 1",
-        content: "Test 1",
+        key: '1',
+        title: 'Test 1',
+        content: 'Test 1',
         onClick: () => {
-          console.log("Test 1");
-        }
+          console.log('Test 1');
+        },
       },
       {
-        key: "2",
-        title: "Test 2",
-        content: "Test 2",
+        key: '2',
+        title: 'Test 2',
+        content: 'Test 2',
         onClick: () => {
-          console.log("Test 2");
-        }
+          console.log('Test 2');
+        },
       },
     ],
     defaultIndex: 0,
@@ -39,20 +39,20 @@ export const Index: Story = {
   args: {
     tabs: [
       {
-        key: "1",
-        title: "Test 1",
-        content: "Test 1",
+        key: '1',
+        title: 'Test 1',
+        content: 'Test 1',
         onClick: () => {
-          console.log("Test 1");
-        }
+          console.log('Test 1');
+        },
       },
       {
-        key: "2",
-        title: "Test 2",
-        content: "Test 2",
+        key: '2',
+        title: 'Test 2',
+        content: 'Test 2',
         onClick: () => {
-          console.log("Test 2");
-        }
+          console.log('Test 2');
+        },
       },
     ],
     defaultIndex: 1,
