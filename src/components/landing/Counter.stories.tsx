@@ -17,9 +17,10 @@ export const Default: Story = {
   },
 };
 
-export const WithClass: Story = {
+export const WithClassAndValueText: Story = {
   args: {
     value: 200,
+    valueText: ' €',
     name: 'Utilisateurs',
     className: 'class',
   },

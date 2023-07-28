@@ -4,6 +4,7 @@ import Checkbox from './Checkbox';
 import Collapse from './Collapse';
 // import Countdown from './Countdown';
 import Helper from './Helper';
+import Icon from './Icon';
 import Input from './Input';
 import Loader from './Loader';
 import Modal from './Modal';
@@ -25,6 +26,7 @@ export {
   // Countdown,
   Divider,
   Helper,
+  Icon,
   Input,
   Loader,
   Modal,

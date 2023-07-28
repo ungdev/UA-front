@@ -22,8 +22,8 @@ const Select = ({
   }[];
   value: string;
   onChange: (value: string) => void;
-  disabled: boolean;
-  className: string;
+  disabled?: boolean;
+  className?: string;
 }) => (
   <div className={`select ${className}`}>
     <label>

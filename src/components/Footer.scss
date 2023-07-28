@@ -2,9 +2,9 @@ footer {
   display: flex;
   height: 237px;
   background-color: $secondary-background;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 60px;
+  padding: 40px 60px;
 
   img {
     height: 139px;
@@ -12,19 +12,33 @@ footer {
 
   h3 {
     color: $primary-color;
-    margin-left: 20px;
     font-size: 1.25em;
     font-weight: bold;
+  }
+
+  a {
+    display: block;
+    .button {
+      padding-left: 0;
+    }
   }
 
   .middle {
     display: block;
   }
 
-  .lecarreblanc {
-    width: 430px;
-    height: 39px;
-    background-color: white;
-    margin-left: 20px;
+  .right {
+    padding-right: 30px;
+  }
+
+  .socials {
+    display: block;
+    height: 20px;
+    color: white;
+    margin-top: 8px;
+
+    svg {
+      margin-right: 12px;
+    }
   }
 }

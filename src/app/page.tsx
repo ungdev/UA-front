@@ -30,10 +30,10 @@ const Home = () => {
         </Button>
       </div>
 
-      <BoxContainer title="Quelques chiffres">
+      <BoxContainer title="chiffres.txt">
         <Counter value={7} name="Jeux" className="flex-1" />
         <VerticalDivider />
-        <Counter value={10000} name="Euros de cashprize" />
+        <Counter value={10000} valueText=" €" name="de cashprize" />
         <VerticalDivider />
         <Counter value={500} name="Participants" className="flex-1" />
       </BoxContainer>
