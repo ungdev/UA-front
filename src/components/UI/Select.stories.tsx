@@ -15,7 +15,6 @@ type Story = StoryObj<typeof meta>;
 let _value = 'option1';
 
 export const Default: Story = {
-  //_value: 'option1',
   args: {
     label: 'Select',
     options: [
