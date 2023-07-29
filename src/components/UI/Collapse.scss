@@ -10,6 +10,36 @@
     justify-content: space-between;
     padding: 1em;
     font-family: $montserrat;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .right > button {
+      padding: 6px;
+      border-radius: 50%;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 0;
+      opacity: 0;
+
+      transition: all 0.1s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 
   &::after {
@@ -46,10 +76,10 @@
 
   .collapse-arrow {
     margin-left: 0.5em;
-    display: flex;
-    height: min-content;
     transform: rotate(0deg);
     transition: all 0.3s;
+    width: 24px;
+    height: 24px;
   }
 
   &.active .collapse-arrow {

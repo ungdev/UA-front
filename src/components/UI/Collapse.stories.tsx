@@ -11,6 +11,7 @@ const meta = {
   args: {
     title: 'Title',
     children: <h1>Content</h1>,
+    link: 'https://example.com',
   },
 } satisfies Meta<typeof Collapse>;
 
@@ -20,6 +21,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     className: 'class',
+    id: 'id',
   },
 };
 

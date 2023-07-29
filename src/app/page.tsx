@@ -33,7 +33,7 @@ const Home = () => {
       <BoxContainer title="chiffres.txt">
         <Counter value={7} name="Jeux" className="flex-1" />
         <VerticalDivider />
-        <Counter value={10000} valueText=" €" name="de cashprize" />
+        <Counter value={10000} valueText=" €" name="de cashprize" className="flex-2" />
         <VerticalDivider />
         <Counter value={500} name="Participants" className="flex-1" />
       </BoxContainer>

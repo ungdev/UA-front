@@ -1,0 +1,22 @@
+.help-container {
+  padding: 5rem 0;
+  background-color: $primary-background;
+  #faq, #contact {
+    width: clamp(300px, 80%, 1200px);
+    margin: auto;
+  }
+
+  #faq {
+    margin-bottom: 3rem;
+    .category {
+      padding-bottom: 2rem;
+      .category-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #fff;
+        font-family: $lexend;
+        margin: 1rem 0;
+      }
+    }
+  }
+}
