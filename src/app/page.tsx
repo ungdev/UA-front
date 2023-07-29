@@ -4,10 +4,12 @@ import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
 import { VerticalDivider, Button, Title, Icon, VideoContainer } from '@/components/UI';
+import Parallax from '@/components/UI/Parallax';
 
 const Home = () => {
   return (
     <div id="home">
+      <Parallax />
       <Slider
         slides={[
           <div className="home-header">
