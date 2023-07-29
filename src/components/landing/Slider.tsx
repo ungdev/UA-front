@@ -7,11 +7,12 @@ import { useState, useEffect, ReactNode } from 'react';
  * @component
  * @param {Object} props
  * @param {ReactNode[]} props.slides - An array of React nodes to be displayed as slides.
+ * @param {boolean} props.autoslide - Should the slider automatically slide ?
  * @example
  * const slides = [<div>Slide 1</div>, <div>Slide 2</div>, <div>Slide 3</div>];
  * return <Slider slides={slides} />;
  */
-export default function Slider({ slides }: { slides: ReactNode[] }) {
+export default function Slider({ slides, autoslide = true }: { slides: ReactNode[]; autoslide?: boolean }) {
   const [active, setActive] = useState(0);
   const max = slides.length;
 
@@ -21,6 +22,7 @@ export default function Slider({ slides }: { slides: ReactNode[] }) {
   const intervalBetweenSlides = () => setActive(active === max - 1 ? 0 : active + 1);
 
   useEffect(() => {
+    if(autoslide === false) return;
     const interval = setInterval(() => intervalBetweenSlides(), TIME_BETWEEN_SLIDES);
     return () => clearInterval(interval);
   });

@@ -79,25 +79,6 @@
             }
         }
     }
-  
-    .toggle-play{
-        background: transparent;
-        border: none;
-        height: auto;
-        position: absolute;
-        width: auto;
-        right: 5%;
-        bottom: 9px;
-        color: #3d3d3d;
-        z-index: 1000000;
-    
-        &:hover{
-            text-decoration: none;
-            opacity: .7;
-            cursor: pointer;
-        }
-    }
-  
     .each-slide {
         width: 100vw;
         height: 100%;
@@ -108,5 +89,9 @@
         background-size: cover;
         background-position: center center;
         background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000;
     }
 }

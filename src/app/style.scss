@@ -12,6 +12,71 @@
   align-items: center;
   flex-direction: column;
   gap: 10rem;
+
+  .slider {
+    .video-container {
+      width: auto;
+      height: 100%;
+      aspect-ratio: 16/9;
+    }
+
+    .home-header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: url('/images/background.jpg') no-repeat center;
+      background-size: cover;
+      position: relative;
+  
+      &:before {
+        content: '';
+        background: $gradient;
+        opacity: 0.8;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+      }
+  
+      #logo {
+        max-height: 50%;
+        max-width: 75%;
+        margin: 0 auto;
+        min-width: 45%;
+        z-index: 1;
+      }
+  
+      .home-title {
+        margin: 0.25rem auto;
+        padding: 0.75rem;
+        background-color: $dark-color;
+        transform: skew(15deg);
+        filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
+        width: 50%;
+  
+        p {
+          font-family: $montserrat;
+          text-align: center;
+          color: #fff;
+          transform: skew(-15deg);
+          margin: 0;
+          font-size: calc(0.029 * 100vw);
+  
+          .accent {
+            color: $accent-color;
+          }
+        }
+  
+        .main {
+          font-size: calc(0.065 * 100vw);
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
 }
 
 .cta-main {
@@ -21,7 +86,7 @@
   gap: 2rem;
   align-items: center;
   text-align: center;
-  width: clamp(300px, 80%, 1200px);
+  width: clamp(300px, 60%, 1920px);
 
   .cta-main-title {
     font-size: 3rem;
@@ -38,5 +103,64 @@
     font-size: 2.125rem;
     font-style: normal;
     font-weight: 500;
+  }
+}
+
+.information {
+  width: clamp(300px, 80%, 1920px);
+  .information-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  
+    .information-text {
+      color: #fff;
+      font-family: $montserrat;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: justify;
+    }
+  
+    .left {
+      width: 60%;
+    }
+  
+    .right {
+      width: 40%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      > * {
+        position: absolute;
+  
+        &:nth-child(1) {
+          transform: translate(-25px, 25px);
+        }
+      }
+    }
+  }
+
+  .more-info {
+    margin-top: 1.5rem;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    color: $secondary-color;
+    .more-info-container{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: $montserrat;
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
   }
 }

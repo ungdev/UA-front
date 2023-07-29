@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin } from '@/modules/login';
+import { autoLogin, validate } from '@/modules/login';
 import { hasOrgaPermission } from '@/utils/permission';
 import Footer from './Footer';
 
@@ -111,7 +111,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
           break;
       }
     } else if (query.action === 'validate') {
-      // dispatch(validate(query.state!) as unknown as Action);
+      dispatch(validate(query.state!) as unknown as Action);
       replace(pathname);
     }
   }, [isLoading]);
