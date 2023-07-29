@@ -1,48 +1,40 @@
 import { TournamentWithTeams } from '@/types';
 import { API } from '@/utils/api';
-import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Action, type Dispatch } from '@reduxjs/toolkit';
 
-export const SET_TOURNAMENTS = 'tournament/SET_TOURNAMENTS';
-export const SET_SLOTS = 'tournament/SET_SLOTS';
+export interface TournamentAction {
+  tournaments: TournamentWithTeams[] | null;
+  slots: {
+    [key: string]: {
+      total: number;
+      available: number;
+    };
+  } | null;
+}
 
 const initialState = {
   tournaments: null,
   slots: null,
 };
 
-export interface TournamentAction extends Action {
-  tournaments: TournamentWithTeams[];
-  slots: {
-    [key: string]: {
-      total: number;
-      available: number;
-    };
-  };
-}
+export const tournament = createSlice({
+  name: 'tournament',
+  initialState,
+  reducers: {
+    setTournaments: (state, action) => {
+      state.tournaments = action.payload;
+    },
+    setSlots: (state, action) => {
+      state.slots = action.payload;
+    },
+  },
+});
 
-const tournament = (state = initialState, action: TournamentAction) => {
-  switch (action.type) {
-    case SET_TOURNAMENTS:
-      return {
-        ...state,
-        tournaments: action.tournaments,
-      };
-    case SET_SLOTS:
-      return {
-        ...state,
-        slots: action.slots,
-      };
-    default:
-      return state;
-  }
-};
+export const { setTournaments, setSlots } = tournament.actions;
 
 export const fetchTournaments = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments');
-  dispatch({
-    type: SET_TOURNAMENTS,
-    tournaments: res,
-  });
+  dispatch(setTournaments(res));
 };
 
 export const fetchSlots = () => async (dispatch: Dispatch) => {
@@ -64,10 +56,7 @@ export const fetchSlots = () => async (dispatch: Dispatch) => {
     },
     {},
   );
-  dispatch({
-    type: SET_SLOTS,
-    slots,
-  });
+  dispatch(setSlots(slots));
 };
 
-export default tournament;
+export default tournament.reducer;

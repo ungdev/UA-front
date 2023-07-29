@@ -1,13 +1,20 @@
 import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
-import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
-import { UserType, UserWithTeam } from '@/types';
+import { Permission, UserType, UserWithTeam } from '@/types';
 
-export const SET_USERS = 'users/SET_USERS';
-export const SET_LOOKUP_USER = 'users/LOOKUP_USER';
+interface UsersAction {
+  isFetched: boolean;
+  users: Array<any>;
+  total: number;
+  page: number;
+  itemsPerPage: number;
+  filters: any;
+  lookupUser: any;
+}
 
-const initialState = {
+const initialState: UsersAction = {
   isFetched: false,
   users: [],
   total: 0,
@@ -30,31 +37,34 @@ const format = (users: Array<UserWithTeam>) => {
   }));
 };
 
-interface LookupUserAction extends Action {
-  lookupUser: any;
-}
+export const usersSlice = createSlice({
+  name: 'users',
+  initialState,
+  reducers: {
+    setUsers: (state, action) => {
+      state = {
+        ...state,
+        ...action.payload,
+        users: format(action.payload.users),
+        isFetched: true,
+      };
+    },
+    setLookupUser: (state, action) => {
+      state = {
+        ...state,
+        lookupUser: action.payload,
+      };
+    },
+  },
+});
 
-const users = (state = initialState, action: LookupUserAction) => {
-  switch (action.type) {
-    case SET_USERS:
-      return {
-        ...state,
-        ...action,
-      };
-    case SET_LOOKUP_USER:
-      return {
-        ...state,
-        lookupUser: action.lookupUser,
-      };
-    default:
-      return state;
-  }
-};
+export const { setUsers, setLookupUser } = usersSlice.actions;
 
 export const getTicketPrice = async (userId: string) => {
   const res = await API.get(`/users/${userId}/ticket`);
   return res;
 };
+
 
 export const fetchUsers =
   (filters: any, search: string, page = 0) =>
@@ -81,22 +91,22 @@ export const fetchUsers =
           : '&' + new URLSearchParams(searchFilters).toString()),
     );
     const formatUsers = format(res.users);
-    dispatch({
-      type: SET_USERS,
-      users: formatUsers,
-      total: res.totalItems,
-      page,
-      itemsPerPage: res.itemsPerPage,
-      isFetched: true,
-    });
+    dispatch(setUsers(
+      {
+        users: formatUsers,
+        total: res.total,
+        page: res.page,
+        itemsPerPage: res.itemsPerPage,
+        isFetched: true,
+      },
+    ));
   };
 
 export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootState) => {
   const res =
-    user && state.login.user?.permissions?.includes?.('admin') ? await API.get(`admin/users/${user.id}/carts`) : null;
-  dispatch({
-    type: SET_LOOKUP_USER,
-    lookupUser: user
+    user && state.login.user?.permissions?.includes?.(Permission.admin) ? await API.get(`admin/users/${user.id}/carts`) : null;
+  dispatch(setLookupUser(
+    user
       ? {
           id: user.id,
           lastname: user.lastname,
@@ -115,17 +125,22 @@ export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootS
           carts: res,
         }
       : null,
-  });
+  ));
 };
 
 export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state: RootState) => {
   const users: Array<any> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
-  dispatch({
-    type: SET_USERS,
-    users: formatUsers,
-  });
+  dispatch(setUsers(
+    {
+      users: formatUsers,
+      total: state.users.total,
+      page: state.users.page,
+      itemsPerPage: state.users.itemsPerPage,
+      isFetched: true,
+    },
+  ));
 };
 
 export const validatePay = (id: string) => async (dispatch: any, state: RootState) => {
@@ -151,4 +166,4 @@ export const refundCart = (id: string) => async (dispatch: any, state: RootState
   dispatch(lookupUser({ ...userModal, hasPaid: false }));
 };
 
-export default users;
+export default usersSlice.reducer;

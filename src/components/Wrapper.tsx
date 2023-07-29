@@ -6,12 +6,13 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin, validate } from '@/modules/login';
+import { autoLogin } from '@/modules/login';
 import { hasOrgaPermission } from '@/utils/permission';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 import { Action } from '@reduxjs/toolkit';
+import { UserType } from '@/types';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -40,27 +41,26 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const [isSpectator, setIsSpectator] = useState(false);
 
   // Update state variables based on changes to the login state
-  // TODO: uncomment
-  // useAppSelector((state) => {
-  //   const { user } = state.login;
-  //   if (isLoggedIn !== !!user) {
-  //     setIsLoggedIn(!!user);
-  //     setHasTeam(!!user.teamId);
-  //     setIsSpectator(user.type === 'spectator');
-  //   } else if (user && hasTeam !== !!user.teamId) {
-  //     setHasTeam(!!user.teamId);
-  //   } else if (user && !isSpectator && user.type === 'spectator') {
-  //     setIsSpectator(true);
-  //   } else if (user && isSpectator && user.type !== 'spectator') {
-  //     setIsSpectator(false);
-  //   }
-  //   if (user && hasPaid !== user.hasPaid) {
-  //     setHasPaid(user.hasPaid);
-  //   }
-  //   if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-  //     setIsAdmin(!isAdmin);
-  //   }
-  // });
+  useAppSelector((state) => {
+    const { user } = state.login;
+    if (isLoggedIn !== !!user) {
+      setIsLoggedIn(!!user);
+      setHasTeam(!!user.teamId);
+      setIsSpectator(user.type === UserType.spectator);
+    } else if (user && hasTeam !== !!user.teamId) {
+      setHasTeam(!!user.teamId);
+    } else if (user && !isSpectator && user.type === UserType.spectator) {
+      setIsSpectator(true);
+    } else if (user && isSpectator && user.type !== UserType.spectator) {
+      setIsSpectator(false);
+    }
+    if (user && hasPaid !== user.hasPaid) {
+      setHasPaid(user.hasPaid);
+    }
+    if (user && user.permissions != undefined && hasOrgaPermission(user.permissions) !== isAdmin) {
+      setIsAdmin(!isAdmin);
+    }
+  });
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
@@ -111,7 +111,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
           break;
       }
     } else if (query.action === 'validate') {
-      dispatch(validate(query.state!) as unknown as Action);
+      // dispatch(validate(query.state!) as unknown as Action);
       replace(pathname);
     }
   }, [isLoading]);

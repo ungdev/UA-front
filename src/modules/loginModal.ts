@@ -1,27 +1,23 @@
-import type { Dispatch } from '@reduxjs/toolkit';
-
-const SET_VISIBLE = 'loginModal/SET_VISIBLE';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 const initialState = {
   visible: false,
 };
 
-const loginModal = (state = initialState, { type, visible }: { type: string; visible: boolean }) => {
-  switch (type) {
-    case SET_VISIBLE:
-      return {
-        visible,
-      };
-    default:
-      return state;
-  }
-};
+export const loginModalSlice = createSlice({
+  name: 'loginModal',
+  initialState,
+  reducers: {
+    setVisible: (state, action) => {
+      state.visible = action.payload;
+    },
+  },
+});
+
+export const { setVisible } = loginModalSlice.actions;
 
 export const setLoginModalVisible = (visible: boolean) => (dispatch: Dispatch) => {
-  dispatch({
-    type: SET_VISIBLE,
-    visible,
-  });
+  dispatch(setVisible(visible));
 };
 
-export default loginModal;
+export default loginModalSlice.reducer;

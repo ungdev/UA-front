@@ -1,36 +1,31 @@
-import { Action } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { API } from '../utils/api';
 import { Cart, CartItem, CartPost } from '@/types';
 
-export const SET_CART = 'cart/SET_CART';
-export const SET_CARTITEMS = 'cart/SET_CARTITEMS';
+interface CartAction {
+  cart: Cart | null;
+  cartItems: CartItem[] | null;
+}
 
-const initialState = {
+const initialState: CartAction = {
   cart: null,
   cartItems: null,
 };
 
-interface CartAction extends Action {
-  cart: Cart;
-  cartItems: CartItem[];
-}
+export const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    setCart: (state, action) => {
+      state.cart = action.payload;
+    },
+    setCartItems: (state, action) => {
+      state.cartItems = action.payload;
+    }
+  },
+});
 
-const carts = (state = initialState, action: CartAction) => {
-  switch (action.type) {
-    case SET_CART:
-      return {
-        ...state,
-        cart: action.cart,
-      };
-    case SET_CARTITEMS:
-      return {
-        ...state,
-        cartItems: action.cartItems,
-      };
-    default:
-      return state;
-  }
-};
+export const { setCart, setCartItems } = cartSlice.actions;
 
 export const cartPay = (cart: Cart) => async () => {
   const res = await API.post(`users/current/carts`, cart);
@@ -99,4 +94,4 @@ export const deleteCart = () => {
   return { tickets: { userIds: [], attendant: undefined }, supplements: [] };
 };
 
-export default carts;
+export default cartSlice.reducer

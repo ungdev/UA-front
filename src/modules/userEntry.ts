@@ -2,30 +2,28 @@ import { toast } from 'react-toastify';
 
 import { API } from '@/utils/api';
 import { User } from '@/types';
-import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 
-export const SET_SEARCH_USER = 'userEntry/SET_SEARCH_USER';
+interface UserEntryAction {
+  searchUser: User | null;
+}
 
-const initialState = {
+const initialState: UserEntryAction = {
   searchUser: null,
 };
 
-interface UserEntryAction extends Action {
-  searchUser: User;
-}
+export const userEntry = createSlice({
+  name: 'userEntry',
+  initialState,
+  reducers: {
+    setSearchUser: (state, action) => {
+      state.searchUser = action.payload;
+    },
+  },
+});
 
-const userEntry = (state = initialState, action: UserEntryAction) => {
-  switch (action.type) {
-    case SET_SEARCH_USER:
-      return {
-        ...state,
-        searchUser: action.searchUser,
-      };
-    default:
-      return state;
-  }
-};
+export const { setSearchUser } = userEntry.actions;
 
 export const registerCashPayment = () => async (dispatch: Dispatch, state: RootState) => {
   const currentUser = state.userEntry.searchUser;
@@ -36,24 +34,22 @@ export const registerCashPayment = () => async (dispatch: Dispatch, state: RootS
     consume: true,
   });
   toast.success('Paiement validé');
-  dispatch({
-    type: SET_SEARCH_USER,
-    searchUser: {
+  dispatch(
+    setSearchUser({
       ...currentUser,
       hasPaid: updatedUser.hasPaid,
       scannedAt: updatedUser.scannedAt,
-    },
-  });
+    }),
+  );
 };
 
 export const searchUser = (userIdentifiable: any) => async (dispatch: Dispatch) => {
   const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
   if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
   else
-    dispatch({
-      type: SET_SEARCH_USER,
-      searchUser: list.users[0],
-    });
+  dispatch(setSearchUser(
+    list.users[0],
+  ));
 };
 
 export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
@@ -62,10 +58,9 @@ export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
       qrcode,
     });
     toast.success('Utilisateur scanné');
-    dispatch({
-      type: SET_SEARCH_USER,
-      searchUser: user,
-    });
+    dispatch(setSearchUser(
+      user
+    ));
   } catch (error: any) {
     toast.error(error);
   }
@@ -79,13 +74,12 @@ export const bypassQrScan = () => async (dispatch: Dispatch, state: RootState) =
       userId: currentUser.id,
     });
     toast.success('Utilisateur scanné');
-    dispatch({
-      type: SET_SEARCH_USER,
-      searchUser: user,
-    });
+    dispatch(setSearchUser(
+      user
+    ));
   } catch (error: any) {
     toast.error(error);
   }
 };
 
-export default userEntry;
+export default userEntry.reducer;

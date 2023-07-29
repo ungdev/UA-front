@@ -37,6 +37,22 @@
     }
 }
 
+@media screen and (max-width: 1280px) {
+    .box-container {
+        width: 95%;
+
+        .box-content {
+            padding: 30px 30px;
+            flex-direction: column;
+
+            
+            .vertical-divider {
+                display: none;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 700px) {
     .box-container {
         width: 100%;

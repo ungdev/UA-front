@@ -51,10 +51,12 @@ export default function Navbar() {
       <div className="right">
         {rightContent}
 
-        <div className={"burger " + (isBurgerOpen ? 'open' : '')} onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
-          <span></span>
-          <span></span>
-          <span></span>
+        <div className="burger-container">
+          <div className={"burger " + (isBurgerOpen ? 'open' : '')} onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
       <div className={"burger-menu-content " + (isBurgerOpen ? 'open' : '')}>

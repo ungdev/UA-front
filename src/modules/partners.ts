@@ -1,35 +1,32 @@
-import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { uploads } from '@/utils/api';
 import { Partner } from '@/types';
 
 export const SET_PARTNERS = 'partners/SET_PARTNERS';
 
-const initialState = {
-  partners: undefined,
-};
-
-interface PartnersAction extends Action {
-  partners: Partner[];
+interface PartnersAction {
+  partners: Partner[] | null;
 }
 
-const partners = (state = initialState, action: PartnersAction) => {
-  switch (action.type) {
-    case SET_PARTNERS:
-      return {
-        ...state,
-        partners: action.partners,
-      };
-    default:
-      return state;
-  }
+const initialState: PartnersAction = {
+  partners: null,
 };
+
+export const partnersSlice = createSlice({
+  name: 'partners',
+  initialState,
+  reducers: {
+    setPartners: (state, action) => {
+      state.partners = action.payload;
+    },
+  },
+});
+
+export const { setPartners } = partnersSlice.actions;
 
 export const fetchPartners = async (dispatch: Dispatch) => {
   const request = await uploads.get('/partners/list.json', true);
-  dispatch({
-    type: SET_PARTNERS,
-    partners: request,
-  });
+  dispatch(setPartners(request));
 };
 
-export default partners;
+export default partnersSlice.reducer;

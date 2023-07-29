@@ -3,17 +3,18 @@ import Router from 'next/navigation';
 
 import { setLoginModalVisible } from './loginModal';
 import { API } from '@/utils/api';
-import type { Action, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Action, type Dispatch } from '@reduxjs/toolkit';
 import { RegisterUser } from '@/types';
 
 const initialState = {};
 
-const register = (state = initialState, action: Action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+export const registerSlice = createSlice({
+  name: 'register',
+  initialState,
+  reducers: {},
+});
+
+export const { } = registerSlice.actions;
 
 export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) => {
   if (user.password !== user.passwordConfirmation) {
@@ -49,4 +50,4 @@ export const validate = (slug: string) => async () => {
   }
 };
 
-export default register;
+export default registerSlice.reducer;
