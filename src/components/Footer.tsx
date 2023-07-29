@@ -24,11 +24,24 @@ export default function Footer() {
         <Link href={'/help#contact'}><Button>Nous contacter</Button></Link>
         <Link href={'/help#faq'}><Button>FAQ</Button></Link>
         <div className="socials">
-          <Icon name="instagram" fill={true} />
-          <Icon name="facebook" fill={true} />
-          <Icon name="twitter" fill={true} />
-          <Icon name="twitch" fill={true} />
-          <Icon name="youtube" fill={true} />
+          <Link href={'https://discord.gg/WhxZwKU'}>
+            <Icon name="discord" fill={true} />
+          </Link>
+          <Link href={'https://www.twitch.tv/uttarena'}>
+            <Icon name="twitch" fill={true} />
+          </Link>
+          <Link href={'https://www.youtube.com/user/UTTNetGroup/'}>
+            <Icon name="youtube" fill={true} />
+          </Link>
+          <Link href={'https://www.instagram.com/uttarena/'}>
+            <Icon name="instagram" fill={true} />
+          </Link>
+          <Link href={'https://www.facebook.com/UTTArena'}>
+            <Icon name="facebook" fill={true} />
+          </Link>
+          <Link href={'https://twitter.com/uttarena'}>
+            <Icon name="twitter" fill={true} />
+          </Link>
         </div>
       </div>
     </footer>

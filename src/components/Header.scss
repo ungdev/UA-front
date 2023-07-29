@@ -1,28 +1,14 @@
 header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   height: 100px;
   background-color: $secondary-background;
   align-items: center;
   padding: 0 30px 0 30px;
+  gap: 10px;
 
-  .left {
-    display: flex;
-    gap: 30px;
-
-    img {
-      width: 66px;
-    }
-
-    nav {
-      align-self: center;
-      vertical-align: middle;
-    }
+  img {
+    height: 60px;
+    vertical-align: middle;
+    min-width: 66px;
   }
-
-  .right {
-    display: inline-block;
-  }
-
 }

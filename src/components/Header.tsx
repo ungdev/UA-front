@@ -11,21 +11,10 @@ import logo from '../../public/images/logo.png';
 export default function Header() {
   return (
     <header id="header">
-      <div className="left">
-        <Link href="/">
-          <img src={logo.src} alt="Logo UA23" />
-        </Link>
-        <Navbar />
-      </div>
-      <div className="right">
-        <Link href="/">
-          <Button className="about">A propos</Button>
-        </Link>
-
-        <Button primary className="connection">
-          Connexion
-        </Button>
-      </div>
+      <Link href="/">
+        <img src={logo.src} alt="Logo UA23" />
+      </Link>
+      <Navbar />
     </header>
   );
 }
