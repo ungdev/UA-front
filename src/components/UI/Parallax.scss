@@ -15,8 +15,8 @@
     animation-iteration-count: infinite;
 
     &.layer-0 {
-      background-image: url("../../../public/images/logo.png");
-      animation-duration: 3s;
+      background-image: url("../../../public/images/parallax/layer-0.png");
+      animation-duration: 6s;
       animation-name: slide-0;
       @keyframes slide-0 {
         from {
@@ -30,8 +30,8 @@
     }
 
     &.layer-1 {
-      background-image: url("../../../public/images/logo-footer.png");
-      animation-duration: 15s;
+      background-image: url("../../../public/images/parallax/layer-1.png");
+      animation-duration: 3s;
       animation-name: slide-1;
       @keyframes slide-1 {
         from {
