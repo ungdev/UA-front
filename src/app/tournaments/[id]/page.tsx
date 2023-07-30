@@ -5,6 +5,10 @@ import { Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
 import { tournaments } from '@/lib/tournaments';
+import constellation1 from '@/../public/images/clouds/constellation-1.png';
+import constellation2 from '@/../public/images/clouds/constellation-2.png';
+import constellation3 from '@/../public/images/clouds/constellation-3.png';
+import cloud3 from '@/../public/images/clouds/cloud-3.png';
 
 export default function TournamentInformation() {
   const { id } = useParams();
@@ -14,6 +18,16 @@ export default function TournamentInformation() {
     <div
       id="tournament-information"
       style={{ '--background-image': `url("${tournament.backgroundImage}")` } as React.CSSProperties}>
+      <div className="background">
+        <img src={constellation1.src} alt="background" className="constellation-1-1" />
+        <img src={cloud3.src} alt="background" className="cloud-3" />
+        <img src={constellation2.src} alt="background" className="constellation-2-1" />
+        <img src={constellation2.src} alt="background" className="constellation-2-2" />
+        <img src={constellation3.src} alt="background" className="constellation-3-1" />
+        <img src={constellation1.src} alt="background" className="constellation-1-2" />
+        <img src={constellation1.src} alt="background" className="constellation-1-3" />
+        <img src={constellation3.src} alt="background" className="constellation-3-2" />
+      </div>
       <Title level={1} className="tournament-name">
         {tournament.name}
       </Title>
