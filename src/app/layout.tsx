@@ -10,6 +10,7 @@ import 'simplebar/dist/simplebar.min.css';
 import 'modern-normalize/modern-normalize.css';
 import Script from 'next/script';
 import { Montserrat, Lexend } from 'next/font/google';
+import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
 const montserrat = Montserrat({
   weight: ['400', '600', '700'],
@@ -64,8 +65,26 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   icons: {
-    icon: '/images/icon.png',
-    apple: '/images/icon.png',
+    icon: [
+      {
+        url: "/icons/favicon-32x32.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        url: "/icons/favicon-16x16.png",
+        type: "image/png",
+        sizes: "16x16",
+      }
+    ] as unknown as Icon[],
+    apple: '/icons/apple-touch-icon.png',
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/icons/safari-pinned-tab.svg',
+        color: '#5bbad5',
+      },
+    ],
   },
   keywords: [
     'UTT',
