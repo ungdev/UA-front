@@ -73,6 +73,17 @@ $radius: 8px;
     font-weight: 600;
     font-size: 1.25rem;
   }
+
+  .text-divider {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    .title-content {
+      white-space: nowrap;
+      padding: 0 1rem;
+    }
+  }
 }
 
 @media screen and (max-width: 650px) {

@@ -20,5 +20,5 @@ export default function FillingBar({ fullness }: { fullness: number }) {
     observer.observe(document.querySelector('.filling-bar')!);
   }, []);
 
-  return <div className="filling-bar" style={{ '--fullness': currentFullness }} />;
+  return <div className="filling-bar" style={{ '--fullness': currentFullness } as React.CSSProperties} />;
 }

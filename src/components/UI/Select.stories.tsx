@@ -26,7 +26,6 @@ export const Default: Story = {
     onChange: (value: string) => (_value = value),
     disabled: false,
     className: 'class',
-    id: 'test',
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

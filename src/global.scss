@@ -152,3 +152,17 @@ ol > li {
 .Toastify__close-button {
   color: #888;
 }
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background-color: $primary-background;
+  color: white;
+  p {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}

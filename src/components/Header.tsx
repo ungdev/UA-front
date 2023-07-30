@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Navbar from './Navbar';
-import Button from './UI/Button';
 
 import logo from '../../public/images/logo.png';
 

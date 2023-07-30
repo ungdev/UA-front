@@ -9,7 +9,7 @@
   user-select: none;
   text-transform: uppercase;
   background-color: transparent;
-  transition: all 0.3s;
+  transition: all 0.3s ease-in-out;
 
   &:not(.pink) {
     color: #8C979B;

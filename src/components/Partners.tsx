@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useEffect } from 'react';
 import { fetchPartners } from '@/modules/partners';
 import { Partner } from '@/types';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 
 /**
  * Renders a list of partners with their logos as clickable links.

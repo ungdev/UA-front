@@ -1,6 +1,6 @@
 import { TournamentWithTeams } from '@/types';
 import { API } from '@/utils/api';
-import { createSlice, type Action, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 export interface TournamentAction {
   tournaments: TournamentWithTeams[] | null;

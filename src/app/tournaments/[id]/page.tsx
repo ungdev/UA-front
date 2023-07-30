@@ -1,18 +1,20 @@
 'use client';
-import { tournaments } from '@/app/tournaments/page';
 import { useParams } from 'next/navigation';
 import Partners from '@/components/Partners';
 import { Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
+import { tournaments } from '@/lib/tournaments';
 
 export default function TournamentInformation() {
   const { id } = useParams();
   const tournament = tournaments.find((tournament) => tournament.id === id);
   if (!tournament) return <div>404</div>;
   return (
-    <div id="tournament-information" style={{ '--background-image': `url("${tournament.backgroundImage}")` }}>
-      <Title level="1" className="tournament-name">
+    <div
+      id="tournament-information"
+      style={{ '--background-image': `url("${tournament.backgroundImage}")` } as React.CSSProperties}>
+      <Title level={1} className="tournament-name">
         {tournament.name}
       </Title>
       <div className="information">
@@ -28,7 +30,7 @@ export default function TournamentInformation() {
           Casteur : {tournament.caster}
         </BoxContainer>
       </div>
-      <Title level="1" className="enrolled-teams">
+      <Title level={1} className="enrolled-teams">
         Equipes inscrites : {tournament.enrolledTeams}/{tournament.maxPlayers / tournament.playersPerTeam}
       </Title>
       <FillingBar fullness={(tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers} />

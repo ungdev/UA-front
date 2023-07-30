@@ -1,5 +1,5 @@
-import { Team, User, UserType } from '@/types';
-import { Action, Dispatch, createSlice } from '@reduxjs/toolkit';
+import { User, UserType } from '@/types';
+import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { API, setAuthorizationToken } from '@/utils/api';
 import { setLoginModalVisible } from './loginModal';
 import { toast } from 'react-toastify';
@@ -67,7 +67,7 @@ export const saveToken = (token: string) => (dispatch: Dispatch) => {
   localStorage.setItem('utt-arena-token', token);
 };
 
-export const tryLogin = (user: User) => async (dispatch: Dispatch) => {
+export const tryLogin = (user: { login: string; password: string }) => async (dispatch: Dispatch) => {
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.token) as unknown as Action);
   localStorage.setItem('utt-arena-userid', res.user.id);

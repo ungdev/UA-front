@@ -12,7 +12,7 @@ const Home = () => {
       <Parallax />
       <Slider
         slides={[
-          <div className="home-header">
+          <div key={'slide-1'} className="home-header">
             <div id="logo">
               <img src="/images/logo-notext.png" alt="Logo" />
             </div>
@@ -23,7 +23,7 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          <VideoContainer src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
+          <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
           <div key={'slide-3'} style={{ backgroundColor: 'blue', width: '100%', height: '100%' }}>
             Test 3
           </div>,

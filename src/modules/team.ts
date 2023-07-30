@@ -3,7 +3,7 @@ import Router from 'next/navigation';
 
 import { API } from '@/utils/api';
 import { fetchSlots } from './tournament';
-import { Action, Dispatch, createSlice } from '@reduxjs/toolkit';
+import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import { TeamWithUsers, User, UserType } from '@/types';
 import { setUser } from './login';

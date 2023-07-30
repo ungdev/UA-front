@@ -87,10 +87,11 @@ const Help = () => {
         <Title align="center">FAQ</Title>
 
         {Object.keys(faq).map((category: string) => (
-          <div id={category} className="category">
+          <div key={category} id={category} className="category">
             <p className="category-title">{category}</p>
             {faq[category].map((question: Question, index: number) => (
               <Collapse
+                key={`${category}-${index}`}
                 title={question.question}
                 id={`${category
                   .toLowerCase()

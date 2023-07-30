@@ -11,7 +11,7 @@ import { hasOrgaPermission } from '@/utils/permission';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 import { UserType } from '@/types';
 
 interface SearchParams extends ReadonlyURLSearchParams {
@@ -64,7 +64,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
-  const isShopAllowed = useAppSelector((state) => state.settings.shop);
+  // const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
   const isLoading = useAppSelector((state) => state.login.loading);
 

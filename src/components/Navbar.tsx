@@ -3,10 +3,9 @@ import Button from './UI/Button';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 import { Modal } from './UI';
 import LoginModal from './landing/LoginModal';
-import ResetModal from './ResetModal';
 
 /**
  * Navbar component that displays a navigation bar with links to different pages.

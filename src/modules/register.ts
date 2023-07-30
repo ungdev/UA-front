@@ -14,8 +14,6 @@ export const registerSlice = createSlice({
   reducers: {},
 });
 
-export const {} = registerSlice.actions;
-
 export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');

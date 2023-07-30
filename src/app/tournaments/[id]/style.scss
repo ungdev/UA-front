@@ -15,7 +15,7 @@
   .information {
     display: flex;
     justify-content: space-evenly;
-    align-items: end;
+    align-items: flex-end;
     width: 70%;
     height: 13rem;
     margin: 0 auto;
@@ -50,7 +50,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   #tournament-information {
     .information {
       flex-direction: column;

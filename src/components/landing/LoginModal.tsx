@@ -6,7 +6,7 @@ import { Modal, Button, Input, Radio } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { registerUser } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 
 const initialSignup = {
   firstname: '',

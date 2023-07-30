@@ -30,10 +30,11 @@ const Title = ({
   return (
     <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
       {level === 2 ? (
-        <>
+        <div className="text-divider">
+          <Divider />
           <div className={`title-content ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</div>
           <Divider />
-        </>
+        </div>
       ) : (
         <div className="title-content">{children}</div>
       )}

@@ -1,5 +1,4 @@
 import Button from './UI/Button';
-import { useRouter } from 'next/navigation';
 
 import logo from '../../public/images/logo-footer.png';
 import Link from 'next/link';
@@ -9,8 +8,6 @@ import { Icon } from './UI';
  * Footer component that displays legal information and contact details.
  */
 export default function Footer() {
-  const router = useRouter();
-
   return (
     <footer>
       <img src={logo.src} alt="Logo UA23" />

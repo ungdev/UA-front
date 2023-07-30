@@ -1,9 +1,19 @@
 #legal {
-  .title-2 {
-    margin: 30px 0 20px 0;
-  }
+  background-color: $primary-background;
 
-  .title-3 {
-    margin: 26px 0 0 0;
+  .container {
+    width: clamp(350px, 80%, 1920px);
+    margin: 0 auto;
+    padding: 4rem 0;
+    color: #fff;
+
+    .title-2 {
+      margin: 30px 0 20px 0;
+      font-family: $lexend;
+    }
+  
+    .title-3 {
+      margin: 26px 0 0 0;
+    }
   }
 }

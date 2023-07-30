@@ -89,3 +89,49 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .tournaments {
+
+    .top-container {
+      .top {
+        width: 80%;
+
+        .text {
+          width: 100%;
+        }
+
+        .buttons {
+          flex-direction: column;
+          row-gap: 20px;
+          padding: 20px 0;
+
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .tournaments-part {
+      .content {
+        flex-direction: column;
+
+        .tournaments-list {
+          width: 100%;
+          margin-left: 0;
+          margin-bottom: 20px;
+
+          .tournament {
+            margin: 0;
+          }
+        }
+
+        .tournament-info {
+          margin-right: 0;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
