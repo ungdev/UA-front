@@ -86,7 +86,7 @@ const team: OurTeam = {
         image: 'https://picsum.photos/200',
       },
     ],
-  }
+  },
 } as OurTeam;
 
 const About = () => {
@@ -95,12 +95,17 @@ const About = () => {
       {/* other content */}
 
       <div className="about-team">
-        <Title level={1} align='center'>Notre équipe</Title>
+        <Title level={1} align="center">
+          Notre équipe
+        </Title>
         <div className="content">
           {Object.keys(team).map((key) => (
             <>
               {team[key].members.map((member) => (
-                <div key={member.name} className="member" style={{'--team-color': team[key].color} as React.CSSProperties}>
+                <div
+                  key={member.name}
+                  className="member"
+                  style={{ '--team-color': team[key].color } as React.CSSProperties}>
                   <div className="img-container">
                     <div className="image-font"></div>
                     <img src={member.image} alt={member.name} />
