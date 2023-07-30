@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';
+import { usePathname } from 'next/navigation';
 
 const options = [
   'Tournoi League of Legends',
@@ -67,6 +68,8 @@ const Help = () => {
   const [message, setMessage] = useState('');
   const [subject, setSubject] = useState('Autre');
 
+  const pathName = usePathname();
+
   const onSubmit = async () => {
     const isValid = await sendMessage(name, email, subject, message);
 
@@ -79,7 +82,7 @@ const Help = () => {
   };
 
   // get current link eg. https://arena.utt.fr/help#test but without any get parameters (eg. ?id=faq) or hash (eg. #faq)
-  const currentLink = window.location.href.split(/[?#]/)[0];
+  const currentLink = `${window.location.origin}${pathName}`;
 
   return (
     <div className="help-container">
