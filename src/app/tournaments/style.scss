@@ -7,7 +7,7 @@
     .top {
       width: 65%;
       margin: 0 auto;
-  
+
       .text {
         font-size: 1.25rem;
         text-align: center;
@@ -16,13 +16,13 @@
         margin: 0 auto;
         color: $blue-color;
       }
-  
+
       .buttons {
         display: flex;
         justify-content: center;
         column-gap: 92px;
         padding: 50px 0;
-  
+
         .button {
           //flex-grow: 1;
           width: 328px;
@@ -40,7 +40,6 @@
       transition: background 0.25s ease-in-out;
 
       .tournaments-list {
-
         width: 20%;
         margin-left: 5%;
 
@@ -68,17 +67,22 @@
       }
 
       .tournament-info {
-        flex-grow: 1;
         text-align: right;
         margin-right: 15%;
         color: white;
         font-size: 2.25em;
         font-weight: bold;
+        line-height: 3.5rem;
 
         h2 {
           color: $title-color;
           font-size: 3rem;
           font-weight: 800;
+        }
+
+        .button {
+          margin-top: 30px;
+          width: 30rem;
         }
 
       }

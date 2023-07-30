@@ -1,0 +1,69 @@
+#tournament-information {
+
+  background: linear-gradient(180deg, rgba($primary-background, 1) 0%, rgba(#94DCF2, 0) 100%), var(--background-image);
+  background-repeat: no-repeat;
+
+  .tournament-name {
+    background-image: url("../../../../public/images/logo-notext.png");
+    background-repeat: no-repeat;
+    //background-size: 10%;
+    background-size: 190px;
+    background-position: 50px 62px;
+    padding: 130px 0 174px 130px;
+  }
+
+  .information {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: end;
+    width: 70%;
+    height: 13rem;
+    margin: 0 auto;
+
+    .box-container {
+      width: 30%;
+      height: 10rem;
+
+      &.on-top {
+        align-self: start;
+      }
+
+      // Where the content is contained in the BoxContainer
+      .box-content {
+        display: block;
+        padding: 15px 16px;
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+  .enrolled-teams {
+    text-align: center;
+    margin-top: 62px;
+    margin-bottom: 35px;
+  }
+
+  .filling-bar {
+    width: 70%;
+    margin: 0 auto;
+    margin-bottom: 113px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #tournament-information {
+    .information {
+      flex-direction: column;
+      align-items: center;
+      height: fit-content;
+
+      .box-container {
+        margin-top: 10px;
+        width: 50%;
+        &.on-top {
+          align-self: center;
+        }
+      }
+    }
+  }
+}

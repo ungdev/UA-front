@@ -2,32 +2,36 @@
 import Button from '@/components/UI/Button';
 import { useEffect, useState } from 'react';
 import { Title } from '@/components/UI';
+import Link from 'next/link';
+
+export const tournaments = [
+  {
+    id: 'tft',
+    name: 'Teamfight Tactics',
+    cashprize: 1600,
+    maxPlayers: 80,
+    playersPerTeam: 5,
+    image: 'https://arena.utt.fr/tournaments/tft.jpg',
+    backgroundImage: 'https://arena.utt.fr/tournaments/tft.jpg',
+    caster: 'Caster1',
+    enrolledTeams: 13,
+  },
+  {
+    id: 'csgo',
+    name: 'Counter-Strike: Global Offsensive',
+    cashprize: 1600,
+    maxPlayers: 80,
+    playersPerTeam: 5,
+    image: 'https://arena.utt.fr/tournaments/csgo.jpg',
+    backgroundImage: '/images/tournaments/csgo-background.png',
+    caster: 'Caster2',
+    enrolledTeams: 10,
+  },
+];
 
 const TournamentHome = () => {
   //const dispatch = useAppDispatch();
   //const tournaments = useAppSelector((state) => state.tournament.tournaments);
-  const tournaments = [
-    {
-      id: 'tft',
-      name: 'Teamfight Tactics',
-      cashprize: 1600,
-      maxPlayers: 80,
-      playersPerTeam: 5,
-      image: 'https://arena.utt.fr/tournaments/tft.jpg',
-      backgroundImage: 'https://arena.utt.fr/tournaments/tft.jpg',
-      caster: 'Caster1',
-    },
-    {
-      id: 'csgo',
-      name: 'Counter-Strike: Global Offsensive',
-      cashprize: 1600,
-      maxPlayers: 80,
-      playersPerTeam: 5,
-      image: 'https://arena.utt.fr/tournaments/csgo.jpg',
-      backgroundImage: '../../../tournaments/csgo-background.png',
-      caster: 'Caster2',
-    },
-  ];
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
 
   useEffect(() => {
@@ -86,8 +90,11 @@ const TournamentHome = () => {
           <div className="tournament-info">
             <h2>{selectedTournament.name}</h2>
             {selectedTournament.cashprize}€ de cashprize ·{' '}
-            {selectedTournament.maxPlayers / selectedTournament.playersPerTeam} <br />
-            Casté par {selectedTournament.caster}
+            {selectedTournament.maxPlayers / selectedTournament.playersPerTeam} équipes <br />
+            Casté par {selectedTournament.caster} <br />
+            <Link href={`/tournaments/${selectedTournament.id}`}>
+              <Button isPink>Plus d'infos</Button>
+            </Link>
           </div>
         </div>
       </div>

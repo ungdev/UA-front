@@ -7,6 +7,7 @@
 @import './app/help/style.scss';
 @import './app/legal/style.scss';
 @import './app/tournaments/style.scss';
+@import './app/tournaments/[id]/style.scss';
 
 // Components
 @import './components/CookieConsent.scss';
@@ -29,6 +30,7 @@
 @import './components/UI/Collapse.scss';
 @import './components/UI/Countdown.scss';
 @import './components/UI/Divider.scss';
+@import './components/UI/FillingBar.scss';
 @import './components/UI/Helper.scss';
 @import './components/UI/Icon.scss';
 @import './components/UI/Inputs.scss';
