@@ -65,7 +65,6 @@ export const getTicketPrice = async (userId: string) => {
   return res;
 };
 
-
 export const fetchUsers =
   (filters: any, search: string, page = 0) =>
   async (dispatch: Dispatch) => {
@@ -91,56 +90,60 @@ export const fetchUsers =
           : '&' + new URLSearchParams(searchFilters).toString()),
     );
     const formatUsers = format(res.users);
-    dispatch(setUsers(
-      {
+    dispatch(
+      setUsers({
         users: formatUsers,
         total: res.total,
         page: res.page,
         itemsPerPage: res.itemsPerPage,
         isFetched: true,
-      },
-    ));
+      }),
+    );
   };
 
 export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootState) => {
   const res =
-    user && state.login.user?.permissions?.includes?.(Permission.admin) ? await API.get(`admin/users/${user.id}/carts`) : null;
-  dispatch(setLookupUser(
-    user
-      ? {
-          id: user.id,
-          lastname: user.lastname,
-          firstname: user.firstname,
-          username: user.username,
-          email: user.email,
-          type: user.type,
-          age: user.age,
-          permissions: user.permissions,
-          hasPaid: user.hasPaid,
-          place: user.place,
-          discordId: user.discordId,
-          team: user.team,
-          attendant: user.attendant,
-          customMessage: user.customMessage,
-          carts: res,
-        }
-      : null,
-  ));
+    user && state.login.user?.permissions?.includes?.(Permission.admin)
+      ? await API.get(`admin/users/${user.id}/carts`)
+      : null;
+  dispatch(
+    setLookupUser(
+      user
+        ? {
+            id: user.id,
+            lastname: user.lastname,
+            firstname: user.firstname,
+            username: user.username,
+            email: user.email,
+            type: user.type,
+            age: user.age,
+            permissions: user.permissions,
+            hasPaid: user.hasPaid,
+            place: user.place,
+            discordId: user.discordId,
+            team: user.team,
+            attendant: user.attendant,
+            customMessage: user.customMessage,
+            carts: res,
+          }
+        : null,
+    ),
+  );
 };
 
 export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state: RootState) => {
   const users: Array<any> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
-  dispatch(setUsers(
-    {
+  dispatch(
+    setUsers({
       users: formatUsers,
       total: state.users.total,
       page: state.users.page,
       itemsPerPage: state.users.itemsPerPage,
       isFetched: true,
-    },
-  ));
+    }),
+  );
 };
 
 export const validatePay = (id: string) => async (dispatch: any, state: RootState) => {

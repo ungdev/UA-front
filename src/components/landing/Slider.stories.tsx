@@ -37,7 +37,7 @@ export const NoAutoslide: Story = {
         Test 2
       </div>,
       <div key={'input-3'} style={{ backgroundColor: 'blue', width: '100%', height: '100%' }}>
-        Test 3  
+        Test 3
       </div>,
     ],
     autoslide: false,

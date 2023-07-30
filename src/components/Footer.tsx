@@ -16,13 +16,21 @@ export default function Footer() {
       <img src={logo.src} alt="Logo UA23" />
       <div className="middle">
         <h3>Informations légales</h3>
-        <Link href={'/legal'}><Button>Mentions légales</Button></Link>
-        <Link href={'/legal'}><Button>Politique de confidentialité</Button></Link>
+        <Link href={'/legal'}>
+          <Button>Mentions légales</Button>
+        </Link>
+        <Link href={'/legal'}>
+          <Button>Politique de confidentialité</Button>
+        </Link>
       </div>
       <div className="right">
         <h3>Plus d'informations</h3>
-        <Link href={'/help#contact'}><Button>Nous contacter</Button></Link>
-        <Link href={'/help#faq'}><Button>FAQ</Button></Link>
+        <Link href={'/help#contact'}>
+          <Button>Nous contacter</Button>
+        </Link>
+        <Link href={'/help#faq'}>
+          <Button>FAQ</Button>
+        </Link>
         <div className="socials">
           <Link href={'https://discord.gg/WhxZwKU'}>
             <Icon name="discord" fill={true} />

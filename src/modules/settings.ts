@@ -24,10 +24,12 @@ export const fetchSettings = () => async (dispatch: Dispatch) => {
     const res = await API.get(`settings`);
     dispatch(setSettings(res));
   } catch (err) {
-    dispatch(setSettings({
-      login: false,
-      shop: false,
-    }));
+    dispatch(
+      setSettings({
+        login: false,
+        shop: false,
+      }),
+    );
   }
 };
 

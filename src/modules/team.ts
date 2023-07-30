@@ -101,9 +101,7 @@ export const refuseUser = (user: User) => async (dispatch: Dispatch, state: Root
 export const deleteTeam = () => async (dispatch: Dispatch, state: RootState) => {
   const user = state.login.user;
   await API.delete('teams/current');
-  dispatch(setUser(
-    { ...user, teamId: null, type: 'none' }
-  ));
+  dispatch(setUser({ ...user, teamId: null, type: 'none' }));
   dispatch(setTeam(null));
   toast.success("L'équipe a bien été supprimée");
   Router.redirect('/dashboard/register');

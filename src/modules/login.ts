@@ -1,14 +1,12 @@
-import { Team, User, UserType } from "@/types";
-import { Action, Dispatch, createSlice } from "@reduxjs/toolkit";
-import { API, setAuthorizationToken } from "@/utils/api";
-import { setLoginModalVisible } from "./loginModal";
-import { toast } from "react-toastify";
-import { hasOrgaPermission } from "@/utils/permission";
+import { Team, User, UserType } from '@/types';
+import { Action, Dispatch, createSlice } from '@reduxjs/toolkit';
+import { API, setAuthorizationToken } from '@/utils/api';
+import { setLoginModalVisible } from './loginModal';
+import { toast } from 'react-toastify';
+import { hasOrgaPermission } from '@/utils/permission';
 import Router from 'next/navigation';
-import { RootState } from "@/lib/store";
-import { setTeam } from "./team";
-
-
+import { RootState } from '@/lib/store';
+import { setTeam } from './team';
 
 interface LoginAction {
   token: string | null;
@@ -37,7 +35,7 @@ export const loginSlice = createSlice({
     },
     setLoading: (state, action) => {
       state.loading = action.payload;
-    }
+    },
   },
 });
 
@@ -61,15 +59,13 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
     }
   }
   dispatch(setLoading(false) as unknown as Action);
-}
-
+};
 
 export const saveToken = (token: string) => (dispatch: Dispatch) => {
   dispatch(setToken(token) as unknown as Action);
   setAuthorizationToken(token);
   localStorage.setItem('utt-arena-token', token);
 };
-
 
 export const tryLogin = (user: User) => async (dispatch: Dispatch) => {
   const res = await API.post('auth/login', user);
@@ -106,7 +102,6 @@ export const editUser = (data: User) => async (dispatch: Dispatch) => {
   dispatch(updateUser(res) as unknown as Action);
 };
 
-
 export const resetPassword = (email: string, resetFields: any) => async (dispatch: Dispatch) => {
   await API.post(`/auth/reset-password`, { email });
   toast.success("Un email de confirmation vient d'être envoyé");
@@ -137,7 +132,6 @@ export const isFakeConnection = () => {
   return localStorage.hasOwnProperty('utt-arena-admin-token');
 };
 
-
 export const logBackToAdmin = () => async (dispatch: Dispatch) => {
   dispatch(setTeam(null) as unknown as Action);
   dispatch(saveToken(localStorage.getItem('utt-arena-admin-token')!) as unknown as Action);
@@ -147,7 +141,6 @@ export const logBackToAdmin = () => async (dispatch: Dispatch) => {
   dispatch(setUser(res) as unknown as Action);
   Router.redirect('/admin');
 };
-
 
 export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootState) => {
   localStorage.setItem('utt-arena-admin-token', (state.login as any).token);

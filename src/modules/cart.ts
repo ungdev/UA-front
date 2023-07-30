@@ -21,7 +21,7 @@ export const cartSlice = createSlice({
     },
     setCartItems: (state, action) => {
       state.cartItems = action.payload;
-    }
+    },
   },
 });
 
@@ -94,4 +94,4 @@ export const deleteCart = () => {
   return { tickets: { userIds: [], attendant: undefined }, supplements: [] };
 };
 
-export default cartSlice.reducer
+export default cartSlice.reducer;

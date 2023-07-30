@@ -54,9 +54,9 @@ const Home = () => {
               LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
               connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
               Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-              composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-              pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
-              Alors prépare tout ton stuff et impose toi dans l’arène !
+              composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises !
+              Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce
+              enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
             </p>
           </div>
           <div className="right">

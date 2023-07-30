@@ -22,7 +22,7 @@ export default function Slider({ slides, autoslide = true }: { slides: ReactNode
   const intervalBetweenSlides = () => setActive(active === max - 1 ? 0 : active + 1);
 
   useEffect(() => {
-    if(autoslide === false) return;
+    if (autoslide === false) return;
     const interval = setInterval(() => intervalBetweenSlides(), TIME_BETWEEN_SLIDES);
     return () => clearInterval(interval);
   });

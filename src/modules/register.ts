@@ -14,7 +14,7 @@ export const registerSlice = createSlice({
   reducers: {},
 });
 
-export const { } = registerSlice.actions;
+export const {} = registerSlice.actions;
 
 export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) => {
   if (user.password !== user.passwordConfirmation) {

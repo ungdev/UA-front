@@ -7,7 +7,17 @@ import { useState, useEffect } from 'react';
  * @param name The label to display below the counter.
  * @param className An optional class name to apply to the component.
  */
-function Counter({ value, valueText = '', name, className = '' }: { value: number; valueText?: string, name: string; className?: string }) {
+function Counter({
+  value,
+  valueText = '',
+  name,
+  className = '',
+}: {
+  value: number;
+  valueText?: string;
+  name: string;
+  className?: string;
+}) {
   const [counter, setCounter] = useState(0);
   const [visible, setVisible] = useState(false);
   const [locked, setLocked] = useState(false);

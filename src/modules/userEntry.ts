@@ -46,10 +46,7 @@ export const registerCashPayment = () => async (dispatch: Dispatch, state: RootS
 export const searchUser = (userIdentifiable: any) => async (dispatch: Dispatch) => {
   const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
   if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
-  else
-  dispatch(setSearchUser(
-    list.users[0],
-  ));
+  else dispatch(setSearchUser(list.users[0]));
 };
 
 export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
@@ -58,9 +55,7 @@ export const scan = (qrcode: any) => async (dispatch: Dispatch) => {
       qrcode,
     });
     toast.success('Utilisateur scanné');
-    dispatch(setSearchUser(
-      user
-    ));
+    dispatch(setSearchUser(user));
   } catch (error: any) {
     toast.error(error);
   }
@@ -74,9 +69,7 @@ export const bypassQrScan = () => async (dispatch: Dispatch, state: RootState) =
       userId: currentUser.id,
     });
     toast.success('Utilisateur scanné');
-    dispatch(setSearchUser(
-      user
-    ));
+    dispatch(setSearchUser(user));
   } catch (error: any) {
     toast.error(error);
   }

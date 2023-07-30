@@ -31,32 +31,32 @@ interface Faq {
 }
 
 const faq: Faq = {
-  'Général': [
+  Général: [
     {
-      'question': 'Quand commencent les tournois ?',
-      'answer': 'Les tournois commencent le samedi à 10h00.'
+      question: 'Quand commencent les tournois ?',
+      answer: 'Les tournois commencent le samedi à 10h00.',
     },
     {
-      'question': 'Quand commencent les tournois ?',
-      'answer': 'Les tournois commencent le samedi à 10h00.'
+      question: 'Quand commencent les tournois ?',
+      answer: 'Les tournois commencent le samedi à 10h00.',
     },
     {
-      'question': 'Quand commencent les tournois ?',
-      'answer': 'Les tournois commencent le samedi à 10h00.'
+      question: 'Quand commencent les tournois ?',
+      answer: 'Les tournois commencent le samedi à 10h00.',
     },
   ],
-  'Paiement': [
+  Paiement: [
     {
-      'question': 'Puis-je payer en espèces ?',
-      'answer': 'Non, nous n\'acceptons pas les paiements en espèces.'
+      question: 'Puis-je payer en espèces ?',
+      answer: "Non, nous n'acceptons pas les paiements en espèces.",
     },
     {
-      'question': 'Puis-je payer en espèces ?',
-      'answer': 'Non, nous n\'acceptons pas les paiements en espèces.'
+      question: 'Puis-je payer en espèces ?',
+      answer: "Non, nous n'acceptons pas les paiements en espèces.",
     },
     {
-      'question': 'Puis-je payer en espèces ?',
-      'answer': 'Non, nous n\'acceptons pas les paiements en espèces.'
+      question: 'Puis-je payer en espèces ?',
+      answer: "Non, nous n'acceptons pas les paiements en espèces.",
     },
   ],
 } as Faq;
@@ -82,15 +82,21 @@ const Help = () => {
   const currentLink = window.location.href.split(/[?#]/)[0];
 
   return (
-    <div className='help-container'>
+    <div className="help-container">
       <div id="faq">
         <Title align="center">FAQ</Title>
-        
+
         {Object.keys(faq).map((category: string) => (
-          <div id={category} className='category'>
-            <p className='category-title'>{category}</p>
+          <div id={category} className="category">
+            <p className="category-title">{category}</p>
             {faq[category].map((question: Question, index: number) => (
-              <Collapse title={question.question} id={`${category.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')}-${index}`} link={currentLink}>
+              <Collapse
+                title={question.question}
+                id={`${category
+                  .toLowerCase()
+                  .normalize('NFD')
+                  .replace(/[\u0300-\u036f]/g, '')}-${index}`}
+                link={currentLink}>
                 <p>{question.answer}</p>
               </Collapse>
             ))}
