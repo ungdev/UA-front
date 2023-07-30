@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
+import Partners from "@/components/Partners";
 
 const TournamentHome = () => {
   //const dispatch = useAppDispatch();
@@ -73,6 +74,7 @@ const TournamentHome = () => {
             </Link>
           </div>
         </div>
+        <Partners />
       </div>
     </div>
   );

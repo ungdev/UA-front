@@ -59,6 +59,10 @@ ol > li {
   padding: 2em 5em;
 }
 
+main {
+  flex-grow: 1;
+}
+
 @media screen and (max-width: 800px) {
   .page-padding {
     padding: 2em 1em;

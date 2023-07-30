@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   gap: 60px 146px;
   margin: 0 15%;
-  margin-bottom: 4rem;
+  padding-bottom: 4rem;
 
   img {
     height: 50px;
@@ -14,12 +14,12 @@
 @media screen and (max-width: 700px) {
   .partners {
     margin: 0 5%;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
 
     img {
       width: 100px;
       height: auto;
     }
-    
+
   }
 }
