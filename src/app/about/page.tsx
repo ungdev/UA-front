@@ -1,23 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { Title } from '@/components/UI';
-
-const options = [
-  'Tournoi League of Legends',
-  'Tournoi Teamfight Tactics',
-  'Tournoi Rocket League',
-  'Tournoi Counter-Strike : Global Offensive',
-  'Tournoi SSBU',
-  'Tournoi osu!',
-  'Tournoi Libre',
-  'Problème sur le site',
-  'Autre',
-]
-  // Transform the array to match the requested type of Select component
-  .map((value) => ({
-    label: value,
-    value,
-  }));
 
 interface TeamMember {
   name: string;
