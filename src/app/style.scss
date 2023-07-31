@@ -27,7 +27,7 @@
       background: url('/images/background.jpg') no-repeat center;
       background-size: cover;
       position: relative;
-  
+
       &:before {
         content: '';
         background: $gradient;
@@ -39,7 +39,7 @@
         right: 0;
         position: absolute;
       }
-  
+
       #logo {
         max-height: 50%;
         max-width: 75%;
@@ -47,7 +47,7 @@
         min-width: 45%;
         z-index: 1;
       }
-  
+
       .home-title {
         margin: 0.25rem auto;
         padding: 0.75rem;
@@ -55,7 +55,7 @@
         transform: skew(15deg);
         filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
         width: 50%;
-  
+
         p {
           font-family: $montserrat;
           text-align: center;
@@ -63,12 +63,12 @@
           transform: skew(-15deg);
           margin: 0;
           font-size: calc(0.029 * 100vw);
-  
+
           .accent {
             color: $accent-color;
           }
         }
-  
+
         .main {
           font-size: calc(0.065 * 100vw);
           text-transform: uppercase;
@@ -112,7 +112,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-  
+
     .information-text {
       color: #fff;
       font-family: $montserrat;
@@ -121,21 +121,21 @@
       line-height: 1.5;
       text-align: justify;
     }
-  
+
     .left {
       width: 60%;
     }
-  
+
     .right {
       width: 40%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-    
+
       > * {
         position: absolute;
-  
+
         &:nth-child(1) {
           transform: translate(-25px, 25px);
         }
