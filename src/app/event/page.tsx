@@ -3,6 +3,7 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
 import AppearFromSide from '@/components/UI/AppearFromSide';
+import Partners from "../../components/Partners";
 
 export default function Page() {
   return (
@@ -44,7 +45,24 @@ export default function Page() {
         <BoxContainer title="Jour 3 : Dimanche"></BoxContainer>
       </div>
       <Title level={2}>Lieu</Title>
+      <div className="place">
+        <iframe
+          title="Google Maps"
+          src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        />
+        <div className="text">
+          Le Cube - Parc des Expositions de Troyes <br /> <br />
+          20 Rue des Gayettes <br /> <br />
+          10000 Troyes
+        </div>
+      </div>
       <Title level={2}>Inscriptions</Title>
+      <ol className="steps">
+        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+      </ol>
+      <Partners />
     </div>
   );
 }

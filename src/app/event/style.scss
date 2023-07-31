@@ -44,6 +44,60 @@
       width: fit-content;
     }
   }
+
+  .place {
+    display: flex;
+    align-items: center;
+    margin-left: 48px;
+    margin-right: 91px;
+    gap: 71px;
+
+    iframe {
+      height: auto;
+      width: 60%;
+      border-radius: 30px;
+      aspect-ratio: 3 / 2;
+    }
+
+    .text {
+      width: max-content;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 139%;
+    }
+  }
+
+  .steps {
+    list-style-type: none;
+    counter-reset: step-counter;
+    margin: 83px 20% 25% 7%;
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 49px;
+    }
+
+    li:before {
+      content: counter(step-counter);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      counter-increment: step-counter;
+      width: 90px;
+      height: 90px;
+      flex-shrink: 0;  // Prevents it from shrinking do to the <li> being flex
+      margin-right: 47px;
+      font-size: 3.75rem;
+      font-weight: 800;
+      text-align: center;
+      background-color: $light-blue;
+      border-radius: 100%;
+      @include stroke(6, #000);
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
