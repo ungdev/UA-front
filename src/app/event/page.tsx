@@ -9,7 +9,7 @@ export default function Page() {
     <div id="event-page">
       <Title level={1}>Événement</Title>
       <Title level={2}>Présentation</Title>
-      <AppearFromSide fromRight smooth={false}>
+      <AppearFromSide fromRight>
         <div className="text-and-image image-left">
           <img src={foo.src} alt="foo" />
           <div className="text">
@@ -23,7 +23,7 @@ export default function Page() {
           </div>
         </div>
       </AppearFromSide>
-      <AppearFromSide smooth={false}>
+      <AppearFromSide>
         <div className="text-and-image image-right">
           <div className="text">
             À présent l'UTT Arena c'est 630 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct

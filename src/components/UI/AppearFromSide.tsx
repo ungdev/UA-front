@@ -3,7 +3,11 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default function AppearFromSide({ children, fromRight = false, deactivated = false, smooth = true }) {
   const [visible, setVisible] = useState(false);
-  const [translateXData, setTranslateXData] = useState({ offset: 0, position: 0, lastOffset: 0 });
+  const [translateXData, setTranslateXData] = useState({
+    offset: document.body.clientWidth * (fromRight ? 1 : -1),
+    position: document.body.clientWidth * (fromRight ? -1 : 1),
+    lastOffset: document.body.clientWidth * (fromRight ? 1 : -1),
+  });
   const ref = useRef();
 
   const animation = () => {
@@ -29,8 +33,8 @@ export default function AppearFromSide({ children, fromRight = false, deactivate
         setVisible(entry.isIntersecting);
       },
       {
-        root: null,
-        rootMargin: '0px',
+        root: document.body,
+        rootMargin: '0px 100% 0px 100%',
         threshold: 0,
       } as IntersectionObserverInit,
     ).observe(ref.current!);
@@ -51,7 +55,10 @@ export default function AppearFromSide({ children, fromRight = false, deactivate
   return React.cloneElement(children, {
     style: deactivated
       ? undefined
-      : { transform: `translateX(${translateXData.offset}px)`, transition: smooth ? 'transform 0.1s linear' /* ease-out aussi est bien */ : undefined },
+      : {
+          transform: `translateX(${translateXData.offset}px)`,
+          transition: smooth ? 'transform 0.1s linear' /* ease-out aussi est bien */ : undefined,
+        },
     ref,
   });
 }
