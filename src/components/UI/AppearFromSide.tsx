@@ -14,7 +14,6 @@ export default function AppearFromSide({ children, fromRight = false, deactivate
         ? (window.innerWidth - rect.width) / 2
         : window.innerWidth - (window.innerWidth - rect.width) / 2
       : translateXData.position - translateXData.lastOffset;
-    console.log(defaultSidePosition);
     setTranslateXData({
       offset: fromRight
         ? (1 - progression) * (window.innerWidth - defaultSidePosition)
