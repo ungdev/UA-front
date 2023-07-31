@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function AppearFromSide({ children, fromRight, deactivated = false }) {
+export default function AppearFromSide({ children, fromRight = false, deactivated = false, smooth = true }) {
   const [visible, setVisible] = useState(false);
   const [translateXData, setTranslateXData] = useState({ offset: 0, position: 0, lastOffset: 0 });
   const ref = useRef();
@@ -9,7 +9,12 @@ export default function AppearFromSide({ children, fromRight, deactivated = fals
   const animation = () => {
     const rect = ref.current.getBoundingClientRect();
     const progression = Math.max(Math.min(2 * (1 - rect.top / window.innerHeight), 1), 0);
-    const defaultSidePosition = translateXData.position - translateXData.lastOffset;
+    const defaultSidePosition = smooth
+      ? fromRight
+        ? (window.innerWidth - rect.width) / 2
+        : window.innerWidth - (window.innerWidth - rect.width) / 2
+      : translateXData.position - translateXData.lastOffset;
+    console.log(defaultSidePosition);
     setTranslateXData({
       offset: fromRight
         ? (1 - progression) * (window.innerWidth - defaultSidePosition)
@@ -45,7 +50,9 @@ export default function AppearFromSide({ children, fromRight, deactivated = fals
   }, [visible, translateXData]);
 
   return React.cloneElement(children, {
-    style: deactivated ? undefined : { transform: `translateX(${translateXData.offset}px)` },
+    style: deactivated
+      ? undefined
+      : { transform: `translateX(${translateXData.offset}px)`, transition: smooth ? 'transform 0.1s linear' /* ease-out aussi est bien */ : undefined },
     ref,
   });
 }
