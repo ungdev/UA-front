@@ -63,18 +63,21 @@ footer {
     padding: 40px 30px;
 
     .middle {
+      text-align: center;
       margin-top: 30px;
       width: 100%;
     }
 
     .right {
+      text-align: center;
       margin-top: 10px;
       padding-right: 0;
       width: 100%;
 
       .socials {
         gap: 1.5rem;
-        
+        justify-content: center;
+
         a {
           width: 32px;
           height: 32px;
