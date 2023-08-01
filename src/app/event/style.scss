@@ -48,13 +48,13 @@
   .place {
     display: flex;
     align-items: center;
-    margin-left: 48px;
-    margin-right: 91px;
+    margin: 102px 91px 0 48px;
     gap: 71px;
 
     iframe {
       height: auto;
       width: 60%;
+      min-width: 600px;
       border-radius: 30px;
       aspect-ratio: 3 / 2;
     }
@@ -132,5 +132,36 @@
           width: 100%;
         }
       }
-    }
+
+     .place {
+       flex-direction: column;
+       margin-top: 50px;
+       gap: 30px;
+
+       iframe {
+         width: 100%;
+         min-width: 0;
+       }
+
+       .text {
+         order: -1;
+         line-height: 100%;
+         br {
+           background-color: white;
+           height: 10px;
+         }
+       }
+     }
+
+     .steps {
+       li {
+         flex-direction: column;
+       }
+
+       li:before {
+        margin-right: 0;
+        margin-bottom: 20px;
+       }
+     }
+  }
 }
