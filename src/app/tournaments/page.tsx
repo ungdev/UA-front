@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
+import Divider from "@/components/UI/Divider";
 
 const TournamentHome = () => {
   //const dispatch = useAppDispatch();
@@ -27,7 +28,11 @@ const TournamentHome = () => {
 
   return (
     <>
-      <Title>Tournois</Title>
+      <div className="page-title">
+        <Divider is_white />
+        <Title align="center">Tournois</Title>
+        <Divider is_white />
+      </div>
       <div className="content">
         <div className="tournaments-list">
           {!tournaments

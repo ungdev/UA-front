@@ -3,6 +3,7 @@ import constellation1 from '@/../public/images/clouds/constellation-1.png';
 import constellation2 from '@/../public/images/clouds/constellation-2.png';
 import constellation3 from '@/../public/images/clouds/constellation-3.png';
 import cloud3 from '@/../public/images/clouds/cloud-3.png';
+import Partners from "../../components/Partners";
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -40,6 +41,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
         {children}
       </div>
+      <Partners />
     </div>
   );
 };
