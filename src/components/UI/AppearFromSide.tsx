@@ -1,7 +1,17 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function AppearFromSide({ children, fromRight = false, deactivated = false, smooth = true }) {
+export default function AppearFromSide({
+  children,
+  fromRight = false,
+  deactivated = false,
+  smooth = true,
+}: {
+  children: React.ReactNode;
+  fromRight?: boolean;
+  deactivated?: boolean;
+  smooth?: boolean;
+}) {
   const [visible, setVisible] = useState(false);
   const [translateXData, setTranslateXData] = useState({
     offset: document.body.clientWidth * (fromRight ? 1 : -1),
@@ -11,6 +21,8 @@ export default function AppearFromSide({ children, fromRight = false, deactivate
   const ref = useRef();
 
   const animation = () => {
+    // It can be undefined if user changes page while the component is on screen
+    if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const progression = Math.max(Math.min(2 * (1 - rect.top / window.innerHeight), 1), 0);
     const defaultSidePosition = smooth
