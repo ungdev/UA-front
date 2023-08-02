@@ -49,11 +49,21 @@ const TournamentHome = () => {
         </div>
         <div className="tournament-info">
           <h2>{selectedTournament.name}</h2>
-          {selectedTournament.cashprize}€ de cashprize ·{' '}
-          {selectedTournament.maxPlayers / selectedTournament.playersPerTeam} équipes <br />
-          Casté par {selectedTournament.caster} <br />
+          <p>
+            <strong>{selectedTournament.cashprize}€</strong> de cashprize ·{' '}
+            <strong>{selectedTournament.maxPlayers / selectedTournament.playersPerTeam} équipes </strong>
+            <br />
+          </p>
+          <p>
+            Casté par <strong>{selectedTournament.caster}</strong>
+          </p>
           <Link href={`/tournaments/${selectedTournament.id}`}>
             <Button isPink>Plus d'infos</Button>
+          </Link>
+          <Link href={`/tournaments/${selectedTournament.id}`}>
+            <Button isPink primary>
+              S'inscrire
+            </Button>
           </Link>
         </div>
       </div>

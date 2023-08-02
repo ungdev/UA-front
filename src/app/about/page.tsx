@@ -50,7 +50,7 @@ const team: OurTeam = {
       },
       {
         name: 'Alexandre',
-        job: 'Développeur',
+        job: 'Communication',
         image: 'https://picsum.photos/200',
       },
     ],

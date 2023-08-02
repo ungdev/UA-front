@@ -30,7 +30,7 @@ export default function TournamentInformation() {
         </BoxContainer>
       </div>
       <Title level={1} align="center" className="enrolled-teams">
-        Equipes inscrites : {tournament.enrolledTeams}/{tournament.maxPlayers / tournament.playersPerTeam}
+        Équipes inscrites : {tournament.enrolledTeams} / {tournament.maxPlayers / tournament.playersPerTeam}
       </Title>
       <FillingBar fullness={(tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers} />
     </>
