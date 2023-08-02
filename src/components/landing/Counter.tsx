@@ -63,9 +63,23 @@ function Counter({
     }
   }, [visible]);
 
+  const stringifyCounterValue = () => {
+    if (window.innerWidth > 1024) {
+      return counter.toLocaleString();
+    }
+    if (counter > 10_000) {
+      return Math.floor(counter / 1000).toLocaleString() + 'k';
+    }
+    if (counter > 1_000) {
+      const hundreds = Math.floor((counter % 1000) / 100);
+      return Math.floor(counter / 1000).toLocaleString() + 'k' + (hundreds !== 0 ? Math.floor(hundreds).toLocaleString() : '');
+    }
+    return counter.toLocaleString();
+  };
+
   return (
     <div className={'counter ' + className}>
-      <div className="counter-value">{counter.toLocaleString() + valueText}</div>
+      <div className="counter-value">{stringifyCounterValue() + valueText}</div>
       <div className="counter-label">{name}</div>
     </div>
   );

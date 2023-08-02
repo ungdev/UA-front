@@ -163,3 +163,34 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  #home {
+    .information {
+      .information-container {
+        flex-direction: column;
+
+        .left {
+          width: 100%;
+        }
+
+        .right {
+          width: 100%;
+          > * {
+            top: 0;
+          }
+        }
+      }
+
+      .more-info {
+        flex-direction: column;
+        height: 96px;
+        margin-top: calc(60% + 100px);  // schlag :)
+
+        .more-info-container {
+          height: 40%;
+        }
+      }
+    }
+  }
+}
