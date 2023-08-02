@@ -33,7 +33,7 @@
   }
 
   .tournaments-content {
-    min-height: 1000px;
+    height: 100vh;
     background-size: cover;
     background-position: 50% 50%;
     transition: background 0.25s ease-in-out;
@@ -108,9 +108,11 @@
       display: flex;
       align-items: center;
       justify-items: center;
-      margin-bottom: 124px;
-      margin-left: 0;
-      margin-right: 0;
+      padding: 3rem 0 3rem 0;
+
+      .title {
+        margin: 0;
+      }
 
       .divider:nth-of-type(1) {
         margin-left: 68px;
@@ -163,6 +165,7 @@
         font-size: 2.25em;
         line-height: 3.5rem;
         width: 50%;
+        height: 100%;
 
         h2 {
           color: $title-color;
