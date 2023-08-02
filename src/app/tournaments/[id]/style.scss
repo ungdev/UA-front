@@ -1,4 +1,16 @@
 .tournaments-content {
+  a.back {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   .tournament-name {
     background-image: url("../../../../public/images/logo-notext.png");
     background-repeat: no-repeat;

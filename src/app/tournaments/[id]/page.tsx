@@ -1,9 +1,10 @@
 'use client';
 import { notFound, useParams } from 'next/navigation';
-import { Title } from '@/components/UI';
+import { Icon, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
 import { tournaments } from '@/lib/tournaments';
+import Link from 'next/link';
 
 export default function TournamentInformation() {
   const { id } = useParams();
@@ -12,7 +13,11 @@ export default function TournamentInformation() {
   document.documentElement.style.setProperty('--background-image', `url("${tournament.backgroundImage}")`);
 
   return (
-    <>
+    <div className="tournament-container">
+      <Link href="/tournaments" className="back">
+        <Icon name="chevron-left" fill={false}></Icon>
+        Retour aux tournois
+      </Link>
       <Title level={1} className="tournament-name">
         {tournament.name}
       </Title>
@@ -33,6 +38,6 @@ export default function TournamentInformation() {
         Équipes inscrites : {tournament.enrolledTeams} / {tournament.maxPlayers / tournament.playersPerTeam}
       </Title>
       <FillingBar fullness={(tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers} />
-    </>
+    </div>
   );
 }

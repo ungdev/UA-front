@@ -32,7 +32,8 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       <div className="tournaments-content">
-        <div className="background">
+        <div className="background"></div>
+        <div className="background-elements">
           <img src={constellation1.src} alt="background" className="constellation-1-1" />
           <img src={cloud3.src} alt="background" className="cloud-3" />
           <img src={cloud2.src} alt="background" className="constellation-2-1" />

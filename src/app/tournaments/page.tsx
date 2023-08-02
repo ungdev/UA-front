@@ -27,7 +27,7 @@ const TournamentHome = () => {
   const selectedTournament = tournaments[selectedTournamentIndex];
 
   return (
-    <>
+    <div className="tournament-container">
       <div className="page-title">
         <Divider is_white />
         <Title align="center">Tournois</Title>
@@ -67,7 +67,7 @@ const TournamentHome = () => {
           </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -46,10 +46,13 @@ export default function Navbar() {
         <Button className="about">A propos</Button>
       </Link>
 
-      <Button primary className="connection" onClick={() => {
-        closeBurger();
-        dispatch(setLoginModalVisible(true) as unknown as Action);
-      }}>
+      <Button
+        primary
+        className="connection"
+        onClick={() => {
+          closeBurger();
+          dispatch(setLoginModalVisible(true) as unknown as Action);
+        }}>
         Connexion
       </Button>
     </>
