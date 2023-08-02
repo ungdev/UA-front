@@ -4,6 +4,26 @@
   margin-bottom: 1em;
   background-color: #fff;
   color: #000;
+  transition: all 0.3s ease-in-out;
+
+  &::after {
+    content: '';
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: $accent-color;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    background-color: $light-color;
+
+    &:not(.active):after {
+      width: 0;
+    }
+  }
 
   .collapse-title {
     cursor: pointer;
@@ -41,16 +61,6 @@
         height: 20px;
       }
     }
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: $accent-color;
   }
 
   .collapse-content {
