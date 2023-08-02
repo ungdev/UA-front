@@ -13,12 +13,6 @@
   gap: 10rem;
 
   .slider {
-    .video-container {
-      width: auto;
-      height: 100%;
-      aspect-ratio: 16/9;
-    }
-
     .home-header {
       height: 100vh;
       display: flex;
@@ -41,20 +35,25 @@
       }
 
       #logo {
-        max-height: 50%;
-        max-width: 75%;
+        max-height: 40%;
+        max-width: 60%;
         margin: 0 auto;
         min-width: 45%;
         z-index: 1;
       }
 
       .home-title {
-        margin: 0.25rem auto;
+        margin: 3rem auto;
         padding: 0.75rem;
         background-color: $dark-color;
         transform: skew(15deg);
         filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
         width: 50%;
+
+        .main {
+          font-size: 6rem;
+          text-transform: uppercase;
+        }
 
         p {
           font-family: $montserrat;
@@ -62,16 +61,11 @@
           color: #fff;
           transform: skew(-15deg);
           margin: 0;
-          font-size: calc(0.029 * 100vw);
+          font-size: 2.5rem;
 
           .accent {
             color: $accent-color;
           }
-        }
-
-        .main {
-          font-size: calc(0.065 * 100vw);
-          text-transform: uppercase;
         }
       }
     }
@@ -144,7 +138,7 @@
   }
 
   .more-info {
-    margin-top: 1.5rem;
+    margin-top: 3.5rem;
     height: 48px;
     display: flex;
     justify-content: center;
@@ -166,6 +160,24 @@
 
 @media screen and (max-width: 1024px) {
   #home {
+    .slider {
+      .home-header {
+        .home-title {
+          margin: 2rem auto;
+          transform: skew(0deg);
+          width: 75%;
+
+          .main {
+            font-size: 4rem;
+          }
+
+          p {
+            font-size: 1.75rem;
+          }
+        }
+      }
+    }
+
     .information {
       .information-container {
         flex-direction: column;

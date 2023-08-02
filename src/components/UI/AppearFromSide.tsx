@@ -1,6 +1,14 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 
+/**
+ * A component that makes its children appear from the side of the screen when it enters the viewport.
+ * @param children - The children to be rendered.
+ * @param fromRight - Whether the children should appear from the right side of the screen. Defaults to false.
+ * @param deactivated - Whether the animation should be deactivated. Defaults to false.
+ * @param smooth - Whether the animation should be smooth. Defaults to true.
+ * @returns A React component.
+ */
 export default function AppearFromSide({
   children,
   fromRight = false,
@@ -24,7 +32,7 @@ export default function AppearFromSide({
     // It can be undefined if user changes page while the component is on screen
     if (!ref.current) return;
     const rect = (ref.current as any).getBoundingClientRect();
-    const progression = Math.max(Math.min(2 * (1 - rect.top / window.innerHeight), 1), 0);
+    const progression = Math.max(Math.min(4 * (1 - rect.top / window.innerHeight), 1), 0);
     const defaultSidePosition = smooth
       ? fromRight
         ? (window.innerWidth - rect.width) / 2
@@ -47,7 +55,7 @@ export default function AppearFromSide({
       {
         root: document.body,
         rootMargin: '0px 100% 0px 100%',
-        threshold: 0,
+        threshold: 0.25,
       } as IntersectionObserverInit,
     ).observe(ref.current!);
     const rect = (ref.current as any).getBoundingClientRect();

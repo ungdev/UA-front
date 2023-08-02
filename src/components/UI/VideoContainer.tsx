@@ -9,17 +9,13 @@ import 'lazysizes/plugins/attrchange/ls.attrchange';
  */
 const VideoContainer = ({ title = '', src, className = '' }: { title?: string; src: string; className?: string }) => (
   <div className={`video-container ${className}`}>
-    <div className="video-container-ratio">
-      <div className="video-container-full">
-        <iframe
-          className="lazyload"
-          title={title}
-          data-src={src}
-          allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-    </div>
+    <iframe
+      className="lazyload"
+      title={title}
+      data-src={src}
+      allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
+      allowFullScreen
+    />
   </div>
 );
 

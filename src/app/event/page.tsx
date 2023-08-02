@@ -1,16 +1,15 @@
-import { Title } from '@/components/UI';
+import { Table, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
-import AppearFromSide from '@/components/UI/AppearFromSide';
 import Partners from '../../components/Partners';
 
 export default function Page() {
   return (
-    <div id="event-page">
-      <Title level={1}>Événement</Title>
-      <Title level={2}>Présentation</Title>
-      <AppearFromSide fromRight>
+    <>
+      <div id="event-page">
+        <Title level={1}>Événement</Title>
+        <Title level={2}>Présentation</Title>
         <div className="text-and-image image-left">
           <img src={foo.src} alt="foo" />
           <div className="text">
@@ -23,8 +22,6 @@ export default function Page() {
             de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
         </div>
-      </AppearFromSide>
-      <AppearFromSide>
         <div className="text-and-image image-right">
           <div className="text">
             À présent l'UTT Arena c'est 630 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct
@@ -35,43 +32,67 @@ export default function Page() {
           </div>
           <img src={bar.src} alt="bar" />
         </div>
-      </AppearFromSide>
-      <Title level={2}>Salon jeux</Title>
-      <center>Contenu à venir</center>
-      <Title level={2}>Programme</Title>
-      <div className="program">
-        <BoxContainer title="Jour 1 : Vendredi">
-          <p className="">Contenu...</p>
-        </BoxContainer>
-        <BoxContainer title="Jour 2 : Samedi">
-          <p className="">Contenu...</p>
-        </BoxContainer>
-        <BoxContainer title="Jour 3 : Dimanche">
-          <p className="">Contenu...</p>
-        </BoxContainer>
-      </div>
-      <Title level={2}>Lieu</Title>
-      <div className="place">
-        <iframe
-          title="Google Maps"
-          src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
-        />
-        <div className="text">
-          Le Cube - Parc des Expositions de Troyes <br /> <br />
-          20 Rue des Gayettes <br /> <br />
-          10000 Troyes
+        <Title level={2}>Salon jeux</Title>
+        <center>Contenu à venir</center>
+        <Title level={2}>Programme</Title>
+        <div className="program">
+          <BoxContainer title="Jour 1 : Vendredi">
+            <p className="">Contenu...</p>
+          </BoxContainer>
+          <BoxContainer title="Jour 2 : Samedi">
+            <p className="">Contenu...</p>
+          </BoxContainer>
+          <BoxContainer title="Jour 3 : Dimanche">
+            <p className="">Contenu...</p>
+          </BoxContainer>
         </div>
+        <Title level={2}>Lieu</Title>
+        <div className="place">
+          <iframe
+            title="Google Maps"
+            src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          />
+          <div className="text">
+            Le Cube - Parc des Expositions de Troyes <br /> <br />
+            20 Rue des Gayettes <br /> <br />
+            10000 Troyes
+          </div>
+        </div>
+        <Title level={2}>Inscriptions</Title>
+        <ol className="steps">
+          <li>
+            Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet,
+            consectetur adipiscing elit
+          </li>
+          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+        </ol>
+        <Table
+          columns={[
+            { key: 'type', title: 'Type' },
+            { key: 'price', title: 'Prix' },
+            { key: 'description', title: 'Remarques' },
+          ]}
+          dataSource={[
+            {
+              type: 'Joueur',
+              price: '10€',
+              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            },
+            {
+              type: 'Visiteur',
+              price: '5€',
+              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            },
+            {
+              type: 'Bénévole',
+              price: 'Gratuit',
+              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+            },
+          ]}
+        />
       </div>
-      <Title level={2}>Inscriptions</Title>
-      <ol className="steps">
-        <li>
-          Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet,
-          consectetur adipiscing elit
-        </li>
-        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
-        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
-      </ol>
       <Partners />
-    </div>
+    </>
   );
 }

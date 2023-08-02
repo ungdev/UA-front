@@ -1,18 +1,7 @@
 .video-container {
-  .video-container-ratio {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    background: #000;
-  }
-
-  .video-container-full {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
+  aspect-ratio: 16/9;
+  width: auto;
+  height: 100%;
 
   iframe {
     width: 100%;

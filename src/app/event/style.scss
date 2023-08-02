@@ -1,8 +1,9 @@
 #event-page {
+  margin-bottom: 10rem;
 
   .title-1 {
     text-align: center;
-    margin-top: 99px;
+    margin-top: 6rem;
   }
 
   .title-2 {
@@ -14,23 +15,23 @@
     display: flex;
     overflow: hidden;
     background-color: $light-blue;
-    color: #002D40;
-    margin-top: 81px;
+    color: #002d40;
+    margin-top: 5rem;
 
     &.image-left {
       margin-left: 85px;
-      border-radius: 19px 0 0 19px;
+      border-radius: 1.25rem 0 0 1.25rem;
     }
 
     &.image-right {
       margin-right: 85px;
-      border-radius: 0 19px 19px 0;
+      border-radius: 0 1.25rem 1.25rem 0;
     }
 
     .text {
-      margin: 51px 70px 50px 65px;
+      margin: 3.125rem 4.375rem;
       font-size: 1.5rem;
-      line-height: 139%;
+      line-height: 140%;
     }
   }
 
@@ -49,8 +50,8 @@
   .place {
     display: flex;
     align-items: center;
-    margin: 102px 91px 0 48px;
-    gap: 71px;
+    margin: 100px 90px 0 48px;
+    gap: 70px;
 
     iframe {
       height: auto;
@@ -64,21 +65,20 @@
       width: max-content;
       font-size: 1.5rem;
       font-weight: 500;
-      line-height: 139%;
+      line-height: 140%;
     }
   }
 
   .steps {
     list-style-type: none;
     counter-reset: step-counter;
-    margin: 83px 20% 25% 7%;
 
     li {
       display: flex;
       align-items: center;
       font-size: 1.5rem;
       font-weight: 500;
-      margin-bottom: 49px;
+      margin-bottom: 50px;
     }
 
     li:before {
@@ -89,8 +89,8 @@
       counter-increment: step-counter;
       width: 90px;
       height: 90px;
-      flex-shrink: 0;  // Prevents it from shrinking do to the <li> being flex
-      margin-right: 47px;
+      flex-shrink: 0; // Prevents it from shrinking do to the <li> being flex
+      margin-right: 50px;
       font-size: 3.75rem;
       font-weight: 800;
       text-align: center;
@@ -102,66 +102,75 @@
 }
 
 @media screen and (max-width: 1024px) {
-   #event-page {
-      .text-and-image {
-        flex-direction: column;
+  #event-page {
+    .text-and-image {
+      flex-direction: column;
+      gap: 1.5rem;
 
-        .text {
-          margin-left: 5%;
-          margin-right: 5%;
-        }
-
-        &.image-left {
-          margin-left: 0;
-        }
-
-        &.image-right {
-          margin-right: 0;
-        }
-
-        img {
-          order: -1;
-        }
+      .text {
+        margin: 1rem 5%;
+        font-size: 1.25rem;
       }
 
-      .program {
-        flex-direction: column;
-        gap: 23px;
-
-        .box-container {
-          width: 100%;
-        }
+      &.image-left {
+        margin: 1rem 5%;
+        border-radius: 1.25rem;
       }
 
-     .place {
-       flex-direction: column;
-       margin-top: 50px;
-       margin-left: auto;
-       margin-right: auto;
-       gap: 30px;
-       width: 90%;
+      &.image-right {
+        margin: 1rem 5%;
+        border-radius: 1.25rem;
+      }
 
-       iframe {
-         width: 100%;
-         min-width: 0;
-       }
+      img {
+        order: -1;
+      }
+    }
 
-       .text {
-         order: -1;
-         line-height: 100%;
-         width: 100%;
-       }
-     }
+    .program {
+      flex-direction: column;
+      gap: 1.5rem;
 
-     .steps {
-       li {
-         flex-direction: column;
-       }
+      .box-container {
+        width: 100%;
+      }
+    }
 
-       li:before {
+    .place {
+      flex-direction: column;
+      margin: 50px auto 0 auto;
+      gap: 1.875rem;
+      width: 90%;
+
+      iframe {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .text {
+        order: -1;
+        line-height: 100%;
+        width: 100%;
+      }
+    }
+
+    .steps {
+      padding: 0;
+      text-align: center;
+      margin: 0 3%;
+
+      li {
+        flex-direction: column;
+      }
+
+      li:before {
         margin-right: 0;
         margin-bottom: 20px;
-       }
-     }
+      }
+    }
+
+    table {
+      margin: 0 3%;
+    }
   }
 }

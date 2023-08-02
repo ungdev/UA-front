@@ -30,7 +30,7 @@ const Home = () => {
         autoslide={false}
       />
 
-      <AppearFromSide>
+      <AppearFromSide smooth>
         <div className="cta-main">
           <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
           <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
@@ -40,7 +40,7 @@ const Home = () => {
         </div>
       </AppearFromSide>
 
-      <AppearFromSide fromRight>
+      <AppearFromSide fromRight smooth>
         <BoxContainer title="chiffres.txt">
           <Counter value={7} name="Jeux" className="flex-1" />
           <VerticalDivider />
@@ -50,7 +50,7 @@ const Home = () => {
         </BoxContainer>
       </AppearFromSide>
 
-      <AppearFromSide>
+      <AppearFromSide smooth>
         <div className="information">
           <div className="information-container">
             <div className="left">

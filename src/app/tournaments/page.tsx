@@ -60,7 +60,7 @@ const TournamentHome = () => {
           <Link href={`/tournaments/${selectedTournament.id}`} scroll={false}>
             <Button isPink>Plus d'infos</Button>
           </Link>
-          <Link href={`/dashboard`}  scroll={false}>
+          <Link href={`/dashboard`} scroll={false}>
             <Button isPink primary>
               S'inscrire
             </Button>

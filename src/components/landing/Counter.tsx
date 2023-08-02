@@ -72,7 +72,11 @@ function Counter({
     }
     if (counter > 1_000) {
       const hundreds = Math.floor((counter % 1000) / 100);
-      return Math.floor(counter / 1000).toLocaleString() + 'k' + (hundreds !== 0 ? Math.floor(hundreds).toLocaleString() : '');
+      return (
+        Math.floor(counter / 1000).toLocaleString() +
+        'k' +
+        (hundreds !== 0 ? Math.floor(hundreds).toLocaleString() : '')
+      );
     }
     return counter.toLocaleString();
   };
