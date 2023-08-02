@@ -5,41 +5,6 @@
     width: clamp(300px, 80%, 1920px);
     margin: 10px auto 100px auto;
   }
-    .information-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-  
-      .information-text {
-        color: #fff;
-        font-family: $montserrat;
-        font-size: 1.25rem;
-        font-weight: 500;
-        line-height: 1.5;
-        text-align: justify;
-      }
-  
-      .left {
-        width: 60%;
-      }
-  
-      .right {
-        width: 40%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        > * {
-          position: absolute;
-  
-          &:nth-child(1) {
-            transform: translate(-25px, 25px);
-          }
-        }
-      }
-    }
 
   .about-team {
     width: clamp(300px, 80%, 1920px);

@@ -1,0 +1,57 @@
+.information-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  .information-text {
+    color: #fff;
+    font-family: $montserrat;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  .left {
+    width: 60%;
+
+    &.first {
+      order: 1;
+    }
+  }
+
+  .right {
+    width: 40%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > * {
+      position: absolute;
+
+      &:nth-child(1) {
+        transform: translate(-25px, 25px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .information-container {
+    flex-direction: column;
+    gap: 2rem;
+
+    .left {
+        order: 1;
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
+        margin: 3rem;
+        aspect-ratio: 16/9;
+    }
+  }
+}

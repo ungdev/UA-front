@@ -13,6 +13,7 @@ import Select from './Select';
 import Table from './Table';
 import Tabs from './Tabs';
 import Textarea from './Textarea';
+import TextBlock from './TextBlock';
 import Title from './Title';
 import VideoContainer from './VideoContainer';
 import Divider from './Divider';
@@ -35,6 +36,7 @@ export {
   Table,
   Tabs,
   Textarea,
+  TextBlock,
   Title,
   VideoContainer,
   VerticalDivider,

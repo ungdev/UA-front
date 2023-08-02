@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Title } from '@/components/UI';
+import { TextBlock, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 
 interface TeamMember {
@@ -77,50 +77,24 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="about-ua">
-        <div className="information-container">
-          <div className="left">
-            <Title level={1}>UTT Arena 2023</Title>
-            <p className="information-text">
-              LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-              connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-              Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-              composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises !
-              Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce
-              enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
-            </p>
-          </div>
-          <div className="right">
-            <BoxContainer title="image.jpg" padding={false}>
-              <img src="https://picsum.photos/seed/add/1920/1080/" alt="Information Image" className="" />
-            </BoxContainer>
-            <BoxContainer title="image.jpg" padding={false}>
-              <img src="https://picsum.photos/1920/1080" alt="Information Image" className="" />
-            </BoxContainer>
-          </div>
-        </div>
+        <TextBlock title="UTT Arena" images={["https://picsum.photos/seed/add/1920/1080/", "https://picsum.photos/1920/1080"]}>
+          LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
+          connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
+          Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
+          composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises !
+          Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce
+          enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
+        </TextBlock>
       </div>
       <div className="about-ung">
-        <div className="information-container">
-          <div className="right">
-            <BoxContainer title="image.jpg" padding={false}>
-              <img src="https://picsum.photos/seed/add/1920/1080/" alt="Information Image" className="" />
-            </BoxContainer>
-            <BoxContainer title="image.jpg" padding={false}>
-              <img src="https://picsum.photos/1920/1080" alt="Information Image" className="" />
-            </BoxContainer>
-          </div>
-          <div className="left">
-            <Title level={1}>UTT Net Group</Title>
-            <p className="information-text">
-              LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-              connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-              Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-              composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises !
-              Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce
-              enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
-            </p>
-          </div>
-        </div>
+        <TextBlock title="UTT Net Group" images={["https://picsum.photos/seed/add/1920/1080/", "https://picsum.photos/1920/1080"]} left>
+          LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
+          connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
+          Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
+          composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises !
+          Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce
+          enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
+        </TextBlock>
       </div>
 
       <div className="about-team">
