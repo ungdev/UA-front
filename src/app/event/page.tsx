@@ -3,7 +3,7 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
 import AppearFromSide from '@/components/UI/AppearFromSide';
-import Partners from "../../components/Partners";
+import Partners from '../../components/Partners';
 
 export default function Page() {
   return (
@@ -37,12 +37,18 @@ export default function Page() {
         </div>
       </AppearFromSide>
       <Title level={2}>Salon jeux</Title>
-      Contenu à venir
+      <center>Contenu à venir</center>
       <Title level={2}>Programme</Title>
       <div className="program">
-        <BoxContainer title="Jour 1 : Vendredi"></BoxContainer>
-        <BoxContainer title="Jour 2 : Samedi"></BoxContainer>
-        <BoxContainer title="Jour 3 : Dimanche"></BoxContainer>
+        <BoxContainer title="Jour 1 : Vendredi">
+          <p className="">Contenu...</p>
+        </BoxContainer>
+        <BoxContainer title="Jour 2 : Samedi">
+          <p className="">Contenu...</p>
+        </BoxContainer>
+        <BoxContainer title="Jour 3 : Dimanche">
+          <p className="">Contenu...</p>
+        </BoxContainer>
       </div>
       <Title level={2}>Lieu</Title>
       <div className="place">
@@ -58,7 +64,10 @@ export default function Page() {
       </div>
       <Title level={2}>Inscriptions</Title>
       <ol className="steps">
-        <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+        <li>
+          Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet,
+          consectetur adipiscing elit
+        </li>
         <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
         <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
       </ol>

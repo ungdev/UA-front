@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
-import Divider from "@/components/UI/Divider";
+import Divider from '@/components/UI/Divider';
 
 const TournamentHome = () => {
   //const dispatch = useAppDispatch();

@@ -50,7 +50,7 @@ export default function AppearFromSide({
         threshold: 0,
       } as IntersectionObserverInit,
     ).observe(ref.current!);
-    const rect = ref.current.getBoundingClientRect();
+    const rect = ref.current!.getBoundingClientRect();
     setTranslateXData({
       offset: fromRight ? window.innerWidth - rect.left : -rect.right,
       position: fromRight ? rect.left : rect.right,
