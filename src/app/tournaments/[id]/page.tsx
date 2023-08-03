@@ -1,6 +1,6 @@
 'use client';
 import { notFound, useParams } from 'next/navigation';
-import { Icon, Title } from '@/components/UI';
+import { Button, Icon, Title } from "@/components/UI";
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
 import { tournaments } from '@/lib/tournaments';
@@ -15,8 +15,10 @@ export default function TournamentInformation() {
   return (
     <div className="tournament-container">
       <Link href="/tournaments" className="back">
-        <Icon name="chevron-left" fill={false}></Icon>
-        Retour aux tournois
+        <Button>
+          <Icon name="chevron-left" fill={false}></Icon>
+          Retour aux tournois
+        </Button>
       </Link>
       <Title level={1} className="tournament-name">
         {tournament.name}

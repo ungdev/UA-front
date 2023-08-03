@@ -1,9 +1,18 @@
 .tournaments-content {
   a.back {
-    color: white;
-    display: flex;
-    align-items: center;
+    position: relative;
+    top: 10px;
     text-decoration: none;
+
+    .button {
+      display: flex;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        color: #8C979B;
+      }
+    }
 
     svg {
       width: 24px;
