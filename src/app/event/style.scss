@@ -72,6 +72,7 @@
   .steps {
     list-style-type: none;
     counter-reset: step-counter;
+    margin-left: 4rem;
 
     li {
       display: flex;

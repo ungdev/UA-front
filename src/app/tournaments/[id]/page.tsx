@@ -16,7 +16,7 @@ export default function TournamentInformation() {
     <div className="tournament-container">
       <Link href="/tournaments" className="back">
         <Button>
-          <Icon name="chevron-left" fill={false}></Icon>
+          <Icon name="chevron-left" fill={false} strokeWidth={3}></Icon>
           Retour aux tournois
         </Button>
       </Link>
