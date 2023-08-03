@@ -1,7 +1,7 @@
 'use client';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useEffect } from 'react';
-import { fetchPartners } from '@/modules/partners';
+import { fetchPartners, PartnersAction } from '@/modules/partners';
 import { Partner } from '@/types';
 import { type Action } from '@reduxjs/toolkit';
 
@@ -11,7 +11,7 @@ import { type Action } from '@reduxjs/toolkit';
  */
 export default function Partners() {
   const dispatch = useAppDispatch();
-  const partners = useAppSelector((state) => (state.partners as any).partners);
+  const partners = useAppSelector((state) => (state.partners as PartnersAction).partners);
 
   useEffect(() => {
     if (!partners) {

@@ -102,7 +102,7 @@ export const editUser = (data: User) => async (dispatch: Dispatch) => {
   dispatch(updateUser(res) as unknown as Action);
 };
 
-export const resetPassword = (email: string, resetFields: any) => async (dispatch: Dispatch) => {
+export const resetPassword = (email: string, resetFields: () => unknown) => async (dispatch: Dispatch) => {
   await API.post(`/auth/reset-password`, { email });
   toast.success("Un email de confirmation vient d'être envoyé");
   dispatch(setLoginModalVisible(false) as unknown as Action);
@@ -143,7 +143,7 @@ export const logBackToAdmin = () => async (dispatch: Dispatch) => {
 };
 
 export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootState) => {
-  localStorage.setItem('utt-arena-admin-token', (state.login as any).token);
+  localStorage.setItem('utt-arena-admin-token', (state.login as LoginAction).token!);
   const res = await API.post(`admin/auth/login/${id}`);
   localStorage.setItem('utt-arena-userid', res.user.id);
   dispatch(saveToken(res.token) as unknown as Action);

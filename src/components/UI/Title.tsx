@@ -25,7 +25,7 @@ const Title = ({
   className?: string;
   id?: string;
 }) => {
-  const Component: any = `h${level}`;
+  const Component = `h${level}`;
 
   return (
     <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>

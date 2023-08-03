@@ -31,7 +31,7 @@ export default function AppearFromSide({
   const animation = () => {
     // It can be undefined if user changes page while the component is on screen
     if (!ref.current) return;
-    const rect = (ref.current as any).getBoundingClientRect();
+    const rect = (ref.current as HTMLElement).getBoundingClientRect();
     const progression = Math.max(Math.min(4 * (1 - rect.top / window.innerHeight), 1), 0);
     const defaultSidePosition = smooth
       ? fromRight
@@ -58,7 +58,7 @@ export default function AppearFromSide({
         threshold: 0.25,
       } as IntersectionObserverInit,
     ).observe(ref.current!);
-    const rect = (ref.current as any).getBoundingClientRect();
+    const rect = (ref.current as HTMLElement).getBoundingClientRect();
     setTranslateXData({
       offset: fromRight ? window.innerWidth - rect.left : -rect.right,
       position: fromRight ? rect.left : rect.right,
@@ -72,7 +72,7 @@ export default function AppearFromSide({
     }
   }, [visible, translateXData]);
 
-  return React.cloneElement(children as any, {
+  return React.cloneElement(children as React.ReactNode, {
     style: deactivated
       ? undefined
       : {

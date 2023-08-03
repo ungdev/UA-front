@@ -10,7 +10,7 @@ import { setUser } from './login';
 
 const initialState: TeamWithUsers | null = {} as TeamWithUsers;
 
-export const team = createSlice({
+export const teamSlice = createSlice({
   name: 'team',
   initialState,
   reducers: {
@@ -20,7 +20,7 @@ export const team = createSlice({
   },
 });
 
-export const { setTeam } = team.actions;
+export const { setTeam } = teamSlice.actions;
 
 interface BodyTeam {
   name: string;
@@ -114,4 +114,4 @@ export const lockTeam = () => async (dispatch: Dispatch) => {
   toast.success("L'équipe a bien été verrouillée");
 };
 
-export default team.reducer;
+export default teamSlice.reducer;

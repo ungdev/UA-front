@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  render: (args: any) => (
+  render: (args: unknown) => (
     <Providers>
       <Partners {...args} />
     </Providers>

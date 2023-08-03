@@ -11,7 +11,7 @@ const requestAPI = (
   authorizationHeader: boolean,
   body = null,
   disableCache = false,
-): Promise<any> =>
+): Promise<unknown> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
 
@@ -54,7 +54,7 @@ const requestAPI = (
 
     // Add manual timeout as not supported by fetch
     const timeout = setTimeout(function () {
-      if (didTimeOut != true) {
+      if (!didTimeOut) {
         didTimeOut = true;
         toast.error('Connexion au serveur impossible');
         reject(new Error('Request timed out'));
@@ -70,9 +70,9 @@ export const setAuthorizationToken = (_token: string) => {
 // Access the API through different HTTP methods
 export const API = {
   get: (route: string) => requestAPI('GET', apiUrl(), route, true),
-  post: (route: string, body: any = {}) => requestAPI('POST', apiUrl(), route, true, body),
-  put: (route: string, body: any = {}) => requestAPI('PUT', apiUrl(), route, true, body),
-  patch: (route: string, body: any = {}) => requestAPI('PATCH', apiUrl(), route, true, body),
+  post: (route: string, body: object = {}) => requestAPI('POST', apiUrl(), route, true, body),
+  put: (route: string, body: object = {}) => requestAPI('PUT', apiUrl(), route, true, body),
+  patch: (route: string, body: object = {}) => requestAPI('PATCH', apiUrl(), route, true, body),
   delete: (route: string) => requestAPI('DELETE', apiUrl(), route, true),
 };
 

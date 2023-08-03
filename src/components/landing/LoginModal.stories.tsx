@@ -6,7 +6,7 @@ const meta = {
   title: 'Landing/LoginModal',
   component: LoginModal,
   tags: ['autodocs'],
-  render: (args: any) => (
+  render: (args: unknown) => (
     <Providers>
       <LoginModal {...args} />
     </Providers>

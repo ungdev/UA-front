@@ -4,7 +4,7 @@ import { Partner } from '@/types';
 
 export const SET_PARTNERS = 'partners/SET_PARTNERS';
 
-interface PartnersAction {
+export interface PartnersAction {
   partners: Partner[] | null;
 }
 

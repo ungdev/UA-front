@@ -11,7 +11,7 @@ const meta = {
       appDirectory: true,
     },
   },
-  render: (args: any) => (
+  render: (args: unknown) => (
     <Providers>
       <Wrapper {...args} />
     </Providers>

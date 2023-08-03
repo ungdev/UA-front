@@ -1,6 +1,6 @@
 'use client';
 import { notFound, useParams } from 'next/navigation';
-import { Button, Icon, Title } from "@/components/UI";
+import { Button, Icon, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
 import { tournaments } from '@/lib/tournaments';

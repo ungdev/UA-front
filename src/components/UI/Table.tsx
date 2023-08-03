@@ -27,7 +27,7 @@ const Table = ({
   onRowClicked = () => {},
 }: {
   columns: { key: string; title: string }[];
-  dataSource: any[];
+  dataSource: object[];
   className?: string;
   alignRight?: boolean;
   emptyText?: string;

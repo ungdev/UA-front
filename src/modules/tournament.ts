@@ -17,7 +17,7 @@ const initialState = {
   slots: null,
 };
 
-export const tournament = createSlice({
+export const tournamentSlice = createSlice({
   name: 'tournament',
   initialState,
   reducers: {
@@ -30,7 +30,7 @@ export const tournament = createSlice({
   },
 });
 
-export const { setTournaments, setSlots } = tournament.actions;
+export const { setTournaments, setSlots } = tournamentSlice.actions;
 
 export const fetchTournaments = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments');
@@ -41,7 +41,7 @@ export const fetchSlots = () => async (dispatch: Dispatch) => {
   const res = await API.get('/tournaments?paidOnly=true');
   const slots = res.reduce(
     (
-      previous: any,
+      previous: object,
       {
         maxPlayers,
         playersPerTeam,
@@ -59,4 +59,4 @@ export const fetchSlots = () => async (dispatch: Dispatch) => {
   dispatch(setSlots(slots));
 };
 
-export default tournament.reducer;
+export default tournamentSlice.reducer;

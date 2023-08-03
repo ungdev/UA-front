@@ -5,11 +5,11 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '@/modules';
 import { nodeEnv } from '@/utils/environment';
 
-const enhancers: any[] = [];
+const enhancers: unknown[] = [];
 const middleware = [thunk];
 
 if (nodeEnv() === 'development') {
-  middleware.push(createLogger({ collapsed: true }) as any);
+  middleware.push(createLogger({ collapsed: true }));
 }
 
 const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers);
