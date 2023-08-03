@@ -29,7 +29,7 @@ const TournamentHome = () => {
     }, fadeDuration);
   }, [selectedTournamentIndex]);
 
-  const selectTournament = (i) => {
+  const selectTournament = (i: number) => {
     if (i === selectedTournamentIndex) return;
     setSelectedTournamentIndex(i);
     setLastFading(Date.now());
