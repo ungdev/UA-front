@@ -11,9 +11,9 @@ const TournamentHome = () => {
   //const dispatch = useAppDispatch();
   //const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
-  //const [removeFadeAt, setRemovedFadeAt] = useState(0);
   const [lastFading, setLastFading] = useState(Date.now());
-  const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(0);
+  // We need this to be different from selectedTournamentIndex to trigger the fade-in animation
+  const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
   // Only used for force-updating the component
   const [updater, setUpdater] = useState(false);
 
