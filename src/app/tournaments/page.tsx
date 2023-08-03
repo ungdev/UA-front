@@ -7,9 +7,15 @@ import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
 
 const TournamentHome = () => {
+  const fadeDuration = 200;
   //const dispatch = useAppDispatch();
   //const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
+  //const [removeFadeAt, setRemovedFadeAt] = useState(0);
+  const [lastFading, setLastFading] = useState(Date.now());
+  const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(0);
+  // Only used for force-updating the component
+  const [updater, setUpdater] = useState(false);
 
   useEffect(() => {
     if (!tournaments) {
@@ -18,16 +24,30 @@ const TournamentHome = () => {
   }, []);
 
   useEffect(() => {
+    setTimeout(() => {
+      setUpdater(!updater); // Force-update the component
+    }, fadeDuration);
+  }, [selectedTournamentIndex]);
+
+  const selectTournament = (i) => {
+    if (i === selectedTournamentIndex) return;
+    setSelectedTournamentIndex(i);
+    setLastFading(Date.now());
+  };
+
+  const selectedTournament = tournaments[selectedTournamentIndex];
+
+  const fading = Date.now() - lastFading < fadeDuration;
+  if (!fading && renderedTournamentIndex !== selectedTournamentIndex) {
+    setRenderedTournamentIndex(selectedTournamentIndex);
     document.documentElement.style.setProperty(
       '--background-image',
       `url("${tournaments[selectedTournamentIndex].backgroundImage}")`,
     );
-  }, [selectedTournamentIndex]);
-
-  const selectedTournament = tournaments[selectedTournamentIndex];
+  }
 
   return (
-    <div className="tournament-container">
+    <div className={`tournament-container ${fading ? 'fading' : ''}`}>
       <div className="page-title">
         <Divider is_white />
         <Title align="center">Tournois</Title>
@@ -43,7 +63,7 @@ const TournamentHome = () => {
                   src={tournament.image}
                   alt={`Logo ${tournament.name}`}
                   className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
-                  onClick={() => setSelectedTournamentIndex(i)}
+                  onClick={() => selectTournament(i)}
                 />
               ))}
         </div>
