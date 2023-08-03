@@ -1,5 +1,5 @@
 import { Title } from '.';
-import BoxContainer from '../landing/BoxContainer';
+import DoubleImage from '@/components/UI/DoubleImage';
 
 const TextBlock = ({
   title,
@@ -17,14 +17,7 @@ const TextBlock = ({
       <Title level={1}>{title}</Title>
       <p className="information-text">{children}</p>
     </div>
-    <div className="right">
-      <BoxContainer title="image.jpg" padding={false}>
-        <img src={images[0]} alt="Information Image" className="" />
-      </BoxContainer>
-      <BoxContainer title="image.jpg" padding={false}>
-        <img src={images[1]} alt="Information Image" className="" />
-      </BoxContainer>
-    </div>
+    <DoubleImage className="right" image1={images[0]} image2={images[1]} />
   </div>
 );
 

@@ -1,0 +1,18 @@
+.double-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > * {
+    position: absolute;
+
+    &:nth-child(1) {
+      transform: translate(-25px, 25px);
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+}
