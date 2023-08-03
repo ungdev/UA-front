@@ -35,7 +35,7 @@ const TournamentHome = () => {
     setLastFading(Date.now());
   };
 
-  const selectedTournament = tournaments[selectedTournamentIndex];
+  const renderedTournament = tournaments[renderedTournamentIndex];
 
   const fading = Date.now() - lastFading < fadeDuration;
   if (!fading && renderedTournamentIndex !== selectedTournamentIndex) {
@@ -68,16 +68,16 @@ const TournamentHome = () => {
               ))}
         </div>
         <div className={`tournament-info ${fading ? 'fading' : ''}`}>
-          <h2>{selectedTournament.name}</h2>
+          <h2>{renderedTournament.name}</h2>
           <p>
-            <strong>{selectedTournament.cashprize}€</strong> de cashprize ·{' '}
-            <strong>{selectedTournament.maxPlayers / selectedTournament.playersPerTeam} équipes </strong>
+            <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
+            <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
             <br />
           </p>
           <p>
-            Casté par <strong>{selectedTournament.caster}</strong>
+            Casté par <strong>{renderedTournament.caster}</strong>
           </p>
-          <Link href={`/tournaments/${selectedTournament.id}`} scroll={false}>
+          <Link href={`/tournaments/${renderedTournament.id}`} scroll={false}>
             <Button isPink>Plus d'infos</Button>
           </Link>
           <Link href={`/dashboard`} scroll={false}>
