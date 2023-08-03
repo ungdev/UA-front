@@ -209,6 +209,11 @@
           line-height: 3.5rem;
           width: 50%;
           height: 100%;
+          transition: opacity 0.2s ease-in-out;
+
+          &.fading {
+            opacity: 0;
+          }
 
           h2 {
             color: $title-color;

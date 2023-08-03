@@ -67,7 +67,7 @@ const TournamentHome = () => {
                 />
               ))}
         </div>
-        <div className="tournament-info">
+        <div className={`tournament-info ${fading ? 'fading' : ''}`}>
           <h2>{selectedTournament.name}</h2>
           <p>
             <strong>{selectedTournament.cashprize}€</strong> de cashprize ·{' '}
