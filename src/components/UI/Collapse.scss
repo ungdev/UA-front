@@ -5,6 +5,7 @@
   background-color: #fff;
   color: #000;
   transition: all 0.3s ease-in-out;
+  border-radius: 0.25rem 0.25rem 0 0;
 
   &::after {
     content: '';

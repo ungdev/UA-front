@@ -50,11 +50,6 @@ const Table = ({
             </th>
           ))}
         </tr>
-        <tr>
-          <td className="table-divider" colSpan={columns.length}>
-            <Divider />
-          </td>
-        </tr>
       </thead>
       <tbody>
         {dataSource.length > 0 ? (
