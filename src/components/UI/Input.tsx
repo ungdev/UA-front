@@ -69,8 +69,6 @@ const Input = ({
           title={disabled ? 'Tu ne peux pas modifier ce champ' : undefined}
           autoFocus={autoFocus}
         />
-
-        <div className="line" />
       </label>
     </div>
   );

@@ -3,7 +3,7 @@
 .textarea {
   display: block;
   position: relative;
-  margin: 14px 0;
+  margin: 1.25rem 0;
   width: 100%;
 }
 
@@ -11,8 +11,9 @@
 .select .select-label,
 .textarea .textarea-label {
   display: block;
-  padding-bottom: 2px;
-  color: #858585;
+  padding-bottom: 0.25rem;
+  color: white;
+  font-weight: 600;
   user-select: none;
 }
 
@@ -20,12 +21,20 @@
 .select select,
 .textarea textarea {
   width: 100%;
-  border: none;
-  border-radius: 0;
-  padding: 8px;
+  border: 0.175rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
   background: #fff;
   font-size: 1em;
   font-family: $montserrat;
+  transition: border-color 0.4s ease-in-out;
+}
+
+.input input:focus,
+.select select:focus,
+.textarea textarea:focus {
+  outline: none;
+  border-color: $accent-color;
 }
 
 .select select {
@@ -36,36 +45,4 @@
   resize: vertical;
   height: 100px;
   min-height: 50px;
-}
-
-.input .line,
-.select .line,
-.textarea .line {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: #c8c8c8;
-}
-
-.input .line::after,
-.select .line::after,
-.textarea .line::after {
-  content: '';
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: $accent-color;
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.input input:focus + .line::after,
-.select select:focus + .line::after,
-.textarea textarea:focus + .line::after {
-  opacity: 1;
 }

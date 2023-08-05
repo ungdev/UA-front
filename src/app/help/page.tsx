@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const options = [
   'Tournoi League of Legends',
@@ -110,6 +111,11 @@ const Help = () => {
       <div id="contact">
         <Title align="center">Contact</Title>
 
+        <p><strong>Tu n’as pas trouvé la réponse à ta question ?</strong></p>
+        <p>
+        Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le <Link href="https://discord.gg/WhxZwKU" target='_blank'>serveur Discord de l’UTT Arena</Link>.
+        </p>
+
         <p>
           UTT Net Group
           <br />
@@ -119,8 +125,6 @@ const Help = () => {
           <br />
           <a href="tel:+33325718550">+33 (0) 3 25 71 85 50</a>
         </p>
-
-        <p>Tu peux nous contacter via ce formulaire, nous te répondrons dans les meilleurs délais.</p>
 
         <Input label="Nom" value={name} onChange={setName} />
         <Input label="Email" value={email} onChange={setEmail} type="email" />
