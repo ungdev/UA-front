@@ -20,9 +20,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
       </Button>
 
       <Link href="/">
-        <Button primary>
-          Retour à l'accueil
-        </Button>
+        <Button primary>Retour à l'accueil</Button>
       </Link>
     </>
   );

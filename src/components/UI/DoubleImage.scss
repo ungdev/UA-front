@@ -16,3 +16,28 @@
     }
   }
 }
+
+@keyframes image1 {
+  0% {
+    transform: translate(-25px, 25px);
+  }
+  50% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translateY(-25px, 25px);
+    z-index: 10;
+  }
+}
+
+@keyframes image2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translateY(-220px) rotateZ(16deg);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

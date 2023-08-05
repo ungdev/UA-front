@@ -111,9 +111,15 @@ const Help = () => {
       <div id="contact">
         <Title align="center">Contact</Title>
 
-        <p><strong>Tu n’as pas trouvé la réponse à ta question ?</strong></p>
         <p>
-        Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le <Link href="https://discord.gg/WhxZwKU" target='_blank'>serveur Discord de l’UTT Arena</Link>.
+          <strong>Tu n’as pas trouvé la réponse à ta question ?</strong>
+        </p>
+        <p>
+          Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le{' '}
+          <Link href="https://discord.gg/WhxZwKU" target="_blank">
+            serveur Discord de l’UTT Arena
+          </Link>
+          .
         </p>
 
         <p>

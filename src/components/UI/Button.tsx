@@ -39,7 +39,9 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`button ${primary ? 'primary' : ''} ${secondary ? 'secondary' : ''} ${className ? className : ''} ${outline ? 'outline' : ''} ${large ? 'large' : ''}  ${long ? 'long' : ''} ${!children ? 'empty' : ''}`}
+      className={`button ${primary ? 'primary' : ''} ${secondary ? 'secondary' : ''} ${className ? className : ''} ${
+        outline ? 'outline' : ''
+      } ${large ? 'large' : ''}  ${long ? 'long' : ''} ${!children ? 'empty' : ''}`}
       onClick={onClick}
       disabled={disabled}>
       {children}

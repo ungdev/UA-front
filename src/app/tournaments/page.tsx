@@ -8,7 +8,7 @@ const TournamentHomeDefault = () => {
   return (
     <TournamentHome
       animations={searchParams.get('firstAnimation') === 'false' ? 'except-first' : 'all'}
-      defaultTournamentId={searchParams.get('tournament')}
+      defaultTournamentId={searchParams.get('tournament') as string | undefined}
       onDefaultTournamentSet={() =>
         setTimeout(() => window.history.replaceState({}, '', window.location.pathname), 500)
       }

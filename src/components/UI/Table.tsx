@@ -1,5 +1,4 @@
 'use client';
-import Divider from './Divider';
 
 /**
  * A table component that displays data in rows and columns.
