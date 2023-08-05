@@ -19,10 +19,10 @@ export const TournamentHome = ({
   const fadeDuration = animations !== 'none' ? 200 : 0;
   //const dispatch = useAppDispatch();
   //const tournaments = useAppSelector((state) => state.tournament.tournaments);
-  const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(0);
-  const [lastFading, setLastFading] = useState(animations === 'all' ? Date.now() : 0);
-  // We need this to be different from selectedTournamentIndex to trigger the fade-in animation
+  // This is initialized when tournaments are fetched
+  const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
+  const [lastFading, setLastFading] = useState(animations === 'all' ? Date.now() : 0);
   // Only used for force-updating the component
   const [updater, setUpdater] = useState(false);
   const [nextUrl, setNextUrl] = useState('');
@@ -32,16 +32,6 @@ export const TournamentHome = ({
       //dispatch(fetchTournaments());
     }
   }, []);
-
-  useEffect(() => {
-    if (!tournaments) return;
-    if (!defaultTournamentId) return;
-    onDefaultTournamentSet();
-    selectTournament(
-      tournaments.findIndex((t) => t.id === defaultTournamentId),
-      false,
-    );
-  }, [tournaments]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,6 +44,19 @@ export const TournamentHome = ({
     setSelectedTournamentIndex(i);
     if (changeLastFading) setLastFading(Date.now());
   };
+
+  // Initialize the selected tournament
+  if (tournaments && selectedTournamentIndex === -1) {
+    if (!defaultTournamentId) {
+      selectTournament(0);
+    } else {
+      onDefaultTournamentSet();
+      selectTournament(
+        tournaments.findIndex((t) => t.id === defaultTournamentId),
+        false,
+      );
+    }
+  }
 
   const renderedTournament = tournaments[renderedTournamentIndex];
 
