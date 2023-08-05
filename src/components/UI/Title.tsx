@@ -25,7 +25,7 @@ const Title = ({
   className?: string;
   id?: string;
 }) => {
-  const Component = `h${level}`;
+  const Component = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
     <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
@@ -38,7 +38,6 @@ const Title = ({
       ) : (
         <div className="title-content">{children}</div>
       )}
-      {/* </div> */}
     </Component>
   );
 };

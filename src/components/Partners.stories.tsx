@@ -9,9 +9,9 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  render: (args: unknown) => (
+  render: () => (
     <Providers>
-      <Partners {...args} />
+      <Partners />
     </Providers>
   ),
 } satisfies Meta<typeof Partners>;

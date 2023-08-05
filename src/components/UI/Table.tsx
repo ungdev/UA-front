@@ -58,13 +58,13 @@ const Table = ({
       </thead>
       <tbody>
         {dataSource.length > 0 ? (
-          dataSource.map((row, i) => (
-            <tr key={`${row.key}-${i}`} onClick={() => onRowClicked!(i)}>
+          dataSource.map((row: { [key: string]: any }, i) => (
+            <tr key={`${i}`} onClick={() => onRowClicked!(i)}>
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (
                   <td
-                    key={`${row[column.key]}-${i}${j}`}
+                    key={`${row[column.key]}-${i}-${j}`}
                     className={`table-column-${column.key}` + (lastColumn ? ' align-right' : '')}>
                     {row[column.key]}
                   </td>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
@@ -58,7 +58,7 @@ export default function AppearFromSide({
         threshold: 0.25,
       } as IntersectionObserverInit,
     ).observe(ref.current!);
-    const rect = (ref.current as HTMLElement).getBoundingClientRect();
+    const rect = (ref.current as unknown as HTMLElement).getBoundingClientRect();
     setTranslateXData({
       offset: fromRight ? window.innerWidth - rect.left : -rect.right,
       position: fromRight ? rect.left : rect.right,
@@ -72,7 +72,7 @@ export default function AppearFromSide({
     }
   }, [visible, translateXData]);
 
-  return React.cloneElement(children as React.ReactNode, {
+  return React.cloneElement(children as ReactElement, {
     style: deactivated
       ? undefined
       : {

@@ -9,9 +9,9 @@ const requestAPI = (
   baseURL: string,
   route: string,
   authorizationHeader: boolean,
-  body = null,
+  body: object | null = null,
   disableCache = false,
-): Promise<unknown> =>
+): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
 

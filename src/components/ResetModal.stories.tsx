@@ -11,7 +11,7 @@ const meta = {
       appDirectory: true,
     },
   },
-  render: (args: unknown) => (
+  render: (args) => (
     <Providers>
       <ResetModal {...args} />
     </Providers>

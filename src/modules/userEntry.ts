@@ -56,7 +56,7 @@ export const scan = (qrcode: string) => async (dispatch: Dispatch) => {
     });
     toast.success('Utilisateur scanné');
     dispatch(setSearchUser(user));
-  } catch (error: unknown) {
+  } catch (error: any) {
     toast.error(error);
   }
 };
@@ -70,7 +70,7 @@ export const bypassQrScan = () => async (dispatch: Dispatch, state: RootState) =
     });
     toast.success('Utilisateur scanné');
     dispatch(setSearchUser(user));
-  } catch (error: unknown) {
+  } catch (error: any) {
     toast.error(error);
   }
 };

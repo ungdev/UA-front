@@ -14,7 +14,7 @@ interface UsersAction {
   lookupUser: UserWithTeamAndMessageAndTournamentInfo | null;
 }
 
-interface UserFilters extends Record<string, string> {
+interface UserFilters extends Record<string, string | undefined> {
   type?: string;
   tournament?: string;
   locked?: 'true' | 'false';
@@ -94,7 +94,7 @@ export const fetchUsers =
         !searchFilters.payment &&
         !searchFilters.scan
           ? ''
-          : '&' + new URLSearchParams(searchFilters).toString()),
+          : '&' + new URLSearchParams(searchFilters as Record<string, string>).toString()),
     );
     const formatUsers = format(res.users);
     dispatch(
