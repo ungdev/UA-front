@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode, RefObject, createRef, useEffect, useState } from 'react';
-import TournamentInformation from '@/app/tournaments/[id]/page';
+import { TournamentInformation } from '@/app/tournaments/[id]/content';
 import { useRouter } from 'next/navigation';
 
 export default function PageSwitcherAnimation({ nextPage, children }: { nextPage: string; children: ReactNode }) {
