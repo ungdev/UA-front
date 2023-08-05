@@ -9,9 +9,9 @@ const TournamentHomeDefault = () => {
     <TournamentHome
       animations={searchParams.get('firstAnimation') === 'false' ? 'except-first' : 'all'}
       defaultTournamentId={searchParams.get('tournament')}
-      onDefaultTournamentSet={() => {
-        window.history.replaceState({}, '', window.location.pathname);
-      }}
+      onDefaultTournamentSet={() =>
+        setTimeout(() => window.history.replaceState({}, '', window.location.pathname), 500)
+      }
     />
   );
 };

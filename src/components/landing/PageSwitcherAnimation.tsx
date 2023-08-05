@@ -2,7 +2,7 @@
 import { ReactNode, RefObject, createRef, useEffect, useState } from 'react';
 import { TournamentInformation } from '@/app/tournaments/[id]/content';
 import { useRouter } from 'next/navigation';
-import { TournamentHome } from "@/app/tournaments/content";
+import { TournamentHome } from '@/app/tournaments/content';
 
 export default function PageSwitcherAnimation({
   comesFrom,
@@ -42,7 +42,6 @@ export default function PageSwitcherAnimation({
 
   function easingFunction(x: number): number {
     return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
-
   }
 
   if (nextPage === undefined) {
