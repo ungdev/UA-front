@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { type Action } from '@reduxjs/toolkit';
 import { Modal } from './UI';
 import LoginModal from './landing/LoginModal';
+import { usePathname } from 'next/navigation';
 
 /**
  * Navbar component that displays a navigation bar with links to different pages.
@@ -14,6 +15,8 @@ import LoginModal from './landing/LoginModal';
 export default function Navbar() {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const pathname = usePathname();
+  console.log("pathname " + pathname);
 
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isVisible = useAppSelector((state) => state.loginModal.visible);
@@ -26,16 +29,16 @@ export default function Navbar() {
   const leftContent = (
     <>
       <Link href="/" onClick={closeBurger}>
-        <Button className="home">Accueil</Button>
+        <Button className={`home ${pathname === '/' && 'current'}`}>Accueil</Button>
       </Link>
       <Link href="/event" onClick={closeBurger}>
-        <Button className="event">Événement</Button>
+        <Button className={`event ${pathname === '/event' && 'current'}`}>Événement</Button>
       </Link>
       <Link href="/tournaments" onClick={closeBurger}>
-        <Button className="tournament">Tournois</Button>
+        <Button className={`tournament ${pathname.startsWith('/tournaments') && 'current'}`}>Tournois</Button>
       </Link>
       <Link href="/help" onClick={closeBurger}>
-        <Button className="help">Aide</Button>
+        <Button className={`help ${pathname === '/help' && 'current'}`}>Aide</Button>
       </Link>
     </>
   );
@@ -43,7 +46,7 @@ export default function Navbar() {
   const rightContent = (
     <>
       <Link href="/about" onClick={closeBurger}>
-        <Button className="about">A propos</Button>
+        <Button className={`about ${pathname === '/about' && 'current'}`}>A propos</Button>
       </Link>
 
       <Button
