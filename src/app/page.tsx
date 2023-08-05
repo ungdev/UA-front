@@ -23,8 +23,13 @@ const Home = () => {
             </div>
           </div>,
           <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
-          <div key={'slide-3'} style={{ backgroundColor: 'blue', width: '100%', height: '100%' }}>
-            Test 3
+          <div key={'slide-3'} className="home-header">
+            <div className="content">
+              <Title level={1}>Rejoignez l'aventure</Title>
+              <Button secondary large>
+                S'inscrire
+              </Button>
+            </div>
           </div>,
         ]}
         autoslide={false}

@@ -14,7 +14,8 @@
 
   .slider {
     .home-header {
-      height: 100vh;
+      height: 100%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -68,6 +69,21 @@
           .accent {
             color: $accent-color;
           }
+        }
+      }
+
+      .content {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 1;
+        .title {
+          font-size: 4rem;
+        }
+        button {
+          font-size: 2rem;
         }
       }
     }
