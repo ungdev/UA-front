@@ -5,7 +5,7 @@ import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
-import PageSwitcherAnimation from "@/components/UI/PageSwitcherAnimation";
+import PageSwitcherAnimation from '@/components/landing/PageSwitcherAnimation';
 
 const TournamentHome = () => {
   const fadeDuration = 200;
@@ -85,7 +85,9 @@ const TournamentHome = () => {
               Casté par <strong>{renderedTournament.caster}</strong>
             </p>
             <Link href={``} scroll={false}>
-              <Button isPink onClick={() => setNextUrl(renderedTournament.id)}>Plus d'infos</Button>
+              <Button isPink onClick={() => setNextUrl(renderedTournament.id)}>
+                Plus d'infos
+              </Button>
             </Link>
             <Link href={`/dashboard`} scroll={false}>
               <Button isPink primary>

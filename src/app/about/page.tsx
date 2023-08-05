@@ -62,7 +62,7 @@ const team: OurTeam = {
         name: 'Alexandre',
         job: 'Respo graphisme',
         image: 'https://picsum.photos/200',
-      },</div>
+      },
       {
         name: 'Alexandre',
         job: 'Graphiste',
