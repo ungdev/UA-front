@@ -70,7 +70,11 @@ export const TournamentHome = ({
   }
 
   if (renderedTournamentIndex === -1) {
-    return <div className={`tournament-container ${fading ? 'fading' : ''}`} />;
+    return (
+      <PageSwitcherAnimation nextPage={undefined}>
+        <div className={`tournament-container ${fading ? 'fading' : ''}`} />
+      </PageSwitcherAnimation>
+    );
   }
 
   return (
