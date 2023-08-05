@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
-import { Permission, UserType, UserWithTeam, UserWithTeamAndMessageAndTournamentInfo } from '@/types';
+import { Permission, UserType, UserWithTeamAndMessageAndTournamentInfo } from '@/types';
 
 interface UsersAction {
   isFetched: boolean;
@@ -32,7 +32,7 @@ const initialState: UsersAction = {
   lookupUser: null,
 };
 
-const format = (users: Array<UserWithTeam>) => {
+const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
   return users.map((user) => ({
     ...user,
     fullname: `${user.firstname} ${user.lastname}`,
@@ -108,39 +108,38 @@ export const fetchUsers =
     );
   };
 
-export const lookupUser =
-  (user: UserWithTeamAndMessageAndTournamentInfo) => async (dispatch: Dispatch, state: RootState) => {
-    const res =
-      user && state.login.user?.permissions?.includes?.(Permission.admin)
-        ? await API.get(`admin/users/${user.id}/carts`)
-        : null;
-    dispatch(
-      setLookupUser(
-        user
-          ? {
-              id: user.id,
-              lastname: user.lastname,
-              firstname: user.firstname,
-              username: user.username,
-              email: user.email,
-              type: user.type,
-              //age: user.age,
-              permissions: user.permissions,
-              hasPaid: user.hasPaid,
-              place: user.place,
-              discordId: user.discordId,
-              team: user.team,
-              attendant: user.attendant,
-              customMessage: user.customMessage,
-              carts: res,
-            }
-          : null,
-      ),
-    );
-  };
+export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootState) => {
+  const res =
+    user && state.login.user?.permissions?.includes?.(Permission.admin)
+      ? await API.get(`admin/users/${user.id}/carts`)
+      : null;
+  dispatch(
+    setLookupUser(
+      user
+        ? {
+            id: user.id,
+            lastname: user.lastname,
+            firstname: user.firstname,
+            username: user.username,
+            email: user.email,
+            type: user.type,
+            //age: user.age,
+            permissions: user.permissions,
+            hasPaid: user.hasPaid,
+            place: user.place,
+            discordId: user.discordId,
+            team: user.team,
+            attendant: user.attendant,
+            customMessage: user.customMessage,
+            carts: res,
+          }
+        : null,
+    ),
+  );
+};
 
-export const updateUser = (updateUser: UserWithTeam) => async (dispatch: Dispatch, state: RootState) => {
-  const users: Array<UserWithTeam> = state.users.users;
+export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state: RootState) => {
+  const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
   dispatch(
@@ -158,8 +157,8 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, state: Roo
   const userModal = state.users.lookupUser;
   await API.post(`admin/users/${id}/force-pay`, {});
   toast.success('Paiement validé');
-  dispatch(updateUser({ ...userModal, hasPaid: true }));
-  dispatch(lookupUser({ ...userModal, hasPaid: true }));
+  dispatch(updateUser({ ...userModal, hasPaid: true }) as unknown as Action);
+  dispatch(lookupUser({ ...userModal, hasPaid: true }) as unknown as Action);
 };
 
 export const saveUser =
@@ -167,15 +166,15 @@ export const saveUser =
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
-    dispatch(updateUser({ ...userModal, ...user }));
+    dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
   };
 
 export const refundCart = (id: string) => async (dispatch: Dispatch, state: RootState) => {
   await API.post(`admin/carts/${id}/refund`, {});
   const userModal = state.users.lookupUser;
   toast.success('Le panier a été marqué comme remboursé');
-  dispatch(updateUser({ ...userModal, hasPaid: false }));
-  dispatch(lookupUser({ ...userModal, hasPaid: false }));
+  dispatch(updateUser({ ...userModal, hasPaid: false }) as unknown as Action);
+  dispatch(lookupUser({ ...userModal, hasPaid: false }) as unknown as Action);
 };
 
 export default usersSlice.reducer;
