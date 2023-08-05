@@ -16,7 +16,6 @@ export default function Navbar() {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const dispatch = useAppDispatch();
   const pathname = usePathname();
-  console.log("pathname " + pathname);
 
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isVisible = useAppSelector((state) => state.loginModal.visible);
