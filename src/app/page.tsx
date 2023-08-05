@@ -25,7 +25,7 @@ const Home = () => {
           <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
           <div key={'slide-3'} className="home-header">
             <div className="content">
-              <Title level={1}>Rejoignez l'aventure</Title>
+              <Title level={1} align='center'>Rejoignez l'aventure</Title>
               <Button secondary large long>
                 S'inscrire
               </Button>

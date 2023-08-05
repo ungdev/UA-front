@@ -141,6 +141,16 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+  #home {
+    .slider {
+      .video-container {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   #home {
     .slider {

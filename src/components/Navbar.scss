@@ -144,5 +144,19 @@ nav {
     .left > a, .right > a, .right > button {
       display: none;
     }
+
+    .button:not(.primary) {
+      &:after {
+        display: none;
+      }
+
+      &.current {
+        color: white;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
   }
 }
