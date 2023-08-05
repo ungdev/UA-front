@@ -2,8 +2,17 @@
 import { ReactNode, RefObject, createRef, useEffect, useState } from 'react';
 import { TournamentInformation } from '@/app/tournaments/[id]/content';
 import { useRouter } from 'next/navigation';
+import { TournamentHome } from "@/app/tournaments/content";
 
-export default function PageSwitcherAnimation({ nextPage, children }: { nextPage: string; children: ReactNode }) {
+export default function PageSwitcherAnimation({
+  comesFrom,
+  nextPage,
+  children,
+}: {
+  comesFrom?: string;
+  nextPage?: string | undefined;
+  children: ReactNode;
+}) {
   const router = useRouter();
   // The translation in the X direction (always negative, because the translation is to the left)
   const [translation, setTranslation] = useState(0);
@@ -15,9 +24,8 @@ export default function PageSwitcherAnimation({ nextPage, children }: { nextPage
     let startTimestamp: number | null = null;
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / 500, 1);
-      setTranslation(-progress * window.innerWidth);
-      //ref.current.style.left = -progress * window.innerWidth + 'px';
+      const progress = easingFunction(Math.min((timestamp - startTimestamp) / 500, 1));
+      setTranslation(progress * window.innerWidth);
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
@@ -32,26 +40,37 @@ export default function PageSwitcherAnimation({ nextPage, children }: { nextPage
     animate();
   }, [ref]);
 
-  if (!nextPage) {
+  function easingFunction(x: number): number {
+    return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
+
+  }
+
+  if (nextPage === undefined) {
     return children;
   }
 
   // We need to render the new page as it will be displayed after the redirection, to avoid a too big reload which will move the camera
   if (redirecting) {
     if (redirecting === 2) {
-      router.push(`/tournaments/${nextPage}`, {
+      const queryParams = nextPage === '' ? `?tournament=${comesFrom}&firstAnimation=${false}` : '';
+      router.push(`/tournaments/${nextPage}${queryParams}`, {
         scroll: false,
       });
     } else setRedirecting(2);
+    if (nextPage === '') return <TournamentHome animations={'none'} defaultTournamentId={comesFrom} />;
     return <TournamentInformation tournamentId={nextPage} animate={false} />;
   }
 
+  const left = nextPage === '' ? <TournamentHome animations={'none'} defaultTournamentId={comesFrom} /> : children;
+  const right = nextPage === '' ? children : <TournamentInformation tournamentId={nextPage} animate={false} />;
+  const style = {
+    left: `${nextPage === '' ? translation - window.innerWidth : -translation}px`,
+  };
+
   return (
-    <div className="page-switcher-container" ref={ref} style={{ left: translation }}>
-      <div className="old">{children}</div>
-      <div className="new">
-        <TournamentInformation tournamentId={nextPage} animate={false} />
-      </div>
+    <div className="page-switcher-container" ref={ref} style={style}>
+      <div className="left">{left}</div>
+      <div className="right">{right}</div>
     </div>
   );
 }
