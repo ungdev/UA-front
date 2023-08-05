@@ -5,6 +5,7 @@ import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
+import PageSwitcherAnimation from "@/components/UI/PageSwitcherAnimation";
 
 const TournamentHome = () => {
   const fadeDuration = 200;
@@ -16,6 +17,7 @@ const TournamentHome = () => {
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
   // Only used for force-updating the component
   const [updater, setUpdater] = useState(false);
+  const [nextUrl, setNextUrl] = useState('');
 
   useEffect(() => {
     if (!tournaments) {
@@ -46,48 +48,54 @@ const TournamentHome = () => {
     );
   }
 
+  if (renderedTournamentIndex === -1) {
+    return <div className={`tournament-container ${fading ? 'fading' : ''}`} />;
+  }
+
   return (
-    <div className={`tournament-container ${fading ? 'fading' : ''}`}>
-      <div className="page-title">
-        <Divider is_white />
-        <Title align="center">Tournois</Title>
-        <Divider is_white />
-      </div>
-      <div className="content">
-        <div className="tournaments-list">
-          {!tournaments
-            ? 'Chargement des tournois...'
-            : tournaments.map((tournament, i) => (
-                <img
-                  key={tournament.id}
-                  src={tournament.image}
-                  alt={`Logo ${tournament.name}`}
-                  className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
-                  onClick={() => selectTournament(i)}
-                />
-              ))}
+    <PageSwitcherAnimation nextPage={nextUrl}>
+      <div className={`tournament-container ${fading ? 'fading' : ''}`}>
+        <div className="page-title">
+          <Divider is_white />
+          <Title align="center">Tournois</Title>
+          <Divider is_white />
         </div>
-        <div className={`tournament-info ${fading ? 'fading' : ''}`}>
-          <h2>{renderedTournament.name}</h2>
-          <p>
-            <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
-            <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
-            <br />
-          </p>
-          <p>
-            Casté par <strong>{renderedTournament.caster}</strong>
-          </p>
-          <Link href={`/tournaments/${renderedTournament.id}`} scroll={false}>
-            <Button isPink>Plus d'infos</Button>
-          </Link>
-          <Link href={`/dashboard`} scroll={false}>
-            <Button isPink primary>
-              S'inscrire
-            </Button>
-          </Link>
+        <div className="content">
+          <div className="tournaments-list">
+            {!tournaments
+              ? 'Chargement des tournois...'
+              : tournaments.map((tournament, i) => (
+                  <img
+                    key={tournament.id}
+                    src={tournament.image}
+                    alt={`Logo ${tournament.name}`}
+                    className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
+                    onClick={() => selectTournament(i)}
+                  />
+                ))}
+          </div>
+          <div className={`tournament-info ${fading ? 'fading' : ''}`}>
+            <h2>{renderedTournament.name}</h2>
+            <p>
+              <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
+              <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
+              <br />
+            </p>
+            <p>
+              Casté par <strong>{renderedTournament.caster}</strong>
+            </p>
+            <Link href={``} scroll={false}>
+              <Button isPink onClick={() => setNextUrl(renderedTournament.id)}>Plus d'infos</Button>
+            </Link>
+            <Link href={`/dashboard`} scroll={false}>
+              <Button isPink primary>
+                S'inscrire
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+    </PageSwitcherAnimation>
   );
 };
 

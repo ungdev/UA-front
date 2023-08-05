@@ -1,0 +1,18 @@
+.page-switcher-container {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  position: relative;
+  
+  .old {
+    width: 50%;
+    //height: 100px;
+    position: relative;
+  }
+
+  .new {
+    width: 50%;
+    height: 100px;
+    position: relative;
+  }
+}

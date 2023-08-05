@@ -6,8 +6,9 @@ import FillingBar from '@/components/UI/FillingBar';
 import { tournaments } from '@/lib/tournaments';
 import Link from 'next/link';
 
-export default function TournamentInformation() {
-  const { id } = useParams();
+export default function TournamentInformation({ tournamentId = undefined, animate = true }: { tournamentId?: string, animate?: boolean }) {
+  const params = useParams();
+  const { id } = tournamentId ? { id: tournamentId } : params;
   const tournament = tournaments.find((tournament) => tournament.id === id);
   if (!tournament) return notFound();
   document.documentElement.style.setProperty('--background-image', `url("${tournament.backgroundImage}")`);
@@ -39,7 +40,7 @@ export default function TournamentInformation() {
       <Title level={1} align="center" className="enrolled-teams">
         Équipes inscrites : {tournament.enrolledTeams} / {tournament.maxPlayers / tournament.playersPerTeam}
       </Title>
-      <FillingBar fullness={(tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers} />
+      <FillingBar fullness={animate ? (tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers : 0} />
     </div>
   );
 }
