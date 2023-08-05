@@ -68,7 +68,15 @@
     padding: 1.25rem 1.75rem;
   }
 
-  &.long {
+  &.long:not(.large) {
+    padding: 0.75rem 5rem;
+  }
+
+  &.long.large {
+    padding: 1.25rem 5rem;
+  }
+
+  &.very-long {
     width: 100%;
   }
 

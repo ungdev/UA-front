@@ -19,6 +19,7 @@ const Button = ({
   outline = false,
   large = false,
   long = false,
+  veryLong = false,
   onClick = () => {},
   children = '',
   type = 'button',
@@ -30,6 +31,7 @@ const Button = ({
   outline?: boolean;
   large?: boolean;
   long?: boolean;
+  veryLong?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
   type?: 'submit' | 'reset' | 'button';
@@ -41,7 +43,7 @@ const Button = ({
       type={type}
       className={`button ${primary ? 'primary' : ''} ${secondary ? 'secondary' : ''} ${className ? className : ''} ${
         outline ? 'outline' : ''
-      } ${large ? 'large' : ''}  ${long ? 'long' : ''} ${!children ? 'empty' : ''}`}
+      } ${large ? 'large' : ''}  ${long ? 'long' : ''} ${veryLong ? 'very-long' : ''}  ${!children ? 'empty' : ''}`}
       onClick={onClick}
       disabled={disabled}>
       {children}

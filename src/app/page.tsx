@@ -26,7 +26,7 @@ const Home = () => {
           <div key={'slide-3'} className="home-header">
             <div className="content">
               <Title level={1}>Rejoignez l'aventure</Title>
-              <Button secondary large>
+              <Button secondary large long>
                 S'inscrire
               </Button>
             </div>
