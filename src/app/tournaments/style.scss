@@ -262,33 +262,35 @@
     }
 
     .tournaments-content {
-      .content {
-        flex-direction: column;
+      .tournament-container {
+        .content {
+          flex-direction: column;
 
-        .tournaments-list {
-          width: 100%;
-          overflow-y: hidden;
-          height: 140px;
-          overflow-x: scroll;
-          margin-left: 0;
-          margin-bottom: 20px;
-          flex-direction: row;
-          padding: 0 20px;
-          gap: 1rem;
-
-          .tournament {
+          .tournaments-list {
+            width: 100%;
+            overflow-y: hidden;
             height: 140px;
-            margin: 0;
-            &.selected {
-              transform: translateY(0px);
+            overflow-x: scroll;
+            margin-left: 0;
+            margin-bottom: 20px;
+            flex-direction: row;
+            padding: 0 20px;
+            gap: 1rem;
+
+            .tournament {
+              height: 140px;
+              margin: 0;
+              &.selected {
+                transform: translateY(0px);
+              }
             }
           }
-        }
 
-        .tournament-info {
-          margin: auto;
-          text-align: center;
-          width: 80%;
+          .tournament-info {
+            margin: auto;
+            text-align: center;
+            width: 80%;
+          }
         }
       }
     }
@@ -298,19 +300,21 @@
 @media screen and (max-width: 768px) {
   .tournaments {
     .tournaments-content {
-      .content {
-        .tournament-info {
-          font-size: 1.5rem;
-          line-height: 2.5rem;
+      .tournament-container {
+        .content {
+          .tournament-info {
+            font-size: 1.5rem;
+            line-height: 2.5rem;
 
-          h2 {
-            font-size: 2rem;
-          }
+            h2 {
+              font-size: 2rem;
+            }
 
-          .button {
-            width: 100%;
-            font-size: 1.25rem;
-            margin: 5px auto;
+            .button {
+              width: 100%;
+              font-size: 1.25rem;
+              margin: 5px auto;
+            }
           }
         }
       }
