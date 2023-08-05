@@ -67,7 +67,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #tournament-information {
+  .tournaments-content {
     .information {
       flex-direction: column;
       align-items: center;
@@ -75,11 +75,12 @@
 
       .box-container {
         margin-top: 10px;
-        width: 50%;
+        width: 100%;
         &.on-top {
           align-self: center;
         }
       }
     }
+    margin-bottom: 10rem;
   }
 }

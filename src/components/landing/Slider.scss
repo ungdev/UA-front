@@ -95,3 +95,31 @@
         background-color: #000;
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .slider {
+        .dots-container {
+            li {
+                span {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        } 
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+    .slider {
+        .arrows {
+            &.prev {
+                left: 5px
+            }
+
+            &.next {
+                right: 5px
+            }
+        }
+    }
+}

@@ -184,3 +184,26 @@
     }
   }
 }
+
+@media screen and (max-width: 700px) {
+  #home {
+    .slider {
+      .home-header {
+        .home-title {
+          width: 90%;
+          p.main {
+            transform: none;
+          }
+        }
+      }
+      .content {
+        .title {
+          font-size: 3rem;
+        }
+        button {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
