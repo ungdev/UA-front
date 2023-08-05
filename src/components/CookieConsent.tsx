@@ -40,10 +40,10 @@ export default function CookieConsent({ initialDisplay = false }: { initialDispl
       {' à'} l'utilisation de ces cookies. <Link href="/legal">En&nbsp;savoir&nbsp;plus</Link>
       <br />
       <div className="button-row">
-        <Button onClick={buttonClick} className="cookie-button consent">
+        <Button primary onClick={buttonClick} className="cookie-button consent">
           J'accepte
         </Button>
-        <Button onClick={() => setDisplay(false)} className="cookie-button deny">
+        <Button primary onClick={() => setDisplay(false)} className="cookie-button deny">
           Je refuse
         </Button>
       </div>

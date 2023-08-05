@@ -15,37 +15,34 @@
  */
 const Button = ({
   primary = false,
+  secondary = false,
+  outline = false,
+  large = false,
+  long = false,
   onClick = () => {},
   children = '',
   type = 'button',
-  leftIcon = '',
-  rightIcon = '',
   disabled = false,
-  noStyle = false,
-  isPink = false,
   className = '',
 }: {
   primary?: boolean;
+  secondary?: boolean;
+  outline?: boolean;
+  large?: boolean;
+  long?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
   type?: 'submit' | 'reset' | 'button';
-  leftIcon?: string;
-  rightIcon?: string;
   disabled?: boolean;
-  noStyle?: boolean;
-  isPink?: boolean;
   className?: string;
 }) => {
   return (
     <button
       type={type}
-      className={`button ${primary ? 'primary' : ''} ${isPink ? 'pink' : ''} ${className ? className : ''}
-       ${noStyle ? 'no-style' : ''} ${!children ? 'empty' : ''}`}
+      className={`button ${primary ? 'primary' : ''} ${secondary ? 'secondary' : ''} ${className ? className : ''} ${outline ? 'outline' : ''} ${large ? 'large' : ''}  ${long ? 'long' : ''} ${!children ? 'empty' : ''}`}
       onClick={onClick}
       disabled={disabled}>
-      {leftIcon && <i className={`button-icon-left ${leftIcon}`} />}
       {children}
-      {rightIcon && <i className={`button-icon-right ${rightIcon}`} />}
     </button>
   );
 };

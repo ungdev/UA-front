@@ -131,7 +131,7 @@ const Help = () => {
         <Select label="Sujet" value={subject} onChange={setSubject} options={options} />
         <Textarea label="Message" value={message} onChange={setMessage} placeholder="Tape ton message ici..." />
 
-        <Button primary onClick={onSubmit} rightIcon="fas fa-paper-plane">
+        <Button primary onClick={onSubmit} long>
           Envoyer
         </Button>
       </div>

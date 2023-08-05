@@ -106,12 +106,12 @@ export const TournamentHome = ({
               Casté par <strong>{renderedTournament.caster}</strong>
             </p>
             <Link href={``} scroll={false}>
-              <Button isPink onClick={() => setNextUrl(renderedTournament.id)}>
+              <Button onClick={() => setNextUrl(renderedTournament.id)}>
                 Plus d'infos
               </Button>
             </Link>
             <Link href={`/dashboard`} scroll={false}>
-              <Button isPink primary>
+              <Button primary>
                 S'inscrire
               </Button>
             </Link>

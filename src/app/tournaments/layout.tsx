@@ -22,10 +22,10 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
             tes talents, de relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
           </div>
           <div className="buttons">
-            <Button isPink primary>
+            <Button primary>
               Découvrir les tournois
             </Button>
-            <Button isPink primary>
+            <Button primary>
               Se connecter
             </Button>
           </div>

@@ -47,7 +47,7 @@ export default function Navbar() {
       </Link>
 
       <Button
-        primary
+        secondary
         className="connection"
         onClick={() => {
           closeBurger();

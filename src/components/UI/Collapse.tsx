@@ -65,7 +65,7 @@ const Collapse = ({
       <div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
         <div className="left">
           <div className="collapse-arrow">
-            <Icon name="chevron-bottom" fill={false} strokeWidth={2} />
+            <Icon name="chevron-bottom" fill={false} strokeWidth={2.5} />
           </div>
           {title}
         </div>

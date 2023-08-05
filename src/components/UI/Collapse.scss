@@ -32,6 +32,7 @@
     justify-content: space-between;
     padding: 1em;
     font-family: $montserrat;
+    font-weight: 600;
 
     .left {
       display: flex;
@@ -90,8 +91,8 @@
     margin-left: 0.5em;
     transform: rotate(0deg);
     transition: all 0.3s;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   &.active .collapse-arrow {

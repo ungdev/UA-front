@@ -34,7 +34,7 @@ const Home = () => {
         <div className="cta-main">
           <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
           <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
-          <Button primary className="connection">
+          <Button secondary className="connection">
             Découvrir l’événement
           </Button>
         </div>

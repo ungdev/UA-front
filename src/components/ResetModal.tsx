@@ -51,7 +51,7 @@ function ResetModal({ resetToken }: { resetToken: string }) {
           autocomplete="new-password"
         />
 
-        <Button className="new-password-modal-button" primary type="submit">
+        <Button className="new-password-modal-button" primary type="submit" long>
           Envoyer
         </Button>
       </form>
