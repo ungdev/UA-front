@@ -1,5 +1,5 @@
-import AppearFromSide from "@/components/UI/AppearFromSide";
-import { Meta, StoryObj } from "@storybook/react";
+import AppearFromSide from '@/components/UI/AppearFromSide';
+import { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI/AppearFromSide',
