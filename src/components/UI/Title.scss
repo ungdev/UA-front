@@ -79,8 +79,10 @@ $radius: 8px;
     align-items: center;
 
     .title-content {
-      white-space: nowrap;
       padding: 0 1rem;
+      white-space: normal;
+      max-width: 90%;
+      flex-shrink: 0;
     }
   }
 }
