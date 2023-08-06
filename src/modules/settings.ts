@@ -12,7 +12,10 @@ export const settingsSlice = createSlice({
   initialState,
   reducers: {
     setSettings: (state, action) => {
-      state = action.payload;
+      return {
+        ...state,
+        ...action.payload,
+      }
     },
   },
 });
