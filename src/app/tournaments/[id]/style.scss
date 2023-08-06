@@ -68,10 +68,13 @@
 
 @media screen and (max-width: 1024px) {
   .tournaments-content {
+    margin-bottom: 10rem;
+
     .information {
       flex-direction: column;
       align-items: center;
       height: fit-content;
+      width: 90%;
 
       .box-container {
         margin-top: 10px;
@@ -81,6 +84,9 @@
         }
       }
     }
-    margin-bottom: 10rem;
+
+    .filling-bar {
+      width: 90%;
+    }
   }
 }
