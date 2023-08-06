@@ -1,6 +1,6 @@
 'use client';
 import Button from '@/components/UI/Button';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
@@ -27,11 +27,52 @@ export const TournamentHome = ({
   const [updater, setUpdater] = useState(false);
   const [nextUrl, setNextUrl] = useState('');
 
+  const tournamentList = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!tournaments) {
       //dispatch(fetchTournaments());
     }
   }, []);
+
+  const onTournamentListScroll = () => {
+    if (!tournamentList.current) return;
+    // if screen is too large (max-width: 1024px), don't do anything
+    if (window.innerWidth > 1024) return;
+    const tournamentListRect = tournamentList.current.getBoundingClientRect();
+    const tournamentListCenter = tournamentListRect.left + tournamentListRect.width / 2;
+    const tournamentListChildren = tournamentList.current.children;
+    let closestChild = tournamentListChildren[0];
+    let closestChildDistance = Infinity;
+    for (let i = 0; i < tournamentListChildren.length; i++) {
+      const child = tournamentListChildren[i];
+      const childRect = child.getBoundingClientRect();
+      const childCenter = childRect.left + childRect.width / 2;
+      const childDistance = Math.abs(childCenter - tournamentListCenter);
+      if (childDistance < closestChildDistance) {
+        closestChild = child;
+        closestChildDistance = childDistance;
+      }
+    }
+
+    // if scroll x is 0, select the first tournament
+    console.log(tournamentList.current.scrollLeft);
+    if (tournamentList.current.scrollLeft < 10) {
+      closestChild = tournamentListChildren[0];
+    }
+
+    // if scroll x is at the end, select the last tournament
+    console.log(tournamentList.current.scrollLeft);
+    console.log(tournamentList.current.scrollWidth - tournamentListRect.width);
+    if (tournamentList.current.scrollLeft > tournamentList.current.scrollWidth - tournamentListRect.width - 10) {
+      closestChild = tournamentListChildren[tournamentListChildren.length - 1];
+    }
+
+    const tournamentId = closestChild.getAttribute('data-index');
+    if (tournamentId) {
+      selectTournament(parseInt(tournamentId));
+    }
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -86,7 +127,7 @@ export const TournamentHome = ({
           <Divider is_white />
         </div>
         <div className="content">
-          <div className="tournaments-list">
+          <div className="tournaments-list" ref={tournamentList} onScroll={onTournamentListScroll}>
             {!tournaments
               ? 'Chargement des tournois...'
               : tournaments.map((tournament, i) => (
@@ -94,6 +135,7 @@ export const TournamentHome = ({
                     key={tournament.id}
                     src={tournament.image}
                     alt={`Logo ${tournament.name}`}
+                    data-index={i}
                     className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
                     onClick={() => selectTournament(i)}
                   />

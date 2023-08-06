@@ -198,10 +198,25 @@
       }
       .content {
         .title {
-          font-size: 3rem;
+          font-size: 2.25rem;
         }
         button {
           font-size: 1.5rem;
+        }
+      }
+    }
+    .information {
+      .more-info {
+        height: auto;
+        margin-top: 2rem;
+        .more-info-container {
+          height: auto;
+          flex-direction: column;
+
+          svg {
+            width: 3rem;
+            height: 3rem;
+          }
         }
       }
     }

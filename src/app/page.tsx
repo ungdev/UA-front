@@ -5,6 +5,7 @@ import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
 import { VerticalDivider, Button, Title, Icon, VideoContainer, TextBlock } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
+import Link from 'next/link';
 
 const Home = () => {
   return (
@@ -41,9 +42,11 @@ const Home = () => {
         <div className="cta-main">
           <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
           <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
-          <Button secondary className="connection">
-            Découvrir l’événement
-          </Button>
+          <Link href="/event">
+            <Button secondary className="connection">
+              Découvrir l’événement
+            </Button>
+          </Link>
         </div>
       </AppearFromSide>
 
