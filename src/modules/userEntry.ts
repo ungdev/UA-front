@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
 
 import { API } from '@/utils/api';
-import { User } from '@/types';
+import { UserWithTeamAndMessageAndTournamentInfo } from '@/types';
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 
 interface UserEntryAction {
-  searchUser: User | null;
+  searchUser: UserWithTeamAndMessageAndTournamentInfo | null;
 }
 
 const initialState: UserEntryAction = {

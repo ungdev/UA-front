@@ -1,0 +1,28 @@
+#dashboard-purchases {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .card-cart {
+    width: 100%;
+
+    &.authorization {
+      opacity: 0.7;
+    }
+
+    .cart {
+      width: 100%;
+
+      .reducted-price {
+        text-decoration: line-through;
+        color: $primary-color;
+        font-size: 10px;
+        vertical-align: super;
+      }
+    }
+
+    .cart-total {
+      text-align: right;
+    }
+  }
+}

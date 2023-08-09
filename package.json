@@ -20,6 +20,7 @@
     "defaults"
   ],
   "dependencies": {
+    "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^1.9.5",
     "@storybook/addon-coverage": "^0.0.9",
     "@types/testing-library__jest-dom": "^5.14.9",

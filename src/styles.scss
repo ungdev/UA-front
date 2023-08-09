@@ -5,6 +5,13 @@
 // App
 @import './app/style.scss';
 @import './app/about/style.scss';
+@import './app/admin/scan/style.scss';
+@import './app/admin/users/style.scss';
+@import './app/dashboard/account/style.scss';
+@import './app/dashboard/purchases/style.scss';
+@import './app/dashboard/register/style.scss';
+@import './app/dashboard/shop/style.scss';
+@import './app/dashboard/team/style.scss';
 @import './app/event/style.scss';
 @import './app/help/style.scss';
 @import './app/legal/style.scss';
@@ -17,6 +24,9 @@
 @import './components/Navbar.scss';
 @import './components/Partners.scss';
 @import './components/ResetModal.scss';
+
+// Dashboard Components
+@import './components/dashboard/UserModal.scss';
 
 // Landing Components
 @import './components/landing/BoxContainer.scss';

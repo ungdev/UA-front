@@ -77,6 +77,13 @@ export interface User {
   teamId: string | null;
   askingTeamId: string | null;
   attendant: UserAttendant;
+  age: UserAge;
+}
+
+export interface UserEdit {
+  username: string;
+  password: string;
+  newPassword: string;
 }
 
 export interface UserRestricted {
@@ -108,6 +115,20 @@ export interface UserWithTeamAndMessageAndTournamentInfo extends User {
   };
 }
 
+export interface CartWithCartItemsAdmin extends CartWithCartItems {
+  totalPrice?: number;
+  cartItems: (DetailedCartItem & { forUser: User; item: Item })[];
+}
+
+export type DetailedCartItem = CartItem & {
+  item: Item;
+  forUser: User;
+};
+
+export interface UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin extends UserWithTeamAndMessageAndTournamentInfo {
+  carts: CartWithCartItemsAdmin[];
+}
+
 export interface Cart {
   id: string;
   userId: string;
@@ -123,7 +144,7 @@ export interface CartItem {
   reducedPrice: number | null;
   forcePaid: boolean;
   cartId: string;
-  itemId: number;
+  itemId: string;
   forUser: {
     id: string;
     username: string;
@@ -149,7 +170,7 @@ export interface CartWithCartItems extends Cart {
 }
 
 export interface Item {
-  id: number;
+  id: string;
   name: string;
   category: string;
   attribute: string | null;
@@ -170,13 +191,15 @@ export interface Tournament {
 }
 
 export interface TournamentWithTeams extends Tournament {
-  teams: Team[];
+  teams: TeamWithUsersRestricted[];
 }
 
 export enum UserType {
   'player',
   'coach',
   'spectator',
+  'orga',
+  'attendant',
 }
 
 export enum UserAge {

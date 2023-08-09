@@ -12,18 +12,25 @@ const Textarea = ({
   value = '',
   onChange,
   className = '',
+  disabled = false,
 }: {
   label: string;
   placeholder?: string;
   value?: string;
   onChange: (value: string) => void;
   className?: string;
+  disabled?: boolean;
 }) => (
   <div className={`textarea ${className}`}>
     <label>
       <div className="textarea-label">{label}</div>
 
-      <textarea value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} />
+      <textarea
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+      />
 
       <div className="line" />
     </label>

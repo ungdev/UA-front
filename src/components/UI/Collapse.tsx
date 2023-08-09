@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef, MouseEvent } from 'react';
+import { useState, useEffect, useRef, MouseEvent, ReactNode } from 'react';
 import { Icon } from '.';
 import { toast } from 'react-toastify';
 
@@ -21,8 +21,8 @@ const Collapse = ({
   initVisible = false,
   link = undefined,
 }: {
-  title: string;
-  children: React.ReactNode;
+  title: ReactNode;
+  children: ReactNode;
   id?: string;
   className?: string;
   initVisible?: boolean;

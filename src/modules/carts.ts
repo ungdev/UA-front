@@ -1,9 +1,9 @@
-import { Cart } from '@/types';
+import { CartWithCartItems } from '@/types';
 import { API } from '@/utils/api';
 import { type Dispatch, createSlice } from '@reduxjs/toolkit';
 
 interface CartsAction {
-  allCarts: Cart[];
+  allCarts: CartWithCartItems[];
 }
 
 const initialState: CartsAction = {

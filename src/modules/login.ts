@@ -1,4 +1,4 @@
-import { User, UserType } from '@/types';
+import { User, UserEdit, UserType } from '@/types';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { API, setAuthorizationToken } from '@/utils/api';
 import { setLoginModalVisible } from './loginModal';
@@ -95,7 +95,7 @@ export const logout = () => (dispatch: Dispatch) => {
   (window as Window).location = '/';
 };
 
-export const editUser = (data: User) => async (dispatch: Dispatch) => {
+export const editUser = (data: UserEdit) => async (dispatch: Dispatch) => {
   const res = await API.patch(`/users/current`, data);
   toast.success('Tes informations ont été modifiées');
   dispatch(updateUser(res) as unknown as Action);
@@ -108,7 +108,7 @@ export const resetPassword = (email: string, resetFields: () => unknown) => asyn
   resetFields();
 };
 
-export const setType = (type: UserType) => async (dispatch: Dispatch) => {
+export const setType = (type: UserType | undefined) => async (dispatch: Dispatch) => {
   let res = undefined;
   if (type === UserType.spectator) {
     res = await API.post(`/users/current/spectate`);

@@ -2,7 +2,12 @@ import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
-import { Permission, UserType, UserWithTeamAndMessageAndTournamentInfo } from '@/types';
+import {
+  Permission,
+  UserType,
+  UserWithTeamAndMessageAndTournamentInfo,
+  UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
+} from '@/types';
 
 interface UsersAction {
   isFetched: boolean;
@@ -11,15 +16,15 @@ interface UsersAction {
   page: number;
   itemsPerPage: number;
   //filters: any;
-  lookupUser: UserWithTeamAndMessageAndTournamentInfo | null;
+  lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
 }
 
 interface UserFilters extends Record<string, string | undefined> {
   type?: string;
   tournament?: string;
-  locked?: 'true' | 'false';
-  payment?: 'true' | 'false';
-  scan?: 'true' | 'false';
+  locked?: string;
+  payment?: string;
+  scan?: string;
 }
 
 const initialState: UsersAction = {
@@ -73,7 +78,7 @@ export const getTicketPrice = async (userId: string) => {
 };
 
 export const fetchUsers =
-  (filters: UserFilters, search: string, page = 0) =>
+  (filters?: UserFilters, search?: string, page = 0) =>
   async (dispatch: Dispatch) => {
     if (!filters) {
       return;
@@ -108,35 +113,36 @@ export const fetchUsers =
     );
   };
 
-export const lookupUser = (user: any) => async (dispatch: Dispatch, state: RootState) => {
-  const res =
-    user && state.login.user?.permissions?.includes?.(Permission.admin)
-      ? await API.get(`admin/users/${user.id}/carts`)
-      : null;
-  dispatch(
-    setLookupUser(
-      user
-        ? {
-            id: user.id,
-            lastname: user.lastname,
-            firstname: user.firstname,
-            username: user.username,
-            email: user.email,
-            type: user.type,
-            //age: user.age,
-            permissions: user.permissions,
-            hasPaid: user.hasPaid,
-            place: user.place,
-            discordId: user.discordId,
-            team: user.team,
-            attendant: user.attendant,
-            customMessage: user.customMessage,
-            carts: res,
-          }
-        : null,
-    ),
-  );
-};
+export const lookupUser =
+  (user?: UserWithTeamAndMessageAndTournamentInfo) => async (dispatch: Dispatch, state: RootState) => {
+    const res =
+      user && state.login.user?.permissions?.includes?.(Permission.admin)
+        ? await API.get(`admin/users/${user.id}/carts`)
+        : null;
+    dispatch(
+      setLookupUser(
+        user
+          ? {
+              id: user.id,
+              lastname: user.lastname,
+              firstname: user.firstname,
+              username: user.username,
+              email: user.email,
+              type: user.type,
+              age: user.age,
+              permissions: user.permissions,
+              hasPaid: user.hasPaid,
+              place: user.place,
+              discordId: user.discordId,
+              team: user.team,
+              attendant: user.attendant,
+              customMessage: user.customMessage,
+              carts: res,
+            }
+          : null,
+      ),
+    );
+  };
 
 export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state: RootState) => {
   const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
@@ -158,7 +164,7 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, state: Roo
   await API.post(`admin/users/${id}/force-pay`, {});
   toast.success('Paiement validé');
   dispatch(updateUser({ ...userModal, hasPaid: true }) as unknown as Action);
-  dispatch(lookupUser({ ...userModal, hasPaid: true }) as unknown as Action);
+  dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action);
 };
 
 export const saveUser =
@@ -174,7 +180,9 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, state: Root
   const userModal = state.users.lookupUser;
   toast.success('Le panier a été marqué comme remboursé');
   dispatch(updateUser({ ...userModal, hasPaid: false }) as unknown as Action);
-  dispatch(lookupUser({ ...userModal, hasPaid: false }) as unknown as Action);
+  dispatch(
+    lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action,
+  );
 };
 
 export default usersSlice.reducer;

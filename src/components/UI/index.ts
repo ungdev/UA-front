@@ -8,6 +8,7 @@ import Icon from './Icon';
 import Input from './Input';
 import Loader from './Loader';
 import Modal from './Modal';
+import QRCodeReader from './QRCodeReader';
 import Radio from './Radio';
 import Select from './Select';
 import Table from './Table';
@@ -31,6 +32,7 @@ export {
   Input,
   Loader,
   Modal,
+  QRCodeReader,
   Radio,
   Select,
   Table,

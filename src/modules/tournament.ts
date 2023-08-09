@@ -3,18 +3,18 @@ import { API } from '@/utils/api';
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 export interface TournamentAction {
-  tournaments: TournamentWithTeams[] | null;
+  tournaments: TournamentWithTeams[];
   slots: {
     [key: string]: {
       total: number;
       available: number;
     };
-  } | null;
+  };
 }
 
-const initialState = {
-  tournaments: null,
-  slots: null,
+const initialState: TournamentAction = {
+  tournaments: [],
+  slots: {},
 };
 
 export const tournamentSlice = createSlice({
