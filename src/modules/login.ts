@@ -4,7 +4,6 @@ import { API, setAuthorizationToken } from '@/utils/api';
 import { setLoginModalVisible } from './loginModal';
 import { toast } from 'react-toastify';
 import { hasOrgaPermission } from '@/utils/permission';
-import Router from 'next/navigation';
 import { RootState } from '@/lib/store';
 import { setTeam } from './team';
 

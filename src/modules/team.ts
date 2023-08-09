@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-import Router from 'next/navigation';
 
 import { API } from '@/utils/api';
 import { fetchSlots } from './tournament';

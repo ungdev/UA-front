@@ -4,7 +4,6 @@ import { store } from '@/lib/store';
 import { Permission, UserType } from './types';
 import { hasOrgaPermission } from './utils/permission';
 
-
 // middleware used for redirections
 export function middleware(request: NextRequest) {
   const currentState = store.getState();
@@ -13,7 +12,7 @@ export function middleware(request: NextRequest) {
 
   const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
   const isAdminPanel = request.nextUrl.pathname.startsWith('/admin');
-  
+
   const isLoginAllowed = currentState.settings.login;
   const isShopAllowed = currentState.settings.shop;
   const isLoggedIn = !!user;
@@ -30,24 +29,32 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/dashboard/team', request.url));
     } else if (request.nextUrl.pathname === '/dashboard/shop' && !isShopAllowed) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
-    } else if (isSpectator && (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/dashboard/register')) {
+    } else if (
+      isSpectator &&
+      (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/dashboard/register')
+    ) {
       return NextResponse.redirect(new URL('/dashboard/spectator', request.url));
     } else if (!isSpectator && !hasTeam) {
       if (
         request.nextUrl.pathname === '/dashboard' ||
-        (isDashboard && request.nextUrl.pathname !== '/dashboard/register' && request.nextUrl.pathname !== '/dashboard/account')
+        (isDashboard &&
+          request.nextUrl.pathname !== '/dashboard/register' &&
+          request.nextUrl.pathname !== '/dashboard/account')
       ) {
         return NextResponse.redirect(new URL('/dashboard/register', request.url));
       }
     }
     if (!isAdmin && isAdminPanel) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
-    } else if (request.nextUrl.pathname === '/admin' && (user.permissions.includes(Permission.admin) || user.permissions.includes(Permission.anim))) {
+    } else if (
+      request.nextUrl.pathname === '/admin' &&
+      (user.permissions.includes(Permission.admin) || user.permissions.includes(Permission.anim))
+    ) {
       return NextResponse.redirect(new URL('/admin/users', request.url));
     } else if (request.nextUrl.pathname === '/admin' && user.permissions.includes(Permission.entry)) {
       return NextResponse.redirect(new URL('/admin/scan', request.url));
     }
   }
-  
+
   return NextResponse.next();
 }

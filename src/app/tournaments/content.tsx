@@ -59,11 +59,15 @@ export const TournamentHome = ({
     if (!tournamentList.current) return;
 
     // Logic for navigation arrows
-    const currentScroll = window.innerWidth > 1024 ? tournamentList.current.scrollTop : tournamentList.current.scrollLeft; 
+    const currentScroll =
+      window.innerWidth > 1024 ? tournamentList.current.scrollTop : tournamentList.current.scrollLeft;
     const tournamentListRect = tournamentList.current.getBoundingClientRect();
 
     const isLeft = currentScroll < 10;
-    const isRight = window.innerWidth > 1024 ? currentScroll - tournamentList.current.children[0].clientHeight > tournamentList.current.scrollWidth - 10 : currentScroll + tournamentListRect.width > tournamentList.current.scrollWidth - 10;
+    const isRight =
+      window.innerWidth > 1024
+        ? currentScroll - tournamentList.current.children[0].clientHeight > tournamentList.current.scrollWidth - 10
+        : currentScroll + tournamentListRect.width > tournamentList.current.scrollWidth - 10;
 
     // left/top side
     if (isLeft) {
@@ -139,16 +143,21 @@ export const TournamentHome = ({
       // scroll to the next tournament
       const tournamentListChildren = tournamentList.current.children;
       const tournamentListRect = tournamentList.current.getBoundingClientRect();
-      
+
       const closestChild = findClosestChildren(tournamentList.current, tournamentListRect);
 
       const tournamentId = closestChild.getAttribute('data-index');
       if (tournamentId) {
         const nextTournament = tournamentListChildren[parseInt(tournamentId) + (isScrollLeftOrTop ? -1 : 1)];
-        
+
         // Scroll to center of the next tournament
         tournamentList.current.scrollTo({
-          left: nextTournament.getBoundingClientRect().left - tournamentListRect.left + tournamentList.current.scrollLeft - tournamentListRect.width / 2 + nextTournament.getBoundingClientRect().width / 2,
+          left:
+            nextTournament.getBoundingClientRect().left -
+            tournamentListRect.left +
+            tournamentList.current.scrollLeft -
+            tournamentListRect.width / 2 +
+            nextTournament.getBoundingClientRect().width / 2,
           behavior: 'smooth',
         });
       }
@@ -207,8 +216,8 @@ export const TournamentHome = ({
                       onClick={() => selectTournament(i)}
                     />
                   ))}
-              </div>
             </div>
+          </div>
           <div className={`tournament-info ${fading ? 'fading' : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>

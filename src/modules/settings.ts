@@ -15,7 +15,7 @@ export const settingsSlice = createSlice({
       return {
         ...state,
         ...action.payload,
-      }
+      };
     },
   },
 });

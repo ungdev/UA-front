@@ -4,7 +4,7 @@ import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import { validate } from '../../../modules/register';
 import { useAppDispatch } from '@/lib/hooks';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 
 const Valid = () => {
   const params = useParams();

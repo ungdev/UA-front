@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode, useEffect, useState } from 'react';
-import { ReadonlyURLSearchParams, usePathname, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
@@ -12,7 +12,7 @@ import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 import { type Action } from '@reduxjs/toolkit';
-import { Permission, UserType } from '@/types';
+import { UserType } from '@/types';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -26,7 +26,6 @@ interface SearchParams extends ReadonlyURLSearchParams {
  */
 export default function Wrapper({ children }: { children: ReactNode }) {
   // Import necessary hooks and modules
-  const pathname = usePathname();
   const query: SearchParams = useSearchParams();
   const dispatch = useAppDispatch();
 
@@ -37,7 +36,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
 
-  const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
+  // const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
 
   // Update state variables based on changes to the login state
   useAppSelector((state) => {
@@ -63,11 +62,8 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
-  const isShopAllowed = useAppSelector((state) => state.settings.shop);
+  // const isShopAllowed = useAppSelector((state) => state.settings.shop);
   const isLoading = useAppSelector((state) => state.login.loading);
-
-  // Handle redirections
-  let redirect: string | null = null;
 
   useEffect(() => {
     if (isLoading) {
@@ -102,7 +98,6 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     }
   }, [isLoading]);
 
-  
   useEffect(() => {
     // Fetch Settings
     isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
@@ -110,47 +105,46 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     // Automatically log in the user
     dispatch(autoLogin() as unknown as Action);
   }, []);
-  
-  const linksDashboard = () => {
-    const menu = [];
 
-    if (hasTeam) {
-      menu.push({ title: 'Équipe', href: '/dashboard/team' });
-    } else if (isSpectator) {
-      menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
-    } else if (hasPaid) {
-      menu.push({ title: 'Inscription', href: '/dashboard/register' });
-    }
+  // const linksDashboard = () => {
+  //   const menu = [];
 
-    if (isSpectator || hasTeam) {
-      if (isShopAllowed) {
-        menu.push({ title: 'Boutique', href: '/dashboard/shop' });
-      }
-      menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
-    } else {
-      menu.push({ title: 'Inscription', href: '/dashboard/register' });
-    }
+  //   if (hasTeam) {
+  //     menu.push({ title: 'Équipe', href: '/dashboard/team' });
+  //   } else if (isSpectator) {
+  //     menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
+  //   } else if (hasPaid) {
+  //     menu.push({ title: 'Inscription', href: '/dashboard/register' });
+  //   }
 
-    menu.push({ title: 'Mon compte', href: '/dashboard/account' });
-    return menu;
-  };
+  //   if (isSpectator || hasTeam) {
+  //     if (isShopAllowed) {
+  //       menu.push({ title: 'Boutique', href: '/dashboard/shop' });
+  //     }
+  //     menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
+  //   } else {
+  //     menu.push({ title: 'Inscription', href: '/dashboard/register' });
+  //   }
 
-  const linksAdmin = () => {
-    const menu = [];
+  //   menu.push({ title: 'Mon compte', href: '/dashboard/account' });
+  //   return menu;
+  // };
 
-    if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin)) {
-      menu.push({ title: 'Utilisateurs', href: '/admin/users' });
-    }
+  // const linksAdmin = () => {
+  //   const menu = [];
 
-    if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin)) {
-      menu.push({ title: 'Entrée', href: '/admin/scan' });
-    }
+  //   if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin)) {
+  //     menu.push({ title: 'Utilisateurs', href: '/admin/users' });
+  //   }
 
-    menu.push({ title: 'Mon compte', href: '/admin/account' });
+  //   if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin)) {
+  //     menu.push({ title: 'Entrée', href: '/admin/scan' });
+  //   }
 
-    return menu;
-  };
+  //   menu.push({ title: 'Mon compte', href: '/admin/account' });
 
+  //   return menu;
+  // };
 
   // Render the layout with child components
   return (

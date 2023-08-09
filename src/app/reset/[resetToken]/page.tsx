@@ -1,5 +1,6 @@
+'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 import { Input, Button, Title } from '../../../components/UI';
@@ -7,7 +8,8 @@ import { API } from '../../../utils/api';
 
 const Reset = () => {
   const router = useRouter();
-  const { resetToken } = router.query;
+  const params = useParams();
+  const resetToken = params.resetToken as string;
   const [password, setPassword] = useState('');
   const [passwordBis, setPasswordBis] = useState('');
   const reset = async () => {

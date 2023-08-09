@@ -2,11 +2,11 @@ import { toast } from 'react-toastify';
 
 import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
-import { Action, createSlice, Dispatch } from '@reduxjs/toolkit';
+import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 import { setLoginModalVisible } from './loginModal';
 
-const initialState = {};  
+const initialState = {};
 
 export const registerSlice = createSlice({
   name: 'register',
@@ -37,7 +37,7 @@ export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) =
 
 export const validate = (slug: string) => async () => {
   try {
-    const res = await API.post('auth/validate/'+slug, undefined);
+    const res = await API.post('auth/validate/' + slug, undefined);
     localStorage.setItem('utt-arena-userid', res.user.id);
     localStorage.setItem('utt-arena-token', res.token);
 
