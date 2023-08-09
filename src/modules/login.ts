@@ -77,9 +77,9 @@ export const tryLogin = (user: { login: string; password: string }) => async (di
     toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   if (hasOrgaPermission(res.user.permissions)) {
-    Router.redirect('/admin');
+    (window as Window).location = '/admin';
   } else {
-    Router.redirect('/dashboard');
+    (window as Window).location = '/dashboard';
   }
   return true;
 };
@@ -93,7 +93,7 @@ export const logout = () => (dispatch: Dispatch) => {
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   localStorage.removeItem('utt-arena-admin-token');
-  Router.redirect('/');
+  (window as Window).location = '/';
 };
 
 export const editUser = (data: User) => async (dispatch: Dispatch) => {
@@ -139,7 +139,7 @@ export const logBackToAdmin = () => async (dispatch: Dispatch) => {
   const res = await API.get('users/current');
   localStorage.setItem('utt-arena-userid', res.id);
   dispatch(setUser(res) as unknown as Action);
-  Router.redirect('/admin');
+  (window as Window).location = '/admin';
 };
 
 export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootState) => {
@@ -148,7 +148,7 @@ export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootS
   localStorage.setItem('utt-arena-userid', res.user.id);
   dispatch(saveToken(res.token) as unknown as Action);
   dispatch(setUser(res.user) as unknown as Action);
-  Router.redirect('/dashboard');
+  (window as Window).location = '/dashboard';
 };
 
 export default loginSlice.reducer;

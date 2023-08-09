@@ -1,7 +1,7 @@
 'use client';
 import Button from '@/components/UI/Button';
 import { useEffect, useRef, useState } from 'react';
-import { Title } from '@/components/UI';
+import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
@@ -28,6 +28,8 @@ export const TournamentHome = ({
   const [nextUrl, setNextUrl] = useState('');
 
   const tournamentList = useRef<HTMLDivElement>(null);
+  const leftArrow = useRef<HTMLDivElement>(null);
+  const rightArrow = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!tournaments) {
@@ -35,13 +37,9 @@ export const TournamentHome = ({
     }
   }, []);
 
-  const onTournamentListScroll = () => {
-    if (!tournamentList.current) return;
-    // if screen is too large (max-width: 1024px), don't do anything
-    if (window.innerWidth > 1024) return;
-    const tournamentListRect = tournamentList.current.getBoundingClientRect();
+  const findClosestChildren = (tournamentList: HTMLDivElement, tournamentListRect: DOMRect) => {
+    const tournamentListChildren = tournamentList.children;
     const tournamentListCenter = tournamentListRect.left + tournamentListRect.width / 2;
-    const tournamentListChildren = tournamentList.current.children;
     let closestChild = tournamentListChildren[0];
     let closestChildDistance = Infinity;
     for (let i = 0; i < tournamentListChildren.length; i++) {
@@ -54,17 +52,50 @@ export const TournamentHome = ({
         closestChildDistance = childDistance;
       }
     }
+    return closestChild;
+  };
+
+  const onTournamentListScroll = () => {
+    if (!tournamentList.current) return;
+
+    // Logic for navigation arrows
+    const currentScroll = window.innerWidth > 1024 ? tournamentList.current.scrollTop : tournamentList.current.scrollLeft; 
+    const tournamentListRect = tournamentList.current.getBoundingClientRect();
+
+    const isLeft = currentScroll < 10;
+    const isRight = window.innerWidth > 1024 ? currentScroll - tournamentList.current.children[0].clientHeight > tournamentList.current.scrollWidth - 10 : currentScroll + tournamentListRect.width > tournamentList.current.scrollWidth - 10;
+
+    // left/top side
+    if (isLeft) {
+      if (leftArrow.current) leftArrow.current.classList.add('hidden');
+      if (tournamentList.current) tournamentList.current.classList.remove('fade-top');
+    } else {
+      if (leftArrow.current) leftArrow.current.classList.remove('hidden');
+      if (tournamentList.current) tournamentList.current.classList.add('fade-top');
+    }
+
+    // right/bottom side
+    if (isRight) {
+      if (rightArrow.current) rightArrow.current.classList.add('hidden');
+      if (tournamentList.current) tournamentList.current.classList.remove('fade-bottom');
+    } else {
+      if (rightArrow.current) rightArrow.current.classList.remove('hidden');
+      if (tournamentList.current) tournamentList.current.classList.add('fade-bottom');
+    }
+
+    // if screen is too large (max-width: 1024px), don't do anything more
+    if (window.innerWidth > 1024) return;
+
+    let closestChild = findClosestChildren(tournamentList.current, tournamentListRect);
+    const tournamentListChildren = tournamentList.current.children;
 
     // if scroll x is 0, select the first tournament
-    console.log(tournamentList.current.scrollLeft);
-    if (tournamentList.current.scrollLeft < 10) {
+    if (isLeft) {
       closestChild = tournamentListChildren[0];
     }
 
     // if scroll x is at the end, select the last tournament
-    console.log(tournamentList.current.scrollLeft);
-    console.log(tournamentList.current.scrollWidth - tournamentListRect.width);
-    if (tournamentList.current.scrollLeft > tournamentList.current.scrollWidth - tournamentListRect.width - 10) {
+    if (isRight) {
       closestChild = tournamentListChildren[tournamentListChildren.length - 1];
     }
 
@@ -99,6 +130,31 @@ export const TournamentHome = ({
     }
   }
 
+  const scrollInTournamentList = (isScrollLeftOrTop: boolean) => {
+    if (!tournamentList.current) return;
+    const scrollAmount = 350;
+    if (window.innerWidth > 1024) {
+      tournamentList.current.scrollBy({ top: isScrollLeftOrTop ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+    } else {
+      // scroll to the next tournament
+      const tournamentListChildren = tournamentList.current.children;
+      const tournamentListRect = tournamentList.current.getBoundingClientRect();
+      
+      const closestChild = findClosestChildren(tournamentList.current, tournamentListRect);
+
+      const tournamentId = closestChild.getAttribute('data-index');
+      if (tournamentId) {
+        const nextTournament = tournamentListChildren[parseInt(tournamentId) + (isScrollLeftOrTop ? -1 : 1)];
+        
+        // Scroll to center of the next tournament
+        tournamentList.current.scrollTo({
+          left: nextTournament.getBoundingClientRect().left - tournamentListRect.left + tournamentList.current.scrollLeft - tournamentListRect.width / 2 + nextTournament.getBoundingClientRect().width / 2,
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
+
   const renderedTournament = tournaments[renderedTournamentIndex];
 
   const fading = Date.now() - lastFading < fadeDuration;
@@ -127,20 +183,32 @@ export const TournamentHome = ({
           <Divider is_white />
         </div>
         <div className="content">
-          <div className="tournaments-list" ref={tournamentList} onScroll={onTournamentListScroll}>
-            {!tournaments
-              ? 'Chargement des tournois...'
-              : tournaments.map((tournament, i) => (
-                  <img
-                    key={tournament.id}
-                    src={tournament.image}
-                    alt={`Logo ${tournament.name}`}
-                    data-index={i}
-                    className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
-                    onClick={() => selectTournament(i)}
-                  />
-                ))}
-          </div>
+          <div className="tournament-scroll-container">
+            <div className="arrow hidden" ref={leftArrow}>
+              <Button onClick={() => scrollInTournamentList(true)}>
+                <Icon name="chevron-up" fill={false} strokeWidth={3} />
+              </Button>
+            </div>
+            <div className="arrow" ref={rightArrow}>
+              <Button onClick={() => scrollInTournamentList(false)}>
+                <Icon name="chevron-bottom" fill={false} strokeWidth={3} />
+              </Button>
+            </div>
+            <div className="tournaments-list fade-bottom" ref={tournamentList} onScroll={onTournamentListScroll}>
+              {!tournaments
+                ? 'Chargement des tournois...'
+                : tournaments.map((tournament, i) => (
+                    <img
+                      key={tournament.id}
+                      src={tournament.image}
+                      alt={`Logo ${tournament.name}`}
+                      data-index={i}
+                      className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
+                      onClick={() => selectTournament(i)}
+                    />
+                  ))}
+              </div>
+            </div>
           <div className={`tournament-info ${fading ? 'fading' : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>

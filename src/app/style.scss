@@ -88,55 +88,55 @@
       }
     }
   }
-}
 
-.cta-main {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  text-align: center;
-  width: clamp(300px, 60%, 1920px);
-
-  .cta-main-title {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #fff;
-    @include stroke(6, #000);
-    font-family: $lexend;
-    text-transform: uppercase;
-  }
-
-  .cta-main-subtitle {
-    color: $accent-color;
-    font-family: $lexend;
-    font-size: 2.125rem;
-    font-style: normal;
-    font-weight: 500;
-  }
-}
-
-.information {
-  width: clamp(300px, 80%, 1920px);
-
-  .more-info {
-    margin-top: 3.5rem;
-    height: 48px;
+  .cta-main {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
     align-items: center;
-    gap: 3rem;
-    color: $secondary-color;
-    .more-info-container{
-      height: 100%;
+    text-align: center;
+    width: clamp(300px, 60%, 1920px);
+
+    .cta-main-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      @include stroke(6, #000);
+      font-family: $lexend;
+      text-transform: uppercase;
+    }
+
+    .cta-main-subtitle {
+      color: $accent-color;
+      font-family: $lexend;
+      font-size: 2.125rem;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
+
+  .information {
+    width: clamp(300px, 80%, 1920px);
+
+    .more-info {
+      margin-top: 3.5rem;
+      height: 48px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 0.5rem;
-      font-family: $montserrat;
-      font-size: 1.75rem;
-      font-weight: 600;
+      gap: 3rem;
+      color: $secondary-color;
+      .more-info-container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: $montserrat;
+        font-size: 1.75rem;
+        font-weight: 600;
+      }
     }
   }
 }

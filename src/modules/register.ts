@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
-import Router from 'next/navigation';
+
+import { RegisterUser } from '@/types';
+import { API } from '@/utils/api';
+import { Action, createSlice, Dispatch } from '@reduxjs/toolkit';
 
 import { setLoginModalVisible } from './loginModal';
-import { API } from '@/utils/api';
-import { createSlice, type Action, type Dispatch } from '@reduxjs/toolkit';
-import { RegisterUser } from '@/types';
 
-const initialState = {};
+const initialState = {};  
 
 export const registerSlice = createSlice({
   name: 'register',
@@ -37,14 +37,13 @@ export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) =
 
 export const validate = (slug: string) => async () => {
   try {
-    const res = await API.post('auth/validation', { slug });
+    const res = await API.post('auth/validate/'+slug, undefined);
     localStorage.setItem('utt-arena-userid', res.user.id);
     localStorage.setItem('utt-arena-token', res.token);
 
-    // Refresh page to autoLogin
-    Router.redirect('/dashboard');
+    (window as Window).location = '/dashboard';
   } catch (err) {
-    Router.redirect('/');
+    (window as Window).location = '/';
   }
 };
 

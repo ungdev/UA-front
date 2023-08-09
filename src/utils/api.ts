@@ -23,6 +23,7 @@ const requestAPI = (
       headers: authorizationHeader
         ? {
             Authorization: token ? `Bearer ${token}` : '',
+            "Content-Type": "application/json",
           }
         : {},
       body: method === 'GET' || method === 'DELETE' ? undefined : JSON.stringify(body),

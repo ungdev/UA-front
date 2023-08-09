@@ -1,18 +1,18 @@
 'use client';
 import { ReactNode, useEffect, useState } from 'react';
-import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin, validate } from '@/modules/login';
+import { autoLogin } from '@/modules/login';
 import { hasOrgaPermission } from '@/utils/permission';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 import { type Action } from '@reduxjs/toolkit';
-import { UserType } from '@/types';
+import { Permission, UserType } from '@/types';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -26,12 +26,9 @@ interface SearchParams extends ReadonlyURLSearchParams {
  */
 export default function Wrapper({ children }: { children: ReactNode }) {
   // Import necessary hooks and modules
-  const { replace } = useRouter();
   const pathname = usePathname();
   const query: SearchParams = useSearchParams();
   const dispatch = useAppDispatch();
-  const isDashboard = pathname.substring(0, 10) === '/dashboard';
-  // const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
 
   // Define state variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,6 +36,8 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const [hasPaid, setHasPaid] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isSpectator, setIsSpectator] = useState(false);
+
+  const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
 
   // Update state variables based on changes to the login state
   useAppSelector((state) => {
@@ -64,8 +63,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
-  // const isShopAllowed = useAppSelector((state) => state.settings.shop);
-
+  const isShopAllowed = useAppSelector((state) => state.settings.shop);
   const isLoading = useAppSelector((state) => state.login.loading);
 
   // Handle redirections
@@ -75,72 +73,84 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     if (isLoading) {
       return;
     }
-    // 3 actions possible :
+    // 1 action possible :
     //  - oauth
-    //  - validate
-    //  - pwd-reset
     if (query.action === 'oauth') {
       switch (query.state) {
         case '0':
           toast.success('Le lien avec le compte Discord a bien été créé !');
-          redirect = pathname;
           break;
         case '1':
           toast.success('Le lien avec le compte Discord a bien été mis à jour !');
-          redirect = pathname;
           break;
         case '2':
           toast.success("Le lien avec le compte Discord n'a pas été modifié");
-          redirect = pathname;
           break;
         case '3':
           toast.error("Ce compte Discord est déjà lié au compte d'un autre utilisateur");
-          redirect = pathname;
           break;
         case '4':
           toast.error("Tu as refusé à nos services l'accès à ton compte Discord");
-          redirect = pathname;
           break;
         case '5':
           toast.error('Une erreur de requête est survenue');
-          redirect = pathname;
           break;
         case '6':
           toast.error('Une erreur inconnue est survenue');
-          redirect = pathname;
           break;
       }
-    } else if (query.action === 'validate') {
-      dispatch(validate(query.state!) as unknown as Action);
-      replace(pathname);
     }
   }, [isLoading]);
 
-  // Fetch Settings
+  
   useEffect(() => {
+    // Fetch Settings
     isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
-  }, []);
 
-  // Redirect to desired path
-  useEffect(() => {
-    if (redirect && !isLoading) {
-      replace(redirect);
-    }
-  }, [replace, redirect, isLoading]);
-
-  // Automatically log in the user
-  useEffect(() => {
+    // Automatically log in the user
     dispatch(autoLogin() as unknown as Action);
   }, []);
+  
+  const linksDashboard = () => {
+    const menu = [];
 
-  // Do not display the page content if the user will be redirected
-  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
-    return (
-      <>
-        <CookieConsent />
-      </>
-    );
-  }
+    if (hasTeam) {
+      menu.push({ title: 'Équipe', href: '/dashboard/team' });
+    } else if (isSpectator) {
+      menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
+    } else if (hasPaid) {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
+    }
+
+    if (isSpectator || hasTeam) {
+      if (isShopAllowed) {
+        menu.push({ title: 'Boutique', href: '/dashboard/shop' });
+      }
+      menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
+    } else {
+      menu.push({ title: 'Inscription', href: '/dashboard/register' });
+    }
+
+    menu.push({ title: 'Mon compte', href: '/dashboard/account' });
+    return menu;
+  };
+
+  const linksAdmin = () => {
+    const menu = [];
+
+    if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin)) {
+      menu.push({ title: 'Utilisateurs', href: '/admin/users' });
+    }
+
+    if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin)) {
+      menu.push({ title: 'Entrée', href: '/admin/scan' });
+    }
+
+    menu.push({ title: 'Mon compte', href: '/admin/account' });
+
+    return menu;
+  };
+
 
   // Render the layout with child components
   return (

@@ -16,6 +16,9 @@
     "test:watch": "test-storybook --watch",
     "test:coverage": "test-storybook --coverage && nyc report --reporter html --reporter text -t .nyc_output --report-dir .nyc_output/report"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@storybook/addon-coverage": "^0.0.9",

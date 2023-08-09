@@ -3,6 +3,8 @@ FROM node:18
 ENV NODE_ENV=production
 WORKDIR /srv/app
 
+RUN npm install -g pnpm
+
 RUN chown node:node .
 
 USER node

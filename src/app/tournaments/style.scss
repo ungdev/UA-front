@@ -36,6 +36,72 @@
     position: relative;
     height: 100vh;
 
+    a.back {
+      position: relative;
+      top: 10px;
+      text-decoration: none;
+  
+      .button {
+        display: flex;
+        align-items: center;
+        color: white;
+  
+        &:hover {
+          color: #8C979B;
+        }
+      }
+  
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-right: 0.5rem;
+      }
+    }
+  
+    .tournament-name {
+      background-image: url("../../../public/images/logo-notext.png");
+      background-repeat: no-repeat;
+      background-size: 190px;
+      background-position: 50px 62px;
+      padding: 130px 0 50px 130px;
+    }
+  
+    .information {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      width: 70%;
+      height: 13rem;
+      margin: 0 auto;
+  
+      .box-container {
+        width: 30%;
+        height: 10rem;
+  
+        &.on-top {
+          align-self: start;
+        }
+  
+        // Where the content is contained in the BoxContainer
+        .box-content {
+          display: block;
+          padding: 15px 16px;
+          line-height: 1.4rem;
+        }
+      }
+    }
+  
+    .enrolled-teams {
+      text-align: center;
+      margin-top: 62px;
+      margin-bottom: 35px;
+    }
+  
+    .filling-bar {
+      width: 70%;
+      margin: 0 auto;
+    }
+
     .background {
       background-size: cover;
       background-position: 50% 50%;
@@ -160,43 +226,104 @@
         justify-content: space-between;
         transition: background 0.25s ease-in-out;
 
-        .tournaments-list {
+        .tournament-scroll-container {
+          position: relative;
           width: calc(20% + 100px);
-          display: flex;
-          flex-direction: column;
           margin-left: 5%;
-          overflow-y: scroll;
-          padding-right: 100px;
-          max-height: 80vh;
-          /* Hide scrollbar for IE, Edge and Firefox */
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
 
-          /* Hide scrollbar for Chrome, Safari and Opera */
-          &::-webkit-scrollbar {
-            display: none;
-          }
+          .arrow {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            height: 3rem;
+            width: calc(100% - 100px);
+            transition: opacity 0.25s ease-in-out;
 
-          .tournament {
-            margin: 0.625rem 0;
-            display: block;
-            border-radius: 16px;
-            padding: 4px;
-            aspect-ratio: 7/3;
-            object-fit: cover;
-            transition: all 0.25s ease-in-out;
-
-            &:hover {
-              cursor: pointer;
+            button {
+              width: 100%;
+              color: white;
+              height: 3rem;
+              svg {
+                width: 2rem;
+                height: 2rem;
+              }
+            }
+            &:nth-child(1) {
+              top: 1rem;
             }
 
-            &.selected {
-              transform: translateX(80px);
-              border: 4px solid $title-color;
-              padding: 0;
+            &:nth-child(2) {
+              bottom: 1rem;
+            }
 
+            &.hidden {
+              opacity: 0;
+              pointer-events: none;
+            }
+          }
+
+          .tournaments-list {
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            padding-right: 100px;
+            max-height: 80vh;
+            /* Hide scrollbar for IE, Edge and Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+
+            // Mask for the scroll gradient
+            --mask-height: 64px;
+            --mask-top-color: black;
+            --mask-bottom-color: black;
+            --mask-direction: to bottom;
+            mask-image: linear-gradient(
+              var(--mask-direction),
+              var(--mask-top-color),
+              black var(--mask-height),
+              black calc(100% - var(--mask-height)),
+              var(--mask-bottom-color)
+            );
+            mask-size: 100% 100%;
+            mask-position: 0 0;
+            mask-repeat: no-repeat;
+  
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            &::-webkit-scrollbar {
+              display: none;
+            }
+
+            &.fade-top {
+              --mask-top-color: transparent;
+            }
+
+            &.fade-bottom {
+              --mask-bottom-color: transparent;
+            }
+  
+            .tournament {
+              margin: 0.625rem 0;
+              display: block;
+              border-radius: 16px;
+              padding: 4px;
+              aspect-ratio: 7/3;
+              object-fit: cover;
+              transition: all 0.25s ease-in-out;
+  
               &:hover {
-                cursor: default;
+                cursor: pointer;
+              }
+  
+              &.selected {
+                transform: translateX(80px);
+                border: 4px solid $title-color;
+                padding: 0;
+  
+                &:hover {
+                  cursor: default;
+                }
               }
             }
           }
@@ -235,7 +362,7 @@
   }
 
   .partners {
-    padding-top: 113px;
+    padding-top: 120px;
   }
 }
 
@@ -263,26 +390,82 @@
     }
 
     .tournaments-content {
+      margin-bottom: 10rem;
+
+      .information {
+        flex-direction: column;
+        align-items: center;
+        height: fit-content;
+        width: 90%;
+
+        .box-container {
+          margin-top: 10px;
+          width: 100%;
+          &.on-top {
+            align-self: center;
+          }
+        }
+      }
+
+      .filling-bar {
+        width: 90%;
+      }
+
       .tournament-container {
         .content {
           flex-direction: column;
 
-          .tournaments-list {
+          .tournament-scroll-container {
             width: 100%;
-            overflow-y: hidden;
-            height: 140px;
-            overflow-x: scroll;
             margin-left: 0;
             margin-bottom: 20px;
-            flex-direction: row;
-            padding: 0 5vw;
-            gap: 2rem;
 
-            .tournament {
+            .arrow {
+              top: initial;
+              bottom: initial;
+              left: initial;
+              width: 4rem;
               height: 140px;
-              margin: 0;
-              &.selected {
-                transform: translateY(0px);
+
+              button {
+                padding: 0;
+                width: 100%;
+                height: 100%;
+              }
+
+              &:nth-child(1) {
+                left: 0;
+                top: 0;
+                svg {
+                  transform: rotateZ(-90deg);
+                }
+              }
+
+              &:nth-child(2) {
+                right: 0;
+                bottom: 0;
+                svg {
+                  transform: rotateZ(-90deg);
+                }
+              }
+            }
+
+            .tournaments-list {
+              overflow-y: hidden;
+              height: 140px;
+              overflow-x: scroll;    
+              flex-direction: row;
+              padding: 0 5vw;
+              gap: 2rem;
+
+              --mask-direction: to right;
+
+              .tournament {
+                height: 140px;
+                margin: 0;
+                &.selected {
+                  transform: translateY(0px);
+                }
               }
             }
           }

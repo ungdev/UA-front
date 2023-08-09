@@ -38,7 +38,7 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, sta
   }
   dispatch(setTeam(res));
   dispatch(setUser({ ...user, teamId: res.id, type: 'player' }));
-  Router.redirect('/dashboard/team');
+  (window as Window).location = '/dashboard/team';
 };
 
 export const joinTeam =
@@ -104,7 +104,7 @@ export const deleteTeam = () => async (dispatch: Dispatch, state: RootState) => 
   dispatch(setUser({ ...user, teamId: null, type: 'none' }));
   dispatch(setTeam(null));
   toast.success("L'équipe a bien été supprimée");
-  Router.redirect('/dashboard/register');
+  (window as Window).location = '/dashboard/register';
 };
 
 export const lockTeam = () => async (dispatch: Dispatch) => {
