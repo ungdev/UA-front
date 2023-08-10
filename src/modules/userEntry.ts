@@ -19,7 +19,7 @@ export const userEntrySlice = createSlice({
   reducers: {
     setSearchUser: (state, action) => {
       state.searchUser = action.payload;
-          },
+    },
   },
 });
 

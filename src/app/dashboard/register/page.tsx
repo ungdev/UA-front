@@ -63,7 +63,7 @@ const Register = () => {
     });
 
     (async () => {
-      setTournaments((await API.get('tournaments')));
+      setTournaments(await API.get('tournaments'));
     })();
 
     if (user.discordId) setStep(2);

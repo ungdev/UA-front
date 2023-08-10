@@ -25,16 +25,16 @@ export const loginSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-          },
+    },
     setUser: (state, action) => {
       state.user = action.payload as User;
-          },
+    },
     updateUser: (state, action) => {
       state.user = { ...state.user, ...action.payload };
-          },
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
-          },
+    },
   },
 });
 

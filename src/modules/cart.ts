@@ -18,10 +18,10 @@ export const cartSlice = createSlice({
   reducers: {
     setCart: (state, action) => {
       state.cart = action.payload;
-          },
+    },
     setCartItems: (state, action) => {
       state.cartItems = action.payload;
-          },
+    },
   },
 });
 

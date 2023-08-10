@@ -23,10 +23,10 @@ export const tournamentSlice = createSlice({
   reducers: {
     setTournaments: (state, action) => {
       state.tournaments = action.payload;
-          },
+    },
     setSlots: (state, action) => {
       state.slots = action.payload;
-          },
+    },
   },
 });
 

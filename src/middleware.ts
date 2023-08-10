@@ -31,16 +31,16 @@ export function middleware(request: NextRequest) {
     hasTeam,
     isSpectator,
     isAdmin,
-  })
+  });
 
   if (isAdminPanel && !isLoggedIn) {
-    console.log("1");
+    console.log('1');
     return NextResponse.redirect(new URL('/', request.url));
   } else if (!isAdminPanel && (!isLoggedIn || !isLoginAllowed)) {
-    console.log("2");
+    console.log('2');
     return NextResponse.redirect(new URL('/dashboard/account', request.url));
   } else if (isLoggedIn) {
-    console.log("3");
+    console.log('3');
     if (hasTeam && (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/dashboard/register')) {
       return NextResponse.redirect(new URL('/dashboard/team', request.url));
     } else if (request.nextUrl.pathname === '/dashboard/shop' && !isShopAllowed) {
@@ -51,7 +51,7 @@ export function middleware(request: NextRequest) {
     ) {
       return NextResponse.redirect(new URL('/dashboard/spectator', request.url));
     } else if (!isSpectator && !hasTeam) {
-      console.log("redirect");
+      console.log('redirect');
       if (
         request.nextUrl.pathname === '/dashboard' ||
         (!isAdminPanel &&
@@ -72,10 +72,10 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL('/dashboard/admin/scan', request.url));
     }
   }
-  console.log("do next");
+  console.log('do next');
   return NextResponse.next();
 }
 
 export const config = {
   matcher: ['/dashboard'],
-}
+};

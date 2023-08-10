@@ -15,7 +15,7 @@ export const teamSlice = createSlice({
   reducers: {
     setTeam: (state, action) => {
       state = action.payload;
-          },
+    },
   },
 });
 
