@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import jsQR, { QRCode } from 'jsqr';
 
-const QRCodeReader = ({ onCode, className }: { onCode: (code: QRCode) => void; className?: string }) => {
+const QRCodeReader = ({ onCode, className = '' }: { onCode: (code: QRCode) => void; className?: string }) => {
   const ref = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream>();
   const wrappingRef = useRef({
@@ -82,10 +82,6 @@ const QRCodeReader = ({ onCode, className }: { onCode: (code: QRCode) => void; c
       <canvas className={`${className}-preview`} ref={ref}></canvas>
     </div>
   );
-};
-
-QRCodeReader.defaultProps = {
-  className: '',
 };
 
 export default QRCodeReader;

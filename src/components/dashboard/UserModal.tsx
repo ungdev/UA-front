@@ -38,10 +38,10 @@ const ageOptions = [
 
 const UserModal = ({
   searchUser,
-  onClose,
+  onClose = undefined,
 }: {
   searchUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin;
-  onClose: () => void;
+  onClose?: () => void;
 }) => {
   const dispatch = useAppDispatch();
   const isAdmin = useAppSelector((state) => state.login.user?.permissions?.includes?.(Permission.admin));
@@ -161,7 +161,7 @@ const UserModal = ({
     <Modal
       visible={true}
       title="Utilisateur"
-      onCancel={onClose}
+      onCancel={onClose ? onClose : () => {}}
       buttons={
         <>
           {hasEntryPermission && searchUser && !searchUser.hasPaid && (
@@ -303,10 +303,6 @@ const UserModal = ({
       </>
     </Modal>
   );
-};
-
-UserModal.defaultProps = {
-  onClose: undefined,
 };
 
 export default UserModal;

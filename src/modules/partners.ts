@@ -18,7 +18,7 @@ export const partnersSlice = createSlice({
   reducers: {
     setPartners: (state, action) => {
       state.partners = action.payload;
-    },
+          },
   },
 });
 

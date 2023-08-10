@@ -10,8 +10,7 @@ export function middleware(request: NextRequest) {
 
   const user = currentState.login.user;
 
-  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
-  const isAdminPanel = request.nextUrl.pathname.startsWith('/admin');
+  const isAdminPanel = request.nextUrl.pathname.startsWith('/dashboard/admin');
 
   const isLoginAllowed = currentState.settings.login;
   const isShopAllowed = currentState.settings.shop;
@@ -20,11 +19,28 @@ export function middleware(request: NextRequest) {
   const isSpectator = !!user?.type && user.type === UserType.spectator;
   const isAdmin = !!user && hasOrgaPermission(user.permissions);
 
+  //console.log(currentState.settings);
+
+  console.log(request.nextUrl.pathname);
+
+  console.log('middleware', {
+    isAdminPanel,
+    isLoginAllowed,
+    isShopAllowed,
+    isLoggedIn,
+    hasTeam,
+    isSpectator,
+    isAdmin,
+  })
+
   if (isAdminPanel && !isLoggedIn) {
+    console.log("1");
     return NextResponse.redirect(new URL('/', request.url));
-  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
-    return NextResponse.redirect(new URL('/', request.url));
+  } else if (!isAdminPanel && (!isLoggedIn || !isLoginAllowed)) {
+    console.log("2");
+    return NextResponse.redirect(new URL('/dashboard/account', request.url));
   } else if (isLoggedIn) {
+    console.log("3");
     if (hasTeam && (request.nextUrl.pathname === '/dashboard' || request.nextUrl.pathname === '/dashboard/register')) {
       return NextResponse.redirect(new URL('/dashboard/team', request.url));
     } else if (request.nextUrl.pathname === '/dashboard/shop' && !isShopAllowed) {
@@ -35,9 +51,10 @@ export function middleware(request: NextRequest) {
     ) {
       return NextResponse.redirect(new URL('/dashboard/spectator', request.url));
     } else if (!isSpectator && !hasTeam) {
+      console.log("redirect");
       if (
         request.nextUrl.pathname === '/dashboard' ||
-        (isDashboard &&
+        (!isAdminPanel &&
           request.nextUrl.pathname !== '/dashboard/register' &&
           request.nextUrl.pathname !== '/dashboard/account')
       ) {
@@ -47,14 +64,18 @@ export function middleware(request: NextRequest) {
     if (!isAdmin && isAdminPanel) {
       return NextResponse.redirect(new URL('/dashboard', request.url));
     } else if (
-      request.nextUrl.pathname === '/admin' &&
+      request.nextUrl.pathname === '/dashboard/admin' &&
       (user.permissions.includes(Permission.admin) || user.permissions.includes(Permission.anim))
     ) {
-      return NextResponse.redirect(new URL('/admin/users', request.url));
-    } else if (request.nextUrl.pathname === '/admin' && user.permissions.includes(Permission.entry)) {
-      return NextResponse.redirect(new URL('/admin/scan', request.url));
+      return NextResponse.redirect(new URL('/dashboard/admin/users', request.url));
+    } else if (request.nextUrl.pathname === '/dashboard/admin' && user.permissions.includes(Permission.entry)) {
+      return NextResponse.redirect(new URL('/dashboard/admin/scan', request.url));
     }
   }
-
+  console.log("do next");
   return NextResponse.next();
+}
+
+export const config = {
+  matcher: ['/dashboard'],
 }

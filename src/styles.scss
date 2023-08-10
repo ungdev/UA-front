@@ -5,8 +5,8 @@
 // App
 @import './app/style.scss';
 @import './app/about/style.scss';
-@import './app/admin/scan/style.scss';
-@import './app/admin/users/style.scss';
+@import './app/dashboard/admin/scan/style.scss';
+@import './app/dashboard/admin/users/style.scss';
 @import './app/dashboard/account/style.scss';
 @import './app/dashboard/purchases/style.scss';
 @import './app/dashboard/register/style.scss';
@@ -26,6 +26,11 @@
 @import './components/ResetModal.scss';
 
 // Dashboard Components
+@import './components/dashboard/AddPlaceModal.scss';
+@import './components/dashboard/Cart.scss';
+@import './components/dashboard/CartItem.scss';
+@import './components/dashboard/PanelHeader.scss';
+@import './components/dashboard/SupplementList.scss';
 @import './components/dashboard/UserModal.scss';
 
 // Landing Components
@@ -47,6 +52,7 @@
 @import './components/UI/Helper.scss';
 @import './components/UI/Icon.scss';
 @import './components/UI/Inputs.scss';
+@import './components/UI/Loader.scss';
 @import './components/UI/Modal.scss';
 @import './components/UI/Radio.scss';
 @import './components/UI/Table.scss';

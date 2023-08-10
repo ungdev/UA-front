@@ -10,7 +10,7 @@ export const loginModalSlice = createSlice({
   reducers: {
     setVisible: (state, action) => {
       state.visible = action.payload;
-    },
+          },
   },
 });
 

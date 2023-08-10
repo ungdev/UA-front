@@ -16,7 +16,7 @@ export const cartsSlice = createSlice({
   reducers: {
     setAllCarts: (state, action) => {
       state.allCarts = action.payload;
-    },
+          },
   },
 });
 

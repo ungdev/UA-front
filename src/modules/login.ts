@@ -25,16 +25,16 @@ export const loginSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-    },
+          },
     setUser: (state, action) => {
-      state.user = action.payload;
-    },
+      state.user = action.payload as User;
+          },
     updateUser: (state, action) => {
       state.user = { ...state.user, ...action.payload };
-    },
+          },
     setLoading: (state, action) => {
       state.loading = action.payload;
-    },
+          },
   },
 });
 
@@ -61,6 +61,7 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
 };
 
 export const saveToken = (token: string) => (dispatch: Dispatch) => {
+  console.log('saveToken', token);
   dispatch(setToken(token) as unknown as Action);
   setAuthorizationToken(token);
   localStorage.setItem('utt-arena-token', token);
@@ -70,15 +71,15 @@ export const tryLogin = (user: { login: string; password: string }) => async (di
   const res = await API.post('auth/login', user);
   dispatch(saveToken(res.token) as unknown as Action);
   localStorage.setItem('utt-arena-userid', res.user.id);
-  dispatch(setUser(res.user) as unknown as Action);
+  dispatch(setUser(res.user as unknown as User) as unknown as Action);
   dispatch(setLoginModalVisible(false) as unknown as Action);
   if (res.captivePortalSuccess) {
     toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   if (hasOrgaPermission(res.user.permissions)) {
-    (window as Window).location = '/admin';
+    //(window as Window).location = '/admin';
   } else {
-    (window as Window).location = '/dashboard';
+    //(window as Window).location = '/dashboard';
   }
   return true;
 };

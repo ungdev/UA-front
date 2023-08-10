@@ -59,11 +59,11 @@ const Register = () => {
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
-      setDiscordLink(res.data.link);
+      setDiscordLink(res.link);
     });
 
     (async () => {
-      setTournaments((await API.get('/tournaments')).data);
+      setTournaments((await API.get('tournaments')));
     })();
 
     if (user.discordId) setStep(2);
@@ -71,7 +71,7 @@ const Register = () => {
     if (user.askingTeamId) {
       (async () => {
         setUserType(user.type);
-        setTournament((await API.get('/teams/' + user.askingTeamId)).data.tournamentId);
+        setTournament((await API.get('teams/' + user.askingTeamId)).tournamentId);
         setStep(5);
       })();
     }

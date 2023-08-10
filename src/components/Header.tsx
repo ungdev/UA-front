@@ -10,7 +10,7 @@ import logo from '../../public/images/logo.png';
 export default function Header() {
   return (
     <header id="header">
-      <Link href="/">
+      <Link href="/dashboard">
         <img src={logo.src} alt="Logo UA23" />
       </Link>
       <Navbar />

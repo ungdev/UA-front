@@ -55,7 +55,7 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action) => {
-      state = {
+      return {
         ...state,
         ...action.payload,
         users: format(action.payload.users),
@@ -63,7 +63,7 @@ export const usersSlice = createSlice({
       };
     },
     setLookupUser: (state, action) => {
-      state = {
+      return {
         ...state,
         lookupUser: action.payload,
       };
