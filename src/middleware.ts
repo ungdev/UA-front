@@ -9,16 +9,7 @@ export function generateCsp() {
     { name: 'default-src', values: ["'self'"] },
     {
       name: 'script-src',
-      values: [
-        "'report-sample'",
-        "'self'",
-        // MATOMO SCRIPT SHA-256
-        `'sha256-qpIQZ4vQ88ngn0kIVnWadKU6lRy11BWgXV7IJRxzd2Q='`,
-        `'nonce-${nonce}'`,
-        "'strict-dynamic'",
-        "'unsafe-eval'",
-        "'unsafe-inline'",
-      ],
+      values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, "'strict-dynamic'", `'unsafe-eval'`],
     },
     {
       name: 'style-src',
@@ -28,7 +19,7 @@ export function generateCsp() {
       name: 'connect-src',
       values: ["'self'", process.env.NEXT_PUBLIC_API_URL, 'arena.utt.fr', '*.uttnetgroup.fr'],
     },
-    { name: 'font-src', values: ["'self'", 'data:'] },
+    { name: 'font-src', values: ["'self'", 'data:', 'https://fonts.gstatic.com'] },
     {
       name: 'img-src',
       values: ["'self'", 'data:', 'https://arena.utt.fr', '*.picsum.photos', 'https://picsum.photos'],

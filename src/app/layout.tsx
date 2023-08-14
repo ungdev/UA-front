@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl } from '@/utils/environment';
+import { headers } from 'next/headers';
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize/modern-normalize.css';
@@ -109,10 +110,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Get header x-nonce
+  const nonce = headers().get('x-nonce') || '';
+
   return (
     <html lang="fr" className={`${montserrat.variable} ${lexend.variable}`}>
       <body>
-        <Script src="/matomo.js" integrity={'sha256-qpIQZ4vQ88ngn0kIVnWadKU6lRy11BWgXV7IJRxzd2Q='} />
+        <Script src="/matomo.js" nonce={nonce} strategy="lazyOnload" />
         <Providers persisted={true}>
           <Wrapper>{children}</Wrapper>
         </Providers>

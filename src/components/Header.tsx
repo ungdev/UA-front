@@ -76,7 +76,7 @@ export default function Header({ connected = false }: { connected?: boolean }) {
 
   return (
     <header id="header">
-      <Link href="/dashboard">
+      <Link href="/">
         <img src={logo.src} alt="Logo UA23" />
       </Link>
       <nav>
