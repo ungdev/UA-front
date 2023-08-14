@@ -129,12 +129,25 @@ export interface UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin extends Us
   carts: CartWithCartItemsAdmin[];
 }
 
+export interface AttendantInfo {
+  firstname: string;
+  lastname: string;
+}
+
 export interface Cart {
   id: string;
   userId: string;
   transactionState: TransactionState;
   transactionId: number | null;
   paidAt: Date | null;
+  supplements: {
+    itemId: string;
+    quantity: number;
+  }[];
+  tickets: {
+    userIds: string[];
+    attendant: AttendantInfo;
+  };
 }
 
 export interface CartItem {
@@ -154,10 +167,7 @@ export interface CartItem {
 export interface CartPost {
   tickets: {
     userIds: string[];
-    attendant: {
-      firstname: string;
-      lastname: string;
-    };
+    attendant: AttendantInfo | undefined;
   };
   supplements: {
     itemId: string;
@@ -172,8 +182,9 @@ export interface CartWithCartItems extends Cart {
 export interface Item {
   id: string;
   name: string;
-  category: string;
-  attribute: string | null;
+  category?: string;
+  attribute?: string | null;
+  attributes?: string[] | null;
   price: number;
   infos: string | null;
   image: string | null;

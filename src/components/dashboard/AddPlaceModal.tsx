@@ -2,13 +2,28 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Modal, Button, Input, Select, Radio } from '../UI';
 import { useAppSelector } from '@/lib/hooks';
+import { UserType, AttendantInfo, User } from '@/types';
 
-const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, needsAttendant, onQuit }
+const AddPlaceModal = ({
+  userId,
+  username,
+  hasTicket,
+  teamMembersWithoutTicket,
+  needsAttendant,
+  onQuit,
+}: {
+  userId: string;
+  username: string;
+  hasTicket: boolean;
+  teamMembersWithoutTicket: User[];
+  needsAttendant: boolean;
+  onQuit: (placeFor: string, placeId: string | AttendantInfo) => void;
+}) => {
   // Either 'me', 'other' or 'attendant'
   const [placeFor, setPlaceFor] = useState('');
   // The id of the person.
   // If placeFor is 'attendant', then placeId is an object with 2 values : 'firstname' and 'lastname'
-  const [placeId, setPlaceId] = useState(undefined);
+  const [placeId, setPlaceId] = useState<AttendantInfo | string | undefined>(undefined);
   // The place step 0 for regular modal, 1 for text confirmation modal
   const [step, setStep] = useState(0);
   // The user type
@@ -23,13 +38,13 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
       setPlaceFor('other');
     } else {
       toast.info("Tous les membres de l'équipe ont déjà une place !");
-      onQuit(undefined, undefined);
+      onQuit('', '');
       return;
     }
   }, []);
 
   const canPayTo = () => {
-    let canPayTo = [];
+    const canPayTo = [];
     if (!hasTicket) canPayTo.push({ value: 'me', name: `Moi-même (${username})` });
     if (needsAttendant) canPayTo.push({ value: 'attendant', name: 'Un accompagnateur (majeur)' });
     if (teamMembersWithoutTicket.length) canPayTo.push({ value: 'other', name: 'Autre utilisateur' });
@@ -55,7 +70,7 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
   if (!placeFor || placeId === undefined) return null;
 
   const nextStep = async () => {
-    if (!placeFor === 'me' || userType !== 'spectator' || step) {
+    if (!(placeFor === 'me') || userType !== UserType.spectator || step) {
       setStep(0);
       return addPlace();
     }
@@ -64,7 +79,7 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
 
   const addPlace = async () => {
     if (placeFor === 'attendant') {
-      if (placeId.firstname == '' || placeId.lastname == '') {
+      if ((placeId as AttendantInfo).firstname == '' || (placeId as AttendantInfo).lastname == '') {
         toast.error('Tu dois renseigner le prénom et le nom de ton accompagnateur.');
         return;
       }
@@ -77,7 +92,7 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
       title="Ajouter une place"
       className="add-place-modal"
       visible={true}
-      onCancel={() => onQuit(undefined, undefined)}
+      onCancel={() => onQuit('', '')}
       buttons={
         <Button primary onClick={nextStep}>
           Ajouter
@@ -97,13 +112,13 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
             <>
               <Input
                 label="Prénom"
-                value={placeId.firstname}
-                onChange={(value) => setPlaceId({ ...placeId, firstname: value })}
+                value={(placeId as AttendantInfo).firstname}
+                onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), firstname: value })}
               />
               <Input
                 label="Nom"
-                value={placeId.lastname}
-                onChange={(value) => setPlaceId({ ...placeId, lastname: value })}
+                value={(placeId as AttendantInfo).lastname}
+                onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), lastname: value })}
               />
             </>
           )}
@@ -112,9 +127,9 @@ const AddPlaceModal = ({ userId, username, hasTicket, teamMembersWithoutTicket, 
               label="Membre"
               options={teamMembersWithoutTicket.map((member) => ({
                 value: member.id,
-                label: `${member.username} (${member.type === 'player' ? 'Joueur' : 'Coach'})`,
+                label: `${member.username} (${member.type === UserType.player ? 'Joueur' : 'Coach'})`,
               }))}
-              value={placeId}
+              value={placeId as string}
               onChange={setPlaceId}
               className="add-place-input"
             />

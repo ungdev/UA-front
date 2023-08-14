@@ -77,7 +77,7 @@ export const acceptUser = (user: User) => async (dispatch: Dispatch, state: Root
 
 export const kickUser = (userId: string) => async (dispatch: Dispatch, state: RootState) => {
   const team: TeamWithUsers = state.team as TeamWithUsers;
-  const user = state.login.user;
+  const user = state.login.user!;
   if (user.id === userId) {
     await API.delete('teams/current/users/current');
     dispatch(setUser({ ...user, teamId: null, type: 'none' }));

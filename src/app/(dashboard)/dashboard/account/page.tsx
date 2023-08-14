@@ -12,7 +12,7 @@ import { UserAge, UserEdit, UserType } from '@/types';
 
 const Account = () => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.login.user);
+  const user = useAppSelector((state) => state.login.user)!;
   const team = useAppSelector((state) => state.team);
 
   const [firstname, setFirstname] = useState(user.firstname);

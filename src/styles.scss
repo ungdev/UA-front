@@ -5,13 +5,13 @@
 // App
 @import './app/style.scss';
 @import './app/about/style.scss';
-@import './app/dashboard/admin/scan/style.scss';
-@import './app/dashboard/admin/users/style.scss';
-@import './app/dashboard/account/style.scss';
-@import './app/dashboard/purchases/style.scss';
-@import './app/dashboard/register/style.scss';
-@import './app/dashboard/shop/style.scss';
-@import './app/dashboard/team/style.scss';
+@import './app/(dashboard)/admin/scan/style.scss';
+@import './app/(dashboard)/admin/users/style.scss';
+@import './app/(dashboard)/dashboard/account/style.scss';
+@import './app/(dashboard)/dashboard/purchases/style.scss';
+@import './app/(dashboard)/dashboard/register/style.scss';
+@import './app/(dashboard)/dashboard/shop/style.scss';
+@import './app/(dashboard)/dashboard/team/style.scss';
 @import './app/event/style.scss';
 @import './app/help/style.scss';
 @import './app/legal/style.scss';
@@ -21,7 +21,6 @@
 @import './components/CookieConsent.scss';
 @import './components/Footer.scss';
 @import './components/Header.scss';
-@import './components/Navbar.scss';
 @import './components/Partners.scss';
 @import './components/ResetModal.scss';
 

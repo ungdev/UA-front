@@ -1,6 +1,6 @@
 'use client';
-import { ReactNode, useEffect, useState } from 'react';
-import { ReadonlyURLSearchParams, useSearchParams } from 'next/navigation';
+import { ReactNode, Suspense, useEffect, useState } from 'react';
+import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
@@ -11,10 +11,31 @@ import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 import { type Action } from '@reduxjs/toolkit';
+import { Permission, UserType } from '@/types';
+import { hasOrgaPermission } from '@/utils/permission';
+import Loading from '@/app/loader';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
   state?: string;
+}
+
+export function NavigationEvents() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const url = `${pathname}?${searchParams}`;
+    // used by Matomo
+    const w = window as any;
+    if (w && w._paq) {
+      w._paq.push(['setCustomUrl', url]);
+      w._paq.push(['setDocumentTitle', document.title]);
+      w._paq.push(['trackPageView']);
+    }
+  }, [pathname, searchParams]);
+
+  return null;
 }
 
 /**
@@ -25,21 +46,90 @@ interface SearchParams extends ReadonlyURLSearchParams {
 export default function Wrapper({ children }: { children: ReactNode }) {
   // Import necessary hooks and modules
   const query: SearchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
-  // Test if user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hasTeam, setHasTeam] = useState(false);
+  const [hasPaid, setHasPaid] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isSpectator, setIsSpectator] = useState(false);
+
+  const isAdminPanel = pathname.startsWith('/admin');
+  const isDashboard = pathname.startsWith('/dashboard');
+  const permissions = useAppSelector((state) => state.login.user?.permissions || []);
+
+  // Set user informations
   useAppSelector((state) => {
     const { user } = state.login;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
+      setHasTeam(!!user!.teamId);
+      setIsSpectator(user!.type === UserType.spectator);
+    } else if (user && hasTeam !== !!user.teamId) {
+      setHasTeam(!!user.teamId);
+    } else if (user && !isSpectator && user.type === UserType.spectator) {
+      setIsSpectator(true);
+    } else if (user && isSpectator && user.type !== UserType.spectator) {
+      setIsSpectator(false);
+    }
+    if (user && hasPaid !== user.hasPaid) {
+      setHasPaid(user.hasPaid);
+    }
+    if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
+      setIsAdmin(!isAdmin);
     }
   });
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isLoading = useAppSelector((state) => state.login.loading);
+  const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
+  // Handle redirections
+  let redirect: string | null = null;
+
+  if (isAdminPanel && !isLoggedIn) {
+    redirect = '/';
+  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
+    redirect = '/';
+  } else if (isLoggedIn) {
+    if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/team';
+    } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
+      redirect = '/dashboard';
+    } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+      redirect = '/dashboard/spectator';
+    } else if (!isSpectator && !hasTeam) {
+      if (
+        pathname === '/dashboard' ||
+        (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+      ) {
+        redirect = '/dashboard/register';
+      }
+    }
+    if (!isAdmin && isAdminPanel) {
+      redirect = '/dashboard';
+    } else if (
+      pathname === '/admin' &&
+      (permissions.includes(Permission.admin) || permissions.includes(Permission.anim))
+    ) {
+      redirect = '/admin/users';
+    } else if (pathname === '/admin' && permissions.includes(Permission.entry)) {
+      redirect = '/admin/scan';
+    }
+  }
+
+  // Redirect to desired path
+  useEffect(() => {
+    if (redirect && !isLoading) {
+      router.replace(redirect);
+      return;
+    }
+  }, [redirect, isLoading]);
+
+  // TODO: implement a special route for the oauth callback
   useEffect(() => {
     if (isLoading) {
       return;
@@ -81,15 +171,31 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     dispatch(autoLogin() as unknown as Action);
   }, []);
 
+  // Do not display the page content if the user will be redirected
+  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
+    return (
+      <>
+        <CookieConsent />
+        <main>
+          <Loading />
+        </main>
+      </>
+    );
+  }
+
   // Render the layout with child components
   return (
     <>
       <CookieConsent />
       <div className="page-container">
-        <Header />
+        <Header connected={isLoggedIn} />
         <main>{children}</main>
         <Footer />
       </div>
+      {/* Used to detect navigation events */}
+      <Suspense fallback={null}>
+        <NavigationEvents />
+      </Suspense>
     </>
   );
 }

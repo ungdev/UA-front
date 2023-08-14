@@ -1,5 +1,5 @@
 import React from 'react';
-import DashboardAccount from '../../../dashboard/account/page';
+import DashboardAccount from '../../dashboard/account/page';
 
 const Account = () => <DashboardAccount />;
 

@@ -27,7 +27,7 @@ export const cartSlice = createSlice({
 
 export const { setCart, setCartItems } = cartSlice.actions;
 
-export const cartPay = (cart: Cart) => async () => {
+export const cartPay = (cart: CartPost) => async () => {
   const res = await API.post(`users/current/carts`, cart);
   window.location = res.url;
 };
@@ -62,8 +62,8 @@ export const loadCart = () => {
           cart.tickets.userIds = (localStorage.getItem(key)!.match(/.{6}/g) || []) as string[];
           break;
         case 'cart.attendant.firstname':
-          cart.tickets.attendant = {
-            ...cart.tickets.attendant,
+          cart.tickets.attendant = {  
+            ...cart.tickets.attendant!,
             firstname: localStorage.getItem('cart.attendant.firstname')!,
           };
           break;

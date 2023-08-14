@@ -6,7 +6,7 @@ import type { Action } from '@reduxjs/toolkit';
 
 const Spectator = () => {
   const dispatch = useAppDispatch();
-  const hasPaid = useAppSelector((state) => state.login.user.hasPaid);
+  const hasPaid = useAppSelector((state) => state.login.user!.hasPaid);
 
   return (
     <div id="dashboard-coach">

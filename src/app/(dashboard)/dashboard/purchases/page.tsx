@@ -17,7 +17,7 @@ const columns = [
 
 const Purchases = () => {
   const dispatch = useAppDispatch();
-  const { id: userId } = useAppSelector((state) => state.login.user);
+  const { id: userId } = useAppSelector((state) => state.login.user)!;
   const carts = useAppSelector((state) =>
     state.carts.allCarts.filter(
       (cart) =>

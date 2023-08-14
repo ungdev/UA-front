@@ -9,7 +9,7 @@ import { useState } from 'react';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const permissions = useAppSelector((state) => state.login.user && state.login.user.permissions);
+  const permissions = useAppSelector((state) => state.login.user! && state.login.user!.permissions);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
   const isAdminPanel = pathname.startsWith('/dashboard/admin');
 
@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   // Update state variables based on changes to the login state
   useAppSelector((state) => {
-    const { user } = state.login;
+    const user = state.login.user!;
     if (isLoggedIn !== !!user) {
       setIsLoggedIn(!!user);
       setHasTeam(!!user.teamId);

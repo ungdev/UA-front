@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 /**
  * Checkbox component that displays a label and a checkbox input.
- * @param {string} label - The label to display next to the checkbox.
+ * @param {ReactNode} label - The label to display next to the checkbox.
  * @param {boolean} value - The value of the checkbox.
  * @param {function} onChange - The function to call when the checkbox value changes.
  * @param {string} className - The CSS class name to apply to the checkbox container.
@@ -14,7 +16,7 @@ const Checkbox = ({
   className = '',
   autoFocus = false,
 }: {
-  label?: string;
+  label?: ReactNode;
   value?: boolean;
   onChange?: (value: boolean) => void;
   className?: string;

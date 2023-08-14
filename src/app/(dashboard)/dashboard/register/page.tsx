@@ -22,7 +22,7 @@ const columns = [
 const Register = () => {
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector((state) => state.login.user);
+  const user = useAppSelector((state) => state.login.user)!;
   const [discordLink, setDiscordLink] = useState('');
   const [userType, setUserType] = useState<UserType>();
   const [step, setStep] = useState(1);

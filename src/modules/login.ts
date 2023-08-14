@@ -9,13 +9,13 @@ import { setTeam } from './team';
 
 interface LoginAction {
   token: string | null;
-  user: User;
+  user: User | null;
   loading: boolean;
 }
 
 const initialState: LoginAction = {
   token: null,
-  user: {} as User,
+  user: null,
   loading: true,
 };
 
