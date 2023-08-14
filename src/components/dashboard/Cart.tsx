@@ -26,7 +26,7 @@ const Cart = ({
         <h2>Panier</h2>
         <Button onClick={onCartReset}>
           {/* TODO: Make it red */}
-          <Icon name="trash" fill={true}></Icon>
+          <Icon name="trash" fill={false}></Icon>
         </Button>
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {

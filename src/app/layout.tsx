@@ -113,7 +113,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${montserrat.variable} ${lexend.variable}`}>
       <body>
-        <Script src="/matomo.js" />
+        <Script src="/matomo.js" integrity={
+          "sha256-qpIQZ4vQ88ngn0kIVnWadKU6lRy11BWgXV7IJRxzd2Q="
+        } />
         <Providers>
           <Wrapper>{children}</Wrapper>
         </Providers>

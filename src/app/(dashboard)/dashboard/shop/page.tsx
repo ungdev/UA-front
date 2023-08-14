@@ -53,6 +53,8 @@ const Shop = () => {
   // This is used to avoid users to be able to send multiple requests when paying :
   // if they click multiple times, they could send multiple requests
   const [hasRequestedPayment, setHasRequestedPayment] = useState(false);
+  // If the user wants to delete all the quantity of an item, this is the id of the item
+  const [isDeleteAllQuantity, setIsDeleteAllQuantity] = useState(false);
   // Contains the ticket items for each ticket in the cart. This is an object, keys are userIds and values are the items
   const [tickets, setTickets] = useState<
     | {
@@ -79,6 +81,20 @@ const Shop = () => {
     (async () => {
       setItems(await fetchItems());
     })();
+
+    window.addEventListener('keydown', (e) => {
+      // if shift is pressed, we set isDeleteAllQuantity to true
+      if (e.key === 'Shift') {
+        setIsDeleteAllQuantity(true);
+      }
+    });
+
+    // On key release, we set isDeleteAllQuantity to false
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'Shift') {
+        setIsDeleteAllQuantity(false);
+      }
+    });
   }, []);
 
   // Initializing teamMembers
@@ -185,7 +201,8 @@ const Shop = () => {
   const onRemoveItem = (itemId: string) => {
     const cartSupplementIndex = cart.supplements.findIndex((supplement) => supplement.itemId === itemId);
     const newCartSupplements = [...cart.supplements];
-    if (newCartSupplements[cartSupplementIndex].quantity <= 1) {
+
+    if (newCartSupplements[cartSupplementIndex].quantity <= 1 || isDeleteAllQuantity) {
       newCartSupplements.splice(cartSupplementIndex, 1);
     } else {
       newCartSupplements[cartSupplementIndex].quantity--;

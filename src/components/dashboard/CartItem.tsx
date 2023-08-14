@@ -1,4 +1,4 @@
-import { Button } from '../UI';
+import { Button, Icon } from '../UI';
 
 const CartItem = ({
   itemName,
@@ -17,7 +17,7 @@ const CartItem = ({
     <div className="cart-item">
       <div className="item-name">{itemName}</div>
       <Button className="remove-btn" onClick={onRemove}>
-        {/* TODO : Add trash icon */}
+        <Icon name="trash" fill={false} />
       </Button>
       <div>
         {quantity} x{' '}

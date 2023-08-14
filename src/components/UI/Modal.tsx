@@ -1,4 +1,5 @@
-import { ReactNode, KeyboardEvent } from 'react';
+'use client';
+import { ReactNode, KeyboardEvent, useEffect } from 'react';
 import Button from './Button';
 import Divider from './Divider';
 
@@ -48,14 +49,20 @@ const Modal = ({
       </>
     );
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Escape') {
-      onCancel();
+  useEffect(() => {
+    let listener;
+    if (visible) {
+      listener = window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          onCancel();
+        }
+      });
     }
-  };
+    window.removeEventListener('keydown', listener as any);
+  }, [visible]);
 
   return (
-    <div className={`modal ${visible ? 'active' : ''} ${className}`} onKeyDown={handleKeyDown}>
+    <div className={`modal ${visible ? 'active' : ''} ${className}`}>
       <div className="modal-overflow">
         <div className="modal-overlay" onClick={() => closable && onCancel()} />
 

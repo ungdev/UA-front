@@ -61,7 +61,6 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
 };
 
 export const saveToken = (token: string) => (dispatch: Dispatch) => {
-  console.log('saveToken', token);
   dispatch(setToken(token) as unknown as Action);
   setAuthorizationToken(token);
   localStorage.setItem('utt-arena-token', token);

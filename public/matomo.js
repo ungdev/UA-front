@@ -1,11 +1,11 @@
 var _paq = window._paq || [];
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
-(function () {
-  var u = '//matomo.uttnetgroup.fr/';
+(() => {
+  let u = '//matomo.uttnetgroup.fr/';
   _paq.push(['setTrackerUrl', u + 'piwik.php']);
   _paq.push(['setSiteId', 3]);
-  var d = document,
+  let d = document,
     g = d.createElement('script'),
     s = d.getElementsByTagName('script')[0];
   g.type = 'text/javascript';
