@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Icon } from '.';
 
 /**
  * Helper component displays a question mark icon with a tooltip containing the helper text.
@@ -7,7 +8,9 @@ import { ReactNode } from 'react';
  */
 const Helper = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
   <div className={`helper ${className}`}>
-    <i className="fas fa-question-circle helper-icon" tabIndex={0} />
+    <div tabIndex={0} className='helper-icon'>
+      <Icon name="question-circle" fill={false} />
+    </div>
 
     <div className="helper-content">{children}</div>
   </div>

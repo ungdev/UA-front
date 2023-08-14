@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
-import { Input, Title, Button, Card, QRCodeReader } from '@/components/UI/index';
+import { Input, Title, Button, Card, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserType } from '@/types';
@@ -31,7 +31,7 @@ const Entry = () => {
               !scannedUser ? (
                 <div className="scanner">
                   <div className="scanner-placeholder">
-                    <i className="fas fa-video scanner-placeholder-icon" />
+                    <Icon name="camera" fill={false} />
                     Veuillez activer votre caméra
                   </div>
                   <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
@@ -48,7 +48,7 @@ const Entry = () => {
                     <strong>Prénom :</strong> {scannedUser.firstname}
                   </p>
                   <p>
-                    {scannedUser.age === UserAge.child && <i className="fas fa-exclamation-triangle red" />}
+                    {scannedUser.age === UserAge.child && <Icon name="caution" fill={false} />}
                     <strong>Âge :</strong> {scannedUser.age === UserAge.child ? 'Mineur' : 'Majeur'}
                   </p>
                   <p>
@@ -90,7 +90,7 @@ const Entry = () => {
                     )}
                   </p>
                   <p>
-                    {scannedUser.customMessage && <i className="fas fa-exclamation-triangle red" />}
+                    {scannedUser.customMessage && <Icon name="caution" fill={false} />}
                     <strong>Infos complémentaires :</strong>{' '}
                     {scannedUser.customMessage || (
                       <>

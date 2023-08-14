@@ -3,6 +3,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 import loginModal from './loginModal';
 import login from './login';
 import register from './register';
+import redirect from './redirect';
 import team from './team';
 import tournament from './tournament';
 import carts from './carts';
@@ -16,6 +17,7 @@ export default combineReducers({
   loginModal,
   login,
   register,
+  redirect,
   team,
   tournament,
   carts,

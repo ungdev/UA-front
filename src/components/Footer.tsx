@@ -10,7 +10,12 @@ import { Icon } from './UI';
 export default function Footer() {
   return (
     <footer>
-      <img src={logo.src} alt="Logo UA23" />
+      <div>
+        <img src={logo.src} alt="Logo UA23" />
+        <div>
+          <p>© {new Date().getFullYear()} UTT Net Group</p>
+        </div>
+      </div>
       <div className="middle">
         <h3>Informations légales</h3>
         <Link href={'/legal'}>
@@ -19,6 +24,7 @@ export default function Footer() {
         <Link href={'/legal'}>
           <Button>Politique de confidentialité</Button>
         </Link>
+        
       </div>
       <div className="right">
         <h3>Plus d'informations</h3>

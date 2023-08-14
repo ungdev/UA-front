@@ -5,6 +5,7 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 import { setLoginModalVisible } from './loginModal';
+import { setRedirect } from '@/modules/redirect';
 
 const initialState = {};
 
@@ -35,15 +36,15 @@ export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) =
   return true;
 };
 
-export const validate = (slug: string) => async () => {
+export const validate = (slug: string) => async (dispatch: Dispatch) => {
   try {
     const res = await API.post('auth/validate/' + slug, undefined);
     localStorage.setItem('utt-arena-userid', res.user.id);
     localStorage.setItem('utt-arena-token', res.token);
 
-    (window as Window).location = '/dashboard';
+    dispatch(setRedirect('/dashboard'));
   } catch (err) {
-    (window as Window).location = '/';
+    dispatch(setRedirect('/'));
   }
 };
 

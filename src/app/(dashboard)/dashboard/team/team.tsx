@@ -4,7 +4,7 @@ import { setCaptain, acceptUser, kickUser, refuseUser, deleteTeam, fetchCurrentT
 
 import { fetchSettings } from '@/modules/settings';
 import { fetchSlots, fetchTournaments } from '@/modules/tournament';
-import { Title, Table, Button, Modal, Helper } from '@/components/UI';
+import { Title, Table, Button, Modal, Helper, Icon } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { TournamentWithTeams, UserType } from '@/types';
@@ -68,12 +68,12 @@ const Team = () => {
     team.players.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <i className="fas fa-crown gold-icon" /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name="crown" fill={false} /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
+      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} /> ,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
           <>
@@ -118,12 +118,12 @@ const Team = () => {
     team.coaches.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <i className="fas fa-crown gold-icon" /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name="crown" fill={false} /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <i className="fas fa-check green-icon" /> : <i className="fas fa-times red-icon" />,
+      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
           <>
@@ -288,11 +288,11 @@ const Team = () => {
                 <strong> : </strong>
                 {team.locked ? (
                   <>
-                    <i className="fas fa-check-circle green-icon"></i> Inscrit
+                    <Icon name="tick" fill={false} /> Inscrit
                   </>
                 ) : (
                   <>
-                    <i className="fas fa-exclamation-triangle red-icon"></i> Non inscrit
+                    <Icon name="caution" fill={false} /> Non inscrit
                   </>
                 )}
               </div>
@@ -305,7 +305,9 @@ const Team = () => {
             </>
           )}
         </div>
-        <i className="fas fa-sync-alt refresh" onClick={() => document.location.reload()} />
+        <div onClick={() => document.location.reload()}>
+          <Icon name="refresh" fill={false} />
+        </div>
       </div>
 
       {/* {team.lastInfo ? (

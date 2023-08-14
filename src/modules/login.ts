@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { hasOrgaPermission } from '@/utils/permission';
 import { RootState } from '@/lib/store';
 import { setTeam } from './team';
+import { setRedirect } from './redirect';
 
 interface LoginAction {
   token: string | null;
@@ -76,9 +77,9 @@ export const tryLogin = (user: { login: string; password: string }) => async (di
     toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
   }
   if (hasOrgaPermission(res.user.permissions)) {
-    //(window as Window).location = '/admin';
+    dispatch(setRedirect('/admin'));
   } else {
-    //(window as Window).location = '/dashboard';
+    dispatch(setRedirect('/dashboard'));
   }
   return true;
 };
@@ -92,7 +93,7 @@ export const logout = () => (dispatch: Dispatch) => {
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   localStorage.removeItem('utt-arena-admin-token');
-  (window as Window).location = '/';
+  dispatch(setRedirect('/'));
 };
 
 export const editUser = (data: UserEdit) => async (dispatch: Dispatch) => {
@@ -138,7 +139,7 @@ export const logBackToAdmin = () => async (dispatch: Dispatch) => {
   const res = await API.get('users/current');
   localStorage.setItem('utt-arena-userid', res.id);
   dispatch(setUser(res) as unknown as Action);
-  (window as Window).location = '/admin';
+  dispatch(setRedirect('/admin'));
 };
 
 export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootState) => {
@@ -147,7 +148,7 @@ export const connectAs = (id: string) => async (dispatch: Dispatch, state: RootS
   localStorage.setItem('utt-arena-userid', res.user.id);
   dispatch(saveToken(res.token) as unknown as Action);
   dispatch(setUser(res.user) as unknown as Action);
-  (window as Window).location = '/dashboard';
+  dispatch(setRedirect('/dashboard'));
 };
 
 export default loginSlice.reducer;

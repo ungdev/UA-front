@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const permissions = useAppSelector((state) => state.login.user! && state.login.user!.permissions);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
-  const isAdminPanel = pathname.startsWith('/dashboard/admin');
+  const isAdminPanel = pathname.startsWith('/admin');
 
   // Define state variables
   const [isLoggedIn, setIsLoggedIn] = useState(false);

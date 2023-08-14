@@ -5,7 +5,7 @@ import { animated, useTransition } from '@react-spring/web';
 
 import { setType } from '@/modules/login';
 
-import { Input, Button, Table } from '@/components/UI';
+import { Input, Button, Table, Icon } from '@/components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
@@ -83,7 +83,7 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <i className="fab fa-discord"></i>&nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
+          <Icon name="discord" fill={false} />&nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
         </Button>
       </a>
     </>
@@ -98,7 +98,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <i className="fa fa-gamepad"></i>
+          <Icon name="gamepad" fill={false} />
           <p>Joueur</p>
         </div>
 
@@ -108,7 +108,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <i className="fa fa-headset"></i>
+          <Icon name="headset" fill={false} />
           <p>Coach / Manager</p>
         </div>
 
@@ -118,7 +118,7 @@ const Register = () => {
             setStep(step + 3);
             setTournamentSolo(true);
           }}>
-          <i className="fa fa-user"></i>
+          <Icon name="user" fill={false} />
           <p>Spectateur</p>
         </div>
       </div>
@@ -185,7 +185,7 @@ const Register = () => {
             setCreateTeam(true);
             setStep(step + 1);
           }}>
-          <i className="fas fa-plus-square"></i>
+          <Icon name="plus-square" fill={false} />
           <p>Créer une équipe</p>
         </div>
 
@@ -194,7 +194,7 @@ const Register = () => {
             setCreateTeam(false);
             setStep(step + 1);
           }}>
-          <i className="fas fa-sign-in-alt"></i>
+          <Icon name="signin" fill={false} />
           <p>Rejoindre une équipe</p>
         </div>
       </div>

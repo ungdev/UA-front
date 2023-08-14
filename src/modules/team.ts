@@ -6,6 +6,7 @@ import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import { TeamWithUsers, User, UserType } from '@/types';
 import { setUser } from './login';
+import { setRedirect } from './redirect';
 
 const initialState: TeamWithUsers | null = {} as TeamWithUsers;
 
@@ -37,7 +38,7 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, sta
   }
   dispatch(setTeam(res));
   dispatch(setUser({ ...user, teamId: res.id, type: 'player' }));
-  (window as Window).location = '/dashboard/team';
+  dispatch(setRedirect('/dashboard/team'));
 };
 
 export const joinTeam =
@@ -103,7 +104,7 @@ export const deleteTeam = () => async (dispatch: Dispatch, state: RootState) => 
   dispatch(setUser({ ...user, teamId: null, type: 'none' }));
   dispatch(setTeam(null));
   toast.success("L'équipe a bien été supprimée");
-  (window as Window).location = '/dashboard/register';
+  dispatch(setRedirect('/dashboard/register'));
 };
 
 export const lockTeam = () => async (dispatch: Dispatch) => {

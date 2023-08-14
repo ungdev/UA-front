@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-import { Input, Button, Title, Collapse } from '@/components/UI';
+import { Input, Button, Title, Collapse, Icon } from '@/components/UI';
 import { editUser } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
@@ -127,7 +127,7 @@ const Account = () => {
         )}
         <a href={discordLink}>
           <Button primary>
-            <i className="fab fa-discord"></i>&nbsp;&nbsp;
+            <Icon name="discord" fill={false} />&nbsp;&nbsp;
             {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
           </Button>
         </a>

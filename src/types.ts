@@ -30,10 +30,10 @@ export interface UserAttendant {
 }
 
 export enum Permission {
-  stream,
-  entry,
-  anim,
-  admin,
+  stream = 'stream',
+  entry = 'entry',
+  anim = 'anim',
+  admin = 'admin',
 }
 
 export interface Team {
@@ -206,23 +206,23 @@ export interface TournamentWithTeams extends Tournament {
 }
 
 export enum UserType {
-  'player',
-  'coach',
-  'spectator',
-  'orga',
-  'attendant',
+  player = 'player',
+  coach = 'coach',
+  spectator = 'spectator',
+  orga = 'orga',
+  attendant = 'attendant',
 }
 
 export enum UserAge {
-  child,
-  adult,
+  child = 'child',
+  adult = 'adult',
 }
 
 export enum TransactionState {
-  pending,
-  paid,
-  canceled,
-  refused,
-  refunded,
-  authorization,
+  pending = 'pending',
+  paid = 'paid',
+  canceled = 'canceled',
+  refused = 'refused',
+  refunded = 'refunded',
+  authorization = 'authorization',
 }

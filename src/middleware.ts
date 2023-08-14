@@ -17,6 +17,7 @@ export function generateCsp() {
         `'nonce-${nonce}'`,
         "'strict-dynamic'",
         "'unsafe-eval'",
+        "'unsafe-inline'",
       ],
     },
     {
@@ -25,24 +26,12 @@ export function generateCsp() {
     },
     {
       name: 'connect-src',
-      values: [
-        "'self'",
-        process.env.NEXT_PUBLIC_API_URL,
-        process.env.NEXT_PUBLIC_UPLOADS_URL,
-        'https://*.uttnetgroup.fr',
-      ],
+      values: ["'self'", process.env.NEXT_PUBLIC_API_URL, 'arena.utt.fr', '*.uttnetgroup.fr'],
     },
     { name: 'font-src', values: ["'self'", 'data:'] },
     {
       name: 'img-src',
-      values: [
-        "'self'",
-        'data:',
-        process.env.NEXT_PUBLIC_UPLOADS_URL,
-        'https://arena.utt.fr',
-        '*.picsum.photos',
-        'https://picsum.photos',
-      ],
+      values: ["'self'", 'data:', 'https://arena.utt.fr', '*.picsum.photos', 'https://picsum.photos'],
     },
     { name: 'worker-src', values: ["'self'", 'blob:'] },
     { name: 'frame-ancestors', values: ["'none'"] },

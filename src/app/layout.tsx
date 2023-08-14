@@ -6,7 +6,6 @@ import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl } from '@/utils/environment';
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
-import 'simplebar/dist/simplebar.min.css';
 import 'modern-normalize/modern-normalize.css';
 import Script from 'next/script';
 import { Montserrat, Lexend } from 'next/font/google';

@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components/UI';
+import { Button, Icon } from '@/components/UI';
 import { setType } from '@/modules/login';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
@@ -16,11 +16,11 @@ const Spectator = () => {
         <strong>Statut : </strong>{' '}
         {hasPaid ? (
           <>
-            <i className="fas fa-check-circle green-icon"></i> Payé
+           <Icon name="tick" fill={false} /> Payé
           </>
         ) : (
           <>
-            <i className="fas fa-exclamation-triangle red-icon"></i> Non payé
+            <Icon name="caution" fill={false} /> Non payé
           </>
         )}
       </p>

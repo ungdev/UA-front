@@ -25,7 +25,7 @@ function BoxContainer({
   return (
     <div className={`box-container ${className}`}>
       <div className={`box-title ${color}`}>
-        <Icon name="close" fill={false} strokeWidth={4} />
+        <Icon name="cross" fill={false} strokeWidth={4} />
         {title}
       </div>
       <div className={'box-content ' + (!padding ? 'no-padding' : '')}>{children}</div>

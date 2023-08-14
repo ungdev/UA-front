@@ -1,12 +1,12 @@
 'use client';
 import { ReactNode, Suspense, useEffect, useState } from 'react';
-import { ReadonlyURLSearchParams, usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, redirect, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin } from '@/modules/login';
+import { autoLogin, setLoading } from '@/modules/login';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
@@ -14,6 +14,7 @@ import { type Action } from '@reduxjs/toolkit';
 import { Permission, UserType } from '@/types';
 import { hasOrgaPermission } from '@/utils/permission';
 import Loading from '@/app/loader';
+import { setRedirect } from '@/modules/redirect';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -38,6 +39,20 @@ export function NavigationEvents() {
   return null;
 }
 
+const RedirectHandler = () => {
+  const redirectLocation = useAppSelector((state) => state.redirect);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (redirectLocation) {
+      dispatch(setRedirect(null));
+      redirect(redirectLocation);
+    }
+  }, [redirectLocation]);
+
+  return <></>;
+};
+
 /**
  * Wrapper component that provides common layout and functionality for all pages.
  * @param children The child components to be rendered within the layout.
@@ -47,7 +62,6 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   // Import necessary hooks and modules
   const query: SearchParams = useSearchParams();
   const pathname = usePathname();
-  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -87,47 +101,38 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const isLoading = useAppSelector((state) => state.login.loading);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
-  // Handle redirections
-  let redirect: string | null = null;
-
-  if (isAdminPanel && !isLoggedIn) {
-    redirect = '/';
-  } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
-    redirect = '/';
-  } else if (isLoggedIn) {
-    if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-      redirect = '/dashboard/team';
-    } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
-      redirect = '/dashboard';
-    } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-      redirect = '/dashboard/spectator';
-    } else if (!isSpectator && !hasTeam) {
-      if (
-        pathname === '/dashboard' ||
-        (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+  useEffect(() => {
+    if (isAdminPanel && !isLoggedIn) {
+      dispatch(setRedirect('/'));
+    } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
+      dispatch(setRedirect('/'));
+    } else if (isLoggedIn) {
+      if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+        dispatch(setRedirect('/dashboard/team'));
+      } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
+        dispatch(setRedirect('/dashboard'));
+      } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
+        dispatch(setRedirect('/dashboard/spectator'));
+      } else if (!isSpectator && !hasTeam) {
+        if (
+          pathname === '/dashboard' ||
+          (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+        ) {
+          dispatch(setRedirect('/dashboard/register'));
+        }
+      }
+      if (!isAdmin && isAdminPanel) {
+        dispatch(setRedirect('/dashboard'));
+      } else if (
+        pathname === '/admin' &&
+        (permissions.includes(Permission.admin) || permissions.includes(Permission.anim))
       ) {
-        redirect = '/dashboard/register';
+        dispatch(setRedirect('/admin/users'));
+      } else if (pathname === '/admin' && permissions.includes(Permission.entry)) {
+        dispatch(setRedirect('/admin/scan'));
       }
     }
-    if (!isAdmin && isAdminPanel) {
-      redirect = '/dashboard';
-    } else if (
-      pathname === '/admin' &&
-      (permissions.includes(Permission.admin) || permissions.includes(Permission.anim))
-    ) {
-      redirect = '/admin/users';
-    } else if (pathname === '/admin' && permissions.includes(Permission.entry)) {
-      redirect = '/admin/scan';
-    }
-  }
-
-  // Redirect to desired path
-  useEffect(() => {
-    if (redirect && !isLoading) {
-      router.replace(redirect);
-      return;
-    }
-  }, [redirect, isLoading]);
+  }, [isLoggedIn, isLoginAllowed, isShopAllowed, isAdmin, isSpectator, hasTeam, pathname]);
 
   // TODO: implement a special route for the oauth callback
   useEffect(() => {
@@ -171,31 +176,27 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     dispatch(autoLogin() as unknown as Action);
   }, []);
 
-  // Do not display the page content if the user will be redirected
-  if (isLoading || redirect || (isDashboard && !isLoggedIn)) {
-    return (
-      <>
-        <CookieConsent />
-        <main>
-          <Loading />
-        </main>
-      </>
-    );
-  }
-
   // Render the layout with child components
   return (
     <>
       <CookieConsent />
-      <div className="page-container">
-        <Header connected={isLoggedIn} />
-        <main>{children}</main>
-        <Footer />
-      </div>
+      {isLoading || (isDashboard && !isLoggedIn) ? (
+        <main>
+          <Loading />
+        </main>
+      ) : (
+        <div className="page-container">
+          <Header connected={isLoggedIn} />
+          <main>{children}</main>
+          <Footer />
+        </div>
+      )}
       {/* Used to detect navigation events */}
       <Suspense fallback={null}>
         <NavigationEvents />
       </Suspense>
+      {/* Used to redirect the user */}
+      <RedirectHandler />
     </>
   );
 }

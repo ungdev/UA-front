@@ -5,6 +5,7 @@ import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/U
 import { sendMessage } from '@/utils/contact';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useAppSelector } from '@/lib/hooks';
 
 const options = [
   'Tournoi League of Legends',
@@ -71,7 +72,11 @@ const Help = () => {
 
   const pathName = usePathname();
 
+  const user = useAppSelector((state) => state.login.user);
+
+
   useEffect(() => {
+    // Scroll to the element if the hash is present in the url
     const hash = window.location.hash;
     if (hash) {
       const element = document.getElementById(hash.substring(1));
@@ -79,6 +84,11 @@ const Help = () => {
         // Scroll to the element to make it center on the page
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
+    }
+
+    if (user) {
+      setName(user.firstname + ' ' + user.lastname);
+      setEmail(user.email);
     }
   }, []);
 
