@@ -32,16 +32,18 @@ export default function Header({ connected = false }: { connected?: boolean }) {
   const leftContent = (
     <>
       <Link href="/" onClick={closeBurger}>
-        <Button className={`home ${pathname === '/' && 'current'}`}>Accueil</Button>
+        <Button className={`home ${pathname && pathname === '/' && 'current'}`}>Accueil</Button>
       </Link>
       <Link href="/event" onClick={closeBurger}>
-        <Button className={`event ${pathname === '/event' && 'current'}`}>Événement</Button>
+        <Button className={`event ${pathname && pathname === '/event' && 'current'}`}>Événement</Button>
       </Link>
       <Link href="/tournaments" onClick={closeBurger}>
-        <Button className={`tournament ${pathname.startsWith('/tournaments') && 'current'}`}>Tournois</Button>
+        <Button className={`tournament ${pathname && pathname.startsWith('/tournaments') && 'current'}`}>
+          Tournois
+        </Button>
       </Link>
       <Link href="/help" onClick={closeBurger}>
-        <Button className={`help ${pathname === '/help' && 'current'}`}>Aide</Button>
+        <Button className={`help ${pathname && pathname === '/help' && 'current'}`}>Aide</Button>
       </Link>
     </>
   );
@@ -49,7 +51,7 @@ export default function Header({ connected = false }: { connected?: boolean }) {
   const rightContent = (
     <>
       <Link href="/about" onClick={closeBurger}>
-        <Button className={`about ${pathname === '/about' && 'current'}`}>A propos</Button>
+        <Button className={`about ${pathname && pathname === '/about' && 'current'}`}>A propos</Button>
       </Link>
 
       {connected ? (

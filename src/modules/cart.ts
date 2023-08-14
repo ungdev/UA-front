@@ -62,7 +62,7 @@ export const loadCart = () => {
           cart.tickets.userIds = (localStorage.getItem(key)!.match(/.{6}/g) || []) as string[];
           break;
         case 'cart.attendant.firstname':
-          cart.tickets.attendant = {  
+          cart.tickets.attendant = {
             ...cart.tickets.attendant!,
             firstname: localStorage.getItem('cart.attendant.firstname')!,
           };

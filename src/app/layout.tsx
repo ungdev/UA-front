@@ -113,10 +113,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${montserrat.variable} ${lexend.variable}`}>
       <body>
-        <Script src="/matomo.js" integrity={
-          "sha256-qpIQZ4vQ88ngn0kIVnWadKU6lRy11BWgXV7IJRxzd2Q="
-        } />
-        <Providers>
+        <Script src="/matomo.js" integrity={'sha256-qpIQZ4vQ88ngn0kIVnWadKU6lRy11BWgXV7IJRxzd2Q='} />
+        <Providers persisted={true}>
           <Wrapper>{children}</Wrapper>
         </Providers>
         <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />

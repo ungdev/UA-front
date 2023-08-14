@@ -16,6 +16,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Put it out of view and then scroll down to it',
+    children: <div>Put it out of view and then scroll down to it</div>,
   },
 };

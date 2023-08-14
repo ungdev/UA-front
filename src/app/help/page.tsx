@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';
@@ -71,6 +71,17 @@ const Help = () => {
 
   const pathName = usePathname();
 
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        // Scroll to the element to make it center on the page
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  }, []);
+
   const onSubmit = async () => {
     const isValid = await sendMessage(name, email, subject, message);
 
@@ -101,7 +112,14 @@ const Help = () => {
                   .toLowerCase()
                   .normalize('NFD')
                   .replace(/[\u0300-\u036f]/g, '')}-${index}`}
-                link={currentLink}>
+                link={currentLink}
+                initVisible={
+                  window.location.hash ===
+                  `#${category
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')}-${index}`
+                }>
                 <p>{question.answer}</p>
               </Collapse>
             ))}
