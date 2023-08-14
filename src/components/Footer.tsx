@@ -24,7 +24,6 @@ export default function Footer() {
         <Link href={'/legal'}>
           <Button>Politique de confidentialité</Button>
         </Link>
-        
       </div>
       <div className="right">
         <h3>Plus d'informations</h3>

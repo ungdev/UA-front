@@ -74,7 +74,6 @@ const Help = () => {
 
   const user = useAppSelector((state) => state.login.user);
 
-
   useEffect(() => {
     // Scroll to the element if the hash is present in the url
     const hash = window.location.hash;

@@ -73,7 +73,7 @@ const Team = () => {
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} /> ,
+      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
           <>

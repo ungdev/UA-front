@@ -83,7 +83,8 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <Icon name="discord" fill={false} />&nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
+          <Icon name="discord" fill={false} />
+          &nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
         </Button>
       </a>
     </>

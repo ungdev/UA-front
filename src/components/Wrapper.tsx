@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin, setLoading } from '@/modules/login';
+import { autoLogin } from '@/modules/login';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
