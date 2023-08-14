@@ -33,11 +33,21 @@ export function generateCsp() {
       ],
     },
     { name: 'font-src', values: ["'self'", 'data:'] },
-    { name: 'img-src', values: ["'self'", 'data:', process.env.NEXT_PUBLIC_UPLOADS_URL, "https://arena.utt.fr","*.picsum.photos", "https://picsum.photos"] },
+    {
+      name: 'img-src',
+      values: [
+        "'self'",
+        'data:',
+        process.env.NEXT_PUBLIC_UPLOADS_URL,
+        'https://arena.utt.fr',
+        '*.picsum.photos',
+        'https://picsum.photos',
+      ],
+    },
     { name: 'worker-src', values: ["'self'", 'blob:'] },
     { name: 'frame-ancestors', values: ["'none'"] },
     { name: 'form-action', values: ["'self'"] },
-    { name: 'frame-src', values: ["'self'", "https://www.youtube.com", "*.google.com"] },
+    { name: 'frame-src', values: ["'self'", 'https://www.youtube.com', '*.google.com'] },
   ];
 
   const cspString = csp

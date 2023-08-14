@@ -1,5 +1,5 @@
 'use client';
-import { ReactNode, KeyboardEvent, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import Button from './Button';
 import Divider from './Divider';
 
