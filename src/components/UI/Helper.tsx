@@ -9,7 +9,7 @@ import { Icon } from '.';
 const Helper = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
   <div className={`helper ${className}`}>
     <div tabIndex={0} className="helper-icon">
-      <Icon name="question-circle" fill={false} />
+      <Icon name="question-circle" />
     </div>
 
     <div className="helper-content">{children}</div>

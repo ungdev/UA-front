@@ -4,12 +4,12 @@ const Icon = ({
   name,
   strokeWidth = 1.5,
   className = '',
-  fill,
+  fill = false,
 }: {
   name: string;
   strokeWidth?: number;
   className?: string;
-  fill: boolean;
+  fill?: boolean;
 }) => {
   let icon: ReactNode;
 

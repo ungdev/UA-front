@@ -5,7 +5,7 @@ const TextBlock = ({
   title,
   children,
   images,
-  left,
+  left = false,
 }: {
   title: string;
   children: React.ReactNode;

@@ -65,7 +65,7 @@ const Collapse = ({
       <div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
         <div className="left">
           <div className="collapse-arrow">
-            <Icon name="chevron-bottom" fill={false} strokeWidth={2.5} />
+            <Icon name="chevron-bottom" strokeWidth={2.5} />
           </div>
           {title}
         </div>
@@ -73,7 +73,7 @@ const Collapse = ({
         {copyLink && (
           <div className="right">
             <button type="button" className="copy-link" onClick={copyLink}>
-              <Icon name="link" fill={false} strokeWidth={2} />
+              <Icon name="link" strokeWidth={2} />
             </button>
           </div>
         )}

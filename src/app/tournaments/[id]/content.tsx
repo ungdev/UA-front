@@ -4,7 +4,7 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import PageSwitcherAnimation from '@/components/landing/PageSwitcherAnimation';
+import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 import { useState } from 'react';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
@@ -14,11 +14,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
   document.documentElement.style.setProperty('--background-image', `url("${tournament.backgroundImage}")`);
 
   return (
-    <PageSwitcherAnimation nextPage={goBack ? '' : undefined} comesFrom={tournamentId}>
+    <TournamentSwitcherAnimation nextPage={goBack ? '' : undefined} previousPage={tournamentId}>
       <div className="tournament-container">
         <Link href="" className="back">
           <Button onClick={() => setGoBack(true)}>
-            <Icon name="chevron-left" fill={false} strokeWidth={3}></Icon>
+            <Icon name="chevron-left" strokeWidth={3}></Icon>
             Retour aux tournois
           </Button>
         </Link>
@@ -45,6 +45,6 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           fullness={animate ? (tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers : 0}
         />
       </div>
-    </PageSwitcherAnimation>
+    </TournamentSwitcherAnimation>
   );
 }

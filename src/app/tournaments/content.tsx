@@ -5,7 +5,7 @@ import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
 import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
-import PageSwitcherAnimation from '@/components/landing/PageSwitcherAnimation';
+import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 
 export const TournamentHome = ({
   animations,
@@ -177,14 +177,14 @@ export const TournamentHome = ({
 
   if (renderedTournamentIndex === -1) {
     return (
-      <PageSwitcherAnimation nextPage={undefined}>
+      <TournamentSwitcherAnimation nextPage={undefined}>
         <div className={`tournament-container ${fading ? 'fading' : ''}`} />
-      </PageSwitcherAnimation>
+      </TournamentSwitcherAnimation>
     );
   }
 
   return (
-    <PageSwitcherAnimation nextPage={!nextUrl ? undefined : nextUrl}>
+    <TournamentSwitcherAnimation nextPage={!nextUrl ? undefined : nextUrl}>
       <div className={`tournament-container ${fading ? 'fading' : ''}`}>
         <div className="page-title">
           <Divider is_white />
@@ -195,12 +195,12 @@ export const TournamentHome = ({
           <div className="tournament-scroll-container">
             <div className="arrow hidden" ref={leftArrow}>
               <Button onClick={() => scrollInTournamentList(true)}>
-                <Icon name="chevron-up" fill={false} strokeWidth={3} />
+                <Icon name="chevron-up" strokeWidth={3} />
               </Button>
             </div>
             <div className="arrow" ref={rightArrow}>
               <Button onClick={() => scrollInTournamentList(false)}>
-                <Icon name="chevron-bottom" fill={false} strokeWidth={3} />
+                <Icon name="chevron-bottom" strokeWidth={3} />
               </Button>
             </div>
             <div className="tournaments-list fade-bottom" ref={tournamentList} onScroll={onTournamentListScroll}>
@@ -239,6 +239,6 @@ export const TournamentHome = ({
           </div>
         </div>
       </div>
-    </PageSwitcherAnimation>
+    </TournamentSwitcherAnimation>
   );
 };

@@ -16,11 +16,11 @@ const Spectator = () => {
         <strong>Statut : </strong>{' '}
         {hasPaid ? (
           <>
-            <Icon name="tick" fill={false} /> Payé
+            <Icon name="tick" /> Payé
           </>
         ) : (
           <>
-            <Icon name="caution" fill={false} /> Non payé
+            <Icon name="caution" /> Non payé
           </>
         )}
       </p>

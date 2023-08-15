@@ -74,11 +74,11 @@ const Home = () => {
           </TextBlock>
           <div className="more-info">
             <div className="more-info-container">
-              <Icon name="map-pin" fill={false} />
+              <Icon name="map-pin" />
               TROYES
             </div>
             <div className="more-info-container">
-              <Icon name="calendar" fill={false} />
+              <Icon name="calendar" />
               1, 2, 3 Décembre 2023
             </div>
           </div>

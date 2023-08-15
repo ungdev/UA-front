@@ -68,12 +68,12 @@ const Team = () => {
     team.players.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <Icon name="crown" fill={false} /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name="crown" /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} />,
+      hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
           <>
@@ -118,12 +118,12 @@ const Team = () => {
     team.coaches.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <Icon name="crown" fill={false} /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name="crown" /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <Icon name="tick" fill={false} /> : <Icon name="cross" fill={false} />,
+      hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
           <>
@@ -288,11 +288,11 @@ const Team = () => {
                 <strong> : </strong>
                 {team.locked ? (
                   <>
-                    <Icon name="tick" fill={false} /> Inscrit
+                    <Icon name="tick" /> Inscrit
                   </>
                 ) : (
                   <>
-                    <Icon name="caution" fill={false} /> Non inscrit
+                    <Icon name="caution" /> Non inscrit
                   </>
                 )}
               </div>
@@ -306,7 +306,7 @@ const Team = () => {
           )}
         </div>
         <div onClick={() => document.location.reload()}>
-          <Icon name="refresh" fill={false} />
+          <Icon name="refresh" />
         </div>
       </div>
 

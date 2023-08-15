@@ -4,12 +4,19 @@ import { TournamentInformation } from '@/app/tournaments/[id]/content';
 import { useRouter } from 'next/navigation';
 import { TournamentHome } from '@/app/tournaments/content';
 
-export default function PageSwitcherAnimation({
-  comesFrom,
-  nextPage,
+/**
+ * Renders a component that animates the transition between two tournament pages.
+ * @param previousPage - The page that the user is coming from.
+ * @param nextPage - The page that the user is going to.
+ * @param children - The child components to be rendered.
+ * @returns The TournamentSwitcherAnimation component.
+ */
+export default function TournamentSwitcherAnimation({
+  previousPage = '',
+  nextPage = '',
   children,
 }: {
-  comesFrom?: string;
+  previousPage?: string;
   nextPage?: string | undefined;
   children: ReactNode;
 }) {
@@ -51,16 +58,16 @@ export default function PageSwitcherAnimation({
   // We need to render the new page as it will be displayed after the redirection, to avoid a too big reload which will move the camera
   if (redirecting) {
     if (redirecting === 2) {
-      const queryParams = nextPage === '' ? `?tournament=${comesFrom}&firstAnimation=${false}` : '';
+      const queryParams = nextPage === '' ? `?tournament=${previousPage}&firstAnimation=${false}` : '';
       router.push(`/tournaments/${nextPage}${queryParams}`, {
         scroll: false,
       });
     } else setRedirecting(2);
-    if (nextPage === '') return <TournamentHome animations={'none'} defaultTournamentId={comesFrom} />;
+    if (nextPage === '') return <TournamentHome animations={'none'} defaultTournamentId={previousPage} />;
     return <TournamentInformation tournamentId={nextPage} animate={false} />;
   }
 
-  const left = nextPage === '' ? <TournamentHome animations={'none'} defaultTournamentId={comesFrom} /> : children;
+  const left = nextPage === '' ? <TournamentHome animations={'none'} defaultTournamentId={previousPage} /> : children;
   const right = nextPage === '' ? children : <TournamentInformation tournamentId={nextPage} animate={false} />;
   const style = {
     left: `${nextPage === '' ? translation - window.innerWidth : -translation}px`,

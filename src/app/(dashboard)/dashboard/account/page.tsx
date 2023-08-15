@@ -3,12 +3,13 @@ import React, { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
 import { Input, Button, Title, Collapse, Icon } from '@/components/UI';
-import { editUser } from '@/modules/login';
+import { editUser, isFakeConnection, logBackToAdmin, logout } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserEdit, UserType } from '@/types';
+import { deleteCart } from '@/modules/cart';
 
 const Account = () => {
   const dispatch = useAppDispatch();
@@ -127,11 +128,25 @@ const Account = () => {
         )}
         <a href={discordLink}>
           <Button primary>
-            <Icon name="discord" fill={false} />
+            <Icon name="discord" />
             &nbsp;&nbsp;
             {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
           </Button>
         </a>
+
+        <Button secondary
+          className="logout"
+          onClick={() => {
+            // Remove the cart from the local storage, to avoid moving carts from one account to another
+            deleteCart();
+            if (isFakeConnection()) {
+              dispatch(logBackToAdmin() as unknown as Action);
+            } else {
+              dispatch(logout() as unknown as Action);
+            }
+          }}>
+          Déconnexion
+        </Button>
       </div>
       <hr />
       {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.locked)) && (

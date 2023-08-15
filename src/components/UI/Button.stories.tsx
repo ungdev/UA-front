@@ -158,6 +158,14 @@ export const VeryLong: Story = {
       _veryLongButtonPressed = true;
     },
   },
+  render: (args) => {
+    return (
+      // To demonstrate the veryLong button, we need to set a width on the container
+      <div style={{ width: '50vw' }}>
+        <Button {...args} />
+      </div>
+    );
+  },    
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button');

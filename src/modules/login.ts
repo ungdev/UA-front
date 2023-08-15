@@ -51,7 +51,7 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
       dispatch(setUser(res) as unknown as Action);
     } catch (err) {
       dispatch(setLoading(false) as unknown as Action);
-
+      dispatch(setUser(null) as unknown as Action);
       // Delete not working values
       localStorage.removeItem('utt-arena-token');
       localStorage.removeItem('utt-arena-userid');
@@ -87,7 +87,7 @@ export const tryLogin = (user: { login: string; password: string }) => async (di
 export const logout = () => (dispatch: Dispatch) => {
   toast('Tu as été déconnecté');
   dispatch(setToken(null) as unknown as Action);
-  dispatch(setUser({} as User) as unknown as Action);
+  dispatch(setUser(null) as unknown as Action);
   dispatch(setTeam(null) as unknown as Action);
   setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');

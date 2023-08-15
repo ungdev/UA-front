@@ -17,7 +17,7 @@ const CartItem = ({
     <div className="cart-item">
       <div className="item-name">{itemName}</div>
       <Button className="remove-btn" onClick={onRemove}>
-        <Icon name="trash" fill={false} />
+        <Icon name="trash" />
       </Button>
       <div>
         {quantity} x{' '}

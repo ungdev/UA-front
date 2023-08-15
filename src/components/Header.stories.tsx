@@ -30,3 +30,10 @@ export const Connected: Story = {
     connected: true,
   },
 };
+
+export const Admin: Story = {
+  args: {
+    connected: true,
+    admin: true,
+  },
+};

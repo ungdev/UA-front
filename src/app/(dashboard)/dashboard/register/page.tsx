@@ -83,7 +83,7 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <Icon name="discord" fill={false} />
+          <Icon name="discord" />
           &nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
         </Button>
       </a>
@@ -99,7 +99,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <Icon name="gamepad" fill={false} />
+          <Icon name="gamepad" />
           <p>Joueur</p>
         </div>
 
@@ -109,7 +109,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <Icon name="headset" fill={false} />
+          <Icon name="headset" />
           <p>Coach / Manager</p>
         </div>
 
@@ -119,7 +119,7 @@ const Register = () => {
             setStep(step + 3);
             setTournamentSolo(true);
           }}>
-          <Icon name="user" fill={false} />
+          <Icon name="user" />
           <p>Spectateur</p>
         </div>
       </div>
@@ -186,7 +186,7 @@ const Register = () => {
             setCreateTeam(true);
             setStep(step + 1);
           }}>
-          <Icon name="plus-square" fill={false} />
+          <Icon name="plus-square" />
           <p>Créer une équipe</p>
         </div>
 
@@ -195,7 +195,7 @@ const Register = () => {
             setCreateTeam(false);
             setStep(step + 1);
           }}>
-          <Icon name="signin" fill={false} />
+          <Icon name="signin" />
           <p>Rejoindre une équipe</p>
         </div>
       </div>

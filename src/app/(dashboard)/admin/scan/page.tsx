@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useRef } from 'react';
 
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
@@ -31,7 +32,7 @@ const Entry = () => {
               !scannedUser ? (
                 <div className="scanner">
                   <div className="scanner-placeholder">
-                    <Icon name="camera" fill={false} />
+                    <Icon name="camera" />
                     Veuillez activer votre caméra
                   </div>
                   <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
@@ -48,7 +49,7 @@ const Entry = () => {
                     <strong>Prénom :</strong> {scannedUser.firstname}
                   </p>
                   <p>
-                    {scannedUser.age === UserAge.child && <Icon name="caution" fill={false} />}
+                    {scannedUser.age === UserAge.child && <Icon name="caution" />}
                     <strong>Âge :</strong> {scannedUser.age === UserAge.child ? 'Mineur' : 'Majeur'}
                   </p>
                   <p>
@@ -90,7 +91,7 @@ const Entry = () => {
                     )}
                   </p>
                   <p>
-                    {scannedUser.customMessage && <Icon name="caution" fill={false} />}
+                    {scannedUser.customMessage && <Icon name="caution" />}
                     <strong>Infos complémentaires :</strong>{' '}
                     {scannedUser.customMessage || (
                       <>

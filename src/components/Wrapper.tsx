@@ -186,7 +186,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
         </main>
       ) : (
         <div className="page-container">
-          <Header connected={isLoggedIn} />
+          <Header connected={isLoggedIn} admin={isAdmin} />
           <main>{children}</main>
           <Footer />
         </div>
