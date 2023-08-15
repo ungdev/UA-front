@@ -12,8 +12,8 @@ import { TournamentHome } from '@/app/tournaments/content';
  * @returns The TournamentSwitcherAnimation component.
  */
 export default function TournamentSwitcherAnimation({
-  previousPage = '',
-  nextPage = '',
+  previousPage,
+  nextPage,
   children,
 }: {
   previousPage?: string;

@@ -14,7 +14,7 @@ const meta = {
   render: (args) => {
     return (
       <div style={{ height: 500, width: 500, marginTop: 200 }}>
-        <DoubleImage {...args}/>
+        <DoubleImage {...args} />
       </div>
     );
   },

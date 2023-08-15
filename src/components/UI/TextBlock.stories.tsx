@@ -7,11 +7,8 @@ const meta = {
   tags: ['autodocs'],
   args: {
     children: 'TextBlock',
-    images: [
-      'https://picsum.photos/seed/1/1920/1080',
-      'https://picsum.photos/seed/2/1920/1080',
-    ],
-    title: "Testing"
+    images: ['https://picsum.photos/seed/1/1920/1080', 'https://picsum.photos/seed/2/1920/1080'],
+    title: 'Testing',
   },
 } satisfies Meta<typeof TextBlock>;
 

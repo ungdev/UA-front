@@ -165,7 +165,7 @@ export const VeryLong: Story = {
         <Button {...args} />
       </div>
     );
-  },    
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button');

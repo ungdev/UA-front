@@ -134,7 +134,8 @@ const Account = () => {
           </Button>
         </a>
 
-        <Button secondary
+        <Button
+          secondary
           className="logout"
           onClick={() => {
             // Remove the cart from the local storage, to avoid moving carts from one account to another

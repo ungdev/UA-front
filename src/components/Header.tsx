@@ -15,7 +15,7 @@ import { usePathname } from 'next/navigation';
  * @param connected Whether the user is connected or not.
  * @returns JSX.Element
  */
-export default function Header({ connected = false, admin = false }: { connected?: boolean, admin?: boolean }) {
+export default function Header({ connected = false, admin = false }: { connected?: boolean; admin?: boolean }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const dispatch = useAppDispatch();
   const pathname = usePathname();
@@ -57,7 +57,7 @@ export default function Header({ connected = false, admin = false }: { connected
       {connected ? (
         <Link href={admin ? '/admin' : '/dashboard'} onClick={closeBurger}>
           <Button secondary className={`dashboard`}>
-          {admin ? 'Admin' : 'Dashboard'}
+            {admin ? 'Admin' : 'Dashboard'}
           </Button>
         </Link>
       ) : (

@@ -13,15 +13,15 @@ const meta = {
     layout: 'centered',
     backgrounds: {
       default: 'dark',
-    }
+    },
   },
   render: (args) => {
     return (
       <div style={{ width: 100, height: 100 }}>
         <Icon {...args} />
       </div>
-    )
-  }
+    );
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
@@ -32,11 +32,11 @@ export const Default: Story = {};
 export const Filled: Story = {
   args: {
     fill: true,
-  }
+  },
 };
 
 export const WideStroke: Story = {
   args: {
     strokeWidth: 4,
-  }
-}
+  },
+};

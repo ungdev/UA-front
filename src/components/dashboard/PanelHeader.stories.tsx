@@ -17,5 +17,5 @@ export const Default: Story = {
       { title: 'Settings', href: '/settings' },
     ],
     title: 'Dashboard',
-  }
+  },
 };

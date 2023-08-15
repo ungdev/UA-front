@@ -16,5 +16,5 @@ export const Default: Story = {
     unitPrice: 100,
     reducedUnitPrice: null,
     onRemove: () => {},
-  }
+  },
 };

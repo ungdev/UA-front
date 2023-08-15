@@ -17,8 +17,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     onCode(code: QRCode) {
-      alert(code);
+      console.log(code);
     },
     className: 'test',
-  }
+  },
 };

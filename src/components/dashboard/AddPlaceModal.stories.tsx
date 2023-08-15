@@ -16,12 +16,13 @@ const meta = {
     hasTicket: false,
     teamMembersWithoutTicket: [],
     needsAttendant: false,
-    onQuit: (placeFor, placeId) => {},
+    onQuit: (placeFor, placeId) => {
+      console.log(placeFor, placeId);
+    },
   },
 } satisfies Meta<typeof AddPlaceModal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-};
+export const Default: Story = {};
