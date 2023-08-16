@@ -206,8 +206,11 @@ export interface Tournament {
   placesLeft: number;
   rules: string | null;
   image: string | null;
+  infos: string | null;
+  format: string | null;
   backgroundImage: string | null;
   cashprize: number | null;
+  cashprizeDetails: string | null;
   casters: Caster[] | null;
   teams: TeamWithUsersRestricted[];
 }
