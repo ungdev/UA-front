@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement, cloneElement, useEffect, useRef, useState } from 'react';
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
@@ -72,7 +72,7 @@ export default function AppearFromSide({
     }
   }, [visible, translateXData]);
 
-  return React.cloneElement(children as ReactElement, {
+  return cloneElement(children as ReactElement, {
     style: deactivated
       ? undefined
       : {

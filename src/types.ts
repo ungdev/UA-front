@@ -3,8 +3,7 @@
 
 export interface Partner {
   name: string;
-  description: string;
-  image: string;
+  logo: string;
   link: string;
 }
 
@@ -34,6 +33,7 @@ export enum Permission {
   entry = 'entry',
   anim = 'anim',
   admin = 'admin',
+  repo = 'repo',
 }
 
 export interface Team {
@@ -191,6 +191,11 @@ export interface Item {
   left: number | null;
 }
 
+export interface Caster {
+  id: string;
+  name: string;
+}
+
 export interface Tournament {
   id: string;
   name: string;
@@ -199,9 +204,11 @@ export interface Tournament {
   playersPerTeam: number;
   lockedTeamsCount: number;
   placesLeft: number;
-}
-
-export interface TournamentWithTeams extends Tournament {
+  rules: string | null;
+  image: string | null;
+  backgroundImage: string | null;
+  cashprize: number | null;
+  casters: Caster[] | null;
   teams: TeamWithUsersRestricted[];
 }
 

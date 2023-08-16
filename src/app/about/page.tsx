@@ -1,5 +1,4 @@
 'use client';
-import React from 'react';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
 

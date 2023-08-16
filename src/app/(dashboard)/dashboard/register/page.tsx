@@ -10,7 +10,7 @@ import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { TournamentWithTeams, UserType } from '@/types';
+import { Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 
 const columns = [
@@ -28,7 +28,7 @@ const Register = () => {
   const [step, setStep] = useState(1);
   const soloTeamName = `${user.username}-solo-team`;
   const [teamName, setTeamName] = useState('');
-  const [tournaments, setTournaments] = useState<TournamentWithTeams[]>([]);
+  const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);

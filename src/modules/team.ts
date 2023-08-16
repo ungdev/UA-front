@@ -44,7 +44,7 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, sta
 export const joinTeam =
   (teamId: string, name: string, userType: UserType) => async (dispatch: Dispatch, state: RootState) => {
     const { user } = state.login;
-    await API.post(`/teams/${teamId}/join-requests`, { userType });
+    await API.post(`teams/${teamId}/join-requests`, { userType });
     toast.success(`Ta demande pour rejoindre ${name} a été envoyée`);
     dispatch(setUser({ ...user, askingTeamId: teamId }));
   };
@@ -56,7 +56,7 @@ export const fetchCurrentTeam = () => async (dispatch: Dispatch) => {
 
 export const cancelJoin = (name: string) => async (dispatch: Dispatch, state: RootState) => {
   const { user } = state.login;
-  await API.delete('/teams/current/join-requests/current');
+  await API.delete('teams/current/join-requests/current');
   toast.success(`Ta demande pour rejoindre ${name} a été annulée`);
   dispatch(setUser({ ...user, askingTeamId: null }));
 };

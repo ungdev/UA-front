@@ -74,7 +74,7 @@ export const usersSlice = createSlice({
 export const { setUsers, setLookupUser } = usersSlice.actions;
 
 export const getTicketPrice = async (userId: string) => {
-  return await API.get(`/users/${userId}/ticket`);
+  return await API.get(`users/${userId}/ticket`);
 };
 
 export const fetchUsers =

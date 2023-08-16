@@ -1,4 +1,3 @@
-import { tournaments } from '@/lib/tournaments';
 import { Button, Icon, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
@@ -6,10 +5,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 import { useState } from 'react';
+import { useAppSelector } from '@/lib/hooks';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
-  const tournament = tournaments.find((tournament) => tournament.id === tournamentId);
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const tournament = tournaments!.find((tournament) => tournament.id === tournamentId);
   if (!tournament) return notFound();
   document.documentElement.style.setProperty('--background-image', `url("${tournament.backgroundImage}")`);
 
@@ -35,14 +36,14 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             {tournament.maxPlayers / tournament.playersPerTeam} équipes
           </BoxContainer>
           <BoxContainer title="infos.txt" padding={false}>
-            Casteur : {tournament.caster}
+            Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
         <Title level={1} align="center" className="enrolled-teams">
-          Équipes inscrites : {tournament.enrolledTeams} / {tournament.maxPlayers / tournament.playersPerTeam}
+          Équipes inscrites : {tournament.lockedTeamsCount} / {tournament.maxPlayers / tournament.playersPerTeam}
         </Title>
         <FillingBar
-          fullness={animate ? (tournament.enrolledTeams * tournament.playersPerTeam) / tournament.maxPlayers : 0}
+          fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
         />
       </div>
     </TournamentSwitcherAnimation>

@@ -7,23 +7,6 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAppSelector } from '@/lib/hooks';
 
-const options = [
-  'Tournoi League of Legends',
-  'Tournoi Teamfight Tactics',
-  'Tournoi Rocket League',
-  'Tournoi Counter-Strike : Global Offensive',
-  'Tournoi SSBU',
-  'Tournoi osu!',
-  'Tournoi Libre',
-  'Problème sur le site',
-  'Autre',
-]
-  // Transform the array to match the requested type of Select component
-  .map((value) => ({
-    label: value,
-    value,
-  }));
-
 interface Question {
   question: string;
   answer: string;
@@ -73,6 +56,19 @@ const Help = () => {
   const pathName = usePathname();
 
   const user = useAppSelector((state) => state.login.user);
+
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+
+  const options = [
+    ...tournaments!.map((tournament) => 'Tournoi ' + tournament.name),
+    'Problème sur le site',
+    'Autre',
+  ]
+    // Transform the array to match the requested type of Select component
+    .map((value) => ({
+      label: value,
+      value,
+    }));
 
   useEffect(() => {
     // Scroll to the element if the hash is present in the url

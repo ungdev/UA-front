@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { validatePay, saveUser, refundCart, lookupUser } from '@/modules/users';
 import { connectAs } from '@/modules/login';
 import { Modal, Button, Radio, Checkbox, Input, Card, Textarea } from './../UI';

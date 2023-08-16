@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { setCaptain, acceptUser, kickUser, refuseUser, deleteTeam, fetchCurrentTeam, lockTeam } from '@/modules/team';
 
@@ -7,7 +7,7 @@ import { fetchSlots, fetchTournaments } from '@/modules/tournament';
 import { Title, Table, Button, Modal, Helper, Icon } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import { TournamentWithTeams, UserType } from '@/types';
+import { Tournament, UserType } from '@/types';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -33,7 +33,7 @@ const Team = () => {
   const isCaptain = team && team.captainId === id;
   const isSolo = team && team.name.includes('solo-team');
   const usersPaid = team && team.players.reduce((previous, player) => (player.hasPaid ? previous + 1 : previous), 0);
-  const tournaments: TournamentWithTeams[] | null = useAppSelector((state) => state.tournament.tournaments);
+  const tournaments: Tournament[] | null = useAppSelector((state) => state.tournament.tournaments);
   const tournament = team && tournaments && tournaments.filter((tournament) => tournament.id === team.tournamentId)[0];
   const tournamentName = tournament && tournament.name;
 

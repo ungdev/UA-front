@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Radio, Input, Button, Table, Checkbox } from '@/components/UI';
 import UserModal from '@/components/dashboard/UserModal';

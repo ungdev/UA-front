@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import { validate } from '../../../modules/register';

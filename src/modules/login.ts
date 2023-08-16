@@ -97,13 +97,13 @@ export const logout = () => (dispatch: Dispatch) => {
 };
 
 export const editUser = (data: UserEdit) => async (dispatch: Dispatch) => {
-  const res = await API.patch(`/users/current`, data);
+  const res = await API.patch(`users/current`, data);
   toast.success('Tes informations ont été modifiées');
   dispatch(updateUser(res) as unknown as Action);
 };
 
 export const resetPassword = (email: string, resetFields: () => unknown) => async (dispatch: Dispatch) => {
-  await API.post(`/auth/reset-password`, { email });
+  await API.post(`auth/reset-password`, { email });
   toast.success("Un email de confirmation vient d'être envoyé");
   dispatch(setLoginModalVisible(false) as unknown as Action);
   resetFields();

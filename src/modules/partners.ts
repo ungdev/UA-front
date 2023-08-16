@@ -1,5 +1,5 @@
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
-import { uploads } from '@/utils/api';
+import { API } from '@/utils/api';
 import { Partner } from '@/types';
 
 export interface PartnersAction {
@@ -23,7 +23,7 @@ export const partnersSlice = createSlice({
 export const { setPartners } = partnersSlice.actions;
 
 export const fetchPartners = async (dispatch: Dispatch) => {
-  const request = await uploads.get('/partners/list.json', true);
+  const request = await API.get('partners');
   dispatch(setPartners(request));
 };
 

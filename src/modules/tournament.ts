@@ -1,9 +1,9 @@
-import { TournamentWithTeams } from '@/types';
+import { Tournament } from '@/types';
 import { API } from '@/utils/api';
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 
 export interface TournamentAction {
-  tournaments: TournamentWithTeams[];
+  tournaments: Tournament[] | null;
   slots: {
     [key: string]: {
       total: number;
@@ -13,7 +13,7 @@ export interface TournamentAction {
 }
 
 const initialState: TournamentAction = {
-  tournaments: [],
+  tournaments: null,
   slots: {},
 };
 
@@ -33,12 +33,12 @@ export const tournamentSlice = createSlice({
 export const { setTournaments, setSlots } = tournamentSlice.actions;
 
 export const fetchTournaments = () => async (dispatch: Dispatch) => {
-  const res = await API.get('/tournaments');
+  const res = await API.get('tournaments');
   dispatch(setTournaments(res));
 };
 
 export const fetchSlots = () => async (dispatch: Dispatch) => {
-  const res = await API.get('/tournaments?paidOnly=true');
+  const res = await API.get('tournaments?paidOnly=true');
   const slots = res.reduce(
     (
       previous: {

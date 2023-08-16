@@ -3,9 +3,9 @@ import Button from '@/components/UI/Button';
 import { useEffect, useRef, useState } from 'react';
 import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
-import { tournaments } from '@/lib/tournaments';
 import Divider from '@/components/UI/Divider';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
+import { useAppSelector } from '@/lib/hooks';
 
 export const TournamentHome = ({
   animations,
@@ -17,8 +17,7 @@ export const TournamentHome = ({
   onDefaultTournamentSet?: () => void;
 }) => {
   const fadeDuration = animations !== 'none' ? 200 : 0;
-  //const dispatch = useAppDispatch();
-  //const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
@@ -30,12 +29,6 @@ export const TournamentHome = ({
   const tournamentList = useRef<HTMLDivElement>(null);
   const leftArrow = useRef<HTMLDivElement>(null);
   const rightArrow = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!tournaments) {
-      //dispatch(fetchTournaments());
-    }
-  }, []);
 
   const findClosestChildren = (tournamentList: HTMLDivElement, tournamentListRect: DOMRect) => {
     const tournamentListChildren = tournamentList.children;
@@ -66,7 +59,7 @@ export const TournamentHome = ({
     const isLeft = currentScroll < 10;
     const isRight =
       window.innerWidth > 1024
-        ? currentScroll - tournamentList.current.children[0].clientHeight > tournamentList.current.scrollWidth - 10
+        ? currentScroll + tournamentListRect.height > tournamentList.current.scrollHeight - 10
         : currentScroll + tournamentListRect.width > tournamentList.current.scrollWidth - 10;
 
     // left/top side
@@ -115,24 +108,17 @@ export const TournamentHome = ({
     }, fadeDuration);
   }, [selectedTournamentIndex]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      onTournamentListScroll(); // Remove arrow that don't need to be rendered
+    }, 1000);
+  }, [tournamentList.current]);
+
   const selectTournament = (i: number, changeLastFading = true) => {
     if (i === selectedTournamentIndex) return;
     setSelectedTournamentIndex(i);
     if (changeLastFading) setLastFading(Date.now());
   };
-
-  // Initialize the selected tournament
-  if (tournaments && selectedTournamentIndex === -1) {
-    if (!defaultTournamentId) {
-      selectTournament(0);
-    } else {
-      onDefaultTournamentSet();
-      selectTournament(
-        tournaments.findIndex((t) => t.id === defaultTournamentId),
-        false,
-      );
-    }
-  }
 
   const scrollInTournamentList = (isScrollLeftOrTop: boolean) => {
     if (!tournamentList.current) return;
@@ -164,14 +150,27 @@ export const TournamentHome = ({
     }
   };
 
-  const renderedTournament = tournaments[renderedTournamentIndex];
+  // Initialize the selected tournament
+  if (tournaments && tournaments.length !== 0 && selectedTournamentIndex === -1) {
+    if (!defaultTournamentId) {
+      selectTournament(0);
+    } else {
+      onDefaultTournamentSet();
+      selectTournament(
+        tournaments.findIndex((t) => t.id === defaultTournamentId),
+        false,
+      );
+    }
+  }
+
+  const renderedTournament = tournaments![renderedTournamentIndex];
 
   const fading = Date.now() - lastFading < fadeDuration;
   if (!fading && renderedTournamentIndex !== selectedTournamentIndex) {
     setRenderedTournamentIndex(selectedTournamentIndex);
     document.documentElement.style.setProperty(
       '--background-image',
-      `url("${tournaments[selectedTournamentIndex].backgroundImage}")`,
+      `url("${tournaments![selectedTournamentIndex].backgroundImage ?? '/images/background.jpg'}")`,
     );
   }
 
@@ -209,7 +208,7 @@ export const TournamentHome = ({
                 : tournaments.map((tournament, i) => (
                     <img
                       key={tournament.id}
-                      src={tournament.image}
+                      src={tournament.image!}
                       alt={`Logo ${tournament.name}`}
                       data-index={i}
                       className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
@@ -221,12 +220,20 @@ export const TournamentHome = ({
           <div className={`tournament-info ${fading ? 'fading' : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>
-              <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
+              {renderedTournament.cashprize && (
+                <>
+                  <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
+                </>
+              )}
               <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
               <br />
             </p>
             <p>
-              Casté par <strong>{renderedTournament.caster}</strong>
+              {renderedTournament.casters && (
+                <>
+                  Casté par <strong>{renderedTournament.casters?.map((caster) => caster.name + ' ')}</strong>
+                </>
+              )}
             </p>
             <Link href={``} scroll={false}>
               <Button primary outline onClick={() => setNextUrl(renderedTournament.id)}>

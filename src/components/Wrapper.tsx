@@ -15,6 +15,7 @@ import { Permission, UserType } from '@/types';
 import { hasOrgaPermission } from '@/utils/permission';
 import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
+import { fetchTournaments } from '@/modules/tournament';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -168,9 +169,16 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     }
   }, [isLoading]);
 
+  // Fetch static values
   useEffect(() => {
     // Fetch Settings
-    isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
+    dispatch(fetchSettings() as unknown as Action);
+
+    // Fetch Tournaments
+    dispatch(fetchTournaments() as unknown as Action);
+
+    // Fetch Partners
+    dispatch(fetchTournaments() as unknown as Action);
 
     // Automatically log in the user
     dispatch(autoLogin() as unknown as Action);
