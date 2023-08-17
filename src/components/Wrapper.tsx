@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode, Suspense, useEffect, useState } from 'react';
-import { ReadonlyURLSearchParams, redirect, usePathname, useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
@@ -16,6 +16,7 @@ import { hasOrgaPermission } from '@/utils/permission';
 import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
+import { fetchPartners } from '@/modules/partners';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -44,10 +45,12 @@ const RedirectHandler = () => {
   const redirectLocation = useAppSelector((state) => state.redirect);
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
   useEffect(() => {
     if (redirectLocation) {
       dispatch(setRedirect(null));
-      redirect(redirectLocation);
+      router.push(redirectLocation);
     }
   }, [redirectLocation]);
 
@@ -73,29 +76,39 @@ export default function Wrapper({ children }: { children: ReactNode }) {
 
   const isAdminPanel = pathname.startsWith('/admin');
   const isDashboard = pathname.startsWith('/dashboard');
-  const permissions = useAppSelector((state) => state.login.user?.permissions || []);
+  const permissions = useAppSelector((state) => state.login.user?.permissions) || [];
 
   // Set user informations
-  useAppSelector((state) => {
-    const { user } = state.login;
-    if (isLoggedIn !== !!user) {
-      setIsLoggedIn(!!user);
-      setHasTeam(!!user!.teamId);
-      setIsSpectator(user!.type === UserType.spectator);
-    } else if (user && hasTeam !== !!user.teamId) {
-      setHasTeam(!!user.teamId);
-    } else if (user && !isSpectator && user.type === UserType.spectator) {
-      setIsSpectator(true);
-    } else if (user && isSpectator && user.type !== UserType.spectator) {
+  const user = useAppSelector((state) => state.login.user);
+
+  useEffect(() => {
+    if (!user) {
+      setIsLoggedIn(false);
+      setHasTeam(false);
+      setIsAdmin(false);
       setIsSpectator(false);
+      setHasPaid(false);
     }
-    if (user && hasPaid !== user.hasPaid) {
-      setHasPaid(user.hasPaid);
-    }
-    if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-      setIsAdmin(!isAdmin);
-    }
-  });
+  }, [user]);
+
+  if (user && isLoggedIn !== !!user) {
+    setIsLoggedIn(!!user);
+    setHasTeam(!!user!.teamId);
+    setIsSpectator(user!.type === UserType.spectator);
+  } else if (user && hasTeam !== !!user.teamId) {
+    setHasTeam(!!user.teamId);
+  } else if (user && !isSpectator && user.type === UserType.spectator) {
+    setIsSpectator(true);
+  } else if (user && isSpectator && user.type !== UserType.spectator) {
+    setIsSpectator(false);
+  }
+
+  if (user && hasPaid !== user.hasPaid) {
+    setHasPaid(user.hasPaid);
+  }
+  if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
+    setIsAdmin(!isAdmin);
+  }
 
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
@@ -103,6 +116,10 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
 
   useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
     if (isAdminPanel && !isLoggedIn) {
       dispatch(setRedirect('/'));
     } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
@@ -133,7 +150,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
         dispatch(setRedirect('/admin/scan'));
       }
     }
-  }, [isLoggedIn, isLoginAllowed, isShopAllowed, isAdmin, isSpectator, hasTeam, pathname]);
+  }, [isLoggedIn, isLoginAllowed, isShopAllowed, isAdmin, isSpectator, hasTeam, pathname, isLoading]);
 
   // TODO: implement a special route for the oauth callback
   useEffect(() => {
@@ -169,19 +186,22 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     }
   }, [isLoading]);
 
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const partners = useAppSelector((state) => state.partners.partners);
+
   // Fetch static values
   useEffect(() => {
     // Fetch Settings
-    dispatch(fetchSettings() as unknown as Action);
+    isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
 
     // Fetch Tournaments
-    dispatch(fetchTournaments() as unknown as Action);
+    tournaments || dispatch(fetchTournaments() as unknown as Action);
 
     // Fetch Partners
-    dispatch(fetchTournaments() as unknown as Action);
+    partners || dispatch(fetchPartners() as unknown as Action);
 
     // Automatically log in the user
-    dispatch(autoLogin() as unknown as Action);
+    user || dispatch(autoLogin() as unknown as Action);
   }, []);
 
   // Render the layout with child components
@@ -189,7 +209,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     <>
       <CookieConsent />
       {isLoading || (isDashboard && !isLoggedIn) ? (
-        <main>
+        <main className="loading">
           <Loading />
         </main>
       ) : (

@@ -22,7 +22,7 @@ export const partnersSlice = createSlice({
 
 export const { setPartners } = partnersSlice.actions;
 
-export const fetchPartners = async (dispatch: Dispatch) => {
+export const fetchPartners = () => async (dispatch: Dispatch) => {
   const request = await API.get('partners');
   dispatch(setPartners(request));
 };

@@ -13,8 +13,6 @@ export default function DoubleImage({
 }) {
   const [swapped, setSwapped] = useState(null as boolean | null);
 
-  console.log(swapped); // Ok wtf, without this line the swap is not consistent
-
   const swap = () => {
     if (swapped == null) {
       setSwapped(true);

@@ -1,6 +1,6 @@
 import { User, UserEdit, UserType } from '@/types';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
-import { API, setAuthorizationToken } from '@/utils/api';
+import { API } from '@/utils/api';
 import { setLoginModalVisible } from './loginModal';
 import { toast } from 'react-toastify';
 import { hasOrgaPermission } from '@/utils/permission';
@@ -63,7 +63,6 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
 
 export const saveToken = (token: string) => (dispatch: Dispatch) => {
   dispatch(setToken(token) as unknown as Action);
-  setAuthorizationToken(token);
   localStorage.setItem('utt-arena-token', token);
 };
 
@@ -85,15 +84,14 @@ export const tryLogin = (user: { login: string; password: string }) => async (di
 };
 
 export const logout = () => (dispatch: Dispatch) => {
-  toast('Tu as été déconnecté');
+  dispatch(setRedirect('/'));
   dispatch(setToken(null) as unknown as Action);
   dispatch(setUser(null) as unknown as Action);
   dispatch(setTeam(null) as unknown as Action);
-  setAuthorizationToken('');
   localStorage.removeItem('utt-arena-userid');
   localStorage.removeItem('utt-arena-token');
   localStorage.removeItem('utt-arena-admin-token');
-  dispatch(setRedirect('/'));
+  toast.success('Tu as été déconnecté');
 };
 
 export const editUser = (data: UserEdit) => async (dispatch: Dispatch) => {

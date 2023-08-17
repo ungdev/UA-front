@@ -1,8 +1,6 @@
 import { toast } from 'react-toastify';
 import { apiUrl, uploadsUrl } from './environment';
 
-let token: string | null = null;
-
 // Send request to API and handle errors
 const requestAPI = (
   method: string,
@@ -17,6 +15,8 @@ const requestAPI = (
 
     // if base url last char is not a slash, add it
     if (baseURL[baseURL.length - 1] !== '/') baseURL += '/';
+
+    const token = getAuthorizationToken();
 
     fetch(baseURL + route + (disableCache ? '?nocache=' + new Date().getTime() : ''), {
       method,
@@ -34,7 +34,15 @@ const requestAPI = (
         }
 
         clearTimeout(timeout);
-        return response.json();
+        // test if response is json
+        if (
+          response.headers.get('content-type') &&
+          response.headers.get('content-type')?.includes('application/json')
+        ) {
+          return response.json();
+        } else {
+          return response.text();
+        }
       })
       .then((data) => {
         if (!didTimeOut) {
@@ -64,8 +72,8 @@ const requestAPI = (
   });
 
 // Set the authorization header with the given token for next requests
-export const setAuthorizationToken = (_token: string) => {
-  token = _token;
+const getAuthorizationToken = () => {
+  return localStorage.getItem('utt-arena-token');
 };
 
 // Access the API through different HTTP methods

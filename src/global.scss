@@ -62,6 +62,14 @@ main {
   flex-grow: 1;
 }
 
+
+main.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 @media screen and (max-width: 800px) {
   .page-padding {
     padding: 2em 1em;

@@ -5,30 +5,35 @@ export function generateCsp() {
   const nonce = crypto.randomUUID();
 
   // TODO: remove CSP development values
-  const csp = [
-    { name: 'default-src', values: ["'self'"] },
-    {
-      name: 'script-src',
-      values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, "'strict-dynamic'", `'unsafe-eval'`],
-    },
-    {
-      name: 'style-src',
-      values: ["'report-sample'", "'self'", `'nonce-${nonce}'`],
-    },
-    {
-      name: 'connect-src',
-      values: ["'self'", process.env.NEXT_PUBLIC_API_URL, 'arena.utt.fr', '*.uttnetgroup.fr'],
-    },
-    { name: 'font-src', values: ["'self'", 'data:', 'https://fonts.gstatic.com'] },
-    {
-      name: 'img-src',
-      values: ["'self'", 'data:', 'https://arena.utt.fr', '*.picsum.photos', 'https://picsum.photos'],
-    },
-    { name: 'worker-src', values: ["'self'", 'blob:'] },
-    { name: 'frame-ancestors', values: ["'none'"] },
-    { name: 'form-action', values: ["'self'"] },
-    { name: 'frame-src', values: ["'self'", 'https://www.youtube.com', '*.google.com'] },
-  ];
+  let csp = [] as { name: string; values: string[] }[];
+
+  // test if CSP is working on development
+  if (process.env.NODE_ENV !== 'development') {
+    csp = [
+      { name: 'default-src', values: ["'self'"] },
+      {
+        name: 'script-src',
+        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, "'strict-dynamic'"],
+      },
+      {
+        name: 'style-src',
+        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`],
+      },
+      {
+        name: 'connect-src',
+        values: ["'self'", process.env.NEXT_PUBLIC_API_URL!, 'arena.utt.fr', '*.uttnetgroup.fr'],
+      },
+      { name: 'font-src', values: ["'self'", 'data:', 'https://fonts.gstatic.com', '*.github.com'] },
+      {
+        name: 'img-src',
+        values: ["'self'", 'data:', 'https://arena.utt.fr'],
+      },
+      { name: 'worker-src', values: ["'self'", 'blob:'] },
+      { name: 'frame-ancestors', values: ["'none'"] },
+      { name: 'form-action', values: ["'self'"] },
+      { name: 'frame-src', values: ["'self'", 'https://www.youtube.com', '*.google.com'] },
+    ];
+  }
 
   const cspString = csp
     .map((directive) => {
