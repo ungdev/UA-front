@@ -29,7 +29,7 @@ const initialLogin = {
  * @param {boolean} admin - Determines whether the modal is for the admin login or not.
  * @returns {JSX.Element} - Returns the LoginModal component.
  */
-function LoginModal({ visible = false, admin = false }: { visible?: boolean, admin?: boolean }) {
+function LoginModal({ visible = false, admin = false }: { visible?: boolean; admin?: boolean }) {
   const dispatch = useDispatch();
 
   // Get panel key value
@@ -39,7 +39,7 @@ function LoginModal({ visible = false, admin = false }: { visible?: boolean, adm
   const [forgotEmail, setForgotEmail] = useState('');
 
   const login = async () => {
-    if (await dispatch(tryLogin(loginForm) as unknown as Action)) {
+    if (await dispatch(tryLogin(loginForm, admin) as unknown as Action)) {
       resetFields();
     }
   };

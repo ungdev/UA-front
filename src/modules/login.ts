@@ -31,7 +31,7 @@ const initialState: LoginAction = {
     team: false,
     admin: false,
     spectator: false,
-  }
+  },
 };
 
 export const loginSlice = createSlice({
@@ -52,7 +52,7 @@ export const loginSlice = createSlice({
     },
     setStatus: (state, action) => {
       state.status = { ...state.status, ...action.payload };
-    }
+    },
   },
 });
 
@@ -84,23 +84,25 @@ export const saveToken = (token: string) => (dispatch: Dispatch) => {
   localStorage.setItem('utt-arena-token', token);
 };
 
-export const tryLogin = (user: { login: string; password: string }) => async (dispatch: Dispatch) => {
-  const res = await API.post('auth/login', user);
-  dispatch(saveToken(res.token) as unknown as Action);
-  localStorage.setItem('utt-arena-userid', res.user.id);
-  dispatch(setUser(res.user as unknown as User) as unknown as Action);
-  dispatch(updateStatus() as unknown as Action);
-  dispatch(setLoginModalVisible(false) as unknown as Action);
-  if (res.captivePortalSuccess) {
-    toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
-  }
-  if (hasOrgaPermission(res.user.permissions)) {
-    dispatch(setRedirect('/admin'));
-  } else {
-    dispatch(setRedirect('/dashboard'));
-  }
-  return true;
-};
+export const tryLogin =
+  (user: { login: string; password: string }, admin = false) =>
+  async (dispatch: Dispatch) => {
+    const res = await API.post(admin ? 'admin/auth/login' : 'auth/login', user);
+    dispatch(saveToken(res.token) as unknown as Action);
+    localStorage.setItem('utt-arena-userid', res.user.id);
+    dispatch(setUser(res.user as unknown as User) as unknown as Action);
+    dispatch(updateStatus() as unknown as Action);
+    dispatch(setLoginModalVisible(false) as unknown as Action);
+    if (res.captivePortalSuccess) {
+      toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
+    }
+    if (hasOrgaPermission(res.user.permissions)) {
+      dispatch(setRedirect('/admin'));
+    } else {
+      dispatch(setRedirect('/dashboard'));
+    }
+    return true;
+  };
 
 export const logout = () => (dispatch: Dispatch) => {
   dispatch(setRedirect('/'));
@@ -180,42 +182,54 @@ export const updateStatus = () => (dispatch: Dispatch, getState: () => RootState
   const user = state.login.user;
 
   if (!user) {
-    dispatch(setStatus({
-      login: false,
-      paid: false,
-      team: false,
-      admin: false,
-      spectator: false,
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        login: false,
+        paid: false,
+        team: false,
+        admin: false,
+        spectator: false,
+      }) as unknown as Action,
+    );
     return;
   }
 
   if (user && state.login.status.login !== !!user) {
-    dispatch(setStatus({
-      login: true,
-      team: !!user.teamId,
-      spectator: user.type === UserType.spectator,
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        login: true,
+        team: !!user.teamId,
+        spectator: user.type === UserType.spectator,
+      }) as unknown as Action,
+    );
   } else if (user && state.login.status.team !== !!user.teamId) {
-    dispatch(setStatus({
-      team: !!user.teamId,
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        team: !!user.teamId,
+      }) as unknown as Action,
+    );
   } else if (user && state.login.status.spectator !== (user.type === UserType.spectator)) {
-    dispatch(setStatus({
-      spectator: user.type === UserType.spectator,
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        spectator: user.type === UserType.spectator,
+      }) as unknown as Action,
+    );
   }
 
   if (user && state.login.status.paid !== user.hasPaid) {
-    dispatch(setStatus({
-      paid: user.hasPaid,
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        paid: user.hasPaid,
+      }) as unknown as Action,
+    );
   }
 
   if (user && state.login.status.admin !== hasOrgaPermission(user.permissions)) {
-    dispatch(setStatus({
-      admin: hasOrgaPermission(user.permissions),
-    }) as unknown as Action);
+    dispatch(
+      setStatus({
+        admin: hasOrgaPermission(user.permissions),
+      }) as unknown as Action,
+    );
   }
 };
 

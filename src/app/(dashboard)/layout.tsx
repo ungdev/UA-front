@@ -1,21 +1,11 @@
 'use client';
 import PanelHeader from '@/components/dashboard/PanelHeader';
 import { useAppSelector } from '@/lib/hooks';
-import { Permission, UserType } from '@/types';
-import { hasOrgaPermission } from '@/utils/permission';
+import { Permission } from '@/types';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
- 
-  if(pathname === '/admin/login') {
-    return (
-      <>
-        {children}
-      </>
-    );
-  }
 
   const permissions = useAppSelector((state) => state.login.user! && state.login.user!.permissions);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
@@ -25,6 +15,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isSpectator = useAppSelector((state) => state.login.status.spectator);
   const hasTeam = useAppSelector((state) => state.login.status.team);
   const hasPaid = useAppSelector((state) => state.login.status.paid);
+
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
 
   const linksDashboard = () => {
     const menu = [];

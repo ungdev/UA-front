@@ -1,18 +1,17 @@
 'use client';
-import { ReactNode, Suspense, useEffect, useState } from 'react';
+import { ReactNode, Suspense, useEffect } from 'react';
 import { ReadonlyURLSearchParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin, updateStatus } from '@/modules/login';
+import { autoLogin } from '@/modules/login';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
 import { type Action } from '@reduxjs/toolkit';
-import { Permission, UserType } from '@/types';
-import { hasOrgaPermission } from '@/utils/permission';
+import { Permission } from '@/types';
 import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
@@ -72,9 +71,6 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const isDashboard = pathname.startsWith('/dashboard');
   const permissions = useAppSelector((state) => state.login.user?.permissions) || [];
 
-  // Set user informations
-  const user = useAppSelector((state) => state.login.user);
-
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isLoading = useAppSelector((state) => state.login.loading);
@@ -92,7 +88,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     }
 
     if (isAdminPanel && !isLoggedIn) {
-      if(pathname !== '/admin/login' || isLoginAllowed) {
+      if (pathname !== '/admin/login' || isLoginAllowed) {
         dispatch(setRedirect('/'));
       }
     } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
@@ -174,7 +170,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     partners || dispatch(fetchPartners() as unknown as Action);
 
     // Automatically log in the user
-    isLoggedIn || (dispatch(autoLogin() as unknown as Action));
+    isLoggedIn || dispatch(autoLogin() as unknown as Action);
   }, []);
 
   // Render the layout with child components

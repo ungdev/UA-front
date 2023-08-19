@@ -5,7 +5,7 @@ import { fetchSlots } from './tournament';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import { TeamWithUsers, User, UserType } from '@/types';
-import { setUser } from './login';
+import { setUser, updateStatus } from './login';
 import { setRedirect } from './redirect';
 
 const initialState: TeamWithUsers | null = {} as TeamWithUsers;
@@ -39,6 +39,7 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, get
   }
   dispatch(setTeam(res));
   dispatch(setUser({ ...user, teamId: res.id, type: 'player' }));
+  dispatch(updateStatus() as unknown as Action);
   dispatch(setRedirect('/dashboard/team'));
 };
 
@@ -49,6 +50,7 @@ export const joinTeam =
     await API.post(`teams/${teamId}/join-requests`, { userType });
     toast.success(`Ta demande pour rejoindre ${name} a été envoyée`);
     dispatch(setUser({ ...user, askingTeamId: teamId }));
+    dispatch(updateStatus() as unknown as Action);
   };
 
 export const fetchCurrentTeam = () => async (dispatch: Dispatch) => {
@@ -62,6 +64,7 @@ export const cancelJoin = (name: string) => async (dispatch: Dispatch, getState:
   await API.delete('teams/current/join-requests/current');
   toast.success(`Ta demande pour rejoindre ${name} a été annulée`);
   dispatch(setUser({ ...user, askingTeamId: null }));
+  dispatch(updateStatus() as unknown as Action);
 };
 
 export const setCaptain = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
@@ -88,6 +91,7 @@ export const kickUser = (userId: string) => async (dispatch: Dispatch, getState:
   if (user.id === userId) {
     await API.delete('teams/current/users/current');
     dispatch(setUser({ ...user, teamId: null, type: 'none' }));
+    dispatch(updateStatus() as unknown as Action);
     dispatch(setTeam(null));
   } else {
     await API.delete(`teams/current/users/${userId}`);
@@ -110,6 +114,7 @@ export const deleteTeam = () => async (dispatch: Dispatch, getState: () => RootS
   const user = state.login.user;
   await API.delete('teams/current');
   dispatch(setUser({ ...user, teamId: null, type: 'none' }));
+  dispatch(updateStatus() as unknown as Action);
   dispatch(setTeam(null));
   toast.success("L'équipe a bien été supprimée");
   dispatch(setRedirect('/dashboard/register'));

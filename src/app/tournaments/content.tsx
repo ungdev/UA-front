@@ -5,8 +5,8 @@ import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
 import Divider from '@/components/UI/Divider';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { fetchTournaments } from "@/modules/tournament";
+import { useAppSelector } from '@/lib/hooks';
+import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/uploadLink';
 
 export const TournamentHome = ({
   animations,
@@ -17,8 +17,6 @@ export const TournamentHome = ({
   defaultTournamentId?: string;
   onDefaultTournamentSet?: () => void;
 }) => {
-  const dispatch = useAppDispatch();
-
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   // This is initialized when tournaments are fetched
@@ -32,12 +30,6 @@ export const TournamentHome = ({
   const tournamentList = useRef<HTMLDivElement>(null);
   const leftArrow = useRef<HTMLDivElement>(null);
   const rightArrow = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!tournaments) {
-      dispatch(fetchTournaments);
-    }
-  });
 
   useEffect(() => {
     setTimeout(() => {
@@ -181,7 +173,7 @@ export const TournamentHome = ({
     setRenderedTournamentIndex(selectedTournamentIndex);
     document.documentElement.style.setProperty(
       '--background-image',
-      `url("${tournaments![selectedTournamentIndex].backgroundImage ?? '/images/background.jpg'}")`,
+      `url("${getTournamentBackgroundLink(tournaments![renderedTournamentIndex].id)}")`,
     );
   }
 
@@ -219,7 +211,7 @@ export const TournamentHome = ({
                 : tournaments.map((tournament, i) => (
                     <img
                       key={tournament.id}
-                      src={tournament.image!}
+                      src={getTournamentImageLink(tournaments![renderedTournamentIndex].id)!}
                       alt={`Logo ${tournament.name}`}
                       data-index={i}
                       className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}

@@ -30,7 +30,13 @@ const requestAPI = (
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          // if response.data is defined, it means that the server sent a json error
+          if (response.headers.get('content-type')?.includes('application/json')) {
+            return response.json().then((data) => {
+              throw new Error(data.error);
+            });
+          }
+          throw new Error('La requête a échoué');
         }
 
         clearTimeout(timeout);
@@ -54,7 +60,7 @@ const requestAPI = (
         if (error.message === 'Network Error' || error.code === 'ECONNABORTED') {
           toast.error('Connexion au serveur impossible');
         } else {
-          toast.error('Une erreur est survenue');
+          toast.error(error.message);
         }
 
         if (didTimeOut) return;
@@ -65,7 +71,7 @@ const requestAPI = (
     const timeout = setTimeout(function () {
       if (!didTimeOut) {
         didTimeOut = true;
-        toast.error('Connexion au serveur impossible');
+        toast.error("Temps d'attente dépassé");
         reject(new Error('Request timed out'));
       }
     }, 10000);
