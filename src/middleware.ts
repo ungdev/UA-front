@@ -4,7 +4,6 @@ export function generateCsp() {
   // generate random nonce converted to base64. Must be different on every HTTP page load
   const nonce = crypto.randomUUID();
 
-  // TODO: remove CSP development values
   let csp = [] as { name: string; values: string[] }[];
 
   // test if CSP is working on development
@@ -23,7 +22,7 @@ export function generateCsp() {
         name: 'connect-src',
         values: ["'self'", process.env.NEXT_PUBLIC_API_URL!, 'arena.utt.fr', '*.uttnetgroup.fr'],
       },
-      { name: 'font-src', values: ["'self'", 'data:', 'https://fonts.gstatic.com', '*.github.com'] },
+      { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', '*.github.com'] },
       {
         name: 'img-src',
         values: ["'self'", 'data:', 'https://arena.utt.fr'],
@@ -31,7 +30,7 @@ export function generateCsp() {
       { name: 'worker-src', values: ["'self'", 'blob:'] },
       { name: 'frame-ancestors', values: ["'none'"] },
       { name: 'form-action', values: ["'self'"] },
-      { name: 'frame-src', values: ["'self'", 'https://www.youtube.com', '*.google.com'] },
+      { name: 'frame-src', values: ["'self'", 'youtube.com', '*.google.com'] },
     ];
   }
 

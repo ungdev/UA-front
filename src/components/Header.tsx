@@ -99,7 +99,7 @@ export default function Header({ connected = false, admin = false }: { connected
       </nav>
 
       {isLoginAllowed ? (
-        <LoginModal isVisible={isVisible} />
+        <LoginModal visible={isVisible} />
       ) : (
         <Modal
           title="Connexion"

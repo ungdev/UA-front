@@ -114,7 +114,8 @@ export const fetchUsers =
   };
 
 export const lookupUser =
-  (user?: UserWithTeamAndMessageAndTournamentInfo) => async (dispatch: Dispatch, state: RootState) => {
+  (user?: UserWithTeamAndMessageAndTournamentInfo) => async (dispatch: Dispatch, getState: () => RootState) => {
+    const state = getState();
     const res =
       user && state.login.user?.permissions?.includes?.(Permission.admin)
         ? await API.get(`admin/users/${user.id}/carts`)
@@ -144,7 +145,8 @@ export const lookupUser =
     );
   };
 
-export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state: RootState) => {
+export const updateUser = (updateUser: any) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const state = getState();
   const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
@@ -159,7 +161,8 @@ export const updateUser = (updateUser: any) => async (dispatch: Dispatch, state:
   );
 };
 
-export const validatePay = (id: string) => async (dispatch: Dispatch, state: RootState) => {
+export const validatePay = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const state = getState();
   const userModal = state.users.lookupUser;
   await API.post(`admin/users/${id}/force-pay`, {});
   toast.success('Paiement validé');
@@ -168,14 +171,16 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, state: Roo
 };
 
 export const saveUser =
-  (id: string, body: object, username: string) => async (dispatch: Dispatch, state: RootState) => {
+  (id: string, body: object, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+    const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
     dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
   };
 
-export const refundCart = (id: string) => async (dispatch: Dispatch, state: RootState) => {
+export const refundCart = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const state = getState();
   await API.post(`admin/carts/${id}/refund`, {});
   const userModal = state.users.lookupUser;
   toast.success('Le panier a été marqué comme remboursé');

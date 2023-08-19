@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Header from './Header';
 import CookieConsent from './CookieConsent';
 import { fetchSettings } from '@/modules/settings';
-import { autoLogin } from '@/modules/login';
+import { autoLogin, updateStatus } from '@/modules/login';
 import Footer from './Footer';
 
 import { toast } from 'react-toastify';
@@ -68,12 +68,6 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [hasTeam, setHasTeam] = useState(false);
-  const [hasPaid, setHasPaid] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isSpectator, setIsSpectator] = useState(false);
-
   const isAdminPanel = pathname.startsWith('/admin');
   const isDashboard = pathname.startsWith('/dashboard');
   const permissions = useAppSelector((state) => state.login.user?.permissions) || [];
@@ -81,39 +75,16 @@ export default function Wrapper({ children }: { children: ReactNode }) {
   // Set user informations
   const user = useAppSelector((state) => state.login.user);
 
-  useEffect(() => {
-    if (!user) {
-      setIsLoggedIn(false);
-      setHasTeam(false);
-      setIsAdmin(false);
-      setIsSpectator(false);
-      setHasPaid(false);
-    }
-  }, [user]);
-
-  if (user && isLoggedIn !== !!user) {
-    setIsLoggedIn(!!user);
-    setHasTeam(!!user!.teamId);
-    setIsSpectator(user!.type === UserType.spectator);
-  } else if (user && hasTeam !== !!user.teamId) {
-    setHasTeam(!!user.teamId);
-  } else if (user && !isSpectator && user.type === UserType.spectator) {
-    setIsSpectator(true);
-  } else if (user && isSpectator && user.type !== UserType.spectator) {
-    setIsSpectator(false);
-  }
-
-  if (user && hasPaid !== user.hasPaid) {
-    setHasPaid(user.hasPaid);
-  }
-  if (user && hasOrgaPermission(user.permissions) !== isAdmin) {
-    setIsAdmin(!isAdmin);
-  }
-
   // Get settings from Redux store
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isLoading = useAppSelector((state) => state.login.loading);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
+
+  // Get user informations from Redux store
+  const isLoggedIn = useAppSelector((state) => state.login.status.login);
+  const isAdmin = useAppSelector((state) => state.login.status.admin);
+  const isSpectator = useAppSelector((state) => state.login.status.spectator);
+  const hasTeam = useAppSelector((state) => state.login.status.team);
 
   useEffect(() => {
     if (isLoading) {
@@ -121,7 +92,9 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     }
 
     if (isAdminPanel && !isLoggedIn) {
-      dispatch(setRedirect('/'));
+      if(pathname !== '/admin/login' || isLoginAllowed) {
+        dispatch(setRedirect('/'));
+      }
     } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
       dispatch(setRedirect('/'));
     } else if (isLoggedIn) {
@@ -201,7 +174,7 @@ export default function Wrapper({ children }: { children: ReactNode }) {
     partners || dispatch(fetchPartners() as unknown as Action);
 
     // Automatically log in the user
-    user || dispatch(autoLogin() as unknown as Action);
+    isLoggedIn || (dispatch(autoLogin() as unknown as Action));
   }, []);
 
   // Render the layout with child components

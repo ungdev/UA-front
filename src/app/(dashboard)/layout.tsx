@@ -8,39 +8,23 @@ import { useState } from 'react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+ 
+  if(pathname === '/admin/login') {
+    return (
+      <>
+        {children}
+      </>
+    );
+  }
 
   const permissions = useAppSelector((state) => state.login.user! && state.login.user!.permissions);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
   const isAdminPanel = pathname.startsWith('/admin');
 
   // Define state variables
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [hasTeam, setHasTeam] = useState(false);
-  const [hasPaid, setHasPaid] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isSpectator, setIsSpectator] = useState(false);
-
-  // Update state variables based on changes to the login state
-  useAppSelector((state) => {
-    const user = state.login.user!;
-    if (isLoggedIn !== !!user) {
-      setIsLoggedIn(!!user);
-      setHasTeam(!!user.teamId);
-      setIsSpectator(user.type === UserType.spectator);
-    } else if (user && hasTeam !== !!user.teamId) {
-      setHasTeam(!!user.teamId);
-    } else if (user && !isSpectator && user.type === UserType.spectator) {
-      setIsSpectator(true);
-    } else if (user && isSpectator && user.type !== UserType.spectator) {
-      setIsSpectator(false);
-    }
-    if (user && hasPaid !== user.hasPaid) {
-      setHasPaid(user.hasPaid);
-    }
-    if (user && user.permissions != undefined && hasOrgaPermission(user.permissions) !== isAdmin) {
-      setIsAdmin(!isAdmin);
-    }
-  });
+  const isSpectator = useAppSelector((state) => state.login.status.spectator);
+  const hasTeam = useAppSelector((state) => state.login.status.team);
+  const hasPaid = useAppSelector((state) => state.login.status.paid);
 
   const linksDashboard = () => {
     const menu = [];

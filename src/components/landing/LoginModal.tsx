@@ -25,10 +25,11 @@ const initialLogin = {
 
 /**
  * LoginModal component that displays a modal with login, signup and forgot password forms.
- * @param {boolean} isVisible - Determines whether the modal is visible or not.
+ * @param {boolean} visible - Determines whether the modal is visible or not.
+ * @param {boolean} admin - Determines whether the modal is for the admin login or not.
  * @returns {JSX.Element} - Returns the LoginModal component.
  */
-function LoginModal({ isVisible = false }: { isVisible?: boolean }) {
+function LoginModal({ visible = false, admin = false }: { visible?: boolean, admin?: boolean }) {
   const dispatch = useDispatch();
 
   // Get panel key value
@@ -194,7 +195,7 @@ function LoginModal({ isVisible = false }: { isVisible?: boolean }) {
   return (
     <Modal
       title={body[panel as keyof typeof body].title}
-      visible={isVisible}
+      visible={visible}
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false) as unknown as Action);

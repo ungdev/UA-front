@@ -18,12 +18,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    isVisible: true,
+    visible: true,
   },
 };
 
 export const Hidden: Story = {
   args: {
-    isVisible: false,
+    visible: false,
   },
 };
