@@ -4,12 +4,24 @@ import FillingBar from '@/components/UI/FillingBar';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
-import { useState } from 'react';
-import { useAppSelector } from '@/lib/hooks';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import Table from '@/components/UI/Table';
+import { fetchTournaments } from '@/modules/tournament';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
+  const dispatch = useAppDispatch();
   const [goBack, setGoBack] = useState(false);
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
+
+  useEffect(() => {
+    if (!tournaments) {
+      dispatch(fetchTournaments);
+    }
+  }, []);
+
+  if (!tournaments) return null;
+
   const tournament = tournaments!.find((tournament) => tournament.id === tournamentId);
   if (!tournament) return notFound();
   document.documentElement.style.setProperty('--background-image', `url("${tournament.backgroundImage}")`);
@@ -44,6 +56,23 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </Title>
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
+        />
+        <Table
+          columns={[
+            { key: 'name', title: 'Nom' },
+            { key: 'players', title: 'Joueurs' },
+          ]}
+          dataSource={tournament.teams
+            .filter((team) => team.lockedAt)
+            .map((team) => ({
+              name: team.name,
+              players: team.players.map((player) => (
+                <>
+                  {player.username}
+                  <br />
+                </>
+              )),
+            }))}
         />
       </div>
     </TournamentSwitcherAnimation>

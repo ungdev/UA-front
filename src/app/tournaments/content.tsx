@@ -5,7 +5,8 @@ import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
 import Divider from '@/components/UI/Divider';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { fetchTournaments } from "@/modules/tournament";
 
 export const TournamentHome = ({
   animations,
@@ -16,6 +17,8 @@ export const TournamentHome = ({
   defaultTournamentId?: string;
   onDefaultTournamentSet?: () => void;
 }) => {
+  const dispatch = useAppDispatch();
+
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   // This is initialized when tournaments are fetched
@@ -29,6 +32,24 @@ export const TournamentHome = ({
   const tournamentList = useRef<HTMLDivElement>(null);
   const leftArrow = useRef<HTMLDivElement>(null);
   const rightArrow = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!tournaments) {
+      dispatch(fetchTournaments);
+    }
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      setUpdater(!updater); // Force-update the component
+    }, fadeDuration);
+  }, [selectedTournamentIndex]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      onTournamentListScroll(); // Remove arrow that don't need to be rendered
+    }, 1000);
+  }, [tournamentList.current]);
 
   const findClosestChildren = (tournamentList: HTMLDivElement, tournamentListRect: DOMRect) => {
     const tournamentListChildren = tournamentList.children;
@@ -102,18 +123,6 @@ export const TournamentHome = ({
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      setUpdater(!updater); // Force-update the component
-    }, fadeDuration);
-  }, [selectedTournamentIndex]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      onTournamentListScroll(); // Remove arrow that don't need to be rendered
-    }, 1000);
-  }, [tournamentList.current]);
-
   const selectTournament = (i: number, changeLastFading = true) => {
     if (i === selectedTournamentIndex) return;
     setSelectedTournamentIndex(i);
@@ -149,6 +158,8 @@ export const TournamentHome = ({
       }
     }
   };
+
+  if (!tournaments) return null;
 
   // Initialize the selected tournament
   if (tournaments && tournaments.length !== 0 && selectedTournamentIndex === -1) {

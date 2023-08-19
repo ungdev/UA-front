@@ -41,7 +41,7 @@ export interface Team {
   name: string;
   tournamentId: string;
   captainId: string;
-  locked: Date | null;
+  lockedAt: Date | null;
 }
 
 export interface TeamWithTournamentInfo extends Team {
