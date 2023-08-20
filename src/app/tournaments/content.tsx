@@ -27,8 +27,9 @@ export function TournamentHome({
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
   const [lastFading, setLastFading] = useState(animations === 'all' ? Date.now() : 0);
-  // Only used for force-updating the component
-  const [updater, setUpdater] = useState(false);
+  // Only used for force-updating the component. To force-update, call setUpdater(Math.random())
+  // The value needs to be a random number and not a simple boolean toggle because it is used in a callback, in which we can't know the current value of the state
+  const [updater, setUpdater] = useState(0);
   const [nextUrl, setNextUrl] = useState('');
 
   const root = useRef<HTMLDivElement | null>(null);
@@ -45,7 +46,7 @@ export function TournamentHome({
 
   useEffect(() => {
     setTimeout(() => {
-      setUpdater(!updater); // Force-update the component
+      setUpdater(Math.random()); // Force-update the component
     }, fadeDuration);
   }, [selectedTournamentIndex]);
 
@@ -180,6 +181,7 @@ export function TournamentHome({
 
   const renderedTournament = tournaments![renderedTournamentIndex];
 
+  // If the tournament changed
   const fading = Date.now() - lastFading < fadeDuration;
   if (!fading && renderedTournamentIndex !== selectedTournamentIndex) {
     setRenderedTournamentIndex(selectedTournamentIndex);
@@ -189,10 +191,11 @@ export function TournamentHome({
     );
   }
 
+  // Initialization is not finished yet, so we just show the black screen
   if (renderedTournamentIndex === -1) {
     return (
       <TournamentSwitcherAnimation nextPage={undefined}>
-        <div className={`tournament-container ${fading ? 'fading' : ''}`} />
+        <div className={`tournament-container ${fading ? 'fading' : ''}`} ref={root} />
       </TournamentSwitcherAnimation>
     );
   }
