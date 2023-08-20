@@ -9,8 +9,11 @@ import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
 import Partners from '../../components/Partners';
 import { usePathname, useRouter } from 'next/navigation';
+import { setLoginModalVisible } from '@/modules/loginModal';
+import { useAppDispatch } from '@/lib/hooks';
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
   return (
@@ -41,7 +44,9 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
               }}>
               Découvrir les tournois
             </Button>
-            <Button primary>Se connecter</Button>
+            <Button primary onClick={() => dispatch(setLoginModalVisible(true))}>
+              Se connecter
+            </Button>
           </div>
         </div>
       </div>
