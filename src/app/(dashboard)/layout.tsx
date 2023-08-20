@@ -3,7 +3,7 @@ import PanelHeader from '@/components/dashboard/PanelHeader';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { fetchAdminPartners, fetchAdminTournaments } from '@/modules/admin';
 import { Permission } from '@/types';
-import { Action } from '@reduxjs/toolkit';
+import type { Action } from '@reduxjs/toolkit';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -26,6 +26,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
+
+  useEffect(() => {
+    adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
+    adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
+  }, []);
 
   const linksDashboard = () => {
     const menu = [];
@@ -73,11 +78,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return menu;
   };
-
-  useEffect(() => {
-    adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
-    adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
-  }, [adminPartners, adminTournaments]);
 
   return (
     <>

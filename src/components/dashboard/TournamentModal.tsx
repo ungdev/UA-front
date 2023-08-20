@@ -15,7 +15,7 @@ const TournamentModal = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const [id, setId] = useState(tournament?.id || null);
+  const id = useState(tournament?.id || null);
   const [name, setName] = useState(tournament?.name || null);
   const [shortName, setShortName] = useState(tournament?.shortName || null);
   const [maxPlayers, setMaxPlayers] = useState(tournament?.maxPlayers || null);
@@ -24,7 +24,7 @@ const TournamentModal = ({
   const [format, setFormat] = useState(tournament?.format || null);
   const [cashprize, setCashprize] = useState(tournament?.cashprize || null);
   const [cashprizeDetails, setCashprizeDetails] = useState(tournament?.cashprizeDetails || null);
-  const [casters, setCasters] = useState(tournament?.casters || null);
+  // const [casters, setCasters] = useState(tournament?.casters || null);
   const [display, setDisplay] = useState(tournament?.display || false);
   const [displayCasters, setDisplayCasters] = useState(tournament?.displayCasters || false);
   const [displayCashprize, setDisplayCashprize] = useState(tournament?.displayCashprize || false);
@@ -52,7 +52,7 @@ const TournamentModal = ({
             primary
             onClick={() => {
               const body = {
-                id: id ?? '',
+                id: id! ?? '',
                 name: name ?? '',
                 shortName: shortName ?? '',
                 maxPlayers: maxPlayers ?? 0,
@@ -63,12 +63,13 @@ const TournamentModal = ({
                 format: format,
                 cashprize: cashprize ?? 0,
                 cashprizeDetails: cashprizeDetails,
-                casters: casters ?? [],
+                // casters: casters ?? [],
+                casters: [],
                 teams: [],
                 display,
                 displayCasters,
                 displayCashprize,
-              };
+              } as unknown as AdminTournament;
               // dispatch(
               //   tournament == null
               //     ? (addTournament(body, logo) as unknown as Action)
