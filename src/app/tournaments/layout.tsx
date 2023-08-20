@@ -8,10 +8,11 @@ import cloud2 from '@/../public/images/clouds/cloud-2.png';
 import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
 import Partners from '../../components/Partners';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
   return (
     <div className="tournaments">
       <div className="top-container">
@@ -28,7 +29,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
             <Button
               primary
               onClick={() => {
-                if (router.pathname === '/tournaments') {
+                if (pathname === '/tournaments') {
                   router.replace('/tournaments?scroll=true', {
                     scroll: false,
                   });

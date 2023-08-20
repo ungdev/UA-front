@@ -12,6 +12,7 @@ import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const loginAllowed = useAppSelector((state) => state.settings.login);
 
   if (!tournaments) return null;
 
@@ -53,7 +54,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
         />
-        <Table
+        {loginAllowed && <Table
           columns={[
             { key: 'name', title: 'Nom' },
             { key: 'players', title: 'Joueurs' },
@@ -69,7 +70,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
                 </>
               )),
             }))}
-        />
+        /> }
       </div>
     </TournamentSwitcherAnimation>
   );
