@@ -110,9 +110,7 @@
       background-size: cover;
       background-position: 50% 50%;
       transition: background 0.25s ease-in-out;
-      background: var(--background-image);
       background-repeat: no-repeat;
-      z-index: 1;
       width: 100%;
       height: 100%;
       position: absolute;
@@ -125,8 +123,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba($primary-background, 0.5) 0%, rgba($primary-background, 1) 100%);
-      z-index: 2;
+      background: linear-gradient(180deg, rgba($primary-background, 0.5) 0%, rgba($primary-background, 1) 100%), var(--background-image);
+      z-index: 1;
     }
 
     .background-elements {
@@ -199,11 +197,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 4;
       transition: background-color 0.2s ease-in-out;
 
       &.fading {
+        z-index: 2;
         background: rgba($primary-background, 1);
+      }
+
+      * {
+        z-index: 4;
       }
 
       .page-title {
