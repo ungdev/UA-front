@@ -226,7 +226,7 @@ export function TournamentHome({
                 : tournaments.map((tournament, i) => (
                     <img
                       key={tournament.id}
-                      src={getTournamentImageLink(tournaments![renderedTournamentIndex].id)!}
+                      src={getTournamentImageLink(tournament.id)!}
                       alt={`Logo ${tournament.name}`}
                       data-index={i}
                       className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
