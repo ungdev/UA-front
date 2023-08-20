@@ -1,8 +1,9 @@
 'use client';
 import { TournamentHome } from '@/app/tournaments/content';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from "next/navigation";
 
 const TournamentHomeDefault = () => {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   return (
@@ -12,6 +13,8 @@ const TournamentHomeDefault = () => {
       onDefaultTournamentSet={() =>
         setTimeout(() => window.history.replaceState({}, '', window.location.pathname), 500)
       }
+      scroll={searchParams.get('scroll') === 'true'}
+      onScrolled={() => setTimeout(() => router.replace(window.location.pathname), 500)}
     />
   );
 };

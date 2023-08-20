@@ -1,3 +1,4 @@
+'use client';
 import { Button, Title } from '@/components/UI';
 import constellation1 from '@/../public/images/clouds/constellation-1.png';
 import constellation2 from '@/../public/images/clouds/constellation-2.png';
@@ -7,8 +8,10 @@ import cloud2 from '@/../public/images/clouds/cloud-2.png';
 import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
 import Partners from '../../components/Partners';
+import { useRouter } from 'next/navigation';
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
   return (
     <div className="tournaments">
       <div className="top-container">
@@ -22,7 +25,21 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
             tes talents, de relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
           </div>
           <div className="buttons">
-            <Button primary>Découvrir les tournois</Button>
+            <Button
+              primary
+              onClick={() => {
+                if (router.pathname === '/tournaments') {
+                  router.replace('/tournaments?scroll=true', {
+                    scroll: false,
+                  });
+                } else {
+                  router.push('/tournaments?scroll=true', {
+                    scroll: false,
+                  });
+                }
+              }}>
+              Découvrir les tournois
+            </Button>
             <Button primary>Se connecter</Button>
           </div>
         </div>

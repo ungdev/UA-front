@@ -8,15 +8,19 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useAppSelector } from '@/lib/hooks';
 import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/uploadLink';
 
-export const TournamentHome = ({
+export function TournamentHome({
   animations,
   defaultTournamentId,
   onDefaultTournamentSet = () => {},
+  scroll = false,
+  onScrolled = () => {},
 }: {
   animations: 'all' | 'none' | 'except-first';
   defaultTournamentId?: string;
   onDefaultTournamentSet?: () => void;
-}) => {
+  scroll: boolean;
+  onScrolled?: () => void;
+}) {
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   // This is initialized when tournaments are fetched
@@ -27,9 +31,17 @@ export const TournamentHome = ({
   const [updater, setUpdater] = useState(false);
   const [nextUrl, setNextUrl] = useState('');
 
-  const tournamentList = useRef<HTMLDivElement>(null);
-  const leftArrow = useRef<HTMLDivElement>(null);
-  const rightArrow = useRef<HTMLDivElement>(null);
+  const root = useRef<HTMLDivElement | null>(null);
+  const tournamentList = useRef<HTMLDivElement | null>(null);
+  const leftArrow = useRef<HTMLDivElement | null>(null);
+  const rightArrow = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (scroll && root.current) {
+      root.current!.scrollIntoView({ behavior: 'smooth' });
+      onScrolled();
+    }
+  }, [root.current, scroll]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -66,38 +78,38 @@ export const TournamentHome = ({
 
     // Logic for navigation arrows
     const currentScroll =
-      window.innerWidth > 1024 ? tournamentList.current.scrollTop : tournamentList.current.scrollLeft;
-    const tournamentListRect = tournamentList.current.getBoundingClientRect();
+      window.innerWidth > 1024 ? tournamentList.current!.scrollTop : tournamentList.current!.scrollLeft;
+    const tournamentListRect = tournamentList.current!.getBoundingClientRect();
 
     const isLeft = currentScroll < 10;
     const isRight =
       window.innerWidth > 1024
-        ? currentScroll + tournamentListRect.height > tournamentList.current.scrollHeight - 10
-        : currentScroll + tournamentListRect.width > tournamentList.current.scrollWidth - 10;
+        ? currentScroll + tournamentListRect.height > tournamentList.current!.scrollHeight - 10
+        : currentScroll + tournamentListRect.width > tournamentList.current!.scrollWidth - 10;
 
     // left/top side
     if (isLeft) {
-      if (leftArrow.current) leftArrow.current.classList.add('hidden');
-      if (tournamentList.current) tournamentList.current.classList.remove('fade-top');
+      if (leftArrow.current) leftArrow.current!.classList.add('hidden');
+      if (tournamentList.current) tournamentList.current!.classList.remove('fade-top');
     } else {
-      if (leftArrow.current) leftArrow.current.classList.remove('hidden');
-      if (tournamentList.current) tournamentList.current.classList.add('fade-top');
+      if (leftArrow.current) leftArrow.current!.classList.remove('hidden');
+      if (tournamentList.current) tournamentList.current!.classList.add('fade-top');
     }
 
     // right/bottom side
     if (isRight) {
-      if (rightArrow.current) rightArrow.current.classList.add('hidden');
-      if (tournamentList.current) tournamentList.current.classList.remove('fade-bottom');
+      if (rightArrow.current) rightArrow.current!.classList.add('hidden');
+      if (tournamentList.current) tournamentList.current!.classList.remove('fade-bottom');
     } else {
-      if (rightArrow.current) rightArrow.current.classList.remove('hidden');
-      if (tournamentList.current) tournamentList.current.classList.add('fade-bottom');
+      if (rightArrow.current) rightArrow.current!.classList.remove('hidden');
+      if (tournamentList.current) tournamentList.current!.classList.add('fade-bottom');
     }
 
     // if screen is too large (max-width: 1024px), don't do anything more
     if (window.innerWidth > 1024) return;
 
-    let closestChild = findClosestChildren(tournamentList.current, tournamentListRect);
-    const tournamentListChildren = tournamentList.current.children;
+    let closestChild = findClosestChildren(tournamentList.current!, tournamentListRect);
+    const tournamentListChildren = tournamentList.current!.children;
 
     // if scroll x is 0, select the first tournament
     if (isLeft) {
@@ -125,24 +137,24 @@ export const TournamentHome = ({
     if (!tournamentList.current) return;
     const scrollAmount = 350;
     if (window.innerWidth > 1024) {
-      tournamentList.current.scrollBy({ top: isScrollLeftOrTop ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+      tournamentList.current!.scrollBy({ top: isScrollLeftOrTop ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     } else {
       // scroll to the next tournament
-      const tournamentListChildren = tournamentList.current.children;
-      const tournamentListRect = tournamentList.current.getBoundingClientRect();
+      const tournamentListChildren = tournamentList.current!.children;
+      const tournamentListRect = tournamentList.current!.getBoundingClientRect();
 
-      const closestChild = findClosestChildren(tournamentList.current, tournamentListRect);
+      const closestChild = findClosestChildren(tournamentList.current!, tournamentListRect);
 
       const tournamentId = closestChild.getAttribute('data-index');
       if (tournamentId) {
         const nextTournament = tournamentListChildren[parseInt(tournamentId) + (isScrollLeftOrTop ? -1 : 1)];
 
         // Scroll to center of the next tournament
-        tournamentList.current.scrollTo({
+        tournamentList.current!.scrollTo({
           left:
             nextTournament.getBoundingClientRect().left -
             tournamentListRect.left +
-            tournamentList.current.scrollLeft -
+            tournamentList.current!.scrollLeft -
             tournamentListRect.width / 2 +
             nextTournament.getBoundingClientRect().width / 2,
           behavior: 'smooth',
@@ -173,7 +185,7 @@ export const TournamentHome = ({
     setRenderedTournamentIndex(selectedTournamentIndex);
     document.documentElement.style.setProperty(
       '--background-image',
-      `url("${getTournamentBackgroundLink(tournaments![renderedTournamentIndex].id)}")`,
+      `url("${getTournamentBackgroundLink(tournaments![selectedTournamentIndex].id)}")`,
     );
   }
 
@@ -187,7 +199,7 @@ export const TournamentHome = ({
 
   return (
     <TournamentSwitcherAnimation nextPage={!nextUrl ? undefined : nextUrl}>
-      <div className={`tournament-container ${fading ? 'fading' : ''}`}>
+      <div className={`tournament-container ${fading ? 'fading' : ''}`} ref={root}>
         <div className="page-title">
           <Divider is_white />
           <Title align="center">Tournois</Title>
@@ -251,4 +263,4 @@ export const TournamentHome = ({
       </div>
     </TournamentSwitcherAnimation>
   );
-};
+}
