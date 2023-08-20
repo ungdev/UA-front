@@ -11,6 +11,7 @@ import Partners from '../../components/Partners';
 import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
+import type { Action } from '@reduxjs/toolkit';
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
@@ -44,7 +45,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
               }}>
               Découvrir les tournois
             </Button>
-            <Button primary onClick={() => dispatch(setLoginModalVisible(true))}>
+            <Button primary onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
               Se connecter
             </Button>
           </div>

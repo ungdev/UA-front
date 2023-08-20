@@ -18,7 +18,7 @@ export function TournamentHome({
   animations: 'all' | 'none' | 'except-first';
   defaultTournamentId?: string;
   onDefaultTournamentSet?: () => void;
-  scroll: boolean;
+  scroll?: boolean;
   onScrolled?: () => void;
 }) {
   const fadeDuration = animations !== 'none' ? 200 : 0;

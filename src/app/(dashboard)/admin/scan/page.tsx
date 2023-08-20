@@ -26,106 +26,102 @@ const Entry = () => {
       <div className="scan">
         <Title level={2}>Scanner une place</Title>
         <div className="entry-content">
-          <Card
-            className={scannedUser ? '' : 'borderless'}
-            content={
-              !scannedUser ? (
-                <div className="scanner">
-                  <div className="scanner-placeholder">
-                    <Icon name="camera" />
-                    Veuillez activer votre caméra
-                  </div>
-                  <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
+          <Card className={scannedUser ? '' : 'borderless'}>
+            {!scannedUser ? (
+              <div className="scanner">
+                <div className="scanner-placeholder">
+                  <Icon name="camera" />
+                  Veuillez activer votre caméra
                 </div>
-              ) : (
-                <>
-                  <p>
-                    <strong>Pseudo :</strong> {scannedUser.username}
-                  </p>
-                  <p>
-                    <strong>Nom :</strong> {scannedUser.lastname}
-                  </p>
-                  <p>
-                    <strong>Prénom :</strong> {scannedUser.firstname}
-                  </p>
-                  <p>
-                    {scannedUser.age === UserAge.child && <Icon name="caution" />}
-                    <strong>Âge :</strong> {scannedUser.age === UserAge.child ? 'Mineur' : 'Majeur'}
-                  </p>
-                  <p>
-                    <strong>Type :</strong>{' '}
-                    {scannedUser.type === UserType.player ? (
-                      'Joueur'
-                    ) : scannedUser.type === UserType.coach ? (
-                      'Coach/Manager'
-                    ) : scannedUser.type === UserType.spectator ? (
-                      'Spectateur'
-                    ) : scannedUser.type === UserType.orga ? (
-                      'Orga'
-                    ) : (
-                      <em className="default">Mais qui est cette étrange personne ?!</em>
-                    )}
-                  </p>
-                  <p>
-                    <strong>Équipe :</strong>{' '}
-                    {scannedUser.team?.name ?? (
-                      <>
-                        <em className="default">L'utilisateur n'est pas dans une équipe</em>
-                      </>
-                    )}
-                  </p>
-                  <p>
-                    <strong>Tournoi :</strong>{' '}
-                    {scannedUser.team?.tournament.name ?? (
-                      <>
-                        <em className="default">L'utilisateur n'est pas inscrit à un tournoi !</em>
-                      </>
-                    )}
-                  </p>
-                  <p>
-                    <strong>Place :</strong>{' '}
-                    {scannedUser.place ?? (
-                      <>
-                        <em className="default">L'utilisateur n'a pas de place attribuée</em>
-                      </>
-                    )}
-                  </p>
-                  <p>
-                    {scannedUser.customMessage && <Icon name="caution" />}
-                    <strong>Infos complémentaires :</strong>{' '}
-                    {scannedUser.customMessage || (
-                      <>
-                        <em className="default">Aucune information particulière</em>
-                      </>
-                    )}
-                  </p>
-                  {scannedUser.attendant?.id && (
-                    <p>
-                      <strong>Accompagnateur :</strong> {scannedUser.attendant.firstname}{' '}
-                      {scannedUser.attendant.lastname}
-                    </p>
+                <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
+              </div>
+            ) : (
+              <>
+                <p>
+                  <strong>Pseudo :</strong> {scannedUser.username}
+                </p>
+                <p>
+                  <strong>Nom :</strong> {scannedUser.lastname}
+                </p>
+                <p>
+                  <strong>Prénom :</strong> {scannedUser.firstname}
+                </p>
+                <p>
+                  {scannedUser.age === UserAge.child && <Icon name="caution" />}
+                  <strong>Âge :</strong> {scannedUser.age === UserAge.child ? 'Mineur' : 'Majeur'}
+                </p>
+                <p>
+                  <strong>Type :</strong>{' '}
+                  {scannedUser.type === UserType.player ? (
+                    'Joueur'
+                  ) : scannedUser.type === UserType.coach ? (
+                    'Coach/Manager'
+                  ) : scannedUser.type === UserType.spectator ? (
+                    'Spectateur'
+                  ) : scannedUser.type === UserType.orga ? (
+                    'Orga'
+                  ) : (
+                    <em className="default">Mais qui est cette étrange personne ?!</em>
                   )}
+                </p>
+                <p>
+                  <strong>Équipe :</strong>{' '}
+                  {scannedUser.team?.name ?? (
+                    <>
+                      <em className="default">L'utilisateur n'est pas dans une équipe</em>
+                    </>
+                  )}
+                </p>
+                <p>
+                  <strong>Tournoi :</strong>{' '}
+                  {scannedUser.team?.tournament.name ?? (
+                    <>
+                      <em className="default">L'utilisateur n'est pas inscrit à un tournoi !</em>
+                    </>
+                  )}
+                </p>
+                <p>
+                  <strong>Place :</strong>{' '}
+                  {scannedUser.place ?? (
+                    <>
+                      <em className="default">L'utilisateur n'a pas de place attribuée</em>
+                    </>
+                  )}
+                </p>
+                <p>
+                  {scannedUser.customMessage && <Icon name="caution" />}
+                  <strong>Infos complémentaires :</strong>{' '}
+                  {scannedUser.customMessage || (
+                    <>
+                      <em className="default">Aucune information particulière</em>
+                    </>
+                  )}
+                </p>
+                {scannedUser.attendant?.id && (
                   <p>
-                    <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
+                    <strong>Accompagnateur :</strong> {scannedUser.attendant.firstname} {scannedUser.attendant.lastname}
                   </p>
-                  <div className="buttonRow">
-                    <Button
-                      primary={true}
-                      disabled={scannedUser.hasPaid}
-                      onClick={() => dispatch(registerCashPayment() as unknown as Action)}>
-                      Valider le paiement
-                    </Button>
-                    <Button
-                      primary={true}
-                      disabled={!scannedUser.hasPaid || !!scannedUser.scannedAt}
-                      onClick={() => dispatch(bypassQrScan() as unknown as Action)}>
-                      Valider l'entrée
-                    </Button>
-                  </div>
-                </>
-              )
-            }
-          />
+                )}
+                <p>
+                  <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
+                </p>
+                <div className="buttonRow">
+                  <Button
+                    primary={true}
+                    disabled={scannedUser.hasPaid}
+                    onClick={() => dispatch(registerCashPayment() as unknown as Action)}>
+                    Valider le paiement
+                  </Button>
+                  <Button
+                    primary={true}
+                    disabled={!scannedUser.hasPaid || !!scannedUser.scannedAt}
+                    onClick={() => dispatch(bypassQrScan() as unknown as Action)}>
+                    Valider l'entrée
+                  </Button>
+                </div>
+              </>
+            )}
+          </Card>
           <form
             onSubmit={(event) => {
               event.preventDefault();

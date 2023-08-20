@@ -75,7 +75,7 @@ const Team = () => {
       email: user.email,
       hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
       action:
-        user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
             <Button
               onClick={() =>
@@ -125,7 +125,7 @@ const Team = () => {
       email: user.email,
       hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
       action:
-        user.id !== team.captainId && isCaptain && isShopAllowed && !team.locked ? (
+        user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
             <Button
               onClick={() =>
@@ -286,7 +286,7 @@ const Team = () => {
                   leur place et l'équipe doit être verrouillée.
                 </Helper>
                 <strong> : </strong>
-                {team.locked ? (
+                {team.lockedAt ? (
                   <>
                     <Icon name="tick" /> Inscrit
                   </>
@@ -354,7 +354,7 @@ const Team = () => {
             <Title level={4}>Coach / Manager</Title>
             <Table columns={playersColumns} dataSource={coaches ? coaches : []} alignRight className="table-players" />
           </div>
-          {isCaptain && !team.locked && (
+          {isCaptain && !team.lockedAt && (
             <Button
               primary
               disabled={!(tournament && usersPaid === tournament.playersPerTeam)}
@@ -362,7 +362,7 @@ const Team = () => {
               Verrouiller l'équipe
             </Button>
           )}
-          {isShopAllowed && !team.locked && (
+          {isShopAllowed && !team.lockedAt && (
             <>
               <div className="players-list">
                 <Title level={4}>Joueurs en attente</Title>
@@ -410,7 +410,7 @@ const Team = () => {
           )}
         </>
       ) : (
-        !team.locked && (
+        !team.lockedAt && (
           <>
             <Button primary disabled={!usersPaid} onClick={() => dispatch(lockTeam() as unknown as Action)}>
               Verrouiller mon inscription

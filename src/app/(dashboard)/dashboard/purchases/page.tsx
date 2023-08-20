@@ -71,20 +71,18 @@ const Purchases = () => {
         return (
           <Card
             className={`card-cart${cart.transactionState === TransactionState.authorization ? ' authorization' : ''}`}
-            key={cart.id}
-            content={
-              <>
-                <p>
-                  Date: {date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric' })}{' '}
-                  {cart.transactionState === TransactionState.authorization ? '(Paiement en cours de traitement)' : ''}
-                </p>
-                <Table columns={columns} dataSource={dataSource} className="cart" />
-                <p className="cart-total">
-                  <strong>Total: {(total / 100).toFixed(2)} €</strong>
-                </p>
-              </>
-            }
-          />
+            key={cart.id}>
+            <>
+              <p>
+                Date: {date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric' })}{' '}
+                {cart.transactionState === TransactionState.authorization ? '(Paiement en cours de traitement)' : ''}
+              </p>
+              <Table columns={columns} dataSource={dataSource} className="cart" />
+              <p className="cart-total">
+                <strong>Total: {(total / 100).toFixed(2)} €</strong>
+              </p>
+            </>
+          </Card>
         );
       });
 
