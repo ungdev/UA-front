@@ -1,151 +1,159 @@
 header {
-  display: flex;
   height: 100px;
   background-color: $secondary-background;
-  align-items: center;
-  padding: 0 30px 0 30px;
-  gap: 10px;
 
-  img {
-    height: auto;
-    vertical-align: middle;
-    width: 75px;
-  }
-
-  nav {
+  .content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    height: 100%;
     width: 100%;
+    align-items: center;
+    padding: 0 30px 0 30px;
+    gap: 10px;
 
-    .left,
-    .right {
+    img {
+      height: auto;
+      vertical-align: middle;
+      width: 75px;
+    }
+
+    nav {
       display: flex;
-    }
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
 
-    .right {
-      align-items: flex-end;
-      gap: 1rem;
-
-      a {
-        margin-bottom: 1px;
+      .left,
+      .right {
+        display: flex;
       }
-    }
 
-    .button:not(.primary, .secondary) {
-      position: relative;
-      transition: color 0.2s ease-in-out;
+      .right {
+        align-items: flex-end;
+        gap: 1rem;
 
-      &:hover {
-        &:after {
-          width: 100%;
+        a {
+          margin-bottom: 1px;
         }
       }
 
-      &:after {
-        content: '';
-        position: absolute;
-        bottom: -29px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: white;
-        transition: width 0.3s ease-in-out;
-      }
+      .button:not(.primary, .secondary) {
+        position: relative;
+        transition: color 0.2s ease-in-out;
 
-      &.current {
-        color: white;
-        &:after {
-          width: 100%;
-          height: 1px;
-          background-color: white;
+        &:hover {
+          &:after {
+            width: 100%;
+          }
         }
 
-        &:hover:after {
-          background-color: white;
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -29px;
+          left: 0;
+          width: 0;
           height: 2px;
+          background-color: white;
+          transition: width 0.3s ease-in-out;
+        }
+
+        &.current {
+          color: white;
+
+          &:after {
+            width: 100%;
+            height: 1px;
+            background-color: white;
+          }
+
+          &:hover:after {
+            background-color: white;
+            height: 2px;
+          }
         }
       }
-    }
-    .burger-container {
-      position: relative;
-      width: 32px;
-      height: 24px;
-      display: none;
 
-      .burger {
-        position: absolute;
-        z-index: 9999999;
+      .burger-container {
+        position: relative;
         width: 32px;
         height: 24px;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        gap: 4px;
+        display: none;
 
-        span {
-          display: block;
-          width: 100%;
-          height: 4px;
-          background-color: white;
-          transition: all 0.3s ease-in-out;
-          border-radius: 2px;
-        }
+        .burger {
+          position: absolute;
+          z-index: 9999999;
+          width: 32px;
+          height: 24px;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          gap: 4px;
 
-        &.open {
-          position: fixed;
-          top: 38px;
-          right: 30px;
           span {
-            &:nth-child(1) {
-              transform: translateY(10px) rotate(45deg);
-            }
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+          }
 
-            &:nth-child(2) {
-              opacity: 0;
-            }
+          &.open {
+            position: fixed;
+            top: 38px;
+            right: 30px;
 
-            &:nth-child(3) {
-              transform: translateY(-10px) rotate(-45deg);
+            span {
+              &:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+              }
+
+              &:nth-child(2) {
+                opacity: 0;
+              }
+
+              &:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+              }
             }
           }
         }
       }
-    }
 
-    .burger-menu-content {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      padding: 40px 30px;
-      background-color: #000;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s ease-in-out;
+      .burger-menu-content {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        padding: 40px 30px;
+        background-color: #000;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease-in-out;
 
-      &.open {
-        opacity: 1;
-        pointer-events: all;
-      }
+        &.open {
+          opacity: 1;
+          pointer-events: all;
+        }
 
-      a {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: white;
-        transition: color 0.2s ease-in-out;
+        a {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: white;
+          transition: color 0.2s ease-in-out;
 
-        &:hover {
-          color: $accent-color;
+          &:hover {
+            color: $accent-color;
+          }
         }
       }
     }

@@ -76,27 +76,29 @@ export default function Header({ connected = false, admin = false }: { connected
 
   return (
     <header id="header">
-      <Link href="/">
-        <img src={logo.src} alt="Logo UA23" />
-      </Link>
-      <nav>
-        <div className="left">{leftContent}</div>
-        <div className="right">
-          {rightContent}
+      <div className="content">
+        <Link href="/">
+          <img src={logo.src} alt="Logo UA23" />
+        </Link>
+        <nav>
+          <div className="left">{leftContent}</div>
+          <div className="right">
+            {rightContent}
 
-          <div className="burger-container">
-            <div className={'burger ' + (isBurgerOpen ? 'open' : '')} onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
-              <span></span>
-              <span></span>
-              <span></span>
+            <div className="burger-container">
+              <div className={'burger ' + (isBurgerOpen ? 'open' : '')} onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className={'burger-menu-content ' + (isBurgerOpen ? 'open' : '')}>
-          {leftContent}
-          {rightContent}
-        </div>
-      </nav>
+          <div className={'burger-menu-content ' + (isBurgerOpen ? 'open' : '')}>
+            {leftContent}
+            {rightContent}
+          </div>
+        </nav>
+      </div>
 
       {isLoginAllowed ? (
         <LoginModal visible={isVisible} />
