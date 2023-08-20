@@ -49,13 +49,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin)) {
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
+      // menu.push({ title: 'Tournois', href: '/admin/tournaments' });
     }
 
     if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin)) {
       menu.push({ title: 'Entrée', href: '/admin/scan' });
     }
 
-    menu.push({ title: 'Mon compte', href: '/admin/account' });
+    if (permissions.includes(Permission.admin)) {
+      // menu.push({ title: 'Boutique', href: '/admin/shop' });
+      // menu.push({ title: 'Partenaires', href: '/admin/partners' });
+      menu.push({ title: 'Paramètres', href: '/admin/settings' });
+    }
+
+    menu.push({ title: 'Compte', href: '/admin/account' });
 
     return menu;
   };

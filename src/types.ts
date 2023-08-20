@@ -10,6 +10,7 @@ export interface Partner {
 export interface Settings {
   login: boolean;
   shop: boolean;
+  trombi: boolean;
 }
 
 export interface RegisterUser {

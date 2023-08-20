@@ -1,6 +1,7 @@
 'use client';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
+import { useAppSelector } from '@/lib/hooks';
 
 interface TeamMember {
   name: string;
@@ -73,6 +74,8 @@ const team: OurTeam = {
 } as OurTeam;
 
 const About = () => {
+  const trombiAllowed = useAppSelector((state) => state.settings.trombi);
+
   return (
     <>
       <div className="about-container">
@@ -102,30 +105,32 @@ const About = () => {
           </TextBlock>
         </div>
 
-        <div className="about-team">
-          <Title level={1} align="center">
-            Notre équipe
-          </Title>
-          <div className="content">
-            {Object.keys(team).map((key) => (
-              <>
-                {team[key].members.map((member) => (
-                  <div
-                    key={member.name}
-                    className="member"
-                    style={{ '--team-color': team[key].color } as React.CSSProperties}>
-                    <div className="img-container">
-                      <div className="image-font"></div>
-                      <img src={member.image} alt={member.name} />
+        {trombiAllowed && (
+          <div className="about-team">
+            <Title level={1} align="center">
+              Notre équipe
+            </Title>
+            <div className="content">
+              {Object.keys(team).map((key) => (
+                <>
+                  {team[key].members.map((member) => (
+                    <div
+                      key={member.name}
+                      className="member"
+                      style={{ '--team-color': team[key].color } as React.CSSProperties}>
+                      <div className="img-container">
+                        <div className="image-font"></div>
+                        <img src={member.image} alt={member.name} />
+                      </div>
+                      <span>{member.name}</span>
+                      <span>{member.job}</span>
                     </div>
-                    <span>{member.name}</span>
-                    <span>{member.job}</span>
-                  </div>
-                ))}
-              </>
-            ))}
+                  ))}
+                </>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <Partners />
     </>

@@ -54,23 +54,25 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
         />
-        {loginAllowed && <Table
-          columns={[
-            { key: 'name', title: 'Nom' },
-            { key: 'players', title: 'Joueurs' },
-          ]}
-          dataSource={tournament.teams
-            .filter((team) => team.lockedAt)
-            .map((team) => ({
-              name: team.name,
-              players: team.players.map((player) => (
-                <>
-                  {player.username}
-                  <br />
-                </>
-              )),
-            }))}
-        /> }
+        {loginAllowed && (
+          <Table
+            columns={[
+              { key: 'name', title: 'Nom' },
+              { key: 'players', title: 'Joueurs' },
+            ]}
+            dataSource={tournament.teams
+              .filter((team) => team.lockedAt)
+              .map((team) => ({
+                name: team.name,
+                players: team.players.map((player) => (
+                  <>
+                    {player.username}
+                    <br />
+                  </>
+                )),
+              }))}
+          />
+        )}
       </div>
     </TournamentSwitcherAnimation>
   );

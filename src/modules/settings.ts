@@ -5,6 +5,7 @@ import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 const initialState: Settings = {
   login: false,
   shop: false,
+  trombi: false,
 };
 
 export const settingsSlice = createSlice({
@@ -31,8 +32,18 @@ export const fetchSettings = () => async (dispatch: Dispatch) => {
       setSettings({
         login: false,
         shop: false,
+        trombi: false,
       }),
     );
+  }
+};
+
+export const updateSetting = (setting: string, value: boolean) => async (dispatch: Dispatch) => {
+  try {
+    await API.patch(`admin/settings/${setting}`, { value: value.toString() });
+    dispatch(setSettings({ [setting]: value }));
+  } catch (err) {
+    console.error(err);
   }
 };
 

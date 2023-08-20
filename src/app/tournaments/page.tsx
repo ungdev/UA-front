@@ -1,6 +1,6 @@
 'use client';
 import { TournamentHome } from '@/app/tournaments/content';
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const TournamentHomeDefault = () => {
   const router = useRouter();
