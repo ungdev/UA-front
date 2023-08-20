@@ -24,7 +24,7 @@ import { ReactNode } from 'react';
 const Card = ({
   dark = false,
   imgSrc = null,
-  content = null,
+  children = null,
   buttonContent = '',
   onClick = () => {},
   href = null,
@@ -36,7 +36,7 @@ const Card = ({
 }: {
   dark?: boolean;
   imgSrc?: string | null;
-  content?: ReactNode;
+  children?: ReactNode;
   buttonContent?: ReactNode;
   onClick?: () => void;
   href?: string | null;
@@ -69,9 +69,9 @@ const Card = ({
           {divider === 'belowImage' && <Divider />}
         </>
       )}
-      {content && (
+      {children && (
         <>
-          <div className="card-content">{content}</div>
+          <div className="card-content">{children}</div>
           {buttonContent !== '' && <div className="card-button">{button}</div>}
         </>
       )}

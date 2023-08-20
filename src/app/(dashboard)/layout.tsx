@@ -1,11 +1,15 @@
 'use client';
 import PanelHeader from '@/components/dashboard/PanelHeader';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { fetchAdminPartners, fetchAdminTournaments } from '@/modules/admin';
 import { Permission } from '@/types';
+import { Action } from '@reduxjs/toolkit';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
 
   const permissions = useAppSelector((state) => state.login.user! && state.login.user!.permissions);
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
@@ -15,6 +19,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isSpectator = useAppSelector((state) => state.login.status.spectator);
   const hasTeam = useAppSelector((state) => state.login.status.team);
   const hasPaid = useAppSelector((state) => state.login.status.paid);
+
+  const adminPartners = useAppSelector((state) => state.admin.partners);
+  const adminTournaments = useAppSelector((state) => state.admin.tournaments);
 
   if (pathname === '/admin/login') {
     return <>{children}</>;
@@ -49,7 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin)) {
       menu.push({ title: 'Utilisateurs', href: '/admin/users' });
-      // menu.push({ title: 'Tournois', href: '/admin/tournaments' });
+      menu.push({ title: 'Tournois', href: '/admin/tournaments' });
     }
 
     if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin)) {
@@ -58,7 +65,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     if (permissions.includes(Permission.admin)) {
       // menu.push({ title: 'Boutique', href: '/admin/shop' });
-      // menu.push({ title: 'Partenaires', href: '/admin/partners' });
+      menu.push({ title: 'Partenaires', href: '/admin/partners' });
       menu.push({ title: 'Paramètres', href: '/admin/settings' });
     }
 
@@ -66,6 +73,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
     return menu;
   };
+
+  useEffect(() => {
+    adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
+    adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
+  }, [adminPartners, adminTournaments]);
 
   return (
     <>

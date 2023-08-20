@@ -12,6 +12,7 @@ import userEntry from './userEntry';
 import users from './users';
 import settings from './settings';
 import partners from './partners';
+import admin from './admin';
 
 export default combineReducers({
   loginModal,
@@ -26,4 +27,5 @@ export default combineReducers({
   users,
   settings,
   partners,
+  admin,
 });

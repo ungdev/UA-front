@@ -23,7 +23,7 @@ export const Default: Story = {
   args: {
     dark: false,
     imgSrc: 'https://via.placeholder.com/150',
-    content: 'Content',
+    children: 'Content',
     buttonContent: 'Button',
     href: 'https://www.google.com/',
     target: '_blank',
@@ -37,7 +37,7 @@ export const Dark: Story = {
   args: {
     dark: true,
     imgSrc: 'https://via.placeholder.com/150',
-    content: 'Content',
+    children: 'Content',
     buttonContent: 'Button',
     href: 'https://www.google.com/',
     target: '_blank',
@@ -50,7 +50,7 @@ export const Dark: Story = {
 export const NoImage: Story = {
   args: {
     dark: false,
-    content: 'Content',
+    children: 'Content',
     buttonContent: 'Button',
     href: 'https://www.google.com/',
     target: '_blank',

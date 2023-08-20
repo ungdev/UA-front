@@ -114,45 +114,41 @@ const UserModal = ({
       if (cart.transactionState === TransactionState.authorization) transactionState = "en cours d'autorisation";
 
       return (
-        <Card
-          className={`cart-${cart.transactionState}`}
-          key={cart.transactionId}
-          content={
-            <>
-              <p>
-                <strong>Statut :</strong> {transactionState} (
-                {cart.transactionId
-                  ? `#${cart.transactionId}`
-                  : cart.transactionState != TransactionState.pending
-                  ? 'Paiement validé manuellement'
-                  : 'En attente de paiement'}
-                )<br />
-                {(cart.transactionState === TransactionState.paid ||
-                  cart.transactionState === TransactionState.refunded) && (
-                  <>
-                    <strong>Date :</strong>{' '}
-                    {date.toLocaleDateString('fr-FR') +
-                      ' à ' +
-                      date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
-                    <br />
-                  </>
-                )}
-                <strong>Prix :</strong>{' '}
-                {(cart.totalPrice! / 100).toLocaleString(undefined, {
-                  style: 'currency',
-                  currency: 'EUR',
-                })}
-                <br />
-              </p>
-              <ul className="cart-items">{cartItems}</ul>
-              {cart.transactionState === TransactionState.paid && (
-                <p>
-                  <Button onClick={() => dispatch(refundCart(cart.id) as unknown as Action)}>Rembourser</Button>
-                </p>
+        <Card className={`cart-${cart.transactionState}`} key={cart.transactionId}>
+          <>
+            <p>
+              <strong>Statut :</strong> {transactionState} (
+              {cart.transactionId
+                ? `#${cart.transactionId}`
+                : cart.transactionState != TransactionState.pending
+                ? 'Paiement validé manuellement'
+                : 'En attente de paiement'}
+              )<br />
+              {(cart.transactionState === TransactionState.paid ||
+                cart.transactionState === TransactionState.refunded) && (
+                <>
+                  <strong>Date :</strong>{' '}
+                  {date.toLocaleDateString('fr-FR') +
+                    ' à ' +
+                    date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                  <br />
+                </>
               )}
-            </>
-          }
-        />
+              <strong>Prix :</strong>{' '}
+              {(cart.totalPrice! / 100).toLocaleString(undefined, {
+                style: 'currency',
+                currency: 'EUR',
+              })}
+              <br />
+            </p>
+            <ul className="cart-items">{cartItems}</ul>
+            {cart.transactionState === TransactionState.paid && (
+              <p>
+                <Button onClick={() => dispatch(refundCart(cart.id) as unknown as Action)}>Rembourser</Button>
+              </p>
+            )}
+          </>
+        </Card>
       );
     });
   };

@@ -3,6 +3,10 @@
     display: none;
   }
 
+  .input .input-label, .textarea .textarea-label {
+    color: black;
+  }
+
   .modal-overflow {
     position: fixed;
     top: 0;

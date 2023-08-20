@@ -7,6 +7,10 @@ export interface Partner {
   link: string;
 }
 
+export interface AdminPartner extends Partner {
+  display: boolean;
+}
+
 export interface Settings {
   login: boolean;
   shop: boolean;
@@ -211,6 +215,12 @@ export interface Tournament {
   cashprizeDetails: string | null;
   casters: Caster[] | null;
   teams: TeamWithUsersRestricted[];
+}
+
+export interface AdminTournament extends Tournament {
+  display: boolean;
+  displayCasters: boolean;
+  displayCashprize: boolean;
 }
 
 export enum UserType {

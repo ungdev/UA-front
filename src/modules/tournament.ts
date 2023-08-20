@@ -24,13 +24,21 @@ export const tournamentSlice = createSlice({
     setTournaments: (state, action) => {
       state.tournaments = action.payload;
     },
+    updateTournament: (state, action) => {
+      state.tournaments = state.tournaments?.map((tournament) => {
+        if (tournament.id === action.payload.id) {
+          return action.payload;
+        }
+        return tournament;
+      }) as Tournament[];
+    },
     setSlots: (state, action) => {
       state.slots = action.payload;
     },
   },
 });
 
-export const { setTournaments, setSlots } = tournamentSlice.actions;
+export const { setTournaments, updateTournament, setSlots } = tournamentSlice.actions;
 
 export const fetchTournaments = () => async (dispatch: Dispatch) => {
   const res = await API.get('tournaments');

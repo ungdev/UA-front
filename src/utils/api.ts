@@ -9,6 +9,7 @@ const requestAPI = (
   authorizationHeader: boolean,
   body: object | null = null,
   disableCache = false,
+  file = false,
 ): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
@@ -18,15 +19,16 @@ const requestAPI = (
 
     const token = getAuthorizationToken();
 
+    const headers = new Headers();
+    if (authorizationHeader) {
+      headers.append('Authorization', token ? `Bearer ${token}` : '');
+      !file && headers.append('Content-Type', 'application/json');
+    }
+
     fetch(baseURL + route + (disableCache ? '?nocache=' + new Date().getTime() : ''), {
       method,
-      headers: authorizationHeader
-        ? {
-            Authorization: token ? `Bearer ${token}` : '',
-            'Content-Type': 'application/json',
-          }
-        : {},
-      body: method === 'GET' || method === 'DELETE' ? undefined : JSON.stringify(body),
+      headers: authorizationHeader ? headers : {},
+      body: method === 'GET' || method === 'DELETE' ? undefined : file ? (body as FormData) : JSON.stringify(body),
     })
       .then((response) => {
         if (!response.ok) {
@@ -94,4 +96,5 @@ export const API = {
 export const uploads = {
   get: (route: string, disableCache = false) => requestAPI('GET', uploadsUrl(), route, false, undefined, disableCache),
   getWithoutCache: (route: string) => requestAPI('GET', uploadsUrl(), route, false, undefined, true),
+  send: (route: string, body: object = {}) => requestAPI('POST', apiUrl(), route, true, body, false, true),
 };

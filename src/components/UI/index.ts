@@ -3,6 +3,7 @@ import Card from './Card';
 import Checkbox from './Checkbox';
 import Collapse from './Collapse';
 // import Countdown from './Countdown';
+import FileInput from './FileInput';
 import Helper from './Helper';
 import Icon from './Icon';
 import Input from './Input';
@@ -27,6 +28,7 @@ export {
   Collapse,
   // Countdown,
   Divider,
+  FileInput,
   Helper,
   Icon,
   Input,
