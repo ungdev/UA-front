@@ -204,7 +204,6 @@ export interface Caster {
 export interface Tournament {
   id: string;
   name: string;
-  shortName: string;
   maxPlayers: number;
   playersPerTeam: number;
   lockedTeamsCount: number;

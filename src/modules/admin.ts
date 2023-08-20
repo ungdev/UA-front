@@ -140,7 +140,6 @@ export const updateTournament =
     try {
       const data = {
         name: tournament.name,
-        shortName: tournament.shortName,
         maxPlayers: tournament.maxPlayers,
         playersPerTeam: tournament.playersPerTeam,
         display: tournament.display.toString(),

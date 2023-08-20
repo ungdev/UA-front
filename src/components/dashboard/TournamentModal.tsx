@@ -17,7 +17,6 @@ const TournamentModal = ({
 
   const id = useState(tournament?.id || null);
   const [name, setName] = useState(tournament?.name || null);
-  const [shortName, setShortName] = useState(tournament?.shortName || null);
   const [maxPlayers, setMaxPlayers] = useState(tournament?.maxPlayers || null);
   const [playersPerTeam, setPlayersPerTeam] = useState(tournament?.playersPerTeam || null);
   const [infos, setInfos] = useState(tournament?.infos || null);
@@ -54,7 +53,6 @@ const TournamentModal = ({
               const body = {
                 id: id! ?? '',
                 name: name ?? '',
-                shortName: shortName ?? '',
                 maxPlayers: maxPlayers ?? 0,
                 playersPerTeam: playersPerTeam ?? 0,
                 lockedTeamsCount: 0,
@@ -84,7 +82,6 @@ const TournamentModal = ({
       containerClassName="user-modal">
       <>
         <Input label="Nom" value={name ?? ''} onChange={setName} />
-        <Input label="Nom court" value={shortName ?? ''} onChange={setShortName} />
         <Input
           label="Nombre de joueurs maximum"
           type="number"
