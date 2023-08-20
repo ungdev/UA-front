@@ -29,7 +29,7 @@ export function TournamentHome({
   const [lastFading, setLastFading] = useState(animations === 'all' ? Date.now() : 0);
   // Only used for force-updating the component. To force-update, call setUpdater(Math.random())
   // The value needs to be a random number and not a simple boolean toggle because it is used in a callback, in which we can't know the current value of the state
-  const [updater, setUpdater] = useState(0);
+  const [, setUpdater] = useState(0);
   const [nextUrl, setNextUrl] = useState('');
 
   const root = useRef<HTMLDivElement | null>(null);

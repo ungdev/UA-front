@@ -23,14 +23,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const adminPartners = useAppSelector((state) => state.admin.partners);
   const adminTournaments = useAppSelector((state) => state.admin.tournaments);
 
-  if (pathname === '/admin/login') {
-    return <>{children}</>;
-  }
-
   useEffect(() => {
     adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
     adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
   }, []);
+
+  if (pathname === '/admin/login') {
+    return <>{children}</>;
+  }
 
   const linksDashboard = () => {
     const menu = [];
