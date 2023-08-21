@@ -29,20 +29,19 @@ footer {
   .copyright {
     text-align: center;
     padding-bottom: 20px;
-    
+
     > button {
       padding-top: 0;
       color: white !important;
+
+      &.turned {
+        rotate: 180deg;
+      }
     }
   }
 
   .middle {
     display: block;
-
-    > button {
-      padding-left: 0;
-      color: white !important;
-    }
   }
 
   .right {

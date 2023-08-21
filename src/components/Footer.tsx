@@ -1,13 +1,16 @@
+'use client';
 import Button from './UI/Button';
 
 import logo from '../../public/images/logo-footer.png';
 import Link from 'next/link';
 import { Icon } from './UI';
+import { useState } from 'react';
 
 /**
  * Footer component that displays legal information and contact details.
  */
 export default function Footer() {
+  const [copyrightTurned, setCopyrightTurned] = useState(false);
   return (
     <footer>
       <div className='row'>
@@ -53,8 +56,8 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className='copyright'>
-        <Button>© {new Date().getFullYear()} UTT Net Group</Button>
+      <div className="copyright">
+        <Button className={`${copyrightTurned ? 'turned' : ''}`} onClick={() => setCopyrightTurned(!copyrightTurned)}>© {new Date().getFullYear()} UTT Net Group</Button>
       </div>
     </footer>
   );
