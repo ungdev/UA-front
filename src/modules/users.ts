@@ -179,12 +179,11 @@ export const saveUser =
     dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
   };
 
-
-export const createUser = (body: object, callback: () => void) => async (dispatch: Dispatch) => {
+export const createUser = (body: object, callback: () => void) => async () => {
   const user = await API.post(`admin/users`, body);
   toast.success(`${user.username} a été crée`);
   callback();
-}  
+};
 
 export const refundCart = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
   const state = getState();

@@ -123,7 +123,11 @@ const Users = () => {
 
   return (
     <div id="admin-users">
-      {isAdmin && <Button primary onClick={() => setCreateUser(true)}>Créer un nouvel utilisateur</Button>}
+      {isAdmin && (
+        <Button primary onClick={() => setCreateUser(true)}>
+          Créer un nouvel utilisateur
+        </Button>
+      )}
       <div className="filters">
         <Radio
           label="Statut"
@@ -218,10 +222,12 @@ const Users = () => {
         onRowClicked={(i) => dispatch(lookupUser(users[i]) as unknown as Action)}
       />
       {(searchUser || createUser) && (
-        <UserModal searchUser={!createUser ? searchUser : null} onClose={() => {
-          dispatch(lookupUser() as unknown as Action);
-          setCreateUser(false);
-        }}></UserModal>
+        <UserModal
+          searchUser={!createUser ? searchUser : null}
+          onClose={() => {
+            dispatch(lookupUser() as unknown as Action);
+            setCreateUser(false);
+          }}></UserModal>
       )}
     </div>
   );

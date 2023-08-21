@@ -36,9 +36,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           <Title level={1} className="tournament-name">
             {tournament.name}
           </Title>
-          <Link href={
-            getTournamentRulesLink(tournament.id)
-          } target='_blank'>
+          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
           </Link>
         </div>

@@ -28,4 +28,4 @@ export const deleteFile = async (path: string) => {
   }
 
   return response;
-}
+};

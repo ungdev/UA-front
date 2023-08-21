@@ -61,7 +61,7 @@ const UserModal = ({
   const [discordId, setDiscordId] = useState('');
 
   useEffect(() => {
-    if(!searchUser) return;
+    if (!searchUser) return;
     setLastname(searchUser.lastname);
     setFirstname(searchUser.firstname);
     setUsername(searchUser.username);
@@ -162,71 +162,71 @@ const UserModal = ({
       onCancel={onClose ? onClose : () => {}}
       buttons={
         <>
-        {searchUser ? (
-          <>
-          {hasEntryPermission && searchUser && !searchUser.hasPaid && (
-            <Button
-              onClick={() => dispatch(validatePay(searchUser.id) as unknown as Action)}
-              disabled={!searchUser.type}>
-              Valider le paiement
-            </Button>
-          )}
-          {(isAdmin || isAnim) && (
+          {searchUser ? (
+            <>
+              {hasEntryPermission && searchUser && !searchUser.hasPaid && (
+                <Button
+                  onClick={() => dispatch(validatePay(searchUser.id) as unknown as Action)}
+                  disabled={!searchUser.type}>
+                  Valider le paiement
+                </Button>
+              )}
+              {(isAdmin || isAnim) && (
+                <Button
+                  primary
+                  onClick={() => {
+                    const body = {
+                      discordId: discordId || null,
+                      age,
+                      place: place || null,
+                      username,
+                      lastname,
+                      firstname,
+                      email,
+                      customMessage,
+                      type: undefined as UserType | undefined,
+                      permissions: undefined as Permission[] | undefined,
+                    };
+                    if (type) body.type = type;
+                    if (isAdmin) body.permissions = permissions;
+                    dispatch(
+                      saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname) as unknown as Action,
+                    );
+                  }}>
+                  Enregistrer
+                </Button>
+              )}
+              {isAdmin && (
+                <Button
+                  primary
+                  onClick={() => dispatch(connectAs(searchUser.id) as unknown as Action)}
+                  disabled={searchUser.type === UserType.attendant}>
+                  Se connecter en tant que cet utilisateur
+                </Button>
+              )}
+            </>
+          ) : (
             <Button
               primary
               onClick={() => {
                 const body = {
-                  discordId: discordId || null,
-                  age,
-                  place: place || null,
                   username,
                   lastname,
                   firstname,
                   email,
+                  password,
                   customMessage,
-                  type: undefined as UserType | undefined,
-                  permissions: undefined as Permission[] | undefined,
+                  permissions: permissions as Permission[] | undefined,
                 };
-                if (type) body.type = type;
-                if (isAdmin) body.permissions = permissions;
                 dispatch(
-                  saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname) as unknown as Action,
+                  createUser(body, () => {
+                    onClose!();
+                  }) as unknown as Action,
                 );
               }}>
-              Enregistrer
+              Créer l'utilisteur
             </Button>
           )}
-            {isAdmin && (
-              <Button
-                primary
-                onClick={() => dispatch(connectAs(searchUser.id) as unknown as Action)}
-                disabled={searchUser.type === UserType.attendant}>
-                Se connecter en tant que cet utilisateur
-              </Button>
-            )}
-          </>
-        ):(
-          <Button
-            primary
-            onClick={() => {
-              const body = {
-                username,
-                lastname,
-                firstname,
-                email,
-                password,
-                customMessage,
-                permissions: permissions as Permission[] | undefined,
-              };
-              dispatch(
-                createUser(body, () => {
-                  onClose!();
-                }) as unknown as Action,
-              );
-            }}>
-           Créer l'utilisteur
-          </Button>
-        )}
         </>
       }
       containerClassName="user-modal">
@@ -237,7 +237,15 @@ const UserModal = ({
           <>
             <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin && !isAnim} />
             <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin && !isAnim} />
-            {!searchUser && <Input label="Mot de passe" type="password" value={password} onChange={setPassword} disabled={!isAdmin && !isAnim} />}
+            {!searchUser && (
+              <Input
+                label="Mot de passe"
+                type="password"
+                value={password}
+                onChange={setPassword}
+                disabled={!isAdmin && !isAnim}
+              />
+            )}
             <Textarea
               label="Infos complémentaires"
               value={customMessage ?? ''}
@@ -246,29 +254,29 @@ const UserModal = ({
             />
             {searchUser && (
               <>
-              <p>
-                <strong>Équipe :</strong>{' '}
-                {searchUser?.team?.name ?? (
+                <p>
+                  <strong>Équipe :</strong>{' '}
+                  {searchUser?.team?.name ?? (
+                    <>
+                      <em className="default">N'a pas encore d'équipe</em>
+                    </>
+                  )}
+                </p>
+                <p>
+                  <strong>Tournoi :</strong>{' '}
+                  {searchUser?.team?.tournament?.name ?? (
+                    <>
+                      <em className="default">N'est pas encore inscrit à un tournoi</em>
+                    </>
+                  )}
+                </p>
+                {searchUser.attendant && (
                   <>
-                    <em className="default">N'a pas encore d'équipe</em>
+                    <p>
+                      <strong>Accompagnateur :</strong> {searchUser.attendant.firstname} {searchUser.attendant.lastname}
+                    </p>
                   </>
                 )}
-              </p>
-              <p>
-                <strong>Tournoi :</strong>{' '}
-                {searchUser?.team?.tournament?.name ?? (
-                  <>
-                    <em className="default">N'est pas encore inscrit à un tournoi</em>
-                  </>
-                )}
-              </p>
-              {searchUser.attendant && (
-                <>
-                  <p>
-                    <strong>Accompagnateur :</strong> {searchUser.attendant.firstname} {searchUser.attendant.lastname}
-                  </p>
-                </>
-              )}
               </>
             )}
           </>
@@ -298,7 +306,7 @@ const UserModal = ({
             </div>
           </>
         )}
-        {(searchUser && (isAnim || isAdmin)) && (
+        {searchUser && (isAnim || isAdmin) && (
           <>
             <Radio
               label="Type"

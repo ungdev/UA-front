@@ -2,7 +2,6 @@ import Button from './Button';
 import Card from './Card';
 import Checkbox from './Checkbox';
 import Collapse from './Collapse';
-// import Countdown from './Countdown';
 import FileInput from './FileInput';
 import Helper from './Helper';
 import Icon from './Icon';
@@ -26,7 +25,6 @@ export {
   Card,
   Checkbox,
   Collapse,
-  // Countdown,
   Divider,
   FileInput,
   Helper,

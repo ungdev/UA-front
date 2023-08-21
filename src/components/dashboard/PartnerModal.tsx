@@ -28,8 +28,8 @@ const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner 
               onClick={() => {
                 dispatch(deletePartner(id) as unknown as Action);
               }}>
-                Supprimer
-              </Button>
+              Supprimer
+            </Button>
           )}
 
           <Button
