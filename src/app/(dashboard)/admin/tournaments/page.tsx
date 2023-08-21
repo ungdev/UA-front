@@ -1,5 +1,5 @@
 'use client';
-import { Button, Card } from '@/components/UI';
+import { Card } from '@/components/UI';
 import TournamentModal from '@/components/dashboard/TournamentModal';
 import { useAppSelector } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
@@ -13,10 +13,6 @@ const Tournaments = () => {
 
   return (
     <>
-      <Button primary onClick={() => setCreateNewTournament(true)}>
-        Ajouter un tournoi
-      </Button>
-
       {tournaments?.map((tournament, index) => (
         <div key={index} onClick={() => setSelectedTournament(tournament)}>
           <Card>

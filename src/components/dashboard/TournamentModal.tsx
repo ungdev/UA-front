@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Checkbox, Input, FileInput, Textarea } from '../UI';
+import { Modal, Button, Checkbox, Input, FileInput, Textarea, Icon } from '../UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
@@ -15,7 +15,7 @@ const TournamentModal = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const id = useState(tournament?.id || null);
+  const id = tournament?.id || null;
   const [name, setName] = useState(tournament?.name || null);
   const [maxPlayers, setMaxPlayers] = useState(tournament?.maxPlayers || null);
   const [playersPerTeam, setPlayersPerTeam] = useState(tournament?.playersPerTeam || null);
@@ -23,7 +23,10 @@ const TournamentModal = ({
   const [format, setFormat] = useState(tournament?.format || null);
   const [cashprize, setCashprize] = useState(tournament?.cashprize || null);
   const [cashprizeDetails, setCashprizeDetails] = useState(tournament?.cashprizeDetails || null);
-  // const [casters, setCasters] = useState(tournament?.casters || null);
+  const [casters, setCasters] = useState<string[] | null>(
+    (tournament?.casters && tournament?.casters!.map((caster) => caster.name)) || null,
+  );
+  const [castersCount, setCastersCount] = useState((tournament?.casters && tournament?.casters!.length) || 0);
   const [display, setDisplay] = useState(tournament?.display || false);
   const [displayCasters, setDisplayCasters] = useState(tournament?.displayCasters || false);
   const [displayCashprize, setDisplayCashprize] = useState(tournament?.displayCashprize || false);
@@ -38,15 +41,6 @@ const TournamentModal = ({
       onCancel={onClose ? onClose : () => {}}
       buttons={
         <>
-          {/* {id && (
-            <Button
-              primary
-              outline
-              onClick={() => {
-                dispatch(deleteTournament(id) as unknown as Action);
-              }}></Button>
-          )} */}
-
           <Button
             primary
             onClick={() => {
@@ -61,19 +55,18 @@ const TournamentModal = ({
                 format: format,
                 cashprize: cashprize ?? 0,
                 cashprizeDetails: cashprizeDetails,
-                // casters: casters ?? [],
-                casters: [],
+                casters: casters ?? [],
                 teams: [],
                 display,
                 displayCasters,
                 displayCashprize,
               } as unknown as AdminTournament;
-              // dispatch(
-              //   tournament == null
-              //     ? (addTournament(body, logo) as unknown as Action)
-              //     : (updateTournament(body, logo) as unknown as Action),
-              // );
-              dispatch(updateTournament(body, image, backgroundImage, rules) as unknown as Action);
+
+              dispatch(
+                updateTournament(body, image, backgroundImage, rules, () => {
+                  onClose!();
+                }) as unknown as Action,
+              );
             }}>
             Enregistrer
           </Button>
@@ -98,7 +91,41 @@ const TournamentModal = ({
         <Textarea label="Format" value={format ?? ''} onChange={setFormat} />
         <Input label="Cashprize" type="number" value={cashprize ?? ''} onChange={(e) => setCashprize(parseInt(e))} />
         <Textarea label="Détails du cashprize" value={cashprizeDetails ?? ''} onChange={setCashprizeDetails} />
-        {/* <Input label="Casters" value={casters ?? ''} onChange={setCasters} /> */}
+
+        {Array.from(Array(castersCount).keys()).map((i) => (
+          <div key={i}>
+            <Input
+              label={`Caster ${i + 1}`}
+              value={casters![i] ?? ''}
+              onChange={(e) => {
+                const newCasters = [...casters!];
+                newCasters[i] = e;
+                setCasters(newCasters);
+              }}
+            />
+
+            <Button
+              primary
+              onClick={() => {
+                const newCasters = [...casters!];
+                newCasters.splice(i, 1);
+                setCasters(newCasters);
+                setCastersCount(castersCount - 1);
+              }}>
+              {/* TODO: make it work */}
+              <Icon name="trash" />
+            </Button>
+          </div>
+        ))}
+
+        <Button
+          primary
+          onClick={() => {
+            setCastersCount(castersCount + 1);
+          }}>
+          Ajouter un caster
+        </Button>
+
         <Checkbox label="Display" value={display} onChange={setDisplay} />
         <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
         <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />

@@ -13,6 +13,7 @@ import {
 import { deleteFile, uploadFile } from '@/utils/upload';
 import * as normalPartners from './partners';
 import * as normalTournament from './tournament';
+import { toast } from 'react-toastify';
 
 export interface AdminAction {
   partners: AdminPartner[] | null;
@@ -49,11 +50,6 @@ export const adminSlice = createSlice({
     setAdminTournaments: (state, action) => {
       state.tournaments = action.payload;
     },
-    // addAdminTournament: (state, action) => {
-    //   state.tournaments ?
-    //   state.tournaments = [...state.tournaments!, action.payload]
-    //   : state.tournaments = [action.payload]
-    // },
     updateAdminTournament: (state, action) => {
       state.tournaments = state.tournaments?.map((tournament) => {
         if (tournament.id === action.payload.id) {
@@ -62,9 +58,6 @@ export const adminSlice = createSlice({
         return tournament;
       }) as AdminTournament[];
     },
-    // deleteAdminTournament: (state, action) => {
-    //   state.tournaments = state.tournaments?.filter((tournament) => tournament.id !== action.payload) as AdminTournament[];
-    // },
   },
 });
 
@@ -82,49 +75,60 @@ export const fetchAdminPartners = () => async (dispatch: Dispatch) => {
   dispatch(setAdminPartners(request));
 };
 
-export const addPartner = (partner: AdminPartner, logo: File | null) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.post('admin/partners', {
-      name: partner.name,
-      link: partner.link,
-      display: partner.display.toString(),
-    });
+export const addPartner =
+  (partner: AdminPartner, logo: File | null, callback: () => void) => async (dispatch: Dispatch) => {
+    try {
+      const result = await API.post('admin/partners', {
+        name: partner.name,
+        link: partner.link,
+        display: partner.display.toString(),
+      });
 
-    if (result && logo) {
-      await uploadFile(logo, getPartnerLogoName(result.id), PARTNER_FOLDER);
+      if (result && logo) {
+        await uploadFile(logo, getPartnerLogoName(result.id), PARTNER_FOLDER);
+      }
+
+      callback();
+      toast.success('Le partenaire a bien été ajouté');
+
+      dispatch(addAdminPartner(result));
+      dispatch(normalPartners.addPartner(result));
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    dispatch(addAdminPartner(result));
-    dispatch(normalPartners.addPartner(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
+export const updatePartner =
+  (partner: AdminPartner, logo: File | null, callback: () => void) => async (dispatch: Dispatch) => {
+    try {
+      const result = await API.patch(`admin/partners/${partner.id}`, {
+        name: partner.name,
+        link: partner.link,
+        display: partner.display.toString(),
+      });
 
-export const updatePartner = (partner: AdminPartner, logo: File | null) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.patch(`admin/partners/${partner.id}`, {
-      name: partner.name,
-      link: partner.link,
-      display: partner.display.toString(),
-    });
+      if (result && logo) {
+        await uploadFile(logo, getPartnerLogoName(result.id), PARTNER_FOLDER);
+      }
 
-    if (result && logo) {
-      await uploadFile(logo, getPartnerLogoName(result.id), PARTNER_FOLDER);
+      callback();
+      toast.success('Le partenaire a bien été mis à jour');
+
+      dispatch(updateAdminPartner(result));
+      dispatch(normalPartners.updatePartner(result));
+    } catch (err) {
+      console.error(err);
     }
+  };
 
-    dispatch(updateAdminPartner(result));
-    dispatch(normalPartners.updatePartner(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const deletePartner = (partnerId: string) => async (dispatch: Dispatch) => {
+export const deletePartner = (partnerId: string, callback: () => void) => async (dispatch: Dispatch) => {
   try {
     await API.delete(`admin/partners/${partnerId}`);
 
     await deleteFile(getPartnerLogoLink(partnerId).replace(process.env.NEXT_PUBLIC_UPLOADS_URL!, ''));
+
+    callback();
+    toast.success('Le partenaire a bien été supprimé');
 
     dispatch(deleteAdminPartner(partnerId));
     dispatch(normalPartners.deletePartner(partnerId));
@@ -139,7 +143,13 @@ export const fetchAdminTournaments = () => async (dispatch: Dispatch) => {
 };
 
 export const updateTournament =
-  (tournament: AdminTournament, image: File | null, background: File | null, rules: File | null) =>
+  (
+    tournament: AdminTournament,
+    image: File | null,
+    background: File | null,
+    rules: File | null,
+    callback: () => void,
+  ) =>
   async (dispatch: Dispatch) => {
     try {
       const data = {
@@ -155,21 +165,21 @@ export const updateTournament =
         data.cashprizeDetails = tournament.cashprizeDetails;
       }
 
-      if (tournament.infos) {
+      if (tournament.infos !== null) {
         data.infos = tournament.infos;
       }
 
-      if (tournament.format) {
+      if (tournament.format !== null) {
         data.format = tournament.format;
       }
 
-      if (tournament.cashprize) {
+      if (tournament.cashprize !== null) {
         data.cashprize = tournament.cashprize;
       }
 
-      // if(tournament.casters) {
-      //   data.casters = tournament.casters;
-      // }
+      if (tournament.casters !== null) {
+        data.casters = tournament.casters;
+      }
 
       const result = await API.patch(`admin/tournaments/${tournament.id}`, data);
 
@@ -184,6 +194,9 @@ export const updateTournament =
       if (rules) {
         await uploadFile(rules, getTournamentRulesName(tournament.id), TOURNAMENT_FOLDER);
       }
+
+      callback();
+      toast.success('Le tournoi a bien été mis à jour');
 
       dispatch(updateAdminTournament(result));
       dispatch(normalTournament.updateTournament(result));

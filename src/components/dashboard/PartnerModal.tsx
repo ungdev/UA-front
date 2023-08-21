@@ -26,7 +26,11 @@ const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner 
               primary
               outline
               onClick={() => {
-                dispatch(deletePartner(id) as unknown as Action);
+                dispatch(
+                  deletePartner(id, () => {
+                    onClose!();
+                  }) as unknown as Action,
+                );
               }}>
               Supprimer
             </Button>
@@ -43,8 +47,12 @@ const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner 
               };
               dispatch(
                 partner == null
-                  ? (addPartner(body, logo) as unknown as Action)
-                  : (updatePartner(body, logo) as unknown as Action),
+                  ? (addPartner(body, logo, () => {
+                      onClose!();
+                    }) as unknown as Action)
+                  : (updatePartner(body, logo, () => {
+                      onClose!();
+                    }) as unknown as Action),
               );
             }}>
             Enregistrer

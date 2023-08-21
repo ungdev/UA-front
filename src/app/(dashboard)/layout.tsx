@@ -24,9 +24,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const adminTournaments = useAppSelector((state) => state.admin.tournaments);
 
   useEffect(() => {
+    if (pathname === '/admin/login') return;
     adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
     adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
-  }, []);
+  }, [pathname]);
 
   if (pathname === '/admin/login') {
     return <>{children}</>;
