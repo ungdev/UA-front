@@ -1,5 +1,6 @@
 footer {
   background-color: $secondary-background;
+  padding-bottom: 20px;
   overflow: hidden;
 
   img {
@@ -29,10 +30,10 @@ footer {
 
   .copyright {
     text-align: center;
-    padding-bottom: 20px;
 
     > button {
       padding-top: 0;
+      padding-bottom: 0;
       color: white !important;
       position: relative;
 
@@ -45,6 +46,7 @@ footer {
         }
       }
 
+      // Credits : https://alvaromontoro.com/blog/68002/creating-a-firework-effect-with-css
       &:after {
         content: "";
         position: absolute;
