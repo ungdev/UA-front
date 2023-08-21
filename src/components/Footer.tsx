@@ -13,7 +13,7 @@ export default function Footer() {
   const [copyrightTurned, setCopyrightTurned] = useState(false);
   return (
     <footer>
-      <div className='row'>
+      <div className="row">
         <div>
           <img src={logo.src} alt="Logo UA23" />
         </div>
@@ -57,7 +57,9 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright">
-        <Button className={`${copyrightTurned ? 'turned' : ''}`} onClick={() => setCopyrightTurned(!copyrightTurned)}>© {new Date().getFullYear()} UTT Net Group</Button>
+        <Button className={`${copyrightTurned ? 'turned' : ''}`} onClick={() => setCopyrightTurned(!copyrightTurned)}>
+          © {new Date().getFullYear()} UTT Net Group
+        </Button>
       </div>
     </footer>
   );

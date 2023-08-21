@@ -55,11 +55,6 @@ ol > li {
   margin-bottom: 8px;
 }
 
-.page-padding {
-  /* page-padding should be applied to every page except home page */
-  padding: 2em 5em;
-}
-
 main {
   flex-grow: 1;
 }
@@ -94,24 +89,6 @@ main.loading {
 .text-center {
   text-align: center;
 }
-
-// ul:not(.steps) {
-//   list-style: none;
-
-//   & > li {
-//     position: relative;
-
-//     &::before {
-//       font-family: 'Font Awesome 5 Free';
-//       font-weight: 900;
-//       content: '\f0da';
-//       color: $accent-color;
-//       display: block;
-//       position: absolute;
-//       left: -15px;
-//     }
-//   }
-// }
 
 .uppercase {
   text-transform: uppercase;
