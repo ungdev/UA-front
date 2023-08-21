@@ -1,10 +1,5 @@
 footer {
-  display: flex;
-  height: 250px;
   background-color: $secondary-background;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 40px 60px;
 
   img {
     height: 139px;
@@ -20,6 +15,24 @@ footer {
     display: block;
     .button {
       padding-left: 0;
+    }
+  }
+
+  .row {
+    display: flex;
+    height: 250px;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 40px 60px 0 60px;
+  }
+
+  .copyright {
+    text-align: center;
+    padding-bottom: 20px;
+    
+    > button {
+      padding-top: 0;
+      color: white !important;
     }
   }
 
@@ -61,11 +74,13 @@ footer {
 
 @media screen and (max-width: 1024px) {
   footer {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    padding: 40px 30px;
+    .row {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+      padding: 40px 30px;
+    }
 
     .middle {
       text-align: center;
