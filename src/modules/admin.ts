@@ -8,8 +8,9 @@ import {
   TOURNAMENT_FOLDER,
   getTournamentRulesName,
   getTournamentBackgroundName,
+  getPartnerLogoLink,
 } from '@/utils/uploadLink';
-import { uploadFile } from '@/utils/upload';
+import { deleteFile, uploadFile } from '@/utils/upload';
 import * as normalPartners from './partners';
 import * as normalTournament from './tournament';
 
@@ -122,6 +123,9 @@ export const updatePartner = (partner: AdminPartner, logo: File | null) => async
 export const deletePartner = (partnerId: string) => async (dispatch: Dispatch) => {
   try {
     await API.delete(`admin/partners/${partnerId}`);
+
+    await deleteFile(getPartnerLogoLink(partnerId).replace(process.env.NEXT_PUBLIC_UPLOADS_URL!, ''));
+
     dispatch(deleteAdminPartner(partnerId));
     dispatch(normalPartners.deletePartner(partnerId));
   } catch (err) {

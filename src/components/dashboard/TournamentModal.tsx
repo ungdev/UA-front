@@ -103,13 +103,14 @@ const TournamentModal = ({
         <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
         <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />
 
-        <FileInput label="Image" value={tournament ? getTournamentImageLink(tournament.id) : ''} onChange={setImage} />
+        <FileInput label="Image" value={tournament ? getTournamentImageLink(tournament.id) : ''} onChange={setImage} type="jpg" />
         <FileInput
           label="Image de fond"
           value={tournament ? getTournamentBackgroundLink(tournament.id) : ''}
           onChange={setBackgroundImage}
+          type="jpg"
         />
-        <FileInput label="Règles" value={tournament ? getTournamentRulesLink(tournament.id) : ''} onChange={setRules} />
+        <FileInput label="Règles" value={tournament ? getTournamentRulesLink(tournament.id) : ''} onChange={setRules} type="pdf" />
       </>
     </Modal>
   );

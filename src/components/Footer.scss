@@ -25,6 +25,11 @@ footer {
 
   .middle {
     display: block;
+
+    > button {
+      padding-left: 0;
+      color: white !important;
+    }
   }
 
   .right {

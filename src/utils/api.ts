@@ -97,4 +97,5 @@ export const uploads = {
   get: (route: string, disableCache = false) => requestAPI('GET', uploadsUrl(), route, false, undefined, disableCache),
   getWithoutCache: (route: string) => requestAPI('GET', uploadsUrl(), route, false, undefined, true),
   send: (route: string, body: object = {}) => requestAPI('POST', apiUrl(), route, true, body, false, true),
+  delete: (route: string) => requestAPI('DELETE', apiUrl(), route, true),
 };

@@ -12,9 +12,6 @@ export default function Footer() {
     <footer>
       <div>
         <img src={logo.src} alt="Logo UA23" />
-        <div>
-          <p>© {new Date().getFullYear()} UTT Net Group</p>
-        </div>
       </div>
       <div className="middle">
         <h3>Informations légales</h3>
@@ -24,6 +21,7 @@ export default function Footer() {
         <Link href={'/legal'}>
           <Button>Politique de confidentialité</Button>
         </Link>
+        <Button>© {new Date().getFullYear()} UTT Net Group</Button>
       </div>
       <div className="right">
         <h3>Plus d'informations</h3>

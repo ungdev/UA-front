@@ -17,3 +17,15 @@ export const uploadFile = async (file: File, name: string, path: string) => {
 
   return response;
 };
+
+export const deleteFile = async (path: string) => {
+  const response = await uploads.delete('admin/delete/' + encodeURIComponent(path));
+
+  if (response.status === 0) {
+    toast.success(response.message);
+  } else {
+    toast.error(response.message);
+  }
+
+  return response;
+}

@@ -27,7 +27,9 @@ const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner 
               outline
               onClick={() => {
                 dispatch(deletePartner(id) as unknown as Action);
-              }}></Button>
+              }}>
+                Supprimer
+              </Button>
           )}
 
           <Button
@@ -53,7 +55,7 @@ const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner 
       <>
         <Input label="Nom" value={name ?? ''} onChange={setName} />
         <Input label="Lien" value={link ?? ''} onChange={setLink} />
-        <FileInput label="Logo" value={partner ? getPartnerLogoLink(partner.id) : ''} onChange={setLogo} />
+        <FileInput label="Logo" value={partner ? getPartnerLogoLink(partner.id) : ''} onChange={setLogo} type="png" />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>

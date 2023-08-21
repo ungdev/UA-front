@@ -14,13 +14,11 @@
   border: 0;
 
   &:not(.primary, .secondary) {
-    &:not(.pink) {
-      color: #8C979B;
-      border: none;
-  
-      &:hover {
-        color: white;
-      }
+    color: #8C979B;
+    border: none;
+
+    &:hover {
+      color: white;
     }
   }
 

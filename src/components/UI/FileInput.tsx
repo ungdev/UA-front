@@ -1,7 +1,9 @@
 'use client';
 import { ChangeEvent, useRef, useState } from 'react';
 
-const FileUpload = ({ label, value, onChange }: { label: string; value: string; onChange: (file: File) => void }) => {
+const FileUpload = ({ label, value, onChange, type }: { label: string; value: string; onChange: (file: File) => void;
+  type: 'png' | 'jpg' | 'pdf'
+}) => {
   const [file, setFile] = useState<File>();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,7 +26,9 @@ const FileUpload = ({ label, value, onChange }: { label: string; value: string; 
 
       <button onClick={handleUploadClick}>{file ? `${file.name}` : 'Click to select'}</button>
 
-      <input type="file" ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} />
+      <input type="file" ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} 
+        accept={`.${type}`} 
+      />
     </div>
   );
 };
