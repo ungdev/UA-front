@@ -7,7 +7,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -32,9 +32,16 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             Retour aux tournois
           </Button>
         </Link>
-        <Title level={1} className="tournament-name">
-          {tournament.name}
-        </Title>
+        <div className="header-container">
+          <Title level={1} className="tournament-name">
+            {tournament.name}
+          </Title>
+          <Link href={
+            getTournamentRulesLink(tournament.id)
+          } target='_blank'>
+            <Button primary>Voir les règles</Button>
+          </Link>
+        </div>
         <div className="information">
           <BoxContainer className="cashprize-box" title="cashprize.txt" padding={false}>
             1ere place : 1500€ <br />

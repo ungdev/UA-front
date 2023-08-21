@@ -237,7 +237,7 @@ const UserModal = ({
           <>
             <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin && !isAnim} />
             <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin && !isAnim} />
-            {!searchUser && <Input label="Mot de passe" value={password} onChange={setPassword} disabled={!isAdmin && !isAnim} />}
+            {!searchUser && <Input label="Mot de passe" type="password" value={password} onChange={setPassword} disabled={!isAdmin && !isAnim} />}
             <Textarea
               label="Infos complémentaires"
               value={customMessage ?? ''}

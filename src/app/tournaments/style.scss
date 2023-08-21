@@ -208,6 +208,13 @@
         z-index: 4;
       }
 
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1rem;
+        align-items: center;
+      }
+
       .page-title {
         display: flex;
         align-items: center;
