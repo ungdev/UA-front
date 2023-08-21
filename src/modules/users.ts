@@ -179,6 +179,13 @@ export const saveUser =
     dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
   };
 
+
+export const createUser = (body: object, callback: () => void) => async (dispatch: Dispatch) => {
+  const user = await API.post(`admin/users`, body);
+  toast.success(`${user.username} a été crée`);
+  callback();
+}  
+
 export const refundCart = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
   const state = getState();
   await API.post(`admin/carts/${id}/refund`, {});

@@ -69,8 +69,10 @@ const INITIAL_FILTERS = {
 const Users = () => {
   const dispatch = useAppDispatch();
   const [filters, setFilters] = useState(INITIAL_FILTERS);
+  const [createUser, setCreateUser] = useState(false);
   const [search, setSearch] = useState('');
-  const isLoggedIn = useAppSelector((state) => state.login.user);
+  const isLoggedIn = useAppSelector((state) => state.login.status.login);
+  const isAdmin = useAppSelector((state) => state.login.status.admin);
   const { users, isFetched, total, page, itemsPerPage } = useAppSelector((state) => state.users);
   // The user that is displayed in the modal. If undefined, the modal is not shown
   const searchUser = useAppSelector((state) => state.users.lookupUser);
@@ -121,6 +123,7 @@ const Users = () => {
 
   return (
     <div id="admin-users">
+      {isAdmin && <Button primary onClick={() => setCreateUser(true)}>Créer un nouvel utilisateur</Button>}
       <div className="filters">
         <Radio
           label="Statut"
@@ -214,8 +217,11 @@ const Users = () => {
         }}
         onRowClicked={(i) => dispatch(lookupUser(users[i]) as unknown as Action)}
       />
-      {searchUser && (
-        <UserModal searchUser={searchUser} onClose={() => dispatch(lookupUser() as unknown as Action)}></UserModal>
+      {(searchUser || createUser) && (
+        <UserModal searchUser={!createUser ? searchUser : null} onClose={() => {
+          dispatch(lookupUser() as unknown as Action);
+          setCreateUser(false);
+        }}></UserModal>
       )}
     </div>
   );
