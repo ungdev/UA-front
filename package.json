@@ -12,6 +12,7 @@
     "lint:fix": "next lint --fix",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build --output-dir docs",
+    "storybook:start": "http-server ./docs --port 6006",
     "test": "test-storybook",
     "test:watch": "test-storybook --watch",
     "test:coverage": "test-storybook --coverage && nyc report --reporter html --reporter text -t .nyc_output --report-dir .nyc_output/report"
