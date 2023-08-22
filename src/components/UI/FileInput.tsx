@@ -30,7 +30,7 @@ const FileUpload = ({
     <div>
       <div>{label}</div>
 
-      {value !== '' && <img src={value} alt={label} />}
+      {value !== '' && type != 'pdf' && <img src={value} alt={label} />}
 
       <button onClick={handleUploadClick}>{file ? `${file.name}` : 'Click to select'}</button>
 
