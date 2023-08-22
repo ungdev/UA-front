@@ -5,13 +5,6 @@ import { toast } from 'react-toastify';
 
 /**
  * A collapsible component that displays a title and content that can be expanded or collapsed.
- * @param {string} title - The title of the collapsible component.
- * @param {ReactNode} children - The content of the collapsible component.
- * @param {string} className - The class name of the collapsible component.
- * @param {string} id - The id of the collapsible component.
- * @param {boolean} initVisible - The initial visibility state of the collapsible component.
- * @param {string} link - The link to copy when clicking on the copy icon.
- * @returns {JSX.Element} - The Collapse component.
  */
 const Collapse = ({
   title,
@@ -21,11 +14,17 @@ const Collapse = ({
   initVisible = false,
   link = undefined,
 }: {
+  /** The title of the collapsible component. */
   title: ReactNode;
+  /** The content of the collapsible component. */
   children: ReactNode;
+  /** The class name of the collapsible component. */
   id?: string;
+  /** The id of the collapsible component. */
   className?: string;
+  /** The initial visibility state of the collapsible component. */
   initVisible?: boolean;
+  /** The link to copy when clicking on the copy icon. */
   link?: string;
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);

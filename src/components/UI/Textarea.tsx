@@ -14,11 +14,17 @@ const Textarea = ({
   className = '',
   disabled = false,
 }: {
+  /** Label to display */
   label: string;
+  /** Placeholder text */
   placeholder?: string;
+  /** Value of the input */
   value?: string;
+  /** Function called when the value change, the new value is passed as parameter */
   onChange: (value: string) => void;
+  /** An optional class name to apply to the container element */
   className?: string;
+  /** Whether the input is disabled */
   disabled?: boolean;
 }) => (
   <div className={`textarea ${className}`}>

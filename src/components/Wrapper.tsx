@@ -21,7 +21,10 @@ interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
   state?: string;
 }
-
+/**
+ * The navigation events component that is used to track navigation events.
+ * Used mainly by Matomo
+ */
 export function NavigationEvents() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -39,7 +42,7 @@ export function NavigationEvents() {
 
   return null;
 }
-
+/** The redirect handler that redirects the user to the specified location. */
 const RedirectHandler = () => {
   const redirectLocation = useAppSelector((state) => state.redirect);
   const dispatch = useAppDispatch();
@@ -58,10 +61,13 @@ const RedirectHandler = () => {
 
 /**
  * Wrapper component that provides common layout and functionality for all pages.
- * @param children The child components to be rendered within the layout.
- * @returns The Wrapper component.
  */
-export default function Wrapper({ children }: { children: ReactNode }) {
+export default function Wrapper({
+  children,
+}: {
+  /** The child components to be rendered within the layout. */
+  children: ReactNode;
+}) {
   // Import necessary hooks and modules
   const query: SearchParams = useSearchParams();
   const pathname = usePathname();

@@ -12,10 +12,16 @@ import { usePathname } from 'next/navigation';
 
 /**
  * Header component that displays the logo, navigation bar, and buttons for about and login.
- * @param connected Whether the user is connected or not.
- * @returns JSX.Element
  */
-export default function Header({ connected = false, admin = false }: { connected?: boolean; admin?: boolean }) {
+export default function Header({
+  connected = false,
+  admin = false,
+}: {
+  /** Determines whether the user is connected or not. */
+  connected?: boolean;
+  /** Determines whether the user is an admin or not. */
+  admin?: boolean;
+}) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const dispatch = useAppDispatch();
   const pathname = usePathname();

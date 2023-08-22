@@ -2,14 +2,6 @@ import { ReactNode } from 'react';
 
 /**
  * Radio component that allows the user to select one option from a list of options.
- * @param label Label of the field
- * @param options Available values
- * @param value Value of the field
- * @param onChange Function triggered when the value change
- * @param name Used to identify a group of radio inputs
- * @param row Should the inputs be in a row ?
- * @param className Class to apply to the container
- * @param disabled Whether the input should be disabled
  */
 const Radio = ({
   label = '',
@@ -21,16 +13,24 @@ const Radio = ({
   className = '',
   disabled = false,
 }: {
+  /** Label of the field */
   label?: ReactNode;
+  /** Available values */
   options: {
     name: ReactNode;
     value: string;
   }[];
+  /** Value of the field */
   value?: string;
+  /** Function triggered when the value change */
   onChange?: (value: string) => void;
+  /** Used to identify the group of radio inputs */
   name: string;
+  /** Should the inputs be in a row ? */
   row?: boolean;
+  /** An optional class name to add to the container */
   className?: string;
+  /** Whether the input should be disabled */
   disabled?: boolean;
 }) => (
   <div className={`radio ${row ? 'row' : ''} ${className}`}>

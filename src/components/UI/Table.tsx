@@ -2,18 +2,6 @@
 
 /**
  * A table component that displays data in rows and columns.
- * @param columns - Title and key of each column.
- * @param dataSource - Data for each row, must follow the key of each column.
- * @param className - Class of the table.
- * @param alignRight - Align the last column to the right.
- * @param emptyText - Text to display if there is no data.
- * @param pagination - Set pagination for the table.
- * @param paginationOptions - Pagination options for the table.
- * @param paginationOptions.goToPage - Function to execute when the user clicks on the left or right arrow. It takes 1 argument : the page number.
- * @param paginationOptions.page - Current page number.
- * @param paginationOptions.pageSize - Number of rows per page.
- * @param paginationOptions.total - Total number of rows.
- * @param onRowClicked - Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked.
  */
 const Table = ({
   columns,
@@ -25,18 +13,30 @@ const Table = ({
   paginationOptions = null,
   onRowClicked = () => {},
 }: {
+  /** Title and key of each column. */
   columns: { key: string; title: string }[];
+  /** Data for each row, must follow the key of each column. */
   dataSource: object[];
+  /** Class of the table. */
   className?: string;
+  /** Align the last column to the right. */
   alignRight?: boolean;
+  /** Text to display if there is no data. */
   emptyText?: string;
+  /** Set pagination for the table. */
   pagination?: boolean;
+  /** Pagination options for the table. */
   paginationOptions?: {
+    /** Function to execute when the user clicks on the left or right arrow. It takes 1 argument : the page number. */
     goToPage: (number: number) => void;
+    /** Current page number. */
     page: number;
+    /** Number of rows per page. */
     pageSize: number;
+    /** Total number of rows. */
     total: number;
   } | null;
+  /** Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked. */
   onRowClicked?: (number: number) => void;
 }) => (
   <div className="table-container">

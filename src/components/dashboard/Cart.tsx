@@ -2,6 +2,7 @@ import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
 import { Button, Icon } from './../UI';
 
+/** The cart */
 const Cart = ({
   cart,
   tickets,
@@ -11,12 +12,19 @@ const Cart = ({
   onTicketRemoved,
   onCartReset,
 }: {
+  /** The cart */
   cart: CartPost;
+  /** The tickets */
   tickets: { [userId: string]: any };
+  /** The items */
   items: Item[];
+  /** The team members */
   teamMembers: User[];
+  /** The function to call when an item is removed */
   onItemRemoved: (itemId: string) => void;
+  /** The function to call when a ticket is removed */
   onTicketRemoved: (user: User | undefined, i: number | undefined) => void;
+  /** The function to call when the cart is reset */
   onCartReset: () => void;
 }) => {
   const attendantTicket = items.find((ticket) => ticket.id === 'ticket-attendant');

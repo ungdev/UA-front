@@ -9,10 +9,13 @@ import { toast } from 'react-toastify';
 
 /**
  * A modal component for resetting a user's password.
- * @param {string} resetToken - The reset token for the user's password.
- * @returns {JSX.Element} - The ResetModal component.
  */
-function ResetModal({ resetToken }: { resetToken: string }) {
+function ResetModal({
+  resetToken,
+}: {
+  /** The reset token for the user's password. */
+  resetToken: string;
+}) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const [newPassword, setResetPassword] = useState('');

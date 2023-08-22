@@ -2,18 +2,6 @@ import { ReactNode } from 'react';
 
 /**
  * A reusable input component that can be used to render different types of input fields.
- * @param type - Input type
- * @param label - Label to display
- * @param placeholder - Text to display if field is blank
- * @param value - Value of the input
- * @param onChange - Function called when the value change, the new value is passed as parameter
- * @param min - Minimum value (only for type="number")
- * @param max - Maximum value (only for type="number")
- * @param className - Class of the container
- * @param autocomplete - Autocomplete type
- * @param disabled - Is the input disabled ?
- * @param autoFocus - Should the input have the focus by default ?
- * @returns A React component that renders an input field with a label and optional min/max values.
  */
 const Input = ({
   type = 'text',
@@ -28,16 +16,27 @@ const Input = ({
   disabled = false,
   autoFocus = false,
 }: {
+  /** The type of input to render. */
   type?: 'text' | 'email' | 'password' | 'number';
+  /** The label to display. */
   label?: ReactNode;
+  /** The placeholder to display. */
   placeholder?: string;
+  /** The value of the input. */
   value?: string | number;
+  /** The function to call when the value changes. */
   onChange?: (value: string) => void;
+  /** The minimum value (only for type="number"). */
   min?: number | undefined;
+  /** The maximum value (only for type="number"). */
   max?: number | undefined;
+  /** An optional class name to add to the component. */
   className?: string;
+  /** The autocomplete type. */
   autocomplete?: string;
+  /** Is the input disabled ? */
   disabled?: boolean;
+  /** Should the input have the focus by default ? */
   autoFocus?: boolean;
 }) => {
   const handleChange = (newValue: string) => {

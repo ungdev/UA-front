@@ -6,7 +6,16 @@ import type { Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { addPartner, deletePartner, updatePartner } from '@/modules/admin';
 
-const PartnerModal = ({ partner, onClose = undefined }: { partner: AdminPartner | null; onClose?: () => void }) => {
+/** The partner modal */
+const PartnerModal = ({
+  partner,
+  onClose = undefined,
+}: {
+  /** The partner or null if you want to create a new one */
+  partner: AdminPartner | null;
+  /** The function to call when the user quits the modal */
+  onClose?: () => void;
+}) => {
   const dispatch = useAppDispatch();
   const id = partner?.id || null;
   const [link, setLink] = useState(partner?.link || null);

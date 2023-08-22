@@ -10,10 +10,13 @@ const cookieName = 'cookie-consent';
 /**
  * Component that displays a cookie consent banner and sets a cookie when the user accepts.
  * The banner is only displayed if the user has not previously accepted the cookie policy.
- *
- * @param {boolean} initialDisplay - Whether the banner should be displayed initially.
  */
-export default function CookieConsent({ initialDisplay = false }: { initialDisplay?: boolean }) {
+export default function CookieConsent({
+  initialDisplay = false,
+}: {
+  /** Whether the banner should be displayed initially. */
+  initialDisplay?: boolean;
+}) {
   const [display, setDisplay] = useState(initialDisplay ? initialDisplay : false);
 
   const buttonClick = () => {

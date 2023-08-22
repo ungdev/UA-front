@@ -6,11 +6,14 @@ import type { Action } from '@reduxjs/toolkit';
 import { getTournamentBackgroundLink, getTournamentImageLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { updateTournament } from '@/modules/admin';
 
+/** The tournament modal */
 const TournamentModal = ({
   tournament,
   onClose = undefined,
 }: {
+  /** The tournament or null if you want to create a new one */
   tournament: AdminTournament | null;
+  /** The function to call when the user quits the modal */
   onClose?: () => void;
 }) => {
   const dispatch = useAppDispatch();

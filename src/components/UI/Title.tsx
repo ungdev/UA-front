@@ -2,13 +2,6 @@ import Divider from './Divider';
 
 /**
  * Renders a title component with the specified level, children, gutterBottom, align, className, and id.
- * @param {number} level - The level of the title component (1-4).
- * @param {React.ReactNode} children - The content to be displayed inside the title component.
- * @param {boolean} gutterBottom - Whether to add a bottom margin to the title component.
- * @param {string} align - The horizontal alignment of the title component.
- * @param {string} className - The CSS class name(s) to be added to the title component.
- * @param {string} id - The HTML id attribute to be added to the title component.
- * @returns {JSX.Element} - The rendered title component.
  */
 const Title = ({
   level = 1,
@@ -18,11 +11,17 @@ const Title = ({
   className = '',
   id = undefined,
 }: {
+  /** The level of the title component (1-4). */
   level?: number;
+  /** The content to be displayed inside the title component. */
   children: React.ReactNode;
+  /** Whether to add a bottom margin to the title component. */
   gutterBottom?: boolean;
+  /** The horizontal alignment of the title component. */
   align?: 'inherit' | 'center' | 'justify' | 'left' | 'right';
+  /** An optional class name to apply to the title component. */
   className?: string;
+  /** The HTML id attribute to be added to the title component. */
   id?: string;
 }) => {
   const Component = `h${level}` as keyof JSX.IntrinsicElements;

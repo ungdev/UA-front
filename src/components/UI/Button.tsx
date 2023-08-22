@@ -1,18 +1,6 @@
 'use client';
 /**
  * A reusable button component that can be customized with different props.
- * @param {boolean} primary - Whether the button is primary or not.
- * @param {boolean} secondary - Whether the button is secondary or not.
- * @param {boolean} outline - Whether the button is outline or not.
- * @param {boolean} large - Whether the button is large or not.
- * @param {boolean} long - Whether the button is long or not.
- * @param {boolean} veryLong - Whether the button is very long or not.
- * @param {() => void} onClick - The function to call when the button is clicked.
- * @param {React.ReactNode} children - The content of the button.
- * @param {('submit' | 'reset' | 'button')} type - The type of the button.
- * @param {boolean} disabled - Whether the button is disabled or not.
- * @param {string} className - The class name of the button.
- * @returns {JSX.Element} - The Button component.
  * @example
  * <Button primary onClick={() => console.log('Button clicked')}>
  *  Button
@@ -39,16 +27,27 @@ const Button = ({
   disabled = false,
   className = '',
 }: {
+  /** Whether the button is primary or not. */
   primary?: boolean;
+  /** Whether the button is secondary or not. */
   secondary?: boolean;
+  /** Whether the button is outline or not. */
   outline?: boolean;
+  /** Whether the button is large or not. */
   large?: boolean;
+  /** Whether the button is long or not. */
   long?: boolean;
+  /** Whether the button should take all the width of its container or not. */
   veryLong?: boolean;
+  /** The function to call when the button is clicked. */
   onClick?: () => void;
+  /** The content of the button. */
   children?: React.ReactNode;
+  /** The type of the button. */
   type?: 'submit' | 'reset' | 'button';
+  /** Whether the button is disabled or not. */
   disabled?: boolean;
+  /** An optional class name for the button. */
   className?: string;
 }) => {
   return (

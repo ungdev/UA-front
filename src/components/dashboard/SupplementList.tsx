@@ -23,7 +23,7 @@ const supplementColumns = [
   },
 ];
 
-// This represents the supplement list in the shop
+/** This represents the supplement list in the shop */
 const SupplementList = ({
   items,
   supplementCart,
@@ -33,12 +33,19 @@ const SupplementList = ({
   itemType,
   shopSectionName,
 }: {
+  /** The items */
   items: Item[] | undefined;
+  /** The supplement cart */
   supplementCart: { itemId: string; quantity: number }[];
+  /** If the user has a ticket */
   hasTicket: boolean;
+  /** The function to call when the supplement cart changes */
   onSupplementCartChanges: (newSupplementCart: typeof supplementCart) => void;
+  /** The function to call when the user wants to preview an item */
   onItemPreview: (image: string) => void;
+  /** The item type */
   itemType: string;
+  /** The shop section name */
   shopSectionName: string;
 }) => {
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.

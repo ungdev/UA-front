@@ -1,15 +1,22 @@
 'use client';
 import { ChangeEvent, useRef, useState } from 'react';
 
+/**
+ * Renders a component that allows the user to upload a file.
+ */
 const FileUpload = ({
   label,
   value,
   onChange,
   type,
 }: {
+  /** The label to display. */
   label: string;
+  /** The value of the file. */
   value: string;
+  /** The function to call when the file changes. */
   onChange: (file: File) => void;
+  /** The type of file to accept. */
   type: 'png' | 'jpg' | 'pdf';
 }) => {
   const [file, setFile] = useState<File>();

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TournamentModal from './TournamentModal';
-import { AdminTournament, UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin } from '@/types';
+import { AdminTournament } from '@/types';
 import { Providers } from '@/lib/provider';
 
 const meta = {

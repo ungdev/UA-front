@@ -14,6 +14,6 @@ export const Default: Story = {};
 
 export const White: Story = {
   args: {
-    is_white: true,
+    white: true,
   },
 };

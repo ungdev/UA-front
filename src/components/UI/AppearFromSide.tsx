@@ -3,11 +3,6 @@ import { ReactElement, cloneElement, useEffect, useRef, useState } from 'react';
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
- * @param children - The children to be rendered.
- * @param fromRight - Whether the children should appear from the right side of the screen. Defaults to false.
- * @param deactivated - Whether the animation should be deactivated. Defaults to false.
- * @param smooth - Whether the animation should be smooth. Defaults to true.
- * @returns A React component.
  */
 export default function AppearFromSide({
   children,
@@ -15,9 +10,13 @@ export default function AppearFromSide({
   deactivated = false,
   smooth = true,
 }: {
+  /** The children to be rendered. */
   children: React.ReactNode;
+  /** Whether the children should appear from the right side of the screen. Defaults to false. */
   fromRight?: boolean;
+  /** Whether the animation should be deactivated. Defaults to false. */
   deactivated?: boolean;
+  /** Whether the animation should be smooth. Defaults to true. */
   smooth?: boolean;
 }) {
   const [visible, setVisible] = useState(false);

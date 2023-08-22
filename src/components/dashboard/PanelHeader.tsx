@@ -1,13 +1,17 @@
 import Link from 'next/link';
 import { Button } from '../UI';
 
+/** The panel header */
 const PanelHeader = ({
   pathname,
   links,
   title,
 }: {
+  /** The current pathname */
   pathname: string;
+  /** The links */
   links: () => { title: string; href: string }[];
+  /** The title */
   title: string;
 }) => (
   <div id="panel-header">

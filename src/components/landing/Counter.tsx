@@ -3,9 +3,6 @@ import { useState, useEffect } from 'react';
 
 /**
  * Counter component that animates a number from 0 to a given value when it becomes visible on the screen.
- * @param value The value to animate the counter to.
- * @param name The label to display below the counter.
- * @param className An optional class name to apply to the component.
  */
 function Counter({
   value,
@@ -13,9 +10,13 @@ function Counter({
   name,
   className = '',
 }: {
+  /** The value to animate the counter to. */
   value: number;
+  /** The text to display after the counter value. */
   valueText?: string;
+  /** The label to display below the counter. */
   name: string;
+  /** An optional class name to apply to the component. */
   className?: string;
 }) {
   const [counter, setCounter] = useState(0);

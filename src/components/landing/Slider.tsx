@@ -4,15 +4,19 @@ import { useState, useEffect, ReactNode } from 'react';
 /**
  * Slider component for displaying a slideshow of React nodes.
  *
- * @component
- * @param {Object} props
- * @param {ReactNode[]} props.slides - An array of React nodes to be displayed as slides.
- * @param {boolean} props.autoslide - Should the slider automatically slide ?
  * @example
  * const slides = [<div>Slide 1</div>, <div>Slide 2</div>, <div>Slide 3</div>];
  * return <Slider slides={slides} />;
  */
-export default function Slider({ slides, autoslide = true }: { slides: ReactNode[]; autoslide?: boolean }) {
+export default function Slider({
+  slides,
+  autoslide = true,
+}: {
+  /** An array of React nodes to be displayed as slides. */
+  slides: ReactNode[];
+  /** Should the slider automatically slide ? */
+  autoslide?: boolean;
+}) {
   const [active, setActive] = useState(0);
   const max = slides.length;
 

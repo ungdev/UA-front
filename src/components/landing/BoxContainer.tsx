@@ -3,11 +3,6 @@ import Icon from '../UI/Icon';
 
 /**
  * A container component that displays a title and content in a box.
- * @param title The title to display in the box.
- * @param children The content to display in the box.
- * @param padding Is the box content padded ?
- * @param color The color of the top of the box
- * @param className The class of the component
  */
 function BoxContainer({
   title,
@@ -16,10 +11,15 @@ function BoxContainer({
   color = 'pink',
   className = '',
 }: {
+  /** The title to display in the box. */
   title: string;
+  /** The content to display in the box. */
   children: ReactNode;
+  /** Is the box content padded ? */
   padding?: boolean;
+  /** The color of the top of the box */
   color?: 'pink' | 'blue';
+  /** The class of the component */
   className?: string;
 }) {
   return (

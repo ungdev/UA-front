@@ -9,17 +9,6 @@ import { ReactNode } from 'react';
 
 /**
  * Card component that displays an image, content and a button.
- * @param {boolean} dark - Whether the card should use dark theme or not
- * @param {string} imgSrc - Source of the image to display above
- * @param {node} content - Content of the card
- * @param {node} buttonContent - Content of the button
- * @param {function} onClick - Function called when the user clicks on the button
- * @param {string} href - Link URL surrounding the button
- * @param {string} target - Target for the link
- * @param {string} className - Class of the card
- * @param {string} classNameImg - Class of the image
- * @param {string} alt - alt
- * @param {string} divider - Where the divider should be located
  */
 const Card = ({
   dark = false,
@@ -34,16 +23,27 @@ const Card = ({
   alt = '',
   divider = 'bottom',
 }: {
+  /** Whether the card should use dark theme or not */
   dark?: boolean;
+  /** Source of the image to display above */
   imgSrc?: string | null;
+  /** Content of the card */
   children?: ReactNode;
+  /** Content of the button */
   buttonContent?: ReactNode;
+  /** Function called when the user clicks on the button */
   onClick?: () => void;
+  /** Link URL surrounding the button */
   href?: string | null;
+  /** Target for the link */
   target?: string;
+  /** Class of the card */
   className?: string;
+  /** Class of the image */
   classNameImg?: string;
+  /** alt */
   alt?: string;
+  /** Where the divider should be located */
   divider?: 'belowImage' | 'bottom';
 }) => {
   let button = (

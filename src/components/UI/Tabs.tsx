@@ -12,9 +12,12 @@ const Tabs = ({
   defaultIndex = 0,
   className = '',
 }: {
+  /** An array of objects representing the tabs. Each object should have a `key` string, `title` string, a `content` ReactNode, and an optional `onClick` function that will be called when the tab is clicked */
   tabs: { key: string; title: string; content: ReactNode; onClick?: (index: number) => void }[];
-  defaultIndex: number;
-  className: string;
+  /** The index of the default tab to display */
+  defaultIndex?: number;
+  /** An optional class name to apply to the container element */
+  className?: string;
 }) => {
   const [index, setIndex] = useState(defaultIndex);
 

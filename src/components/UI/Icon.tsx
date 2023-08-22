@@ -1,14 +1,21 @@
 import { ReactNode } from 'react';
 
+/**
+ * Icon component displays an SVG icon.
+ */
 const Icon = ({
   name,
   strokeWidth = 1.5,
   className = '',
   fill = false,
 }: {
+  /** The name of the icon to be displayed. */
   name: string;
+  /** The width of the icon's stroke. */
   strokeWidth?: number;
+  /** An optional CSS class name to be applied to the icon. */
   className?: string;
+  /** Whether the icon should be filled with the current color. */
   fill?: boolean;
 }) => {
   let icon: ReactNode;

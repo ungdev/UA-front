@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 
-export default function FillingBar({ fullness }: { fullness: number }) {
+/**
+ * Renders a component that displays a filling bar.
+ */
+export default function FillingBar({
+  fullness,
+}: {
+  /** The fullness of the bar. */
+  fullness: number;
+}) {
   const [currentFullness, setCurrentFullness] = useState(0);
 
   const observer = new IntersectionObserver(

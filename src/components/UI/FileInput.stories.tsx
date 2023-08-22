@@ -15,7 +15,7 @@ export const PDF: Story = {
     label: 'File',
     value: '',
     onChange: () => {},
-    type: "pdf",
+    type: 'pdf',
   },
 };
 
@@ -24,6 +24,6 @@ export const Image: Story = {
     label: 'File',
     value: 'https://picsum.photos/200/300',
     onChange: () => {},
-    type: "jpg",
+    type: 'jpg',
   },
 };

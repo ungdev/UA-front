@@ -8,7 +8,6 @@ import { getPartnerLogoLink } from '@/utils/uploadLink';
 
 /**
  * Renders a list of partners with their logos as clickable links.
- * @returns JSX.Element
  */
 export default function Partners() {
   const dispatch = useAppDispatch();

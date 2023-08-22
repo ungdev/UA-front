@@ -1,11 +1,5 @@
 /**
- * Displays a select
- * @param label Label to display
- * @param options List of options
- * @param value Value of the select
- * @param onChange Function called when the value change, the new value is passed as parameter
- * @param disabled Is the field disabled ?
- * @param className Class of the container
+ * Displays a select field.
  */
 const Select = ({
   label = '',
@@ -15,14 +9,20 @@ const Select = ({
   disabled = false,
   className = '',
 }: {
+  /** Label to display */
   label?: string;
+  /** List of options */
   options: {
     label: string;
     value: string;
   }[];
+  /** Value of the select */
   value: string;
+  /** Function called when the value change, the new value is passed as parameter */
   onChange: (value: string) => void;
+  /** Is the field disabled ? */
   disabled?: boolean;
+  /** An optional class name to add to the container */
   className?: string;
 }) => (
   <div className={`select ${className}`}>

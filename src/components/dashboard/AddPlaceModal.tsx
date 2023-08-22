@@ -4,6 +4,7 @@ import { Modal, Button, Input, Select, Radio } from '../UI';
 import { useAppSelector } from '@/lib/hooks';
 import { UserType, AttendantInfo, User } from '@/types';
 
+/** The add place modal */
 const AddPlaceModal = ({
   userId,
   username,
@@ -12,11 +13,17 @@ const AddPlaceModal = ({
   needsAttendant,
   onQuit,
 }: {
+  /** The user id */
   userId: string;
+  /** The user username */
   username: string;
+  /** If the user has a ticket */
   hasTicket: boolean;
+  /** The team members without ticket */
   teamMembersWithoutTicket: User[];
+  /** If the user needs an attendant */
   needsAttendant: boolean;
+  /** The function to call when the user quits the modal */
   onQuit: (placeFor: string, placeId: string | AttendantInfo) => void;
 }) => {
   // Either 'me', 'other' or 'attendant'

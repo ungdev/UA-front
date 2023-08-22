@@ -2,13 +2,19 @@
 import BoxContainer from '@/components/landing/BoxContainer';
 import { useState } from 'react';
 
+/**
+ * Renders a component that displays two images that can be swapped.
+ */
 export default function DoubleImage({
   image1,
   image2,
   className = '',
 }: {
+  /** The first image to display. */
   image1: string;
+  /** The second image to display. */
   image2: string;
+  /** An optional class name to add to the component. */
   className?: string;
 }) {
   const [swapped, setSwapped] = useState(null as boolean | null);

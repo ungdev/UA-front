@@ -1,5 +1,6 @@
 import { Button, Icon } from '../UI';
 
+/** The cart item */
 const CartItem = ({
   itemName,
   quantity,
@@ -7,10 +8,15 @@ const CartItem = ({
   reducedUnitPrice = null,
   onRemove,
 }: {
+  /** The item name */
   itemName: string;
+  /** The quantity */
   quantity: number;
+  /** The unit price */
   unitPrice: number;
+  /** The reduced unit price */
   reducedUnitPrice?: number | null;
+  /** The function to call when the item is removed */
   onRemove: () => void;
 }) => {
   return (

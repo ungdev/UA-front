@@ -3,7 +3,18 @@ import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import jsQR, { QRCode } from 'jsqr';
 
-const QRCodeReader = ({ onCode, className = '' }: { onCode: (code: QRCode) => void; className?: string }) => {
+/**
+ * Renders a component that allows the user to scan a QR code.
+ */
+const QRCodeReader = ({
+  onCode,
+  className = '',
+}: {
+  /** The function to call when a QR code is scanned. */
+  onCode: (code: QRCode) => void;
+  /** An optional class name to add to the component. */
+  className?: string;
+}) => {
   const ref = useRef<HTMLCanvasElement>(null);
   const streamRef = useRef<MediaStream>();
   const wrappingRef = useRef({

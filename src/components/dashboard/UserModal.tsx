@@ -36,11 +36,14 @@ const ageOptions = [
   { name: 'Majeur', value: UserAge.adult.toString() },
 ];
 
+/** The user modal */
 const UserModal = ({
   searchUser,
   onClose = undefined,
 }: {
+  /** The user or null if you want to create a new one */
   searchUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
+  /** The function to call when the user quits the modal */
   onClose?: () => void;
 }) => {
   const dispatch = useAppDispatch();

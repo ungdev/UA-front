@@ -6,18 +6,17 @@ import { TournamentHome } from '@/app/tournaments/content';
 
 /**
  * Renders a component that animates the transition between two tournament pages.
- * @param previousPage - The page that the user is coming from.
- * @param nextPage - The page that the user is going to.
- * @param children - The child components to be rendered.
- * @returns The TournamentSwitcherAnimation component.
  */
 export default function TournamentSwitcherAnimation({
   previousPage,
   nextPage,
   children,
 }: {
+  /** The page that the user is coming from. */
   previousPage?: string;
+  /** The page that the user is going to. */
   nextPage?: string | undefined;
+  /** The child components to be rendered. */
   children: ReactNode;
 }) {
   const router = useRouter();
