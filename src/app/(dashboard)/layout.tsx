@@ -20,11 +20,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const hasTeam = useAppSelector((state) => state.login.status.team);
   const hasPaid = useAppSelector((state) => state.login.status.paid);
 
+  // Fetch admin data
   const adminPartners = useAppSelector((state) => state.admin.partners);
   const adminTournaments = useAppSelector((state) => state.admin.tournaments);
 
   useEffect(() => {
-    if (pathname === '/admin/login') return;
+    if (!isAdminPanel || pathname === '/admin/login') return;
     adminPartners || dispatch(fetchAdminPartners() as unknown as Action);
     adminTournaments || dispatch(fetchAdminTournaments() as unknown as Action);
   }, [pathname]);
@@ -33,6 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
 
+  // Define links for Dashboard
   const linksDashboard = () => {
     const menu = [];
 
@@ -57,6 +59,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return menu;
   };
 
+  // Define links for Admin Panel
   const linksAdmin = () => {
     const menu = [];
 
