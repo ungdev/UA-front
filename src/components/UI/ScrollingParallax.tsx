@@ -1,80 +1,95 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { ScrollingParallaxElement } from '@/components/UI/ScrollingParallaxElement';
 
-export default function ScrollingParallax({ speed, children }: { speed: number; children: React.ReactNode }) {
-  const [additionalScroll, setAdditionalScroll] = useState(0);
-  const [distanceToTop, setDistanceToTop] = useState(0);
-  const [visible, setVisible] = useState(false);
-  const [lastVisibility, setLastVisibility] = useState(false);
-  const ref = useRef<HTMLElement>();
-
-  //console.log(children);
+export default function ScrollingParallax({ children }: { children: React.ReactNode[] }) {
+  interface ChildDataType {
+    speed: number;
+    distanceToTop: number;
+    additionalScroll: number;
+    visible: boolean;
+  }
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
+  const childrenDataInit: ChildDataType[] = [];
+  const refs: MutableRefObject<HTMLElement | undefined>[] = [];
+  for (let i = 0; i < children.length; i++) {
+    if (children[i].type !== ScrollingParallaxElement) {
+      continue;
+    }
+    childrenDataInit.push({
+      speed: children[i].props.speed,
+      distanceToTop: 0,
+      additionalScroll: 0,
+      visible: false,
+    });
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    refs.push(useRef<HTMLElement>());
+  }
+  const [childrenData, setChildrenData] = useState(childrenDataInit);
 
   // We don't use the onScroll event because it is insanely slow to run
   useEffect(() => {
-    if (!ref.current) return;
-    //console.log("use effect");
     startAnimation();
   }, []);
 
   const startAnimation = () => {
     // We save this for performance reasons. If the user hasn't scrolled for a while (300ms), we don't need to refresh as often (we can wait 100ms)
-    let lastScroll = 0;
-    // We need to redefine these variables because the state is not updated in the animation function
-    // So each time we will update the state, we will also update these variables using the functions below
-    let distanceToTop = 0;
-    let additionalScroll = 0;
-    let visible = false;
-    //console.log("startAnimation");
-    const updateDistanceToTop = (value: number) => {
-      distanceToTop = value;
-      setDistanceToTop(value);
-    };
-    const updateAdditionalScroll = (value: number) => {
-      additionalScroll = value;
-      setAdditionalScroll(value);
-    };
-    const updateVisible = (value: boolean) => {
-      visible = value;
-      setVisible(value);
+    // const lastScroll = 0;
+    // We need to redefine this variable because the state is not updated in the animation function
+    // So each time we will update the state, we will also update this variable using the function below
+    let childrenData: ChildDataType[] = childrenDataInit;
+    const updateChildrenData = (value: ChildDataType[]) => {
+      childrenData = value;
+      setChildrenData(value);
     };
     const parallax = () => {
-      const bb = ref.current!.getBoundingClientRect();
-      const scroll = -window.scrollY * (speed - 1);
-      updateVisible(
-        (visible ? bb.top : bb.top - distanceToTop + additionalScroll) < window.innerHeight &&
-          (visible ? bb.bottom : bb.bottom - distanceToTop + additionalScroll) > 0,
-      );
-      //console.log(`before : ${distanceToTop}`);
-      //updateDistanceToTop(0);
-      updateDistanceToTop(!visible ? distanceToTop - bb.top : 0);
-      //console.log(`after : ${distanceToTop}`);
-      //console.log(distanceToTop);
-      const now = Date.now();
-      if (scroll === additionalScroll && now - lastScroll > 300) {
-        requestAnimationFrame(parallax);
-      } else {
-        updateAdditionalScroll(scroll);
+      const newChildrenData: ChildDataType[] = [];
+      // const now = Date.now();
+      for (let i = 0; i < childrenData.length; i++) {
+        const data = childrenData[i];
+        const bb = refs[i].current!.getBoundingClientRect();
+        const scroll = -window.scrollY * (data.speed - 1);
+        const visible =
+          (data.visible ? bb.top : bb.top - data.distanceToTop + data.additionalScroll) < window.innerHeight &&
+          (data.visible ? bb.bottom : bb.bottom - data.distanceToTop + data.additionalScroll) > 0;
+        const distanceToTop = !visible ? data.distanceToTop - bb.top : 0;
+        // const waitLongerForNextUpdate = scroll === data.additionalScroll && now - data.lastScroll > 300;
+        /*
         if (scroll !== additionalScroll) {
           lastScroll = now;
         }
-        requestAnimationFrame(parallax);
+        */
+        newChildrenData.push({ speed: data.speed, additionalScroll: scroll, visible, distanceToTop });
       }
+      updateChildrenData(newChildrenData);
+      requestAnimationFrame(parallax);
     };
     requestAnimationFrame(parallax);
   };
 
+  /*
   if (visible !== lastVisibility) {
     setLastVisibility(visible);
   }
+  */
 
-  return React.cloneElement(children, {
-    ref,
-    style: {
-      visibility: lastVisibility && visible ? undefined : 'hidden',
-      transform: `translateY(${visible ? additionalScroll : distanceToTop}px)`,
-      // Ok, in the future it would be nice to have a smoothing there, for performance reasons (and call the animation function less often)
-      transition: lastVisibility === visible ? 'transform 0.0s linear' : undefined,
-    },
+  let i = 0;
+  return children.map((child) => {
+    if (child.type !== ScrollingParallaxElement) {
+      return child;
+    } else {
+      const childData = childrenData[i];
+      return React.cloneElement(child.props.children, {
+        ref: refs[i++],
+        style: {
+          visibility: /*lastVisibility &&*/ childData.visible ? undefined : 'hidden',
+          transform: `translateY(${childData.visible ? childData.additionalScroll : childData.distanceToTop}px)`,
+          // Ok, in the future it would be nice to have a smoothing there, for performance reasons (and call the animation function less often)
+          /*transition: lastVisibility === visible ? 'transform 0.0s linear',  : undefined,*/
+        },
+      });
+    }
   });
 }
