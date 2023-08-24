@@ -28,6 +28,7 @@ export default function ScrollingParallax({ children }: { children: React.ReactN
     refs.push(useRef<HTMLElement>());
   }
   const [childrenData, setChildrenData] = useState(childrenDataInit);
+  const [lastVisibilities, setLastVisibilities] = useState<boolean[]>(Array(childrenData.length).fill(false));
 
   // We don't use the onScroll event because it is insanely slow to run
   useEffect(() => {
@@ -48,6 +49,8 @@ export default function ScrollingParallax({ children }: { children: React.ReactN
       const newChildrenData: ChildDataType[] = [];
       // const now = Date.now();
       for (let i = 0; i < childrenData.length; i++) {
+        // Stop the animation if the element does not exist anymore (we changed page)
+        if (!refs[i]) return;
         const data = childrenData[i];
         const bb = refs[i].current!.getBoundingClientRect();
         const scroll = -window.scrollY * (data.speed - 1);
@@ -55,41 +58,52 @@ export default function ScrollingParallax({ children }: { children: React.ReactN
           (data.visible ? bb.top : bb.top - data.distanceToTop + data.additionalScroll) < window.innerHeight &&
           (data.visible ? bb.bottom : bb.bottom - data.distanceToTop + data.additionalScroll) > 0;
         const distanceToTop = !visible ? data.distanceToTop - bb.top : 0;
+        // Implementing a system where if user has not scrolled for a while we can wait longer for the next update would maybe be great
         // const waitLongerForNextUpdate = scroll === data.additionalScroll && now - data.lastScroll > 300;
         /*
         if (scroll !== additionalScroll) {
           lastScroll = now;
         }
         */
-        newChildrenData.push({ speed: data.speed, additionalScroll: scroll, visible, distanceToTop });
+        newChildrenData.push({
+          speed: data.speed,
+          additionalScroll: scroll,
+          visible,
+          distanceToTop,
+        });
       }
       updateChildrenData(newChildrenData);
-      requestAnimationFrame(parallax);
+      setTimeout(() => requestAnimationFrame(parallax), 50);
     };
     requestAnimationFrame(parallax);
   };
 
-  /*
-  if (visible !== lastVisibility) {
-    setLastVisibility(visible);
-  }
-  */
-
   let i = 0;
-  return children.map((child) => {
+  let updatedData = false;
+  const newLastVisibilities = [...lastVisibilities];
+  const ret = children.map((child) => {
     if (child.type !== ScrollingParallaxElement) {
       return child;
     } else {
       const childData = childrenData[i];
-      return React.cloneElement(child.props.children, {
-        ref: refs[i++],
+      const parallaxChild = React.cloneElement(child.props.children, {
+        ref: refs[i],
         style: {
-          visibility: /*lastVisibility &&*/ childData.visible ? undefined : 'hidden',
+          visibility: childData.visible && lastVisibilities[i] ? undefined : 'hidden',
           transform: `translateY(${childData.visible ? childData.additionalScroll : childData.distanceToTop}px)`,
-          // Ok, in the future it would be nice to have a smoothing there, for performance reasons (and call the animation function less often)
-          /*transition: lastVisibility === visible ? 'transform 0.0s linear',  : undefined,*/
+          transition: childData.visible && lastVisibilities[i] ? 'transform 0.04s linear' : undefined,
         },
       });
+      if (childData.visible !== lastVisibilities[i]) {
+        newLastVisibilities[i] = childData.visible;
+        updatedData = true;
+      }
+      i++;
+      return parallaxChild;
     }
   });
+  if (updatedData) {
+    setTimeout(() => setLastVisibilities(newLastVisibilities), 40);
+  }
+  return ret;
 }
