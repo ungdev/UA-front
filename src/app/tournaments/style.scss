@@ -32,7 +32,7 @@
     }
   }
 
-  .tournaments-content {
+  .main-content {
     position: relative;
 
     a.back {
@@ -441,7 +441,7 @@
       }
     }
 
-    .tournaments-content {
+    .main-content {
       margin-bottom: 10rem;
 
       .information {
@@ -535,7 +535,7 @@
 
 @media screen and (max-width: 768px) {
   .tournaments {
-    .tournaments-content {
+    .main-content {
       .tournament-container {
         .content {
           .tournament-info {
