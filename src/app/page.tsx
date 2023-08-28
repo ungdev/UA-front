@@ -67,7 +67,7 @@ const Home = () => {
         autoslide={false}
       />
 
-      <AppearFromSide smooth className="cta-main">
+      <AppearFromSide className="cta-main">
         <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
         <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
         <Link href="/event">
@@ -77,7 +77,7 @@ const Home = () => {
         </Link>
       </AppearFromSide>
 
-      <AppearFromSide fromRight smooth className="data-flexing">
+      <AppearFromSide fromRight className="data-flexing">
         <BoxContainer title="chiffres.txt">
           <Counter value={7} name="Jeux" className="flex-1" />
           <VerticalDivider />
@@ -87,7 +87,7 @@ const Home = () => {
         </BoxContainer>
       </AppearFromSide>
 
-      <AppearFromSide smooth className="information">
+      <AppearFromSide className="information">
         <TextBlock
           title="UTT Arena 2023"
           images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>

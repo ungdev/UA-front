@@ -11,7 +11,7 @@ export default function Parallax({ children }: { children: React.ReactNode[] }) 
   const refs: MutableRefObject<HTMLDivElement | undefined>[] = [];
   let error = false;
   for (let i = 0; i < children.length; i++) {
-    if (children[i].type !== ParallaxElementSettings) {
+    if ((children[i]! as React.ReactElement).type !== ParallaxElementSettings) {
       console.error('Children of Parallax component should be components of type ParallaxElementSettings');
       error = true;
       continue;
@@ -39,7 +39,7 @@ export default function Parallax({ children }: { children: React.ReactNode[] }) 
         lastScroll = now;
       }
       */
-      additionalScrolls[i] = -window.scrollY * (children[i].props.speed - 1);
+      additionalScrolls[i] = -window.scrollY * ((children[i]! as React.ReactElement).props.speed - 1);
     }
     setAdditionalScrolls([...additionalScrolls]);
     setTimeout(() => requestAnimationFrame(parallax), 100);
@@ -54,7 +54,7 @@ export default function Parallax({ children }: { children: React.ReactNode[] }) 
       {children.map((child, i) => (
         <div
           key={i}
-          className={`parallax-element ${child.props.className}`}
+          className={`parallax-element ${(child! as React.ReactElement).props.className}`}
           ref={refs[i] as LegacyRef<HTMLDivElement>}
           style={{
             transform: `translateY(${additionalScrolls[i]}px)`,
