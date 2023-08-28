@@ -42,6 +42,7 @@ export default function AppearFromSide({
       position: fromRight ? rect.left : rect.right,
       lastOffset: translateXData.offset,
     });
+    setTimeout(() => requestAnimationFrame(animation), 50);
   };
 
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function AppearFromSide({
     if (visible && !deactivated) {
       requestAnimationFrame(animation);
     }
-  }, [visible, translateXData]);
+  }, [visible, deactivated]);
 
   return (
     <div
