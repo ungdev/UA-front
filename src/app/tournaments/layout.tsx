@@ -7,19 +7,11 @@ import cloud1 from '@/../public/images/clouds/cloud-1.png';
 import cloud2 from '@/../public/images/clouds/cloud-2.png';
 import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
-import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.png';
-import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.png';
-import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.png';
-import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
-import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
-import moon from '@/../public/images/clouds/parallax/moon.png';
 import Partners from '../../components/Partners';
 import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import ScrollingParallax from '@/components/UI/ScrollingParallax';
-import { ScrollingParallaxElement } from "@/components/UI/ScrollingParallaxElement";
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
@@ -70,26 +62,6 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
           <img src={cloud4.src} alt="background" className="constellation-1-2" />
           <img src={constellation1.src} alt="background" className="constellation-1-3" />
           <img src={constellation3.src} alt="background" className="constellation-3-2" />
-          <ScrollingParallax>
-            <ScrollingParallaxElement speed={2.6}>
-              <img src={parallaxCloud1.src} alt="background" className="parallax-cloud-1" />
-            </ScrollingParallaxElement>
-            <ScrollingParallaxElement speed={2.3}>
-              <img src={parallaxCloud2.src} alt="background" className="parallax-cloud-2" />
-            </ScrollingParallaxElement>
-            <ScrollingParallaxElement speed={1.9}>
-              <img src={parallaxCloud2Light.src} alt="background" className="parallax-cloud-2-light" />
-            </ScrollingParallaxElement>
-            <ScrollingParallaxElement speed={3}>
-              <img src={parallaxCloud3.src} alt="background" className="parallax-cloud-3" />
-            </ScrollingParallaxElement>
-            <ScrollingParallaxElement speed={1}>
-              <img src={parallaxCloud3Light.src} alt="background" className="parallax-cloud-3-light" />
-            </ScrollingParallaxElement>
-            <ScrollingParallaxElement speed={2}>
-              <img src={moon.src} alt="background" className="parallax-moon" />
-            </ScrollingParallaxElement>
-          </ScrollingParallax>
         </div>
         {children}
       </div>

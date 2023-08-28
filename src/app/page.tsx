@@ -1,3 +1,4 @@
+'use client';
 import Partners from '@/components/Partners';
 
 import Slider from '@/components/landing/Slider';
@@ -6,10 +7,38 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import { VerticalDivider, Button, Title, Icon, VideoContainer, TextBlock } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
+import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
+import parallaxCloud1 from '../../public/images/clouds/parallax/cloud-1.png';
+import parallaxCloud2 from '../../public/images/clouds/parallax/cloud-2.png';
+import parallaxCloud2Light from '../../public/images/clouds/parallax/cloud-2-light.png';
+import parallaxCloud3 from '../../public/images/clouds/parallax/cloud-3.png';
+import parallaxCloud3Light from '../../public/images/clouds/parallax/cloud-3-light.png';
+import moon from '../../public/images/clouds/parallax/moon.png';
+import Parallax from '@/components/parallax/Parallax';
 
 const Home = () => {
   return (
     <div id="home">
+      <Parallax>
+        <ParallaxElementSettings speed={2.6} className="parallax-cloud-1">
+          <img src={parallaxCloud1.src} alt="background" />
+        </ParallaxElementSettings>
+        <ParallaxElementSettings speed={2.3} className="parallax-cloud-2">
+          <img src={parallaxCloud2.src} alt="background" />
+        </ParallaxElementSettings>
+        <ParallaxElementSettings speed={1.9} className="parallax-cloud-2-light">
+          <img src={parallaxCloud2Light.src} alt="background" />
+        </ParallaxElementSettings>
+        <ParallaxElementSettings speed={3} className="parallax-cloud-3">
+          <img src={parallaxCloud3.src} alt="background" />
+        </ParallaxElementSettings>
+        <ParallaxElementSettings speed={1} className="parallax-cloud-3-light">
+          <img src={parallaxCloud3Light.src} alt="background" />
+        </ParallaxElementSettings>
+        <ParallaxElementSettings speed={2} className="parallax-moon">
+          <img src={moon.src} alt="background" />
+        </ParallaxElementSettings>
+      </Parallax>
       <Slider
         slides={[
           <div key={'slide-1'} className="home-header">
