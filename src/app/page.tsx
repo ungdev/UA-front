@@ -67,19 +67,17 @@ const Home = () => {
         autoslide={false}
       />
 
-      <AppearFromSide smooth>
-        <div className="cta-main">
-          <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
-          <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
-          <Link href="/event">
-            <Button secondary className="connection">
-              Découvrir l’événement
-            </Button>
-          </Link>
-        </div>
+      <AppearFromSide smooth className="cta-main">
+        <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
+        <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
+        <Link href="/event">
+          <Button secondary className="connection">
+            Découvrir l’événement
+          </Button>
+        </Link>
       </AppearFromSide>
 
-      <AppearFromSide fromRight smooth>
+      <AppearFromSide fromRight smooth className="data-flexing">
         <BoxContainer title="chiffres.txt">
           <Counter value={7} name="Jeux" className="flex-1" />
           <VerticalDivider />
@@ -89,27 +87,25 @@ const Home = () => {
         </BoxContainer>
       </AppearFromSide>
 
-      <AppearFromSide smooth>
-        <div className="information">
-          <TextBlock
-            title="UTT Arena 2023"
-            images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
-            LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-            connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-            Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-            composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-            pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
-            Alors prépare tout ton stuff et impose toi dans l’arène !
-          </TextBlock>
-          <div className="more-info">
-            <div className="more-info-container">
-              <Icon name="map-pin" />
-              TROYES
-            </div>
-            <div className="more-info-container">
-              <Icon name="calendar" />
-              1, 2, 3 Décembre 2023
-            </div>
+      <AppearFromSide smooth className="information">
+        <TextBlock
+          title="UTT Arena 2023"
+          images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
+          LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
+          connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
+          Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
+          composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
+          pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
+          Alors prépare tout ton stuff et impose toi dans l’arène !
+        </TextBlock>
+        <div className="more-info">
+          <div className="more-info-container">
+            <Icon name="map-pin" />
+            TROYES
+          </div>
+          <div className="more-info-container">
+            <Icon name="calendar" />
+            1, 2, 3 Décembre 2023
           </div>
         </div>
       </AppearFromSide>

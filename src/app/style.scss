@@ -14,7 +14,7 @@
   gap: 10rem;
 
   .parallax {
-    z-index: 10;
+    z-index: 1;
     opacity: 0.2;
 
     .parallax-cloud-1 {
@@ -156,6 +156,10 @@
       font-style: normal;
       font-weight: 500;
     }
+  }
+
+  .data-flexing {
+    width: 100%;
   }
 
   .information {

@@ -1,5 +1,5 @@
 'use client';
-import { ReactElement, cloneElement, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, LegacyRef } from "react";
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
@@ -9,6 +9,7 @@ export default function AppearFromSide({
   fromRight = false,
   deactivated = false,
   smooth = true,
+  className = '',
 }: {
   /** The children to be rendered. */
   children: React.ReactNode;
@@ -18,6 +19,8 @@ export default function AppearFromSide({
   deactivated?: boolean;
   /** Whether the animation should be smooth. Defaults to true. */
   smooth?: boolean;
+  /** The class to give to the div that will be created */
+  className?: string;
 }) {
   const [visible, setVisible] = useState(false);
   const [translateXData, setTranslateXData] = useState({
@@ -25,7 +28,7 @@ export default function AppearFromSide({
     position: document.body.clientWidth * (fromRight ? -1 : 1),
     lastOffset: document.body.clientWidth * (fromRight ? 1 : -1),
   });
-  const ref = useRef<HTMLElement>();
+  const ref = useRef<HTMLDivElement>();
 
   const animation = () => {
     // It can be undefined if user changes page while the component is on screen
@@ -72,13 +75,12 @@ export default function AppearFromSide({
     }
   }, [visible, translateXData]);
 
-  return cloneElement(children, {
-    style: deactivated
-      ? undefined
-      : {
-          transform: `translateX(${translateXData.offset}px)`,
-          transition: smooth ? 'transform 0.1s linear' /* ease-out aussi est bien */ : undefined,
-        },
-    ref,
-  });
+  return (
+    <div
+      className={`appear-from-side ${className}`}
+      ref={ref as LegacyRef<HTMLDivElement>}
+      style={{ transform: `translateX(${translateXData.offset}px)` }}>
+      {children}
+    </div>
+  );
 }
