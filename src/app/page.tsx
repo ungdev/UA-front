@@ -32,7 +32,7 @@ const Home = () => {
         <ParallaxElementSettings speed={3} className="parallax-cloud-3">
           <img src={parallaxCloud3.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={1} className="parallax-cloud-3-light">
+        <ParallaxElementSettings speed={2.5} className="parallax-cloud-3-light">
           <img src={parallaxCloud3Light.src} alt="background" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2} className="parallax-moon">

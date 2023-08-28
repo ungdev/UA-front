@@ -6,11 +6,53 @@
 }
 
 #home {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 10rem;
+
+  .parallax {
+    z-index: 10;
+    opacity: 0.2;
+
+    .parallax-cloud-1 {
+      left: 2%;
+      top: 100%;
+      width: 400px;
+    }
+
+    .parallax-cloud-2 {
+      left: 30%;
+      top: 60%;
+      width: 400px;
+    }
+
+    .parallax-cloud-2-light {
+      left: 60%;
+      top: 20%;
+      width: 300px;
+    }
+
+    .parallax-cloud-3 {
+      left: 80%;
+      top: 180%;
+      width: 400px;
+      overflow-y: hidden;
+    }
+
+    .parallax-cloud-3-light {
+      left: 10%;
+      top: 200%;
+      width: 400px;
+      overflow-y: hidden;
+    }
+
+    .parallax-moon {
+      top: 40%;
+    }
+  }
 
   .slider {
     .home-header {
