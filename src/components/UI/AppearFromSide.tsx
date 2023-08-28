@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState, LegacyRef } from "react";
+import { useEffect, useRef, useState, LegacyRef } from 'react';
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
@@ -8,7 +8,6 @@ export default function AppearFromSide({
   children,
   fromRight = false,
   deactivated = false,
-  smooth = true,
   className = '',
 }: {
   /** The children to be rendered. */
@@ -17,8 +16,6 @@ export default function AppearFromSide({
   fromRight?: boolean;
   /** Whether the animation should be deactivated. Defaults to false. */
   deactivated?: boolean;
-  /** Whether the animation should be smooth. Defaults to true. */
-  smooth?: boolean;
   /** The class to give to the div that will be created */
   className?: string;
 }) {
@@ -35,11 +32,9 @@ export default function AppearFromSide({
     if (!ref.current) return;
     const rect = (ref.current as HTMLElement).getBoundingClientRect();
     const progression = Math.max(Math.min(4 * (1 - rect.top / window.innerHeight), 1), 0);
-    const defaultSidePosition = smooth
-      ? fromRight
-        ? (window.innerWidth - rect.width) / 2
-        : window.innerWidth - (window.innerWidth - rect.width) / 2
-      : translateXData.position - translateXData.lastOffset;
+    const defaultSidePosition = fromRight
+      ? (window.innerWidth - rect.width) / 2
+      : window.innerWidth - (window.innerWidth - rect.width) / 2;
     setTranslateXData({
       offset: fromRight
         ? (1 - progression) * (window.innerWidth - defaultSidePosition)
@@ -79,7 +74,7 @@ export default function AppearFromSide({
     <div
       className={`appear-from-side ${className}`}
       ref={ref as LegacyRef<HTMLDivElement>}
-      style={{ transform: `translateX(${translateXData.offset}px)` }}>
+      style={{ transform: deactivated ? undefined : `translateX(${translateXData.offset}px)` }}>
       {children}
     </div>
   );
