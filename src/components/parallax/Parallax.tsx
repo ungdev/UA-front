@@ -6,7 +6,7 @@ export default function Parallax({ children }: { children: React.ReactNode[] }) 
   if (!Array.isArray(children)) {
     children = [children];
   }
-  console.log(children);
+
   const additionalScrollsInit: number[] = [];
   const refs: MutableRefObject<HTMLDivElement | undefined>[] = [];
   let error = false;

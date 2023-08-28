@@ -25,7 +25,7 @@ export default function AppearFromSide({
     position: document.body.clientWidth * (fromRight ? -1 : 1),
     lastOffset: document.body.clientWidth * (fromRight ? 1 : -1),
   });
-  const ref = useRef();
+  const ref = useRef<HTMLElement>();
 
   const animation = () => {
     // It can be undefined if user changes page while the component is on screen
@@ -47,6 +47,7 @@ export default function AppearFromSide({
   };
 
   useEffect(() => {
+    if (!ref.current) return;
     new IntersectionObserver(
       ([entry]) => {
         setVisible(entry.isIntersecting);
@@ -71,7 +72,7 @@ export default function AppearFromSide({
     }
   }, [visible, translateXData]);
 
-  return cloneElement(children as ReactElement, {
+  return cloneElement(children, {
     style: deactivated
       ? undefined
       : {
