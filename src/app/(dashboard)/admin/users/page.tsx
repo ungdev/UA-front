@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { Radio, Input, Button, Table, Checkbox } from '@/components/UI';
+import { Radio, Input, Button, Table, Checkbox, Title } from '@/components/UI';
 import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -122,11 +122,14 @@ const Users = () => {
   };
 
   return (
-    <div id="admin-users">
+    <div id="admin-users" >
       {isAdmin && (
-        <Button primary onClick={() => setCreateUser(true)}>
-          Créer un nouvel utilisateur
-        </Button>
+        <div className="row-add-button">
+          <Title level={1} className='user-title'>Utilisateurs</Title>
+          <Button primary onClick={() => setCreateUser(true)} className='add-button'>
+            Ajouter un utilisateur
+          </Button>
+        </div>
       )}
       <div className="filters">
         <Radio

@@ -1,9 +1,34 @@
 #admin-users {
+  padding: 60px;
+
+  .row-add-button{
+    display: flex;
+    padding: 10px;
+    flex-flow: row;
+    min-height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    .user-title {
+      width: fit-content;
+      margin: 0;
+    }
+
+    .add-button{
+      display: flex;
+      height: fit-content;
+      flex-flow: column;
+      align-items: center;
+      vertical-align: middle;
+    }
+  }
+
   .filters {
-    background: #eeeeee;
+    background: $secondary-background;
     padding: 20px;
     margin-bottom: 25px;
-    border: 2px solid $primary-color;
+    box-shadow: inset;
     border-radius: 4px;
 
     hr {
@@ -56,4 +81,20 @@
       padding: 0 12px;
     }
   }
+
+  
 }
+@media screen and (max-width: 1024px) {
+    #admin-users{
+      .row-add-button{
+        display:flexbox;
+        flex-flow: column;
+        vertical-align: middle;
+
+        .user-title{
+          margin-bottom: 10px;
+          padding: 10px;
+        }
+      }
+    }
+  }

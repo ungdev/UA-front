@@ -8,6 +8,7 @@
   .radio-container {
     display: flex;
     flex-flow: column wrap;
+    padding: 10px;
   }
 
   &.row {
@@ -17,6 +18,8 @@
 
     label {
       margin-right: 10px;
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -34,7 +37,7 @@
       width: 18px;
       line-height: 18px;
       font-size: 14px;
-      margin: 5px 5px 0 0;
+      margin: 0 5px 0 0;
       z-index: 0;
       cursor: pointer;
     }
@@ -71,6 +74,20 @@
       background: #cbcbcb;
       opacity: 1;
       z-index: -1;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .radio {
+    .radio-container{
+      display: unset;
+    }
+
+    &.row {
+      label {
+        padding-bottom: 10px;
+      }
     }
   }
 }
