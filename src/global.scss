@@ -32,7 +32,7 @@ body {
   padding: 0;
   color: #212121;
   font-family: $montserrat;
-  overflow-x: hidden;
+  overflow-x: clip;
   color: white;
   background-color: $primary-background;
 }

@@ -1,6 +1,9 @@
 header {
   height: 100px;
   background-color: $secondary-background;
+  position: sticky;
+  top: 0;
+  z-index: 999999;
 
   .content {
     display: flex;
