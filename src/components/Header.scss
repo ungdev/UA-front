@@ -2,6 +2,7 @@ $scrollingAnimationDuration: 0.5s;
 
 .scroll-trigger {
   position: absolute;
+  top: 20px;
 }
 
 header {
@@ -10,7 +11,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 999999;
-  transition: height calc($scrollingAnimationDuration / 2) ease-in-out;
+  transition: height calc($scrollingAnimationDuration / 2) linear;
 
   .content {
     display: flex;
