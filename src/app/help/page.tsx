@@ -59,12 +59,12 @@ const Help = () => {
 
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
-  const options = [...tournaments!.map((tournament) => 'Tournoi ' + tournament.name), 'Problème sur le site', 'Autre']
+  const options = tournaments ? [...tournaments!.map((tournament) => 'Tournoi ' + tournament.name), 'Problème sur le site', 'Autre']
     // Transform the array to match the requested type of Select component
     .map((value) => ({
       label: value,
       value,
-    }));
+    })) : [];
 
   useEffect(() => {
     // Scroll to the element if the hash is present in the url
