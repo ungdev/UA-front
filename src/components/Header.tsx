@@ -7,7 +7,7 @@ import { Button, Modal } from './UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import type { Action } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 /**
@@ -23,11 +23,28 @@ export default function Header({
   admin?: boolean;
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  // null is when the page has never been scrolled yet
+  const [scrolled, setScrolled] = useState(null as boolean | null);
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isVisible = useAppSelector((state) => state.loginModal.visible);
+  const trigger = useRef<HTMLDivElement>();
+  const header = useRef<HTMLDivElement>();
+
+  useEffect(() => {
+    new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting);
+      },
+      {
+        root: null,
+        rootMargin: '0%',
+        threshold: 0,
+      } as IntersectionObserverInit,
+    ).observe(trigger.current!);
+  }, []);
 
   const closeBurger = () => {
     if (!isBurgerOpen) return;
@@ -81,46 +98,51 @@ export default function Header({
   );
 
   return (
-    <header id="header">
-      <div className="content">
-        <Link href="/">
-          <img src={logo.src} alt="Logo UA23" />
-        </Link>
-        <nav>
-          <div className="left">{leftContent}</div>
-          <div className="right">
-            {rightContent}
+    <>
+      <div className="scroll-trigger" ref={trigger as MutableRefObject<HTMLDivElement>} />
+      <header ref={header as MutableRefObject<HTMLDivElement>} className={scrolled ? 'scrolled' : ''}>
+        <div className="content">
+          <Link href="/">
+            <img src={logo.src} alt="Logo UA23" />
+          </Link>
+          <nav>
+            <div className="left">{leftContent}</div>
+            <div className="right">
+              {rightContent}
 
-            <div className="burger-container">
-              <div className={'burger ' + (isBurgerOpen ? 'open' : '')} onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div className="burger-container">
+                <div
+                  className={'burger ' + (isBurgerOpen ? 'open' : '')}
+                  onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={'burger-menu-content ' + (isBurgerOpen ? 'open' : '')}>
-            {leftContent}
-            {rightContent}
-          </div>
-        </nav>
-      </div>
+            <div className={'burger-menu-content ' + (isBurgerOpen ? 'open' : '')}>
+              {leftContent}
+              {rightContent}
+            </div>
+          </nav>
+        </div>
 
-      {isLoginAllowed ? (
-        <LoginModal visible={isVisible} />
-      ) : (
-        <Modal
-          title="Connexion"
-          onCancel={() => dispatch(setLoginModalVisible(false) as unknown as Action)}
-          visible={isVisible}
-          buttons={
-            <Button primary onClick={() => dispatch(setLoginModalVisible(false) as unknown as Action)}>
-              Fermer
-            </Button>
-          }>
-          Les inscriptions ouvriront bientôt !
-        </Modal>
-      )}
-    </header>
+        {isLoginAllowed ? (
+          <LoginModal visible={isVisible} />
+        ) : (
+          <Modal
+            title="Connexion"
+            onCancel={() => dispatch(setLoginModalVisible(false) as unknown as Action)}
+            visible={isVisible}
+            buttons={
+              <Button primary onClick={() => dispatch(setLoginModalVisible(false) as unknown as Action)}>
+                Fermer
+              </Button>
+            }>
+            Les inscriptions ouvriront bientôt !
+          </Modal>
+        )}
+      </header>
+    </>
   );
 }

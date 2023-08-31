@@ -1,9 +1,16 @@
+$scrollingAnimationDuration: 0.5s;
+
+.scroll-trigger {
+  position: absolute;
+}
+
 header {
   height: 100px;
   background-color: $secondary-background;
   position: sticky;
   top: 0;
   z-index: 999999;
+  transition: height calc($scrollingAnimationDuration / 2) ease-in-out;
 
   .content {
     display: flex;
@@ -57,7 +64,10 @@ header {
           width: 0;
           height: 2px;
           background-color: white;
-          transition: width 0.3s ease-in-out;
+          transition: width 0.3s ease-in-out,
+                      opacity $scrollingAnimationDuration ease-in-out,
+                      bottom $scrollingAnimationDuration ease-in-out,
+                      scale $scrollingAnimationDuration ease-in-out;
         }
 
         &.current {
@@ -159,6 +169,15 @@ header {
           }
         }
       }
+    }
+  }
+
+  &.scrolled {
+    height: 75px;
+    nav .button:not(.primary, .secondary):after{
+      opacity: 0;
+      bottom: 10px;
+      scale: 0;
     }
   }
 }
