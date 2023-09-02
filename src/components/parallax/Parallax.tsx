@@ -1,8 +1,9 @@
 'use client';
+import styles from './Parallax.module.scss';
 import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
 
-export default function Parallax({ children }: { children: React.ReactNode[] }) {
+export default function Parallax({ className, children }: { children: React.ReactNode[] }) {
   if (!Array.isArray(children)) {
     children = [children];
   }
@@ -50,11 +51,11 @@ export default function Parallax({ children }: { children: React.ReactNode[] }) 
   }
 
   return (
-    <div className="parallax">
+    <div className={`${styles.parallax} ${className}`}>
       {children.map((child, i) => (
         <div
           key={i}
-          className={`parallax-element ${(child! as React.ReactElement).props.className}`}
+          className={`${styles.parallaxElement} ${(child! as React.ReactElement).props.className}`}
           ref={refs[i] as LegacyRef<HTMLDivElement>}
           style={{
             transform: `translateY(${additionalScrolls[i]}px)`,

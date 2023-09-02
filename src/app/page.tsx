@@ -19,7 +19,7 @@ import Parallax from '@/components/parallax/Parallax';
 const Home = () => {
   return (
     <div id="home">
-      <Parallax>
+      <Parallax className="parallax">
         <ParallaxElementSettings speed={2.6} className="parallax-cloud-1">
           <img src={parallaxCloud1.src} alt="background" />
         </ParallaxElementSettings>
