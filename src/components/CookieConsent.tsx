@@ -1,4 +1,5 @@
 'use client';
+import styles from './CookieConsent.module.scss';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -38,15 +39,15 @@ export default function CookieConsent({
   }
 
   return (
-    <div className="cookie-consent">
+    <div id={styles.cookieConsent}>
       Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consens
       {' à'} l'utilisation de ces cookies. <Link href="/legal">En&nbsp;savoir&nbsp;plus</Link>
       <br />
-      <div className="button-row">
-        <Button primary onClick={buttonClick} className="cookie-button consent">
+      <div className={styles.buttonRow}>
+        <Button primary onClick={buttonClick} className={styles.cookieButton}>
           J'accepte
         </Button>
-        <Button primary onClick={() => setDisplay(false)} className="cookie-button deny">
+        <Button primary onClick={() => setDisplay(false)} className={styles.cookieButton}>
           Je refuse
         </Button>
       </div>

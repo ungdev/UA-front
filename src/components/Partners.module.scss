@@ -1,4 +1,4 @@
-.partners {
+#partners {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -12,7 +12,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  .partners {
+  #partners {
     margin: 0 10%;
     padding-bottom: 4rem;
 

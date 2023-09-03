@@ -1,4 +1,5 @@
 'use client';
+import styles from './Footer.module.scss';
 import Button from './UI/Button';
 
 import logo from '../../public/images/logo-footer.png';
@@ -12,12 +13,12 @@ import { useState } from 'react';
 export default function Footer() {
   const [copyrightTurned, setCopyrightTurned] = useState(false);
   return (
-    <footer>
-      <div className="row">
+    <footer id={styles.footer}>
+      <div className={styles.row}>
         <div>
           <img src={logo.src} alt="Logo UA23" />
         </div>
-        <div className="middle">
+        <div className={styles.middle}>
           <h3>Informations légales</h3>
           <Link href={'/legal'}>
             <Button>Mentions légales</Button>
@@ -26,7 +27,7 @@ export default function Footer() {
             <Button>Politique de confidentialité</Button>
           </Link>
         </div>
-        <div className="right">
+        <div className={styles.right}>
           <h3>Plus d'informations</h3>
           <Link href={'/help#contact'}>
             <Button>Nous contacter</Button>
@@ -34,7 +35,7 @@ export default function Footer() {
           <Link href={'/help#faq'}>
             <Button>FAQ</Button>
           </Link>
-          <div className="socials">
+          <div className={styles.socials}>
             <Link href={'https://discord.gg/WhxZwKU'}>
               <Icon name="discord" fill={true} />
             </Link>
@@ -56,8 +57,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="copyright">
-        <Button className={`${copyrightTurned ? 'turned' : ''}`} onClick={() => setCopyrightTurned(!copyrightTurned)}>
+      <div className={styles.copyright}>
+        <Button
+          className={`${copyrightTurned ? styles.turned : ''}`}
+          onClick={() => setCopyrightTurned(!copyrightTurned)}>
           © {new Date().getFullYear()} UTT Net Group
         </Button>
       </div>

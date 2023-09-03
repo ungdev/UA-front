@@ -56,18 +56,25 @@ export default function Header({
   const leftContent = (
     <>
       <Link href="/" onClick={closeBurger}>
-        <Button className={`${styles.underlineButton} ${pathname && pathname === '/' && 'current'}`}>Accueil</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/' && styles.current}`}>
+          Accueil
+        </Button>
       </Link>
       <Link href="/event" onClick={closeBurger}>
-        <Button className={`${styles.underlineButton} ${pathname && pathname === '/event' && 'current'}`}>Événement</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/event' && styles.current}`}>
+          Événement
+        </Button>
       </Link>
       <Link href="/tournaments" onClick={closeBurger}>
-        <Button className={`${styles.underlineButton} ${pathname && pathname.startsWith('/tournaments') && 'current'}`}>
+        <Button
+          className={`${styles.underlineButton} ${pathname && pathname.startsWith('/tournaments') && styles.current}`}>
           Tournois
         </Button>
       </Link>
       <Link href="/help" onClick={closeBurger}>
-        <Button className={`${styles.underlineButton} ${pathname && pathname === '/help' && 'current'}`}>Aide</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/help' && styles.current}`}>
+          Aide
+        </Button>
       </Link>
     </>
   );
@@ -75,7 +82,7 @@ export default function Header({
   const rightContent = (
     <>
       <Link href="/about" onClick={closeBurger}>
-        <Button className={`${styles.underlineButton} ${pathname && pathname === '/about' && 'current'}`}>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/about' && styles.current}`}>
           A propos
         </Button>
       </Link>

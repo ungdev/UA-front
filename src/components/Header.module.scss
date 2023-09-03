@@ -177,7 +177,7 @@ $scrollingAnimationDuration: 0.5s;
 
   &.scrolled {
     height: 75px;
-    nav .button:not(.primary, .secondary):after{
+    nav .underlineButton:not(.primary, .secondary):after{
       opacity: 0;
       bottom: 10px;
       scale: 0;

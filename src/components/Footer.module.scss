@@ -1,4 +1,6 @@
-footer {
+@import '@/variables.scss';
+
+#footer {
   background-color: $secondary-background;
   padding-bottom: 20px;
   overflow: hidden;

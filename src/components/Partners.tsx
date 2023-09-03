@@ -1,4 +1,5 @@
 'use client';
+import styles from './Partners.module.scss';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useEffect } from 'react';
 import { fetchPartners, PartnersAction } from '@/modules/partners';
@@ -20,7 +21,7 @@ export default function Partners() {
   }, []);
 
   return (
-    <div className="partners">
+    <div id={styles.partners}>
       {!partners
         ? 'Chargement des partenaires...'
         : partners?.map((partner: Partner, i: number) => (
