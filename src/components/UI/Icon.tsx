@@ -1,4 +1,35 @@
+import styles from './Icon.module.scss';
 import { ReactNode } from 'react';
+
+export enum IconName {
+  Twitter = 'twitter',
+  Facebook = 'facebook',
+  Instagram = 'instagram',
+  Discord = 'discord',
+  Twitch = 'twitch',
+  Youtube = 'youtube',
+  Cross = 'cross',
+  ChevronBottom = 'chevron-bottom',
+  ChevronUp = 'chevron-up',
+  ChevronLeft = 'chevron-left',
+  ChevronRight = 'chevron-right',
+  Link = 'link',
+  MapPin = 'map-pin',
+  Calendar = 'calendar',
+  Trash = 'trash',
+  ShoppingCart = 'shopping-cart',
+  Camera = 'camera',
+  Caution = 'caution',
+  Tick = 'tick',
+  Crown = 'crown',
+  Refresh = 'refresh',
+  Gamepad = 'gamepad',
+  Headset = 'headset',
+  User = 'user',
+  PlusSquare = 'plus-square',
+  SignIn = 'signin',
+  QuestionCircle = 'question-circle',
+}
 
 /**
  * Icon component displays an SVG icon.
@@ -10,7 +41,7 @@ const Icon = ({
   fill = false,
 }: {
   /** The name of the icon to be displayed. */
-  name: string;
+  name: IconName;
   /** The width of the icon's stroke. */
   strokeWidth?: number;
   /** An optional CSS class name to be applied to the icon. */
@@ -225,7 +256,7 @@ const Icon = ({
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       strokeWidth={strokeWidth}
-      className={'icon ' + className}
+      className={`${styles.icon} ${className}`}
       fill={fill ? 'currentColor' : 'none'}
       stroke={fill ? 'none' : 'currentColor'}>
       {icon}

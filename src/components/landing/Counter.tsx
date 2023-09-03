@@ -1,4 +1,5 @@
 'use client';
+import styles from './Counter.module.scss';
 import { useState, useEffect } from 'react';
 
 /**
@@ -54,7 +55,7 @@ function Counter({
   );
 
   useEffect(() => {
-    observer.observe(document.querySelector('.counter')!);
+    observer.observe(document.querySelector(`.${styles.counter}`)!);
   }, []);
 
   useEffect(() => {
@@ -83,9 +84,9 @@ function Counter({
   };
 
   return (
-    <div className={'counter ' + className}>
-      <div className="counter-value">{stringifyCounterValue() + valueText}</div>
-      <div className="counter-label">{name}</div>
+    <div className={`${styles.counter} ${className}`}>
+      <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>
+      <div className={styles.counterLabel}>{name}</div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 
-#loader {
+.loader {
   transform-origin: 50% 65%;
   stroke: white;
   stroke-width: 2px;
@@ -8,7 +8,7 @@
   height: 100px;
 }
 
-#loader path {
+.loader path {
   stroke-dasharray: 400;
   animation: dash 2.5s both cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;
 }

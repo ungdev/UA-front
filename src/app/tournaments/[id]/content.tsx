@@ -41,15 +41,15 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           </Link>
         </div>
         <div className="information">
-          <BoxContainer className="cashprize-box" title="cashprize.txt" padding={false}>
+          <BoxContainer className="box-container" title="cashprize.txt" padding={false}>
             1ere place : 1500€ <br />
             1ere place : 1500€ <br />
             1ere place : 1500€
           </BoxContainer>
-          <BoxContainer title="format.txt" padding={false} color="blue" className="on-top">
+          <BoxContainer title="format.txt" padding={false} color="blue" className="box-container on-top">
             {tournament.maxPlayers / tournament.playersPerTeam} équipes
           </BoxContainer>
-          <BoxContainer title="infos.txt" padding={false}>
+          <BoxContainer className="box-container" title="infos.txt" padding={false}>
             Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
@@ -58,9 +58,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </Title>
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
+          className="filling-bar"
         />
         {loginAllowed && (
           <Table
+            className="table"
             columns={[
               { key: 'name', title: 'Nom' },
               { key: 'players', title: 'Joueurs' },

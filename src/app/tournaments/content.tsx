@@ -211,12 +211,12 @@ export function TournamentHome({
         <div className="content">
           <div className="tournament-scroll-container">
             <div className="arrow hidden" ref={leftArrow}>
-              <Button onClick={() => scrollInTournamentList(true)}>
+              <Button className="button" onClick={() => scrollInTournamentList(true)}>
                 <Icon name="chevron-up" strokeWidth={3} />
               </Button>
             </div>
             <div className="arrow" ref={rightArrow}>
-              <Button onClick={() => scrollInTournamentList(false)}>
+              <Button className="button" onClick={() => scrollInTournamentList(false)}>
                 <Icon name="chevron-bottom" strokeWidth={3} />
               </Button>
             </div>
@@ -254,12 +254,12 @@ export function TournamentHome({
               )}
             </p>
             <Link href={``} scroll={false}>
-              <Button primary outline onClick={() => setNextUrl(renderedTournament.id)}>
+              <Button className="button" primary outline onClick={() => setNextUrl(renderedTournament.id)}>
                 Plus d'infos
               </Button>
             </Link>
             <Link href={`/dashboard`} scroll={false}>
-              <Button primary>S'inscrire</Button>
+              <Button className="button" primary>S'inscrire</Button>
             </Link>
           </div>
         </div>

@@ -1,4 +1,5 @@
 'use client';
+import styles from './Button.module.scss';
 /**
  * A reusable button component that can be customized with different props.
  * @example
@@ -53,9 +54,9 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`button ${primary ? 'primary' : ''} ${secondary ? 'secondary' : ''} ${className ? className : ''} ${
-        outline ? 'outline' : ''
-      } ${large ? 'large' : ''}  ${long ? 'long' : ''} ${veryLong ? 'very-long' : ''}  ${!children ? 'empty' : ''}`}
+      className={`${styles.button} ${primary ? styles.primary : ''} ${secondary ? styles.secondary : ''} ${className}
+                  ${outline ? styles.outline : ''} ${large ? styles.large : ''}  ${long ? styles.long : ''}
+                  ${veryLong ? styles.veryLong : ''}`}
       onClick={onClick}
       disabled={disabled}>
       {children}

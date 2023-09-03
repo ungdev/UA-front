@@ -1,4 +1,5 @@
 'use client';
+import styles from './DoubleImage.module.scss';
 import BoxContainer from '@/components/landing/BoxContainer';
 import { useState } from 'react';
 
@@ -28,17 +29,17 @@ export default function DoubleImage({
   };
 
   return (
-    <div className={`double-image ${className}`}>
+    <div className={`${styles.doubleImage} ${className}`}>
       <BoxContainer
         title="image.jpg"
         padding={false}
-        className={swapped != null ? (swapped ? 'image1forward' : 'image1backward') : ''}>
+        className={swapped != null ? (swapped ? styles.image1forward : styles.image1backward) : ''}>
         <img src={image1} alt="Information Image" onClick={swap} />
       </BoxContainer>
       <BoxContainer
         title="image.jpg"
         padding={false}
-        className={swapped != null ? (swapped ? 'image2forward' : 'image2backward') : ''}>
+        className={swapped != null ? (swapped ? styles.image2forward : styles.image2backward) : ''}>
         <img src={image2} alt="Information Image" onClick={swap} />
       </BoxContainer>
     </div>

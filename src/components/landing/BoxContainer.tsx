@@ -1,3 +1,4 @@
+import styles from './BoxContainer.module.scss';
 import { ReactNode } from 'react';
 import Icon from '../UI/Icon';
 
@@ -23,12 +24,12 @@ function BoxContainer({
   className?: string;
 }) {
   return (
-    <div className={`box-container ${className}`}>
-      <div className={`box-title ${color}`}>
+    <div className={`${styles.boxContainer} ${className}`}>
+      <div className={`${styles.boxTitle} ${styles[color]}`}>
         <Icon name="cross" strokeWidth={4} />
         {title}
       </div>
-      <div className={'box-content ' + (!padding ? 'no-padding' : '')}>{children}</div>
+      <div className={`${styles.boxContent} ${!padding ? styles.noPadding : ''}`}>{children}</div>
     </div>
   );
 }

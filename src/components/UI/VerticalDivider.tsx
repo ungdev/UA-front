@@ -1,8 +1,10 @@
+import styles from './VerticalDivider.module.scss';
+
 /**
  * A vertical divider component.
  */
 const Divider = () => {
-  return <div className="vertical-divider"></div>;
+  return <div className={styles.verticalDivider}></div>;
 };
 
 export default Divider;

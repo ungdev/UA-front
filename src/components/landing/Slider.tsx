@@ -1,4 +1,5 @@
 'use client';
+import styles from './Slider.module.scss';
 import { useState, useEffect, ReactNode } from 'react';
 
 /**
@@ -11,11 +12,14 @@ import { useState, useEffect, ReactNode } from 'react';
 export default function Slider({
   slides,
   autoslide = true,
+  className,
 }: {
   /** An array of React nodes to be displayed as slides. */
   slides: ReactNode[];
   /** Should the slider automatically slide ? */
   autoslide?: boolean;
+  /** Additional class name for the slider. */
+  className?: string;
 }) {
   const [active, setActive] = useState(0);
   const max = slides.length;
@@ -35,7 +39,7 @@ export default function Slider({
 
   const prevOne = () => (active > 0 ? setActive(active - 1) : setActive(max - 1));
 
-  const isActive = (value: number) => active === value && 'active';
+  const isActive = (value: number) => active === value && styles.active;
 
   const setSliderStyles = () => {
     const transition = active * -100;
@@ -48,7 +52,7 @@ export default function Slider({
 
   const renderSlides = () =>
     slides.map((item, index) => (
-      <div className="each-slide" key={index}>
+      <div className={styles.eachSlide} key={index}>
         {item}
       </div>
     ));
@@ -56,10 +60,10 @@ export default function Slider({
   const renderDots = () =>
     slides.map(
       (
-        silde,
+        slide,
         index, // check index
       ) => (
-        <li className={isActive(index) + ' dots'} key={index}>
+        <li className={isActive(index)} key={index}>
           <div onClick={() => setActive(index)}>
             <span></span>
           </div>
@@ -69,13 +73,13 @@ export default function Slider({
 
   const renderArrows = () => (
     <>
-      <div className="arrows prev" onClick={() => prevOne()}>
+      <div className={`${styles.arrows} ${styles.prev}`} onClick={() => prevOne()}>
         <svg fill="#FFFFFF" width="50" height="50" viewBox="0 0 24 24">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
           <path d="M0 0h24v24H0z" fill="none" />
         </svg>
       </div>
-      <div className="arrows next" onClick={() => nextOne()}>
+      <div className={`${styles.arrows} ${styles.next}`} onClick={() => nextOne()}>
         <svg fill="#FFFFFF" height="50" viewBox="0 0 24 24" width="50">
           <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
           <path d="M0 0h24v24H0z" fill="none" />
@@ -85,12 +89,12 @@ export default function Slider({
   );
 
   return (
-    <section className="slider">
-      <div className="wrapper" style={setSliderStyles()}>
+    <section className={`${styles.slider} ${className}`}>
+      <div className={styles.wrapper} style={setSliderStyles()}>
         {renderSlides()}
       </div>
       {renderArrows()}
-      <ul className="dots-container">{renderDots()}</ul>
+      <ul className={styles.dotsContainer}>{renderDots()}</ul>
     </section>
   );
 }

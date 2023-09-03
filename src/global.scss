@@ -1,27 +1,3 @@
-/// Stroke font-character
-/// @param  {Integer} $stroke - Stroke width
-/// @param  {Color}   $color  - Stroke color
-/// @return {List}            - text-shadow list
-@function stroke($stroke, $color) {
-  $shadow: ();
-  $from: $stroke * -1;
-  @for $i from $from through $stroke {
-    @for $j from $from through $stroke {
-      @if ($i* $i + $j* $j < $stroke * $stroke ){
-        $shadow: append($shadow, $i * 1px $j * 1px 1px $color, comma);
-      }
-    }
-  }
-  @return $shadow;
-}
-/// Stroke font-character
-/// @param  {Integer} $stroke - Stroke width
-/// @param  {Color}   $color  - Stroke color
-/// @return {Style}           - text-shadow
-@mixin stroke($stroke, $color) {
-  text-shadow: stroke($stroke, $color);
-}
-
 * {
   outline: none;
 }
@@ -57,14 +33,6 @@ ol > li {
 
 main {
   flex-grow: 1;
-}
-
-
-main.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 @media screen and (max-width: 800px) {

@@ -1,4 +1,5 @@
 'use client';
+import styles from './TournamentSwitcherAnimation.module.scss';
 import { ReactNode, RefObject, createRef, useEffect, useState } from 'react';
 import { TournamentInformation } from '@/app/tournaments/[id]/content';
 import { useRouter } from 'next/navigation';
@@ -73,9 +74,9 @@ export default function TournamentSwitcherAnimation({
   };
 
   return (
-    <div className="page-switcher-container" ref={ref} style={style}>
-      <div className="left">{left}</div>
-      <div className="right">{right}</div>
+    <div className={styles.pageSwitcherContainer} ref={ref} style={style}>
+      <div className={styles.left}>{left}</div>
+      <div className={styles.right}>{right}</div>
     </div>
   );
 }

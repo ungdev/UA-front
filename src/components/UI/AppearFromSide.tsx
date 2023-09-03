@@ -1,4 +1,5 @@
 'use client';
+import styles from './AppearFromSide.module.scss';
 import { useEffect, useRef, useState, LegacyRef } from 'react';
 
 /**
@@ -73,7 +74,7 @@ export default function AppearFromSide({
 
   return (
     <div
-      className={`appear-from-side ${className}`}
+      className={`${styles.appearFromSide} ${className}`}
       ref={ref as LegacyRef<HTMLDivElement>}
       style={{ transform: deactivated ? undefined : `translateX(${translateXData.offset}px)` }}>
       {children}

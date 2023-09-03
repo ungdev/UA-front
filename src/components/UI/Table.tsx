@@ -1,4 +1,6 @@
 'use client';
+import styles from './Table.module.scss';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 /**
  * A table component that displays data in rows and columns.
@@ -39,14 +41,12 @@ const Table = ({
   /** Function to execute when a row is clicked. It takes 1 argument : the id of the row clicked. */
   onRowClicked?: (number: number) => void;
 }) => (
-  <div className="table-container">
-    <table className={`table ${className}`}>
+  <div className={styles.tableContainer}>
+    <table className={`${styles.table} ${className}`}>
       <thead>
-        <tr className="table-header">
+        <tr>
           {columns.map((column) => (
-            <th className={`table-column-${column.key}`} key={column.key}>
-              {column.title}
-            </th>
+            <th key={column.key}>{column.title}</th>
           ))}
         </tr>
       </thead>
@@ -57,9 +57,7 @@ const Table = ({
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (
-                  <td
-                    key={`${row[column.key]}-${i}-${j}`}
-                    className={`table-column-${column.key}` + (lastColumn ? ' align-right' : '')}>
+                  <td key={`${row[column.key]}-${i}-${j}`} className={lastColumn ? styles.alignRight : ''}>
                     {row[column.key]}
                   </td>
                 );
@@ -68,7 +66,7 @@ const Table = ({
           ))
         ) : (
           <tr>
-            <td colSpan={columns.length} className="table-void">
+            <td colSpan={columns.length} className={styles.tableVoid}>
               {emptyText}
             </td>
           </tr>
@@ -76,21 +74,20 @@ const Table = ({
       </tbody>
     </table>
     {pagination && (
-      <div className="table-footer">
+      <div>
         <p>
           Page {paginationOptions!.page + 1} / {Math.ceil(paginationOptions!.total / paginationOptions!.pageSize)}
         </p>
-        <i
-          className="fas fa-chevron-left pointer"
-          onClick={() => paginationOptions!.page < 1 || paginationOptions!.goToPage(paginationOptions!.page - 1)}
-        />
-        <i
-          className="fas fa-chevron-right pointer"
+        <div onClick={() => paginationOptions!.page < 1 || paginationOptions!.goToPage(paginationOptions!.page - 1)}>
+          <Icon name={IconName.ChevronLeft} />
+        </div>
+        <div
           onClick={() =>
             paginationOptions!.page >= paginationOptions!.total / paginationOptions!.pageSize - 1 ||
             paginationOptions!.goToPage(paginationOptions!.page + 1)
-          }
-        />
+          }>
+          <Icon name={IconName.ChevronRight} />
+        </div>
       </div>
     )}
   </div>

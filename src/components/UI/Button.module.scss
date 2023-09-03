@@ -1,3 +1,5 @@
+@import '@/variables.scss';
+
 .button {
   display: inline-block;
   padding: 0.75rem 1.25rem;
@@ -61,7 +63,7 @@
       background-color: darken($accent-color, 10%);
     }
   }
-  
+
   &.large {
     padding: 1.25rem 1.75rem;
   }
@@ -74,7 +76,7 @@
     padding: 1.25rem 5rem;
   }
 
-  &.very-long {
+  &.veryLong {
     width: 100%;
   }
 

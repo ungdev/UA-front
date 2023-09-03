@@ -1,6 +1,6 @@
 'use client';
+import styles from './style.module.scss';
 import Partners from '@/components/Partners';
-
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
@@ -18,43 +18,44 @@ import Parallax from '@/components/parallax/Parallax';
 
 const Home = () => {
   return (
-    <div id="home">
-      <Parallax className="parallax">
-        <ParallaxElementSettings speed={2.6} className="parallax-cloud-1">
+    <div id={styles.home}>
+      <Parallax className={styles.parallax}>
+        <ParallaxElementSettings speed={2.6} className={styles.parallaxCloud1}>
           <img src={parallaxCloud1.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2.3} className="parallax-cloud-2">
+        <ParallaxElementSettings speed={2.3} className={styles.parallaxCloud2}>
           <img src={parallaxCloud2.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={1.9} className="parallax-cloud-2-light">
+        <ParallaxElementSettings speed={1.9} className={styles.parallaxCloud2Light}>
           <img src={parallaxCloud2Light.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={3} className="parallax-cloud-3">
+        <ParallaxElementSettings speed={3} className={styles.parallaxCloud3}>
           <img src={parallaxCloud3.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2.5} className="parallax-cloud-3-light">
+        <ParallaxElementSettings speed={2.5} className={styles.parallaxCloud3Light}>
           <img src={parallaxCloud3Light.src} alt="background" />
         </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2} className="parallax-moon">
+        <ParallaxElementSettings speed={2} className={styles.parallaxMoon}>
           <img src={moon.src} alt="background" />
         </ParallaxElementSettings>
       </Parallax>
       <Slider
+        className={styles.slider}
         slides={[
-          <div key={'slide-1'} className="home-header">
-            <div id="logo">
+          <div key={'slide-1'} className={styles.homeHeader}>
+            <div id={styles.logo}>
               <img src="/images/logo-notext.png" alt="Logo" />
             </div>
-            <div className="home-title">
-              <p className="main">UTT Arena</p>
+            <div className={styles.homeTitle}>
+              <p className={styles.main}>UTT Arena</p>
               <p>
-                <span className="accent">3</span> et <span className="accent">4</span> décembre 2022
+                <span className={styles.accent}>3</span> et <span className={styles.accent}>4</span> décembre 2022
               </p>
             </div>
           </div>,
           <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
-          <div key={'slide-3'} className="home-header">
-            <div className="content">
+          <div key={'slide-3'} className={styles.homeHeader}>
+            <div className={styles.content}>
               <Title level={1} align="center">
                 Rejoignez l'aventure
               </Title>
@@ -67,17 +68,15 @@ const Home = () => {
         autoslide={false}
       />
 
-      <AppearFromSide className="cta-main">
+      <AppearFromSide className={styles.ctaMain}>
         <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
-        <div className="cta-main-subtitle">Prépare toi à entrer dans l’arène !</div>
+        <div className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</div>
         <Link href="/event">
-          <Button secondary className="connection">
-            Découvrir l’événement
-          </Button>
+          <Button secondary>Découvrir l’événement</Button>
         </Link>
       </AppearFromSide>
 
-      <AppearFromSide fromRight className="data-flexing">
+      <AppearFromSide fromRight className={styles.dataFlexing}>
         <BoxContainer title="chiffres.txt">
           <Counter value={7} name="Jeux" className="flex-1" />
           <VerticalDivider />
@@ -87,7 +86,7 @@ const Home = () => {
         </BoxContainer>
       </AppearFromSide>
 
-      <AppearFromSide className="information">
+      <AppearFromSide className={styles.information}>
         <TextBlock
           title="UTT Arena 2023"
           images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
@@ -98,12 +97,12 @@ const Home = () => {
           pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
           Alors prépare tout ton stuff et impose toi dans l’arène !
         </TextBlock>
-        <div className="more-info">
-          <div className="more-info-container">
+        <div className={styles.moreInfo}>
+          <div className={styles.moreInfoContainer}>
             <Icon name="map-pin" />
             TROYES
           </div>
-          <div className="more-info-container">
+          <div className={styles.moreInfoContainer}>
             <Icon name="calendar" />
             1, 2, 3 Décembre 2023
           </div>

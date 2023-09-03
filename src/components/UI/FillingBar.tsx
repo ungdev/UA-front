@@ -1,3 +1,4 @@
+import styles from './FillingBar.module.scss';
 import { useEffect, useState } from 'react';
 
 /**
@@ -5,9 +6,12 @@ import { useEffect, useState } from 'react';
  */
 export default function FillingBar({
   fullness,
+  className,
 }: {
   /** The fullness of the bar. */
   fullness: number;
+  /** An additional class name to the bar. */
+  className?: string;
 }) {
   const [currentFullness, setCurrentFullness] = useState(0);
 
@@ -25,8 +29,13 @@ export default function FillingBar({
   );
 
   useEffect(() => {
-    observer.observe(document.querySelector('.filling-bar')!);
+    observer.observe(document.querySelector(`.${styles.fillingBar}`)!);
   }, []);
 
-  return <div className="filling-bar" style={{ '--fullness': currentFullness } as React.CSSProperties} />;
+  return (
+    <div
+      className={`${styles.fillingBar} ${className}`}
+      style={{ '--fullness': currentFullness } as React.CSSProperties}
+    />
+  );
 }

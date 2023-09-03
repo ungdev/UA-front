@@ -1,4 +1,5 @@
 'use client';
+import styles from './Collapse.module.scss';
 import { useState, useEffect, useRef, MouseEvent, ReactNode } from 'react';
 import { Icon } from '.';
 import { toast } from 'react-toastify';
@@ -60,25 +61,25 @@ const Collapse = ({
   }
 
   return (
-    <div id={id} className={`collapse ${className} ${contentVisible ? 'active' : ''}`}>
-      <div className="collapse-title" onClick={() => setVisible(!contentVisible)}>
-        <div className="left">
-          <div className="collapse-arrow">
+    <div id={id} className={`${styles.collapse} ${className} ${contentVisible ? 'active' : ''}`}>
+      <div className={styles.collapseTitle} onClick={() => setVisible(!contentVisible)}>
+        <div className={styles.left}>
+          <div className={styles.collapseArrow}>
             <Icon name="chevron-bottom" strokeWidth={2.5} />
           </div>
           {title}
         </div>
 
         {copyLink && (
-          <div className="right">
-            <button type="button" className="copy-link" onClick={copyLink}>
+          <div className={styles.right}>
+            <button type="button" onClick={copyLink}>
               <Icon name="link" strokeWidth={2} />
             </button>
           </div>
         )}
       </div>
 
-      <div className="collapse-content" ref={contentRef} style={{ maxHeight: contentVisible ? contentHeight : 0 }}>
+      <div className={styles.collapseContent} ref={contentRef} style={{ maxHeight: contentVisible ? contentHeight : 0 }}>
         {children}
       </div>
     </div>

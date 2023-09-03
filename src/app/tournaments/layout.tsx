@@ -31,6 +31,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
           <div className="buttons">
             <Button
+              className="button"
               primary
               onClick={() => {
                 if (pathname === '/tournaments') {
@@ -45,7 +46,10 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
               }}>
               Découvrir les tournois
             </Button>
-            <Button primary onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
+            <Button
+              className="button"
+              primary
+              onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
               Se connecter
             </Button>
           </div>

@@ -1,9 +1,5 @@
-.page-container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
+@import '@/variables.scss';
+@import '@/mixins.scss';
 
 #home {
   position: relative;
@@ -17,47 +13,47 @@
     z-index: 1;
     opacity: 0.2;
 
-    .parallax-cloud-1 {
+    .parallaxCloud1 {
       left: 2%;
       top: 100%;
       width: 400px;
     }
 
-    .parallax-cloud-2 {
+    .parallaxCloud2 {
       left: 30%;
       top: 60%;
       width: 400px;
     }
 
-    .parallax-cloud-2-light {
+    .parallaxCloud2Light {
       left: 60%;
       top: 20%;
       width: 300px;
     }
 
-    .parallax-cloud-3 {
+    .parallaxCloud3 {
       left: 80%;
       top: 180%;
       width: 400px;
       overflow-y: hidden;
     }
 
-    .parallax-cloud-3-light {
+    .parallaxCloud3Light {
       left: 10%;
       top: 200%;
       width: 400px;
       overflow-y: hidden;
     }
 
-    .parallax-moon {
+    .parallaxMoon {
       top: 40%;
     }
   }
 
   .slider {
     z-index: 2;
-    
-    .home-header {
+
+    .homeHeader {
       height: 100%;
       width: 100%;
       display: flex;
@@ -87,7 +83,7 @@
         z-index: 1;
       }
 
-      .home-title {
+      .homeTitle {
         margin: 3rem auto;
         padding: 0.75rem;
         background-color: $dark-color;
@@ -133,7 +129,7 @@
     }
   }
 
-  .cta-main {
+  .ctaMain {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -142,7 +138,7 @@
     text-align: center;
     width: clamp(300px, 60%, 1920px);
 
-    .cta-main-title {
+    .ctaMainSubtitle {
       font-size: 3rem;
       font-weight: 700;
       color: #fff;
@@ -151,7 +147,7 @@
       text-transform: uppercase;
     }
 
-    .cta-main-subtitle {
+    .ctaMainSubtitle {
       color: $accent-color;
       font-family: $lexend;
       font-size: 2.125rem;
@@ -160,14 +156,14 @@
     }
   }
 
-  .data-flexing {
+  .dataFlexing {
     width: 100%;
   }
 
   .information {
     width: clamp(300px, 80%, 1920px);
 
-    .more-info {
+    .moreInfo {
       margin-top: 3.5rem;
       height: 48px;
       display: flex;
@@ -175,7 +171,8 @@
       align-items: center;
       gap: 3rem;
       color: $secondary-color;
-      .more-info-container {
+
+      .moreInfoContainer {
         height: 100%;
         display: flex;
         justify-content: center;
@@ -192,7 +189,7 @@
 @media screen and (max-width: 1200px) {
   #home {
     .slider {
-      .video-container {
+      .videoContainer {
         width: 100%;
       }
     }
@@ -202,8 +199,8 @@
 @media screen and (max-width: 1024px) {
   #home {
     .slider {
-      .home-header {
-        .home-title {
+      .homeHeader {
+        .homeTitle {
           margin: 2rem auto;
           transform: skew(0deg);
           width: 75%;
@@ -220,12 +217,12 @@
     }
 
     .information {
-      .more-info {
+      .moreInfo {
         flex-direction: column;
         height: 96px;
         margin-top: 3rem;
 
-        .more-info-container {
+        .moreInfoContainer {
           height: 40%;
         }
       }
@@ -236,8 +233,8 @@
 @media screen and (max-width: 700px) {
   #home {
     .slider {
-      .home-header {
-        .home-title {
+      .homeHeader {
+        .homeTitle {
           width: 90%;
           p.main {
             transform: none;
@@ -255,10 +252,10 @@
       }
     }
     .information {
-      .more-info {
+      .moreInfo {
         height: auto;
         margin-top: 2rem;
-        .more-info-container {
+        .moreInfoContainer {
           height: auto;
           flex-direction: column;
 

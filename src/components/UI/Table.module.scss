@@ -1,4 +1,6 @@
-.table-container {
+@import '@/variables.scss';
+
+.tableContainer {
   overflow-x: auto;
 }
 
@@ -19,7 +21,7 @@
         border: 1px solid white;
   }
 
-  .table-divider {
+  .tableDivider {
     padding: 0;
     border: none;
   }
@@ -37,12 +39,12 @@
     padding: 0.5rem;
     border: 1px solid white;
 
-    &.align-right {
+    &.alignRight {
       text-align: right;
     }
   }
 
-  tbody td.table-void {
+  tbody td.tableVoid {
     text-align: center;
     color: #818181;
     padding: 1em 0;

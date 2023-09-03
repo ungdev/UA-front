@@ -1,4 +1,5 @@
 'use client';
+import styles from './Wrapper.module.scss';
 import { ReactNode, Suspense, useEffect } from 'react';
 import { ReadonlyURLSearchParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -184,11 +185,11 @@ export default function Wrapper({
     <>
       <CookieConsent />
       {isLoading || (isDashboard && !isLoggedIn) ? (
-        <main className="loading">
+        <main id={styles.loading}>
           <Loading />
         </main>
       ) : (
-        <div className="page-container">
+        <div id={styles.pageContainer}>
           <Header connected={isLoggedIn} admin={isAdmin} />
           <main>{children}</main>
           <Footer />
