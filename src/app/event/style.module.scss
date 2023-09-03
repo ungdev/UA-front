@@ -1,29 +1,32 @@
-#event-page {
+@import '@/variables.scss';
+@import '@/mixins.scss';
+
+#eventPage {
   margin-bottom: 10rem;
 
-  .title-1 {
+  .primaryTitle {
     text-align: center;
     margin-top: 6rem;
   }
 
-  .title-2 {
+  .secondaryTitle {
     width: 90%;
     margin: 100px auto 70px auto;
   }
 
-  .text-and-image {
+  .textAndImage {
     display: flex;
     overflow: hidden;
     background-color: $light-blue;
     color: #002d40;
     margin-top: 5rem;
 
-    &.image-left {
+    &.imageLeft {
       margin-left: 85px;
       border-radius: 1.25rem 0 0 1.25rem;
     }
 
-    &.image-right {
+    &.imageRight {
       margin-right: 85px;
       border-radius: 0 1.25rem 1.25rem 0;
     }
@@ -42,7 +45,7 @@
     gap: 46px;
     margin-top: 58px;
 
-    .box-container {
+    .boxContainer {
       width: fit-content;
     }
   }
@@ -110,7 +113,7 @@
 
 @media screen and (max-width: 1024px) {
   #event-page {
-    .text-and-image {
+    .textAndImage {
       flex-direction: column;
       gap: 1.5rem;
 
@@ -138,7 +141,7 @@
       flex-direction: column;
       gap: 1.5rem;
 
-      .box-container {
+      .boxContainer {
         width: 100%;
       }
     }

@@ -1,19 +1,21 @@
-.about-container {
+@import '@/variables.scss';
+
+.aboutContainer {
   padding: 5rem 0;
 
-  .about-ua, .about-ung {
+  .aboutUa, .aboutUng {
     width: clamp(300px, 80%, 1920px);
     margin: 10px auto 100px auto;
   }
 
-  .about-team {
+  .aboutTeam {
     width: clamp(300px, 80%, 1920px);
     margin: auto;
 
     .title {
       margin-bottom: 3rem;
     }
-    
+
     .content {
       display: flex;
       flex-wrap: wrap;
@@ -24,7 +26,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        .img-container {
+        .imgContainer {
           width: 150px;
           height: 150px;
           position: relative;
@@ -36,7 +38,7 @@
             object-fit: cover;
             border-radius: 50%;
           }
-          .image-font {
+          .imageFont {
             position: absolute;
             top: 0;
             left: 0;

@@ -1,3 +1,5 @@
+@import '@/variables.scss';
+
 #legal {
   .container {
     width: clamp(350px, 80%, 1920px);
@@ -5,12 +7,12 @@
     padding: 4rem 0;
     color: #fff;
 
-    .title-2 {
+    .articleTitle {
       margin: 30px 0 20px 0;
       font-family: $lexend;
     }
 
-    .title-3 {
+    .subArticleTitle {
       margin: 26px 0 0 0;
     }
   }

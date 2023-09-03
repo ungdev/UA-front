@@ -31,7 +31,7 @@ const Title = ({
       {level === 2 ? (
         <div className="text-divider">
           <Divider />
-          <div className={`title-content ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</div>
+          <div className={`title-content ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</div>
           <Divider />
         </div>
       ) : (

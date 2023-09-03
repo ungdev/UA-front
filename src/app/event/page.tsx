@@ -1,3 +1,4 @@
+import styles from './style.module.scss';
 import { Table, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
@@ -7,12 +8,16 @@ import Partners from '../../components/Partners';
 export default function Page() {
   return (
     <>
-      <div id="event-page">
-        <Title level={1}>Événement</Title>
-        <Title level={2}>Présentation</Title>
-        <div className="text-and-image image-left">
+      <div id={styles.eventPage}>
+        <Title level={1} className={styles.primaryTitle}>
+          Événement
+        </Title>
+        <Title level={2} className={styles.secondaryTitle}>
+          Présentation
+        </Title>
+        <div className={`${styles.textAndImage} ${styles.imageLeft}`}>
           <img src={foo.src} alt="foo" />
-          <div className="text">
+          <div className={styles.text}>
             L'UTT Arena (UA) est le plus gros événement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
@@ -22,8 +27,8 @@ export default function Page() {
             de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
         </div>
-        <div className="text-and-image image-right">
-          <div className="text">
+        <div className={`${styles.textAndImage} ${styles.imageRight}`}>
+          <div className={styles.text}>
             À présent l'UTT Arena c'est 630 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît ! La confiance de nos
@@ -32,34 +37,42 @@ export default function Page() {
           </div>
           <img src={bar.src} alt="bar" />
         </div>
-        <Title level={2}>Salon jeux</Title>
+        <Title level={2} className={styles.secondaryTitle}>
+          Salon jeux
+        </Title>
         <center>Contenu à venir</center>
-        <Title level={2}>Programme</Title>
-        <div className="program">
-          <BoxContainer title="Jour 1 : Vendredi">
-            <p className="">Contenu...</p>
+        <Title level={2} className={styles.secondaryTitle}>
+          Programme
+        </Title>
+        <div className={styles.program}>
+          <BoxContainer title="Jour 1 : Vendredi" className={styles.boxContainer}>
+            <p>Contenu...</p>
           </BoxContainer>
-          <BoxContainer title="Jour 2 : Samedi">
-            <p className="">Contenu...</p>
+          <BoxContainer title="Jour 2 : Samedi" className={styles.boxContainer}>
+            <p>Contenu...</p>
           </BoxContainer>
-          <BoxContainer title="Jour 3 : Dimanche">
-            <p className="">Contenu...</p>
+          <BoxContainer title="Jour 3 : Dimanche" className={styles.boxContainer}>
+            <p>Contenu...</p>
           </BoxContainer>
         </div>
-        <Title level={2}>Lieu</Title>
-        <div className="place">
+        <Title level={2} className={styles.secondaryTitle}>
+          Lieu
+        </Title>
+        <div className={styles.place}>
           <iframe
             title="Google Maps"
             src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
           />
-          <div className="text">
+          <div className={styles.text}>
             Le Cube - Parc des Expositions de Troyes <br /> <br />
             20 Rue des Gayettes <br /> <br />
             10000 Troyes
           </div>
         </div>
-        <Title level={2}>Inscriptions</Title>
-        <ol className="steps">
+        <Title level={2} className={styles.secondaryTitle}>
+          Inscriptions
+        </Title>
+        <ol className={styles.steps}>
           <li>
             Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet,
             consectetur adipiscing elit

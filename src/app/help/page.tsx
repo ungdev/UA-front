@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
@@ -98,13 +99,13 @@ const Help = () => {
   const currentLink = `${window.location.origin}${pathName}`;
 
   return (
-    <div className="help-container">
-      <div id="faq">
+    <div className={styles.helpContainer}>
+      <div id={styles.faq}>
         <Title align="center">FAQ</Title>
 
         {Object.keys(faq).map((category: string) => (
-          <div key={category} id={category} className="category">
-            <p className="category-title">{category}</p>
+          <div key={category} id={category} className={styles.category}>
+            <p className={styles.categoryTitle}>{category}</p>
             {faq[category].map((question: Question, index: number) => (
               <Collapse
                 key={`${category}-${index}`}
@@ -127,7 +128,7 @@ const Help = () => {
           </div>
         ))}
       </div>
-      <div id="contact">
+      <div id={styles.contact}>
         <Title align="center">Contact</Title>
 
         <p>

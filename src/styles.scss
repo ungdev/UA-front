@@ -4,7 +4,6 @@
 @import './mixins.scss';
 
 // App
-@import './app/about/style.scss';
 @import './app/(dashboard)/admin/scan/style.scss';
 @import './app/(dashboard)/admin/users/style.scss';
 @import './app/(dashboard)/dashboard/account/style.scss';
@@ -12,9 +11,6 @@
 @import './app/(dashboard)/dashboard/register/style.scss';
 @import './app/(dashboard)/dashboard/shop/style.scss';
 @import './app/(dashboard)/dashboard/team/style.scss';
-@import './app/event/style.scss';
-@import './app/help/style.scss';
-@import './app/legal/style.scss';
 @import './app/tournaments/style.scss';
 
 // Components
