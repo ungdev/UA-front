@@ -1,4 +1,5 @@
 'use client';
+import styles from './Header.module.scss';
 import Link from 'next/link';
 
 import logo from '../../public/images/logo.png';
@@ -55,18 +56,18 @@ export default function Header({
   const leftContent = (
     <>
       <Link href="/" onClick={closeBurger}>
-        <Button className={`home ${pathname && pathname === '/' && 'current'}`}>Accueil</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/' && 'current'}`}>Accueil</Button>
       </Link>
       <Link href="/event" onClick={closeBurger}>
-        <Button className={`event ${pathname && pathname === '/event' && 'current'}`}>Événement</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/event' && 'current'}`}>Événement</Button>
       </Link>
       <Link href="/tournaments" onClick={closeBurger}>
-        <Button className={`tournament ${pathname && pathname.startsWith('/tournaments') && 'current'}`}>
+        <Button className={`${styles.underlineButton} ${pathname && pathname.startsWith('/tournaments') && 'current'}`}>
           Tournois
         </Button>
       </Link>
       <Link href="/help" onClick={closeBurger}>
-        <Button className={`help ${pathname && pathname === '/help' && 'current'}`}>Aide</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/help' && 'current'}`}>Aide</Button>
       </Link>
     </>
   );
@@ -74,19 +75,20 @@ export default function Header({
   const rightContent = (
     <>
       <Link href="/about" onClick={closeBurger}>
-        <Button className={`about ${pathname && pathname === '/about' && 'current'}`}>A propos</Button>
+        <Button className={`${styles.underlineButton} ${pathname && pathname === '/about' && 'current'}`}>
+          A propos
+        </Button>
       </Link>
 
       {connected ? (
         <Link href={admin ? '/admin' : '/dashboard'} onClick={closeBurger}>
-          <Button secondary className={`dashboard`}>
+          <Button secondary className={styles.underlineButton}>
             {admin ? 'Admin' : 'Dashboard'}
           </Button>
         </Link>
       ) : (
         <Button
           secondary
-          className="connection"
           onClick={() => {
             closeBurger();
             dispatch(setLoginModalVisible(true) as unknown as Action);
@@ -99,20 +101,23 @@ export default function Header({
 
   return (
     <>
-      <div className="scroll-trigger" ref={trigger as MutableRefObject<HTMLDivElement>} />
-      <header ref={header as MutableRefObject<HTMLDivElement>} className={scrolled ? 'scrolled' : ''}>
-        <div className="content">
+      <div className={styles.scrollTrigger} ref={trigger as MutableRefObject<HTMLDivElement>} />
+      <header
+        ref={header as MutableRefObject<HTMLDivElement>}
+        id={styles.header}
+        className={scrolled ? styles.scrolled : ''}>
+        <div className={styles.content}>
           <Link href="/">
             <img src={logo.src} alt="Logo UA23" />
           </Link>
           <nav>
-            <div className="left">{leftContent}</div>
-            <div className="right">
+            <div className={styles.left}>{leftContent}</div>
+            <div className={styles.right}>
               {rightContent}
 
-              <div className="burger-container">
+              <div className={styles.burgerContainer}>
                 <div
-                  className={'burger ' + (isBurgerOpen ? 'open' : '')}
+                  className={`${styles.burger} ${isBurgerOpen ? styles.open : ''}`}
                   onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
                   <span></span>
                   <span></span>
@@ -120,7 +125,7 @@ export default function Header({
                 </div>
               </div>
             </div>
-            <div className={'burger-menu-content ' + (isBurgerOpen ? 'open' : '')}>
+            <div className={`${styles.burgerMenuContent} ${isBurgerOpen ? styles.open : ''}`}>
               {leftContent}
               {rightContent}
             </div>
