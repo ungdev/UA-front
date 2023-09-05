@@ -122,11 +122,13 @@ const Users = () => {
   };
 
   return (
-    <div id="admin-users" >
+    <div id="admin-users">
       {isAdmin && (
         <div className="row-add-button">
-          <Title level={1} className='user-title'>Utilisateurs</Title>
-          <Button primary onClick={() => setCreateUser(true)} className='add-button'>
+          <Title level={1} className="user-title">
+            Utilisateurs
+          </Title>
+          <Button primary onClick={() => setCreateUser(true)} className="add-button">
             Ajouter un utilisateur
           </Button>
         </div>

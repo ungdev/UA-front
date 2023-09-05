@@ -79,7 +79,10 @@ const Collapse = ({
         )}
       </div>
 
-      <div className={styles.collapseContent} ref={contentRef} style={{ maxHeight: contentVisible ? contentHeight : 0 }}>
+      <div
+        className={styles.collapseContent}
+        ref={contentRef}
+        style={{ maxHeight: contentVisible ? contentHeight : 0 }}>
         {children}
       </div>
     </div>

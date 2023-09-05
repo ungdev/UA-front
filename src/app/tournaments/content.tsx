@@ -259,7 +259,9 @@ export function TournamentHome({
               </Button>
             </Link>
             <Link href={`/dashboard`} scroll={false}>
-              <Button className="button" primary>S'inscrire</Button>
+              <Button className="button" primary>
+                S'inscrire
+              </Button>
             </Link>
           </div>
         </div>
