@@ -6,6 +6,7 @@ import logo from '../../public/images/logo-footer.png';
 import Link from 'next/link';
 import { Icon } from './UI';
 import { useState } from 'react';
+import { IconName } from './UI/Icon';
 
 /**
  * Footer component that displays legal information and contact details.
@@ -37,22 +38,22 @@ export default function Footer() {
           </Link>
           <div className={styles.socials}>
             <Link href={'https://discord.gg/WhxZwKU'}>
-              <Icon name="discord" fill={true} />
+              <Icon name={IconName.Discord} fill={true} />
             </Link>
             <Link href={'https://www.twitch.tv/uttarena'}>
-              <Icon name="twitch" fill={true} />
+              <Icon name={IconName.Twitch} fill={true} />
             </Link>
             <Link href={'https://www.youtube.com/user/UTTNetGroup/'}>
-              <Icon name="youtube" fill={true} />
+              <Icon name={IconName.Youtube} fill={true} />
             </Link>
             <Link href={'https://www.instagram.com/uttarena/'}>
-              <Icon name="instagram" fill={true} />
+              <Icon name={IconName.Instagram} fill={true} />
             </Link>
             <Link href={'https://www.facebook.com/UTTArena'}>
-              <Icon name="facebook" fill={true} />
+              <Icon name={IconName.Facebook} fill={true} />
             </Link>
             <Link href={'https://twitter.com/uttarena'}>
-              <Icon name="twitter" fill={true} />
+              <Icon name={IconName.Twitter} fill={true} />
             </Link>
           </div>
         </div>

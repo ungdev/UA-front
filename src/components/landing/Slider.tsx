@@ -39,7 +39,7 @@ export default function Slider({
 
   const prevOne = () => (active > 0 ? setActive(active - 1) : setActive(max - 1));
 
-  const isActive = (value: number) => active === value && styles.active;
+  const isActive = (value: number) => (active === value && styles.active) || '';
 
   const setSliderStyles = () => {
     const transition = active * -100;

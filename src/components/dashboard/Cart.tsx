@@ -1,6 +1,7 @@
 import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
 import { Button, Icon } from './../UI';
+import { IconName } from '../UI/Icon';
 
 /** The cart */
 const Cart = ({
@@ -34,7 +35,7 @@ const Cart = ({
         <h2>Panier</h2>
         <Button onClick={onCartReset}>
           {/* TODO: Make it red */}
-          <Icon name="trash"></Icon>
+          <Icon name={IconName.Trash}></Icon>
         </Button>
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {

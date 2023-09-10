@@ -12,6 +12,7 @@ import { uploadsUrl } from '@/utils/environment';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
+import { IconName } from '@/components/UI/Icon';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -83,7 +84,7 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <Icon name="discord" />
+          <Icon name={IconName.Discord} />
           &nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
         </Button>
       </a>
@@ -99,7 +100,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <Icon name="gamepad" />
+          <Icon name={IconName.Gamepad} />
           <p>Joueur</p>
         </div>
 
@@ -109,7 +110,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentSolo(false);
           }}>
-          <Icon name="headset" />
+          <Icon name={IconName.Headset} />
           <p>Coach / Manager</p>
         </div>
 
@@ -119,7 +120,7 @@ const Register = () => {
             setStep(step + 3);
             setTournamentSolo(true);
           }}>
-          <Icon name="user" />
+          <Icon name={IconName.User} />
           <p>Spectateur</p>
         </div>
       </div>
@@ -186,7 +187,7 @@ const Register = () => {
             setCreateTeam(true);
             setStep(step + 1);
           }}>
-          <Icon name="plus-square" />
+          <Icon name={IconName.PlusSquare} />
           <p>Créer une équipe</p>
         </div>
 
@@ -195,7 +196,7 @@ const Register = () => {
             setCreateTeam(false);
             setStep(step + 1);
           }}>
-          <Icon name="signin" />
+          <Icon name={IconName.SignIn} />
           <p>Rejoindre une équipe</p>
         </div>
       </div>

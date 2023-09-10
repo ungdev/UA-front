@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserEdit, UserType } from '@/types';
 import { deleteCart } from '@/modules/cart';
+import { IconName } from '@/components/UI/Icon';
 
 const Account = () => {
   const dispatch = useAppDispatch();
@@ -128,7 +129,7 @@ const Account = () => {
         )}
         <a href={discordLink}>
           <Button primary>
-            <Icon name="discord" />
+            <Icon name={IconName.Discord} />
             &nbsp;&nbsp;
             {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
           </Button>

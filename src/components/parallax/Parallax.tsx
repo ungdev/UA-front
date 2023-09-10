@@ -3,7 +3,7 @@ import styles from './Parallax.module.scss';
 import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
 
-export default function Parallax({ className, children }: { children: React.ReactNode[] }) {
+export default function Parallax({ className, children }: { className: string; children: React.ReactNode[] }) {
   if (!Array.isArray(children)) {
     children = [children];
   }

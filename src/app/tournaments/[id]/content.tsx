@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
+import { IconName } from '@/components/UI/Icon';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -28,7 +29,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
       <div className="tournament-container">
         <Link href="" className="back">
           <Button onClick={() => setGoBack(true)}>
-            <Icon name="chevron-left" strokeWidth={3}></Icon>
+            <Icon name={IconName.ChevronLeft} strokeWidth={3}></Icon>
             Retour aux tournois
           </Button>
         </Link>

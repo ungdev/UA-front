@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Icon from './Icon';
+import Icon, { IconName } from './Icon';
 
 const meta = {
   title: 'UI/Icon',
   component: Icon,
   tags: ['autodocs'],
   args: {
-    name: 'discord',
+    name: IconName.Discord,
     className: 'test',
   },
   parameters: {

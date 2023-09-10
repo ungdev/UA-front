@@ -108,7 +108,7 @@ const TournamentModal = ({
         </div>
 
         {Array.from(Array(castersCount).keys()).map((i) => (
-          <div key={i} className='caster'>
+          <div key={i} className="caster">
             <Input
               label={`Caster ${i + 1}`}
               value={casters![i] ?? ''}
@@ -137,7 +137,7 @@ const TournamentModal = ({
           <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
           <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />
         </div>
-       
+
         <FileInput
           label="Image"
           value={tournament ? getTournamentImageLink(tournament.id) : ''}

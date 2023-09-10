@@ -1,4 +1,5 @@
 import { Button, Icon } from '../UI';
+import { IconName } from '../UI/Icon';
 
 /** The cart item */
 const CartItem = ({
@@ -23,7 +24,7 @@ const CartItem = ({
     <div className="cart-item">
       <div className="item-name">{itemName}</div>
       <Button className="remove-btn" onClick={onRemove}>
-        <Icon name="trash" />
+        <Icon name={IconName.Trash} />
       </Button>
       <div>
         {quantity} x{' '}

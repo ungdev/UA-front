@@ -3,6 +3,7 @@ import styles from './Collapse.module.scss';
 import { useState, useEffect, useRef, MouseEvent, ReactNode } from 'react';
 import { Icon } from '.';
 import { toast } from 'react-toastify';
+import { IconName } from './Icon';
 
 /**
  * A collapsible component that displays a title and content that can be expanded or collapsed.
@@ -65,7 +66,7 @@ const Collapse = ({
       <div className={styles.collapseTitle} onClick={() => setVisible(!contentVisible)}>
         <div className={styles.left}>
           <div className={styles.collapseArrow}>
-            <Icon name="chevron-bottom" strokeWidth={2.5} />
+            <Icon name={IconName.ChevronBottom} strokeWidth={2.5} />
           </div>
           {title}
         </div>
@@ -73,7 +74,7 @@ const Collapse = ({
         {copyLink && (
           <div className={styles.right}>
             <button type="button" onClick={copyLink}>
-              <Icon name="link" strokeWidth={2} />
+              <Icon name={IconName.Link} strokeWidth={2} />
             </button>
           </div>
         )}

@@ -8,6 +8,7 @@ import { Title, Table, Button, Modal, Helper, Icon } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { Tournament, UserType } from '@/types';
+import { IconName } from '@/components/UI/Icon';
 
 const playersColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -68,12 +69,12 @@ const Team = () => {
     team.players.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <Icon name="crown" /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name={IconName.Crown} /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
+      hasPaid: user.hasPaid ? <Icon name={IconName.Tick} /> : <Icon name={IconName.Cross} />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
@@ -118,12 +119,12 @@ const Team = () => {
     team.coaches.map((user) => ({
       username: (
         <>
-          {user.username} {user.id === team.captainId ? <Icon name="crown" /> : ''}
+          {user.username} {user.id === team.captainId ? <Icon name={IconName.Crown} /> : ''}
         </>
       ),
       fullname: `${user.firstname} ${user.lastname}`,
       email: user.email,
-      hasPaid: user.hasPaid ? <Icon name="tick" /> : <Icon name="cross" />,
+      hasPaid: user.hasPaid ? <Icon name={IconName.Tick} /> : <Icon name={IconName.Cross} />,
       action:
         user.id !== team.captainId && isCaptain && isShopAllowed && !team.lockedAt ? (
           <>
@@ -288,11 +289,11 @@ const Team = () => {
                 <strong> : </strong>
                 {team.lockedAt ? (
                   <>
-                    <Icon name="tick" /> Inscrit
+                    <Icon name={IconName.Tick} /> Inscrit
                   </>
                 ) : (
                   <>
-                    <Icon name="caution" /> Non inscrit
+                    <Icon name={IconName.Caution} /> Non inscrit
                   </>
                 )}
               </div>
@@ -306,7 +307,7 @@ const Team = () => {
           )}
         </div>
         <div onClick={() => document.location.reload()}>
-          <Icon name="refresh" />
+          <Icon name={IconName.Refresh} />
         </div>
       </div>
 

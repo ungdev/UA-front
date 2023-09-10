@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Icon } from '.';
+import { IconName } from './Icon';
 
 /**
  * Helper component displays a question mark icon with a tooltip containing the helper text.
@@ -15,7 +16,7 @@ const Helper = ({
 }) => (
   <div className={`helper ${className}`}>
     <div tabIndex={0} className="helper-icon">
-      <Icon name="question-circle" />
+      <Icon name={IconName.QuestionCircle} />
     </div>
 
     <div className="helper-content">{children}</div>

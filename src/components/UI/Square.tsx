@@ -2,8 +2,6 @@
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
-import { ReactNode } from 'react';
-
 /**
  * Square component that displays an image, content and a button.
  */

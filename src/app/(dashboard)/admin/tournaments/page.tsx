@@ -18,7 +18,12 @@ const Tournaments = () => {
 
       <div className={styles.squareContainer}>
         {tournaments?.map((tournament, index) => (
-          <Square key={index} imgSrc={getTournamentImageLink(tournament.id)} alt={tournament.name} onClick={() => setSelectedTournament(tournament)} />
+          <Square
+            key={index}
+            imgSrc={getTournamentImageLink(tournament.id)}
+            alt={tournament.name}
+            onClick={() => setSelectedTournament(tournament)}
+          />
         ))}
       </div>
 

@@ -7,6 +7,7 @@ import Divider from '@/components/UI/Divider';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 import { useAppSelector } from '@/lib/hooks';
 import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/uploadLink';
+import { IconName } from '@/components/UI/Icon';
 
 export function TournamentHome({
   animations,
@@ -212,12 +213,12 @@ export function TournamentHome({
           <div className="tournament-scroll-container">
             <div className="arrow hidden" ref={leftArrow}>
               <Button className="button" onClick={() => scrollInTournamentList(true)}>
-                <Icon name="chevron-up" strokeWidth={3} />
+                <Icon name={IconName.ChevronUp} strokeWidth={3} />
               </Button>
             </div>
             <div className="arrow" ref={rightArrow}>
               <Button className="button" onClick={() => scrollInTournamentList(false)}>
-                <Icon name="chevron-bottom" strokeWidth={3} />
+                <Icon name={IconName.ChevronBottom} strokeWidth={3} />
               </Button>
             </div>
             <div className="tournaments-list fade-bottom" ref={tournamentList} onScroll={onTournamentListScroll}>

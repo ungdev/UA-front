@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserType } from '@/types';
 import { QRCode } from 'jsqr';
+import { IconName } from '@/components/UI/Icon';
 
 const Entry = () => {
   const scannedUser = useAppSelector((state) => state.userEntry.searchUser);
@@ -30,7 +31,7 @@ const Entry = () => {
             {!scannedUser ? (
               <div className="scanner">
                 <div className="scanner-placeholder">
-                  <Icon name="camera" />
+                  <Icon name={IconName.Camera} />
                   Veuillez activer votre caméra
                 </div>
                 <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
@@ -47,7 +48,7 @@ const Entry = () => {
                   <strong>Prénom :</strong> {scannedUser.firstname}
                 </p>
                 <p>
-                  {scannedUser.age === UserAge.child && <Icon name="caution" />}
+                  {scannedUser.age === UserAge.child && <Icon name={IconName.Caution} />}
                   <strong>Âge :</strong> {scannedUser.age === UserAge.child ? 'Mineur' : 'Majeur'}
                 </p>
                 <p>
@@ -89,7 +90,7 @@ const Entry = () => {
                   )}
                 </p>
                 <p>
-                  {scannedUser.customMessage && <Icon name="caution" />}
+                  {scannedUser.customMessage && <Icon name={IconName.Caution} />}
                   <strong>Infos complémentaires :</strong>{' '}
                   {scannedUser.customMessage || (
                     <>

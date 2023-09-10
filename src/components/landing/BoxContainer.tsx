@@ -1,6 +1,6 @@
 import styles from './BoxContainer.module.scss';
 import { ReactNode } from 'react';
-import Icon from '../UI/Icon';
+import Icon, { IconName } from '../UI/Icon';
 
 /**
  * A container component that displays a title and content in a box.
@@ -26,7 +26,7 @@ function BoxContainer({
   return (
     <div className={`${styles.boxContainer} ${className}`}>
       <div className={`${styles.boxTitle} ${styles[color]}`}>
-        <Icon name="cross" strokeWidth={4} />
+        <Icon name={IconName.Cross} strokeWidth={4} />
         {title}
       </div>
       <div className={`${styles.boxContent} ${!padding ? styles.noPadding : ''}`}>{children}</div>

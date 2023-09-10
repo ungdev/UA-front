@@ -20,11 +20,15 @@ const Partners = () => {
           Ajouter un partenaire
         </Button>
       </div>
-      
 
       <div className={styles.squareContainer}>
         {partners?.map((partner, index) => (
-          <Square key={index} imgSrc={getPartnerLogoLink(partner.id)} alt={partner.name} onClick={() => setSelectedPartner(partner)} />
+          <Square
+            key={index}
+            imgSrc={getPartnerLogoLink(partner.id)}
+            alt={partner.name}
+            onClick={() => setSelectedPartner(partner)}
+          />
         ))}
       </div>
 

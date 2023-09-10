@@ -15,6 +15,7 @@ import parallaxCloud3 from '../../public/images/clouds/parallax/cloud-3.png';
 import parallaxCloud3Light from '../../public/images/clouds/parallax/cloud-3-light.png';
 import moon from '../../public/images/clouds/parallax/moon.png';
 import Parallax from '@/components/parallax/Parallax';
+import { IconName } from '@/components/UI/Icon';
 
 const Home = () => {
   return (
@@ -99,11 +100,11 @@ const Home = () => {
         </TextBlock>
         <div className={styles.moreInfo}>
           <div className={styles.moreInfoContainer}>
-            <Icon name="map-pin" />
+            <Icon name={IconName.MapPin} />
             TROYES
           </div>
           <div className={styles.moreInfoContainer}>
-            <Icon name="calendar" />
+            <Icon name={IconName.Calendar} />
             1, 2, 3 Décembre 2023
           </div>
         </div>

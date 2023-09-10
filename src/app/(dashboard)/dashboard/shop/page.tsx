@@ -13,6 +13,7 @@ import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, User, UserAge, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
+import { IconName } from '@/components/UI/Icon';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -367,7 +368,7 @@ const Shop = () => {
               onClick={onPay}
               disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
               Payer
-              <Icon name="shopping-cart" fill={true} />
+              <Icon name={IconName.ShoppingCart} fill={true} />
             </Button>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Button, Icon } from '@/components/UI';
 import { setType } from '@/modules/login';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import { IconName } from '@/components/UI/Icon';
 
 const Spectator = () => {
   const dispatch = useAppDispatch();
@@ -16,11 +17,11 @@ const Spectator = () => {
         <strong>Statut : </strong>{' '}
         {hasPaid ? (
           <>
-            <Icon name="tick" /> Payé
+            <Icon name={IconName.Tick} /> Payé
           </>
         ) : (
           <>
-            <Icon name="caution" /> Non payé
+            <Icon name={IconName.Caution} /> Non payé
           </>
         )}
       </p>
