@@ -5,6 +5,7 @@ import { AdminTournament } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { getTournamentBackgroundLink, getTournamentImageLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { updateTournament } from '@/modules/admin';
+import { IconName } from '../UI/Icon';
 
 /** The tournament modal */
 const TournamentModal = ({
@@ -95,8 +96,19 @@ const TournamentModal = ({
         <Input label="Cashprize" type="number" value={cashprize ?? ''} onChange={(e) => setCashprize(parseInt(e))} />
         <Textarea label="Détails du cashprize" value={cashprizeDetails ?? ''} onChange={setCashprizeDetails} />
 
+        <div className="casters">
+          <p>Casters</p>
+          <Button
+            primary
+            onClick={() => {
+              setCastersCount(castersCount + 1);
+            }}>
+            Ajouter un caster
+          </Button>
+        </div>
+
         {Array.from(Array(castersCount).keys()).map((i) => (
-          <div key={i}>
+          <div key={i} className='caster'>
             <Input
               label={`Caster ${i + 1}`}
               value={casters![i] ?? ''}
@@ -116,23 +128,16 @@ const TournamentModal = ({
                 setCastersCount(castersCount - 1);
               }}>
               {/* TODO: make it work */}
-              <Icon name="trash" />
+              <Icon name={IconName.Trash} />
             </Button>
           </div>
         ))}
-
-        <Button
-          primary
-          onClick={() => {
-            setCastersCount(castersCount + 1);
-          }}>
-          Ajouter un caster
-        </Button>
-
-        <Checkbox label="Display" value={display} onChange={setDisplay} />
-        <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
-        <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />
-
+        <div className="display-checkboxes">
+          <Checkbox label="Display" value={display} onChange={setDisplay} />
+          <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
+          <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />
+        </div>
+       
         <FileInput
           label="Image"
           value={tournament ? getTournamentImageLink(tournament.id) : ''}

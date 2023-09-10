@@ -3,6 +3,7 @@ import { Checkbox } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { updateSetting } from '@/modules/settings';
 import type { Action } from '@reduxjs/toolkit';
+import styles from './style.module.scss';
 
 const Settings = () => {
   const dispatch = useAppDispatch();
@@ -20,11 +21,11 @@ const Settings = () => {
   const changeTrombi = (value: boolean) => changeSetting('trombi', value);
 
   return (
-    <>
+    <div className={styles.settings}>
       <Checkbox label="Autoriser le login" onChange={changeLogin} value={loginAllowed} />
       <Checkbox label="Autoriser la boutique" onChange={changeShop} value={shopAllowed} />
       <Checkbox label="Autoriser le trombi" onChange={changeTrombi} value={trombiAllowed} />
-    </>
+    </div>
   );
 };
 

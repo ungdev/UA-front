@@ -1,10 +1,11 @@
 'use client';
-import { Card } from '@/components/UI';
+import { Square, Title } from '@/components/UI';
 import TournamentModal from '@/components/dashboard/TournamentModal';
 import { useAppSelector } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useState } from 'react';
+import styles from './style.module.scss';
 
 const Tournaments = () => {
   const tournaments = useAppSelector((state) => state.admin.tournaments);
@@ -12,14 +13,14 @@ const Tournaments = () => {
   const [createNewTournament, setCreateNewTournament] = useState(false);
 
   return (
-    <>
-      {tournaments?.map((tournament, index) => (
-        <div key={index} onClick={() => setSelectedTournament(tournament)}>
-          <Card>
-            <img src={getTournamentImageLink(tournament.id)} alt={tournament.name} />
-          </Card>
-        </div>
-      ))}
+    <div className={styles.tournaments}>
+      <Title>Tournois</Title>
+
+      <div className={styles.squareContainer}>
+        {tournaments?.map((tournament, index) => (
+          <Square key={index} imgSrc={getTournamentImageLink(tournament.id)} alt={tournament.name} onClick={() => setSelectedTournament(tournament)} />
+        ))}
+      </div>
 
       {(selectedTournament !== null || createNewTournament) && (
         <TournamentModal
@@ -30,7 +31,7 @@ const Tournaments = () => {
           }}
         />
       )}
-    </>
+    </div>
   );
 };
 

@@ -73,12 +73,18 @@ export default function Page() {
           Inscriptions
         </Title>
         <ol className={styles.steps}>
+          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+          <li>Crée ton compte et clique sur le lien envoyé par mail</li>
+          <li>Une fois connecté, associe ton compte Discord</li>
+          <li>Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)</li>
           <li>
-            Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation lorem ipsum dolor sit amet,
-            consectetur adipiscing elit
+            <p>
+              Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
+              <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de
+              l'équipe)
+            </p>
           </li>
-          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
-          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
+          <li>Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !</li>
         </ol>
         <Table
           columns={[

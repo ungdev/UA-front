@@ -20,6 +20,8 @@ const FileUpload = ({
   type: 'png' | 'jpg' | 'pdf';
 }) => {
   const [file, setFile] = useState<File>();
+  const [preview, setPreview] = useState<string | null>(null);
+  const [error, setError] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadClick = () => inputRef.current?.click();
@@ -30,16 +32,39 @@ const FileUpload = ({
     }
 
     setFile(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
     onChange(e.target.files[0]);
   };
 
   return (
-    <div>
-      <div>{label}</div>
+    <div className='fileinput'>
+      <label>{label}</label>
 
-      {value !== '' && type != 'pdf' && <img src={value} alt={label} />}
+      <div className="imageContainer" onClick={handleUploadClick}>
+        {!error && (value !== '' || preview != null) && type != 'pdf' && <img onError={
+          (e) => {
+            setError(true);
+            setPreview(null);
+          }
+        } src={preview ? preview : value} alt={label} />}
 
-      <button onClick={handleUploadClick}>{file ? `${file.name}` : 'Click to select'}</button>
+        {!error && (value !== '' || preview != null) && type == 'pdf' && <><embed onLoad={
+          (e) => {
+            // check if 404 error is thrown
+            fetch(value).then((response) => {
+              if (!response.ok) {
+                setError(true);
+                setPreview(null);
+              }
+            });
+          }
+        }
+      type="application/pdf" src={preview ? preview : value} />
+      <div className='pdf-overlay'/>
+      </>}
+
+        <p className={(error || (value === '' && preview === null)) ? 'black' : ''}>Choisir un fichier {type.toUpperCase()}</p>
+      </div>   
 
       <input type="file" ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} accept={`.${type}`} />
     </div>

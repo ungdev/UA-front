@@ -11,6 +11,7 @@ import Modal from './Modal';
 import QRCodeReader from './QRCodeReader';
 import Radio from './Radio';
 import Select from './Select';
+import Square from './Square';
 import Table from './Table';
 import Tabs from './Tabs';
 import Textarea from './Textarea';
@@ -35,6 +36,7 @@ export {
   QRCodeReader,
   Radio,
   Select,
+  Square,
   Table,
   Tabs,
   Textarea,

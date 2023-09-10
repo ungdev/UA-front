@@ -1,6 +1,6 @@
 'use client';
 import styles from './style.module.scss';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';
@@ -10,7 +10,7 @@ import { useAppSelector } from '@/lib/hooks';
 
 interface Question {
   question: string;
-  answer: string;
+  answer: ReactNode;
 }
 
 interface Faq {
@@ -21,29 +21,113 @@ const faq: Faq = {
   Général: [
     {
       question: 'Quand commencent les tournois ?',
-      answer: 'Les tournois commencent le samedi à 10h00.',
+      answer: <>Les tournois commencent le samedi à 10h mais les participants des tournois devront être présents le samedi à 9h pour effectuer un check-in.</>,
     },
     {
-      question: 'Quand commencent les tournois ?',
-      answer: 'Les tournois commencent le samedi à 10h00.',
+      question: 'Quel est l\'âge minimum pour participer aux tournois ?',
+      answer: <>Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra que tu présentes l'autorisation parentale <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2022.pdf" target="_blank">disponible ici</a>, <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong> avant d'accéder à l'UTT Arena.</>,
     },
     {
-      question: 'Quand commencent les tournois ?',
-      answer: 'Les tournois commencent le samedi à 10h00.',
+      question: 'Puis-je streamer pendant les tournois ?',
+      answer: <>Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de streaming est <a href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform" target='_blank'>disponible ici</a>. L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du streaming sans autorisation validée par l'équipe se verra sanctionnée.</>,
+    },
+    {
+      question: 'Où puis-je trouver des joueurs pour monter une équipe ?',
+      answer: <>Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe. <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre Discord ici.</a></>,
+    },
+    {
+      question: 'Qui contacter si j\'ai des questions avant ou pendant l\'UTT Arena ?',
+      answer: <>N'hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l'UTT Arena.</>,
+    },
+    {
+      question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
+      answer: <>Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est important de le lire attentivement !</>,
+    },
+    {
+      question: 'Puis-je assister à l\'UTT Arena en tant que spectateur ?',
+      answer: <>Cette année, les spectateurs voulant assister à l'UTT Arena devront acheter leur place à la billetterie de l'UTT Arena. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu vidéo, et visiter les stands de nos partenaires. Vous pouvez prendre votre place en vous inscrivant sur ce site.</>,
+    },
+  ],
+  Inscription: [
+    {
+      question: 'Comment savoir si mon équipe est inscrite ?',
+      answer: <>Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur place. Le chef d'équipe peut alors <strong>verrouiller l'équipe</strong> pour confirmer la participation de l'équipe au tournoi. Une fois que l'équipe est verrouillée, le statut dans l'onglet "équipe" devient vert et ton équipe est inscrite.</>,
+    },
+    {
+      question: 'Combien coûte la participation à un tournoi ?',
+      answer: (
+        <>
+          <ul>
+            <li>22 € pour les joueurs du tournoi Super Smash Bros Ultimate</li>
+            <li>25 € pour les joueurs des autres tournois</li>
+            <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+            <li>
+              Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
+              adresse mail étudiante.
+            </li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      question: "Dans combien de tournois puis-je m'inscrire ?",
+      answer: "Les tournois se jouant en simultané, tu ne peux t'inscrire qu'à un seul tournoi.",
     },
   ],
   Paiement: [
     {
       question: 'Puis-je payer en espèces ?',
-      answer: "Non, nous n'acceptons pas les paiements en espèces.",
+      answer:
+        'Il sera possible de payer en espèces sur place, mais à tes risques et périls, car il y a de fortes chances que toutes les places soient déjà parties.',
     },
     {
-      question: 'Puis-je payer en espèces ?',
-      answer: "Non, nous n'acceptons pas les paiements en espèces.",
+      question: 'Puis-je payer par PayPal ?',
+      answer: 'Non, sur le site seul le paiement par carte bancaire est disponible.',
     },
     {
-      question: 'Puis-je payer en espèces ?',
-      answer: "Non, nous n'acceptons pas les paiements en espèces.",
+      question: 'Puis-je payer pour toute mon équipe ?',
+      answer:
+        "Oui, cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
+    },
+    {
+      question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
+      answer: (
+        <>
+          Oui, tu peux changer librement de tournoi à condition que le tournoi que tu veux rejoindre soit au même prix
+          que la place que tu as déjà payée. Si ce n'est pas le cas, contacte-nous !
+        </>
+      ),
+    },
+  ],
+  "Tournoi Super Smash Bros Ultimate": [
+    {
+      question: 'Dois-je apporter ma console ?',
+      answer: (
+        <>
+          Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription
+          au tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les
+          personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une{' '}
+          <strong>réduction</strong> de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers
+          seulement.
+          <br />
+          Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
+          <br />
+          <br />
+          <strong>
+            Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera
+            facturé sur place.
+          </strong>
+        </>
+      ),
+    },
+    {
+      question: 'Puis-je apporter mon PC ?',
+      answer: "Non, car tu n'auras pas de place pour installer ton setup.",
+    },
+    {
+      question: 'Dois-je apporter mes manettes ?',
+      answer:
+        "Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
     },
   ],
 } as Faq;

@@ -22,7 +22,7 @@ export default function Partners() {
 
   return (
     <div id={styles.partners}>
-      {!partners
+      {(!partners || partners.length === 0)
         ? 'Chargement des partenaires...'
         : partners?.map((partner: Partner, i: number) => (
             <a key={i} href={partner.link}>

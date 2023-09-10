@@ -12,7 +12,7 @@ $scrollingAnimationDuration: 0.5s;
   background-color: $secondary-background;
   position: sticky;
   top: 0;
-  z-index: 999999;
+  z-index: 998;
   transition: height calc($scrollingAnimationDuration / 2) linear;
 
   .content {
@@ -97,7 +97,7 @@ $scrollingAnimationDuration: 0.5s;
 
         .burger {
           position: absolute;
-          z-index: 9999999;
+          z-index: 9999;
           width: 32px;
           height: 24px;
           cursor: pointer;

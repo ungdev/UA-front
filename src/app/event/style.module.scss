@@ -19,22 +19,24 @@
     overflow: hidden;
     background-color: $light-blue;
     color: #002d40;
-    margin-top: 5rem;
+    max-height: 250px;
 
-    &.imageLeft {
-      margin-left: 85px;
-      border-radius: 1.25rem 0 0 1.25rem;
-    }
+    margin: 5rem 85px 0 85px;
+    border-radius: 1.25rem;
 
-    &.imageRight {
-      margin-right: 85px;
-      border-radius: 0 1.25rem 1.25rem 0;
+    img {
+      aspect-ratio: 1 / 1;
+      width: 50%;
+      min-width: 250px;
+      object-fit: cover;
+
     }
 
     .text {
       margin: 3.125rem 4.375rem;
-      font-size: 1.5rem;
+      font-size: 1.1rem;
       line-height: 140%;
+      place-self: center;
     }
   }
 
@@ -81,7 +83,7 @@
     li {
       display: flex;
       align-items: center;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 500;
       margin-bottom: 50px;
     }
@@ -92,11 +94,11 @@
       justify-content: center;
       align-items: center;
       counter-increment: step-counter;
-      width: 90px;
-      height: 90px;
+      width: 70px;
+      height: 70px;
       flex-shrink: 0; // Prevents it from shrinking do to the <li> being flex
       margin-right: 50px;
-      font-size: 3.75rem;
+      font-size: 3rem;
       font-weight: 800;
       text-align: center;
       background-color: $light-blue;
