@@ -29,8 +29,8 @@ const FileUpload = ({
     if (!e.target.files) {
       return;
     }
-
     setPreview(URL.createObjectURL(e.target.files[0]));
+    setError(false);
     onChange(e.target.files[0]);
   };
 

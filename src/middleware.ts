@@ -16,13 +16,13 @@ export function generateCsp() {
       },
       {
         name: 'style-src',
-        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`],
+        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, '*.googleapis.com'],
       },
       {
         name: 'connect-src',
         values: ["'self'", process.env.NEXT_PUBLIC_API_URL!, 'arena.utt.fr', '*.uttnetgroup.fr'],
       },
-      { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', '*.github.com'] },
+      { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', 'github.com'] },
       {
         name: 'img-src',
         values: ["'self'", 'data:', 'https://arena.utt.fr'],
