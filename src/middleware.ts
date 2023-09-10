@@ -25,7 +25,7 @@ export function generateCsp() {
       { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', 'github.com'] },
       {
         name: 'img-src',
-        values: ["'self'", 'data:', 'https://arena.utt.fr'],
+        values: ["'self'", 'data:', 'https://arena.utt.fr', 'blob:'],
       },
       { name: 'worker-src', values: ["'self'", 'blob:'] },
       { name: 'frame-ancestors', values: ["'none'"] },
