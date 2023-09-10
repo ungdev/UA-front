@@ -4,15 +4,15 @@ export const PARTNER_FOLDER = 'partners';
 
 // Tournaments
 export const getTournamentImageName = (tournamentId: string) => {
-  return `${tournamentId}-image`;
+  return `${tournamentId}_image`;
 };
 
 export const getTournamentBackgroundName = (tournamentId: string) => {
-  return `${tournamentId}-background`;
+  return `${tournamentId}_background`;
 };
 
 export const getTournamentRulesName = (tournamentId: string) => {
-  return `${tournamentId}-rules`;
+  return `${tournamentId}_rules`;
 };
 
 export const getTournamentImageLink = (tournamentId: string) => {
