@@ -1,6 +1,7 @@
 .modal {
   &:not(.active) {
-    display: none;
+    pointer-events: none;
+    //display: none;
   }
 
   .input .input-label, .textarea .textarea-label {
@@ -23,7 +24,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(32, 32, 32, 0.7);
+    background: rgb(32, 32, 32);
+    opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:not(.active) .modal-overlay {
+    opacity: 0;
   }
 
   .modal-container {
@@ -36,6 +43,12 @@
     box-shadow: 0 3px 10px #2e2e2e;
     z-index: 999;
     border-radius: 10px;
+    transition: scale 0.3s cubic-bezier(.18,.89,.32,1.28);
+  }
+
+  &:not(.active) .modal-container {
+    scale: 0;
+    transition: scale 0.3s cubic-bezier(.6,-0.28,.74,.05);
   }
 
   .modal-content {
