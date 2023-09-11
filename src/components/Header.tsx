@@ -89,9 +89,7 @@ export default function Header({
 
       {connected ? (
         <Link href={admin ? '/admin' : '/dashboard'} onClick={closeBurger}>
-          <Button secondary className={styles.underlineButton}>
-            {admin ? 'Admin' : 'Dashboard'}
-          </Button>
+          <Button secondary>{admin ? 'Admin' : 'Dashboard'}</Button>
         </Link>
       ) : (
         <Button

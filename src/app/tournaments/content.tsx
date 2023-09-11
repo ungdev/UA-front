@@ -205,7 +205,7 @@ export function TournamentHome({
     <TournamentSwitcherAnimation nextPage={!nextUrl ? undefined : nextUrl}>
       <div className={`tournament-container ${fading ? 'fading' : ''}`} ref={root}>
         <div className="page-title">
-          <Divider white />
+          <Divider white className={'divider'} />
           <Title align="center">Tournois</Title>
           <Divider white />
         </div>

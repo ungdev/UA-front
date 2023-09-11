@@ -1,3 +1,5 @@
+@import '@/variables.scss';
+
 .card {
   display: flex;
   flex-direction: column;
@@ -12,21 +14,21 @@
     color: #fff;
   }
 
-  .card-image {
+  .cardImage {
     width: 100%;
     height: 200px;
     object-fit: cover;
     object-position: center;
   }
 
-  .card-button {
+  .cardButton {
     display: flex;
     justify-content: center;
     padding-bottom: 0.5em;
     margin: 0 auto;
   }
 
-  .card-content {
+  .cardContent {
     padding: 0 1em;
     flex: 1;
   }

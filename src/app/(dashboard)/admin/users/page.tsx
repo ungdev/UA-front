@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { Radio, Input, Button, Table, Checkbox, Title } from '@/components/UI';
@@ -122,18 +123,18 @@ const Users = () => {
   };
 
   return (
-    <div id="admin-users">
+    <div id={styles.adminUser}>
       {isAdmin && (
-        <div className="row-add-button">
-          <Title level={1} className="user-title">
+        <div className={styles.rowAddButton}>
+          <Title level={1} className={styles.userTitle}>
             Utilisateurs
           </Title>
-          <Button primary onClick={() => setCreateUser(true)} className="add-button">
+          <Button primary onClick={() => setCreateUser(true)} className={styles.addButton}>
             Ajouter un utilisateur
           </Button>
         </div>
       )}
-      <div className="filters">
+      <div className={styles.filters}>
         <Radio
           label="Statut"
           name="statusFilter"
@@ -199,7 +200,7 @@ const Users = () => {
 
       <p>{`${total} résultat${total > 1 ? 's' : ''}`}</p>
 
-      <div className="info-to-display">
+      <div className={styles.infoToDisplay}>
         {Object.entries(infoToDisplay).map(([infoKey, display]) => {
           return (
             <Checkbox
@@ -216,7 +217,7 @@ const Users = () => {
       <Table
         columns={getTableColumns() as { title: string; key: string }[]}
         dataSource={users}
-        className="users-table"
+        className={styles.usersTable}
         pagination
         paginationOptions={{
           total,

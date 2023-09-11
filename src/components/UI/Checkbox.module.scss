@@ -1,3 +1,5 @@
+@import '@/variables.scss';
+
 .checkbox {
   position: relative;
   cursor: pointer;
@@ -32,7 +34,7 @@
     border-radius: 2px !important;
     outline: 2px solid $accent-color;
     overflow: hidden;
-  
+
     &::before {
       content: '';
       width: 16px;

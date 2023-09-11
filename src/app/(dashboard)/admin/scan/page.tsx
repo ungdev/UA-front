@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useState, useRef } from 'react';
 
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
@@ -23,18 +24,18 @@ const Entry = () => {
   };
 
   return (
-    <div id="admin-entry">
-      <div className="scan">
+    <div id={styles.adminEntry}>
+      <div className={styles.scan}>
         <Title level={2}>Scanner une place</Title>
-        <div className="entry-content">
-          <Card className={scannedUser ? '' : 'borderless'}>
+        <div className={styles.entryContent}>
+          <Card className={!scannedUser && styles.borderless}>
             {!scannedUser ? (
-              <div className="scanner">
-                <div className="scanner-placeholder">
+              <div className={styles.scanner}>
+                <div className={styles.scannerPlaceholder}>
                   <Icon name={IconName.Camera} />
                   Veuillez activer votre caméra
                 </div>
-                <QRCodeReader onCode={(code) => onCodeScanned(code)} className="scanner-preview"></QRCodeReader>
+                <QRCodeReader onCode={(code) => onCodeScanned(code)} className={styles.scannerPreview}></QRCodeReader>
               </div>
             ) : (
               <>
@@ -62,14 +63,14 @@ const Entry = () => {
                   ) : scannedUser.type === UserType.orga ? (
                     'Orga'
                   ) : (
-                    <em className="default">Mais qui est cette étrange personne ?!</em>
+                    <em className={styles.default}>Mais qui est cette étrange personne ?!</em>
                   )}
                 </p>
                 <p>
                   <strong>Équipe :</strong>{' '}
                   {scannedUser.team?.name ?? (
                     <>
-                      <em className="default">L'utilisateur n'est pas dans une équipe</em>
+                      <em className={styles.default}>L'utilisateur n'est pas dans une équipe</em>
                     </>
                   )}
                 </p>
@@ -77,7 +78,7 @@ const Entry = () => {
                   <strong>Tournoi :</strong>{' '}
                   {scannedUser.team?.tournament.name ?? (
                     <>
-                      <em className="default">L'utilisateur n'est pas inscrit à un tournoi !</em>
+                      <em className={styles.default}>L'utilisateur n'est pas inscrit à un tournoi !</em>
                     </>
                   )}
                 </p>
@@ -85,7 +86,7 @@ const Entry = () => {
                   <strong>Place :</strong>{' '}
                   {scannedUser.place ?? (
                     <>
-                      <em className="default">L'utilisateur n'a pas de place attribuée</em>
+                      <em className={styles.default}>L'utilisateur n'a pas de place attribuée</em>
                     </>
                   )}
                 </p>
@@ -94,7 +95,7 @@ const Entry = () => {
                   <strong>Infos complémentaires :</strong>{' '}
                   {scannedUser.customMessage || (
                     <>
-                      <em className="default">Aucune information particulière</em>
+                      <em className={styles.default}>Aucune information particulière</em>
                     </>
                   )}
                 </p>
@@ -106,7 +107,7 @@ const Entry = () => {
                 <p>
                   <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
                 </p>
-                <div className="buttonRow">
+                <div className={styles.buttonRow}>
                   <Button
                     primary={true}
                     disabled={scannedUser.hasPaid}

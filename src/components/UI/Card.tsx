@@ -1,4 +1,5 @@
 'use client';
+import styles from './Card.module.scss';
 import Link from 'next/link';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
@@ -62,17 +63,17 @@ const Card = ({
   }
 
   return (
-    <div className={`card ${className} ${dark ? 'dark' : ''}`}>
+    <div className={`${styles.card} ${className} ${dark && styles.dark}`}>
       {imgSrc && (
         <>
-          <img className={`lazyload card-image ${classNameImg}`} alt={alt} data-src={imgSrc} />
+          <img className={`${styles.cardImage} ${classNameImg}`} alt={alt} data-src={imgSrc} />
           {divider === 'belowImage' && <Divider />}
         </>
       )}
       {children && (
         <>
-          <div className="card-content">{children}</div>
-          {buttonContent !== '' && <div className="card-button">{button}</div>}
+          <div className={styles.cardContent}>{children}</div>
+          {buttonContent !== '' && <div className={styles.cardButton}>{button}</div>}
         </>
       )}
       {divider === 'bottom' && <Divider />}

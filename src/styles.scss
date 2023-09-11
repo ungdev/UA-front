@@ -4,8 +4,6 @@
 @import './mixins.scss';
 
 // App
-@import './app/(dashboard)/admin/scan/style.scss';
-@import './app/(dashboard)/admin/users/style.scss';
 @import './app/(dashboard)/dashboard/account/style.scss';
 @import './app/(dashboard)/dashboard/purchases/style.scss';
 @import './app/(dashboard)/dashboard/register/style.scss';
@@ -29,9 +27,6 @@
 @import './components/landing/LoginModal.scss';
 
 // UI Components
-@import './components/UI/Card.scss';
-@import './components/UI/Checkbox.scss';
-@import './components/UI/Divider.scss';
 @import './components/UI/FileInput.scss';
 @import './components/UI/Helper.scss';
 @import './components/UI/Inputs.scss';

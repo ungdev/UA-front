@@ -1,3 +1,4 @@
+import styles from './Checkbox.module.scss';
 import { ReactNode } from 'react';
 
 /**
@@ -22,7 +23,7 @@ const Checkbox = ({
   autoFocus?: boolean;
 }) => {
   return (
-    <label className={`checkbox ${className}`}>
+    <label className={`${styles.checkbox} ${className}`}>
       <input
         type="checkbox"
         checked={value}
@@ -32,9 +33,9 @@ const Checkbox = ({
         }}
         autoFocus={autoFocus}
       />
-      <div className="ui"></div>
+      <div className={styles.ui}></div>
 
-      <div className="checkbox-label">{label}</div>
+      <div>{label}</div>
     </label>
   );
 };

@@ -78,7 +78,7 @@ const Modal = ({
 
           <div className="modal-content">{children}</div>
           {buttonsContent && <div className="modal-buttons">{buttonsContent}</div>}
-          <Divider />
+          <Divider className="divider" />
         </div>
       </div>
     </div>
