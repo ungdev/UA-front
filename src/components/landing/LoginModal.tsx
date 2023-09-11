@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 
 import { Modal, Button, Input, Radio } from '@/components/UI';
@@ -43,16 +43,12 @@ function LoginModal({
   const [signupForm, setSignupForm] = useState(initialSignup);
   const [forgotEmail, setForgotEmail] = useState('');
 
-  const login = async () => {
-    if (await dispatch(tryLogin(loginForm, admin) as unknown as Action)) {
-      resetFields();
-    }
+  const login = () => {
+    dispatch(tryLogin(loginForm, admin) as unknown as Action);
   };
 
-  const signup = async () => {
-    if (await dispatch(registerUser(signupForm) as unknown as Action)) {
-      resetFields();
-    }
+  const signup = () => {
+    dispatch(registerUser(signupForm) as unknown as Action);
   };
 
   const updateLogin = (field: string, value: string) => {
@@ -74,6 +70,10 @@ function LoginModal({
     setSignupForm(initialSignup);
     setPanel('login');
   };
+
+  useEffect(() => {
+    if (visible) resetFields();
+  }, [visible]);
 
   // Get modal title, content and action from panel key
   const body = {
@@ -204,7 +204,6 @@ function LoginModal({
       buttons={null}
       onCancel={() => {
         dispatch(setLoginModalVisible(false) as unknown as Action);
-        resetFields();
       }}
       className="login-modal">
       <form
