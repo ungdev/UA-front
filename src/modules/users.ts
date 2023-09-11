@@ -105,8 +105,8 @@ export const fetchUsers =
     dispatch(
       setUsers({
         users: formatUsers,
-        total: res.total,
-        page: res.page,
+        total: res.totalItems,
+        page,
         itemsPerPage: res.itemsPerPage,
         isFetched: true,
       }),
