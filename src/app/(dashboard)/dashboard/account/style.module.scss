@@ -1,0 +1,39 @@
+@import '@/variables.scss';
+
+#dashboardAccount {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+
+  .infos,
+  .ticket,
+  .notif {
+    max-width: 100%;
+    margin: 0px 20px;
+  }
+
+  .infos {
+    width: 400px;
+    margin-bottom: 50px;
+
+    span {
+      color: #00a700;
+    }
+  }
+
+  .ticket {
+    width: 250px;
+  }
+
+  hr {
+    background: $accent-color;
+    height: 2px;
+    width: 100%;
+    border: none;
+    margin: 20px 0;
+  }
+
+  input:disabled {
+    background-color: rgb(230, 230, 230);
+  }
+}

@@ -1,3 +1,5 @@
+'use client';
+import styles from './style.module.scss';
 import { Button, Icon, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import FillingBar from '@/components/UI/FillingBar';
@@ -26,44 +28,48 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
 
   return (
     <TournamentSwitcherAnimation nextPage={goBack ? '' : undefined} previousPage={tournamentId}>
-      <div className="tournament-container">
-        <Link href="" className="back">
+      <div className={styles.tournamentContainer}>
+        <Link href="" className={styles.back}>
           <Button onClick={() => setGoBack(true)}>
             <Icon name={IconName.ChevronLeft} strokeWidth={3}></Icon>
             Retour aux tournois
           </Button>
         </Link>
-        <div className="header-container">
-          <Title level={1} className="tournament-name">
+        <div className={styles.headerContainer}>
+          <Title level={1} className={styles.tournamentName}>
             {tournament.name}
           </Title>
           <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
           </Link>
         </div>
-        <div className="information">
-          <BoxContainer className="box-container" title="cashprize.txt" padding={false}>
+        <div className={styles.information}>
+          <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
             1ere place : 1500€ <br />
             1ere place : 1500€ <br />
             1ere place : 1500€
           </BoxContainer>
-          <BoxContainer title="format.txt" padding={false} color="blue" className="box-container on-top">
+          <BoxContainer
+            title="format.txt"
+            padding={false}
+            color="blue"
+            className={`${styles.boxContainer} ${styles.onTop}`}>
             {tournament.maxPlayers / tournament.playersPerTeam} équipes
           </BoxContainer>
-          <BoxContainer className="box-container" title="infos.txt" padding={false}>
+          <BoxContainer className={styles.boxContainer} title="infos.txt" padding={false}>
             Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
-        <Title level={1} align="center" className="enrolled-teams">
+        <Title level={1} align="center" className={styles.enrolledTeams}>
           Équipes inscrites : {tournament.lockedTeamsCount} / {tournament.maxPlayers / tournament.playersPerTeam}
         </Title>
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
-          className="filling-bar"
+          className={styles.fillingBar}
         />
         {loginAllowed && (
           <Table
-            className="table"
+            className={styles.table}
             columns={[
               { key: 'name', title: 'Nom' },
               { key: 'players', title: 'Joueurs' },

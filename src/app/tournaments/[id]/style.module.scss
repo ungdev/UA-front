@@ -1,0 +1,85 @@
+.tournamentContainer {
+  * {
+    position: relative;
+    z-index: 4;
+  }
+
+  a.back {
+    position: relative;
+    top: 10px;
+    text-decoration: none;
+
+    .button {
+      display: flex;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        color: #8C979B;
+      }
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+
+    .tournamentName {
+      background-image: url("../../../../public/images/logo-notext.png");
+      background-repeat: no-repeat;
+      background-size: 190px;
+      background-position: 50px 62px;
+      padding: 130px 0 50px 130px;
+    }
+  }
+
+  .information {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 70%;
+    height: 13rem;
+    margin: 0 auto;
+
+    .boxContainer {
+      width: 30%;
+      height: 10rem;
+
+      &.onTop {
+        align-self: start;
+      }
+
+      // Where the content is contained in the BoxContainer
+      .boxContent {
+        display: block;
+        padding: 15px 16px;
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+  .enrolledTeams {
+    text-align: center;
+    margin-top: 62px;
+    margin-bottom: 35px;
+  }
+
+  .fillingBar {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .table {
+    width: 50%;
+    margin-top: 70px;
+  }
+
+}

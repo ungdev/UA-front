@@ -1,3 +1,4 @@
+import styles from './not-found.module.scss';
 import Link from 'next/link';
 
 import { Title, Button } from '@/components/UI';
@@ -5,7 +6,7 @@ import { Title, Button } from '@/components/UI';
 export default function NotFound() {
   return (
     <>
-      <div className="not-found">
+      <div id={styles.notFound}>
         <Title level={1} align="center">
           Page introuvable
         </Title>

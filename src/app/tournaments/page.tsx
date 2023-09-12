@@ -1,4 +1,5 @@
 'use client';
+import './style.module.scss';
 import { TournamentHome } from '@/app/tournaments/content';
 import { useRouter, useSearchParams } from 'next/navigation';
 

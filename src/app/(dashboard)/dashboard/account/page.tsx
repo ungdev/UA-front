@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
@@ -81,8 +82,8 @@ const Account = () => {
   };
 
   return (
-    <div id="dashboard-account">
-      <div className="infos">
+    <div id={styles.dashboardAccount}>
+      <div className={styles.infos}>
         <Title level={4}>Mes informations</Title>
 
         <Input label="Place" value={user.place || ''} autocomplete="off" disabled />
@@ -118,11 +119,11 @@ const Account = () => {
           Modifier
         </Button>
       </div>
-      <div className="infos" ref={discordLinkRef}>
+      <div className={styles.infos} ref={discordLinkRef}>
         <Title level={4}>Mon compte Discord</Title>
         {user.discordId ? (
           <p>
-            Tu es connecté à ton compte Discord ! <span className="fas fa-check green-icon" />
+            Tu es connecté à ton compte Discord ! <span className="fas fa-check" />
           </p>
         ) : (
           ''
@@ -137,7 +138,6 @@ const Account = () => {
 
         <Button
           secondary
-          className="logout"
           onClick={() => {
             // Remove the cart from the local storage, to avoid moving carts from one account to another
             deleteCart();

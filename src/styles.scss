@@ -4,12 +4,10 @@
 @import './mixins.scss';
 
 // App
-@import './app/(dashboard)/dashboard/account/style.scss';
 @import './app/(dashboard)/dashboard/purchases/style.scss';
 @import './app/(dashboard)/dashboard/register/style.scss';
 @import './app/(dashboard)/dashboard/shop/style.scss';
 @import './app/(dashboard)/dashboard/team/style.scss';
-@import './app/tournaments/style.scss';
 
 // Components
 @import './components/ResetModal.scss';
@@ -22,9 +20,6 @@
 @import './components/dashboard/SupplementList.scss';
 @import './components/dashboard/TournamentModal.scss';
 @import './components/dashboard/UserModal.scss';
-
-// Landing Components
-@import './components/landing/LoginModal.scss';
 
 // UI Components
 @import './components/UI/FileInput.scss';

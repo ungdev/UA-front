@@ -1,4 +1,5 @@
 'use client';
+import styles from './layout.module.scss';
 import { Button, Title } from '@/components/UI';
 import constellation1 from '@/../public/images/clouds/constellation-1.png';
 import constellation2 from '@/../public/images/clouds/constellation-2.png';
@@ -23,20 +24,20 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <div className="tournaments">
-      <div className="top-container">
-        <div className="top">
+    <div id={styles.tournamentLayout}>
+      <div className={styles.topContainer}>
+        <div className={styles.top}>
           <Title level={1} align={'center'}>
             Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !
           </Title>
-          <div className="text">
+          <div className={styles.text}>
             Rejoins-nous dès maintenant pour vivre une expérience inoubliable, où l'amitié, la stratégie, et
             l'adrénaline se mêlent pour créer des souvenirs inégalables. C'est l'occasion parfaite de mettre en avant
             tes talents, de relever des défis palpitants et de créer des liens durables avec des coéquipiers passionnés.
           </div>
-          <div className="buttons">
+          <div className={styles.buttons}>
             <Button
-              className="button"
+              className={styles.button}
               primary
               onClick={() => {
                 if (pathname === '/tournaments') {
@@ -52,7 +53,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
               Découvrir les tournois
             </Button>
             <Button
-              className="button"
+              className={styles.button}
               primary
               onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
               Se connecter
@@ -60,17 +61,17 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      <div className="main-content">
-        <div className="background"></div>
-        <div className="background-elements">
-          <img src={constellation1.src} alt="background" className="constellation-1-1" />
-          <img src={cloud3.src} alt="background" className="cloud-3" />
-          <img src={cloud2.src} alt="background" className="constellation-2-1" />
-          <img src={constellation2.src} alt="background" className="constellation-2-2" />
-          <img src={cloud1.src} alt="background" className="constellation-3-1" />
-          <img src={cloud4.src} alt="background" className="constellation-1-2" />
-          <img src={constellation1.src} alt="background" className="constellation-1-3" />
-          <img src={constellation3.src} alt="background" className="constellation-3-2" />
+      <div className={styles.mainContent}>
+        <div className={styles.background}></div>
+        <div className={styles.backgroundElements}>
+          <img src={constellation1.src} alt="background" className={styles.constellation11} />
+          <img src={cloud3.src} alt="background" className={styles.cloud3} />
+          <img src={cloud2.src} alt="background" className={styles.constellation21} />
+          <img src={constellation2.src} alt="background" className={styles.constellation22} />
+          <img src={cloud1.src} alt="background" className={styles.constellation31} />
+          <img src={cloud4.src} alt="background" className={styles.constellation12} />
+          <img src={constellation1.src} alt="background" className={styles.constellation13} />
+          <img src={constellation3.src} alt="background" className={styles.constellation23} />
         </div>
         {children}
       </div>

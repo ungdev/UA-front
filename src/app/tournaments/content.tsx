@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import Button from '@/components/UI/Button';
 import { useEffect, useRef, useState } from 'react';
 import { Icon, Title } from '@/components/UI';
@@ -203,25 +204,28 @@ export function TournamentHome({
 
   return (
     <TournamentSwitcherAnimation nextPage={!nextUrl ? undefined : nextUrl}>
-      <div className={`tournament-container ${fading ? 'fading' : ''}`} ref={root}>
-        <div className="page-title">
-          <Divider white className={'divider'} />
+      <div className={`${styles.tournamentContainer} ${fading ? styles.fading : ''}`} ref={root}>
+        <div className={styles.pageTitle}>
+          <Divider white className={styles.divider} />
           <Title align="center">Tournois</Title>
           <Divider white />
         </div>
-        <div className="content">
-          <div className="tournament-scroll-container">
-            <div className="arrow hidden" ref={leftArrow}>
-              <Button className="button" onClick={() => scrollInTournamentList(true)}>
+        <div className={styles.content}>
+          <div className={styles.tournamentScrollContainer}>
+            <div className={`${styles.arrow} ${styles.hidden}`} ref={leftArrow}>
+              <Button className={styles.button} onClick={() => scrollInTournamentList(true)}>
                 <Icon name={IconName.ChevronUp} strokeWidth={3} />
               </Button>
             </div>
-            <div className="arrow" ref={rightArrow}>
-              <Button className="button" onClick={() => scrollInTournamentList(false)}>
+            <div className={styles.arrow} ref={rightArrow}>
+              <Button className={styles.button} onClick={() => scrollInTournamentList(false)}>
                 <Icon name={IconName.ChevronBottom} strokeWidth={3} />
               </Button>
             </div>
-            <div className="tournaments-list fade-bottom" ref={tournamentList} onScroll={onTournamentListScroll}>
+            <div
+              className={`${styles.tournamentsList} ${styles.fadeBottom}`}
+              ref={tournamentList}
+              onScroll={onTournamentListScroll}>
               {!tournaments
                 ? 'Chargement des tournois...'
                 : tournaments.map((tournament, i) => (
@@ -230,13 +234,13 @@ export function TournamentHome({
                       src={getTournamentImageLink(tournament.id)!}
                       alt={`Logo ${tournament.name}`}
                       data-index={i}
-                      className={`tournament ${i === selectedTournamentIndex ? 'selected' : ''}`}
+                      className={`${styles.tournament} ${i === selectedTournamentIndex ? styles.selected : ''}`}
                       onClick={() => selectTournament(i)}
                     />
                   ))}
             </div>
           </div>
-          <div className={`tournament-info ${fading ? 'fading' : ''}`}>
+          <div className={`${styles.tournamentInfo} ${fading ? styles.fading : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>
               {renderedTournament.cashprize !== null && (
@@ -255,12 +259,12 @@ export function TournamentHome({
               )}
             </p>
             <Link href={``} scroll={false}>
-              <Button className="button" primary outline onClick={() => setNextUrl(renderedTournament.id)}>
+              <Button className={styles.button} primary outline onClick={() => setNextUrl(renderedTournament.id)}>
                 Plus d'infos
               </Button>
             </Link>
             <Link href={`/dashboard`} scroll={false}>
-              <Button className="button" primary>
+              <Button className={styles.button} primary>
                 S'inscrire
               </Button>
             </Link>

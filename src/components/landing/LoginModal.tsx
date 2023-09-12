@@ -1,4 +1,5 @@
 'use client';
+import styles from './LoginModal.module.scss';
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 
@@ -97,11 +98,11 @@ function LoginModal({
           <p>
             <a onClick={() => setPanel('forgot')}>Mot de passe oublié ?</a>
           </p>
-          <Button primary className="login-modal-button" type="submit">
+          <Button primary className={styles.loginModalButton} type="submit">
             Se connecter
           </Button>
 
-          <div className="footer-text">
+          <div className={styles.footerText}>
             Pas encore inscrit ? <a onClick={() => setPanel('signup')}>Créer un compte</a>
           </div>
         </>
@@ -163,11 +164,11 @@ function LoginModal({
               updateSignup('age', value);
             }}
             row={true}></Radio>
-          <Button primary className="signup-modal-button" type="submit">
+          <Button primary className={styles.signupModalButton} type="submit">
             S'inscrire
           </Button>
 
-          <div className="footer-text">
+          <div className={styles.footerText}>
             Déjà inscrit ? <a onClick={() => setPanel('login')}>Connecte-toi</a>
           </div>
         </>
@@ -183,12 +184,12 @@ function LoginModal({
           <Button
             primary
             onClick={() => dispatch(resetPassword(forgotEmail, resetFields) as unknown as Action)}
-            className="forgot-modal-button"
+            className={styles.forgotModalButton}
             type="submit">
             Envoyer
           </Button>
 
-          <div className="footer-text">
+          <div className={styles.footerText}>
             <a onClick={() => setPanel('login')}>Se connecter</a>
           </div>
         </>
@@ -205,7 +206,7 @@ function LoginModal({
       onCancel={() => {
         dispatch(setLoginModalVisible(false) as unknown as Action);
       }}
-      className="login-modal">
+      className={styles.loginModal}>
       <form
         onSubmit={(event) => {
           event.preventDefault();

@@ -1,22 +1,22 @@
-.login-modal {
+.loginModal {
   a {
     text-decoration: underline;
     cursor: pointer;
   }
 
-  .login-modal-button.buttonWrapper,
-  .signup-modal-button.buttonWrapper,
-  .forgot-modal-button.buttonWrapper {
+  .loginModalButton,
+  .signupModalButton,
+  .forgotModalButton {
     display: table;
     margin: auto;
     margin-top: 10px;
   }
 
-  .footer-text {
+  .footerText {
     margin-top: 20px;
   }
 
-  .age-label {
+  .ageLabel {
     color: #858585;
   }
 }

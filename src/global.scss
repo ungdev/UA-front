@@ -35,45 +35,6 @@ main {
   flex-grow: 1;
 }
 
-@media screen and (max-width: 800px) {
-  .page-padding {
-    padding: 2em 1em;
-  }
-}
-
-.accent {
-  color: $primary-color;
-  font-weight: 700;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-.flex-2 {
-  flex: 2;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.gold-icon {
-  color: #ffae00;
-}
-
-.green-icon {
-  color: #00a700;
-}
-
-.red-icon {
-  color: #d10000;
-}
-
 .Toastify__toast {
   background: #fff;
   color: #212121;
@@ -111,18 +72,4 @@ main {
 
 .Toastify__close-button {
   color: #888;
-}
-
-.not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
-  background-color: $primary-background;
-  color: white;
-  p {
-    font-size: 1.5em;
-    font-weight: bold;
-  }
 }
