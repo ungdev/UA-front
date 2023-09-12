@@ -12,6 +12,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tournois - UTT Arena 2022 - 3 et 4 décembre 2022',
+}
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();

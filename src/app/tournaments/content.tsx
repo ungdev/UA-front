@@ -239,16 +239,16 @@ export function TournamentHome({
           <div className={`tournament-info ${fading ? 'fading' : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>
-              {renderedTournament.cashprize && (
+              {renderedTournament.cashprize !== null && (
                 <>
                   <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
                 </>
               )}
-              <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
+              <strong>{(renderedTournament.maxPlayers / renderedTournament.playersPerTeam)} équipes </strong>
               <br />
             </p>
             <p>
-              {renderedTournament.casters && (
+              {(renderedTournament.casters !== null && renderedTournament.casters.length > 0) && (
                 <>
                   Casté par <strong>{renderedTournament.casters?.map((caster) => caster.name + ' ')}</strong>
                 </>

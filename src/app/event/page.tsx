@@ -4,6 +4,11 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
 import Partners from '../../components/Partners';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Événement - UTT Arena 2022 - 3 et 4 décembre 2022',
+}
 
 export default function Page() {
   return (
