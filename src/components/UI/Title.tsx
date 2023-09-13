@@ -1,3 +1,4 @@
+import styles from './Title.module.scss';
 import Divider from './Divider';
 
 /**
@@ -27,15 +28,19 @@ const Title = ({
   const Component = `h${level}` as keyof JSX.IntrinsicElements;
 
   return (
-    <Component id={id} className={`title title-${level} ${className} ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>
+    <Component
+      id={id}
+      className={`${styles.title} ${styles[`title-${level}`]} ${className} ${align} ${
+        gutterBottom ? styles.gutterBottom : ''
+      }`}>
       {level === 2 ? (
-        <div className="text-divider">
+        <div className={styles.textDivider}>
           <Divider />
-          <div className={`title-content ${align} ${gutterBottom ? 'gutterBottom' : ''}`}>{children}</div>
+          <div className={`${styles.titleContent} ${align} ${gutterBottom ? styles.gutterBottom : ''}`}>{children}</div>
           <Divider />
         </div>
       ) : (
-        <div className="title-content">{children}</div>
+        <div className={styles.titleContent}>{children}</div>
       )}
     </Component>
   );

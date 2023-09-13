@@ -2,33 +2,3 @@
 @import './variables.scss';
 @import './global.scss';
 @import './mixins.scss';
-
-// App
-@import './app/(dashboard)/dashboard/purchases/style.scss';
-@import './app/(dashboard)/dashboard/register/style.scss';
-@import './app/(dashboard)/dashboard/shop/style.scss';
-@import './app/(dashboard)/dashboard/team/style.scss';
-
-// Components
-@import './components/ResetModal.scss';
-
-// Dashboard Components
-@import './components/dashboard/AddPlaceModal.scss';
-@import './components/dashboard/Cart.scss';
-@import './components/dashboard/CartItem.scss';
-@import './components/dashboard/PanelHeader.scss';
-@import './components/dashboard/SupplementList.scss';
-@import './components/dashboard/TournamentModal.scss';
-@import './components/dashboard/UserModal.scss';
-
-// UI Components
-@import './components/UI/FileInput.scss';
-@import './components/UI/Helper.scss';
-@import './components/UI/Inputs.scss';
-@import './components/UI/Modal.scss';
-@import './components/UI/Radio.scss';
-@import './components/UI/Square.scss';
-@import './components/UI/Tabs.scss';
-@import './components/UI/TextBlock.scss';
-@import './components/UI/Title.scss';
-@import './components/UI/VideoContainer.scss';

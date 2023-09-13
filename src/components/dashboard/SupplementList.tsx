@@ -1,3 +1,4 @@
+import styles from './SupplementList.module.scss';
 import { ReactNode, useEffect, useState } from 'react';
 
 import { Button, Select, Table, Title } from './../UI';
@@ -163,11 +164,11 @@ const SupplementList = ({
           <>
             {supplement.name}
             {supplement.image && (
-              <Button className="item-preview-button" onClick={() => onItemPreview(supplement.image!)}>
+              <Button className={styles.itemPreviewButton} onClick={() => onItemPreview(supplement.image!)}>
                 Voir le design
               </Button>
             )}
-            <div className="item-description">{description}</div>
+            <div className={styles.itemDescription}>{description}</div>
           </>
         ),
         price: `${(supplement.price / 100).toFixed(2)}€`,
@@ -180,7 +181,7 @@ const SupplementList = ({
               setSelectedAttributes(newSelectedAttributes);
             }}
             value={selectedAttributes[supplement.id]}
-            className="shop-input"
+            className={styles.shopInput}
           />
         ) : (
           ''
@@ -222,9 +223,9 @@ const SupplementList = ({
 
   return (
     supplementRows.length && (
-      <div className="supplement-list">
+      <div className={styles.supplementList}>
         <Title level={4}>{shopSectionName}</Title>
-        <Table columns={supplementColumns} dataSource={supplementRows} className="shop-table" />
+        <Table columns={supplementColumns} dataSource={supplementRows} className={styles.shopTable} />
       </div>
     )
   );

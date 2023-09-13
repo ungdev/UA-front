@@ -1,3 +1,5 @@
+import styles from './Inputs.module.scss';
+
 /**
  * Displays a select field.
  */
@@ -25,9 +27,9 @@ const Select = ({
   /** An optional class name to add to the container */
   className?: string;
 }) => (
-  <div className={`select ${className}`}>
+  <div className={`${styles.select} ${className}`}>
     <label>
-      <div className="select-label">{label}</div>
+      <div className={styles.selectLabel}>{label}</div>
 
       <select value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}>
         {options.map((option) => (
@@ -36,8 +38,6 @@ const Select = ({
           </option>
         ))}
       </select>
-
-      <div className="line" />
     </label>
   </div>
 );

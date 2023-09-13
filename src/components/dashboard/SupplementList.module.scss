@@ -1,0 +1,32 @@
+.supplementList {
+  .shopTable {
+    width: 100%;
+    margin-bottom: 20px;
+
+    tbody tr {
+      height: 64px;
+    }
+
+    td:first-child {
+      min-width: 300px;
+    }
+
+    .itemPreviewButton {
+      font-size: 0.9em;
+      padding: 0;
+      margin: 0 0 0 8px;
+      color: $primary-color;
+    }
+
+    .itemDescription {
+      font-size: 0.9em;
+      margin-top: 6px;
+      color: #555555;
+    }
+
+    .shopInput {
+      width: 100px;
+      margin: 0;
+    }
+  }
+}

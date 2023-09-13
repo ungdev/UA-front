@@ -1,3 +1,4 @@
+import styles from './PanelHeader.module.scss';
 import Link from 'next/link';
 import { Button } from '../UI';
 
@@ -14,16 +15,16 @@ const PanelHeader = ({
   /** The title */
   title: string;
 }) => (
-  <div id="panel-header">
-    <div className="header">
-      <div className="home-title">
+  <div id={styles.panelHeader}>
+    <div className={styles.header}>
+      <div className={styles.homeTitle}>
         <p>{title}</p>
       </div>
     </div>
-    <div className="nav">
+    <div className={styles.nav}>
       {links().map((link) => (
         <Link href={link.href} key={link.href}>
-          <Button className={`nav-link ${link.href === pathname ? 'active' : ''}`}>
+          <Button className={`${styles.navLink} ${link.href === pathname ? styles.active : ''}`}>
             <span>{link.title}</span>
           </Button>
         </Link>

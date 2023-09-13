@@ -7,7 +7,6 @@ import { sendMessage } from '@/utils/contact';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAppSelector } from '@/lib/hooks';
-import { Metadata } from 'next';
 
 interface Question {
   question: string;
@@ -16,10 +15,6 @@ interface Question {
 
 interface Faq {
   [key: string]: Question[];
-}
-
-export const metadata: Metadata = {
-  title: 'Aide - UTT Arena 2022 - 3 et 4 décembre 2022',
 }
 
 const faq: Faq = {

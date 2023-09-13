@@ -1,3 +1,4 @@
+import styles from './UserModal.module.scss';
 import { useEffect, useState } from 'react';
 import { validatePay, saveUser, refundCart, lookupUser, createUser } from '@/modules/users';
 import { connectAs } from '@/modules/login';
@@ -98,7 +99,7 @@ const UserModal = ({
           <br />
           (Pour{' '}
           <a
-            className="link-to-seller"
+            className={styles.linkToSeller}
             onClick={async () => {
               const res = await API.get(`admin/users?userId=${cartItem.forUser.id}`);
               if (res.data.users.length !== 1) return toast.error("Cet utilisateur n'existe pas");
@@ -119,7 +120,7 @@ const UserModal = ({
       if (cart.transactionState === TransactionState.authorization) transactionState = "en cours d'autorisation";
 
       return (
-        <Card className={`cart-${cart.transactionState}`} key={cart.transactionId}>
+        <Card className={styles[`cart-${cart.transactionState}`]} key={cart.transactionId}>
           <>
             <p>
               <strong>Statut :</strong> {transactionState} (
@@ -146,7 +147,7 @@ const UserModal = ({
               })}
               <br />
             </p>
-            <ul className="cart-items">{cartItems}</ul>
+            <ul className={styles.cartItems}>{cartItems}</ul>
             {cart.transactionState === TransactionState.paid && (
               <p>
                 <Button onClick={() => dispatch(refundCart(cart.id) as unknown as Action)}>Rembourser</Button>
@@ -232,7 +233,7 @@ const UserModal = ({
           )}
         </>
       }
-      containerClassName="user-modal">
+      containerClassName={styles.userModal}>
       <>
         <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin && !isAnim} />
         <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin && !isAnim} />
@@ -261,7 +262,7 @@ const UserModal = ({
                   <strong>Équipe :</strong>{' '}
                   {searchUser?.team?.name ?? (
                     <>
-                      <em className="default">N'a pas encore d'équipe</em>
+                      <em className={styles.default}>N'a pas encore d'équipe</em>
                     </>
                   )}
                 </p>
@@ -269,7 +270,7 @@ const UserModal = ({
                   <strong>Tournoi :</strong>{' '}
                   {searchUser?.team?.tournament?.name ?? (
                     <>
-                      <em className="default">N'est pas encore inscrit à un tournoi</em>
+                      <em className={styles.default}>N'est pas encore inscrit à un tournoi</em>
                     </>
                   )}
                 </p>
@@ -286,9 +287,9 @@ const UserModal = ({
         )}
         {isAdmin && (
           <>
-            <div className="row">
-              <div className="key">Permissions :</div>
-              <div className="checkbox-container">
+            <div className={styles.row}>
+              <div className={styles.key}>Permissions :</div>
+              <div className={styles.checkboxContainer}>
                 {permissionOptions.map((option) => (
                   <Checkbox
                     key={option.value}

@@ -1,4 +1,6 @@
-#panel-header {
+@import '@/variables.scss';
+
+#panelHeader {
     .header {
       background: url('/images/background.jpg') center no-repeat;
       background-size: cover;
@@ -9,8 +11,6 @@
       justify-content: center;
       position: relative;
 
-      
-  
       &:before {
         content: '';
         background: $gradient;
@@ -22,14 +22,14 @@
         right: 0;
         position: absolute;
       }
-  
-      .home-title {
+
+      .homeTitle {
         margin: 1em auto;
         padding: 1.5em;
         background-color: $dark-color;
         transform: skew(15deg);
         filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
-  
+
         p {
           font-family: $montserrat;
           text-align: center;
@@ -43,7 +43,7 @@
         }
       }
     }
-  
+
     .nav {
       background: $primary-background;
       height: 3.3rem;
@@ -63,8 +63,8 @@
         background: #0F2F3D;
         opacity: 1;
       }
-  
-      .nav-link {
+
+      .navLink {
         position: relative;
         align-items: center;
         justify-content: center;
@@ -80,12 +80,12 @@
         border-radius: 0%;
         text-transform: unset;
         font-weight: unset;
-  
+
         &:hover,
         &.active {
           background: #fff1;
         }
-  
+
         &::after {
           content: '';
           display: block;
@@ -109,17 +109,17 @@
       }
     }
   }
-  
+
   @media screen and (max-width: 650px) {
-    #panel-header .header {
+    #panelHeader .header {
       height: 15vh;
-  
-      .home-title {
+
+      .homeTitle {
         background: none;
         transform: none;
         margin: 0;
         padding: 0;
-  
+
         p {
           font-size: 1.5rem;
           transform: skew(0deg);

@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { fetchItems } from '@/modules/items';
@@ -294,16 +295,16 @@ const Shop = () => {
   };
 
   return (
-    <div id="dashboard-shop">
-      <div className="shop-and-bill">
+    <div id={styles.dashboardShop}>
+      <div className={styles.shopAndBill}>
         <div>
-          <div className="shop-section">
-            <Title className="place-title" level={4}>
+          <div className={styles.shopSection}>
+            <Title className={styles.placeTitle} level={4}>
               Places
             </Title>
             <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
           </div>
-          <div className="shop-section">
+          <div className={styles.shopSection}>
             <SupplementList
               items={items}
               supplementCart={cart.supplements}
@@ -314,7 +315,7 @@ const Shop = () => {
               shopSectionName="Accessoires"
             />
           </div>
-          <div className="shop-section">
+          <div className={styles.shopSection}>
             <SupplementList
               items={items}
               supplementCart={cart.supplements}
@@ -326,7 +327,7 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className="bill">
+        <div className={styles.bill}>
           <div>
             <Cart
               cart={cart}
@@ -338,17 +339,17 @@ const Shop = () => {
               onCartReset={onCartReset}
             />
           </div>
-          <div className="shop-footer">
+          <div className={styles.shopFooter}>
             {cart.tickets.attendant && (
               <>
-                <div className="attendant-warning">
-                  <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras
-                  plus modifier ton accompagnateur.
+                <div className={styles.attendantWarning}>
+                  <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus plus
+                  modifier ton accompagnateur.
                 </div>
               </>
             )}
             <Checkbox
-              className="cgvCheckbox"
+              className={styles.cgvCheckbox}
               label={
                 <>
                   J'accepte les{' '}
@@ -364,7 +365,7 @@ const Shop = () => {
             <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
             <Button
               primary
-              className="shop-button"
+              className={styles.shopButton}
               onClick={onPay}
               disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
               Payer
@@ -387,8 +388,8 @@ const Shop = () => {
         visible={!!itemPreview}
         onCancel={() => setItemPreview(null)}
         buttons={null}
-        containerClassName="item-preview-modal-container">
-        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className="item-preview-image" />}
+        containerClassName={styles.itemPreviewModalContainer}>
+        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className={styles.itemPreviewImage} />}
       </Modal>
     </div>
   );

@@ -1,3 +1,5 @@
+import styles from './Inputs.module.scss';
+
 /**
  * Displays a textarea
  * @param label Label to display
@@ -27,9 +29,9 @@ const Textarea = ({
   /** Whether the input is disabled */
   disabled?: boolean;
 }) => (
-  <div className={`textarea ${className}`}>
+  <div className={`${styles.textarea} ${className}`}>
     <label>
-      <div className="textarea-label">{label}</div>
+      <div className={styles.textareaLabel}>{label}</div>
 
       <textarea
         value={value}
@@ -37,8 +39,6 @@ const Textarea = ({
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
       />
-
-      <div className="line" />
     </label>
   </div>
 );

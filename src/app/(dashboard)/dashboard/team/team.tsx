@@ -1,3 +1,4 @@
+import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { setCaptain, acceptUser, kickUser, refuseUser, deleteTeam, fetchCurrentTeam, lockTeam } from '@/modules/team';
@@ -267,9 +268,9 @@ const Team = () => {
   }
 
   return (
-    <div id="dashboard-team">
-      <div className="header">
-        <div className="header-info">
+    <div id={styles.dashboardTeam}>
+      <div className={styles.header}>
+        <div className={styles.headerInfo}>
           {!isSolo && (
             <div>
               <strong>Mon équipe :</strong> {team.name}
@@ -347,13 +348,23 @@ const Team = () => {
 
       {!isSolo ? (
         <>
-          <div className="players-list">
+          <div className={styles.playersList}>
             <Title level={4}>Joueurs</Title>
-            <Table columns={playersColumns} dataSource={players ? players : []} alignRight className="table-players" />
+            <Table
+              columns={playersColumns}
+              dataSource={players ? players : []}
+              alignRight
+              className={styles.tablePlayers}
+            />
           </div>
-          <div className="players-list">
+          <div className={styles.playersList}>
             <Title level={4}>Coach / Manager</Title>
-            <Table columns={playersColumns} dataSource={coaches ? coaches : []} alignRight className="table-players" />
+            <Table
+              columns={playersColumns}
+              dataSource={coaches ? coaches : []}
+              alignRight
+              className={styles.tablePlayers}
+            />
           </div>
           {isCaptain && !team.lockedAt && (
             <Button
@@ -365,22 +376,22 @@ const Team = () => {
           )}
           {isShopAllowed && !team.lockedAt && (
             <>
-              <div className="players-list">
+              <div className={styles.playersList}>
                 <Title level={4}>Joueurs en attente</Title>
                 <Table
                   columns={waitingPlayersColumns}
                   dataSource={waitingPlayers ? waitingPlayers : []}
                   alignRight
-                  className="table-players"
+                  className={styles.tablePlayers}
                 />
               </div>
-              <div className="players-list">
+              <div className={styles.playersList}>
                 <Title level={4}>Coach / Manager en attente</Title>
                 <Table
                   columns={waitingPlayersColumns}
                   dataSource={waitingCoaches ? waitingCoaches : []}
                   alignRight
-                  className="table-players"
+                  className={styles.tablePlayers}
                 />
               </div>
               <Button

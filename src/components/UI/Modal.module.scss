@@ -1,14 +1,13 @@
 .modal {
   &:not(.active) {
     pointer-events: none;
-    //display: none;
   }
 
-  .input .input-label, .textarea .textarea-label {
+  /*.input .inputLabel, .textarea .textareaLabel {
     color: black;
-  }
+  }*/
 
-  .modal-overflow {
+  .modalOverflow {
     position: fixed;
     top: 0;
     left: 0;
@@ -18,7 +17,7 @@
     z-index: 999;
   }
 
-  .modal-overlay {
+  .modalOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -29,11 +28,11 @@
     transition: opacity 0.3s ease-in-out;
   }
 
-  &:not(.active) .modal-overlay {
+  &:not(.active) .modalOverlay {
     opacity: 0;
   }
 
-  .modal-container {
+  .modalContainer {
     display: table;
     position: relative;
     margin: 160px auto 40px auto;
@@ -46,17 +45,17 @@
     transition: scale 0.3s cubic-bezier(.18,.89,.32,1.28);
   }
 
-  &:not(.active) .modal-container {
+  &:not(.active) .modalContainer {
     scale: 0;
     transition: scale 0.3s cubic-bezier(.6,-0.28,.74,.05);
   }
 
-  .modal-content {
+  .modalContent {
     padding: 0 20px 20px 20px;
     color: #000;
   }
 
-  .modal-title {
+  .modalTitle {
     text-align: center;
     font-family: $montserrat;
     color: #000;
@@ -66,7 +65,7 @@
     margin: 14px 40px 30px 40px;
   }
 
-  .modal-close-button {
+  .modalCloseButton {
     position: absolute;
     top: 18px;
     right: 18px;
@@ -100,18 +99,18 @@
     margin: 0 auto;
   }
 
-  .modal-buttons {
+  .modalButtons {
     margin: 0 20px 14px 0;
     text-align: right;
   }
 
-  & .ok-button.buttonWrapper {
+  & .okButton.buttonWrapper {
     margin-left: 5px;
   }
 }
 
 @media screen and (max-width: 450px) {
-  .modal .modal-container {
+  .modal .modalContainer {
     width: calc(100vw - 50px);
   }
 }

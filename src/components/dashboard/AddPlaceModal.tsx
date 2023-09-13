@@ -1,3 +1,4 @@
+import styles from './AddPlaceModal.module.scss';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Modal, Button, Input, Select, Radio } from '../UI';
@@ -97,7 +98,7 @@ const AddPlaceModal = ({
   return (
     <Modal
       title="Ajouter une place"
-      className="add-place-modal"
+      className={styles.addPlaceModal}
       visible={true}
       onCancel={() => onQuit('', '')}
       buttons={
@@ -113,7 +114,7 @@ const AddPlaceModal = ({
             options={canPayTo()}
             value={placeFor}
             onChange={setPlaceFor}
-            className="add-place-input"
+            className={styles.addPlaceInput}
           />
           {placeFor === 'attendant' && (
             <>
@@ -138,7 +139,7 @@ const AddPlaceModal = ({
               }))}
               value={placeId as string}
               onChange={setPlaceId}
-              className="add-place-input"
+              className={styles.addPlaceModal}
             />
           )}
         </>

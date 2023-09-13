@@ -35,7 +35,7 @@ export default function CookieConsent({
   }, []);
 
   if (!display) {
-    return null;
+    return false;
   }
 
   return (

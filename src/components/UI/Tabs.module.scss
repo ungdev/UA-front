@@ -1,5 +1,7 @@
+@import '@/variables.scss';
+
 .tabs {
-  .tabs-nav {
+  .tabsNav {
     position: relative;
     display: flex;
     flex-flow: row nowrap;
@@ -7,7 +9,7 @@
     overflow-x: auto;
     scrollbar-width: none;
 
-    .tab-nav {
+    .tabNav {
       position: relative;
       display: inline-block;
       flex-grow: 1;
@@ -54,7 +56,7 @@
     }
   }
 
-  .tab-content {
+  .tabContent {
     padding: 10px 0;
 
     &:not(.active) {

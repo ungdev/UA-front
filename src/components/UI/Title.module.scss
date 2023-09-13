@@ -1,3 +1,6 @@
+@import '@/variables.scss';
+@import '@/mixins.scss';
+
 $length: 4px;
 $doubleSize: 8px;
 $tenPlusLength: 13px;
@@ -58,7 +61,7 @@ $radius: 8px;
     align-items: center;
     font-weight: 800;
 
-    .title-content {
+    .titleContent {
       text-align: left;
     }
   }
@@ -73,12 +76,12 @@ $radius: 8px;
     font-size: 1.25rem;
   }
 
-  .text-divider {
+  .textDivider {
     display: flex;
     width: 100%;
     align-items: center;
 
-    .title-content {
+    .titleContent {
       padding: 0 1rem;
       white-space: normal;
       max-width: 90%;

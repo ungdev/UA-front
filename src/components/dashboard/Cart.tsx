@@ -1,3 +1,4 @@
+import styles from './Cart.module.scss';
 import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
 import { Button, Icon } from './../UI';
@@ -30,8 +31,8 @@ const Cart = ({
 }) => {
   const attendantTicket = items.find((ticket) => ticket.id === 'ticket-attendant');
   return (
-    <div className="cart">
-      <div className="cart-header">
+    <div className={styles.cart}>
+      <div className={styles.cartHeader}>
         <h2>Panier</h2>
         <Button onClick={onCartReset}>
           {/* TODO: Make it red */}

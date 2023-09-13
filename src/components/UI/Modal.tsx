@@ -1,4 +1,5 @@
 'use client';
+import styles from './Modal.module.scss';
 import { ReactNode, useEffect } from 'react';
 import Button from './Button';
 import Divider from './Divider';
@@ -43,7 +44,7 @@ const Modal = ({
     ) : (
       <>
         <Button onClick={onCancel}>Annuler</Button>
-        <Button onClick={onOk} primary className="ok-button">
+        <Button onClick={onOk} primary className={styles.okButton}>
           Ok
         </Button>
       </>
@@ -62,23 +63,23 @@ const Modal = ({
   }, [visible]);
 
   return (
-    <div className={`modal ${visible ? 'active' : ''} ${className}`}>
-      <div className="modal-overflow">
-        <div className="modal-overlay" onClick={() => closable && onCancel()} />
+    <div className={`${styles.modal} ${visible ? styles.active : ''} ${className}`}>
+      <div className={styles.modalOverflow}>
+        <div className={styles.modalOverlay} onClick={() => closable && onCancel()} />
 
-        <div className={`modal-container ${containerClassName}`}>
-          <div className="modal-title">{title}</div>
+        <div className={`${styles.modalContainer} ${containerClassName}`}>
+          <div className={styles.modalTitle}>{title}</div>
 
           {closable && (
-            <div className="modal-close-button" onClick={onCancel}>
+            <div className={styles.modalCloseButton} onClick={onCancel}>
               <span />
               <span />
             </div>
           )}
 
-          <div className="modal-content">{children}</div>
-          {buttonsContent && <div className="modal-buttons">{buttonsContent}</div>}
-          <Divider className="divider" />
+          <div className={styles.modalContent}>{children}</div>
+          {buttonsContent && <div className={styles.modalButtons}>{buttonsContent}</div>}
+          <Divider className={styles.divider} />
         </div>
       </div>
     </div>

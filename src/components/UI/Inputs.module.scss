@@ -1,3 +1,5 @@
+@import '@/variables.scss';
+
 .input,
 .select,
 .textarea {
@@ -7,9 +9,9 @@
   width: 100%;
 }
 
-.input .input-label,
-.select .select-label,
-.textarea .textarea-label {
+.input .inputLabel,
+.select .selectLabel,
+.textarea .textareaLabel {
   display: block;
   padding-bottom: 0.25rem;
   color: white;

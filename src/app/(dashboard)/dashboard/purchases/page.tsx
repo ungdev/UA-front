@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { Table, Card, Title } from '@/components/UI';
@@ -53,7 +54,7 @@ const Purchases = () => {
             price: cartItem.reducedPrice ? (
               <>
                 {(cartItem.reducedPrice / 100).toFixed(2)}€
-                <span className="reducted-price">{(cartItem.price / 100).toFixed(2)}€</span>
+                <span className={styles.reductedPrice}>{(cartItem.price / 100).toFixed(2)}€</span>
               </>
             ) : (
               `${(cartItem.price / 100).toFixed(2)}€`
@@ -70,15 +71,17 @@ const Purchases = () => {
         );
         return (
           <Card
-            className={`card-cart${cart.transactionState === TransactionState.authorization ? ' authorization' : ''}`}
+            className={`${styles.cardCart} ${
+              cart.transactionState === TransactionState.authorization ? styles.authorization : ''
+            }`}
             key={cart.id}>
             <>
               <p>
                 Date: {date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric' })}{' '}
                 {cart.transactionState === TransactionState.authorization ? '(Paiement en cours de traitement)' : ''}
               </p>
-              <Table columns={columns} dataSource={dataSource} className="cart" />
-              <p className="cart-total">
+              <Table columns={columns} dataSource={dataSource} className={styles.cart} />
+              <p className={styles.cartTotal}>
                 <strong>Total: {(total / 100).toFixed(2)} €</strong>
               </p>
             </>
@@ -86,7 +89,7 @@ const Purchases = () => {
         );
       });
 
-  return <div id="dashboard-purchases">{carts.length ? displayCarts : <Title level={4}>Aucun achat</Title>}</div>;
+  return <div id={styles.dashboardPurchases}>{carts.length ? displayCarts : <Title level={4}>Aucun achat</Title>}</div>;
 };
 
 export default Purchases;

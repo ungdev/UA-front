@@ -1,18 +1,18 @@
 .radio {
-  .radio-label {
+  .radioLabel {
     padding-bottom: 2px;
     color: #858585;
     user-select: none;
   }
 
-  .radio-container {
+  .radioContainer {
     display: flex;
     flex-flow: column wrap;
     padding: 10px;
   }
 
   &.row {
-    .radio-container {
+    .radioContainer {
       flex-direction: row;
     }
 
@@ -28,7 +28,7 @@
       display: none;
     }
 
-    + .radio-value {
+    + .radioValue {
       display: inline-block;
       position: relative;
       color: transparent;
@@ -43,26 +43,26 @@
     }
 
     &[disabled] {
-      + .radio-value {
+      + .radioValue {
         cursor: not-allowed;
       }
 
-      + .radio-value::before {
+      + .radioValue::before {
         filter: grayscale(0.1) brightness(0.7);
       }
     }
 
     &:checked {
-      + .radio-value {
+      + .radioValue {
         color: #fff;
       }
 
-      + .radio-value::before {
+      + .radioValue::before {
         background: $accent-color;
       }
     }
 
-    + .radio-value::before {
+    + .radioValue::before {
       content: '';
       position: absolute;
       top: -0.5px;
@@ -80,7 +80,7 @@
 
 @media screen and (max-width: 1024px) {
   .radio {
-    .radio-container{
+    .radioContainer{
       display: unset;
     }
 

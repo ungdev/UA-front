@@ -1,4 +1,5 @@
 'use client';
+import styles from './FileInput.module.scss';
 import { ChangeEvent, useRef, useState } from 'react';
 
 /**
@@ -35,10 +36,10 @@ const FileUpload = ({
   };
 
   return (
-    <div className="fileinput">
+    <div className={styles.fileinput}>
       <label>{label}</label>
 
-      <div className="imageContainer" onClick={handleUploadClick}>
+      <div className={styles.imageContainer} onClick={handleUploadClick}>
         {!error && (value !== '' || preview != null) && type != 'pdf' && (
           <img
             onError={() => {
@@ -65,7 +66,7 @@ const FileUpload = ({
               type="application/pdf"
               src={preview ? preview : value}
             />
-            <div className="pdf-overlay" />
+            <div className={styles.pdfOverlay} />
           </>
         )}
 

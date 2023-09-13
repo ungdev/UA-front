@@ -1,3 +1,4 @@
+import styles from './Inputs.module.scss';
 import { ReactNode } from 'react';
 
 /**
@@ -54,9 +55,9 @@ const Input = ({
   };
 
   return (
-    <div className={`input ${className}`}>
+    <div className={`${styles.input} ${className}`}>
       <label>
-        <div className="input-label">{label}</div>
+        <div className={styles.inputLabel}>{label}</div>
 
         <input
           type={type}

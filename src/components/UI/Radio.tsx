@@ -1,3 +1,4 @@
+import styles from './Radio.module.scss';
 import { ReactNode } from 'react';
 
 /**
@@ -33,10 +34,10 @@ const Radio = ({
   /** Whether the input should be disabled */
   disabled?: boolean;
 }) => (
-  <div className={`radio ${row ? 'row' : ''} ${className}`}>
-    <div className="radio-label">{label}</div>
+  <div className={`${styles.radio} ${row ? styles.row : ''} ${className}`}>
+    <div className={styles.radioLabel}>{label}</div>
 
-    <div className="radio-container">
+    <div className={styles.radioContainer}>
       {options.map((option) => (
         <label key={option.value}>
           <input
@@ -48,7 +49,7 @@ const Radio = ({
             disabled={disabled}
           />
 
-          <div className="radio-value">
+          <div className={styles.radioValue}>
             <i className="far fa-circle" />
           </div>
 

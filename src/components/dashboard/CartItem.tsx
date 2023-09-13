@@ -1,3 +1,4 @@
+import styles from './CartItem.module.scss';
 import { Button, Icon } from '../UI';
 import { IconName } from '../UI/Icon';
 
@@ -21,9 +22,9 @@ const CartItem = ({
   onRemove: () => void;
 }) => {
   return (
-    <div className="cart-item">
-      <div className="item-name">{itemName}</div>
-      <Button className="remove-btn" onClick={onRemove}>
+    <div className={styles.cartItem}>
+      <div className={styles.itemName}>{itemName}</div>
+      <Button onClick={onRemove}>
         <Icon name={IconName.Trash} />
       </Button>
       <div>
@@ -31,7 +32,7 @@ const CartItem = ({
         {reducedUnitPrice !== null ? (
           <>
             {(reducedUnitPrice / 100).toFixed(2)}€
-            <span className="reducted-price">{(unitPrice / 100).toFixed(2)}€</span>
+            <span className={styles.reductedPrice}>{(unitPrice / 100).toFixed(2)}€</span>
           </>
         ) : (
           <>{(unitPrice / 100).toFixed(2)}€</>

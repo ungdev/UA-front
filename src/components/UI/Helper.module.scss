@@ -1,8 +1,10 @@
+@import '@/variables.scss';
+
 .helper {
   display: inline-block;
   position: relative;
 
-  .helper-icon {
+  .helperIcon {
     transition: all 0.3s;
 
     &:hover {
@@ -10,7 +12,7 @@
     }
   }
 
-  .helper-content {
+  .helperContent {
     position: absolute;
     left: calc(100% + 16px);
     top: calc(50% - 2px);
@@ -35,7 +37,7 @@
     }
   }
 
-  .helper-icon:hover + .helper-content {
+  .helperIcon:hover + .helperContent {
     visibility: visible;
     opacity: 1;
   }

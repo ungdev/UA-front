@@ -33,7 +33,7 @@ const Payment = () => {
     router.push('/dashboard');
   }, []);
 
-  return null;
+  return false;
 };
 
 export default Payment;

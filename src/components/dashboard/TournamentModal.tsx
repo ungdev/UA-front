@@ -1,3 +1,4 @@
+import styles from './TournamentModal.module.scss';
 import { useState } from 'react';
 import { Modal, Button, Checkbox, Input, FileInput, Textarea, Icon } from '../UI';
 import { useAppDispatch } from '@/lib/hooks';
@@ -75,8 +76,7 @@ const TournamentModal = ({
             Enregistrer
           </Button>
         </>
-      }
-      containerClassName="user-modal">
+      }>
       <>
         <Input label="Nom" value={name ?? ''} onChange={setName} />
         <Input
@@ -96,7 +96,7 @@ const TournamentModal = ({
         <Input label="Cashprize" type="number" value={cashprize ?? ''} onChange={(e) => setCashprize(parseInt(e))} />
         <Textarea label="Détails du cashprize" value={cashprizeDetails ?? ''} onChange={setCashprizeDetails} />
 
-        <div className="casters">
+        <div className={styles.casters}>
           <p>Casters</p>
           <Button
             primary
@@ -108,7 +108,7 @@ const TournamentModal = ({
         </div>
 
         {Array.from(Array(castersCount).keys()).map((i) => (
-          <div key={i} className="caster">
+          <div key={i} className={styles.caster}>
             <Input
               label={`Caster ${i + 1}`}
               value={casters![i] ?? ''}
@@ -132,7 +132,7 @@ const TournamentModal = ({
             </Button>
           </div>
         ))}
-        <div className="display-checkboxes">
+        <div className={styles.displayCheckboxes}>
           <Checkbox label="Display" value={display} onChange={setDisplay} />
           <Checkbox label="Display des casters" value={displayCasters} onChange={setDisplayCasters} />
           <Checkbox label="Display du cashprize" value={displayCashprize} onChange={setDisplayCashprize} />

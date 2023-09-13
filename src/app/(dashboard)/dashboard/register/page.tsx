@@ -1,4 +1,5 @@
 'use client';
+import styles from './style.module.scss';
 import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/named
 import { animated, useTransition } from '@react-spring/web';
@@ -93,7 +94,7 @@ const Register = () => {
 
   const Step2 = (
     <>
-      <div className="card-container">
+      <div className={styles.cardContainer}>
         <div
           onClick={() => {
             setUserType(UserType.player);
@@ -175,13 +176,13 @@ const Register = () => {
 
   const Step3 = (
     <>
-      <div className="card-container">{loadTournaments()}</div>
+      <div className={styles.cardContainer}>{loadTournaments()}</div>
     </>
   );
 
   const Step4 = (
     <>
-      <div className="card-container">
+      <div className={styles.cardContainer}>
         <div
           onClick={() => {
             setCreateTeam(true);
@@ -224,7 +225,6 @@ const Register = () => {
                 </Button>
               ) : (
                 <Button
-                  className="coachJoinButton"
                   primary
                   onClick={() => dispatch(joinTeam(team.id, team.name, UserType.coach) as unknown as Action)}
                   disabled={!user.discordId}>
@@ -237,28 +237,27 @@ const Register = () => {
     return {
       title: undefined,
       key: undefined,
-      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight className="table-join" />,
+      content: <Table columns={columns} dataSource={tournamentTeamsRender} alignRight />,
     };
   };
 
   const Step5 = (
     <>
-      <div className="warning light">
+      <div className={`${styles.warning} ${styles.light}`}>
         En participant {userType === UserType.spectator ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
         {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
         <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
       </div>
       {createTeam || userType === UserType.spectator ? (
-        <div className="create-team">
+        <div>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
           {tournament == 'osu' && userType !== UserType.spectator ? (
             <>
-              <div className="warning">Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
+              <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
             </>
           ) : null}
           <Button
             primary
-            className="center"
             onClick={() =>
               dispatch(
                 userType == UserType.spectator
@@ -314,12 +313,12 @@ const Register = () => {
   const Stepper = () => {
     return (
       <>
-        <ul className="steps">
-          <li className="active"></li>
-          <li className={step > 1 ? `active` : ``}></li>
-          <li className={step > 2 ? `active` : ``}></li>
-          <li className={step > 3 ? `active` : ``}></li>
-          <li className={step > 4 ? `active` : ``}></li>
+        <ul className={styles.steps}>
+          <li className={styles.active}></li>
+          <li className={step > 1 ? styles.active : ``}></li>
+          <li className={step > 2 ? styles.active : ``}></li>
+          <li className={step > 3 ? styles.active : ``}></li>
+          <li className={step > 4 ? styles.active : ``}></li>
         </ul>
         {transitions((styles, item) => item && <animated.div style={styles}>{renderSwitch(step)}</animated.div>)}
 
@@ -328,7 +327,7 @@ const Register = () => {
     );
   };
 
-  return <div id="dashboard-register">{Stepper()}</div>;
+  return <div id={styles.dashboardRegister}>{Stepper()}</div>;
 };
 
 export default Register;

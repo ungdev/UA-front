@@ -1,3 +1,4 @@
+import styles from './VideoContainer.module.scss';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
@@ -16,7 +17,7 @@ const VideoContainer = ({
   /** An optional class name to apply to the container. */
   className?: string;
 }) => (
-  <div className={`video-container ${className}`}>
+  <div className={`${styles.videoContainer} ${className}`}>
     <iframe
       className="lazyload"
       title={title}

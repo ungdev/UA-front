@@ -1,4 +1,5 @@
 'use client';
+import styles from './ResetModal.module.scss';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Modal from './UI/Modal';
@@ -27,7 +28,7 @@ function ResetModal({
       visible={true}
       buttons={null}
       onCancel={() => replace(pathname)}
-      className="reset-password-modal">
+      className={styles.resetPasswordModal}>
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -54,7 +55,7 @@ function ResetModal({
           autocomplete="new-password"
         />
 
-        <Button className="new-password-modal-button" primary type="submit" long>
+        <Button className={styles.newPasswordModalButton} primary type="submit" long>
           Envoyer
         </Button>
       </form>

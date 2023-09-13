@@ -1,4 +1,5 @@
 'use client';
+import styles from './Tabs.module.scss';
 import { ReactNode, useState } from 'react';
 
 /**
@@ -23,7 +24,7 @@ const Tabs = ({
 
   const tabsNav = tabs.map((tab, i) => (
     <button
-      className={`tab-nav ${index === i ? 'active' : ''}`}
+      className={`${styles.tabNav} ${index === i ? styles.active : ''}`}
       onClick={() => {
         if (tab.onClick) {
           tab.onClick(i);
@@ -36,16 +37,16 @@ const Tabs = ({
   ));
 
   const tabsContent = tabs.map((tab, i) => (
-    <div className={`tab-content ${index === i ? 'active' : ''}`} key={tab.key}>
+    <div className={`${styles.tabContent} ${index === i ? styles.active : ''}`} key={tab.key}>
       {tab.content}
     </div>
   ));
 
   return (
-    <div className={`tabs ${className}`}>
-      <div className="tabs-nav">{tabsNav}</div>
+    <div className={`${styles.tabs} ${className}`}>
+      <div className={styles.tabsNav}>{tabsNav}</div>
 
-      <div className="tabs-content">{tabsContent}</div>
+      <div className={styles.tabContent}>{tabsContent}</div>
     </div>
   );
 };

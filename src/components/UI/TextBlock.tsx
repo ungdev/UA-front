@@ -1,3 +1,4 @@
+import styles from './TextBlock.module.scss';
 import { Title } from '.';
 import DoubleImage from '@/components/UI/DoubleImage';
 
@@ -19,12 +20,12 @@ const TextBlock = ({
   /** Whether the text should be on the left or right. */
   left?: boolean;
 }) => (
-  <div className="information-container">
-    <div className={'left ' + (left ? 'first' : '')}>
+  <div className={styles.informationContainer}>
+    <div className={`${styles.left} ${left ? styles.first : ''}`}>
       <Title level={1}>{title}</Title>
-      <p className="information-text">{children}</p>
+      <p className={styles.informationText}>{children}</p>
     </div>
-    <DoubleImage className="right" image1={images[0]} image2={images[1]} />
+    <DoubleImage className={styles.right} image1={images[0]} image2={images[1]} />
   </div>
 );
 

@@ -1,11 +1,11 @@
-#dashboard-shop {
-  .shop-and-bill {
+#dashboardShop {
+  .shopAndBill {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 35px;
 
-    .shop-section {
+    .shopSection {
       margin-bottom: 40px;
       max-width: 50vw;
     }
@@ -14,20 +14,19 @@
       margin: 20px 0 0 0;
     }
 
-    .place-title {
+    .placeTitle {
       margin-bottom: 20px;
     }
 
     .bill {
       box-sizing: border-box;
-      padding: 10px;
       height: fit-content;
       width: 30%;
       border-radius: 2px;
       background-color: #fbfbfb;
       padding: 10px 30px;
 
-      .shop-footer {
+      .shopFooter {
         text-align: right;
         margin-top: 38px;
 
@@ -35,14 +34,14 @@
           display: block ruby;
         }
 
-        .shop-button.buttonWrapper {
+        .shopButton.buttonWrapper {
           margin-left: 16px;
         }
       }
     }
   }
 
-  .attendant-warning {
+  .attendantWarning {
     margin-bottom: 10px;
 
     span {
@@ -50,24 +49,24 @@
     }
   }
 
-  .item-preview-modal-container {
+  .itemPreviewModalContainer {
     width: max-content;
     max-width: calc(100vw - 60px);
   }
 
-  .item-preview-image {
+  .itemPreviewImage {
     max-width: 1000px;
     width: 100%;
   }
 }
 
 @media screen and (max-width: 1600px) {
-  #dashboard-shop .shop-and-bill {
+  #dashboardShop .shopAndBill {
     flex-direction: column;
     .bill {
       width: 100%;
     }
-    .shop-section {
+    .shopSection {
       max-width: unset;
     }
   }

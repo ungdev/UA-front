@@ -1,4 +1,5 @@
 'use client';
+import styles from './Square.module.scss';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
@@ -21,8 +22,8 @@ const Square = ({
   alt?: string;
 }) => {
   return (
-    <div className={`square ${className}`} onClick={onClick}>
-      <img className={`lazyload`} alt={alt} data-src={imgSrc} />
+    <div className={`${styles.square} ${className}`} onClick={onClick}>
+      <img className="lazyload" alt={alt} data-src={imgSrc} />
     </div>
   );
 };
