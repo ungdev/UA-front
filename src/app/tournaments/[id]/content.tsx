@@ -39,7 +39,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         <div className={styles.headerContainer}>
           <div className={styles.title}>
             <img src={logoUA.src} />
-            <Title level={1} className={styles.tournamentName}>
+            <Title level={1} type={1} className={styles.tournamentName}>
               {tournament.name}
             </Title>
           </div>
@@ -64,7 +64,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
-        <Title level={1} align="center" className={styles.enrolledTeams}>
+        <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
           Équipes inscrites : {tournament.lockedTeamsCount} / {tournament.maxPlayers / tournament.playersPerTeam}
         </Title>
         <FillingBar

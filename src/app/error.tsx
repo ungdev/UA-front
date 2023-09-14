@@ -12,7 +12,9 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
 
   return (
     <>
-      <Title level={2}>Une erreur est survenue...</Title>
+      <Title level={1} type={2}>
+        Une erreur est survenue...
+      </Title>
       <p>{error.name && `Erreur ${error.name}`}</p>
 
       <Button primary onClick={reset}>

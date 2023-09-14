@@ -4,13 +4,15 @@ import { Title } from '@/components/UI';
 
 export const metadata: Metadata = {
   title: 'Mentions légales - UTT Arena 2022 - 3 et 4 décembre 2022',
-}
+};
 
 const Legal = () => (
   <div id={styles.legal}>
     <div className={styles.container}>
-      <Title align="center">Mentions légales</Title>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={1} type={1} align="center">
+        Mentions légales
+      </Title>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Propriétaire et hébergeur du site
       </Title>
       <p>
@@ -28,7 +30,7 @@ const Legal = () => (
         <br />
         ung@utt.fr
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Collecte des données
       </Title>
       <p>
@@ -47,7 +49,7 @@ const Legal = () => (
         <br />
         Ces données seront conservées au maximum 10 mois après la collecte des informations.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Informations relatives aux cookies
       </Title>
       <p>
@@ -62,7 +64,7 @@ const Legal = () => (
       <Title align="center" id="CGV">
         Conditions générales de vente
       </Title>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Préambule
       </Title>
       <p>
@@ -97,7 +99,7 @@ const Legal = () => (
         <br />
         bde@utt.fr
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 1 - Principe
       </Title>
       <p>
@@ -110,14 +112,14 @@ const Legal = () => (
         usages en vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes
         conditions générales de vente sont valables jusqu'au 31 décembre 2022 inclus.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 2 - Contenu
       </Title>
       Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre
       de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
       présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
       concernent les produits suivants : place pour l’événement UTT Arena 2022 et matériel en prévente.
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 3 - Informations précontractuelles
       </Title>
       L'acheteur reconnaît avoir eu communication, préalablement à la passation de sa commande et à la conclusion du
@@ -131,7 +133,7 @@ const Legal = () => (
       place pour l’événement UTT Arena 2022, l’UNG se réserve le droit de demander un justificatif pour les coachs et
       managers, et si le justificatif n’est pas suffisant, peut annuler l’achat de la place et procéder à son
       remboursement intégral sans dédommagement.
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 4 - Commande
       </Title>
       L'acheteur a la possibilité de passer sa commande en ligne au moyen du formulaire d'achat prévu lors de son
@@ -150,7 +152,7 @@ const Legal = () => (
       l'adresse : arena@utt.fr. Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro
       de téléphone suivant : 03 25 71 85 50 (coût d'un appel local), aux jours et horaires suivants : du lundi au
       vendredi, de 9h à 18h, ou envoyer un email au vendeur à l'adresse email suivante : arena@utt.fr.
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 5 - Signature électronique
       </Title>
       <p>
@@ -160,14 +162,14 @@ const Legal = () => (
         l'acheteur est invité, dès le constat de cette utilisation, à contacter le vendeur à l'adresse email suivante :
         arena@utt.fr.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 6 - Confirmation de commande
       </Title>
       <p>
         Le vendeur fournit à l'acheteur un exemplaire du contrat dès que la commande a été validée par messagerie
         électronique à l’adresse indiquée par le client.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 7 - Preuve de la transaction
       </Title>
       <p>
@@ -176,7 +178,7 @@ const Legal = () => (
         intervenus entre les parties. L'archivage des bons de commande et des factures est effectué sur un support
         fiable et durable pouvant être produit à titre de preuve.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 8 - Informations sur les produits
       </Title>
       <p>
@@ -184,7 +186,7 @@ const Legal = () => (
         omissions ont pu se produire quant à cette présentation, la responsabilité du vendeur ne pourrait être engagée.
         Les photographies des produits ne sont pas contractuelles.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 9 - Tarifs
       </Title>
       <p>
@@ -193,7 +195,7 @@ const Legal = () => (
         applicable au jour de la commande. Tout changement du taux applicable TVA sera automatiquement répercuté sur le
         prix des produits de la boutique en ligne.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 10 - Mode de paiement
       </Title>
       <p>
@@ -209,7 +211,7 @@ const Legal = () => (
         but de limiter la fraude. Dans le cas où un paiement se révélerait invalidé par la banque après émission de
         votre billet ou de votre commande, celui-ci sera invalidé, ne vous permettant pas un accès à l’événement.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 11 - Émission et condition d’utilisation des billets
       </Title>
       <Title level={3} className={styles.subArticleTitle}>
@@ -285,7 +287,7 @@ const Legal = () => (
         </li>
         <li>Aucun remboursement ne sera accepté au-delà du 19/11/2022 17:00 CET.</li>
       </ul>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 13 - Force majeure
       </Title>
       <p>
@@ -301,7 +303,7 @@ const Legal = () => (
         contrat sera poursuivie. Si le cas de force majeure a une durée supérieure à trois mois, les présentes
         conditions générales pourront être résiliées par la partie lésée.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 14 - Propriété intellectuelle
       </Title>
       <p>
@@ -309,7 +311,7 @@ const Legal = () => (
         sur ce contenu. Les acheteurs s'engagent à ne faire aucun usage de ce contenu ; toute reproduction totale ou
         partielle de ce contenu est strictement interdite et est susceptible de constituer un délit de contrefaçon.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 15 - Données personnelles
       </Title>
       <p>
@@ -322,7 +324,7 @@ const Legal = () => (
         système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’événement. Nous conservons les
         autorisations parentales pour une durée de 1 an suivant la fin de l’événement.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 16 - Mentions Légales
       </Title>
       <p>

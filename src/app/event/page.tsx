@@ -18,7 +18,7 @@ export default function Page() {
         <Title level={1} className={styles.primaryTitle}>
           Événement
         </Title>
-        <Title level={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Présentation
         </Title>
         <div className={`${styles.textAndImage} ${styles.imageLeft}`}>
@@ -43,11 +43,11 @@ export default function Page() {
           </div>
           <img src={bar.src} alt="bar" />
         </div>
-        <Title level={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Salon jeux
         </Title>
         <center>Contenu à venir</center>
-        <Title level={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Programme
         </Title>
         <div className={styles.program}>
@@ -61,7 +61,7 @@ export default function Page() {
             <p>Contenu...</p>
           </BoxContainer>
         </div>
-        <Title level={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Lieu
         </Title>
         <div className={styles.place}>
@@ -75,7 +75,7 @@ export default function Page() {
             10000 Troyes
           </div>
         </div>
-        <Title level={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Inscriptions
         </Title>
         <ol className={styles.steps}>

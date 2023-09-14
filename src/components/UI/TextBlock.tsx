@@ -22,7 +22,9 @@ const TextBlock = ({
 }) => (
   <div className={styles.informationContainer}>
     <div className={`${styles.left} ${left ? styles.first : ''}`}>
-      <Title level={1}>{title}</Title>
+      <Title level={3} type={1}>
+        {title}
+      </Title>
       <p className={styles.informationText}>{children}</p>
     </div>
     <DoubleImage className={styles.right} image1={images[0]} image2={images[1]} />

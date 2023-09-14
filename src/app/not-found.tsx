@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <>
       <div id={styles.notFound}>
-        <Title level={1} align="center">
+        <Title level={1} type={1} align="center">
           Page introuvable
         </Title>
         <p>Erreur 404</p>

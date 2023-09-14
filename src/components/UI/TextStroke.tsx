@@ -7,15 +7,15 @@ export default function TextStroke({
   classNameOfStroke = '',
   children,
 }: {
-  width: number;
-  className: string;
-  classNameOfStroke: string;
+  width?: number;
+  className?: string;
+  classNameOfStroke?: string;
   children: ReactNode;
 }) {
   return (
     <div className={`${styles.wrapper} ${className}`}>
       {children}
-      <div className={`${styles.stroke} ${classNameOfStroke}`} style={{ '--stroke-width': `${width}px` }}>
+      <div className={`${styles.stroke} ${classNameOfStroke}`} style={{ '--stroke-width': `${width}px` } as React.CSSProperties}>
         {children}
       </div>
     </div>

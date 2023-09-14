@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
 import { useAppSelector } from '@/lib/hooks';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
 interface TeamMember {
   name: string;
@@ -75,9 +75,9 @@ const team: OurTeam = {
   },
 } as OurTeam;
 
-export const metadata: Metadata = {
-  title: 'À propos - UTT Arena 2022 - 3 et 4 décembre 2022',
-}
+// export const metadata: Metadata = {
+//   title: 'À propos - UTT Arena 2022 - 3 et 4 décembre 2022',
+// }
 
 const About = () => {
   const trombiAllowed = useAppSelector((state) => state.settings.trombi);
@@ -113,7 +113,7 @@ const About = () => {
 
         {trombiAllowed && (
           <div className={styles.aboutTeam}>
-            <Title level={1} align="center">
+            <Title level={2} type={1} align="center">
               Notre équipe
             </Title>
             <div className={styles.content}>

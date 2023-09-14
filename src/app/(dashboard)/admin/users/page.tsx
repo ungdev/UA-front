@@ -126,7 +126,7 @@ const Users = () => {
     <div id={styles.adminUser}>
       {isAdmin && (
         <div className={styles.rowAddButton}>
-          <Title level={1} className={styles.userTitle}>
+          <Title level={3} type={1} className={styles.userTitle}>
             Utilisateurs
           </Title>
           <Button primary onClick={() => setCreateUser(true)} className={styles.addButton}>

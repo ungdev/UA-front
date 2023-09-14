@@ -26,9 +26,11 @@ const Entry = () => {
   return (
     <div id={styles.adminEntry}>
       <div className={styles.scan}>
-        <Title level={2}>Scanner une place</Title>
+        <Title level={2} type={2}>
+          Scanner une place
+        </Title>
         <div className={styles.entryContent}>
-          <Card className={!scannedUser && styles.borderless}>
+          <Card className={!scannedUser ? styles.borderless : ''}>
             {!scannedUser ? (
               <div className={styles.scanner}>
                 <div className={styles.scannerPlaceholder}>

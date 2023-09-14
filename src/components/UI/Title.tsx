@@ -7,14 +7,17 @@ import TextStroke from '@/components/UI/TextStroke';
  */
 const Title = ({
   level = 1,
+  type = 1,
   children,
   gutterBottom = true,
   align = 'inherit',
   className = '',
   id = undefined,
 }: {
-  /** The level of the title component (1-4). */
+  /** The level of the title component (1-6) from h1 to h6. */
   level?: number;
+  /** The type of the title component (1-6). */
+  type?: number;
   /** The content to be displayed inside the title component. */
   children: React.ReactNode;
   /** Whether to add a bottom margin to the title component. */
@@ -31,16 +34,16 @@ const Title = ({
   return (
     <Component
       id={id}
-      className={`${styles.title} ${styles[`title-${level}`]} ${className} ${align} ${
+      className={`${styles.title} ${styles[`title-${type}`]} ${className} ${align} ${
         gutterBottom ? styles.gutterBottom : ''
       }`}>
-      {level === 2 ? (
+      {type === 2 ? (
         <div className={styles.textDivider}>
           <Divider />
           <div className={`${styles.titleContent} ${align} ${gutterBottom ? styles.gutterBottom : ''}`}>{children}</div>
           <Divider />
         </div>
-      ) : level === 1 ? (
+      ) : type === 1 ? (
         <TextStroke className={styles.titleContent} width={12}>
           {children}
         </TextStroke>

@@ -248,11 +248,11 @@ export function TournamentHome({
                   <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
                 </>
               )}
-              <strong>{(renderedTournament.maxPlayers / renderedTournament.playersPerTeam)} équipes </strong>
+              <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
               <br />
             </p>
             <p>
-              {(renderedTournament.casters !== null && renderedTournament.casters.length > 0) && (
+              {renderedTournament.casters !== null && renderedTournament.casters.length > 0 && (
                 <>
                   Casté par <strong>{renderedTournament.casters?.map((caster) => caster.name + ' ')}</strong>
                 </>

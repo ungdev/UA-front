@@ -1,6 +1,6 @@
 'use client';
 import styles from './LoginModal.module.scss';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Modal, Button, Input, Radio } from '@/components/UI';

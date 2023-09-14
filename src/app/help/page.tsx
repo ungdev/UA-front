@@ -242,7 +242,9 @@ const Help = () => {
   return (
     <div className={styles.helpContainer}>
       <div id={styles.faq}>
-        <Title align="center">FAQ</Title>
+        <Title level={2} type={1} align="center">
+          FAQ
+        </Title>
 
         {Object.keys(faq).map((category: string) => (
           <div key={category} id={category} className={styles.category}>
@@ -270,7 +272,9 @@ const Help = () => {
         ))}
       </div>
       <div id={styles.contact}>
-        <Title align="center">Contact</Title>
+        <Title level={2} type={1} align="center">
+          Contact
+        </Title>
 
         <p>
           <strong>Tu n’as pas trouvé la réponse à ta question ?</strong>

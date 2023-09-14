@@ -15,7 +15,7 @@ const Partners = () => {
   return (
     <div className={styles.partners}>
       <div className={styles.titleContainer}>
-        <Title>Partenaires</Title>
+        <Title level={2}>Partenaires</Title>
         <Button primary onClick={() => setCreateNewPartner(true)}>
           Ajouter un partenaire
         </Button>

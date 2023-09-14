@@ -13,7 +13,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 
 /*export const metadata: Metadata = {
   title: 'Tournois - UTT Arena 2022 - 3 et 4 décembre 2022',
@@ -27,7 +27,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
     <div id={styles.tournamentLayout}>
       <div className={styles.topContainer}>
         <div className={styles.top}>
-          <Title level={1} align={'center'}>
+          <Title level={3} type={1} align={'center'}>
             Forme ton équipe et hisse-toi vers la victoire ultime dans un tournoi !
           </Title>
           <div className={styles.text}>
