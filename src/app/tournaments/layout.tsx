@@ -1,3 +1,4 @@
+'use client';
 import styles from './layout.module.scss';
 import { Button, Title } from '@/components/UI';
 import constellation1 from '@/../public/images/clouds/constellation-1.png';
@@ -14,9 +15,9 @@ import { useAppDispatch } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
+/*export const metadata: Metadata = {
   title: 'Tournois - UTT Arena 2022 - 3 et 4 décembre 2022',
-};
+};*/
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
