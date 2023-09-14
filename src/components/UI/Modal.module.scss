@@ -5,9 +5,9 @@
     pointer-events: none;
   }
 
-  /*.input .inputLabel, .textarea .textareaLabel {
-    color: black;
-  }*/
+  label > * {
+    color: black !important;
+  }
 
   .modalOverflow {
     position: fixed;
