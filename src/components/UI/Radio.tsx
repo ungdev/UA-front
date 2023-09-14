@@ -50,7 +50,7 @@ const Radio = ({
           />
 
           <div className={styles.radioValue}>
-            <i className="far fa-circle" />
+            <div className={styles.dot} />
           </div>
 
           {option.name}

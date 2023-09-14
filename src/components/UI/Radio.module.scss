@@ -35,47 +35,40 @@
       position: relative;
       color: transparent;
       text-align: center;
-      height: 18px;
-      width: 18px;
+      height: 20px;
+      width: 20px;
       line-height: 18px;
       font-size: 14px;
       margin: 0 5px 0 0;
       z-index: 0;
       cursor: pointer;
+      border-radius: 50%;
+      background: #cbcbcb;
+      opacity: 1;
     }
 
     &[disabled] {
       + .radioValue {
         cursor: not-allowed;
-      }
-
-      + .radioValue::before {
         filter: grayscale(0.1) brightness(0.7);
       }
     }
 
     &:checked {
       + .radioValue {
-        color: #fff;
-      }
+        background-color: $accent-color;
 
-      + .radioValue::before {
-        background: $accent-color;
+        &:before {
+          content: '';
+          position: absolute;
+          background-color: #cbcbcb;
+          width: 50%;
+          height: 50%;
+          top: 25%;
+          left: 25%;
+          border-radius: 100%;
+        }
       }
-    }
-
-    + .radioValue::before {
-      content: '';
-      position: absolute;
-      top: -0.5px;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: inline-block;
-      border-radius: 50%;
-      background: #cbcbcb;
-      opacity: 1;
-      z-index: -1;
     }
   }
 }
