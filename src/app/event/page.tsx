@@ -44,10 +44,6 @@ export default function Page() {
           <img src={bar.src} alt="bar" />
         </div>
         <Title level={2} type={2} className={styles.secondaryTitle}>
-          Salon jeux
-        </Title>
-        <center>Contenu à venir</center>
-        <Title level={2} type={2} className={styles.secondaryTitle}>
           Programme
         </Title>
         <div className={styles.program}>
