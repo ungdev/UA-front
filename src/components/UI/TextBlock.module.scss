@@ -1,10 +1,12 @@
-.information-container {
+@import '@/variables.scss';
+
+.informationContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
 
-  .information-text {
+  .informationText {
     color: #fff;
     font-family: $montserrat;
     font-size: 1.25rem;
@@ -28,7 +30,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .information-container {
+  .informationContainer {
     flex-direction: column;
     gap: 2rem;
 
