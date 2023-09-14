@@ -151,12 +151,16 @@
   .dataFlexing {
     width: 100%;
 
-    .sideCounter {
-      flex: 1;
-    }
+    .boxContainer {
+      margin: auto;
 
-    .middleCounter {
-      flex: 2;
+      .sideCounter {
+        flex: 1;
+      }
+
+      .middleCounter {
+        flex: 2;
+      }
     }
   }
 

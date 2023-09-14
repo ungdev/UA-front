@@ -79,7 +79,7 @@ const Home = () => {
       </AppearFromSide>
 
       <AppearFromSide fromRight className={styles.dataFlexing}>
-        <BoxContainer title="chiffres.txt">
+        <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
           <Counter value={7} name="Jeux" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
           <Counter value={10000} valueText=" €" name="de cashprize" className={styles.middleCounter} />
