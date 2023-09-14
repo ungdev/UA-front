@@ -49,19 +49,21 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </div>
         <div className={styles.information}>
           <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
-            1ere place : 1500€ <br />
-            1ere place : 1500€ <br />
-            1ere place : 1500€
+            <div className={styles.boxContent}>
+              1ere place : 1500€ <br />
+              1ere place : 1500€ <br />
+              1ere place : 1500€
+            </div>
           </BoxContainer>
           <BoxContainer
             title="format.txt"
             padding={false}
             color="blue"
             className={`${styles.boxContainer} ${styles.onTop}`}>
-            {tournament.maxPlayers / tournament.playersPerTeam} équipes
+            <div className={styles.boxContent}>{tournament.maxPlayers / tournament.playersPerTeam} équipes</div>
           </BoxContainer>
           <BoxContainer className={styles.boxContainer} title="infos.txt" padding={false}>
-            Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}
+            <div className={styles.boxContent}>Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}</div>
           </BoxContainer>
         </div>
         <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
