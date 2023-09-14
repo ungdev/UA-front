@@ -1,5 +1,4 @@
 @import '@/variables.scss';
-@import '@/mixins.scss';
 
 $length: 4px;
 $doubleSize: 8px;
@@ -45,7 +44,6 @@ $radius: 8px;
     font-size: 3rem;
     font-weight: 700;
     color: #fff;
-    @include stroke(8, #000);
     font-family: $lexend;
     text-transform: uppercase;
   }

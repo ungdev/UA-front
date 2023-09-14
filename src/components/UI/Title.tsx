@@ -1,5 +1,6 @@
 import styles from './Title.module.scss';
 import Divider from './Divider';
+import TextStroke from '@/components/UI/TextStroke';
 
 /**
  * Renders a title component with the specified level, children, gutterBottom, align, className, and id.
@@ -39,6 +40,10 @@ const Title = ({
           <div className={`${styles.titleContent} ${align} ${gutterBottom ? styles.gutterBottom : ''}`}>{children}</div>
           <Divider />
         </div>
+      ) : level === 1 ? (
+        <TextStroke className={styles.titleContent} width={12}>
+          {children}
+        </TextStroke>
       ) : (
         <div className={styles.titleContent}>{children}</div>
       )}

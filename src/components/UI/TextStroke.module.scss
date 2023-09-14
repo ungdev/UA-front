@@ -1,0 +1,13 @@
+.stroked {
+  position: relative;
+
+  .stroke {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-text-stroke: var(--stroke-width) #000;
+  }
+}

@@ -16,6 +16,7 @@ import parallaxCloud3Light from '../../public/images/clouds/parallax/cloud-3-lig
 import moon from '../../public/images/clouds/parallax/moon.png';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
+import TextStroke from '@/components/UI/TextStroke';
 
 const Home = () => {
   return (
@@ -71,7 +72,7 @@ const Home = () => {
 
       <AppearFromSide className={styles.ctaMain}>
         <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
-        <div className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</div>
+        <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
           <Button secondary>Découvrir l’événement</Button>
         </Link>
@@ -80,9 +81,9 @@ const Home = () => {
       <AppearFromSide fromRight className={styles.dataFlexing}>
         <BoxContainer title="chiffres.txt">
           <Counter value={7} name="Jeux" className={styles.sideCounter} />
-          <VerticalDivider />
+          <VerticalDivider className={styles.divider} />
           <Counter value={10000} valueText=" €" name="de cashprize" className={styles.middleCounter} />
-          <VerticalDivider />
+          <VerticalDivider className={styles.divider} />
           <Counter value={500} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
       </AppearFromSide>
