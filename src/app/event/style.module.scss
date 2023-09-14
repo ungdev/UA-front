@@ -87,12 +87,10 @@
       margin-bottom: 50px;
     }
 
-    li:before {
-      content: counter(step-counter);
+    .counter, .counterStroke {
       display: flex;
       justify-content: center;
       align-items: center;
-      counter-increment: step-counter;
       width: 70px;
       height: 70px;
       flex-shrink: 0; // Prevents it from shrinking do to the <li> being flex
@@ -102,7 +100,6 @@
       text-align: center;
       background-color: $light-blue;
       border-radius: 100%;
-      @include stroke(6, #000);
     }
   }
 

@@ -5,10 +5,11 @@ import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
 import Partners from '../../components/Partners';
 import { Metadata } from 'next';
+import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
   title: 'Événement - UTT Arena 2022 - 3 et 4 décembre 2022',
-}
+};
 
 export default function Page() {
   return (
@@ -78,18 +79,46 @@ export default function Page() {
           Inscriptions
         </Title>
         <ol className={styles.steps}>
-          <li>Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation</li>
-          <li>Crée ton compte et clique sur le lien envoyé par mail</li>
-          <li>Une fois connecté, associe ton compte Discord</li>
-          <li>Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)</li>
           <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              1
+            </TextStroke>
+            Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation
+          </li>
+          <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              2
+            </TextStroke>
+            Crée ton compte et clique sur le lien envoyé par mail
+          </li>
+          <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              3
+            </TextStroke>
+            Une fois connecté, associe ton compte Discord
+          </li>
+          <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              4
+            </TextStroke>
+            Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)
+          </li>
+          <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              5
+            </TextStroke>
             <p>
               Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
               <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de
               l'équipe)
             </p>
           </li>
-          <li>Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !</li>
+          <li>
+            <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
+              6
+            </TextStroke>
+            Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !
+          </li>
         </ol>
         <Table
           columns={[
