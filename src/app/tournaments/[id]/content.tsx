@@ -11,6 +11,7 @@ import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
+import logoUA from '@/../public/images/logo-notext.png';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -36,9 +37,12 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           </Button>
         </Link>
         <div className={styles.headerContainer}>
-          <Title level={1} className={styles.tournamentName}>
-            {tournament.name}
-          </Title>
+          <div className={styles.title}>
+            <img src={logoUA.src} />
+            <Title level={1} className={styles.tournamentName}>
+              {tournament.name}
+            </Title>
+          </div>
           <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
           </Link>

@@ -31,13 +31,20 @@
     justify-content: space-between;
     padding: 0 1rem;
     align-items: center;
+    flex-grow: 2;
+    margin: 100px 0 50px 70px;
 
-    .tournamentName {
-      background-image: url("../../../../public/images/logo-notext.png");
-      background-repeat: no-repeat;
-      background-size: 190px;
-      background-position: 50px 62px;
-      padding: 130px 0 50px 130px;
+    .title {
+      position: relative;
+      width: 190px;
+      height: 190px;
+
+      .tournamentName {
+        position: absolute;
+        left: 80px;
+        top: 62px;
+        width: 20rem;
+      }
     }
   }
 
