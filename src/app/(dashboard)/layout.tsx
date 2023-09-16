@@ -79,6 +79,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     }
 
     menu.push({ title: 'Compte', href: '/admin/account' });
+    menu.push({ title: 'Badge', href: '/admin/badge' });
 
     return menu;
   };
