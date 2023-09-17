@@ -6,14 +6,14 @@ export default function ParallaxElementSettings({
   speed,
   children,
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  className,
+  className = '',
 }: {
-  /* speed is the speed of the element compared to the scroll speed */
+  /** speed is the speed of the element compared to the scroll speed */
   speed: number;
-  /* children is the element to display */
+  /** children is the element to display */
   children: React.ReactNode;
-  /* className is the class of the element */
-  className: string;
+  /** className is the class of the element */
+  className?: string;
 }) {
   return children;
 }

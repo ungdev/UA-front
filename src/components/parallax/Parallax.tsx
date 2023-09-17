@@ -3,7 +3,19 @@ import styles from './Parallax.module.scss';
 import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
 
-export default function Parallax({ className, children }: { className: string; children: React.ReactNode[] }) {
+/**
+ * A components that displays other components with a parallax effect.
+ * Each component should be wrapped into a ParallaxElementSettings component.
+ */
+export default function Parallax({
+  className,
+  children,
+}: {
+  /** An additional className to add to the parallax container. */
+  className: string;
+  /** One or multiple ParallaxElementSettings components that will be rendered with a parallax effect. */
+  children: React.ReactNode[];
+}) {
   if (!Array.isArray(children)) {
     children = [children];
   }
