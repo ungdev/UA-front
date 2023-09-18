@@ -8,11 +8,11 @@ import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettin
  * Each component should be wrapped into a ParallaxElementSettings component.
  */
 export default function Parallax({
-  className,
+  className = '',
   children,
 }: {
   /** An additional className to add to the parallax container. */
-  className: string;
+  className?: string;
   /** One or multiple ParallaxElementSettings components that will be rendered with a parallax effect. */
   children: React.ReactNode[];
 }) {
