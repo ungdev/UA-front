@@ -68,7 +68,7 @@ const Home = () => {
             </div>
           </div>,
         ]}
-        autoslide={true}
+        autoslide={false}
       />
 
       <AppearFromSide className={styles.ctaMain}>
