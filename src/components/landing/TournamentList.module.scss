@@ -1,0 +1,64 @@
+@import '@/variables.scss';
+
+.tournamentList {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  width: 80%;
+
+  .arrow {
+    &:not(.disabled) {
+      cursor: pointer;
+    }
+    &.disabled {
+      color: gray;
+    }
+  }
+
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 62.5%;
+
+    .cardPositionner {
+      position: relative;
+      width: 30%;
+      height: auto;
+      aspect-ratio: 2 / 2;
+      z-index: initial;
+
+      .card {
+        position: absolute;
+        background: var(--background) no-repeat;
+        background-size: cover;
+        width: 100%;
+        aspect-ratio: 2 / 2;
+        border-radius: 5%;
+        z-index: 1;
+
+        &.selected {
+          z-index: 2;
+          scale: 1.5;
+        }
+      }
+
+      > {
+        margin: auto;
+      }
+
+      .tournamentName {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto auto;
+        font-size-adjust: 0.5 !important;
+        opacity: 1;
+        color: $title-color;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+}

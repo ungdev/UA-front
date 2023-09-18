@@ -39,6 +39,7 @@ const Icon = ({
   strokeWidth = 1.5,
   className = '',
   fill = false,
+  onClick = () => {},
 }: {
   /** The name of the icon to be displayed. */
   name: IconName;
@@ -48,6 +49,8 @@ const Icon = ({
   className?: string;
   /** Whether the icon should be filled with the current color. */
   fill?: boolean;
+  /** A callback called when the icon is clicked */
+  onClick?: () => void;
 }) => {
   let icon: ReactNode;
 
@@ -258,7 +261,8 @@ const Icon = ({
       strokeWidth={strokeWidth}
       className={`${styles.icon} ${className}`}
       fill={fill ? 'currentColor' : 'none'}
-      stroke={fill ? 'none' : 'currentColor'}>
+      stroke={fill ? 'none' : 'currentColor'}
+      onClick={onClick}>
       {icon}
     </svg>
   );

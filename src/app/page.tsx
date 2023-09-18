@@ -17,6 +17,7 @@ import moon from '@/../public/images/clouds/parallax/moon.png';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
+import TournamentList from "@/components/landing/TournamentList";
 
 const Home = () => {
   return (
@@ -67,7 +68,7 @@ const Home = () => {
             </div>
           </div>,
         ]}
-        autoslide={false}
+        autoslide={true}
       />
 
       <AppearFromSide className={styles.ctaMain}>
@@ -110,6 +111,8 @@ const Home = () => {
           </div>
         </div>
       </AppearFromSide>
+      <Title>Les tournois de l'UA23</Title>
+      <TournamentList />
       <Partners />
     </div>
   );
