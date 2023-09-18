@@ -8,8 +8,12 @@ const meta = {
   tags: ['autodocs'],
   args: {
     children: [
-      <ParallaxElementSettings speed={2.5} key={0}>Parallax element 1</ParallaxElementSettings>,
-      <ParallaxElementSettings speed={1.5} key={1}>Parallax element 2</ParallaxElementSettings>,
+      <ParallaxElementSettings speed={2.5} key={0}>
+        Parallax element 1
+      </ParallaxElementSettings>,
+      <ParallaxElementSettings speed={1.5} key={1}>
+        Parallax element 2
+      </ParallaxElementSettings>,
     ],
   },
 } satisfies Meta<typeof Parallax>;
