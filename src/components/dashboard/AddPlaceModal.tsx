@@ -1,7 +1,7 @@
 import styles from './AddPlaceModal.module.scss';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Modal, Button, Input, Select, Radio } from '../UI';
+import { Modal, Button, Input, Select, Radio } from '@/components/UI';
 import { useAppSelector } from '@/lib/hooks';
 import { UserType, AttendantInfo, User } from '@/types';
 

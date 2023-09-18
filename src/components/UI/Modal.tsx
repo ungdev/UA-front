@@ -1,8 +1,8 @@
 'use client';
 import styles from './Modal.module.scss';
 import { ReactNode, useEffect } from 'react';
-import Button from './Button';
-import Divider from './Divider';
+import Button from '@/components/UI/Button';
+import Divider from '@/components/UI/Divider';
 
 /**
  * Displays a modal window.

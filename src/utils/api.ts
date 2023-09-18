@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { apiUrl, uploadsUrl } from './environment';
+import { apiUrl, uploadsUrl } from '@/utils/environment';
 
 // Send request to API and handle errors
 const requestAPI = (

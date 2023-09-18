@@ -1,9 +1,8 @@
 'use client';
 import styles from './Collapse.module.scss';
 import { useState, useEffect, useRef, MouseEvent, ReactNode } from 'react';
-import { Icon } from '.';
 import { toast } from 'react-toastify';
-import { IconName } from './Icon';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 /**
  * A collapsible component that displays a title and content that can be expanded or collapsed.

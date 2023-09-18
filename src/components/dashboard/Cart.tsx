@@ -1,8 +1,8 @@
 import styles from './Cart.module.scss';
 import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
-import { Button, Icon } from './../UI';
-import { IconName } from '../UI/Icon';
+import { Button, Icon } from '@/components/UI';
+import { IconName } from '@/components/UI/Icon';
 
 /** The cart */
 const Cart = ({

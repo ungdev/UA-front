@@ -8,7 +8,7 @@ import cloud1 from '@/../public/images/clouds/cloud-1.png';
 import cloud2 from '@/../public/images/clouds/cloud-2.png';
 import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
-import Partners from '../../components/Partners';
+import Partners from '@/components/Partners';
 import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';

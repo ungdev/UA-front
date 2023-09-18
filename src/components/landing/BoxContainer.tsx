@@ -1,6 +1,6 @@
 import styles from './BoxContainer.module.scss';
 import { ReactNode } from 'react';
-import Icon, { IconName } from '../UI/Icon';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 /**
  * A container component that displays a title and content in a box.

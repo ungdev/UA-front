@@ -1,5 +1,5 @@
 import styles from './TextBlock.module.scss';
-import { Title } from '.';
+import { Title } from '@/components/UI';
 import DoubleImage from '@/components/UI/DoubleImage';
 
 /**

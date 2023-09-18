@@ -8,12 +8,12 @@ import { VerticalDivider, Button, Title, Icon, VideoContainer, TextBlock } from 
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
-import parallaxCloud1 from '../../public/images/clouds/parallax/cloud-1.png';
-import parallaxCloud2 from '../../public/images/clouds/parallax/cloud-2.png';
-import parallaxCloud2Light from '../../public/images/clouds/parallax/cloud-2-light.png';
-import parallaxCloud3 from '../../public/images/clouds/parallax/cloud-3.png';
-import parallaxCloud3Light from '../../public/images/clouds/parallax/cloud-3-light.png';
-import moon from '../../public/images/clouds/parallax/moon.png';
+import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.png';
+import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.png';
+import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.png';
+import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
+import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
+import moon from '@/../public/images/clouds/parallax/moon.png';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';

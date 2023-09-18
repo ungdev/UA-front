@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 
-import { validate } from '../../../modules/register';
+import { validate } from '@/modules/register';
 import { useAppDispatch } from '@/lib/hooks';
 import { type Action } from '@reduxjs/toolkit';
 

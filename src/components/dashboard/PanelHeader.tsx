@@ -1,6 +1,6 @@
 import styles from './PanelHeader.module.scss';
 import Link from 'next/link';
-import { Button } from '../UI';
+import { Button } from '@/components/UI';
 
 /** The panel header */
 const PanelHeader = ({

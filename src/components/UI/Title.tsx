@@ -1,5 +1,5 @@
 import styles from './Title.module.scss';
-import Divider from './Divider';
+import Divider from '@/components/UI/Divider';
 import TextStroke from '@/components/UI/TextStroke';
 
 /**

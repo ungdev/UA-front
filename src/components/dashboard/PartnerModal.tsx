@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Checkbox, Input, FileInput } from '../UI';
+import { Modal, Button, Checkbox, Input, FileInput } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
 import type { Action } from '@reduxjs/toolkit';

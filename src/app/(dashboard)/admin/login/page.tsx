@@ -1,4 +1,4 @@
-import LoginModal from '../../../../components/landing/LoginModal';
+import LoginModal from '@/components/landing/LoginModal';
 const AdminLogin = () => {
   return (
     <>

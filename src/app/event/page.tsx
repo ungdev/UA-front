@@ -3,7 +3,7 @@ import { Table, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
-import Partners from '../../components/Partners';
+import Partners from '@/components/Partners';
 import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
 

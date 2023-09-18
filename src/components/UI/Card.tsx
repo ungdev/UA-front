@@ -4,8 +4,8 @@ import Link from 'next/link';
 import 'lazysizes';
 import 'lazysizes/plugins/attrchange/ls.attrchange';
 
-import Button from './Button';
-import Divider from './Divider';
+import Button from '@/components/UI/Button';
+import Divider from '@/components/UI/Divider';
 import { ReactNode } from 'react';
 
 /**

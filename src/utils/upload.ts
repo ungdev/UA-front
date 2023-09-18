@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { uploads } from './api';
+import { uploads } from '@/utils/api';
 
 export const uploadFile = async (file: File, name: string, path: string) => {
   const formData = new FormData();

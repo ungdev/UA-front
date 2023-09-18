@@ -1,4 +1,4 @@
-import DashboardAccount from '../../dashboard/account/page';
+import DashboardAccount from '@/app/(dashboard)/dashboard/account/page';
 
 const Account = () => <DashboardAccount />;
 

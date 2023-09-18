@@ -1,12 +1,12 @@
 import { User, UserEdit, UserType } from '@/types';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { setLoginModalVisible } from './loginModal';
+import { setLoginModalVisible } from '@/modules/loginModal';
 import { toast } from 'react-toastify';
 import { hasOrgaPermission } from '@/utils/permission';
 import { RootState } from '@/lib/store';
-import { setTeam } from './team';
-import { setRedirect } from './redirect';
+import { setTeam } from '@/modules/team';
+import { setRedirect } from '@/modules/redirect';
 
 interface LoginAction {
   token: string | null;

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { API } from '../utils/api';
+import { API } from '@/utils/api';
 import { Cart, CartItem, CartPost } from '@/types';
 
 interface CartAction {

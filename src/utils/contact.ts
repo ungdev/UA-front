@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 
-import { API } from './api';
-import { emailIsValid } from './email';
+import { API } from '@/utils/api';
+import { emailIsValid } from '@/utils/email';
 
 export const sendMessage = async (name: string, email: string, subject: string, message: string) => {
   // Check if fields are filled

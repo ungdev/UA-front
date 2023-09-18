@@ -7,7 +7,7 @@ import { centerCrop, Crop, makeAspectCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/background.jpg';
 
 import 'react-image-crop/dist/ReactCrop.css';
-import './MyReactCrop.scss';
+import './CustomReactCrop.scss';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(

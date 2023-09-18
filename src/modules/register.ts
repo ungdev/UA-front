@@ -4,7 +4,7 @@ import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 
-import { setLoginModalVisible } from './loginModal';
+import { setLoginModalVisible } from '@/modules/loginModal';
 import { setRedirect } from '@/modules/redirect';
 
 const initialState = {};

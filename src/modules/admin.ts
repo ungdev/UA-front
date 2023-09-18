@@ -11,8 +11,8 @@ import {
   getPartnerLogoLink,
 } from '@/utils/uploadLink';
 import { deleteFile, uploadFile } from '@/utils/upload';
-import * as normalPartners from './partners';
-import * as normalTournament from './tournament';
+import * as normalPartners from '@/modules/partners';
+import * as normalTournament from '@/modules/tournament';
 import { toast } from 'react-toastify';
 
 export interface AdminAction {

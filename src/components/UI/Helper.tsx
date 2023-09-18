@@ -1,7 +1,6 @@
 import styles from './Helper.module.scss';
 import { ReactNode } from 'react';
-import { Icon } from '.';
-import { IconName } from './Icon';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 /**
  * Helper component displays a question mark icon with a tooltip containing the helper text.

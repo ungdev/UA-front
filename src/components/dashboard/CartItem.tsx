@@ -1,6 +1,6 @@
 import styles from './CartItem.module.scss';
-import { Button, Icon } from '../UI';
-import { IconName } from '../UI/Icon';
+import { Button, Icon } from '@/components/UI';
+import { IconName } from '@/components/UI/Icon';
 
 /** The cart item */
 const CartItem = ({

@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
 
 import { API } from '@/utils/api';
-import { fetchSlots } from './tournament';
+import { fetchSlots } from '@/modules/tournament';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import { TeamWithUsers, User, UserType } from '@/types';
-import { setUser, updateStatus } from './login';
-import { setRedirect } from './redirect';
+import { setUser, updateStatus } from '@/modules/login';
+import { setRedirect } from '@/modules/redirect';
 
 const initialState: TeamWithUsers | null = {} as TeamWithUsers;
 
