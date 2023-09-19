@@ -42,17 +42,22 @@ export default function TournamentList() {
     return false;
   }
 
-  const createCard = (tournament: Tournament, selected: boolean) => {
+  const createCard = (tournament: Tournament, tournamentIndex: number) => {
+    let className: string;
+    if (tournamentIndex === selected) className = styles.selected;
+    else if (tournamentIndex === selected - 1) className = `${styles.neighbour} ${styles.visibleLeft}`;
+    else if (tournamentIndex === selected + 1) className = `${styles.neighbour} ${styles.visibleRight}`;
+    else if (tournamentIndex < selected) className = `${styles.hidden} ${styles.hiddenLeft}`;
+    else className = `${styles.hidden} ${styles.hiddenRight}`;
     return (
-      <div className={styles.cardPositionner}>
-        <div
-          className={`${styles.card} ${selected ? styles.selected : ''}`}
-          style={{ '--background': `url(${getTournamentImageLink(/*tournament.id*/ 'csgo')})` } as React.CSSProperties}>
-          <Title level={4} type={3} className={styles.tournamentName}>
-            {tournament.name}
-          </Title>
-          <Button primary>Plus d'infos</Button>
-        </div>
+      <div
+        className={`${styles.card} ${className}`}
+        key={tournamentIndex}
+        style={{ '--background': `url(${getTournamentImageLink(/*tournament.id*/'csgo')})` } as React.CSSProperties}>
+        <Title level={4} type={3} className={styles.tournamentName}>
+          {tournament.name}
+        </Title>
+        <Button primary>Plus d'infos</Button>
       </div>
     );
   };
@@ -64,11 +69,7 @@ export default function TournamentList() {
         className={`${styles.arrow} ${selected === 0 ? styles.disabled : ''}`}
         onClick={() => selected !== 0 && setSelected(selected - 1)}
       />
-      <div className={styles.cards}>
-        {selected !== 0 && createCard(tournaments[selected - 1], false)}
-        {createCard(tournaments[selected], true)}
-        {selected !== tournaments.length - 1 && createCard(tournaments[selected + 1], false)}
-      </div>
+      <div className={styles.cards}>{tournaments.map((tournament, i) => createCard(tournament, i))}</div>
       <Icon
         name={IconName.ChevronRight}
         className={`${styles.arrow} ${selected === tournaments.length - 1 ? styles.disabled : ''}`}
