@@ -49,13 +49,7 @@ export default function TournamentList() {
     return false;
   }
 
-  const oppositeSideFromSelected = (selected + tournaments.length / 2) % tournaments.length;
-
   const createCard = (tournament: Tournament, tournamentIndex: number) => {
-    console.log(tournament.id);
-    console.log(oppositeSideFromSelected);
-    console.log(selected);
-    console.log(tournamentIndex);
     let className: string;
     if (tournamentIndex === selected) className = styles.selected;
     else if (tournamentIndex === (selected - 1 + tournaments.length) % tournaments.length)
