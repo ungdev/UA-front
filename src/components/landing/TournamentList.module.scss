@@ -8,12 +8,7 @@
   width: 80%;
 
   .arrow {
-    &:not(.disabled) {
-      cursor: pointer;
-    }
-    &.disabled {
-      color: gray;
-    }
+    cursor: pointer;
   }
 
   .cards {
@@ -81,10 +76,13 @@
         text-transform: uppercase;
       }
     }
-
-    /*> {
-      margin: auto;
-    }*/
   }
+}
 
+@media screen and (max-width: 1024px) {
+  .tournamentList {
+    .cards {
+      width: 80%;
+    }
+  }
 }

@@ -12,11 +12,18 @@ import { IconName } from '@/components/UI/Icon';
 const TIME_BETWEEN_CARDS = 5000;
 const AUTOSLIDE = false;
 
+function mod(n: number, m: number) {
+  if (n >= 0) return n % m;
+  return (n % m) + m;
+}
+
 export default function TournamentList() {
   const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const [selected, setSelected] = useState(1);
   const [changingTimeout, setChangingTimeout] = useState<number>();
+
+  console.log(selected);
 
   useEffect(() => {
     if (!tournaments) {
@@ -42,18 +49,31 @@ export default function TournamentList() {
     return false;
   }
 
+  const oppositeSideFromSelected = (selected + tournaments.length / 2) % tournaments.length;
+
   const createCard = (tournament: Tournament, tournamentIndex: number) => {
+    console.log(tournament.id);
+    console.log(oppositeSideFromSelected);
+    console.log(selected);
+    console.log(tournamentIndex);
     let className: string;
     if (tournamentIndex === selected) className = styles.selected;
-    else if (tournamentIndex === selected - 1) className = `${styles.neighbour} ${styles.visibleLeft}`;
-    else if (tournamentIndex === selected + 1) className = `${styles.neighbour} ${styles.visibleRight}`;
-    else if (tournamentIndex < selected) className = `${styles.hidden} ${styles.hiddenLeft}`;
+    else if (tournamentIndex === (selected - 1 + tournaments.length) % tournaments.length)
+      className = `${styles.neighbour} ${styles.visibleLeft}`;
+    else if (tournamentIndex === (selected + 1) % tournaments.length)
+      className = `${styles.neighbour} ${styles.visibleRight}`;
+    else if (
+      mod(tournamentIndex - selected, tournaments.length) > tournaments.length / 2
+      /*oppositeSideFromSelected < selected ===
+      (oppositeSideFromSelected < tournamentIndex && tournamentIndex < selected)*/
+    )
+      className = `${styles.hidden} ${styles.hiddenLeft}`;
     else className = `${styles.hidden} ${styles.hiddenRight}`;
     return (
       <div
         className={`${styles.card} ${className}`}
         key={tournamentIndex}
-        style={{ '--background': `url(${getTournamentImageLink(/*tournament.id*/'csgo')})` } as React.CSSProperties}>
+        style={{ '--background': `url(${getTournamentImageLink(/*tournament.id*/ 'csgo')})` } as React.CSSProperties}>
         <Title level={4} type={3} className={styles.tournamentName}>
           {tournament.name}
         </Title>
@@ -66,14 +86,14 @@ export default function TournamentList() {
     <div className={styles.tournamentList}>
       <Icon
         name={IconName.ChevronLeft}
-        className={`${styles.arrow} ${selected === 0 ? styles.disabled : ''}`}
-        onClick={() => selected !== 0 && setSelected(selected - 1)}
+        className={styles.arrow}
+        onClick={() => setSelected(mod(selected - 1, tournaments.length))}
       />
       <div className={styles.cards}>{tournaments.map((tournament, i) => createCard(tournament, i))}</div>
       <Icon
         name={IconName.ChevronRight}
-        className={`${styles.arrow} ${selected === tournaments.length - 1 ? styles.disabled : ''}`}
-        onClick={() => selected !== tournaments.length - 1 && setSelected(selected + 1)}
+        className={styles.arrow}
+        onClick={() => setSelected(mod(selected + 1, tournaments.length))}
       />
     </div>
   );
