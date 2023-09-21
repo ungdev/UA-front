@@ -73,7 +73,7 @@ const Account = () => {
 
     const element = document.createElement('a');
     element.href = `data:application/pdf;base64,${res.data}`;
-    element.download = 'Billet UTT Arena 2022.pdf';
+    element.download = 'Billet UTT Arena 2023.pdf';
     element.style.display = 'none';
 
     document.body.appendChild(element);

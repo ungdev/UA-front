@@ -76,7 +76,7 @@ const team: OurTeam = {
 } as OurTeam;
 
 // export const metadata: Metadata = {
-//   title: 'À propos - UTT Arena 2022 - 3 et 4 décembre 2022',
+//   title: 'À propos - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
 // }
 
 const About = () => {
@@ -89,12 +89,10 @@ const About = () => {
           <TextBlock
             title="UTT Arena"
             images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
-            LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-            connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-            Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-            composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-            pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
-            Alors prépare tout ton stuff et impose toi dans l’arène !
+            <br />
+            L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué
+            de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </TextBlock>
         </div>
         <div className={styles.aboutUng}>
@@ -102,12 +100,9 @@ const About = () => {
             title="UTT Net Group"
             images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}
             left>
-            LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-            connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-            Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-            composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-            pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
-            Alors prépare tout ton stuff et impose toi dans l’arène !
+            L'UTT Arena (UA) est le plus gros événement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
+            technologies de l'Université de Technologie de Troyes (UTT). <br />
           </TextBlock>
         </div>
 

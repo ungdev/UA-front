@@ -153,7 +153,7 @@ function LoginModal({
             autocomplete="new-password"
           />
           <Radio
-            label="Le 2 décembre 2022, tu seras :"
+            label="Le 1 décembre 2023, tu seras :"
             options={[
               { value: 'child', name: 'Mineur' },
               { value: 'adult', name: 'Majeur' },

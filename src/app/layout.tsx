@@ -29,16 +29,16 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+  title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
   description:
     'Viens participer au célèbre tournoi du Grand-Est ! ' +
-    "L'UTT Arena revient pour sa 20ème édition les 3 et 4 décembre 2022. " +
+    "L'UTT Arena revient pour sa 21ème édition les 1, 2 et 3 décembre 2023. " +
     "Au programme, 7 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
     'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
     "Alors prépare tout ton stuff et impose-toi dans l'arène !",
   openGraph: {
-    siteName: 'UTT Arena 2022',
-    title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+    siteName: 'UTT Arena 2023',
+    title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
     url: 'https://arena.utt.fr/',
     type: 'website',
     images: [
@@ -49,19 +49,19 @@ export const metadata: Metadata = {
         height: 500,
       },
     ],
-    description: 'Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !',
+    description: 'Entrez dans l’arène les 1, 2 et 3 décembre pour le retour de la compétition e-sport Troyenne !',
   },
   twitter: {
-    title: 'UTT Arena 2022 - 3 et 4 décembre 2022',
+    title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
     site: '@UTTArena',
     card: 'summary_large_image',
     images: [
       {
         url: uploadsUrl() + '/images/banniere_SEO.png',
-        alt: "Bannière de l'UTT Arena 2022, le 3 et 4 décembre",
+        alt: "Bannière de l'UTT Arena 2023, les 1, 2 et 3 décembre 2023",
       },
     ],
-    description: 'Entrez dans l’arène les 3 et 4 décembre pour le retour de la compétition e-sport Troyenne !',
+    description: 'Entrez dans l’arène les 1, 2 et 3 décembre 2023 pour le retour de la compétition e-sport Troyenne !',
   },
   manifest: '/manifest.json',
   icons: {
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   keywords: [
     'UTT',
     'UTT Arena',
-    'UTT Arena 2022',
+    'UTT Arena 2023',
     'esport',
     'e-sport',
     'gaming',

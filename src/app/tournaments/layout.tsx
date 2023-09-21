@@ -16,7 +16,7 @@ import type { Action } from '@reduxjs/toolkit';
 // import { Metadata } from 'next';
 
 /*export const metadata: Metadata = {
-  title: 'Tournois - UTT Arena 2022 - 3 et 4 décembre 2022',
+  title: 'Tournois - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
 };*/
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {

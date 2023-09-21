@@ -51,7 +51,7 @@ const Home = () => {
             <div className={styles.homeTitle}>
               <p className={styles.main}>UTT Arena</p>
               <p>
-                <span className={styles.accent}>3</span> et <span className={styles.accent}>4</span> décembre 2022
+                <span className={styles.accent}>1</span>, <span className={styles.accent}>2</span> et <span className={styles.accent}>3</span> décembre 2023
               </p>
             </div>
           </div>,
@@ -92,12 +92,8 @@ const Home = () => {
         <TextBlock
           title="UTT Arena 2023"
           images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
-          LE rendez-vous gaming annuel de la région Auboise aura lieu les 3 et 4 décembre 2022 dans un lieu que vous
-          connaissez bien : le Cube ! Plus de 2250m2 t'attendent pour passer 2 jours de folie ! <br />
-          Au programme : 7 tournois sur tes jeux favoris, 2 jours pour montrer tes skills parmis les 630 joueurs qui
-          composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-          pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
-          Alors prépare tout ton stuff et impose toi dans l’arène !
+          Le rendez-vous incontournable des amateurs de gaming de la région Auboise est de retour ! Il aura lieu les 1, 2 et 3 décembre 2023 dans un tout nouveau lieu : la Halle Sportive de l’Université de Technologie de Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br />
+          Au programme : 7 tournois sur tes jeux favoris, 48h pour montrer tes skills parmis les 520 joueurs qui composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
         </TextBlock>
         <div className={styles.moreInfo}>
           <div className={styles.moreInfoContainer}>

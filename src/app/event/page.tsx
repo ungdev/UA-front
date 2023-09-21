@@ -8,7 +8,7 @@ import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
-  title: 'Événement - UTT Arena 2022 - 3 et 4 décembre 2022',
+  title: 'Événement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
 };
 
 export default function Page() {
@@ -48,13 +48,13 @@ export default function Page() {
         </Title>
         <div className={styles.program}>
           <BoxContainer title="Jour 1 : Vendredi" className={styles.boxContainer}>
-            <p>Contenu...</p>
+            <p>TBA...</p>
           </BoxContainer>
           <BoxContainer title="Jour 2 : Samedi" className={styles.boxContainer}>
-            <p>Contenu...</p>
+            <p>TBA...</p>
           </BoxContainer>
           <BoxContainer title="Jour 3 : Dimanche" className={styles.boxContainer}>
-            <p>Contenu...</p>
+            <p>TBA...</p>
           </BoxContainer>
         </div>
         <Title level={2} type={2} className={styles.secondaryTitle}>
@@ -66,9 +66,9 @@ export default function Page() {
             src="https://maps.google.com/maps?q=UTT+Arena&t=&z=15&ie=UTF8&iwloc=&output=embed"
           />
           <div className={styles.text}>
-            Le Cube - Parc des Expositions de Troyes <br /> <br />
-            20 Rue des Gayettes <br /> <br />
-            10000 Troyes
+            Halle Sportive UTT <br /> <br />
+            4 Rue Fernand Sastre <br /> <br />
+            10430 Rosières-près-Troyes
           </div>
         </div>
         <Title level={2} type={2} className={styles.secondaryTitle}>
