@@ -59,8 +59,11 @@
 
     .backgroundElements {
       // This is only a container to hold the background images, but it is not actually useful
-      height: 0;
       pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
 
       img {
         position: absolute;
@@ -107,9 +110,9 @@
         }
 
         &.constellation13 {
-          width: 707px;
-          top: 60%;
-          left: 23%;
+          width: 24%;
+          top: 47%;
+          left: 19%;
           transform: rotate(-30deg);
         }
 
