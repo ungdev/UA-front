@@ -31,7 +31,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
     <TournamentSwitcherAnimation nextPage={goBack ? '' : undefined} previousPage={tournamentId}>
       <div className={styles.tournamentContainer}>
         <Link href="" className={styles.back}>
-          <Button onClick={() => setGoBack(true)}>
+          <Button onClick={() => setGoBack(true)} className={styles.button}>
             <Icon name={IconName.ChevronLeft} strokeWidth={3}></Icon>
             Retour aux tournois
           </Button>
