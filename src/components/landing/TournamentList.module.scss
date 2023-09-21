@@ -12,68 +12,48 @@
   }
 
   .cards {
-    position: relative;
-    justify-content: space-around;
+    position: relative;  // The element needs to be positioned to work in the JS
+    display: flex;
+    justify-content: left;
     align-items: center;
     width: 50%;
     height: auto;
     aspect-ratio: 100 / 60;
     z-index: initial;
+    overflow-x: scroll;
+    overflow-y: clip;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    gap: 25%;
 
-    .card {
-      position: absolute;
-      background: var(--background) no-repeat;
-      background-size: cover;
-      width: 50%;
-      aspect-ratio: 1;
-      height: auto;
-      border-radius: 5%;
-      top: 8.3333333333%;
-      transition: all 0.3s ease-in-out;
+    .cardPositionner {
+      position: relative;
+      width: 0;
+      height: 0;
 
-      &.selected {
-        z-index: 2;
-        scale: 1.2;
-        left: 25%;
-      }
+      .card {
+        position: absolute;
+        background: var(--background) no-repeat;
+        background-size: cover;
+        width: 20vw;
+        aspect-ratio: 1;
+        height: auto;
+        border-radius: 5%;
+        top: 10vw;  // TODO : put a simple - in front. but for some reason doing that breaks JS. WTFFFF
+        scale: calc(var(--visibility) * 1.2);
+        z-index: calc(var(--visibility) * 10);
+        opacity: var(--visibility);
 
-      &.neighbour {
-        z-index: 1;
-        opacity: 0.7;
-
-        &.visibleLeft {
-          left: 0;
+        .tournamentName {
+          text-align: center;
+          width: 80%;
+          margin: 30px auto auto;
+          font-size-adjust: 0.5 !important;
+          opacity: 1;
+          color: $title-color;
+          font-weight: 800;
+          text-transform: uppercase;
         }
-
-        &.visibleRight {
-          left: 50%;
-        }
-      }
-
-      &.hidden {
-        opacity: 0;
-        pointer-events: none;
-        scale: 0;
-        z-index: 0;
-
-        &.hiddenLeft {
-          left: -25%;
-        }
-
-        &.hiddenRight {
-          left: 75%;
-        }
-      }
-
-      .tournamentName {
-        text-align: center;
-        width: 80%;
-        margin: 30px auto auto;
-        font-size-adjust: 0.5 !important;
-        opacity: 1;
-        color: $title-color;
-        font-weight: 800;
-        text-transform: uppercase;
       }
     }
   }
@@ -81,8 +61,14 @@
 
 @media screen and (max-width: 1024px) {
   .tournamentList {
+    width: 100%;
+    gap: 0;
     .cards {
-      width: 80%;
+      width: 100%;
+    }
+
+    .arrow {
+      display: none;
     }
   }
 }
