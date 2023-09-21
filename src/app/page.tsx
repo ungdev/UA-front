@@ -16,7 +16,7 @@ import moon from '@/../public/images/clouds/parallax/moon.png';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
-import TournamentList from "@/components/landing/TournamentList";
+import TournamentList from '@/components/landing/TournamentList';
 
 const Home = () => {
   return (

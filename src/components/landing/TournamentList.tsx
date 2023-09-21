@@ -1,7 +1,7 @@
 'use client';
 import styles from './TournamentList.module.scss';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
+import React, { LegacyRef, useEffect, useRef } from 'react';
 import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { type Action } from '@reduxjs/toolkit';

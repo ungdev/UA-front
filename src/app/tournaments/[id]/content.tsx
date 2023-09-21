@@ -38,7 +38,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </Link>
         <div className={styles.headerContainer}>
           <div className={styles.title}>
-            <img src={logoUA.src} />
+            <img src={logoUA.src} alt="Logo UA23" />
             <Title level={1} type={1} className={styles.tournamentName}>
               {tournament.name}
             </Title>
