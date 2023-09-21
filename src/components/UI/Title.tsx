@@ -34,21 +34,23 @@ const Title = ({
   return (
     <Component
       id={id}
-      className={`${styles.title} ${styles[`title-${type}`]} ${className} ${align} ${
+      className={`${styles.title} ${styles[`title-${type}`]} ${className} ${styles[align]} ${
         gutterBottom ? styles.gutterBottom : ''
       }`}>
       {type === 2 ? (
         <div className={styles.textDivider}>
           <Divider />
-          <div className={`${styles.titleContent} ${align} ${gutterBottom ? styles.gutterBottom : ''}`}>{children}</div>
+          <div className={`${styles.titleContent} ${styles[align]} ${gutterBottom ? styles.gutterBottom : ''}`}>
+            {children}
+          </div>
           <Divider />
         </div>
       ) : type === 1 ? (
-        <TextStroke className={styles.titleContent} width={12}>
+        <TextStroke className={`${styles.titleContent} ${styles[align]}`} width={12}>
           {children}
         </TextStroke>
       ) : (
-        <div className={styles.titleContent}>{children}</div>
+        <div className={`${styles.titleContent} ${styles[align]}`}>{children}</div>
       )}
     </Component>
   );

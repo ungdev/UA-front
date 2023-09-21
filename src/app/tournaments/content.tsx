@@ -207,8 +207,11 @@ export function TournamentHome({
       <div className={`${styles.tournamentContainer} ${fading ? styles.fading : ''}`} ref={root}>
         <div className={styles.pageTitle}>
           <Divider white className={styles.divider} />
-          <Title align="center">Tournois</Title>
-          <Divider white />
+          <Title align="center" className={styles.title}>
+            Tournois
+          </Title>
+          <Divider white className={styles.divider} />
+          {/*<Title type={2} align="center" className={styles.title}>Tournois</Title>*/}
         </div>
         <div className={styles.content}>
           <div className={styles.tournamentScrollContainer}>
