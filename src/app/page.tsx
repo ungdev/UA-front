@@ -1,4 +1,3 @@
-'use client';
 import styles from './style.module.scss';
 import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';

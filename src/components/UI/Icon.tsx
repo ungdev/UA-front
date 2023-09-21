@@ -39,7 +39,7 @@ const Icon = ({
   strokeWidth = 1.5,
   className = '',
   fill = false,
-  onClick = () => {},
+  onClick = undefined,
 }: {
   /** The name of the icon to be displayed. */
   name: IconName;
@@ -50,7 +50,7 @@ const Icon = ({
   /** Whether the icon should be filled with the current color. */
   fill?: boolean;
   /** A callback called when the icon is clicked */
-  onClick?: () => void;
+  onClick?: (() => void) | undefined;
 }) => {
   let icon: ReactNode;
 
