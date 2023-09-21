@@ -10,7 +10,7 @@ import { Button, Icon, Title } from '@/components/UI';
 import { IconName } from '@/components/UI/Icon';
 
 const TIME_BETWEEN_CARDS = 5000;
-const AUTOSLIDE = false;
+const AUTOSLIDE = true;
 
 export default function TournamentList() {
   const dispatch = useAppDispatch();
@@ -55,10 +55,9 @@ export default function TournamentList() {
       const visibility = positionToVisibilityFunction(cardPosition);
       card.style.setProperty('--visibility', `${Math.max(0, visibility)}`);
     }
-    console.log(ignoreScrollRequests);
     // Snap to a card
     window.clearTimeout(endingScrollTimeout);
-    endingScrollTimeout = window.setTimeout(onScrollEnd, 1000);
+    endingScrollTimeout = window.setTimeout(onScrollEnd, 200);
     // Return if we asked for this scroll
     if (ignoreScrollRequests > 0) return;
     // Make sure the div isn't scrolled too much on the left or on the right
@@ -87,7 +86,7 @@ export default function TournamentList() {
   const onScrollEnd = () => {
     const targetScroll = getScrollToCenterCard(findSelected());
     // We don't care if we are 1 pixel off
-    if (targetScroll - cardsRef.current!.scrollLeft < 1) return;
+    if (Math.abs(targetScroll - cardsRef.current!.scrollLeft) < 1) return;
     scrollTo(targetScroll, true);
   };
 
