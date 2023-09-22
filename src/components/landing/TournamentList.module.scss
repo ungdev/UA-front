@@ -27,7 +27,7 @@
 
     .cardPositionner {
       position: relative;
-      min-width: 20%;  // {2}
+      min-width: 40%;  // {2}
       height: 60%;  // {3}
 
       .card {
@@ -36,10 +36,9 @@
         background-size: cover;
         width: auto;
         height: 100%;  // {4}
-        left: -40%;  // -({5} * {4} * {3} * (100% / ({1} * {2})) - 100%) / 2
+        left: 5%;  // -({5} * {4} * {3} * (100% / ({1} * {2})) - 100%) / 2
         aspect-ratio: 1 / 1;  // {5}
         border-radius: 5%;
-        scale: calc(var(--visibility) * 1.2);
         z-index: calc(var(--visibility) * 10);
         opacity: var(--visibility);
 

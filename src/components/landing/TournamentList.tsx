@@ -232,7 +232,7 @@ export default function TournamentList() {
           className={styles.card}
           style={
             {
-              '--background': `url(${getTournamentImageLink(tournament.id)})`,
+              '--background': `url(${getTournamentImageLink('csgo' /*tournament.id*/)})`,
             } as React.CSSProperties
           }>
           <Title level={4} type={3} className={styles.tournamentName}>
