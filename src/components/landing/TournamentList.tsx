@@ -252,12 +252,10 @@ export default function TournamentList({
   };
 
   return (
-    <div className={`${styles.tournamentList} ${className}`}>
-      <div className={styles.cards} ref={cardsRef as LegacyRef<HTMLDivElement>} onScroll={onScroll}>
-        {tournaments.map((tournament, i) => createCard(tournament, i))}
-        {tournaments.map((tournament, i) => createCard(tournament, i + tournaments.length))}
-        {tournaments.map((tournament, i) => createCard(tournament, i + 2 * tournaments.length))}
-      </div>
+    <div className={`${styles.tournamentList} ${className}`} ref={cardsRef as LegacyRef<HTMLDivElement>} onScroll={onScroll}>
+      {tournaments.map((tournament, i) => createCard(tournament, i))}
+      {tournaments.map((tournament, i) => createCard(tournament, i + tournaments.length))}
+      {tournaments.map((tournament, i) => createCard(tournament, i + 2 * tournaments.length))}
     </div>
   );
 }

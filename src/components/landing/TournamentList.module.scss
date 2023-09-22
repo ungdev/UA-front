@@ -2,72 +2,55 @@
 
 .tournamentList {
   display: flex;
-  justify-content: space-between;
-  gap: 30px;
   align-items: center;
-  width: 95%;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 100 / 40;  // {1}
   margin: auto;
+  position: relative;  // The element needs to be positioned to work in the JS
+  justify-content: left;
+  z-index: initial;
+  overflow-x: scroll;
+  overflow-y: clip;
+  scrollbar-width: none;
 
-  .arrow {
-    cursor: pointer;
-  }
+  .cardPositionner {
+    position: relative;
+    min-width: 45%;  // {2}
+    height: 100%;  // {3}
 
-  .cards {
-    position: relative;  // The element needs to be positioned to work in the JS
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 100%;//95%;
-    height: auto;
-    aspect-ratio: 100 / 40;  // {1}
-    z-index: initial;
-    overflow-x: scroll;
-    overflow-y: clip;
-    scrollbar-width: none;
+    .card {
+      position: absolute;
+      background: var(--background) no-repeat;
+      background-size: cover;
+      width: auto;
+      height: 100%;  // {4}
+      left: 5%;  // (1 - {5} * {4} * {3} / {1} / {2}) / 2
+      aspect-ratio: 1 / 1;  // {5}
+      border-radius: 5%;
+      z-index: calc(var(--visibility) * 10);
+      opacity: var(--visibility);
 
-    .cardPositionner {
-      position: relative;
-      min-width: 45%;  // {2}
-      height: 100%;  // {3}
-
-      .card {
-        position: absolute;
-        background: var(--background) no-repeat;
-        background-size: cover;
-        width: auto;
-        height: 100%;  // {4}
-        left: 5%;  // (1 - {5} * {4} * {3} / {1} / {2}) / 2
-        aspect-ratio: 1 / 1;  // {5}
-        border-radius: 5%;
-        z-index: calc(var(--visibility) * 10);
-        opacity: var(--visibility);
-
-        .tournamentName {
-          text-align: center;
-          width: 80%;
-          margin: 30px auto auto;
-          font-size-adjust: 0.5 !important;
-          opacity: 1;
-          color: $title-color;
-          font-weight: 800;
-          text-transform: uppercase;
-        }
+      .tournamentName {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto auto;
+        font-size-adjust: 0.5 !important;
+        opacity: 1;
+        color: $title-color;
+        font-weight: 800;
+        text-transform: uppercase;
       }
     }
   }
 }
 
-/*@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
   .tournamentList {
     width: 100%;
-    gap: 0;
-    .cards {
-      width: 100%;
-    }
 
     .arrow {
       display: none;
     }
   }
 }
-*/

@@ -189,7 +189,7 @@ $scrollingAnimationDuration: 0.5s;
   header {
     .content nav {
       .burgerContainer {
-        display: block;
+        display: block !important;
       }
 
       .left > a,

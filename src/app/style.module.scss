@@ -264,6 +264,14 @@
         display: none;
       }
     }
+
+    .tournaments {
+      flex-direction: column;
+
+      &:after {
+        background: none;
+      }
+    }
   }
 }
 
