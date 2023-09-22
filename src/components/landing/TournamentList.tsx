@@ -136,19 +136,21 @@ export default function TournamentList() {
 
   const createCard = (tournament: Tournament, tournamentIndex: number) => {
     return (
-      <div className={`${styles.cardPositionner}`}>
+      <div className={styles.cardPositionner}>
         <div
-          className={`${styles.card}`}
+          className={styles.card}
           key={tournamentIndex}
           style={
             {
-              '--background': `url(${getTournamentImageLink(/*tournament.id*/ 'csgo')})`,
+              '--background': `url(${getTournamentImageLink(tournament.id)})`,
             } as React.CSSProperties
           }>
           <Title level={4} type={3} className={styles.tournamentName}>
             {tournament.name}
           </Title>
-          <Button primary>Plus d'infos</Button>
+          <a href={`/tournaments/${tournament.id}`}>
+            <Button primary>Plus d'infos</Button>
+          </a>
         </div>
       </div>
     );
