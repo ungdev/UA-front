@@ -10,7 +10,7 @@ import { Button, Icon, Title } from '@/components/UI';
 import { IconName } from '@/components/UI/Icon';
 
 const TIME_BETWEEN_CARDS = 5000;
-const AUTOSLIDE = true;
+const AUTOSLIDE = false;
 
 export default function TournamentList() {
   const dispatch = useAppDispatch();
@@ -24,9 +24,7 @@ export default function TournamentList() {
     let closestIndex = 0;
     for (let i = 0; i < cardsRef.current!.children.length; i++) {
       const card = cardsRef.current!.children[i] as HTMLDivElement;
-      const cardMiddle = card.offsetLeft + cardsRef.current!.offsetWidth * 0.25;
-      const cardsListMiddle = cardsRef.current!.offsetWidth / 2 + cardsRef.current!.scrollLeft;
-      const cardPosition = (cardMiddle - cardsListMiddle) / cardsRef.current!.offsetWidth;
+      const cardPosition = findHowCenteredCardIs(card);
       if (Math.abs(cardPosition) < closestDistance) {
         closestDistance = Math.abs(cardPosition);
         closestIndex = i;
@@ -36,7 +34,7 @@ export default function TournamentList() {
   };
 
   const findHowCenteredCardIs = (card: HTMLDivElement) => {
-    const cardMiddle = card.offsetLeft + cardsRef.current!.offsetWidth * 0.25;
+    const cardMiddle = card.offsetLeft + card.offsetWidth / 2;
     const cardsListMiddle = cardsRef.current!.offsetWidth / 2 + cardsRef.current!.scrollLeft;
     return Math.abs((cardMiddle - cardsListMiddle) / cardsRef.current!.offsetWidth);
   };
@@ -46,8 +44,6 @@ export default function TournamentList() {
   let ignoreScrollRequests = 0;
   let endingScrollTimeout: number | undefined;
   const onScroll = () => {
-    // Reset the auto slide timer
-    if (AUTOSLIDE) resetAutoSlideTimer();
     // Update CSS
     for (let i = 0; i < cardsRef.current!.children.length; i++) {
       const card = cardsRef.current!.children[i] as HTMLDivElement;
@@ -85,6 +81,8 @@ export default function TournamentList() {
 
   const onScrollEnd = () => {
     const targetScroll = getScrollToCenterCard(findSelected());
+    // Reset the auto slide timer
+    if (AUTOSLIDE) resetAutoSlideTimer();
     // We don't care if we are 1 pixel off
     if (Math.abs(targetScroll - cardsRef.current!.scrollLeft) < 1) return;
     scrollTo(targetScroll, true);
@@ -95,17 +93,23 @@ export default function TournamentList() {
    * Basically, scrolling forwards or backwards of this amounts will be seamless.
    */
   const getScrollLoopLength = () => {
-    return tournaments!.length * (0.25 * cardsRef.current!.offsetWidth);
+    return tournaments!.length * (0.2 * cardsRef.current!.offsetWidth);
   };
 
   const getScrollToCenterCard = (cardIndex: number) => {
     const selectedCard = cardsRef.current!.children[cardIndex] as HTMLDivElement;
-    return selectedCard.offsetLeft - cardsRef.current!.offsetWidth / 2 + (0.2 * window.innerWidth) / 2;
+    return selectedCard.offsetLeft + selectedCard.offsetWidth / 2 - cardsRef.current!.offsetWidth / 2;
   };
 
   const resetAutoSlideTimer = () => {
-    window.clearTimeout(autoslideTimeout);
-    autoslideTimeout = window.setTimeout(() => scrollToCard(findSelected() + 1, true), TIME_BETWEEN_CARDS);
+    if (!AUTOSLIDE) return;
+    if (typeof autoslideTimeout === 'number') {
+      window.clearTimeout(autoslideTimeout);
+    }
+    autoslideTimeout = window.setTimeout(() => {
+      scrollToCard(findSelected() + 1, true);
+      autoslideTimeout = undefined;
+    }, TIME_BETWEEN_CARDS);
   };
 
   useEffect(() => {
@@ -123,7 +127,7 @@ export default function TournamentList() {
 
   useEffect(() => {
     if (!cardsRef.current) return;
-    scrollTo(getScrollToCenterCard(tournaments!.length));
+    scrollToCard(tournaments!.length);
   }, [cardsRef.current]);
 
   if (!tournaments) {

@@ -2,10 +2,10 @@
 
 .tournamentList {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 30px;
   align-items: center;
-  width: 80%;
+  width: 95%;
 
   .arrow {
     cursor: pointer;
@@ -16,30 +16,28 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 50%;
+    width: 95%;
     height: auto;
-    aspect-ratio: 100 / 60;
+    aspect-ratio: 100 / 60;  // {1}
     z-index: initial;
     overflow-x: scroll;
     overflow-y: clip;
     scrollbar-width: none;
-    scroll-behavior: smooth;
-    gap: 25%;
 
     .cardPositionner {
       position: relative;
-      width: 0;
-      height: 0;
+      min-width: 20%;  // {2}
+      height: 60%;  // {3}
 
       .card {
         position: absolute;
         background: var(--background) no-repeat;
         background-size: cover;
-        width: 20vw;
-        aspect-ratio: 1;
-        height: auto;
+        width: auto;
+        height: 100%;  // {4}
+        left: -40%;  // -({5} * {4} * {3} * (100% / ({1} * {2})) - 100%) / 2
+        aspect-ratio: 1 / 1;  // {5}
         border-radius: 5%;
-        top: 10vw;  // TODO : put a simple - in front. but for some reason doing that breaks JS. WTFFFF
         scale: calc(var(--visibility) * 1.2);
         z-index: calc(var(--visibility) * 10);
         opacity: var(--visibility);
