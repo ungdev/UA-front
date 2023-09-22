@@ -17,9 +17,9 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 95%;
+    width: 100%;//95%;
     height: auto;
-    aspect-ratio: 100 / 60;  // {1}
+    aspect-ratio: 100 / 40;  // {1}
     z-index: initial;
     overflow-x: scroll;
     overflow-y: clip;
@@ -27,8 +27,8 @@
 
     .cardPositionner {
       position: relative;
-      min-width: 40%;  // {2}
-      height: 60%;  // {3}
+      min-width: 45%;  // {2}
+      height: 100%;  // {3}
 
       .card {
         position: absolute;
@@ -36,7 +36,7 @@
         background-size: cover;
         width: auto;
         height: 100%;  // {4}
-        left: 5%;  // -({5} * {4} * {3} * (100% / ({1} * {2})) - 100%) / 2
+        left: 5%;  // (1 - {5} * {4} * {3} / {1} / {2}) / 2
         aspect-ratio: 1 / 1;  // {5}
         border-radius: 5%;
         z-index: calc(var(--visibility) * 10);

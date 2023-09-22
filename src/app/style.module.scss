@@ -190,7 +190,30 @@
   }
 
   .tournaments {
+    display: flex;
     width: 100%;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, rgba($primary-background, 1) 34%, rgba($primary-background, 0) 50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .title {
+      flex: 1;
+      z-index: 3;
+      background-color: red;  // TODO : PLACEHOLDER TO KNOW WHERE THE CONTAINER IS, REMOVE IT
+    }
+
+    .list {
+      flex: 2;
+      z-index: 1;
+    }
   }
 }
 

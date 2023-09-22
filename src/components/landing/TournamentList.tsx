@@ -22,7 +22,12 @@ const AUTOSLIDE = false;
  *
  * This component may not be refresh-proof once it has rendered the first time.
  */
-export default function TournamentList() {
+export default function TournamentList({
+  className = '',
+}: {
+  /** An additional string to add to the className of the root container of this component */
+  className: string;
+}) {
   const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   /** The ref to the slider. */
@@ -98,7 +103,7 @@ export default function TournamentList() {
    * The function used to convert the return value of findHowCenteredCardIs to a value that represents how opaque/big the card will be.
    * This value is less or equal to 1 (it maxes out when x is 0, meaning the card is exactly at the middle of the slider).
    */
-  const positionToVisibilityFunction = (x: number) => -3.2 * x * x - 0.4 * x + 1;
+  const positionToVisibilityFunction = (x: number) => -1.6 * x * x - 0.4 * x + 1;
 
   /**
    * Scrolls horizontally to a certain x-position. If the scroll is smooth, we request to ignore scroll for 200ms.
@@ -222,12 +227,12 @@ export default function TournamentList() {
    * A card contains a cardPositionner container, and in it there is the "visual" card.
    * The "visual" card container will be absolutely positioned, to be able to overlap it with other ones.
    * @param tournament The tournament this class represents.
-   * @param cardId The unique id of the card. It will go from -tournaments.length to 2 * tournaments.length - 1.
+   * @param cardId The unique id of the card. It will go from 0 to 3 * tournaments.length - 1.
    *               It is not used for anything else than the key prop, it could be whatever you want.
    */
   const createCard = (tournament: Tournament, cardId: number) => {
     return (
-      <div className={styles.cardPositionner} key={cardId}>
+      <div className={styles.cardPositionner} key={cardId} onClick={() => scrollToCard(cardId, true)}>
         <div
           className={styles.card}
           style={
@@ -247,22 +252,12 @@ export default function TournamentList() {
   };
 
   return (
-    <div className={styles.tournamentList}>
-      <Icon
-        name={IconName.ChevronLeft}
-        className={styles.arrow}
-        onClick={() => scrollToCard(findSelected() - 1, true)}
-      />
+    <div className={`${styles.tournamentList} ${className}`}>
       <div className={styles.cards} ref={cardsRef as LegacyRef<HTMLDivElement>} onScroll={onScroll}>
-        {tournaments.map((tournament, i) => createCard(tournament, i - tournaments.length))}
         {tournaments.map((tournament, i) => createCard(tournament, i))}
         {tournaments.map((tournament, i) => createCard(tournament, i + tournaments.length))}
+        {tournaments.map((tournament, i) => createCard(tournament, i + 2 * tournaments.length))}
       </div>
-      <Icon
-        name={IconName.ChevronRight}
-        className={styles.arrow}
-        onClick={() => scrollToCard(findSelected() + 1, true)}
-      />
     </div>
   );
 }
