@@ -217,6 +217,14 @@
   }
 }
 
+@media screen and (max-width: 1280px) {
+  .dataFlexing {
+    .divider {
+      display: none;
+    }
+  }
+}
+
 @media screen and (max-width: 1200px) {
   #home {
     .slider {
@@ -256,12 +264,6 @@
         .moreInfoContainer {
           height: 40%;
         }
-      }
-    }
-
-    .dataFlexing {
-      .divider {
-        display: none;
       }
     }
 
