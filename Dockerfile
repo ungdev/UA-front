@@ -32,7 +32,11 @@ RUN chown node:node .next
 COPY --from=builder --chown=node:node /srv/app/.next/standalone ./
 COPY --from=builder --chown=node:node /srv/app/.next/static ./.next/static
 
+COPY --chown=node:node package.json pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile --production
+
 RUN chown node:node .
 USER node
 
-CMD ["node", "server.js"]
+CMD pnpm start

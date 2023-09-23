@@ -16,7 +16,7 @@ export function generateCsp() {
       },
       {
         name: 'style-src',
-        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, '*.googleapis.com'],
+        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, '*.googleapis.com', "'unsafe-inline'"],
       },
       {
         name: 'connect-src',
