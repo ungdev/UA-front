@@ -12,7 +12,7 @@ export function generateCsp() {
       { name: 'default-src', values: ["'self'"] },
       {
         name: 'script-src',
-        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, "'strict-dynamic'"],
+        values: ["'report-sample'", "'self'", `'nonce-${nonce}'`, "'strict-dynamic'", "'unsafe-eval'"],
       },
       {
         name: 'style-src',
@@ -25,7 +25,7 @@ export function generateCsp() {
       { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', 'github.com'] },
       {
         name: 'img-src',
-        values: ["'self'", 'data:', 'https://arena.utt.fr', 'blob:'],
+        values: ["'self'", 'data:', '*.utt.fr', 'blob:', '*.uttnetgroup.fr'],
       },
       { name: 'worker-src', values: ["'self'", 'blob:'] },
       { name: 'frame-ancestors', values: ["'none'"] },
