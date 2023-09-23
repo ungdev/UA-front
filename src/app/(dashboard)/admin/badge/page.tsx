@@ -36,9 +36,6 @@ export default function BadgePage() {
 
   document.documentElement.style.setProperty('--half-size', crop ? `${crop.width / 2}px` : '0px');
 
-  console.log(crop);
-  console.log(background);
-
   return (
     <div id={styles.badgePage}>
       <FileUpload
