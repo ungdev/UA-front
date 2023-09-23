@@ -21,15 +21,15 @@ FROM base AS runner
 WORKDIR /srv/app
 ENV NODE_ENV=production
 
+COPY --chown=node:node package.json pnpm-lock.yaml ./
+
+RUN pnpm install --frozen-lockfile --production
+
 COPY --from=builder /srv/app/public ./public
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=node:node /srv/app/.next ./.next
-
-COPY --chown=node:node package.json pnpm-lock.yaml ./
-
-RUN pnpm install --frozen-lockfile --production
 
 RUN chown node:node .
 USER node
