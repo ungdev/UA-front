@@ -198,8 +198,9 @@ export default function TournamentList({
     for (let i = 0; i < cardsRef.current!.children.length; i++) {
       const card = cardsRef.current!.children[i] as HTMLDivElement;
       const cardPosition = findHowCenteredCardIs(card);
-      const visibility = positionToVisibilityFunction(cardPosition);
-      card.style.setProperty('--visibility', `${Math.max(0, visibility)}`);
+      const visibility = Math.min(Math.max(positionToVisibilityFunction(cardPosition), 0), 1);
+      card.style.setProperty('--visibility', `${visibility}`);
+      card.style.setProperty('--non-linear-visibility', `${Math.min(Math.max(Math.pow(visibility, 0.4), 0), 1)}`);
     }
     // Snap to a card
     window.clearTimeout(endingScrollTimeout);

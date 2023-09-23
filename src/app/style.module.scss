@@ -204,10 +204,10 @@
       pointer-events: none;
     }
 
-    .title {
+    .text {
       flex: 1;
       z-index: 3;
-      background-color: red;  // TODO : PLACEHOLDER TO KNOW WHERE THE CONTAINER IS, REMOVE IT
+      padding: 30px 10px;
     }
 
     .list {
