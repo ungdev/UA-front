@@ -45,24 +45,18 @@
   }
 }
 
+.message {
+  text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
   .tournamentList {
     aspect-ratio: 5 / 3;
+
     .cardPositionner {
-      //height: 150%;
       min-width: 65%;
 
       .card {
-        --guess01: calc((var(--visibility) + ( var(--visibility) / var(--visibility))) / 2);
-        --guess02: calc((var(--guess01) + ( var(--visibility) / var(--guess01))) / 2);
-        --guess03: calc((var(--guess02) + ( var(--visibility) / var(--guess02))) / 2);
-        --guess04: calc((var(--guess03) + ( var(--visibility) / var(--guess03))) / 2);
-        --guess05: calc((var(--guess04) + ( var(--visibility) / var(--guess04))) / 2);
-        --guess06: calc((var(--guess05) + ( var(--visibility) / var(--guess05))) / 2);
-        --guess07: calc((var(--guess06) + ( var(--visibility) / var(--guess06))) / 2);
-        --guess08: calc((var(--guess07) + ( var(--visibility) / var(--guess07))) / 2);
-        --guess09: calc((var(--guess08) + ( var(--visibility) / var(--guess08))) / 2);
-        --guess10: calc((var(--guess09) + ( var(--visibility) / var(--guess09))) / 2);
         opacity: var(--non-linear-visibility)
       }
     }

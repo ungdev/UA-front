@@ -219,7 +219,11 @@ export default function TournamentList({
    * As long as we haven't received the tournaments we don't display anything.
    */
   if (!tournaments) {
-    return false;
+    return <div className={styles.message}>Chargement des tournois...</div>;
+  }
+
+  if (!tournaments.length) {
+    return <div className={styles.message}>Aucun tournois annoncé</div>;
   }
 
   /**
