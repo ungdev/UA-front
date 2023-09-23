@@ -6,8 +6,7 @@ import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { type Action } from '@reduxjs/toolkit';
 import { Tournament } from '@/types';
-import { Button, Icon, Title } from '@/components/UI';
-import { IconName } from '@/components/UI/Icon';
+import { Button, Title } from '@/components/UI';
 
 const TIME_BETWEEN_CARDS = 5000;
 const AUTOSLIDE = false;
@@ -26,7 +25,7 @@ export default function TournamentList({
   className = '',
 }: {
   /** An additional string to add to the className of the root container of this component */
-  className: string;
+  className?: string;
 }) {
   const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
@@ -252,7 +251,10 @@ export default function TournamentList({
   };
 
   return (
-    <div className={`${styles.tournamentList} ${className}`} ref={cardsRef as LegacyRef<HTMLDivElement>} onScroll={onScroll}>
+    <div
+      className={`${styles.tournamentList} ${className}`}
+      ref={cardsRef as LegacyRef<HTMLDivElement>}
+      onScroll={onScroll}>
       {tournaments.map((tournament, i) => createCard(tournament, i))}
       {tournaments.map((tournament, i) => createCard(tournament, i + tournaments.length))}
       {tournaments.map((tournament, i) => createCard(tournament, i + 2 * tournaments.length))}

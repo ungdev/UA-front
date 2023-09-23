@@ -113,7 +113,9 @@ const Home = () => {
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
-        <Title align="center" className={styles.title}>Les tournois de l'UA23</Title>
+        <Title align="center" className={styles.title}>
+          Les tournois de l'UA23
+        </Title>
         <TournamentList className={styles.list} />
       </div>
       <Partners />
