@@ -1,0 +1,86 @@
+.doubleImage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > * {
+    position: absolute;
+    z-index: 9;
+
+    &:nth-child(1) {
+      transform: translate(-25px, 25px);
+    }
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  .image1forward {
+    animation: image1fowards 0.4s forwards ease-in-out;
+  }
+
+  .image2forward {
+    animation: image2fowards 0.4s forwards ease-in-out;
+  }
+
+  .image1backward {
+    animation: image1backwards 0.4s forwards ease-in-out;
+  }
+
+  .image2backward {
+    animation: image2backwards 0.4s forwards ease-in-out;
+  }
+}
+
+
+@keyframes image1fowards {
+  0% {
+    transform: translate(-25px, 25px);
+  }
+  50% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translate(-25px, 25px);
+    z-index: 10;
+  }
+}
+
+@keyframes image2fowards {
+  0% {
+    transform: inherit;
+  }
+  50% {
+    transform: translateY(-220px) rotateZ(16deg);
+  }
+  100% {
+    transform: inherit;
+  }
+}
+
+@keyframes image1backwards {
+  0% {
+    transform: translate(-25px, 25px);
+    z-index: 10;
+  }
+  50% {
+    transform: translateY(150px);
+  }
+  100% {
+    transform: translate(-25px, 25px);
+  }
+}
+
+@keyframes image2backwards {
+  0% {
+    transform: inherit;
+  }
+  50% {
+    transform: translateY(-220px) rotateZ(16deg);
+  }
+  100% {
+    transform: inherit;
+  }
+}

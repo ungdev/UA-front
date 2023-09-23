@@ -1,13 +1,20 @@
-$primary-color: #8767aa;
-$secondary-color: #ac6aca;
-$superposed-color: #ba78d4;
-$light-color-alt: #efd6e7;
-$blue-color: #cbd7ef;
-$accent-color: #8767aa;
+$primary-color: #FF414D;
+$secondary-color: #F56A79;
+// $superposed-color: #ba78d4;
+$blue-color: #D9ECF2;
+$accent-color: #1aa6b7;
 $light-color: #ccc;
+// $light-color-alt: #efd6e7;
 $dark-color: #29292a;
 $gradient: linear-gradient(135deg, $accent-color 15%, $dark-color 85%);
-$ua-font: 'LemonMilk', sans-serif;
+$montserrat: var(--font-montserrat);
+$lexend: var(--font-lexend);
 
-$buttonLength: 2px;
-$buttonRadius: 6px;
+$light-blue: #D9ECF2;
+
+$primary-background: #002231;
+$secondary-background: #002D40;
+$title-color: #FF414D;
+$pink-button-color: #F56A79;
+$light-pink-button-color: #FF7F91;
+$text-color: #D9ECF2;

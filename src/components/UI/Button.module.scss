@@ -1,0 +1,87 @@
+@import '@/variables.scss';
+
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  margin: 0;
+  font-family: $montserrat;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  border-radius: 0.625rem;
+  border: 0;
+
+  &:not(.primary, .secondary) {
+    color: #8C979B;
+    border: none;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &.primary {
+    color: white;
+    background-color: $secondary-color;
+
+    &.outline {
+      color: $secondary-color;
+      background-color: transparent;
+      border: 0.175rem solid $secondary-color;
+
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+
+    &:not(.outline):hover {
+      background-color: $primary-color;
+    }
+  }
+
+  &.secondary {
+    color: white;
+    background-color: $accent-color;
+
+    &.outline {
+      color: $accent-color;
+      background-color: transparent;
+      border: 0.175rem solid $accent-color;
+
+      &:hover {
+        border-color: darken($accent-color, 10%);
+        color: darken($accent-color, 10%);
+      }
+    }
+
+    &:not(.outline):hover {
+      background-color: darken($accent-color, 10%);
+    }
+  }
+
+  &.large {
+    padding: 1.25rem 1.75rem;
+  }
+
+  &.long:not(.large) {
+    padding: 0.75rem 5rem;
+  }
+
+  &.long.large {
+    padding: 1.25rem 5rem;
+  }
+
+  &.veryLong {
+    width: 100%;
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}

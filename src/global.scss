@@ -1,15 +1,3 @@
-@font-face {
-  font-family: 'LemonMilk';
-  font-display: swap;
-  src: url('/fonts/LemonMilk.ttf');
-}
-
-@font-face {
-  font-family: 'Kanit';
-  font-display: swap;
-  src: url('/fonts/Kanit.ttf');
-}
-
 * {
   outline: none;
 }
@@ -19,9 +7,10 @@ body {
   margin: 0;
   padding: 0;
   color: #212121;
-  font-family: 'Kanit', sans-serif;
-  text-align: justify;
-  overflow-x: hidden;
+  font-family: $montserrat;
+  overflow-x: clip;
+  color: white;
+  background-color: $primary-background;
 }
 
 a {
@@ -42,54 +31,8 @@ ol > li {
   margin-bottom: 8px;
 }
 
-.page-padding {
-  /* page-padding should be applied to every page except home page */
-  padding: 2em 5em;
-}
-
-@media screen and (max-width: 800px) {
-  .page-padding {
-    padding: 2em 1em;
-  }
-}
-
-.accent {
-  color: $primary-color;
-  font-weight: 700;
-}
-
-ul:not(.steps) {
-  list-style: none;
-
-  & > li {
-    position: relative;
-
-    &::before {
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      content: '\f0da';
-      color: $accent-color;
-      display: block;
-      position: absolute;
-      left: -15px;
-    }
-  }
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.gold-icon {
-  color: #ffae00;
-}
-
-.green-icon {
-  color: #00a700;
-}
-
-.red-icon {
-  color: #d10000;
+main {
+  flex-grow: 1;
 }
 
 .Toastify__toast {

@@ -1,0 +1,73 @@
+#dashboardShop {
+  .shopAndBill {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 35px;
+
+    .shopSection {
+      margin-bottom: 40px;
+      max-width: 50vw;
+    }
+
+    .title {
+      margin: 20px 0 0 0;
+    }
+
+    .placeTitle {
+      margin-bottom: 20px;
+    }
+
+    .bill {
+      box-sizing: border-box;
+      height: fit-content;
+      width: 30%;
+      border-radius: 2px;
+      background-color: #fbfbfb;
+      padding: 10px 30px;
+
+      .shopFooter {
+        text-align: right;
+        margin-top: 38px;
+
+        .cgvCheckbox {
+          display: block ruby;
+        }
+
+        .shopButton.buttonWrapper {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+
+  .attendantWarning {
+    margin-bottom: 10px;
+
+    span {
+      color: #d10000;
+    }
+  }
+
+  .itemPreviewModalContainer {
+    width: max-content;
+    max-width: calc(100vw - 60px);
+  }
+
+  .itemPreviewImage {
+    max-width: 1000px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  #dashboardShop .shopAndBill {
+    flex-direction: column;
+    .bill {
+      width: 100%;
+    }
+    .shopSection {
+      max-width: unset;
+    }
+  }
+}

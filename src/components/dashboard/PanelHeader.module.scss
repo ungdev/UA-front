@@ -1,0 +1,129 @@
+@import '@/variables.scss';
+
+#panelHeader {
+    .header {
+      background: url('/images/background.jpg') center no-repeat;
+      background-size: cover;
+      height: 30vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+
+      &:before {
+        content: '';
+        background: $gradient;
+        opacity: 0.8;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+      }
+
+      .homeTitle {
+        margin: 1em auto;
+        padding: 1.5em;
+        background-color: $dark-color;
+        transform: skew(15deg);
+        filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
+
+        p {
+          font-family: $montserrat;
+          text-align: center;
+          color: white;
+          transform: skew(-15deg);
+          margin: 0;
+          font-size: 3rem;
+          text-transform: uppercase;
+          font-weight: 800;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .nav {
+      background: $primary-background;
+      height: 3.3rem;
+      display: flex;
+      flex-flow: row nowrap;
+      overflow-x: auto;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #0F2F3D;
+        opacity: 1;
+      }
+
+      .navLink {
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        text-decoration: unset;
+        font-family: $montserrat;
+        color: #fff;
+        min-width: max-content;
+        max-width: 160px;
+        background: transparent;
+        transition: all 0.3s;
+        height: 100%;
+        border-radius: 0%;
+        text-transform: unset;
+        font-weight: unset;
+
+        &:hover,
+        &.active {
+          background: #fff1;
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background: $title-color;
+          opacity: 0;
+          transition: all 0.3s;
+        }
+
+        &:hover:after{
+          opacity:0.1;
+        }
+
+        &.active::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    #panelHeader .header {
+      height: 15vh;
+
+      .homeTitle {
+        background: none;
+        transform: none;
+        margin: 0;
+        padding: 0;
+
+        p {
+          font-size: 1.5rem;
+          transform: skew(0deg);
+        }
+      }
+    }
+  }

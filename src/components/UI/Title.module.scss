@@ -1,0 +1,101 @@
+@import '@/variables.scss';
+
+$length: 4px;
+$doubleSize: 8px;
+$tenPlusLength: 13px;
+$tenMinusLength: 7px;
+$radius: 8px;
+
+.title {
+  margin-top: 0;
+  font-family: $montserrat;
+  font-weight: normal;
+  width: 100%;
+
+  &.gutterBottom {
+    margin-bottom: 0.5em;
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+  &.inherit {
+    text-align: inherit;
+  }
+
+  &.left {
+    text-align: left;
+  }
+
+  &.right {
+    text-align: right;
+  }
+
+  &.justify {
+    text-align: justify;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
+  &.title-1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: $lexend;
+    text-transform: uppercase;
+  }
+
+  &.title-2 {
+    font-family: $montserrat;
+    text-transform: uppercase;
+    overflow: hidden;
+    color: $primary-color;
+    position: relative;
+    font-size: 2.125rem;
+    display: flex;
+    align-items: center;
+    font-weight: 800;
+
+    .titleContent {
+      text-align: left;
+    }
+  }
+
+  &.title-3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  &.title-4 {
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .textDivider {
+    display: flex;
+    width: 100%;
+    align-items: center;
+
+    .titleContent {
+      padding: 0 1rem;
+      white-space: normal;
+      max-width: 90%;
+      flex-shrink: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .title {
+    &.title-1 {
+      font-size: 2rem;
+    }
+
+    &.title-2 {
+      font-size: 1.5rem;
+    }
+  }
+}

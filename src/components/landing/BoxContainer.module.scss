@@ -1,0 +1,79 @@
+@import '@/variables.scss';
+
+.boxContainer {
+    border: 8px solid #000;
+    color: #000;
+    background: #D9D9D9;
+    width: 85%;
+
+    .boxTitle {
+      &.pink {
+        background-color: $secondary-color;
+      }
+      &.blue {
+        background-color: $accent-color;
+      }
+        border-bottom: 8px solid #000;
+
+        padding: 5px 10px 5px 10px;
+
+        font-family: $lexend;
+        font-size: 1.25rem;
+        color: #000;
+
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+        svg {
+            width: 24px;
+        }
+    }
+
+    .boxContent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        flex-wrap: wrap;
+        padding: 50px 50px;
+
+        &.noPadding {
+            padding: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .boxContainer {
+        width: 95%;
+
+        .boxContent {
+            padding: 30px 30px;
+            flex-direction: column;
+
+
+            .verticalDivider {
+                display: none;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .boxContainer {
+        .boxTitle {
+            padding: 5px 0 5px 10px;
+        }
+
+        .boxContent {
+            padding: 30px 5px;
+            flex-direction: column;
+
+            .verticalDivider {
+                display: none;
+            }
+        }
+    }
+
+}

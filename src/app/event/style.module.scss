@@ -1,0 +1,187 @@
+@import '@/variables.scss';
+
+#eventPage {
+  margin-bottom: 10rem;
+
+  .primaryTitle {
+    text-align: center;
+    margin-top: 6rem;
+  }
+
+  .secondaryTitle {
+    width: 90%;
+    margin: 100px auto 70px auto;
+  }
+
+  .textAndImage {
+    display: flex;
+    overflow: hidden;
+    background-color: $light-blue;
+    color: #002d40;
+    max-height: 250px;
+
+    margin: 5rem 85px 0 85px;
+    border-radius: 1.25rem;
+
+    img {
+      aspect-ratio: 1 / 1;
+      width: 50%;
+      min-width: 250px;
+      object-fit: cover;
+
+    }
+
+    .text {
+      margin: 3.125rem 4.375rem;
+      font-size: 1.1rem;
+      line-height: 140%;
+      place-self: center;
+    }
+  }
+
+  .program {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 46px;
+    margin-top: 58px;
+
+    .boxContainer {
+      width: fit-content;
+    }
+  }
+
+  .place {
+    display: flex;
+    align-items: center;
+    margin: 100px 90px 0 48px;
+    gap: 70px;
+
+    iframe {
+      height: auto;
+      width: 60%;
+      min-width: 600px;
+      border-radius: 30px;
+      aspect-ratio: 3 / 2;
+    }
+
+    .text {
+      width: max-content;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 140%;
+    }
+  }
+
+  .steps {
+    list-style-type: none;
+    counter-reset: step-counter;
+    margin: 1rem 4rem;
+    padding: 0 2rem;
+
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+
+    .counter, .counterStroke {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0; // Prevents it from shrinking do to the <li> being flex
+      margin-right: 50px;
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      background-color: $light-blue;
+      border-radius: 100%;
+    }
+  }
+
+  table {
+    width: 80%;
+    margin: 1rem auto;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #eventPage {
+    .textAndImage {
+      flex-direction: column;
+      gap: 1.5rem;
+      max-height: unset;
+
+      &.imageLeft {
+        margin: 1rem 5%;
+        border-radius: 1.25rem;
+      }
+
+      &.imageRight {
+        margin: 1rem 5%;
+        border-radius: 1.25rem;
+      }
+
+      .text {
+        margin: 1rem 5%;
+        font-size: 1.25rem;
+      }
+
+      img {
+        order: -1;
+        width: 100%;
+      }
+    }
+
+    .program {
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .boxContainer {
+        width: 100%;
+      }
+    }
+
+    .place {
+      flex-direction: column;
+      margin: 50px auto 0 auto;
+      gap: 1.875rem;
+      width: 90%;
+
+      iframe {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .text {
+        order: -1;
+        line-height: 100%;
+        width: 100%;
+      }
+    }
+
+    .steps {
+      padding: 0;
+      text-align: center;
+      margin: 0 3%;
+
+      li {
+        flex-direction: column;
+
+        .counter {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    table {
+      margin: 1rem 3%;
+      width: 94%;
+    }
+  }
+}

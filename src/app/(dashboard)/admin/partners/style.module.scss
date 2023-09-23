@@ -1,0 +1,22 @@
+.partners {
+    padding: 3rem 5rem;
+
+    .titleContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        >*{
+            max-width: 50%;
+        }
+
+    }
+
+    .squareContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem 3rem;
+    }
+}

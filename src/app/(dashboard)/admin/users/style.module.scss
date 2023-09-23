@@ -1,0 +1,102 @@
+@import '@/variables.scss';
+
+#adminUser {
+  padding: 60px;
+
+  .rowAddButton {
+    display: flex;
+    padding: 10px;
+    flex-flow: row;
+    min-height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .userTitle {
+      width: fit-content;
+      margin: 0;
+    }
+
+    .addButton{
+      display: flex;
+      height: fit-content;
+      flex-flow: column;
+      align-items: center;
+      vertical-align: middle;
+    }
+  }
+
+  .filters {
+    background: $secondary-background;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: inset;
+    border-radius: 4px;
+
+    hr {
+      background: $primary-color !important;
+    }
+  }
+
+  .infoToDisplay {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+  }
+
+  .usersTable {
+    width: 100%;
+    margin: 20px 0;
+
+    tbody tr:hover {
+      background-color: #cccccc;
+      cursor: pointer;
+    }
+
+    tr > .tableColumnLockedLabel,
+    tr > .tableColumnPaidLabel,
+    tr > .tableColumnScannedLabel,
+    tr > .tableColumnPermissionsLabel,
+    tr > .tableColumnPlace {
+      text-align: center;
+    }
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  hr {
+    background: $gradient;
+    height: 2px;
+    width: 100%;
+    border: none;
+    margin: 20px 0;
+  }
+
+  .tableFooter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+
+    * {
+      padding: 0 12px;
+    }
+  }
+
+
+}
+@media screen and (max-width: 1024px) {
+    #adminUser {
+      .rowAddButton {
+        display: flex;
+        flex-flow: column;
+        vertical-align: middle;
+
+        .userTitle {
+          margin-bottom: 10px;
+          padding: 10px;
+        }
+      }
+    }
+  }
