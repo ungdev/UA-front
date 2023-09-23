@@ -56,6 +56,9 @@ dependencies:
   sharp:
     specifier: ^0.32.6
     version: 0.32.6
+  typescript:
+    specifier: ^5.2.2
+    version: 5.2.2
 
 devDependencies:
   '@storybook/addon-a11y':
@@ -136,9 +139,6 @@ devDependencies:
   storybook:
     specifier: ^7.4.4
     version: 7.4.4
-  typescript:
-    specifier: ^5.2.2
-    version: 5.2.2
 
 packages:
 
@@ -12611,7 +12611,6 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
