@@ -73,39 +73,39 @@
         &.constellation11 {
           left: 40%;
           top: 27px;
-          width: 113px;
+          width: 5%;
           transform: rotate(-90deg);
         }
 
         &.cloud3 {
           left: 70%;
-          width: 776px;
+          width: 35%;
         }
 
         &.constellation21 {
-          left: 24px;
+          left: -10px;
           top: 48%;
-          width: 188px;
+          width: 10%;
           transform: rotate(-45deg);
         }
 
         &.constellation22 {
           left: 45%;
           top: 28%;
-          width: 284px;
+          width: 15%;
         }
 
         &.constellation31 {
           left: 3%;
           top: 90%;
-          width: 218px;
+          width: 12%;
           transform: rotate(-80deg);
         }
 
         &.constellation12 {
-          left: 69%;
-          top: 108%;
-          width: 385px;
+          left: 50%;
+          top: 70%;
+          width: 20%;
           transform: rotate(-30deg);
         }
 
@@ -119,7 +119,7 @@
         &.constellation23 {
           left: 85%;
           top: 61%;
-          width: 218px;
+          width: 10%;
         }
       }
     }
@@ -131,7 +131,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .tournaments {
+  #tournamentLayout {
     .topContainer {
       .top {
         width: 80%;

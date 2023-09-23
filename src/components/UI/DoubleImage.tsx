@@ -31,7 +31,7 @@ export default function DoubleImage({
   return (
     <div className={`${styles.doubleImage} ${className}`}>
       <BoxContainer
-        title="image.jpg"
+        title="image1.jpg"
         padding={false}
         className={swapped != null ? (swapped ? styles.image1forward : styles.image1backward) : ''}>
         <img src={image1} alt="Information Image" onClick={swap} />

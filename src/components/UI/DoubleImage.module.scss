@@ -6,6 +6,7 @@
 
   > * {
     position: absolute;
+    z-index: 9;
 
     &:nth-child(1) {
       transform: translate(-25px, 25px);

@@ -211,7 +211,6 @@ export function TournamentHome({
             Tournois
           </Title>
           <Divider white className={styles.divider} />
-          {/*<Title type={2} align="center" className={styles.title}>Tournois</Title>*/}
         </div>
         <div className={styles.content}>
           <div className={styles.tournamentScrollContainer}>

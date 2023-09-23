@@ -177,29 +177,19 @@
   }
 }
 
-
-
-
-
-.information {
-  flex-direction: column;
-  align-items: center;
-  height: fit-content;
-  width: 90%;
-
-  .boxContainer {
-    margin-top: 10px;
-    width: 100%;
-
-    &.onTop {
-      align-self: center;
-    }
-  }
-}
-
-
 @media screen and (max-width: 1024px) {
   .tournamentContainer {
+
+    .pageTitle {
+      .divider:nth-of-type(1) {
+        margin-left: 10px;
+      }
+
+      .divider:nth-of-type(2) {
+        margin-right: 10px;
+      }
+    }
+
     .content {
       flex-direction: column;
 
