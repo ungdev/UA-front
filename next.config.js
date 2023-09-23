@@ -3,6 +3,7 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: false,
+  output: "standalone",
   // Define CSP policy
   async headers() {
     return [
