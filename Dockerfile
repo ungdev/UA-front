@@ -1,20 +1,38 @@
-FROM node:18
-
-ENV NODE_ENV=production
-WORKDIR /srv/app
-
+FROM node:18 AS base
 RUN npm install -g pnpm
 
-RUN chown node:node .
-
-USER node
+FROM base AS deps
+WORKDIR /srv/app
 
 COPY --chown=node:node package.json pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
-COPY --chown=node:node ./ ./
+FROM base AS builder
+WORKDIR /srv/app
+
+COPY --from=deps /srv/app/node_modules ./node_modules
+
+COPY --chown=node:node . .
 
 RUN pnpm build
 
-CMD pnpm start
+FROM base AS runner
+WORKDIR /srv/app
+ENV NODE_ENV=production
+
+COPY --from=builder /srv/app/public ./public
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown node:node .next
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=node:node /srv/app/.next/standalone ./
+COPY --from=builder --chown=node:node /srv/app/.next/static ./.next/static
+
+RUN chown node:node .
+USER node
+
+CMD ["node", "server.js"]
