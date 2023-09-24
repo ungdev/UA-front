@@ -6,7 +6,7 @@ import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { type Action } from '@reduxjs/toolkit';
 import { Tournament } from '@/types';
-import { Button, Title } from '@/components/UI';
+import { Button } from '@/components/UI';
 
 const TIME_BETWEEN_CARDS = 5000;
 const AUTOSLIDE = false;
@@ -241,12 +241,10 @@ export default function TournamentList({
           className={styles.card}
           style={
             {
-              '--background': `url(${getTournamentImageLink('csgo' /*tournament.id*/)})`,
+              '--background': `url(${getTournamentImageLink(tournament.id)})`,
             } as React.CSSProperties
           }>
-          <div className={styles.tournamentName}>
-            {tournament.name}
-          </div>
+          <div className={styles.tournamentName}>{tournament.name}</div>
           <a href={`/tournaments/${tournament.id}`}>
             <Button primary>Plus d'infos</Button>
           </a>
