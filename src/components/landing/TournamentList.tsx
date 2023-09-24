@@ -244,9 +244,9 @@ export default function TournamentList({
               '--background': `url(${getTournamentImageLink('csgo' /*tournament.id*/)})`,
             } as React.CSSProperties
           }>
-          <Title level={4} type={3} className={styles.tournamentName}>
+          <div className={styles.tournamentName}>
             {tournament.name}
-          </Title>
+          </div>
           <a href={`/tournaments/${tournament.id}`}>
             <Button primary>Plus d'infos</Button>
           </a>
