@@ -1,15 +1,35 @@
 @import '@/variables.scss';
 
-.not-found {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+#notFound {
   height: 80vh;
   background-color: $primary-background;
   color: white;
+
   p {
     font-size: 1.5em;
     font-weight: bold;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
+
+    span {
+      color: gray;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    margin: auto;
+
+    a {
+      width: 47%;
+
+      button {
+        width: 100%;
+        height: 66px;
+      }
+    }
   }
 }
