@@ -29,7 +29,7 @@ const TournamentModal = ({
   const [cashprize, setCashprize] = useState(tournament?.cashprize || null);
   const [cashprizeDetails, setCashprizeDetails] = useState(tournament?.cashprizeDetails || null);
   const [casters, setCasters] = useState<string[] | null>(
-    (tournament?.casters && tournament?.casters!.map((caster) => caster.name)) || null,
+    (tournament?.casters! && tournament?.casters!.length > 0 && tournament?.casters!.map((caster) => caster.name)) || null,
   );
   const [castersCount, setCastersCount] = useState((tournament?.casters && tournament?.casters!.length) || 0);
   const [display, setDisplay] = useState(tournament?.display || false);
