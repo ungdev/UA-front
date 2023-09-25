@@ -6,7 +6,7 @@ import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { type Action } from '@reduxjs/toolkit';
 import { Tournament } from '@/types';
-import { Button, Title } from '@/components/UI';
+import { Button } from '@/components/UI';
 
 const TIME_BETWEEN_CARDS = 5000;
 const AUTOSLIDE = false;
@@ -219,7 +219,11 @@ export default function TournamentList({
    * As long as we haven't received the tournaments we don't display anything.
    */
   if (!tournaments) {
-    return false;
+    return <div className={styles.message}>Chargement des tournois...</div>;
+  }
+
+  if (!tournaments.length) {
+    return <div className={styles.message}>Aucun tournois annoncé</div>;
   }
 
   /**
@@ -237,12 +241,10 @@ export default function TournamentList({
           className={styles.card}
           style={
             {
-              '--background': `url(${getTournamentImageLink('csgo' /*tournament.id*/)})`,
+              '--background': `url(${getTournamentImageLink(tournament.id)})`,
             } as React.CSSProperties
           }>
-          <Title level={4} type={3} className={styles.tournamentName}>
-            {tournament.name}
-          </Title>
+          <div className={styles.tournamentName}>{tournament.name}</div>
           <a href={`/tournaments/${tournament.id}`}>
             <Button primary>Plus d'infos</Button>
           </a>

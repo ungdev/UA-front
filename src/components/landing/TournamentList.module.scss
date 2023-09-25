@@ -21,7 +21,7 @@
 
     .card {
       position: absolute;
-      background: var(--background) no-repeat;
+      background: linear-gradient(0deg, rgba(black, 0.8) 25%, rgba(black, 0) 70%), var(--background) no-repeat;
       background-size: cover;
       width: auto;
       height: 100%;  // {4}
@@ -30,39 +30,36 @@
       border-radius: 5%;
       z-index: calc(var(--visibility) * 10);
       opacity: var(--visibility);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-left: 41px;
+      padding-bottom: 50px;
+      gap: 20px;
 
       .tournamentName {
-        text-align: center;
         width: 80%;
-        margin: 30px auto auto;
-        font-size-adjust: 0.5 !important;
-        opacity: 1;
-        color: $title-color;
-        font-weight: 800;
+        color: white;
+        font-weight: 900;
+        font-size: 2.5rem;
         text-transform: uppercase;
       }
     }
   }
 }
 
+.message {
+  text-align: center;
+}
+
 @media screen and (max-width: 1024px) {
   .tournamentList {
     aspect-ratio: 5 / 3;
+
     .cardPositionner {
-      //height: 150%;
       min-width: 65%;
 
       .card {
-        --guess01: calc((var(--visibility) + ( var(--visibility) / var(--visibility))) / 2);
-        --guess02: calc((var(--guess01) + ( var(--visibility) / var(--guess01))) / 2);
-        --guess03: calc((var(--guess02) + ( var(--visibility) / var(--guess02))) / 2);
-        --guess04: calc((var(--guess03) + ( var(--visibility) / var(--guess03))) / 2);
-        --guess05: calc((var(--guess04) + ( var(--visibility) / var(--guess04))) / 2);
-        --guess06: calc((var(--guess05) + ( var(--visibility) / var(--guess05))) / 2);
-        --guess07: calc((var(--guess06) + ( var(--visibility) / var(--guess06))) / 2);
-        --guess08: calc((var(--guess07) + ( var(--visibility) / var(--guess07))) / 2);
-        --guess09: calc((var(--guess08) + ( var(--visibility) / var(--guess08))) / 2);
-        --guess10: calc((var(--guess09) + ( var(--visibility) / var(--guess09))) / 2);
         opacity: var(--non-linear-visibility)
       }
     }
