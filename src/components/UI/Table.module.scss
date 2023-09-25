@@ -49,4 +49,10 @@
     color: #818181;
     padding: 1em 0;
   }
+
+  .pagination {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
 }

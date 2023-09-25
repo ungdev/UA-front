@@ -74,13 +74,13 @@ const Table = ({
       </tbody>
     </table>
     {pagination && (
-      <div>
-        <p>
-          Page {paginationOptions!.page + 1} / {Math.ceil(paginationOptions!.total / paginationOptions!.pageSize)}
-        </p>
+      <div className={styles.pagination}>
         <div onClick={() => paginationOptions!.page < 1 || paginationOptions!.goToPage(paginationOptions!.page - 1)}>
           <Icon name={IconName.ChevronLeft} />
         </div>
+        <p>
+          Page {paginationOptions!.page + 1} / {Math.ceil(paginationOptions!.total / paginationOptions!.pageSize)}
+        </p>
         <div
           onClick={() =>
             paginationOptions!.page >= paginationOptions!.total / paginationOptions!.pageSize - 1 ||
