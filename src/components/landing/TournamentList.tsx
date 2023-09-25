@@ -152,7 +152,7 @@ export default function TournamentList({
    * Basically, scrolling forwards or backwards of this amounts will be seamless.
    */
   const getScrollLoopLength = () => {
-    return tournaments!.length * (0.2 * cardsRef.current!.offsetWidth);
+    return cardsRef.current!.scrollWidth / 3;
   };
 
   /**
