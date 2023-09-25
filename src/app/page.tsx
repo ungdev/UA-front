@@ -114,7 +114,7 @@ const Home = () => {
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title align="center">Les tournois de l'UA23</Title>
+          <Title>Les tournois de l'UA23</Title>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Tortor id aliquet lectus proin nibh nisl condimentum id. Nisi lacus sed viverra tellus in hac
           habitasse. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. In est ante in nibh mauris
