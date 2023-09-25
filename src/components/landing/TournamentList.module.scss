@@ -12,7 +12,9 @@
   z-index: initial;
   overflow-x: scroll;
   overflow-y: clip;
-  scrollbar-width: none;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 
   .cardPositionner {
     position: relative;
