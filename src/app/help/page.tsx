@@ -33,10 +33,10 @@ const faq: Faq = {
       answer: (
         <>
           Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra que
-          tu présentes l'autorisation parentale{' '}
-          <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
+          tu présentes <strong>l'autorisation parentale</strong>{' '}
+          {/* <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
             disponible ici
-          </a>
+          </a> */}
           , <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
           avant d'accéder à l'UTT Arena.
         </>
@@ -46,7 +46,7 @@ const faq: Faq = {
       question: 'Puis-je streamer pendant les tournois ?',
       answer: (
         <>
-          Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
+          {/* Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
           streaming est{' '}
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSe4kRFmgsZUHoL1ygp0Axu83HkaopKu-Dj6oL14jrvEhdrfog/viewform"
@@ -54,7 +54,9 @@ const faq: Faq = {
             disponible ici
           </a>
           . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
-          streaming sans autorisation validée par l'équipe se verra sanctionnée.
+          streaming sans autorisation validée par l'équipe se verra sanctionnée. */}
+
+          L'équipe de l'UTT Arena communiquera prochainement sur les conditions de streaming.
         </>
       ),
     },
@@ -241,7 +243,7 @@ const Help = () => {
 
   return (
     <div className={styles.helpContainer}>
-      <div id={styles.faq}>
+      <div id="faq" className={styles.faq}>
         <Title level={2} type={1} align="center">
           FAQ
         </Title>
@@ -271,7 +273,7 @@ const Help = () => {
           </div>
         ))}
       </div>
-      <div id={styles.contact}>
+      <div id="contact" className={styles.contact}>
         <Title level={2} type={1} align="center">
           Contact
         </Title>
