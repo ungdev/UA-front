@@ -55,7 +55,6 @@ const faq: Faq = {
           </a>
           . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
           streaming sans autorisation validée par l'équipe se verra sanctionnée. */}
-
           L'équipe de l'UTT Arena communiquera prochainement sur les conditions de streaming.
         </>
       ),
