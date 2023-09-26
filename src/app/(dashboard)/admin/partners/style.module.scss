@@ -18,5 +18,9 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 2rem 3rem;
+
+        img {
+            max-width: 85%;
+        }
     }
 }

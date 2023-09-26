@@ -34,6 +34,8 @@
 
   .mainContent {
     position: relative;
+    padding-bottom: 3rem;
+    height: 120vh;
 
     .background {
       background-size: cover;
@@ -123,10 +125,6 @@
         }
       }
     }
-  }
-
-  .partners {
-    padding-top: 120px;
   }
 }
 

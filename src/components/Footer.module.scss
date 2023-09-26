@@ -111,17 +111,24 @@
 
   .middle {
     display: block;
+    
+    button {
+      padding-left: 0;
+    }
   }
 
   .right {
     padding-right: 30px;
+
+    button {
+      padding-left: 0;
+    }
   }
 
   .socials {
     display: flex;
     gap: 0.375rem;
     margin-top: 8px;
-    margin-left: 1.25rem;
 
     a {
       width: 24px;

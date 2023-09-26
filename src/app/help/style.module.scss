@@ -3,12 +3,12 @@
 .helpContainer {
   padding: 5rem 0;
 
-  #faq, #contact {
+  .faq, .contact {
     width: clamp(300px, 80%, 1200px);
     margin: auto;
   }
 
-  #faq {
+  .faq {
     margin-bottom: 3rem;
 
     .category {
