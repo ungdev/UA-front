@@ -1,3 +1,4 @@
+'use client';
 import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
@@ -24,12 +25,12 @@ const waitingPlayersColumns = [
 
 const initialModal = { onOk: () => {}, visible: false, content: '', title: '' };
 
-const Team = () => {
+const Page = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useAppDispatch();
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
   const { id, teamId } = useAppSelector((state) => state.login.user || { id: '', teamId: null });
-  const team = useAppSelector((state) => state.team);
+  const team = useAppSelector((state) => state.team.team);
   const slotsTournament = useAppSelector((state) => state.tournament.slots);
 
   const isCaptain = team && team.captainId === id;
@@ -455,4 +456,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default Page;
