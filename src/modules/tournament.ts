@@ -9,12 +9,12 @@ export interface TournamentAction {
       total: number;
       available: number;
     };
-  };
+  } | null;
 }
 
 const initialState: TournamentAction = {
   tournaments: null,
-  slots: {},
+  slots: null,
 };
 
 export const tournamentSlice = createSlice({
