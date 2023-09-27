@@ -29,7 +29,7 @@ const Account = () => {
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
-      setDiscordLink(res.data.link);
+      setDiscordLink(res.link);
     });
     // Scroll to discord section (as it may be below information section)
     if (window.location.href.endsWith('#discord')) discordLinkRef.current!.scrollIntoView();
