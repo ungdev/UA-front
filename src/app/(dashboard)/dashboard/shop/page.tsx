@@ -32,7 +32,7 @@ const Shop = () => {
   // The list of all items available
   const [items, setItems] = useState<Item[] | null>(null);
   // The team the player is in
-  const team = useAppSelector((state) => state.team);
+  const team = useAppSelector((state) => state.team.team);
   // The members of the team are the players and the coaches
   const [teamMembers, setTeamMembers] = useState<User[] | null>(null);
   // If the CGV case is checked or not
