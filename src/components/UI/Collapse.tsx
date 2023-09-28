@@ -61,7 +61,7 @@ const Collapse = ({
   }
 
   return (
-    <div id={id} className={`${styles.collapse} ${className} ${contentVisible ? 'active' : ''}`}>
+    <div id={id} className={`${styles.collapse} ${className} ${contentVisible ? styles.active : ''}`}>
       <div className={styles.collapseTitle} onClick={() => setVisible(!contentVisible)}>
         <div className={styles.left}>
           <div className={styles.collapseArrow}>

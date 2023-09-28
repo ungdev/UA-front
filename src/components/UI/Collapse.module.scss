@@ -20,12 +20,8 @@
     transition: all 0.3s ease-in-out;
   }
 
-  &:hover {
-    background-color: $light-color;
-
-    &:not(.active):after {
-      width: 0;
-    }
+  &:hover:not(.active):after {
+    width: 0;
   }
 
   .collapseTitle {
@@ -35,6 +31,10 @@
     padding: 1em;
     font-family: $montserrat;
     font-weight: 600;
+
+    &:hover {
+      background-color: $light-color;
+    }
 
     .left {
       display: flex;
