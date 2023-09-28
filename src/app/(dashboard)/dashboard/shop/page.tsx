@@ -295,7 +295,7 @@ const Shop = () => {
   };
 
   return (
-    <div id={styles.dashboardShop}>
+    <div id="dashboard-shop" className={styles.dashboardShop}>
       <div className={styles.shopAndBill}>
         <div>
           <div className={styles.shopSection}>

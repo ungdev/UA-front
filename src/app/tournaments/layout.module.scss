@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#tournamentLayout {
+.tournamentLayout {
   .topContainer {
     background-color: $primary-background;
     padding: 100px 0 100px 0;
@@ -129,7 +129,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #tournamentLayout {
+  .tournamentLayout {
     .topContainer {
       .top {
         width: 80%;

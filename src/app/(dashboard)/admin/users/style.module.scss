@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#adminUser {
+.adminUser {
   padding: 60px;
 
   .rowAddButton {
@@ -87,7 +87,7 @@
 
 }
 @media screen and (max-width: 1024px) {
-    #adminUser {
+    .adminUser {
       .rowAddButton {
         display: flex;
         flex-flow: column;

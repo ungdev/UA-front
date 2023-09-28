@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const Legal = () => (
-  <div id={styles.legal}>
+  <div id="legal" className={styles.legal}>
     <div className={styles.container}>
       <Title level={1} type={1} align="center">
         Mentions légales

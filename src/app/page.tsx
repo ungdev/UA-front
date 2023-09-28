@@ -20,7 +20,7 @@ import TournamentList from '@/components/landing/TournamentList';
 
 const Home = () => {
   return (
-    <div id={styles.home}>
+    <div id="home" className={styles.home}>
       <Parallax className={styles.parallax}>
         <ParallaxElementSettings speed={2.6} className={styles.parallaxCloud1}>
           <img src={parallaxCloud1.src} alt="background" />
@@ -45,7 +45,7 @@ const Home = () => {
         className={styles.slider}
         slides={[
           <div key={'slide-1'} className={styles.homeHeader}>
-            <div id={styles.logo}>
+            <div id="logo" className={styles.logo}>
               <img src="/images/logo-notext.png" alt="Logo" />
             </div>
             <div className={styles.homeTitle}>

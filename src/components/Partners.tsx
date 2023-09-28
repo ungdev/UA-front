@@ -21,7 +21,7 @@ export default function Partners() {
   }, []);
 
   return (
-    <div id={styles.partners}>
+    <div id="partners" className={styles.partners}>
       {!partners || partners.length === 0
         ? 'Chargement des partenaires...'
         : partners?.map((partner: Partner, i: number) => (

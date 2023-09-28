@@ -123,7 +123,7 @@ const Users = () => {
   };
 
   return (
-    <div id={styles.adminUser}>
+    <div id="admin-user" className={styles.adminUser}>
       {isAdmin && (
         <div className={styles.rowAddButton}>
           <Title level={3} type={1} className={styles.userTitle}>

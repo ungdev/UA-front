@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#dashboardTeam {
+.dashboardTeam {
   .tablePlayers {
     width: 100%;
     margin-bottom: 30px;
@@ -100,19 +100,19 @@
 }
 
 @media screen and (max-width: 1300px) {
-  #dashboardTeam .teamMatch {
+  .dashboardTeam .teamMatch {
     width: calc(100% / 3 - 20px);
   }
 }
 
 @media screen and (max-width: 1100px) {
-  #dashboardTeam .teamMatch {
+  .dashboardTeam .teamMatch {
     width: calc(50% - 20px);
   }
 }
 
 @media screen and (max-width: 600px) {
-  #dashboardTeam .teamMatch {
+  .dashboardTeam .teamMatch {
     width: 100%;
   }
 }

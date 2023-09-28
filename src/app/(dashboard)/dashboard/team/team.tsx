@@ -268,7 +268,7 @@ const Team = () => {
   }
 
   return (
-    <div id={styles.dashboardTeam}>
+    <div id="dashboard-team" className={styles.dashboardTeam}>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
           {!isSolo && (

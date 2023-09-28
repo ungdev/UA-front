@@ -7,7 +7,7 @@ $scrollingAnimationDuration: 0.5s;
   top: 20px;
 }
 
-#header {
+.header {
   height: 100px;
   background-color: $secondary-background;
   position: sticky;
@@ -193,7 +193,7 @@ $scrollingAnimationDuration: 0.5s;
 }
 
 @media screen and (max-width: 1024px) {
-  #header {
+  .header {
     .content nav {
       .burgerContainer {
         display: block !important;

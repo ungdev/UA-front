@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <>
-      <div id={styles.eventPage}>
+      <div id="event-page" className={styles.eventPage}>
         <Title level={1} className={styles.primaryTitle}>
           Événement
         </Title>

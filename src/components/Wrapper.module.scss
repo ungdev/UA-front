@@ -1,11 +1,11 @@
-#loading {
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-#pageContainer {
+.pageContainer {
   min-height: 100vh;
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#home {
+.home {
   position: relative;
   display: flex;
   justify-content: center;
@@ -74,7 +74,7 @@
         position: absolute;
       }
 
-      #logo {
+      .logo {
         max-height: 40%;
         max-width: 60%;
         margin: 0 auto;
@@ -226,7 +226,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  #home {
+  .home {
     .slider {
       .videoContainer {
         width: 100%;
@@ -236,7 +236,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #home {
+  .home {
     .slider {
       .homeHeader {
         .homeTitle {
@@ -278,7 +278,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  #home {
+  .home {
     .slider {
       .homeHeader {
         .homeTitle {

@@ -6,7 +6,7 @@ import { Title, Button } from '@/components/UI';
 export default function NotFound() {
   return (
     <>
-      <div id={styles.notFound}>
+      <div id="not-found" className={styles.notFound}>
         <Title level={1} type={1} align="center">
           Page introuvable
         </Title>

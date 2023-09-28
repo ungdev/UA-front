@@ -185,11 +185,11 @@ export default function Wrapper({
     <>
       <CookieConsent />
       {isLoading || (isDashboard && !isLoggedIn) ? (
-        <main id={styles.loading}>
+        <main id="loading" className={styles.loading}>
           <Loading />
         </main>
       ) : (
-        <div id={styles.pageContainer}>
+        <div id="page-container" className={styles.pageContainer}>
           <Header connected={isLoggedIn} admin={isAdmin} />
           <main>{children}</main>
           <Footer />

@@ -109,8 +109,8 @@ export default function Header({
       <div className={styles.scrollTrigger} ref={trigger as MutableRefObject<HTMLDivElement>} />
       <header
         ref={header as MutableRefObject<HTMLDivElement>}
-        id={styles.header}
-        className={scrolled ? styles.scrolled : ''}>
+        id="header"
+        className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.content}>
           <Link href="/">
             <img src={logo.src} alt="Logo UA23" />

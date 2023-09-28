@@ -82,7 +82,7 @@ const Account = () => {
   };
 
   return (
-    <div id={styles.dashboardAccount}>
+    <div id="dashboard-account" className={styles.dashboardAccount}>
       <div className={styles.infos}>
         <Title level={4}>Mes informations</Title>
 

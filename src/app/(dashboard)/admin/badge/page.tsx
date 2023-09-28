@@ -37,7 +37,7 @@ export default function BadgePage() {
   document.documentElement.style.setProperty('--half-size', crop ? `${crop.width / 2}px` : '0px');
 
   return (
-    <div id={styles.badgePage}>
+    <div id="badge-page" className={styles.badgePage}>
       <FileUpload
         label="La photo sur ton badge"
         value={'test'}
