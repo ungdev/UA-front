@@ -27,6 +27,7 @@ $scrollingAnimationDuration: 0.5s;
       height: auto;
       vertical-align: middle;
       width: 75px;
+      transition: width calc($scrollingAnimationDuration / 2) ease-in-out;
     }
 
     nav {
@@ -166,6 +167,11 @@ $scrollingAnimationDuration: 0.5s;
 
   &.scrolled {
     height: 75px;
+
+    img {
+      width: 60px;
+    }
+
     nav {
       .underlineButton:not(.primary, .secondary):after {
         opacity: 0;
