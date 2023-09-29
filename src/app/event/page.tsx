@@ -1,5 +1,5 @@
 import styles from './style.module.scss';
-import { Table, Title } from '@/components/UI';
+import { Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
 import foo from '@/../public/images/foo.png';
 import bar from '@/../public/images/bar.png';
