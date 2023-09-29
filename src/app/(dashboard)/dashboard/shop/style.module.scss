@@ -1,4 +1,4 @@
-#dashboardShop {
+.dashboardShop {
   .shopAndBill {
     display: flex;
     flex-direction: row;
@@ -61,7 +61,7 @@
 }
 
 @media screen and (max-width: 1600px) {
-  #dashboardShop .shopAndBill {
+  .dashboardShop .shopAndBill {
     flex-direction: column;
     .bill {
       width: 100%;

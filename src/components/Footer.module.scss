@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#footer {
+.footer {
   background-color: $secondary-background;
   padding-bottom: 20px;
   overflow: hidden;
@@ -111,7 +111,7 @@
 
   .middle {
     display: block;
-    
+
     button {
       padding-left: 0;
     }
@@ -149,7 +149,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #footer {
+  .footer {
     .row {
       align-items: center;
       flex-direction: column;

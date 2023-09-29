@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#dashboardRegister {
+.dashboardRegister {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,7 +145,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  #dashboardRegister {
+  .dashboardRegister {
     .teamTournament > div,
     .joinSolo > div {
       width: 100%;

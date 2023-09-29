@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#tournamentLayout {
+.tournamentLayout {
   .topContainer {
     background-color: $primary-background;
     padding: 100px 0 100px 0;
@@ -98,8 +98,8 @@
         }
 
         &.constellation31 {
-          left: 3%;
-          top: 90%;
+          left: 9%;
+          top: 75%;
           width: 12%;
           transform: rotate(-80deg);
         }
@@ -129,7 +129,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #tournamentLayout {
+  .tournamentLayout {
     .topContainer {
       .top {
         width: 80%;

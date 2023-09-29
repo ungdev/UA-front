@@ -1,4 +1,4 @@
-#cookieConsent {
+.cookieConsent {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -28,7 +28,7 @@
 }
 
 @media screen and (max-width: 650px) {
-  #cookieConsent {
+  .cookieConsent {
     width: 100%;
     padding: 10px;
     left: 0;
@@ -37,7 +37,7 @@
 }
 
 @media screen and (max-width: 350px) {
-  #cookieButton {
+  .cookieButton {
     width: 100%;
   }
 }

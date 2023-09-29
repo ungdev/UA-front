@@ -39,7 +39,7 @@ export default function CookieConsent({
   }
 
   return (
-    <div id={styles.cookieConsent}>
+    <div id="cookie-content" className={styles.cookieConsent}>
       Nous utilisons les cookies pour proposer et améliorer nos services. En appuyant sur J'accepte, tu consens
       {' à'} l'utilisation de ces cookies. <Link href="/legal">En&nbsp;savoir&nbsp;plus</Link>
       <br />

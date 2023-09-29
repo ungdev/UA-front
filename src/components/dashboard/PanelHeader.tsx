@@ -15,7 +15,7 @@ const PanelHeader = ({
   /** The title */
   title: string;
 }) => (
-  <div id={styles.panelHeader}>
+  <div id="panel-header" className={styles.panelHeader}>
     <div className={styles.header}>
       <div className={styles.homeTitle}>
         <p>{title}</p>

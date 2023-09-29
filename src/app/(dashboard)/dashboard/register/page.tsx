@@ -327,7 +327,11 @@ const Register = () => {
     );
   };
 
-  return <div id={styles.dashboardRegister}>{Stepper()}</div>;
+  return (
+    <div id="dashboard-register" className={styles.dashboardRegister}>
+      {Stepper()}
+    </div>
+  );
 };
 
 export default Register;

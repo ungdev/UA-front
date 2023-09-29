@@ -24,7 +24,7 @@ const Entry = () => {
   };
 
   return (
-    <div id={styles.adminEntry}>
+    <div id="admin-entry" className={styles.adminEntry}>
       <div className={styles.scan}>
         <Title level={2} type={2}>
           Scanner une place

@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#home {
+.home {
   position: relative;
   display: flex;
   justify-content: center;
@@ -74,7 +74,7 @@
         position: absolute;
       }
 
-      #logo {
+      .logo {
         max-height: 40%;
         max-width: 60%;
         margin: 0 auto;
@@ -206,9 +206,19 @@
     }
 
     .text {
-      width: 40%;
+      min-width: 35%;
+      max-width: 35%;
       z-index: 3;
-      padding: 30px 70px 30px 0;
+      padding: 50px 0px 30px 0;
+
+      .textContent {
+        color: #fff;
+        font-family: $montserrat;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: justify;
+      }
     }
 
     .list {
@@ -226,7 +236,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-  #home {
+  .home {
     .slider {
       .videoContainer {
         width: 100%;
@@ -236,7 +246,7 @@
 }
 
 @media screen and (max-width: 1024px) {
-  #home {
+  .home {
     .slider {
       .homeHeader {
         .homeTitle {
@@ -278,7 +288,7 @@
 }
 
 @media screen and (max-width: 700px) {
-  #home {
+  .home {
     .slider {
       .homeHeader {
         .homeTitle {

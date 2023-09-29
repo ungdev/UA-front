@@ -24,7 +24,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <div id={styles.tournamentLayout}>
+    <div id="tournament-layout" className={styles.tournamentLayout}>
       <div className={styles.topContainer}>
         <div className={styles.top}>
           <Title level={3} type={1} align={'center'}>
