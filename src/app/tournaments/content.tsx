@@ -92,20 +92,20 @@ export function TournamentHome({
 
     // left/top side
     if (isLeft) {
-      if (leftArrow.current) leftArrow.current!.classList.add('hidden');
-      if (tournamentList.current) tournamentList.current!.classList.remove('fade-top');
+      if (leftArrow.current) leftArrow.current!.classList.add(styles.hidden);
+      if (tournamentList.current) tournamentList.current!.classList.remove(styles.fadeTop);
     } else {
-      if (leftArrow.current) leftArrow.current!.classList.remove('hidden');
-      if (tournamentList.current) tournamentList.current!.classList.add('fade-top');
+      if (leftArrow.current) leftArrow.current!.classList.remove(styles.hidden);
+      if (tournamentList.current) tournamentList.current!.classList.add(styles.fadeTop);
     }
 
     // right/bottom side
     if (isRight) {
-      if (rightArrow.current) rightArrow.current!.classList.add('hidden');
-      if (tournamentList.current) tournamentList.current!.classList.remove('fade-bottom');
+      if (rightArrow.current) rightArrow.current!.classList.add(styles.hidden);
+      if (tournamentList.current) tournamentList.current!.classList.remove(styles.fadeBottom);
     } else {
-      if (rightArrow.current) rightArrow.current!.classList.remove('hidden');
-      if (tournamentList.current) tournamentList.current!.classList.add('fade-bottom');
+      if (rightArrow.current) rightArrow.current!.classList.remove(styles.hidden);
+      if (tournamentList.current) tournamentList.current!.classList.add(styles.fadeBottom);
     }
 
     // if screen is too large (max-width: 1024px), don't do anything more
