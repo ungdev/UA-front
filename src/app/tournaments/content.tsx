@@ -92,7 +92,7 @@ export function TournamentHome({
 
     // left/top side
     if (isLeft) {
-      if (leftArrow.current) { leftArrow.current!.classList.add(styles.hidden); }
+      if (leftArrow.current) leftArrow.current!.classList.add(styles.hidden);
       if (tournamentList.current) tournamentList.current!.classList.remove(styles.fadeTop);
     } else {
       if (leftArrow.current) leftArrow.current!.classList.remove(styles.hidden);
