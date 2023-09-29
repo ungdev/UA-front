@@ -115,15 +115,13 @@ const Home = () => {
       <div className={styles.tournaments}>
         <div className={styles.text}>
           <Title>Les tournois de l'UA23</Title>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Tortor id aliquet lectus proin nibh nisl condimentum id. Nisi lacus sed viverra tellus in hac
-          habitasse. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. In est ante in nibh mauris
-          cursus mattis. Sit amet risus nullam eget felis eget nunc lobortis mattis. Pulvinar elementum integer enim
-          neque volutpat. Consectetur adipiscing elit pellentesque habitant morbi. Neque ornare aenean euismod
-          elementum. In ante metus dictum at tempor. Justo laoreet sit amet cursus sit amet dictum. Massa tempor nec
-          feugiat nisl. Egestas erat imperdiet sed euismod nisi. Risus pretium quam vulputate dignissim. Rutrum quisque
-          non tellus orci. Odio ut sem nulla pharetra. Eget magna fermentum iaculis eu non diam. Duis at tellus at urna
-          condimentum mattis pellentesque id.
+          <div className={styles.textContent}>
+            Cette année, l’UTT Arena propose 8 tournois aux joueurs : League of Legend, Counter-Strike 2, Rocket League,
+            Super Smash Bros Ultimate, Teamfight Tactics, Osu!, Pokémon et un tournoi libre. Tous les tournois donnent
+            accès à la salle, à la buvette et à ses autres activités du vendredi soir au dimanche en 24h/24. Tous les
+            joueurs des tournois PC et libre (donc hors SSBU et Pokémon) auront accès à une place assise fixe où
+            installer son ordinateur. N’hésitez pas et rejoignez-nous dans l’arène !
+          </div>
         </div>
         <TournamentList className={styles.list} />
       </div>

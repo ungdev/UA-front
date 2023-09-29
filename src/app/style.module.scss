@@ -206,9 +206,19 @@
     }
 
     .text {
-      width: 40%;
+      min-width: 35%;
+      max-width: 35%;
       z-index: 3;
-      padding: 30px 70px 30px 0;
+      padding: 50px 0px 30px 0;
+
+      .textContent {
+        color: #fff;
+        font-family: $montserrat;
+        font-size: 1.25rem;
+        font-weight: 500;
+        line-height: 1.5;
+        text-align: justify;
+      }
     }
 
     .list {

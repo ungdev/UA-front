@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <>
       <div id="event-page" className={styles.eventPage}>
-        <Title level={1} className={styles.primaryTitle}>
+        <Title level={1} className={styles.primaryTitle} align="center">
           Événement
         </Title>
         <Title level={2} type={2} className={styles.secondaryTitle}>
@@ -116,7 +116,8 @@ export default function Page() {
             Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !
           </li>
         </ol>
-        <Table
+        {/* TODO : tenter de retourner le tableau pour voir ce que ça donne */}
+        {/*<Table
           columns={[
             { key: 'type', title: 'Type' },
             { key: 'price', title: 'Prix' },
@@ -125,21 +126,33 @@ export default function Page() {
           dataSource={[
             {
               type: 'Joueur',
-              price: '10€',
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+              price: '-',
+              description: 'Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
-              type: 'Visiteur',
-              price: '5€',
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+              type: 'Coach / Manager',
+              price: '-',
+              description:
+                'Un justificatif pourra vous être demandé. Le nombre limite de coachs / managers par équipe sera précisé ultérieurement.',
+            },
+            {
+              type: 'Accompagnateur',
+              price: '-',
+              description: 'Réservé aux accompagnateurs de joueurs mineurs',
+            },
+            {
+              type: 'Spectateur',
+              price: '-',
+              description:
+                "Possibilité d'accéder à l'UTT Arena, sa restauration et ses activités pendant tout le weekend",
             },
             {
               type: 'Bénévole',
-              price: 'Gratuit',
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+              price: '-',
+              description: '-----',
             },
           ]}
-        />
+        />*/}
       </div>
       <Partners />
     </>
