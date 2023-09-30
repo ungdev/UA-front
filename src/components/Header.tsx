@@ -24,8 +24,7 @@ export default function Header({
   admin?: boolean;
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  // null is when the page has never been scrolled yet
-  const [scrolled, setScrolled] = useState(null as boolean | null);
+  const [scrolled, setScrolled] = useState(false);
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
@@ -105,12 +104,9 @@ export default function Header({
   );
 
   return (
-    <>
+    <div className={`${styles.headerWrapper} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.scrollTrigger} ref={trigger as MutableRefObject<HTMLDivElement>} />
-      <header
-        ref={header as MutableRefObject<HTMLDivElement>}
-        id="header"
-        className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <header ref={header as MutableRefObject<HTMLDivElement>} id="header" className={styles.header}>
         <div className={styles.content}>
           <Link href="/">
             <img src={logo.src} alt="Logo UA23" />
@@ -153,6 +149,6 @@ export default function Header({
           </Modal>
         )}
       </header>
-    </>
+    </div>
   );
 }
