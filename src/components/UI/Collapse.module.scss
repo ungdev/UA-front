@@ -101,3 +101,11 @@
     transform: rotate(180deg);
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .collapse {
+    .right > button {
+      pointer-events: none;
+    }
+  }
+}
