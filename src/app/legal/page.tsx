@@ -214,14 +214,14 @@ const Legal = () => (
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 11 - Émission et condition d’utilisation des billets
       </Title>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Livraison
       </Title>
       <p>
         Les billets électroniques ou un lien permettant de les télécharger sont envoyés sur la messagerie électronique
         de l’acheteur après chaque commande.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Support
       </Title>
       <p>
@@ -231,7 +231,7 @@ const Legal = () => (
         responsabilité concernant toute anomalie pouvant survenir au cours d’une commande, du téléchargement ou de
         l’impression d’un billet. Il ne sera remis aucun duplicata autre que le seul billet initial.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Unicité
       </Title>
       <p>
@@ -241,7 +241,7 @@ const Legal = () => (
         uniquement valable pour le lieu, la date et l'heure auquel il appartient. Le billet doit être conservé jusqu’à
         la fin de l’événement.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Contrôle
       </Title>
       <p>
@@ -251,7 +251,7 @@ const Legal = () => (
         présentation du billet, un bracelet sera remis au participant. Ce bracelet sera valable pendant toute la durée
         de l’événement. En cas de perte du bracelet, une nouvelle vérification d’identité sera effectuée.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Justificatif
       </Title>
       <p>
