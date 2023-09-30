@@ -216,7 +216,7 @@ const Help = () => {
       const element = document.getElementById(hash.substring(1));
       if (element) {
         // Scroll to the element to make it center on the page
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 

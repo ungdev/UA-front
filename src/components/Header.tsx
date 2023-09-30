@@ -24,7 +24,7 @@ export default function Header({
   admin?: boolean;
 }) {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true);
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
