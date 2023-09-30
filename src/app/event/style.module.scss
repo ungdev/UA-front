@@ -3,6 +3,10 @@
 .eventPage {
   margin-bottom: 10rem;
 
+  .elementWithRef {
+    scroll-margin-top: 80px;
+  }
+
   .primaryTitle {
     text-align: center;
     margin-top: 6rem;

@@ -174,7 +174,6 @@
       justify-content: center;
       align-items: center;
       gap: 3rem;
-      color: $secondary-color;
 
       .moreInfoContainer {
         height: 100%;
@@ -185,6 +184,8 @@
         font-family: $montserrat;
         font-size: 1.75rem;
         font-weight: 600;
+        color: $secondary-color;
+        text-decoration: none;
       }
     }
   }

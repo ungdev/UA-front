@@ -107,14 +107,14 @@ const Home = () => {
           Alors prépare tout ton stuff et impose toi dans l’arène !
         </TextBlock>
         <div className={styles.moreInfo}>
-          <div className={styles.moreInfoContainer}>
+          <Link href={'/event#location'} className={styles.moreInfoContainer}>
             <Icon name={IconName.MapPin} />
             TROYES
-          </div>
-          <div className={styles.moreInfoContainer}>
+          </Link>
+          <Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
             1, 2, 3 Décembre 2023
-          </div>
+          </Link>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>

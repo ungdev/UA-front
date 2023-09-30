@@ -43,7 +43,7 @@ export default function Page() {
           </div>
           <img src={bar.src} alt="bar" />
         </div>
-        <Title level={2} type={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
         </Title>
         <div className={styles.program}>
@@ -57,7 +57,7 @@ export default function Page() {
             <p>TBA...</p>
           </BoxContainer>
         </div>
-        <Title level={2} type={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
           Lieu
         </Title>
         <div className={styles.place}>
