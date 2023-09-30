@@ -1,3 +1,4 @@
+'use client';
 import styles from './style.module.scss';
 import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
@@ -17,8 +18,12 @@ import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
 import TournamentList from '@/components/landing/TournamentList';
+import { setLoginModalVisible } from '@/modules/loginModal';
+import { useAppDispatch } from '@/lib/hooks';
+import { type Action } from '@reduxjs/toolkit';
 
 const Home = () => {
+  const dispatch = useAppDispatch();
   return (
     <div id="home" className={styles.home}>
       <Parallax className={styles.parallax}>
@@ -62,7 +67,7 @@ const Home = () => {
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
-              <Button secondary large long>
+              <Button secondary large long onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
                 S'inscrire
               </Button>
             </div>
