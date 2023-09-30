@@ -260,7 +260,7 @@ const Legal = () => (
         mineur doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une
         photocopie de la pièce d’identité d’un de ses responsables légaux.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 12 - Droit de rétractation
       </Title>
       <p>
