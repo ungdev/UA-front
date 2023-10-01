@@ -38,6 +38,7 @@
       padding-left: 41px;
       padding-bottom: 50px;
       gap: 20px;
+      overflow: hidden;
 
       .tournamentName {
         width: 80%;
@@ -54,15 +55,30 @@
   text-align: center;
 }
 
+@media screen and (max-width: 1300px) {
+  .tournamentList {
+    .cardPositionner .card .tournamentName {
+      font-size: 1.5em;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .tournamentList {
     aspect-ratio: 5 / 3;
 
     .cardPositionner {
       min-width: 65%;
+      max-width: 65%;
 
       .card {
-        opacity: var(--non-linear-visibility)
+        opacity: var(--non-linear-visibility);
+        left: 3.84615384615%;
+        padding: 0 10px 10px 10px;
+
+        a {
+          margin: 0 auto;
+        }
       }
     }
   }

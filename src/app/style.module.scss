@@ -280,6 +280,13 @@
 
     .tournaments {
       flex-direction: column;
+      width: max(300px, 80%);
+      padding: 0;
+
+      .text {
+        min-width: unset;
+        max-width: unset;
+      }
 
       &:after {
         background: none;
