@@ -80,7 +80,7 @@ const Home = () => {
         <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
         <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
-          <Button secondary>Découvrir l’événement</Button>
+          <Button secondary>Découvrir l’évènement</Button>
         </Link>
       </AppearFromSide>
 

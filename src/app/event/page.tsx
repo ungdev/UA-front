@@ -8,7 +8,7 @@ import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
-  title: 'Événement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
+  title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
 };
 
 export default function Page() {
@@ -16,7 +16,7 @@ export default function Page() {
     <>
       <div id="event-page" className={styles.eventPage}>
         <Title level={1} className={styles.primaryTitle} align="center">
-          Événement
+          Évènement
         </Title>
         <Title level={2} type={2} className={styles.secondaryTitle}>
           Présentation
@@ -24,7 +24,7 @@ export default function Page() {
         <div className={`${styles.textAndImage} ${styles.imageLeft}`}>
           <img src={foo.src} alt="foo" />
           <div className={styles.text}>
-            L'UTT Arena (UA) est le plus gros événement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
@@ -37,8 +37,8 @@ export default function Page() {
           <div className={styles.text}>
             À présent l'UTT Arena c'est 630 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
-            confiance chaque année pour organiser cet événement dans l'ambiance qu'on lui connaît ! La confiance de nos
-            partenaires et leur mobilisation autour de notre événement contribuent à le rendre exceptionnel ! Un grand
+            confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
+            partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
             merci également à tous les bénévoles qui rendent possible l'organisation de ce beau projet.
           </div>
           <img src={bar.src} alt="bar" />

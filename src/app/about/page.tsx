@@ -100,7 +100,7 @@ const About = () => {
             title="UTT Net Group"
             images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}
             left>
-            L'UTT Arena (UA) est le plus gros événement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
           </TextBlock>

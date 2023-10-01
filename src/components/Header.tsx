@@ -61,7 +61,7 @@ export default function Header({
       </Link>
       <Link href="/event" onClick={closeBurger}>
         <Button className={`${styles.underlineButton} ${pathname && pathname === '/event' && styles.current}`}>
-          Événement
+          Évènement
         </Button>
       </Link>
       <Link href="/tournaments" onClick={closeBurger}>
