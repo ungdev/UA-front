@@ -16,6 +16,10 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .cardPositionner {
     position: relative;
     min-width: 45%;  // {2}
