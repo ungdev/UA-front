@@ -79,25 +79,25 @@ export default function Page() {
             <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
               1
             </TextStroke>
-            Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation
+            Il faut d'abord cliquer sur le bouton "Connexion" dans la barre de navigation.
           </li>
           <li>
             <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
               2
             </TextStroke>
-            Crée ton compte et clique sur le lien envoyé par mail
+            Crée ton compte et clique sur le lien envoyé par mail.
           </li>
           <li>
             <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
               3
             </TextStroke>
-            Une fois connecté, associe ton compte Discord
+            Une fois connecté, associe ton compte Discord.
           </li>
           <li>
             <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
               4
             </TextStroke>
-            Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande)
+            Crée ou rejoins une équipe (le chef d'équipe doit accepter ta demande).
           </li>
           <li>
             <TextStroke width={8} className={styles.counter} classNameOfStroke={styles.counterStroke}>
@@ -106,7 +106,7 @@ export default function Page() {
             <p>
               Une fois ton équipe au complet et toutes les places de l'équipe payées, demande à ton chef d'équipe de{' '}
               <strong>verrouiller l'équipe</strong> (n'importe quel membre peut payer pour un ou plusieurs membres de
-              l'équipe)
+              l'équipe).
             </p>
           </li>
           <li>
@@ -116,7 +116,7 @@ export default function Page() {
             Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !
           </li>
         </ol>
-        {/* TODO : tenter de retourner le tableau pour voir ce que ça donne */}
+        {/* TODO : tenter d'échanger lignes et colonnes pour voir ce que ça donne */}
         {/*<Table
           columns={[
             { key: 'type', title: 'Type' },
