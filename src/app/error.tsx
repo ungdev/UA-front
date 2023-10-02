@@ -11,18 +11,9 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     console.error(error);
   }, [error]);
 
-  if (error.name) {
-    console.log(error);
-  }
-
   function copyError() {
     // Copy the error to the clipboard
-    const textArea = document.createElement('textarea');
-    textArea.value = error.toString();
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
+    navigator.clipboard.writeText(error.toString());
   }
 
   return (
@@ -34,6 +25,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
         {/* <p>{error.name && `Erreur ${error.name}`}</p> */}
         <p>Si tu penses que ce n'est pas ta faute, contacte le staff.</p>
 
+        {/* allow user to copy the error to his clipboard */}
         <Button onClick={copyError}>Copier l'erreur</Button>
 
         <div className={styles.buttons}>
