@@ -40,6 +40,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
           </Link>
         </div>
 
+        {/* funny hidden message */}
         <div className={styles.grass}>
           <p>C'est l'heure de toucher de l'herbe...</p>
         </div>
