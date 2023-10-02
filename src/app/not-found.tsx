@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { Title, Button } from '@/components/UI';
 
 export default function NotFound() {
+  const pageName = window.location.pathname.slice(1);
+
   return (
     <>
       <div id="not-found" className={styles.notFound}>
@@ -12,10 +14,10 @@ export default function NotFound() {
           Erreur 404
         </Title>
         <p>
-          La page <span>{window.location.pathname}</span> n’existe pas.
+          La page <span>{pageName}</span> n’existe pas.
           <br />
           <br />
-          Si tu penses que c’est une erreur, contacte le staff
+          Si tu penses que c’est une erreur, contacte le staff.
         </p>
 
         <div className={styles.buttons}>
