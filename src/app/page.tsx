@@ -23,6 +23,7 @@ import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
 import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -111,10 +112,14 @@ const Home = () => {
             <Icon name={IconName.MapPin} />
             TROYES
           </Link>
-          <Link href={'/event#program'} className={styles.moreInfoContainer}>
+          {/*<Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
             1, 2, 3 Décembre 2023
-          </Link>
+          </Link>*/}
+          <Button onClick={() => toast.info("Plus d'infos à venir")} className={styles.moreInfoContainer}>
+            <Icon name={IconName.Calendar} />
+            1, 2, 3 Décembre 2023
+          </Button>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
