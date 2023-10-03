@@ -291,7 +291,7 @@ const Help = () => {
         <p>
           UTT Net Group
           <br />
-          12 rue Marie Curie 10000 Troyes
+          12, rue Marie Curie 10 000 Troyes
           <br />
           <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a>
           <br />
