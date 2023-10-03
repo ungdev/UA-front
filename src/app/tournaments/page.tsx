@@ -15,7 +15,7 @@ const TournamentHomeDefault = () => {
         setTimeout(() => window.history.replaceState({}, '', window.location.pathname), 500)
       }
       scroll={searchParams.get('scroll') === 'true'}
-      onScrolled={() => setTimeout(() => router.replace(window.location.pathname), 500)}
+      onScrolled={() => setTimeout(() => router.replace(window.location.pathname, { scroll: false }), 500)}
     />
   );
 };

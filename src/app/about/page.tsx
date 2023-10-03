@@ -3,7 +3,8 @@ import styles from './style.module.scss';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
 import { useAppSelector } from '@/lib/hooks';
-// import { Metadata } from 'next';
+import doubleImage1 from '@/../public/images/about/double-image-1.jpg';
+import doubleImage2 from '@/../public/images/about/double-image-2.jpg';
 
 interface TeamMember {
   name: string;
@@ -86,9 +87,7 @@ const About = () => {
     <>
       <div className={styles.aboutContainer}>
         <div className={styles.aboutUa}>
-          <TextBlock
-            title="UTT Arena"
-            images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}>
+          <TextBlock title="UTT Arena" images={[doubleImage1.src, doubleImage2.src]}>
             <br />
             L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué
@@ -100,7 +99,7 @@ const About = () => {
             title="UTT Net Group"
             images={['https://picsum.photos/seed/add/1920/1080/', 'https://picsum.photos/1920/1080']}
             left>
-            L'UTT Arena (UA) est le plus gros événement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
           </TextBlock>

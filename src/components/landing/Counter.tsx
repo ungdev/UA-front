@@ -9,6 +9,7 @@ function Counter({
   value,
   valueText = '',
   name,
+  toCome = false,
   className = '',
 }: {
   /** The value to animate the counter to. */
@@ -17,6 +18,8 @@ function Counter({
   valueText?: string;
   /** The label to display below the counter. */
   name: string;
+  /** Whether the value has been announced or not */
+  toCome?: boolean;
   /** An optional class name to apply to the component. */
   className?: string;
 }) {
@@ -55,6 +58,7 @@ function Counter({
   );
 
   useEffect(() => {
+    if (toCome) return;
     observer.observe(document.querySelector(`.${styles.counter}`)!);
   }, []);
 
@@ -85,8 +89,8 @@ function Counter({
 
   return (
     <div className={`${styles.counter} ${className}`}>
-      <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>
-      <div className={styles.counterLabel}>{name}</div>
+      {!toCome && <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>}
+      <div className={styles.counterLabel}>{!toCome ? name : 'À venir...'}</div>
     </div>
   );
 }

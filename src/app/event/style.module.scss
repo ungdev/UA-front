@@ -3,6 +3,10 @@
 .eventPage {
   margin-bottom: 10rem;
 
+  .elementWithRef {
+    scroll-margin-top: 80px;
+  }
+
   .primaryTitle {
     text-align: center;
     margin-top: 6rem;
@@ -19,16 +23,13 @@
     background-color: $light-blue;
     color: #002d40;
     max-height: 250px;
-
     margin: 5rem 85px 0 85px;
     border-radius: 1.25rem;
 
     img {
       aspect-ratio: 1 / 1;
-      width: 50%;
-      min-width: 250px;
+      width: 30%;
       object-fit: cover;
-
     }
 
     .text {
@@ -36,6 +37,7 @@
       font-size: 1.1rem;
       line-height: 140%;
       place-self: center;
+      width: 90%;
     }
   }
 
@@ -115,20 +117,11 @@
       flex-direction: column;
       gap: 1.5rem;
       max-height: unset;
-
-      &.imageLeft {
-        margin: 1rem 5%;
-        border-radius: 1.25rem;
-      }
-
-      &.imageRight {
-        margin: 1rem 5%;
-        border-radius: 1.25rem;
-      }
+      margin: 2rem 5%;
+      border-radius: 1.25rem;
 
       .text {
         margin: 1rem 5%;
-        font-size: 1.25rem;
       }
 
       img {

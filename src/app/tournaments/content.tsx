@@ -250,7 +250,10 @@ export function TournamentHome({
                   <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
                 </>
               )}
-              <strong>{renderedTournament.maxPlayers / renderedTournament.playersPerTeam} équipes </strong>
+              <strong>
+                {renderedTournament.maxPlayers / renderedTournament.playersPerTeam}{' '}
+                {renderedTournament.playersPerTeam === 1 ? 'joueurs' : 'équipes'}{' '}
+              </strong>
               <br />
             </p>
             <p>

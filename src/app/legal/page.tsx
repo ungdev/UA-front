@@ -118,7 +118,7 @@ const Legal = () => (
       Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre
       de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
       présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
-      concernent les produits suivants : place pour l’événement UTT Arena 2023 et matériel en prévente.
+      concernent les produits suivants : place pour l’évènement UTT Arena 2023 et matériel en prévente.
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 3 - Informations précontractuelles
       </Title>
@@ -130,7 +130,7 @@ const Legal = () => (
       téléphonique et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du
       contenu numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions
       contractuelles. Les produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de
-      place pour l’événement UTT Arena 2023, l’UNG se réserve le droit de demander un justificatif pour les coachs et
+      place pour l’évènement UTT Arena 2023, l’UNG se réserve le droit de demander un justificatif pour les coachs et
       managers, et si le justificatif n’est pas suffisant, peut annuler l’achat de la place et procéder à son
       remboursement intégral sans dédommagement.
       <Title level={2} type={2} className={styles.articleTitle}>
@@ -145,9 +145,9 @@ const Legal = () => (
       montant. Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans
       certains cas, notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le
       vendeur se réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation
-      de la commande ne signifie pas que le client pourra accéder à l’événement UTT Arena 2023. Seul le statut “Inscrit”
+      de la commande ne signifie pas que le client pourra accéder à l’évènement UTT Arena 2023. Seul le statut “Inscrit”
       sur la page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de
-      place pour l’événement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque
+      place pour l’évènement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque
       de disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
       l'adresse : arena@utt.fr. Pour toute question relative au suivi d'une commande, l'acheteur doit appeler le numéro
       de téléphone suivant : 03 25 71 85 50 (coût d'un appel local), aux jours et horaires suivants : du lundi au
@@ -209,19 +209,19 @@ const Legal = () => (
         bancaire. Les coordonnées de ce dernier sont accessibles depuis la page « mentions légales » du site. Le
         paiement par carte peut avoir recours au système 3D Secure qui vise à identifier le porteur de la carte dans le
         but de limiter la fraude. Dans le cas où un paiement se révélerait invalidé par la banque après émission de
-        votre billet ou de votre commande, celui-ci sera invalidé, ne vous permettant pas un accès à l’événement.
+        votre billet ou de votre commande, celui-ci sera invalidé, ne vous permettant pas un accès à l’évènement.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 11 - Émission et condition d’utilisation des billets
       </Title>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Livraison
       </Title>
       <p>
         Les billets électroniques ou un lien permettant de les télécharger sont envoyés sur la messagerie électronique
         de l’acheteur après chaque commande.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Support
       </Title>
       <p>
@@ -231,27 +231,27 @@ const Legal = () => (
         responsabilité concernant toute anomalie pouvant survenir au cours d’une commande, du téléchargement ou de
         l’impression d’un billet. Il ne sera remis aucun duplicata autre que le seul billet initial.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Unicité
       </Title>
       <p>
-        Un billet ne peut être utilisé qu’une seule fois pour accéder à l’événement. Ainsi en cas de perte, vol,
+        Un billet ne peut être utilisé qu’une seule fois pour accéder à l’évènement. Ainsi en cas de perte, vol,
         duplication, seule la première personne à présenter le billet sera admise à assister à la manifestation. Un
         détenteur de billet qui aurait déjà été utilisé ne pourra prétendre à aucun remboursement. Le billet est
         uniquement valable pour le lieu, la date et l'heure auquel il appartient. Le billet doit être conservé jusqu’à
-        la fin de l’événement.
+        la fin de l’évènement.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Contrôle
       </Title>
       <p>
-        L’Organisateur est libre de contrôler la validité des billets lors de l’accès à l’événement. Le participant doit
-        veiller à la confidentialité de son billet. L’accès à l'événement peut être refusé à un participant qui présente
+        L’Organisateur est libre de contrôler la validité des billets lors de l’accès à l’évènement. Le participant doit
+        veiller à la confidentialité de son billet. L’accès à l'évènement peut être refusé à un participant qui présente
         un billet déjà utilisé. L’Organisateur n’est pas tenu de vérifier l’authenticité du billet. Après la
         présentation du billet, un bracelet sera remis au participant. Ce bracelet sera valable pendant toute la durée
-        de l’événement. En cas de perte du bracelet, une nouvelle vérification d’identité sera effectuée.
+        de l’évènement. En cas de perte du bracelet, une nouvelle vérification d’identité sera effectuée.
       </p>
-      <Title level={3} className={styles.subArticleTitle}>
+      <Title level={3} type={3} className={styles.subArticleTitle}>
         Justificatif
       </Title>
       <p>
@@ -260,16 +260,16 @@ const Legal = () => (
         mineur doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une
         photocopie de la pièce d’identité d’un de ses responsables légaux.
       </p>
-      <Title level={2} className={styles.articleTitle}>
+      <Title level={2} type={2} className={styles.articleTitle}>
         Article 12 - Droit de rétractation
       </Title>
       <p>
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
         de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
         demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours
-        calendaires avant la date de l'événement, soit le 19/11/2023 17:00 CET. Toute demande doit être formulée par
+        calendaires avant la date de l'évènement, soit le 19/11/2023 17:00 CET. Toute demande doit être formulée par
         courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour
-        l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'événement, et interviendra
+        l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra
         sur la carte bancaire ayant servi au paiement. Tout remboursement fera l'objet d'une retenue de :
       </p>
       <ul>
@@ -299,7 +299,7 @@ const Legal = () => (
         volonté des parties et qui ne pourront être empêchés par ces dernières, malgré tous les efforts retenus par la
         jurisprudence des cours et des tribunaux français : catastrophes naturelles, arrêt des réseaux de
         télécommunication ou difficultés propres aux réseaux de télécommunication externes aux clients. Les parties se
-        rapprocheront pour examiner l'incidence de l'événement et convenir des conditions dans lesquelles l'exécution du
+        rapprocheront pour examiner l'incidence de l'évènement et convenir des conditions dans lesquelles l'exécution du
         contrat sera poursuivie. Si le cas de force majeure a une durée supérieure à trois mois, les présentes
         conditions générales pourront être résiliées par la partie lésée.
       </p>
@@ -321,14 +321,14 @@ const Legal = () => (
         modalités définies sur le site de l'UTT Arena. Les données nominatives fournies par l'acheteur sont nécessaires
         au traitement de sa commande et à l'établissement de ses factures. Elles peuvent être communiquées aux
         partenaires du vendeur chargés de l'exécution, du traitement, de la gestion et du paiement des commandes. Notre
-        système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’événement. Nous conservons les
-        autorisations parentales pour une durée de 1 an suivant la fin de l’événement.
+        système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’évènement. Nous conservons les
+        autorisations parentales pour une durée de 1 an suivant la fin de l’évènement.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 16 - Mentions Légales
       </Title>
       <p>
-        L’événement UTT Arena 2023 est organisé par :<br />
+        L’évènement UTT Arena 2023 est organisé par :<br />
         <br />
         UTT Net Group, association loi 1901
         <br />

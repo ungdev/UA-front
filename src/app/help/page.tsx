@@ -32,8 +32,8 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer au tournoi il faut avoir au minimum <strong>15 ans lors de l'événement</strong>. Il faudra que
-          tu présentes <strong>l'autorisation parentale</strong>{' '}
+          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong>. Il faudra
+          que tu présentes <strong>l'autorisation parentale</strong>
           {/* <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
             disponible ici
           </a> */}
@@ -216,7 +216,7 @@ const Help = () => {
       const element = document.getElementById(hash.substring(1));
       if (element) {
         // Scroll to the element to make it center on the page
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
