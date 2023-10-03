@@ -54,15 +54,19 @@
       border: 0;
       opacity: 0;
 
-      transition: all 0.1s ease-in-out;
-
-      &:hover {
-        opacity: 1;
-      }
+      transition: opacity 0.1s ease-in-out, background-color 0.2s ease-out;
 
       svg {
         width: 20px;
         height: 20px;
+      }
+    }
+
+    &:hover .right > button {
+      opacity: 1;
+
+      &:hover {
+        background-color: $accent-color;
       }
     }
   }
