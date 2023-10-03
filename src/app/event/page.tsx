@@ -67,8 +67,8 @@ export default function Page() {
           />
           <div className={styles.text}>
             Halle Sportive UTT <br /> <br />
-            4 Rue Fernand Sastre <br /> <br />
-            10430 Rosières-près-Troyes
+            12 rue Marie Curie <br /> <br />
+            10000 Troyes
           </div>
         </div>
         <Title level={2} type={2} className={styles.secondaryTitle}>

@@ -98,9 +98,9 @@ const Home = () => {
 
       <AppearFromSide className={styles.information}>
         <TextBlock title="UTT Arena 2023" images={[doubleImage1.src, doubleImage2.src]}>
-          Le rendez-vous incontournable des amateurs de gaming de la région Auboise est de retour ! Il aura lieu les 1,
-          2 et 3 décembre 2023 dans un tout nouveau lieu : la Halle Sportive de l’Université de Technologie de Troyes !
-          Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br />
+          Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les
+          1, 2 et 3 décembre 2023 dans un tout nouveau lieu : au sein des locaux de l’Université de Technologie de
+          Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br />
           Au programme : 8 tournois sur tes jeux favoris, 48h pour montrer tes skills parmis les 520 joueurs qui
           composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
           pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !

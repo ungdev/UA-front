@@ -67,7 +67,8 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           </BoxContainer>
         </div>
         <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
-          Équipes inscrites : {tournament.lockedTeamsCount} / {tournament.maxPlayers / tournament.playersPerTeam}
+          {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} : {tournament.lockedTeamsCount} /{' '}
+          {tournament.maxPlayers / tournament.playersPerTeam}
         </Title>
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
