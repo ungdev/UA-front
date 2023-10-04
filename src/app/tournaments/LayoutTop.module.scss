@@ -1,0 +1,54 @@
+@import '@/variables.scss';
+
+.topContainer {
+  background-color: $primary-background;
+  padding: 100px 0 100px 0;
+
+  .top {
+    width: 65%;
+    margin: 0 auto;
+
+    .text {
+      font-size: 1.25rem;
+      text-align: center;
+      font-weight: 500;
+      width: 80%;
+      margin: 0 auto;
+      color: $blue-color;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      column-gap: 92px;
+      padding: 50px 0;
+
+      .button {
+        width: 328px;
+        height: 66px
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .topContainer {
+    .top {
+      width: 80%;
+
+      .text {
+        width: 100%;
+      }
+
+      .buttons {
+        flex-direction: column;
+        row-gap: 20px;
+        padding: 20px 0;
+
+        .button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
