@@ -1,6 +1,5 @@
 import styles from './style.module.scss';
 import { Title } from '@/components/UI';
-import BoxContainer from '@/components/landing/BoxContainer';
 import imageLeft from '@/../public/images/event/left.jpg';
 import imageRight from '@/../public/images/event/right.jpg';
 import Partners from '@/components/Partners';
