@@ -19,7 +19,7 @@ function Counter({
   /** The label to display below the counter. */
   name: string;
   /** Whether the value has been announced or not */
-  toCome: string | undefined;
+  toCome?: string | undefined;
   /** An optional class name to apply to the component. */
   className?: string;
 }) {

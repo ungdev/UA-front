@@ -91,7 +91,13 @@ const Home = () => {
         <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
           <Counter value={8} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={5000} valueText=" €" name="de cashprize" toCome="Cashprize" className={styles.middleCounter} />
+          <Counter
+            value={5000}
+            valueText=" €"
+            name="de cashprize"
+            toCome="Cashprize"
+            className={styles.middleCounter}
+          />
           <VerticalDivider className={styles.divider} />
           <Counter value={524} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
