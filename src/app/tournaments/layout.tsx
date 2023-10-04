@@ -13,6 +13,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import ScrollUp from '@/components/UI/ScrollUp';
 // import { Metadata } from 'next';
 
 /*export const metadata: Metadata = {
@@ -25,6 +26,7 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
   return (
     <div id="tournament-layout" className={styles.tournamentLayout}>
+      <ScrollUp />
       <div className={styles.topContainer}>
         <div className={styles.top}>
           <Title level={3} type={1} align={'center'}>
