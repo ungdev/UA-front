@@ -49,9 +49,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </div>
         <div className={styles.information}>
           <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
-            <div className={styles.boxContent}>
-              {tournament.cashprizeDetails ?? 'Annonce à venir'}
-            </div>
+            <div className={styles.boxContent}>{tournament.cashprizeDetails ?? 'Annonce à venir'}</div>
           </BoxContainer>
           <BoxContainer
             title="format.txt"
@@ -61,7 +59,14 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             <div className={styles.boxContent}>{tournament.maxPlayers / tournament.playersPerTeam} équipes</div>
           </BoxContainer>
           <BoxContainer className={styles.boxContainer} title="infos.txt" padding={false}>
-            <div className={styles.boxContent}>Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}</div>
+            <div className={styles.boxContent}>
+              Casteur :{' '}
+              {tournament.casters === undefined || tournament.casters === null
+                ? 'À venir'
+                : tournament.casters.length === 0
+                ? 'Aucun caster pour ce tournoi'
+                : tournament.casters?.map((caster) => caster.name + ' ')}
+            </div>
           </BoxContainer>
         </div>
         <Title level={3} type={1} align="center" className={styles.enrolledTeams}>

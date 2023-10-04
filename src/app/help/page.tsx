@@ -182,8 +182,7 @@ const faq: Faq = {
     },
     {
       question: 'Dois-je apporter mes manettes ?',
-      answer:
-        "Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
+      answer: 'Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube sans oublier ton adaptateur.',
     },
   ],
 } as Faq;
