@@ -43,9 +43,9 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+          {/*<Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
-          </Link>
+          </Link>*/}
         </div>
         <div className={styles.information}>
           <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
