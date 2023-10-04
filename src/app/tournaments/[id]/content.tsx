@@ -50,9 +50,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         <div className={styles.information}>
           <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
             <div className={styles.boxContent}>
-              1ere place : 1500€ <br />
-              1ere place : 1500€ <br />
-              1ere place : 1500€
+              {tournament.cashprizeDetails ?? 'Annonce à venir'}
             </div>
           </BoxContainer>
           <BoxContainer
