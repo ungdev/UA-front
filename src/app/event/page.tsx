@@ -66,7 +66,7 @@ export default function Page() {
           />
           <div className={styles.text}>
             Halle Sportive UTT <br /> <br />
-            12 rue Marie Curie <br /> <br />
+            12, rue Marie Curie <br /> <br />
             10000 Troyes
           </div>
         </div>
