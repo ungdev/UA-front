@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-#notFound {
+.notFound {
   height: 80vh;
   background-color: $primary-background;
   color: white;
@@ -13,8 +13,6 @@
     font-size: 1.5em;
     font-weight: bold;
     text-align: center;
-    // margin-top: 100px;
-    // margin-bottom: 40px;
 
     span {
       color: gray;
