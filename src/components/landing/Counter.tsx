@@ -89,7 +89,14 @@ function Counter({
 
   return (
     <div className={`${styles.counter} ${className}`}>
-      {!toCome ? (<div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>) : (<div className={styles.counterValue}>{toCome} à venir...</div>)}
+      {!toCome ? (
+        <>
+          <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>
+          <div className={styles.counterLabel}>{name}</div>
+        </>
+      ) : (
+        <div className={styles.counterLabel}>{toCome} à venir...</div>
+      )}
     </div>
   );
 }
