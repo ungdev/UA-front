@@ -13,39 +13,40 @@
     opacity: 0.2;
 
     .parallaxCloud1 {
-      left: 2%;
-      top: 100%;
+      right: 12%;
+      top: 80%;
       width: 400px;
     }
 
     .parallaxCloud2 {
-      left: 30%;
-      top: 60%;
+      left: 40%;
+      top: 90%;
       width: 400px;
     }
 
     .parallaxCloud2Light {
-      left: 60%;
-      top: 20%;
+      right: 25%;
+      top: 110%;
       width: 300px;
     }
 
     .parallaxCloud3 {
-      left: 80%;
-      top: 180%;
+      right: 5%;
+      top: 190%;
       width: 400px;
       overflow-y: hidden;
     }
 
     .parallaxCloud3Light {
       left: 10%;
-      top: 200%;
+      top: 190%;
       width: 400px;
       overflow-y: hidden;
     }
 
     .parallaxMoon {
-      top: 40%;
+      top: 45%;
+      left: 5%;
     }
   }
 
