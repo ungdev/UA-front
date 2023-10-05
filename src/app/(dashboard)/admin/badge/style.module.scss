@@ -1,0 +1,39 @@
+.badgePage {
+  display: flex;
+  gap: 10px;
+
+  > * {
+    flex: 1;
+  }
+
+  .croppingImage {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .result {
+    position: relative;
+    //width: 30%;
+
+    .background {
+      width: 100%;
+    }
+
+    .imageWrapper {
+      overflow: hidden;
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      width: 30%;
+      aspect-ratio: 1;
+      border-radius: 100%;
+      border: white solid;
+
+      .image {
+        position: relative;
+        aspect-ratio: auto;
+        width: 100%;
+      }
+    }
+  }
+}

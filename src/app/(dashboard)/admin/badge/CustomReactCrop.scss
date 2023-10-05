@@ -1,0 +1,43 @@
+.ReactCrop .ReactCrop__crop-selection .ReactCrop__drag-elements {
+
+  z-index: -1;
+
+  .ReactCrop__drag-handle {
+    //width: 10px;
+    //height: 10px;
+    margin: 0;
+
+    // (1 - sqrt(2) / 2) / 2 = 0.146446609407 : it is the difference in between the x-coordinates of the points at pi/4 radians and at pi/2 radians
+    // (half the value of cos(pi/2) - cos(pi/4))
+
+    &.ord-nw {
+      top: 14.6446609407%;
+      left: 14.6446609407%;
+    }
+
+    &.ord-ne {
+      top: 14.6446609407%;
+      right: 14.6446609407%;
+    }
+
+    &.ord-sw {
+      bottom: 14.6446609407%;
+      left: 14.6446609407%;
+    }
+
+    &.ord-se {
+      bottom: 14.6446609407%;
+      right: 14.6446609407%;
+    }
+
+    &:after {
+      border-radius: 100%;
+      background-color: white;
+      width: 16px;
+      height: 16px;
+      top: -8px;
+      left: -8px;
+    }
+  }
+
+}

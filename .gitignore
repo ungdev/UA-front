@@ -2,15 +2,42 @@
 
 # dependencies
 /node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+/.nyc_output
 
 # next.js
 /.next/
+/out/
 
 # production
 /build
 
 # misc
 .DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+pnpm-debug.log*
+pnpm-error.log*
+
+# local env files
+.env*.local
 .env
-.vscode/
-yarn-error.log
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# docs
+/docs
+
+# Webstorm
+.idea/

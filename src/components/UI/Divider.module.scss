@@ -1,0 +1,13 @@
+@import '@/variables.scss';
+
+.divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 5px;
+  background-color: $primary-color;
+
+  &.white {
+    background-color: #fff;
+  }
+}

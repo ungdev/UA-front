@@ -1,0 +1,48 @@
+@import '@/variables.scss';
+
+.informationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+
+  .informationText {
+    color: #fff;
+    font-family: $montserrat;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  .left {
+    width: 60%;
+
+    &.first {
+      order: 1;
+    }
+  }
+
+  .right {
+    width: 40%;
+    aspect-ratio: 16/9;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .informationContainer {
+    flex-direction: column;
+    gap: 2rem;
+
+    .left {
+        order: 1;
+        width: 100%;
+    }
+
+    .right {
+        width: 100%;
+        margin: 3rem;
+        aspect-ratio: 16/9;
+    }
+  }
+}

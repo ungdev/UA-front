@@ -1,0 +1,88 @@
+@import '@/variables.scss';
+
+.radio {
+  .radioLabel {
+    padding-bottom: 2px;
+    color: #858585;
+    user-select: none;
+  }
+
+  .radioContainer {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 10px;
+  }
+
+  &.row {
+    .radioContainer {
+      flex-direction: row;
+    }
+
+    label {
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  input {
+    &[type='radio'] {
+      display: none;
+    }
+
+    + .radioValue {
+      display: inline-block;
+      position: relative;
+      color: transparent;
+      text-align: center;
+      height: 20px;
+      width: 20px;
+      line-height: 18px;
+      font-size: 14px;
+      margin: 0 5px 0 0;
+      z-index: 0;
+      cursor: pointer;
+      border-radius: 50%;
+      background: #cbcbcb;
+      opacity: 1;
+    }
+
+    &[disabled] {
+      + .radioValue {
+        cursor: not-allowed;
+        filter: grayscale(0.1) brightness(0.7);
+      }
+    }
+
+    &:checked {
+      + .radioValue {
+        background-color: $accent-color;
+
+        &:before {
+          content: '';
+          position: absolute;
+          background-color: #cbcbcb;
+          width: 50%;
+          height: 50%;
+          top: 25%;
+          left: 25%;
+          border-radius: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .radio {
+    .radioContainer{
+      display: unset;
+    }
+
+    &.row {
+      label {
+        padding-bottom: 10px;
+      }
+    }
+  }
+}

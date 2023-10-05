@@ -1,0 +1,147 @@
+@import '@/variables.scss';
+
+.tournamentLayout {
+  .mainContent {
+    position: relative;
+    padding-bottom: 3rem;
+    height: 120vh;
+
+    .background {
+      background-size: cover;
+      background-position: 50% 50%;
+      transition: background 0.25s ease-in-out;
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
+    .background::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba($primary-background, 0.5) 0%, rgba($primary-background, 1) 100%), var(--background-image);
+      background-size: cover;
+      z-index: 1;
+    }
+
+    .backgroundElements {
+      // This is only a container to hold the background images, but it is not actually useful
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        z-index: 3;
+        opacity: 10%;
+
+        &.constellation11 {
+          left: 40%;
+          top: 27px;
+          width: 5%;
+          transform: rotate(-90deg);
+        }
+
+        &.cloud3 {
+          left: 70%;
+          width: 35%;
+        }
+
+        &.constellation21 {
+          left: -10px;
+          top: 48%;
+          width: 10%;
+          transform: rotate(-45deg);
+        }
+
+        &.constellation22 {
+          left: 45%;
+          top: 28%;
+          width: 15%;
+        }
+
+        &.constellation31 {
+          left: 9%;
+          top: 75%;
+          width: 12%;
+          transform: rotate(-80deg);
+        }
+
+        &.constellation12 {
+          left: 50%;
+          top: 70%;
+          width: 20%;
+          transform: rotate(-30deg);
+        }
+
+        &.constellation13 {
+          width: 24%;
+          top: 47%;
+          left: 19%;
+          transform: rotate(-30deg);
+        }
+
+        &.constellation23 {
+          left: 85%;
+          top: 61%;
+          width: 10%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tournamentLayout {
+    .topContainer {
+      .top {
+        width: 80%;
+
+        .text {
+          width: 100%;
+        }
+
+        .buttons {
+          flex-direction: column;
+          row-gap: 20px;
+          padding: 20px 0;
+
+          .button {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .mainContent {
+      margin-bottom: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tournamentContainer {
+    .content {
+      .tournamentInfo {
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        .button {
+          width: 100%;
+          font-size: 1.25rem;
+          margin: 5px auto;
+        }
+      }
+    }
+  }
+}

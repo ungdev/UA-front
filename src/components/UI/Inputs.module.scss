@@ -1,0 +1,50 @@
+@import '@/variables.scss';
+
+.input,
+.select,
+.textarea {
+  display: block;
+  position: relative;
+  margin: 1.25rem 0;
+  width: 100%;
+}
+
+.input .inputLabel,
+.select .selectLabel,
+.textarea .textareaLabel {
+  display: block;
+  padding-bottom: 0.25rem;
+  color: white;
+  font-weight: 600;
+  user-select: none;
+}
+
+.input input,
+.select select,
+.textarea textarea {
+  width: 100%;
+  border: 0.175rem solid #fff;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background: #fff;
+  font-size: 1em;
+  font-family: $montserrat;
+  transition: border-color 0.4s ease-in-out;
+}
+
+.input input:focus,
+.select select:focus,
+.textarea textarea:focus {
+  outline: none;
+  border-color: $accent-color;
+}
+
+.select select {
+  width: 100%;
+}
+
+.textarea textarea {
+  resize: vertical;
+  height: 100px;
+  min-height: 50px;
+}

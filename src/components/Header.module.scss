@@ -1,0 +1,225 @@
+@import '@/variables.scss';
+
+$scrollingAnimationDuration: 0.5s;
+
+.headerWrapper {
+  height: 100px;
+  transition: height calc($scrollingAnimationDuration / 2) linear;
+  position: relative;
+
+  .scrollTrigger {
+    position: absolute;
+    top: 20px;
+  }
+
+  .header {
+    height: inherit;
+    width: 100%;
+    background-color: $secondary-background;
+    position: fixed;
+    z-index: 998;
+
+    .content {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      padding: 0 30px 0 30px;
+      gap: 10px;
+
+      img {
+        height: auto;
+        vertical-align: middle;
+        width: 75px;
+        transition: width calc($scrollingAnimationDuration / 2) ease-in-out;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        .left,
+        .right {
+          display: flex;
+        }
+
+        .right {
+          align-items: flex-end;
+          gap: 1rem;
+
+          a {
+            margin-bottom: 1px;
+          }
+        }
+
+        .underlineButton {
+          position: relative;
+          transition: color 0.2s ease-in-out;
+
+          &:hover {
+            &:after {
+              width: 100%;
+            }
+          }
+
+          &:after {
+            content: '';
+            position: absolute;
+            bottom: -29px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease-in-out,
+            opacity $scrollingAnimationDuration ease-in-out,
+            bottom $scrollingAnimationDuration ease-in-out,
+            scale $scrollingAnimationDuration ease-in-out;
+          }
+
+          &.current {
+            color: white;
+          }
+        }
+
+        .burgerContainer {
+          position: relative;
+          width: 32px;
+          height: 24px;
+          display: none;
+
+          .burger {
+            position: absolute;
+            z-index: 9999;
+            width: 32px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+
+            span {
+              display: block;
+              width: 100%;
+              height: 4px;
+              background-color: white;
+              transition: all 0.3s ease-in-out;
+              border-radius: 2px;
+            }
+
+            &.open {
+              position: fixed;
+              top: 38px;
+              right: 30px;
+
+              span {
+                &:nth-child(1) {
+                  transform: translateY(10px) rotate(45deg);
+                }
+
+                &:nth-child(2) {
+                  opacity: 0;
+                }
+
+                &:nth-child(3) {
+                  transform: translateY(-10px) rotate(-45deg);
+                }
+              }
+            }
+          }
+        }
+
+        .burgerMenuContent {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          padding: 40px 30px;
+          background-color: #000;
+          z-index: 9998;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2rem;
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.3s ease-in-out;
+
+          &.open {
+            opacity: 1;
+            pointer-events: all;
+          }
+
+          a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            transition: color 0.2s ease-in-out;
+
+            &:hover {
+              color: $accent-color;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.scrolled {
+    height: 75px;
+
+    .header {
+      img {
+        width: 60px;
+      }
+
+      nav {
+        .underlineButton:not(.primary, .secondary):after {
+          opacity: 0;
+          bottom: 10px;
+          scale: 0;
+        }
+
+        .burgerContainer .burger.open {
+          top: 26px;
+          right: 30px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .headerWrapper .header {
+    .content nav {
+      .burgerContainer {
+        display: block !important;
+      }
+
+      .left > a,
+      .right > a,
+      .right > button {
+        display: none;
+      }
+
+      .underlineButton:not(.primary) {
+        &:after {
+          display: none;
+        }
+
+        &.current {
+          color: white;
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

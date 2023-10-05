@@ -1,0 +1,127 @@
+.tournamentContainer {
+  * {
+    position: relative;
+    z-index: 4;
+  }
+
+  a.back {
+    position: relative;
+    top: 10px;
+    text-decoration: none;
+
+    .button {
+      display: flex;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        color: #8C979B;
+      }
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .headerContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    align-items: center;
+    flex-grow: 2;
+    margin: 100px 0 50px 70px;
+
+    .title {
+      position: relative;
+      width: 190px;
+      height: 190px;
+
+      .tournamentName {
+        position: absolute;
+        left: 80px;
+        top: 62px;
+        width: 30rem;
+      }
+    }
+  }
+
+  .information {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 70%;
+    height: 13rem;
+    margin: 0 auto;
+
+    .boxContainer {
+      width: 30%;
+      height: 10rem;
+
+      &.onTop {
+        align-self: start;
+      }
+
+      // Where the content is contained in the BoxContainer
+      .boxContent {
+        display: block;
+        padding: 15px 16px;
+        line-height: 1.1;
+        font-size: 1.8rem;
+        margin: auto;
+        text-align: center;
+      }
+    }
+  }
+
+  .enrolledTeams {
+    text-align: center;
+    margin-top: 62px;
+    margin-bottom: 35px;
+  }
+
+  .fillingBar {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .table {
+    width: 50%;
+    margin-top: 70px;
+  }
+
+}
+
+@media screen and (max-width: 1024px) {
+  .tournamentContainer {
+    .headerContainer {
+      flex-direction: column;
+      margin: 40px;
+      padding: 0;
+      align-content: start;
+
+      .title {
+        align-self: start;
+        margin-bottom: 40px;
+      }
+    }
+
+    .information {
+      flex-direction: column;
+      align-items: center;
+      height: fit-content;
+      width: 90%;
+
+      .boxContainer {
+        margin-top: 10px;
+        width: 100%;
+
+        &.onTop {
+          align-self: center;
+        }
+      }
+    }
+  }
+}

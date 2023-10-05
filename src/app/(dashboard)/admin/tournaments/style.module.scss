@@ -1,0 +1,11 @@
+.tournaments {
+    padding: 3rem 5rem;
+
+    .squareContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem 3rem;
+    }
+}

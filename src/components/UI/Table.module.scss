@@ -1,0 +1,75 @@
+@import '@/variables.scss';
+
+.tableContainer {
+  overflow-x: auto;
+
+  .pagination {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+.table {
+  display: table;
+  table-layout: auto;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  text-align: left;
+  margin: auto;
+
+  th {
+    font-size: 1.125rem;
+    font-weight: 800;
+    padding: 1em;
+    color: white;
+    background-color: $primary-color;
+
+    &:not(&:first-child) {
+      border-left: 1px solid white;
+    }
+  }
+
+  .tableDivider {
+    padding: 0;
+    border: none;
+  }
+
+  tr {
+    background: #eee;
+    color: #000;
+
+    &:nth-child(2n) {
+      background: #ddd;
+    }
+  }
+
+  td {
+    padding: 1rem;
+
+    &:not(&:first-child) {
+      border-left: 1px solid white;
+    }
+
+    &.alignRight {
+      text-align: right;
+    }
+  }
+
+  tbody td.tableVoid {
+    text-align: center;
+    color: #818181;
+    padding: 1em 0;
+  }
+}
