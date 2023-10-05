@@ -18,7 +18,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
 
   return (
     <>
-      <div id={styles.notFound}>
+      <div className={styles.notFound}>
         <Title level={1} type={1} align="center">
           Une erreur est survenue...
         </Title>
