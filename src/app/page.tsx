@@ -57,7 +57,9 @@ const Home = () => {
               <img src="/images/logo-notext.png" alt="Logo" />
             </div>
             <div className={styles.homeTitle}>
-              <p className={styles.main}>UTT Arena</p>
+              <TextStroke className={styles.main} classNameOfStroke={styles.stroke} width={20}>
+                UTT Arena
+              </TextStroke>
               <p>
                 <span className={styles.accent}>1</span>, <span className={styles.accent}>2</span> et{' '}
                 <span className={styles.accent}>3</span> décembre 2023

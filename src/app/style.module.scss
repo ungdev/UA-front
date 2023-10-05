@@ -85,28 +85,42 @@
       .homeTitle {
         margin: 3rem auto;
         padding: 0.75rem;
-        background-color: $dark-color;
-        transform: skew(15deg);
         filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.2));
         width: 50%;
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 42px;
+          bottom: 0;
+          background-color: $dark-color;
+          z-index: 0;
+        }
+
+        & > * {
+          position: relative;
+          font-family: $montserrat;
+          text-align: center;
+          color: #fff;
+          margin: 0;
+          font-size: 2.5rem;
+          font-weight: 600;
+          z-index: 1;
+
+          .accent {
+            color: $accent-color;
+          }
+        }
 
         .main {
           font-size: 6rem;
           font-weight: 800;
           text-transform: uppercase;
-        }
 
-        p {
-          font-family: $montserrat;
-          text-align: center;
-          color: #fff;
-          transform: skew(-15deg);
-          margin: 0;
-          font-size: 2.5rem;
-          font-weight: 600;
-
-          .accent {
-            color: $accent-color;
+          .stroke {
+            -webkit-text-stroke-color: $dark-color;
           }
         }
       }
