@@ -35,9 +35,9 @@
     .text {
       margin: 3.125rem 4.375rem;
       font-size: 1.1rem;
-      line-height: 140%;
       place-self: center;
       width: 90%;
+      line-height: 1.5;
     }
   }
 
@@ -61,10 +61,10 @@
 
     iframe {
       height: auto;
-      width: 60%;
+      width: 70%;
       min-width: 600px;
       border-radius: 30px;
-      aspect-ratio: 3 / 2;
+      aspect-ratio: 7 / 4;
     }
 
     .text {

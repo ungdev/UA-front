@@ -10,7 +10,7 @@ import cloud3 from '@/../public/images/clouds/cloud-3.png';
 import cloud4 from '@/../public/images/clouds/cloud-4.png';
 import Partners from '@/components/Partners';
 import ScrollUp from '@/components/UI/ScrollUp';
-import LayoutTop from '@/app/tournaments/LayoutTop';
+import LayoutTop from '@/app/tournaments/layout-top';
 
 export const metadata: Metadata = {
   title: 'Tournois - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
