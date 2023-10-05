@@ -216,12 +216,12 @@ export function TournamentHome({
           <div className={styles.tournamentScrollContainer}>
             <div className={`${styles.arrow} ${styles.hidden}`} ref={leftArrow}>
               <Button className={styles.button} onClick={() => scrollInTournamentList(true)}>
-                <Icon name={IconName.ChevronUp} strokeWidth={3} />
+                <Icon name={IconName.ChevronUp} fill={true} />
               </Button>
             </div>
             <div className={styles.arrow} ref={rightArrow}>
               <Button className={styles.button} onClick={() => scrollInTournamentList(false)}>
-                <Icon name={IconName.ChevronBottom} strokeWidth={3} />
+                <Icon name={IconName.ChevronBottom} fill={true} />
               </Button>
             </div>
             <div

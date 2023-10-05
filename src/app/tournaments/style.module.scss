@@ -49,6 +49,11 @@
       width: calc(20% + 100px);
       margin-left: 5%;
 
+              
+      > * {
+        z-index: 10;
+      }
+
       .arrow {
         position: absolute;
         z-index: 6;
@@ -61,9 +66,13 @@
           width: 100%;
           color: white;
           height: 3rem;
+          
           svg {
-            width: 2rem;
-            height: 2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            stroke: black;
+            stroke-width: 5px;
+            paint-order: stroke;
           }
         }
         &:nth-child(1) {
@@ -205,8 +214,6 @@
           left: initial;
           width: 4rem;
           height: 140px;
-
-          background-color: rgba(0, 0, 0, 0.5);
 
           button {
             padding: 0;

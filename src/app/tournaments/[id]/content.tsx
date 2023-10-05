@@ -32,7 +32,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
       <div className={styles.tournamentContainer}>
         <Link href="" className={styles.back}>
           <Button onClick={() => setGoBack(true)} className={styles.button}>
-            <Icon name={IconName.ChevronLeft} strokeWidth={3}></Icon>
+            <Icon name={IconName.ChevronLeft}></Icon>
             Retour aux tournois
           </Button>
         </Link>
@@ -53,7 +53,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             contentClassName={styles.boxContent}
             title="cashprize.txt"
             padding={false}>
-            {tournament.cashprizeDetails ?? 'Annonce à venir'}
+            {tournament.cashprizeDetails ?? (<><strong>Cashprize :</strong> À venir</>)}
           </BoxContainer>
           <BoxContainer
             title="format.txt"
@@ -68,7 +68,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             contentClassName={styles.boxContent}
             title="infos.txt"
             padding={false}>
-            Casteur :{' '}
+            <strong>Casteurs :</strong>{' '}
             {tournament.casters === undefined || tournament.casters === null
               ? 'À venir'
               : tournament.casters.length === 0
