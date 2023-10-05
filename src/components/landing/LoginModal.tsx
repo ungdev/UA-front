@@ -8,6 +8,8 @@ import { setLoginModalVisible } from '@/modules/loginModal';
 import { registerUser } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';
 import { type Action } from '@reduxjs/toolkit';
+import Checkbox from '@/components/UI/Checkbox';
+import { toast } from 'react-toastify';
 
 const initialSignup = {
   firstname: '',
@@ -17,6 +19,7 @@ const initialSignup = {
   password: '',
   passwordConfirmation: '',
   age: '',
+  legalRepresentativeAccepted: 'false',
 };
 
 const initialLogin = {
@@ -49,6 +52,12 @@ function LoginModal({
   };
 
   const signup = () => {
+    if (signupForm.age === 'child' && signupForm.legalRepresentativeAccepted === 'false') {
+      toast.error(
+        "Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription",
+      );
+      return;
+    }
     dispatch(registerUser(signupForm) as unknown as Action);
   };
 
@@ -161,9 +170,20 @@ function LoginModal({
             name="age"
             value={signupForm.age}
             onChange={(value: string) => {
-              updateSignup('age', value);
+              setSignupForm({
+                ...signupForm,
+                age: value,
+                legalRepresentativeAccepted: 'false',
+              });
             }}
             row={true}></Radio>
+          {signupForm.age === 'child' && (
+            <Checkbox
+              label="Je certifie avoir plus de 16 ans ou eu l'autorisation de mon représentant légal pour me créer un compte sur ce site."
+              value={signupForm.legalRepresentativeAccepted === 'true'}
+              onChange={(value) => updateSignup('legalRepresentativeAccepted', value ? 'true' : 'false')}
+            />
+          )}
           <Button primary className={styles.signupModalButton} type="submit">
             S'inscrire
           </Button>
