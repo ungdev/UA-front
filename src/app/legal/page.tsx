@@ -43,7 +43,7 @@ const Legal = () => (
         d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut
         exercer ce droit en effectuant une demande par mail à l’adresse arena@utt.fr
         <br />
-        Le responsable du traitement des données est Camille MOUSSOU.
+        Le responsable du traitement des données est Guillaume ETHEVE.
         <br />
         L’équipe technique et les administrateurs du site pourront accéder aux données.
         <br />
@@ -61,7 +61,7 @@ const Legal = () => (
         directive européenne 2009/136/CE, ces cookies sont indispensables à la fourniture du service sollicité. En
         naviguant sur notre site web, vous acceptez l’utilisation de ces cookies.
       </p>
-      <Title align="center" id="CGV">
+      {/*<Title align="center" id="CGV">
         Conditions générales de vente
       </Title>
       <Title level={2} type={2} className={styles.articleTitle}>
@@ -344,7 +344,7 @@ const Legal = () => (
         <br />
         Email : ung@utt.fr
         <br />
-      </p>
+      </p>*/}
     </div>
   </div>
 );
