@@ -3,6 +3,8 @@
 .square {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin: 1em 0;
   width: 300px;

@@ -107,12 +107,11 @@ const Home = () => {
 
       <AppearFromSide className={styles.information}>
         <TextBlock title="UTT Arena 2023" images={[doubleImage1.src, doubleImage2.src]}>
-          Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les
-          1, 2 et 3 décembre 2023 dans un tout nouveau lieu : au sein des locaux de l’Université de Technologie de
-          Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br />
-          Au programme : 8 tournois sur tes jeux favoris, 48h pour montrer tes skills parmis les 524 joueurs qui
-          composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
-          pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
+          Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les <strong>1, 2 et 3 décembre 2023</strong> dans un tout nouveau lieu : au sein des locaux de l’Université de Technologie de
+          Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br /><br />
+          Au programme : <strong>8 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills parmis les <strong>524 joueurs</strong> qui
+          composeront l’évènement, et tenter de remporter les <strong>cashprizes</strong>, <strong>lots</strong> et de nombreuses <strong>autres surprises</strong> ! Et
+          pour animer cette édition, <strong>des guests d’exception</strong> viendront caster cette édition qui s’annonce enflammée !
           Alors prépare tout ton stuff et impose toi dans l’arène !
         </TextBlock>
         <div className={styles.moreInfo}>
@@ -134,11 +133,10 @@ const Home = () => {
         <div className={styles.text}>
           <Title>Les tournois de l'UA23</Title>
           <div className={styles.textContent}>
-            Cette année, l’UTT Arena propose 8 tournois aux joueurs : League of Legend, Counter-Strike 2, Rocket League,
-            Super Smash Bros Ultimate, Teamfight Tactics, Osu!, Pokémon et un tournoi libre. Tous les tournois donnent
-            accès à la salle, à la buvette et à ses autres activités du vendredi soir au dimanche en 24h/24. Tous les
-            joueurs des tournois PC et libre (donc hors SSBU et Pokémon) auront accès à une place assise fixe où
-            installer son ordinateur. N’hésitez pas et rejoignez-nous dans l’arène !
+            Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs : <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>, <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>Osu!</strong>, <strong>Pokémon</strong> et <strong>un tournoi libre</strong>. <br />Tous les tournois donnent
+            accès à la salle, à la buvette et à ses autres activités <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les
+            joueurs des tournois PC et libre (donc hors SSBU et Pokémon) auront accès à une <strong>place assise fixe</strong> où
+            installer leurs ordinateurs. N’hésitez pas et rejoignez-nous dans l’arène !
           </div>
         </div>
         <TournamentList className={styles.list} />

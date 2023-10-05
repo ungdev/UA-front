@@ -93,7 +93,7 @@
         scrollbar-width: none;  /* Firefox */
 
         // Mask for the scroll gradient
-        --mask-height: 64px;
+        --mask-height: 128px;
         --mask-top-color: black;
         --mask-bottom-color: black;
         --mask-direction: to bottom;
@@ -205,6 +205,8 @@
           left: initial;
           width: 4rem;
           height: 140px;
+
+          background-color: rgba(0, 0, 0, 0.5);
 
           button {
             padding: 0;

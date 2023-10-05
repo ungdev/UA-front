@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/app/tournaments/LayoutTop.module.scss';
+import styles from '@/app/tournaments/layout-top.module.scss';
 import { Button, Title } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { type Action } from '@reduxjs/toolkit';

@@ -78,9 +78,9 @@ const Table = ({
         <div onClick={() => paginationOptions!.page < 1 || paginationOptions!.goToPage(paginationOptions!.page - 1)}>
           <Icon name={IconName.ChevronLeft} />
         </div>
-        <p>
+        <span>
           Page {paginationOptions!.page + 1} / {Math.ceil(paginationOptions!.total / paginationOptions!.pageSize)}
-        </p>
+        </span>
         <div
           onClick={() =>
             paginationOptions!.page >= paginationOptions!.total / paginationOptions!.pageSize - 1 ||

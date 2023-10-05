@@ -82,7 +82,7 @@ export default function Header({
     <>
       <Link href="/about" onClick={closeBurger}>
         <Button className={`${styles.underlineButton} ${pathname && pathname === '/about' && styles.current}`}>
-          A propos
+          À propos
         </Button>
       </Link>
 
