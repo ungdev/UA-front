@@ -1,4 +1,5 @@
 'use client';
+import styles from './errors.module.scss';
 import { useEffect } from 'react';
 import Link from 'next/link';
 
@@ -10,20 +11,39 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     console.error(error);
   }, [error]);
 
+  function copyError() {
+    // Copy the error to the clipboard
+    navigator.clipboard.writeText(`${error}\n${error.stack}`);
+  }
+
   return (
     <>
-      <Title level={1} type={2}>
-        Une erreur est survenue...
-      </Title>
-      <p>{error.name && `Erreur ${error.name}`}</p>
+      <div className={styles.notFound}>
+        <Title level={1} type={1} align="center">
+          Une erreur est survenue...
+        </Title>
+        <p>Si tu ne penses pas avoir cherché à provoquer cette erreur, contacte le staff.</p>
 
-      <Button primary onClick={reset}>
-        Réessayer
-      </Button>
+        {/* allow user to copy the error to his clipboard */}
+        <Button onClick={copyError}>Copier l'erreur</Button>
 
-      <Link href="/">
-        <Button primary>Retour à l'accueil</Button>
-      </Link>
+        <div className={styles.buttons}>
+          <Link href={window.location.href}>
+            <Button primary onClick={reset}>
+              Réessayer
+            </Button>
+          </Link>
+
+          <Link href="/">
+            <Button primary>Retour à l'accueil</Button>
+          </Link>
+        </div>
+
+        {/* funny hidden message */}
+        <div className={styles.grass}>
+          <p>C'est l'heure de toucher de l'herbe...</p>
+        </div>
+      </div>
     </>
   );
 }
