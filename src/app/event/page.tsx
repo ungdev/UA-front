@@ -1,6 +1,5 @@
 import styles from './style.module.scss';
 import { Title } from '@/components/UI';
-import BoxContainer from '@/components/landing/BoxContainer';
 import imageLeft from '@/../public/images/event/left.jpg';
 import imageRight from '@/../public/images/event/right.jpg';
 import Partners from '@/components/Partners';
@@ -35,7 +34,7 @@ export default function Page() {
         </div>
         <div className={`${styles.textAndImage} ${styles.imageRight}`}>
           <div className={styles.text}>
-            À présent l'UTT Arena c'est 520 joueurs, 8 tournois, des prix à gagner et des tournois commentés en direct
+            À présent l'UTT Arena c'est 524 joueurs, 8 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
@@ -43,7 +42,7 @@ export default function Page() {
           </div>
           <img src={imageRight.src} alt="bar" />
         </div>
-        <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
+        {/*<Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
         </Title>
         <div className={styles.program}>
@@ -56,7 +55,7 @@ export default function Page() {
           <BoxContainer title="Jour 3 : Dimanche" className={styles.boxContainer}>
             <p>À venir...</p>
           </BoxContainer>
-        </div>
+        </div>*/}
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
           Lieu
         </Title>
@@ -67,7 +66,7 @@ export default function Page() {
           />
           <div className={styles.text}>
             Halle Sportive UTT <br /> <br />
-            12 rue Marie Curie <br /> <br />
+            12, rue Marie Curie <br /> <br />
             10000 Troyes
           </div>
         </div>

@@ -4,6 +4,10 @@
   align-items: center;
   justify-content: center;
 
+  img {
+    user-select: none;
+  }
+
   > * {
     position: absolute;
     z-index: 9;

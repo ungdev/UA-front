@@ -9,7 +9,7 @@ function Counter({
   value,
   valueText = '',
   name,
-  toCome = false,
+  toCome = undefined,
   className = '',
 }: {
   /** The value to animate the counter to. */
@@ -19,7 +19,7 @@ function Counter({
   /** The label to display below the counter. */
   name: string;
   /** Whether the value has been announced or not */
-  toCome?: boolean;
+  toCome?: string | undefined;
   /** An optional class name to apply to the component. */
   className?: string;
 }) {
@@ -89,8 +89,14 @@ function Counter({
 
   return (
     <div className={`${styles.counter} ${className}`}>
-      {!toCome && <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>}
-      <div className={styles.counterLabel}>{!toCome ? name : 'À venir...'}</div>
+      {!toCome ? (
+        <>
+          <div className={styles.counterValue}>{stringifyCounterValue() + valueText}</div>
+          <div className={styles.counterLabel}>{name}</div>
+        </>
+      ) : (
+        <div className={styles.counterLabel}>{toCome} à venir...</div>
+      )}
     </div>
   );
 }

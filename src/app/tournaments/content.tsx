@@ -197,7 +197,7 @@ export function TournamentHome({
   if (renderedTournamentIndex === -1) {
     return (
       <TournamentSwitcherAnimation nextPage={undefined}>
-        <div className={`tournament-container ${fading ? 'fading' : ''}`} ref={root} />
+        <div className={`${styles.tournamentContainer} ${fading ? styles.fading : ''}`} ref={root} />
       </TournamentSwitcherAnimation>
     );
   }

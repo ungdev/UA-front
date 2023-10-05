@@ -182,8 +182,7 @@ const faq: Faq = {
     },
     {
       question: 'Dois-je apporter mes manettes ?',
-      answer:
-        "Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube en n'oubliant pas ton adaptateur.",
+      answer: 'Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube sans oublier ton adaptateur.',
     },
   ],
 } as Faq;
@@ -291,7 +290,7 @@ const Help = () => {
         <p>
           UTT Net Group
           <br />
-          12 rue Marie Curie 10000 Troyes
+          12, rue Marie Curie 10 000 Troyes
           <br />
           <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a>
           <br />

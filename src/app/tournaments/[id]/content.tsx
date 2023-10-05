@@ -9,7 +9,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.png';
 
@@ -43,27 +43,37 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+          {/*<Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
-          </Link>
+          </Link>*/}
         </div>
         <div className={styles.information}>
-          <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
-            <div className={styles.boxContent}>
-              1ere place : 1500€ <br />
-              1ere place : 1500€ <br />
-              1ere place : 1500€
-            </div>
+          <BoxContainer
+            className={styles.boxContainer}
+            contentClassName={styles.boxContent}
+            title="cashprize.txt"
+            padding={false}>
+            {tournament.cashprizeDetails ?? 'Annonce à venir'}
           </BoxContainer>
           <BoxContainer
             title="format.txt"
             padding={false}
             color="blue"
-            className={`${styles.boxContainer} ${styles.onTop}`}>
-            <div className={styles.boxContent}>{tournament.maxPlayers / tournament.playersPerTeam} équipes</div>
+            className={`${styles.boxContainer} ${styles.onTop}`}
+            contentClassName={styles.boxContent}>
+            {tournament.maxPlayers / tournament.playersPerTeam} équipes
           </BoxContainer>
-          <BoxContainer className={styles.boxContainer} title="infos.txt" padding={false}>
-            <div className={styles.boxContent}>Casteur : {tournament.casters?.map((caster) => caster.name + ' ')}</div>
+          <BoxContainer
+            className={styles.boxContainer}
+            contentClassName={styles.boxContent}
+            title="infos.txt"
+            padding={false}>
+            Casteur :{' '}
+            {tournament.casters === undefined || tournament.casters === null
+              ? 'À venir'
+              : tournament.casters.length === 0
+              ? 'Aucun caster pour ce tournoi'
+              : tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
         <Title level={3} type={1} align="center" className={styles.enrolledTeams}>

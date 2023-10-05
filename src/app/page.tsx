@@ -23,6 +23,7 @@ import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
 import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
+import { toast } from 'react-toastify';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -90,9 +91,15 @@ const Home = () => {
         <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
           <Counter value={8} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={5000} valueText=" €" name="de cashprize" toCome className={styles.middleCounter} />
+          <Counter
+            value={5000}
+            valueText=" €"
+            name="de cashprize"
+            toCome="Cashprize"
+            className={styles.middleCounter}
+          />
           <VerticalDivider className={styles.divider} />
-          <Counter value={520} name="Participants" className={styles.sideCounter} />
+          <Counter value={524} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
       </AppearFromSide>
 
@@ -101,7 +108,7 @@ const Home = () => {
           Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les
           1, 2 et 3 décembre 2023 dans un tout nouveau lieu : au sein des locaux de l’Université de Technologie de
           Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie ! <br />
-          Au programme : 8 tournois sur tes jeux favoris, 48h pour montrer tes skills parmis les 520 joueurs qui
+          Au programme : 8 tournois sur tes jeux favoris, 48h pour montrer tes skills parmis les 524 joueurs qui
           composeront l’évènement, et tenter de remporter les cashprizes, lots et de nombreuses autres surprises ! Et
           pour animer cette édition, des guests d’exception viendront caster cette édition qui s’annonce enflammée !
           Alors prépare tout ton stuff et impose toi dans l’arène !
@@ -111,10 +118,14 @@ const Home = () => {
             <Icon name={IconName.MapPin} />
             TROYES
           </Link>
-          <Link href={'/event#program'} className={styles.moreInfoContainer}>
+          {/*<Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
             1, 2, 3 Décembre 2023
-          </Link>
+          </Link>*/}
+          <Button onClick={() => toast.info("Plus d'infos à venir")} className={styles.moreInfoContainer}>
+            <Icon name={IconName.Calendar} />
+            1, 2, 3 Décembre 2023
+          </Button>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>

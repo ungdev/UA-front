@@ -136,6 +136,7 @@
     align-items: center;
     text-align: center;
     width: clamp(300px, 60%, 1920px);
+    z-index: 2;
 
     .ctaMainSubtitle {
       font-family: $lexend;
@@ -150,6 +151,7 @@
 
   .dataFlexing {
     width: 100%;
+    z-index: 2;
 
     .boxContainer {
       margin: auto;
@@ -166,6 +168,7 @@
 
   .information {
     width: clamp(300px, 80%, 1920px);
+    z-index: 2;
 
     .moreInfo {
       margin-top: 3.5rem;
