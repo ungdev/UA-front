@@ -4,7 +4,6 @@ import imageLeft from '@/../public/images/event/left.jpg';
 import imageRight from '@/../public/images/event/right.jpg';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
-import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
   title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
