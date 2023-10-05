@@ -48,25 +48,32 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           </Link>*/}
         </div>
         <div className={styles.information}>
-          <BoxContainer className={styles.boxContainer} title="cashprize.txt" padding={false}>
-            <div className={styles.boxContent}>{tournament.cashprizeDetails ?? 'Annonce à venir'}</div>
+          <BoxContainer
+            className={styles.boxContainer}
+            contentClassName={styles.boxContent}
+            title="cashprize.txt"
+            padding={false}>
+            {tournament.cashprizeDetails ?? 'Annonce à venir'}
           </BoxContainer>
           <BoxContainer
             title="format.txt"
             padding={false}
             color="blue"
-            className={`${styles.boxContainer} ${styles.onTop}`}>
-            <div className={styles.boxContent}>{tournament.maxPlayers / tournament.playersPerTeam} équipes</div>
+            className={`${styles.boxContainer} ${styles.onTop}`}
+            contentClassName={styles.boxContent}>
+            {tournament.maxPlayers / tournament.playersPerTeam} équipes
           </BoxContainer>
-          <BoxContainer className={styles.boxContainer} title="infos.txt" padding={false}>
-            <div className={styles.boxContent}>
-              Casteur :{' '}
-              {tournament.casters === undefined || tournament.casters === null
-                ? 'À venir'
-                : tournament.casters.length === 0
-                ? 'Aucun caster pour ce tournoi'
-                : tournament.casters?.map((caster) => caster.name + ' ')}
-            </div>
+          <BoxContainer
+            className={styles.boxContainer}
+            contentClassName={styles.boxContent}
+            title="infos.txt"
+            padding={false}>
+            Casteur :{' '}
+            {tournament.casters === undefined || tournament.casters === null
+              ? 'À venir'
+              : tournament.casters.length === 0
+              ? 'Aucun caster pour ce tournoi'
+              : tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
         <Title level={3} type={1} align="center" className={styles.enrolledTeams}>

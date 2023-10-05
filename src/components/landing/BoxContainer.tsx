@@ -11,6 +11,7 @@ function BoxContainer({
   padding = true,
   color = 'pink',
   className = '',
+  contentClassName = '',
 }: {
   /** The title to display in the box. */
   title: string;
@@ -22,6 +23,8 @@ function BoxContainer({
   color?: 'pink' | 'blue';
   /** The class of the component */
   className?: string;
+  /** A string to add to the div of the content */
+  contentClassName?: string;
 }) {
   return (
     <div className={`${styles.boxContainer} ${className}`}>
@@ -29,7 +32,7 @@ function BoxContainer({
         <Icon name={IconName.Cross} strokeWidth={4} />
         {title}
       </div>
-      <div className={`${styles.boxContent} ${!padding ? styles.noPadding : ''}`}>{children}</div>
+      <div className={`${styles.boxContent} ${!padding ? styles.noPadding : ''} ${contentClassName}`}>{children}</div>
     </div>
   );
 }
