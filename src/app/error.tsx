@@ -1,7 +1,7 @@
 'use client';
+import styles from './errors.module.scss';
 import { useEffect } from 'react';
 import Link from 'next/link';
-import styles from './not-found.module.scss';
 
 import { Title, Button } from '@/components/UI';
 
@@ -13,7 +13,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
 
   function copyError() {
     // Copy the error to the clipboard
-    navigator.clipboard.writeText(error.toString());
+    navigator.clipboard.writeText(`${error}\n${error.stack}`);
   }
 
   return (
@@ -22,8 +22,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
         <Title level={1} type={1} align="center">
           Une erreur est survenue...
         </Title>
-        {/* <p>{error.name && `Erreur ${error.name}`}</p> */}
-        <p>Si tu penses que ce n'est pas ta faute, contacte le staff.</p>
+        <p>Si tu ne penses pas avoir cherché à provoquer cette erreur, contacte le staff.</p>
 
         {/* allow user to copy the error to his clipboard */}
         <Button onClick={copyError}>Copier l'erreur</Button>

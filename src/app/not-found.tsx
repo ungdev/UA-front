@@ -1,5 +1,5 @@
 'use client';
-import styles from './not-found.module.scss';
+import styles from './errors.module.scss';
 import Link from 'next/link';
 
 import { Title, Button } from '@/components/UI';

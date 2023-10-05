@@ -34,15 +34,15 @@
       }
     }
   }
-}
 
-// show message only on hover
-.grass {
-  all : unset;
-  color: transparent;
-  transition: color 0.3s;
-  font-size: 11px;
-}
-.grass:hover {
-  color: #567d46;
+  // show message only on hover
+  .grass {
+    all : unset;
+    color: transparent;
+    transition: color 0.3s;
+    font-size: 11px;
+  }
+  .grass:hover {
+    color: #567d46;
+  }
 }
