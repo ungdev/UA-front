@@ -53,7 +53,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             contentClassName={styles.boxContent}
             title="cashprize.txt"
             padding={false}>
-            {tournament.cashprizeDetails ?? (<><strong>Cashprize :</strong> À venir</>)}
+            {tournament.cashprizeDetails ?? (
+              <>
+                <strong>Cashprize :</strong> À venir
+              </>
+            )}
           </BoxContainer>
           <BoxContainer
             title="format.txt"
