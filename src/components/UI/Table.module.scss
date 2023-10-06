@@ -35,7 +35,7 @@
     padding: 1em;
     color: white;
     background-color: $primary-color;
-    
+
     &:not(&:first-child) {
       border-left: 1px solid white;
     }

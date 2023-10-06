@@ -270,7 +270,7 @@ const Page = () => {
 
   return (
     <div id="dashboard-team" className={styles.dashboardTeam}>
-      <Title level={1} className={styles.primaryTitle}>
+      <Title level={1} align="center" className={styles.primaryTitle}>
         Équipe
       </Title>
       <Title level={2} type={2} className={styles.secondaryTitle}>
