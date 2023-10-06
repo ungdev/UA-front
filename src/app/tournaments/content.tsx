@@ -6,9 +6,11 @@ import { Icon, Title } from '@/components/UI';
 import Link from 'next/link';
 import Divider from '@/components/UI/Divider';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
+import { type Action } from '@reduxjs/toolkit';
+import { setLoginModalVisible } from '@/modules/loginModal';
 
 export function TournamentHome({
   animations,
@@ -24,6 +26,7 @@ export function TournamentHome({
   onScrolled?: () => void;
 }) {
   const fadeDuration = animations !== 'none' ? 200 : 0;
+  const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
@@ -268,11 +271,12 @@ export function TournamentHome({
                 Plus d'infos
               </Button>
             </Link>
-            <Link href={`/dashboard`} scroll={false}>
-              <Button className={styles.button} primary>
-                S'inscrire
-              </Button>
-            </Link>
+            <Button
+              className={styles.button}
+              primary
+              onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
+              S'inscrire
+            </Button>
           </div>
         </div>
       </div>
