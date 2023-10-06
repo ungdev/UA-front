@@ -91,7 +91,13 @@ const Purchases = () => {
 
   return (
     <div id="dashboard-purchases" className={styles.dashboardPurchases}>
-      {carts.length ? displayCarts : <Title level={4}>Aucun achat</Title>}
+      {carts.length ? (
+        displayCarts
+      ) : (
+        <Title level={4} className={styles.primaryTitle}>
+          Aucun achat
+        </Title>
+      )}
     </div>
   );
 };

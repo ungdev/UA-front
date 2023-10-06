@@ -1,41 +1,67 @@
 .dashboardShop {
+  overflow: scroll;
+  padding: 50px;
+
+  .primaryTitle {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 7rem;
+  }
+
+  .secondaryTitle {
+    width: 100%;
+    margin: 60px auto 70px auto;
+  }
+
   .shopAndBill {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 35px;
+    justify-content: space-evenly;
+    gap: 30px;
+    align-items: stretch;
 
-    .shopSection {
-      margin-bottom: 40px;
-      max-width: 50vw;
-    }
+    .shop {
+      width: 60%;
+      display: block;
+      flex-grow: 1;
 
-    .title {
-      margin: 20px 0 0 0;
-    }
+      .shopSection {
+        margin-bottom: 40px;
+      }
 
-    .placeTitle {
-      margin-bottom: 20px;
+      .title {
+        margin: 20px 0 0 0;
+      }
+
+      .placeTitle {
+        margin-bottom: 20px;
+      }
     }
 
     .bill {
-      box-sizing: border-box;
-      height: fit-content;
-      width: 30%;
-      border-radius: 2px;
-      background-color: #fbfbfb;
-      padding: 10px 30px;
+      margin: 40px auto 50px auto;
+      width: 40%;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .shopFooter {
         text-align: right;
         margin-top: 38px;
+        bottom: 0;
 
         .cgvCheckbox {
           display: block ruby;
+          padding-bottom: 30px;
+          justify-self: right;
         }
-
-        .shopButton.buttonWrapper {
+        .shopButton {
           margin-left: 16px;
+        }
+        .buttonWrapper {
+          justify-self: left;
         }
       }
     }
@@ -58,11 +84,25 @@
     max-width: 1000px;
     width: 100%;
   }
+
+  .buttonRow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1300px) {
   .dashboardShop .shopAndBill {
-    flex-direction: column;
+    flex-flow: column wrap;
+    max-width: 100%;
+
+    .shopAndBill {
+      max-width: 100%;
+    }
+    .shop {
+      width: 100%;
+    }
     .bill {
       width: 100%;
     }

@@ -1,6 +1,8 @@
 @import '@/variables.scss';
 
 .dashboardTeam {
+  padding: 50px;
+
   .tablePlayers {
     width: 100%;
     margin-bottom: 30px;
@@ -17,9 +19,23 @@
     .headerInfo {
       text-align: left;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
 
       > div {
         margin-bottom: 10px;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5px;
+        }
       }
     }
   }
@@ -27,6 +43,34 @@
   .refresh {
     cursor: pointer;
     font-size: 24px;
+  }
+
+  .primaryTitle {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 7rem;
+  }
+
+  .secondaryTitle {
+    width: 100%;
+    margin: 60px auto 70px auto;
+  }
+
+  .descriptionValue {
+    color: $primary-color;
+    display: flex;
+  }
+
+  .teamCompleted {
+    color: greenyellow;
+  }
+
+  .iconCaution {
+    color: yellow;
+  }
+
+  .iconTick {
+    color: greenyellow;
   }
 
   .playersList {
@@ -96,6 +140,12 @@
     width: 100%;
     border: none;
     margin: 20px 0;
+  }
+
+  .buttonRow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }
 

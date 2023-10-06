@@ -270,43 +270,63 @@ const Page = () => {
 
   return (
     <div id="dashboard-team" className={styles.dashboardTeam}>
+      <Title level={1} className={styles.primaryTitle}>
+        Équipe
+      </Title>
+      <Title level={2} type={2} className={styles.secondaryTitle}>
+        Description
+      </Title>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          {!isSolo && (
-            <div>
-              <strong>Mon équipe :</strong> {team.name}
-            </div>
-          )}
           <div>
-            <strong>Tournoi :</strong> {tournamentName}
-          </div>
-          {isShopAllowed && (
-            <>
+            {!isSolo && (
               <div>
-                <strong>Statut</strong>{' '}
-                <Helper>
-                  Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé
-                  leur place et l'équipe doit être verrouillée.
-                </Helper>
-                <strong> : </strong>
-                {team.lockedAt ? (
-                  <>
-                    <Icon name={IconName.Tick} /> Inscrit
-                  </>
-                ) : (
-                  <>
-                    <Icon name={IconName.Caution} /> Non inscrit
-                  </>
-                )}
+                <strong>Mon équipe :</strong>
+                <div className={styles.descriptionValue}>{team.name}</div>
               </div>
-              {slotsTournament && (
+            )}
+            <div>
+              <strong>Tournoi :</strong>
+              <div className={styles.descriptionValue}>{tournamentName}</div>
+            </div>
+          </div>
+          <div>
+            {isShopAllowed && (
+              <>
                 <div>
-                  <strong> {isSolo ? 'Places' : 'Equipes'} disponibles :</strong>{' '}
-                  {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
+                  <strong>Statut :</strong>
+                  <Helper>
+                    Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé
+                    leur place et l'équipe doit être verrouillée.
+                  </Helper>
+                  {team.lockedAt ? (
+                    <>
+                      <Icon name={IconName.Tick} className={styles.iconTick} />
+                      <div className={styles.descriptionValue}>Inscrit</div>
+                    </>
+                  ) : (
+                    <>
+                      <Icon name={IconName.Caution} className={styles.iconCaution} />
+                      <div className={styles.descriptionValue}>Non inscrit</div>
+                    </>
+                  )}
                 </div>
-              )}
-            </>
-          )}
+                {slotsTournament && (
+                  <div>
+                    <strong> {isSolo ? 'Places' : 'Equipes'} occupées :</strong>{' '}
+                    <div
+                      className={
+                        slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
+                          ? styles.teamCompleted
+                          : styles.descriptionValue
+                      }>
+                      {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
         <div onClick={() => document.location.reload()}>
           <Icon name={IconName.Refresh} />
@@ -350,7 +370,9 @@ const Page = () => {
       {!isSolo ? (
         <>
           <div className={styles.playersList}>
-            <Title level={4}>Joueurs</Title>
+            <Title level={2} type={2} className={styles.secondaryTitle}>
+              Joueurs
+            </Title>
             <Table
               columns={playersColumns}
               dataSource={players ? players : []}
@@ -359,7 +381,9 @@ const Page = () => {
             />
           </div>
           <div className={styles.playersList}>
-            <Title level={4}>Coach / Manager</Title>
+            <Title level={2} type={2} className={styles.secondaryTitle}>
+              Coachs / Managers
+            </Title>
             <Table
               columns={playersColumns}
               dataSource={coaches ? coaches : []}
@@ -378,7 +402,9 @@ const Page = () => {
           {isShopAllowed && !team.lockedAt && (
             <>
               <div className={styles.playersList}>
-                <Title level={4}>Joueurs en attente</Title>
+                <Title level={2} type={2} className={styles.secondaryTitle}>
+                  Joueurs en attente
+                </Title>
                 <Table
                   columns={waitingPlayersColumns}
                   dataSource={waitingPlayers ? waitingPlayers : []}
@@ -387,7 +413,9 @@ const Page = () => {
                 />
               </div>
               <div className={styles.playersList}>
-                <Title level={4}>Coach / Manager en attente</Title>
+                <Title level={2} type={2} className={styles.secondaryTitle}>
+                  Coachs / Managers en attente
+                </Title>
                 <Table
                   columns={waitingPlayersColumns}
                   dataSource={waitingCoaches ? waitingCoaches : []}
@@ -395,30 +423,32 @@ const Page = () => {
                   className={styles.tablePlayers}
                 />
               </div>
-              <Button
-                onClick={() =>
-                  isCaptain
-                    ? setModal({
-                        visible: true,
-                        onOk: () => {
-                          dispatch(deleteTeam() as unknown as Action);
-                          setModal(initialModal);
-                        },
-                        content: "Es-tu sûr de vouloir dissoudre l'équipe ?",
-                        title: "Dissoudre l'équipe",
-                      })
-                    : setModal({
-                        visible: true,
-                        onOk: () => {
-                          dispatch(kickUser(id) as unknown as Action);
-                          setModal(initialModal);
-                        },
-                        content: "Es-tu sûr de vouloir quitter l'équipe ?",
-                        title: "Quitter l'équipe",
-                      })
-                }>
-                {isCaptain ? "Dissoudre l'équipe" : "Quitter l'équipe"}
-              </Button>
+              <div className={styles.buttonRow}>
+                <Button
+                  onClick={() =>
+                    isCaptain
+                      ? setModal({
+                          visible: true,
+                          onOk: () => {
+                            dispatch(deleteTeam() as unknown as Action);
+                            setModal(initialModal);
+                          },
+                          content: "Es-tu sûr de vouloir dissoudre l'équipe ?",
+                          title: "Dissoudre l'équipe",
+                        })
+                      : setModal({
+                          visible: true,
+                          onOk: () => {
+                            dispatch(kickUser(id) as unknown as Action);
+                            setModal(initialModal);
+                          },
+                          content: "Es-tu sûr de vouloir quitter l'équipe ?",
+                          title: "Quitter l'équipe",
+                        })
+                  }>
+                  {isCaptain ? "Dissoudre l'équipe" : "Quitter l'équipe"}
+                </Button>
+              </div>
             </>
           )}
         </>

@@ -224,7 +224,9 @@ const SupplementList = ({
   return (
     supplementRows.length && (
       <div className={styles.supplementList}>
-        <Title level={4}>{shopSectionName}</Title>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
+          {shopSectionName}
+        </Title>
         <Table columns={supplementColumns} dataSource={supplementRows} className={styles.shopTable} />
       </div>
     )
