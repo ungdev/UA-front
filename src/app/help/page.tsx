@@ -32,8 +32,8 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong>. Il faudra
-          que tu présentes <strong>l'autorisation parentale</strong>
+          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 12 ans
+          pour le tournoi Pokémon). Il faudra que tu présentes <strong>l'autorisation parentale</strong>
           {/* <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
             disponible ici
           </a> */}
@@ -112,19 +112,7 @@ const faq: Faq = {
     },
     {
       question: 'Combien coûte la participation à un tournoi ?',
-      answer: (
-        <>
-          <ul>
-            <li>22 € pour les joueurs du tournoi Super Smash Bros Ultimate</li>
-            <li>25 € pour les joueurs des autres tournois</li>
-            <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
-            <li>
-              Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
-              adresse mail étudiante.
-            </li>
-          </ul>
-        </>
-      ),
+      answer: 'Les prix ne sont pas encore fixés, ils vous seront communiqués dans les semaines qui arrivent.',
     },
     {
       question: "Dans combien de tournois puis-je m'inscrire ?",

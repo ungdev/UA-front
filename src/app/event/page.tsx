@@ -27,7 +27,7 @@ export default function Page() {
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
             L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
-            gaming au Parc des Expositions de Troyes, le Cube, en passant par l'espace Argence, l'UTT Arena a évoluée de
+            gaming au Parc des Expositions de Troyes, le Cube, en passant par l'espace Argence, l'UTT Arena a évolué de
             manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
         </div>
