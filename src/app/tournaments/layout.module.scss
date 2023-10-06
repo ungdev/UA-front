@@ -4,7 +4,6 @@
   .mainContent {
     position: relative;
     padding-bottom: 3rem;
-    height: 120vh;
 
     .background {
       background-size: cover;
@@ -12,7 +11,7 @@
       transition: background 0.25s ease-in-out;
       background-repeat: no-repeat;
       width: 100%;
-      height: 100%;
+      height: min(100vh, 100%);
       position: absolute;
     }
 
@@ -33,7 +32,7 @@
       pointer-events: none;
       position: absolute;
       width: 100%;
-      height: 100%;
+      height: min(100vh, 100%);
       overflow: hidden;
 
       img {

@@ -55,12 +55,6 @@ export function TournamentHome({
     }, fadeDuration);
   }, [selectedTournamentIndex]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      onTournamentListScroll(); // Remove arrow that don't need to be rendered
-    }, 1000);
-  }, [tournamentList.current]);
-
   const findClosestChildren = (tournamentList: HTMLDivElement, tournamentListRect: DOMRect) => {
     const tournamentListChildren = tournamentList.children;
     const tournamentListCenter = tournamentListRect.left + tournamentListRect.width / 2;
