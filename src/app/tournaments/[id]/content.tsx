@@ -66,7 +66,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             className={`${styles.boxContainer} ${styles.onTop}`}
             contentClassName={styles.boxContent}>
             {tournament.maxPlayers / tournament.playersPerTeam}{' '}
-            {tournament.playersPerTeam === 1 ? 'équipes' : 'joueurs'}
+            {tournament.playersPerTeam === 1 ? 'joueurs' : 'équipes'}
           </BoxContainer>
           <BoxContainer
             className={styles.boxContainer}

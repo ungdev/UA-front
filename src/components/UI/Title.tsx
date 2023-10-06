@@ -23,7 +23,7 @@ const Title = ({
   /** Whether to add a bottom margin to the title component. */
   gutterBottom?: boolean;
   /** The horizontal alignment of the title component. */
-  align?: 'inherit' | 'center' | 'justify' | 'left' | 'right';
+  align?: 'inherit' | 'center' | 'left' | 'right';
   /** An optional class name to apply to the title component. */
   className?: string;
   /** The HTML id attribute to be added to the title component. */

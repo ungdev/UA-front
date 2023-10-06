@@ -268,11 +268,12 @@ export function TournamentHome({
                 Plus d'infos
               </Button>
             </Link>
-            <Link href={`/dashboard`} scroll={false}>
-              <Button className={styles.button} primary>
-                S'inscrire
-              </Button>
-            </Link>
+            <Button
+              className={styles.button}
+              primary
+              onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
+              S'inscrire
+            </Button>
           </div>
         </div>
       </div>
