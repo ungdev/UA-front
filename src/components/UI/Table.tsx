@@ -58,7 +58,7 @@ const Table = ({
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (
                   <td key={`${row[column.key]}-${i}-${j}`} className={lastColumn ? styles.alignRight : ''}>
-                    {row[column.key]}
+                    <div>{row[column.key]}</div>
                   </td>
                 );
               })}

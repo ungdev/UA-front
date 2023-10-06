@@ -1,6 +1,11 @@
 @import '@/variables.scss';
 
 .supplementList {
+  .secondaryTitle {
+    width: 100%;
+    margin: 60px auto 70px auto;
+  }
+
   .shopTable {
     width: 100%;
     margin-bottom: 20px;

@@ -296,13 +296,18 @@ const Shop = () => {
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
+      <Title level={1} className={styles.primaryTitle}>
+        Boutique
+      </Title>
       <div className={styles.shopAndBill}>
-        <div>
+        <div className={styles.shop}>
           <div className={styles.shopSection}>
-            <Title className={styles.placeTitle} level={4}>
+            <Title level={2} type={2} className={styles.secondaryTitle}>
               Places
             </Title>
-            <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+            <div className={styles.buttonRow}>
+              <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+            </div>
           </div>
           <div className={styles.shopSection}>
             <SupplementList

@@ -3,17 +3,31 @@
 .dashboardAccount {
   display: flex;
   flex-flow: row wrap;
-  justify-content: left;
+  justify-content: space-evenly;
+
+  .secondaryTitle {
+    width: 100%;
+    margin: 60px auto 70px auto;
+    text-align: center;
+  }
+
+  .discordCategory {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 
   .infos,
   .ticket,
   .notif {
     max-width: 100%;
-    margin: 0px 20px;
+    margin: 0px 50px;
   }
 
   .infos {
-    width: 400px;
+    width: 40%;
     margin-bottom: 50px;
 
     span {
@@ -35,5 +49,29 @@
 
   input:disabled {
     background-color: rgb(230, 230, 230);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #dashboardAccount {
+    flex-flow: column wrap;
+    max-width: 100%;
+
+    .infos,
+    .ticket,
+    .notif {
+      max-width: 100%;
+      margin: 0px;
+      padding: 50px;
+    }
+
+    .infos {
+      width: 100%;
+      margin-bottom: 50px;
+
+      span {
+        color: #00a700;
+      }
+    }
   }
 }

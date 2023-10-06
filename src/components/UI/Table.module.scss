@@ -35,7 +35,7 @@
     padding: 1em;
     color: white;
     background-color: $primary-color;
-
+    
     &:not(&:first-child) {
       border-left: 1px solid white;
     }
@@ -64,6 +64,13 @@
 
     &.alignRight {
       text-align: right;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
     }
   }
 

@@ -33,7 +33,7 @@ const Cart = ({
   return (
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
-        <h2>Panier</h2>
+        <h2 className={styles.mainTitle}>Panier</h2>
         <Button onClick={onCartReset}>
           {/* TODO: Make it red */}
           <Icon name={IconName.Trash}></Icon>
