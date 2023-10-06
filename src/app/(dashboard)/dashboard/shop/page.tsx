@@ -296,7 +296,7 @@ const Shop = () => {
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
-      <Title level={1} className={styles.primaryTitle}>
+      <Title level={1} align="center" className={styles.primaryTitle}>
         Boutique
       </Title>
       <div className={styles.shopAndBill}>
