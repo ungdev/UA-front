@@ -6,6 +6,6 @@
 
 ## What's left to do (DELETE THIS PART FOR NON-DRAFT PR)
 
-- [ ] Vérifier le build
+- [ ] Verify build
 - [ ] Lint
-- [ ] Supprimer les console.log / code commenté
+- [ ] Remove console.log / commented code
