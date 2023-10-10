@@ -32,7 +32,7 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 12 ans
+          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 6 ans
           pour le tournoi Pokémon). Il faudra que tu présentes <strong>l'autorisation parentale</strong>
           {/* <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
             disponible ici
