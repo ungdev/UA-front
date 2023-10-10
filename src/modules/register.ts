@@ -3,9 +3,7 @@ import { toast } from 'react-toastify';
 import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
-
 import { setRedirect } from '@/modules/redirect';
-import { Dispatch as ReactDispatch, SetStateAction } from 'react';
 
 const initialState = {};
 
@@ -15,7 +13,7 @@ export const registerSlice = createSlice({
   reducers: {},
 });
 
-export const registerUser = (user: RegisterUser, setPanel: ReactDispatch<SetStateAction<string>>) => async () => {
+export const registerUser = (user: RegisterUser) => async () => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');
     return;
@@ -32,7 +30,6 @@ export const registerUser = (user: RegisterUser, setPanel: ReactDispatch<SetStat
   delete user.passwordConfirmation;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, vérifie tes emails');
-  setPanel('emailSent');
   return true;
 };
 

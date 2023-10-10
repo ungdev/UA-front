@@ -49,7 +49,8 @@ function LoginModal({
   };
 
   const signup = () => {
-    dispatch(registerUser(signupForm, setPanel) as unknown as Action);
+    dispatch(registerUser(signupForm) as unknown as Action);
+    setPanel('emailSent');
   };
 
   const resend = () => {
