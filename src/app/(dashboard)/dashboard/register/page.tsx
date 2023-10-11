@@ -36,6 +36,7 @@ const Register = () => {
   const [step, setStep] = useState(1);
   const soloTeamName = `${user.username}-solo-team`;
   const [teamName, setTeamName] = useState('');
+  const [pokemonPlayerId, setPokemonPlayerId] = useState('');
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
@@ -238,6 +239,7 @@ const Register = () => {
       {createTeam || userType === UserType.spectator ? (
         <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
+          {tournament == 'pokemon' ? <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} /> : null}
           {tournament == 'osu' && userType !== UserType.spectator ? (
             <>
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
@@ -252,6 +254,7 @@ const Register = () => {
                   : (cT({
                       name: tournamentSolo ? soloTeamName : teamName,
                       tournamentId: tournament,
+                      pokemonPlayerId: tournament == 'pokemon' ? pokemonPlayerId : undefined,
                       userType: userType as UserType,
                     }) as unknown as Action),
               )

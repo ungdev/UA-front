@@ -25,6 +25,7 @@ export const { setTeam } = teamSlice.actions;
 interface BodyTeam {
   name: string;
   tournamentId: string;
+  pokemonPlayerId?: string;
   userType: UserType;
 }
 
