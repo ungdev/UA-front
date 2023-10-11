@@ -23,6 +23,7 @@ import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
 import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
+import banner from '@/../public/images/banner.png';
 import { toast } from 'react-toastify';
 
 const Home = () => {
@@ -69,6 +70,7 @@ const Home = () => {
           <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
+              <img src={banner.src} alt=""/>
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>

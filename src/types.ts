@@ -196,6 +196,10 @@ export interface Item {
   left: number | null;
 }
 
+export interface AdminItem extends Item {
+  reducedPrice: number | null;
+}
+
 export interface Caster {
   id: string;
   name: string;

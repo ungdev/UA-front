@@ -4,6 +4,7 @@ import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { setRedirect } from '@/modules/redirect';
+import { autoLogin } from './login';
 
 const initialState = {};
 
@@ -42,6 +43,8 @@ export const validate = (slug: string) => async (dispatch: Dispatch) => {
     const res = await API.post('auth/validate/' + slug, undefined);
     localStorage.setItem('utt-arena-userid', res.user.id);
     localStorage.setItem('utt-arena-token', res.token);
+
+    dispatch(autoLogin() as unknown as Action);
 
     dispatch(setRedirect('/dashboard'));
   } catch (err) {
