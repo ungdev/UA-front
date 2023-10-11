@@ -1,9 +1,10 @@
 import styles from './SupplementList.module.scss';
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import { Button, Select, Table, Title } from './../UI';
 import { toast } from 'react-toastify';
 import { Item } from '@/types';
+import Tooltip from '@/components/UI/Tooltip';
 
 const supplementColumns = [
   {
@@ -158,6 +159,10 @@ const SupplementList = ({
           </ul>,
         ];
 
+      const hasNotPassedStartAvailability = !!(supplement.availableFrom && supplement.availableFrom > Date.now());
+      const isAfterEndAvailability = !!(supplement.availableUntil && supplement.availableUntil < Date.now());
+      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability;
+
       // Return the row
       return {
         name: (
@@ -187,37 +192,49 @@ const SupplementList = ({
           ''
         ),
         add_to_cart: (
-          <Button
-            onClick={() => {
-              if (supplement.left! <= cartSupplement!.quantity) {
-                toast.warn('Le stock de cet item est épuisé');
-                return;
-              }
-              if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
-                toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
-                return;
-              }
-              const newCartSupplements = [...supplementCart];
-              if (cartSupplement!.quantity) {
-                newCartSupplements.forEach(
-                  (cartSupplement) =>
-                    (cartSupplement.quantity =
-                      cartSupplement.itemId === supplementFullId
-                        ? cartSupplement.quantity + 1
-                        : cartSupplement.quantity),
-                );
-                setSupplementCart(newCartSupplements);
-              } else {
-                const newSupplement = {
-                  itemId: supplementFullId,
-                  quantity: 1,
-                };
-                setSupplementCart([...supplementCart, newSupplement]);
-              }
-            }}>
-            Ajouter au panier
-          </Button>
+          <Tooltip
+            tooltip={
+              hasNotPassedStartAvailability
+                ? `Cet item sera disponible à partir du ${new Date(supplement.availableFrom!).toLocaleDateString()}`
+                : isAfterEndAvailability
+                ? `Cet item était disponible jusqu'au ${new Date(supplement.availableUntil!).toLocaleDateString()}`
+                : ''
+            }
+            enabled={disabled}>
+            <Button
+              onClick={() => {
+                if (supplement.left! <= cartSupplement!.quantity) {
+                  toast.warn('Le stock de cet item est épuisé');
+                  return;
+                }
+                if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
+                  toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
+                  return;
+                }
+                const newCartSupplements = [...supplementCart];
+                if (cartSupplement!.quantity) {
+                  newCartSupplements.forEach(
+                    (cartSupplement) =>
+                      (cartSupplement.quantity =
+                        cartSupplement.itemId === supplementFullId
+                          ? cartSupplement.quantity + 1
+                          : cartSupplement.quantity),
+                  );
+                  setSupplementCart(newCartSupplements);
+                } else {
+                  const newSupplement = {
+                    itemId: supplementFullId,
+                    quantity: 1,
+                  };
+                  setSupplementCart([...supplementCart, newSupplement]);
+                }
+              }}
+              disabled={disabled}>
+              Ajouter au panier
+            </Button>
+          </Tooltip>
         ),
+        _grayed: disabled,
       };
     });
 
