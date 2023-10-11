@@ -55,7 +55,6 @@ export const joinTeam =
 
 export const fetchCurrentTeam = () => async (dispatch: Dispatch) => {
   const res = await API.get(`teams/current`);
-  console.log(res);
   dispatch(setTeam(res));
 };
 
@@ -79,10 +78,15 @@ export const acceptUser = (user: User) => async (dispatch: Dispatch, getState: (
   const state = getState();
   const team: TeamWithUsers = state.team.team as TeamWithUsers;
   await API.post(`teams/current/join-requests/${user.id}`, {});
-  user.type === UserType.player ? team.players.push(user) : team.coaches.push(user);
+  const newTeam = { ...team };
+  if (user.type === UserType.player) {
+    newTeam.players = [...newTeam.players, user];
+  } else {
+    newTeam.coaches = [...newTeam.coaches, user];
+  }
 
-  team.askingUsers = team.askingUsers.filter(({ id }: { id: string }) => id !== user.id);
-  dispatch(setTeam(team));
+  newTeam.askingUsers = newTeam.askingUsers.filter(({ id }: { id: string }) => id !== user.id);
+  dispatch(setTeam(newTeam));
 };
 
 export const kickUser = (userId: string) => async (dispatch: Dispatch, getState: () => RootState) => {
@@ -96,9 +100,12 @@ export const kickUser = (userId: string) => async (dispatch: Dispatch, getState:
     dispatch(setTeam(null));
   } else {
     await API.delete(`teams/current/users/${userId}`);
-    team.players = team.players.filter(({ id }: { id: string }) => id !== userId);
-    team.coaches = team.coaches.filter(({ id }: { id: string }) => id !== userId);
-    dispatch(setTeam(team));
+    const newTeam = {
+      ...team,
+      players: team.players.filter(({ id }: { id: string }) => id !== userId),
+      coaches: team.coaches.filter(({ id }: { id: string }) => id !== userId),
+    };
+    dispatch(setTeam(newTeam));
   }
 };
 
@@ -106,8 +113,8 @@ export const refuseUser = (user: User) => async (dispatch: Dispatch, getState: (
   const state = getState();
   const team = state.team.team as TeamWithUsers;
   await API.delete(`teams/current/join-requests/${user.id}`);
-  team.askingUsers = team.askingUsers.filter(({ id }: { id: string }) => id !== user.id);
-  dispatch(setTeam(team));
+  const newTeam = { ...team, askingUsers: team.askingUsers.filter(({ id }: { id: string }) => id !== user.id) };
+  dispatch(setTeam(newTeam));
 };
 
 export const deleteTeam = () => async (dispatch: Dispatch, getState: () => RootState) => {
