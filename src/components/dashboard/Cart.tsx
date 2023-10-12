@@ -1,8 +1,7 @@
 import styles from './Cart.module.scss';
 import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
-import { Button, Icon } from '@/components/UI';
-import { IconName } from '@/components/UI/Icon';
+import { Button } from '@/components/UI';
 
 /** The cart */
 const Cart = ({
@@ -34,7 +33,9 @@ const Cart = ({
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
         <h2 className={styles.mainTitle}>Panier</h2>
-        <Icon name={IconName.Trash} onClick={onCartReset}></Icon>
+        <Button primary outline onClick={onCartReset}>
+          Vider le panier
+        </Button>
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {
         const i = cart.tickets.userIds.findIndex((id: string) => id === userId);

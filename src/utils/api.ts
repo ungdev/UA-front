@@ -41,7 +41,7 @@ const requestAPI = (
           }
           throw new Error('La requête a échoué');
         }
-        
+
         // test if response is json
         if (
           response.headers.get('content-type') &&

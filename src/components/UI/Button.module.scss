@@ -15,6 +15,13 @@
   border-radius: 0.625rem;
   border: 0;
 
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   &:not(.primary, .secondary) {
     color: #8C979B;
     border: none;

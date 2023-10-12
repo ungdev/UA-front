@@ -63,21 +63,15 @@
 
         .shopFooter {
           text-align: right;
-          margin-top: 38px;
+          margin-top: 2rem;
           bottom: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
 
-          .cgvCheckbox {
-            display: block ruby;
-            padding-bottom: 30px;
-            justify-self: right;
-          }
-
-          .shopButton {
-            margin-left: 16px;
-          }
-
-          .buttonWrapper {
-            justify-self: left;
+          .cgv {
+            text-align: left;
+            margin-top: 1rem;
           }
         }
       }
@@ -104,21 +98,24 @@
 }
 
 @media screen and (max-width: 1300px) {
-  .dashboardShop .shopAndBill {
-    flex-flow: column wrap;
-    max-width: 100%;
+  .dashboardShop {
+    padding: 10px;
+    .shopAndBill {
+      flex-flow: column wrap;
+      max-width: 100%;
 
-    .billWrapper {
-      width: 100%;
-    }
-    .shop {
-      width: 100%;
-    }
-    .bill {
-      width: 100%;
-    }
-    .shopSection {
-      max-width: unset;
+      .billWrapper {
+        width: 100%;
+      }
+      .shop {
+        width: 100%;
+      }
+      .bill {
+        width: 100%;
+      }
+      .shopSection {
+        max-width: unset;
+      }
     }
   }
 }

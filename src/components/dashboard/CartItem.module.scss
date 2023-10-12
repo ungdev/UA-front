@@ -8,6 +8,20 @@
   margin-bottom: 15px;
   align-items: center;
 
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 70%;
+
+    >div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+  }
+
   .itemName {
     width: 80%;
     font-weight: 900;

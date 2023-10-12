@@ -166,7 +166,9 @@ const SupplementList = ({
       return {
         name: (
           <div className={styles.itemPresentation}>
-            <div><strong>{supplement.name}</strong></div>
+            <div>
+              <strong>{supplement.name}</strong>
+            </div>
             <div className={styles.itemDescription}>{description}</div>
             {supplement.image && (
               <Button
@@ -180,7 +182,7 @@ const SupplementList = ({
         ),
         price: `${(supplement.price / 100).toLocaleString(undefined, {
           minimumFractionDigits: 2,
-          maximumFractionDigits: 2
+          maximumFractionDigits: 2,
         })} €`,
         attributes: supplement.attributes!.length ? (
           <Select

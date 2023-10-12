@@ -1,5 +1,5 @@
 import styles from './CartItem.module.scss';
-import { Button, Icon } from '@/components/UI';
+import { Icon } from '@/components/UI';
 import { IconName } from '@/components/UI/Icon';
 
 /** The cart item */
@@ -23,20 +23,46 @@ const CartItem = ({
 }) => {
   return (
     <div className={styles.cartItem}>
-      <div className={styles.itemName}>{itemName}</div>
-      <Icon name={IconName.Trash} onClick={onRemove} />
-      <div>
-        {quantity} x{' '}
-        {reducedUnitPrice !== null ? (
-          <>
-            {(reducedUnitPrice / 100).toFixed(2)}€
-            <span className={styles.reductedPrice}>{(unitPrice / 100).toFixed(2)}€</span>
-          </>
-        ) : (
-          <>{(unitPrice / 100).toFixed(2)}€</>
-        )}
+      <div className={styles.left}>
+        <Icon name={IconName.Trash} onClick={onRemove} />
+        <div className="">
+          <div className={styles.itemName}>{itemName}</div>
+          <div>
+            {quantity} x{' '}
+            {reducedUnitPrice !== null ? (
+              <>
+                {(reducedUnitPrice / 100).toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                €
+                <span className={styles.reductedPrice}>
+                  {(unitPrice / 100).toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
+                  €
+                </span>
+              </>
+            ) : (
+              <>
+                {(unitPrice / 100).toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+                €
+              </>
+            )}
+          </div>
+        </div>
       </div>
-      <div>{((quantity * (reducedUnitPrice || unitPrice)) / 100).toFixed(2)}€</div>
+      <div>
+        {((quantity * (reducedUnitPrice || unitPrice)) / 100).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}
+        €
+      </div>
     </div>
   );
 };

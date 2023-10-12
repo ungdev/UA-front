@@ -309,7 +309,9 @@ const Shop = () => {
               Places
             </Title>
             <div className={styles.buttonRow}>
-              <Button primary onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+              <Button primary onClick={() => setAddPlaceVisible(true)}>
+                Ajouter une place
+              </Button>
             </div>
           </div>
           <div className={styles.shopSection}>
@@ -357,28 +359,32 @@ const Shop = () => {
                   </div>
                 </>
               )}
-              <Checkbox
-                className={styles.cgvCheckbox}
-                label={
-                  <>
-                    J'accepte les{' '}
-                    <a href="/legal#CGV" target="_blank">
-                      Conditions Générales de Vente
-                    </a>
-                  </>
-                }
-                value={isCgvAccepted}
-                onChange={setIsCgvAccepted}
-              />
-              <br />
               <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
+              <br />
+              <div className={styles.cgv} >
+                <Checkbox
+                  className={styles.cgvCheckbox}
+                  label={
+                    <>
+                      J'accepte les{' '}
+                      <a href="/legal#CGV" target="_blank">
+                        Conditions Générales de Vente
+                      </a>
+                    </>
+                  }
+                  value={isCgvAccepted}
+                  onChange={setIsCgvAccepted}
+                />
+              </div>
+              <br />
               <Button
                 primary
+                veryLong
                 className={styles.shopButton}
                 onClick={onPay}
                 disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+                <Icon name={IconName.ShoppingCart} />
                 Payer
-                <Icon name={IconName.ShoppingCart} fill={true} />
               </Button>
             </div>
           </div>
@@ -399,7 +405,9 @@ const Shop = () => {
         onCancel={() => setItemPreview(itemPreview ? { ...itemPreview, visible: false } : null)}
         buttons={null}
         containerClassName={styles.itemPreviewModalContainer}>
-        {itemPreview && <img alt="Preview image" src={`/images/${itemPreview.image}`} className={styles.itemPreviewImage} />}
+        {itemPreview && (
+          <img alt="Preview image" src={`/images/${itemPreview.image}`} className={styles.itemPreviewImage} />
+        )}
       </Modal>
     </div>
   );

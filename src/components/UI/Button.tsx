@@ -63,7 +63,7 @@ const Button = ({
                   ${large ? styles.large : ''}  ${long ? styles.long : ''} ${veryLong ? styles.veryLong : ''}`}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}>
-      {children}
+      <div className={styles.buttonContainer}>{children}</div>
     </button>
   );
 };
