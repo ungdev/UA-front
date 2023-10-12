@@ -6,7 +6,7 @@ import { animated, useTransition } from '@react-spring/web';
 
 import { setType } from '@/modules/login';
 
-import { Input, Button, Table, Icon } from '@/components/UI';
+import { Input, Button, Table, Icon, Title } from '@/components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
+import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -85,45 +86,46 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <Icon name={IconName.Discord} />
-          &nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
+          <div className={styles.discordBtn}>
+            <Icon name={IconName.Discord} fill={true} />
+            {'Connecte-toi à ton compte Discord'}
+          </div>
         </Button>
       </a>
+      <div>Nous utilisons ton compte Discord pour t'assigner tes rôles sur notre serveur Discord</div>
     </>
   );
+
+  // Create a card component
+  const RegisterCard = ({ title, onClick, imgSrc }: { title: string; onClick: () => void; imgSrc: string }) => {
+    return (
+      <div className={styles.card} onClick={onClick}>
+        <img src={imgSrc} alt={title + '  background'} />
+        <p>{title}</p>
+      </div>
+    );
+  }
 
   const Step2 = (
     <>
       <div className={styles.cardContainer}>
-        <div
-          onClick={() => {
-            setUserType(UserType.player);
-            setStep(step + 1);
-            setTournamentSolo(false);
-          }}>
-          <Icon name={IconName.Gamepad} />
-          <p>Joueur</p>
-        </div>
+        <RegisterCard title="Joueur" onClick={() => {
+          setUserType(UserType.player);
+          setStep(step + 1);
+          setTournamentSolo(false);
+        }} imgSrc="https://picsum.photos/200/200" />
 
-        <div
-          onClick={() => {
-            setUserType(UserType.coach);
-            setStep(step + 1);
-            setTournamentSolo(false);
-          }}>
-          <Icon name={IconName.Headset} />
-          <p>Coach / Manager</p>
-        </div>
+        <RegisterCard title="Coach / Manager" onClick={() => {
+          setUserType(UserType.coach);
+          setStep(step + 1);
+          setTournamentSolo(false);
+        }} imgSrc="https://picsum.photos/200/200" />
 
-        <div
-          onClick={() => {
-            setUserType(UserType.spectator);
-            setStep(step + 3);
-            setTournamentSolo(true);
-          }}>
-          <Icon name={IconName.User} />
-          <p>Spectateur</p>
-        </div>
+        <RegisterCard title="Spectateur" onClick={() => {
+          setUserType(UserType.spectator);
+          setStep(step + 3);
+          setTournamentSolo(true);
+        }} imgSrc="https://picsum.photos/200/200" />
       </div>
     </>
   );
@@ -131,43 +133,31 @@ const Register = () => {
   const loadTournaments = () => {
     const list = tournamentsOptions.map((element, i) => {
       return (
-        <div
+        <RegisterCard
           key={i}
+          title={element.label}
+          imgSrc={getTournamentBackgroundLink(element.value)}
           onClick={() => {
             setTournament(element.value);
             setStep(step + 1);
             setTournamentSolo(false);
-          }}>
-          <img
-            src={'/tournaments/' + element.value + '.svg'}
-            alt={element.label + ' icon'}
-            height="24px"
-            width="24px"
-          />
-          <p>{element.label}</p>
-        </div>
+          }} />
       );
     });
 
     if (userType === UserType.player) {
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
-          <div
+          <RegisterCard
             key={i}
+            title={element.label}
+            imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
               setTournament(element.value);
               setCreateTeam(true);
               setStep(step + 2);
               setTournamentSolo(true);
-            }}>
-            <img
-              src={'/tournaments/' + element.value + '.svg'}
-              alt={element.label + ' icon'}
-              height="24px"
-              width="24px"
-            />
-            <p>{element.label}</p>
-          </div>,
+            }} />,
         );
       });
     }
@@ -183,23 +173,15 @@ const Register = () => {
   const Step4 = (
     <>
       <div className={styles.cardContainer}>
-        <div
-          onClick={() => {
-            setCreateTeam(true);
-            setStep(step + 1);
-          }}>
-          <Icon name={IconName.PlusSquare} />
-          <p>Créer une équipe</p>
-        </div>
+        <RegisterCard title="Créer une équipe" onClick={() => {
+          setCreateTeam(true);
+          setStep(step + 1);
+        }} imgSrc="https://picsum.photos/200/200" />
 
-        <div
-          onClick={() => {
-            setCreateTeam(false);
-            setStep(step + 1);
-          }}>
-          <Icon name={IconName.SignIn} />
-          <p>Rejoindre une équipe</p>
-        </div>
+        <RegisterCard title="Rejoindre une équipe" onClick={() => {
+          setCreateTeam(false);
+          setStep(step + 1);
+        }} imgSrc="https://picsum.photos/200/200" />
       </div>
     </>
   );
@@ -313,14 +295,27 @@ const Register = () => {
   const Stepper = () => {
     return (
       <>
-        <ul className={styles.steps}>
-          <li className={styles.active}></li>
-          <li className={step > 1 ? styles.active : ``}></li>
-          <li className={step > 2 ? styles.active : ``}></li>
-          <li className={step > 3 ? styles.active : ``}></li>
-          <li className={step > 4 ? styles.active : ``}></li>
-        </ul>
-        {transitions((styles, item) => item && <animated.div style={styles}>{renderSwitch(step)}</animated.div>)}
+        <div className={styles.stepsHeader}>
+          <Title level={2} type={1} align="center">
+            FINALISE TON INSCRIPTION
+          </Title>
+          <ul className={styles.steps}>
+            <li className={styles.active}></li>
+            <li className={step > 1 ? styles.active : ``}></li>
+            <li className={step > 2 ? styles.active : ``}></li>
+            <li className={step > 3 ? styles.active : ``}></li>
+            <li className={step > 4 ? styles.active : ``}></li>
+          </ul>
+        </div>
+
+        {transitions(
+          (style, item) =>
+            item && (
+              <animated.div style={style}>
+                <div className={styles.stepContainer}>{renderSwitch(step)}</div>
+              </animated.div>
+            ),
+        )}
 
         {backButton()}
       </>
