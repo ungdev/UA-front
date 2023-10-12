@@ -361,7 +361,7 @@ const Shop = () => {
               )}
               <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
               <br />
-              <div className={styles.cgv} >
+              <div className={styles.cgv}>
                 <Checkbox
                   className={styles.cgvCheckbox}
                   label={

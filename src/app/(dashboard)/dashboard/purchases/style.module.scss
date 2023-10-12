@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem 0;
 
   .primaryTitle {
     text-align: center;
@@ -13,6 +15,9 @@
 
   .cardCart {
     width: 100%;
+    margin: 0 2rem;
+    background-color: $secondary-background;
+    padding: 1rem;
 
     &.authorization {
       opacity: 0.7;
