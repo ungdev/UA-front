@@ -25,7 +25,7 @@ export interface RegisterUser {
   password: string;
   passwordConfirmation?: string;
   age: string;
-  legalRepresentativeAccepted: 'true' | 'false';
+  legalRepresentativeAccepted?: 'true' | 'false';
 }
 
 export interface UserAttendant {
