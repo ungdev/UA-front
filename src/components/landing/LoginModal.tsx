@@ -10,8 +10,9 @@ import { tryLogin, resetPassword } from '@/modules/login';
 import { type Action } from '@reduxjs/toolkit';
 import Checkbox from '@/components/UI/Checkbox';
 import { toast } from 'react-toastify';
+import { RegisterUser } from '@/types';
 
-const initialSignup = {
+const initialSignup: RegisterUser = {
   firstname: '',
   lastname: '',
   username: '',
@@ -52,12 +53,6 @@ function LoginModal({
   };
 
   const signup = () => {
-    if (signupForm.age === 'child' && signupForm.legalRepresentativeAccepted === 'false') {
-      toast.error(
-        "Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription",
-      );
-      return;
-    }
     dispatch(registerUser(signupForm) as unknown as Action);
   };
 
