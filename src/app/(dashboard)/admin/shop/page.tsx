@@ -28,7 +28,7 @@ const Shop = () => {
         ))}
       </div>
 
-      {(selectedItem !== null) && (
+      {selectedItem !== null && (
         <ItemModal
           item={selectedItem}
           onClose={() => {
