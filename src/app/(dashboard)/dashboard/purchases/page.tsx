@@ -2,7 +2,7 @@
 import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
-import { Table, Card, Title } from '@/components/UI';
+import { Table, Title } from '@/components/UI';
 import { fetchAllCarts } from '@/modules/carts';
 import { fetchItems } from '@/modules/items';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';

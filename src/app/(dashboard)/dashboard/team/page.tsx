@@ -163,7 +163,7 @@ const Page = () => {
     username: (
       <>
         {user.username}
-        {user.id === team.captainId && <Icon name={IconName.Crown} />}
+        {user.id === team.captainId && <Icon name={IconName.Crown} className={styles.crown} fill={true} />}
       </>
     ),
     role: userTypeToString(user.type) + (asking ? ' en attente' : ''),
@@ -208,12 +208,12 @@ const Page = () => {
 
   return (
     <div id="dashboard-team" className={styles.dashboardTeam}>
-      <Title level={1} align="center" className={styles.primaryTitle}>
-        Équipe
-      </Title>
-      <Title level={2} type={2} className={styles.secondaryTitle}>
-        Description
-      </Title>
+      <div className={styles.titleHeader}>
+        <Title level={1} className={styles.primaryTitle}>
+          Équipe
+        </Title>
+        <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
+      </div>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
           <div className={styles.infoPart}>
@@ -238,12 +238,12 @@ const Page = () => {
               {team.lockedAt ? (
                 <>
                   <Icon name={IconName.Tick} className={styles.iconTick} />
-                  <span className={styles.descriptionValue}>Inscrit</span>
+                  <span className={`${styles.descriptionValue} ${styles.iconTick}`}>Inscrit</span>
                 </>
               ) : (
                 <>
                   <Icon name={IconName.Caution} className={styles.iconCaution} />
-                  <span className={styles.descriptionValue}>Non inscrit</span>
+                  <span className={`${styles.descriptionValue} ${styles.iconCaution}`}>Non inscrit</span>
                 </>
               )}
             </div>
@@ -260,14 +260,8 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div onClick={() => document.location.reload()}>
-          <Icon name={IconName.Refresh} />
-        </div>
       </div>
       <div className={styles.members}>
-        <Title level={2} type={2} className={styles.secondaryTitle}>
-          Membres
-        </Title>
         <Table
           columns={isCaptain ? memberColumnsForCaptain : memberColumns}
           dataSource={members}
