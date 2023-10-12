@@ -17,13 +17,12 @@ const supplementColumns = [
   },
   {
     title: '',
-    key: 'attributes',
-  },
-  {
-    title: '',
     key: 'add_to_cart',
   },
 ];
+
+const supplementColumnsWithAttribute = [...supplementColumns];
+supplementColumnsWithAttribute.splice(2, 0, { title: '', key: 'attributes' });
 
 /** This represents the supplement list in the shop */
 const SupplementList = ({
@@ -166,15 +165,18 @@ const SupplementList = ({
       // Return the row
       return {
         name: (
-          <>
-            {supplement.name}
+          <div className={styles.itemPresentation}>
+            <div>{supplement.name}</div>
+            <div className={styles.itemDescription}>{description}</div>
             {supplement.image && (
-              <Button className={styles.itemPreviewButton} onClick={() => onItemPreview(supplement.image!)}>
+              <Button
+                className={styles.itemPreviewButton}
+                onLightBackground
+                onClick={() => onItemPreview(supplement.image!)}>
                 Voir le design
               </Button>
             )}
-            <div className={styles.itemDescription}>{description}</div>
-          </>
+          </div>
         ),
         price: `${(supplement.price / 100).toFixed(2)}€`,
         attributes: supplement.attributes!.length ? (
@@ -189,7 +191,7 @@ const SupplementList = ({
             className={styles.shopInput}
           />
         ) : (
-          ''
+          false
         ),
         add_to_cart: (
           <Tooltip
@@ -202,6 +204,9 @@ const SupplementList = ({
             }
             enabled={disabled}>
             <Button
+              secondary
+              outline
+              onLightBackground
               onClick={() => {
                 if (supplement.left! <= cartSupplement!.quantity) {
                   toast.warn('Le stock de cet item est épuisé');
@@ -244,7 +249,11 @@ const SupplementList = ({
         <Title level={2} type={2} className={styles.secondaryTitle}>
           {shopSectionName}
         </Title>
-        <Table columns={supplementColumns} dataSource={supplementRows} className={styles.shopTable} />
+        <Table
+          columns={supplementRows.some((row) => row.attributes) ? supplementColumnsWithAttribute : supplementColumns}
+          dataSource={supplementRows}
+          className={styles.shopTable}
+        />
       </div>
     )
   );

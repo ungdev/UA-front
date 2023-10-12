@@ -24,9 +24,7 @@ const CartItem = ({
   return (
     <div className={styles.cartItem}>
       <div className={styles.itemName}>{itemName}</div>
-      <Button onClick={onRemove}>
-        <Icon name={IconName.Trash} />
-      </Button>
+      <Icon name={IconName.Trash} onClick={onRemove} />
       <div>
         {quantity} x{' '}
         {reducedUnitPrice !== null ? (

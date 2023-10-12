@@ -13,6 +13,16 @@
     font-weight: 900;
   }
 
+  svg {
+    color: $primary-color;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: red;
+    }
+  }
+
   .reductedPrice {
     text-decoration: line-through;
     color: $primary-color;

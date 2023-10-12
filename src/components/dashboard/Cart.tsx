@@ -34,10 +34,7 @@ const Cart = ({
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
         <h2 className={styles.mainTitle}>Panier</h2>
-        <Button onClick={onCartReset}>
-          {/* TODO: Make it red */}
-          <Icon name={IconName.Trash}></Icon>
-        </Button>
+        <Icon name={IconName.Trash} onClick={onCartReset}></Icon>
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {
         const i = cart.tickets.userIds.findIndex((id: string) => id === userId);

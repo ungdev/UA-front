@@ -332,53 +332,87 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className={styles.bill}>
-          <div>
-            <Cart
-              cart={cart}
-              tickets={tickets}
-              items={items}
-              teamMembers={teamMembers}
-              onItemRemoved={onRemoveItem}
-              onTicketRemoved={onRemoveTicket}
-              onCartReset={onCartReset}
-            />
-          </div>
-          <div className={styles.shopFooter}>
-            {cart.tickets.attendant && (
-              <>
-                <div className={styles.attendantWarning}>
-                  <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus plus
-                  modifier ton accompagnateur.
-                </div>
-              </>
-            )}
-            <Checkbox
-              className={styles.cgvCheckbox}
-              label={
+        <div className={styles.billWrapper}>
+          <div className={styles.bill}>
+            <div>
+              <Cart
+                cart={cart}
+                tickets={tickets}
+                items={items}
+                teamMembers={teamMembers}
+                onItemRemoved={onRemoveItem}
+                onTicketRemoved={onRemoveTicket}
+                onCartReset={onCartReset}
+              />
+            </div>
+            <div className={styles.shopFooter}>
+              {cart.tickets.attendant && (
                 <>
-                  J'accepte les{' '}
-                  <a href="/legal#CGV" target="_blank">
-                    Conditions Générales de Vente
-                  </a>
+                  <div className={styles.attendantWarning}>
+                    <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus
+                    modifier ton accompagnateur.
+                  </div>
                 </>
-              }
-              value={isCgvAccepted}
-              onChange={setIsCgvAccepted}
-            />
-            <br />
-            <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
-            <Button
-              primary
-              className={styles.shopButton}
-              onClick={onPay}
-              disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
-              Payer
-              <Icon name={IconName.ShoppingCart} fill={true} />
-            </Button>
+              )}
+              <Checkbox
+                className={styles.cgvCheckbox}
+                label={
+                  <>
+                    J'accepte les{' '}
+                    <a href="/legal#CGV" target="_blank">
+                      Conditions Générales de Vente
+                    </a>
+                  </>
+                }
+                value={isCgvAccepted}
+                onChange={setIsCgvAccepted}
+              />
+              <br />
+              <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
+              <Button
+                primary
+                className={styles.shopButton}
+                onClick={onPay}
+                disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+                Payer
+                <Icon name={IconName.ShoppingCart} fill={true} />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+      {/*<div className={styles.shop}>
+          <div className={styles.shopSection}>
+            <Title level={2} type={2} className={styles.secondaryTitle}>
+              Places
+            </Title>
+            <div className={styles.buttonRow}>
+              <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+            </div>
+          </div>
+          <div className={styles.shopSection}>
+            <SupplementList
+              items={items}
+              supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
+              onSupplementCartChanges={onSupplementCartChanges}
+              onItemPreview={onItemPreview}
+              itemType="supplement"
+              shopSectionName="Accessoires"
+            />
+          </div>
+          <div className={styles.shopSection}>
+            <SupplementList
+              items={items}
+              supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
+              onSupplementCartChanges={onSupplementCartChanges}
+              onItemPreview={onItemPreview}
+              itemType="rent"
+              shopSectionName="Location de matériel"
+            />
+          </div>
+        </div>*/}
       {addPlaceVisible && (
         <AddPlaceModal
           userId={userId}
