@@ -6,7 +6,7 @@ import { useAppSelector } from '@/lib/hooks';
 import uaImage1 from '@/../public/images/about/ua-1.jpg';
 import uaImage2 from '@/../public/images/about/ua-2.jpg';
 import ungImage1 from '@/../public/images/about/ung-1.jpg';
-import ungImage2 from '@/../public/images/about/ung-2.png';
+import ungImage2 from '@/../public/images/about/ung-2.jpg';
 
 interface TeamMember {
   name: string;
