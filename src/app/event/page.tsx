@@ -4,6 +4,7 @@ import imageLeft from '@/../public/images/event/left.jpg';
 import imageRight from '@/../public/images/event/right.jpg';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
+import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
   title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
@@ -69,7 +70,7 @@ export default function Page() {
             10000 Troyes
           </div>
         </div>
-        {/* <Title level={2} type={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Inscriptions
         </Title>
         <ol className={styles.steps}>
@@ -113,7 +114,7 @@ export default function Page() {
             </TextStroke>
             Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !
           </li>
-        </ol> */}
+        </ol>
         {/* TODO : tenter d'échanger lignes et colonnes pour voir ce que ça donne */}
         {/*<Table
           columns={[
