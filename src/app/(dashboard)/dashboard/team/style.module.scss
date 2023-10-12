@@ -3,15 +3,6 @@
 .dashboardTeam {
   padding: 50px;
 
-  .tablePlayers {
-    width: 100%;
-    margin-bottom: 30px;
-
-    .refuseButton.buttonWrapper {
-      margin-left: 10px;
-    }
-  }
-
   .header {
     display: flex;
     justify-content: space-between;
@@ -22,19 +13,28 @@
       display: flex;
       flex-direction: column;
 
-      > div {
+      > .infoPart {
         margin-bottom: 10px;
       }
 
-      div {
+      .infoPart {
         display: flex;
         flex-direction: column;
 
-        div {
+        .singleInfo {
           display: flex;
           flex-direction: row;
           align-items: center;
           gap: 5px;
+
+          span {
+            display: flex;
+            align-items: center;
+
+            svg {
+              margin-right: 3px;
+            }
+          }
         }
       }
     }
@@ -70,7 +70,11 @@
   }
 
   .iconTick {
-    color: greenyellow;
+    color: green;
+  }
+
+  .iconCross {
+    color: red;
   }
 
   .playersList {
@@ -140,6 +144,23 @@
     width: 100%;
     border: none;
     margin: 20px 0;
+  }
+
+  .members .table {
+    //min-width: 100%;
+    margin-bottom: 30px;
+    //width: 100%;
+    //table-layout: fixed;
+
+    colgroup col {
+      &:nth-of-type(4) {
+        //width: 35%;
+      }
+    }
+
+    tr td button {
+      white-space: nowrap;
+    }
   }
 
   .buttonRow {
