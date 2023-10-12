@@ -1,11 +1,10 @@
 .dashboardShop {
-  overflow: scroll;
   padding: 50px;
 
   .primaryTitle {
     text-align: center;
     margin-top: 3rem;
-    margin-bottom: 7rem;
+    margin-bottom: 7rem !important;
   }
 
   .secondaryTitle {
@@ -28,6 +27,12 @@
 
       .shopSection {
         margin-bottom: 40px;
+
+        .buttonRow {
+          display: flex;
+          width: 100%;
+          justify-content: center;
+        }
       }
 
       .title {
@@ -39,29 +44,36 @@
       }
     }
 
-    .bill {
+    .billWrapper {
       margin: 40px auto 50px auto;
       width: 40%;
       flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
 
-      .shopFooter {
-        text-align: right;
-        margin-top: 38px;
-        bottom: 0;
+      .bill {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: sticky;
+        top: 80px;
 
-        .cgvCheckbox {
-          display: block ruby;
-          padding-bottom: 30px;
-          justify-self: right;
-        }
-        .shopButton {
-          margin-left: 16px;
-        }
-        .buttonWrapper {
-          justify-self: left;
+        .shopFooter {
+          text-align: right;
+          margin-top: 38px;
+          bottom: 0;
+
+          .cgvCheckbox {
+            display: block ruby;
+            padding-bottom: 30px;
+            justify-self: right;
+          }
+
+          .shopButton {
+            margin-left: 16px;
+          }
+
+          .buttonWrapper {
+            justify-self: left;
+          }
         }
       }
     }
@@ -83,12 +95,6 @@
   .itemPreviewImage {
     max-width: 1000px;
     width: 100%;
-  }
-
-  .buttonRow {
-    display: flex;
-    width: 100%;
-    justify-content: center;
   }
 }
 

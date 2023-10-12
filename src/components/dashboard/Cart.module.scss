@@ -1,11 +1,21 @@
 @import '@/variables.scss';
 
 .cart {
-  .cart-header {
+  .cartHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    svg {
+      color: $primary-color;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: red;
+      }
+    }
   }
 
   .mainTitle{

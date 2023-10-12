@@ -3,7 +3,7 @@
 .supplementList {
   .secondaryTitle {
     width: 100%;
-    margin: 60px auto 70px auto;
+    margin: 60px auto 70px auto !important;
   }
 
   .shopTable {
@@ -14,26 +14,29 @@
       height: 64px;
     }
 
-    td:first-child {
-      min-width: 300px;
-    }
+    td {
+      &:first-child {
+        min-width: 300px;
+      }
 
-    .itemPreviewButton {
-      font-size: 0.9em;
-      padding: 0;
-      margin: 0 0 0 8px;
-      color: $primary-color;
-    }
+      .itemPresentation {
+        .itemPreviewButton {
+          font-size: 0.9em;
+          padding: 0;
+          //color: $primary-color;
+        }
 
-    .itemDescription {
-      font-size: 0.9em;
-      margin-top: 6px;
-      color: #555555;
-    }
+        .itemDescription {
+          font-size: 0.9em;
+          margin-top: 6px;
+          color: #555555;
+        }
+      }
 
-    .shopInput {
-      width: 100px;
-      margin: 0;
+      .shopInput {
+        width: 100px;
+        margin: 0;
+      }
     }
   }
 }
