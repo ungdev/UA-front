@@ -9,7 +9,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.png';
 
@@ -43,9 +43,9 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          {/*<Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
-          </Link>*/}
+          </Link>
         </div>
         <div className={styles.information}>
           <BoxContainer
