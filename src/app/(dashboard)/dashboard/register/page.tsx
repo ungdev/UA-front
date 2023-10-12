@@ -110,28 +110,40 @@ const Register = () => {
         <p>{title}</p>
       </div>
     );
-  }
+  };
 
   const Step2 = (
     <>
       <div className={styles.cardContainer}>
-        <RegisterCard title="Joueur" onClick={() => {
-          setUserType(UserType.player);
-          setStep(step + 1);
-          setTournamentSolo(false);
-        }} imgSrc={playerImg.src} />
+        <RegisterCard
+          title="Joueur"
+          onClick={() => {
+            setUserType(UserType.player);
+            setStep(step + 1);
+            setTournamentSolo(false);
+          }}
+          imgSrc={playerImg.src}
+        />
 
-        <RegisterCard title="Coach / Manager" onClick={() => {
-          setUserType(UserType.coach);
-          setStep(step + 1);
-          setTournamentSolo(false);
-        }} imgSrc={coachImg.src} />
+        <RegisterCard
+          title="Coach / Manager"
+          onClick={() => {
+            setUserType(UserType.coach);
+            setStep(step + 1);
+            setTournamentSolo(false);
+          }}
+          imgSrc={coachImg.src}
+        />
 
-        <RegisterCard title="Spectateur" onClick={() => {
-          setUserType(UserType.spectator);
-          setStep(step + 3);
-          setTournamentSolo(true);
-        }} imgSrc={spectatorImg.src} />
+        <RegisterCard
+          title="Spectateur"
+          onClick={() => {
+            setUserType(UserType.spectator);
+            setStep(step + 3);
+            setTournamentSolo(true);
+          }}
+          imgSrc={spectatorImg.src}
+        />
       </div>
     </>
   );
@@ -140,14 +152,15 @@ const Register = () => {
     const list = tournamentsOptions.map((element, i) => {
       return (
         <RegisterCard
-          key={"tournament-" + i}
+          key={'tournament-' + i}
           title={element.label}
           imgSrc={getTournamentBackgroundLink(element.value)}
           onClick={() => {
             setTournament(element.value);
             setStep(step + 1);
             setTournamentSolo(false);
-          }} />
+          }}
+        />
       );
     });
 
@@ -155,7 +168,7 @@ const Register = () => {
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
           <RegisterCard
-            key={"tournament-solo-" + i}
+            key={'tournament-solo-' + i}
             title={element.label}
             imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
@@ -163,7 +176,8 @@ const Register = () => {
               setCreateTeam(true);
               setStep(step + 2);
               setTournamentSolo(true);
-            }} />,
+            }}
+          />,
         );
       });
     }
@@ -179,15 +193,23 @@ const Register = () => {
   const Step4 = (
     <>
       <div className={styles.cardContainer}>
-        <RegisterCard title="Créer une équipe" onClick={() => {
-          setCreateTeam(true);
-          setStep(step + 1);
-        }} imgSrc={createImg.src} />
+        <RegisterCard
+          title="Créer une équipe"
+          onClick={() => {
+            setCreateTeam(true);
+            setStep(step + 1);
+          }}
+          imgSrc={createImg.src}
+        />
 
-        <RegisterCard title="Rejoindre une équipe" onClick={() => {
-          setCreateTeam(false);
-          setStep(step + 1);
-        }} imgSrc={joinImg.src} />
+        <RegisterCard
+          title="Rejoindre une équipe"
+          onClick={() => {
+            setCreateTeam(false);
+            setStep(step + 1);
+          }}
+          imgSrc={joinImg.src}
+        />
       </div>
     </>
   );
@@ -239,7 +261,9 @@ const Register = () => {
       {createTeam || userType === UserType.spectator ? (
         <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
-          {tournament == 'pokemon' ? <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} /> : null}
+          {tournament == 'pokemon' ? (
+            <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} />
+          ) : null}
           {tournament == 'osu' && userType !== UserType.spectator ? (
             <>
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>

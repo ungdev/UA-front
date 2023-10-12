@@ -30,6 +30,10 @@ interface BodyTeam {
 }
 
 export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, getState: () => RootState) => {
+  if (bodyTeam.pokemonPlayerId !== undefined && !bodyTeam.pokemonPlayerId!.match(/^\d+$/)) {
+    toast.error('ID invalide');
+    return;
+  }
   const state = getState();
   const { user } = state.login;
   const res = await API.post('teams', bodyTeam);
