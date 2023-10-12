@@ -31,6 +31,7 @@ const requestAPI = (
       body: method === 'GET' || method === 'DELETE' ? undefined : file ? (body as FormData) : JSON.stringify(body),
     })
       .then((response) => {
+        clearTimeout(timeout);
         if (!response.ok) {
           // if response.data is defined, it means that the server sent a json error
           if (response.headers.get('content-type')?.includes('application/json')) {
@@ -40,8 +41,7 @@ const requestAPI = (
           }
           throw new Error('La requête a échoué');
         }
-
-        clearTimeout(timeout);
+        
         // test if response is json
         if (
           response.headers.get('content-type') &&
