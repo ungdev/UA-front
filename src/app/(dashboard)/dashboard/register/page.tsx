@@ -15,6 +15,11 @@ import { Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import playerImg from '@/../public/images/register/player.jpg';
+import coachImg from '@/../public/images/register/coach.jpg';
+import spectatorImg from '@/../public/images/register/spectator.jpg';
+import joinImg from '@/../public/images/register/join.jpg';
+import createImg from '@/../public/images/register/create.jpg';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -113,19 +118,19 @@ const Register = () => {
           setUserType(UserType.player);
           setStep(step + 1);
           setTournamentSolo(false);
-        }} imgSrc="https://picsum.photos/200/200" />
+        }} imgSrc={playerImg.src} />
 
         <RegisterCard title="Coach / Manager" onClick={() => {
           setUserType(UserType.coach);
           setStep(step + 1);
           setTournamentSolo(false);
-        }} imgSrc="https://picsum.photos/200/200" />
+        }} imgSrc={coachImg.src} />
 
         <RegisterCard title="Spectateur" onClick={() => {
           setUserType(UserType.spectator);
           setStep(step + 3);
           setTournamentSolo(true);
-        }} imgSrc="https://picsum.photos/200/200" />
+        }} imgSrc={spectatorImg.src} />
       </div>
     </>
   );
@@ -134,7 +139,7 @@ const Register = () => {
     const list = tournamentsOptions.map((element, i) => {
       return (
         <RegisterCard
-          key={i}
+          key={"tournament-" + i}
           title={element.label}
           imgSrc={getTournamentBackgroundLink(element.value)}
           onClick={() => {
@@ -149,7 +154,7 @@ const Register = () => {
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
           <RegisterCard
-            key={i}
+            key={"tournament-solo-" + i}
             title={element.label}
             imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
@@ -176,12 +181,12 @@ const Register = () => {
         <RegisterCard title="Créer une équipe" onClick={() => {
           setCreateTeam(true);
           setStep(step + 1);
-        }} imgSrc="https://picsum.photos/200/200" />
+        }} imgSrc={createImg.src} />
 
         <RegisterCard title="Rejoindre une équipe" onClick={() => {
           setCreateTeam(false);
           setStep(step + 1);
-        }} imgSrc="https://picsum.photos/200/200" />
+        }} imgSrc={joinImg.src} />
       </div>
     </>
   );
@@ -231,7 +236,7 @@ const Register = () => {
         <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
       </div>
       {createTeam || userType === UserType.spectator ? (
-        <div>
+        <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
           {tournament == 'osu' && userType !== UserType.spectator ? (
             <>
@@ -254,7 +259,7 @@ const Register = () => {
             disabled={!user.discordId}>
             {tournamentSolo ? 'Valider' : 'Créer mon équipe'}
           </Button>
-        </div>
+        </>
       ) : (
         <div>{tournament ? tournamentTable().content : ''}</div>
       )}
