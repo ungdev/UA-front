@@ -43,6 +43,11 @@ const Table = ({
 }) => (
   <div className={styles.tableContainer}>
     <table className={`${styles.table} ${className}`}>
+      <colgroup>
+        {columns.map((column) => (
+          <col key={column.key} />
+        ))}
+      </colgroup>
       <thead>
         <tr>
           {columns.map((column) => (
@@ -53,7 +58,10 @@ const Table = ({
       <tbody>
         {dataSource.length > 0 ? (
           dataSource.map((row: { [key: string]: any }, i) => (
-            <tr key={`${i}`} className={row._grayed ? styles.grayed : ''} onClick={() => onRowClicked!(i)}>
+            <tr
+              key={`${i}`}
+              className={`${row._grayed ? styles.grayed : ''} ${row._separation ? styles.separate : ''}`}
+              onClick={() => onRowClicked!(i)}>
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (

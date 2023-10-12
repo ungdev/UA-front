@@ -22,6 +22,10 @@
     &:hover {
       color: white;
     }
+
+    &.onLightBackground:hover {
+      color: black;
+    }
   }
 
   &.primary {
@@ -81,7 +85,7 @@
   }
 
   &[disabled] {
-    pointer-events: none;
+    cursor: not-allowed;
     opacity: 0.5;
   }
 }

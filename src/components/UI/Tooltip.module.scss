@@ -3,7 +3,7 @@
 
   .tooltip {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     left: 0;
     width: 100%;
     pointer-events: none;
@@ -15,6 +15,7 @@
       background-color: black;
       color: white;
       visibility: hidden;
+      text-align: center;
 
       &:after {
         content: '';

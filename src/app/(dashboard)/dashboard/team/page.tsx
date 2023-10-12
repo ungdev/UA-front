@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
+import Tooltip from '@/components/UI/Tooltip';
 
 const memberColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -59,12 +60,14 @@ const Page = () => {
     }
   }, [team]);
 
-  if (!team || !tournaments) {
+  if (!team || !tournaments || !slotsTournament) {
     return null;
   }
 
   const tournament = team && tournaments && tournaments.filter((tournament) => tournament.id === team.tournamentId)[0];
   const tournamentName = tournament && tournament.name;
+
+  const closeModal = () => setModal({ ...modal, visible: false });
 
   const userTypeToString = (type: UserType) => {
     switch (type) {
@@ -78,20 +81,23 @@ const Page = () => {
   };
 
   const acceptUserButton = (user: User, teamFull: boolean) => (
-    <Button onClick={() => dispatch(acceptUser(user) as unknown as Action)} primary disabled={teamFull}>
-      Accepter
-    </Button>
+    <Tooltip enabled={teamFull} tooltip={`L'équipe est déjà pleine.`}>
+      <Button onClick={() => dispatch(acceptUser(user) as unknown as Action)} secondary outline disabled={teamFull}>
+        Accepter
+      </Button>
+    </Tooltip>
   );
 
   const refuseUserButton = (user: User) => (
     <Button
-      className={styles.refuseButton}
+      primary
+      outline
       onClick={() =>
         setModal({
           visible: true,
           onOk: () => {
             dispatch(refuseUser(user) as unknown as Action);
-            setModal(initialModal);
+            closeModal();
           },
           content: `Veux-tu refuser ${user.username} ?`,
           title: 'Refuser un joueur',
@@ -104,12 +110,14 @@ const Page = () => {
   const promoteUserButton = (user: User) => {
     return (
       <Button
+        secondary
+        outline
         onClick={() =>
           setModal({
             visible: true,
             onOk: () => {
               dispatch(setCaptain(user.id) as unknown as Action);
-              setModal(initialModal);
+              closeModal();
             },
             content: "Confirme le nouveau chef d'équipe",
             title: "Changer de chef d'équipe",
@@ -123,15 +131,17 @@ const Page = () => {
   const kickUserButton = (user: User) => {
     return (
       <Button
+        primary
+        outline
         onClick={() =>
           setModal({
             visible: true,
             onOk: () => {
               dispatch(kickUser(user.id) as unknown as Action);
-              setModal(initialModal);
+              closeModal();
             },
-            content: "Confirme l'exclusion du coach / manager",
-            title: 'Exclure un coach / manager',
+            content: `Confirme l'exclusion du ${user.type === 'player' ? 'joueur' : 'coach / manager'}`,
+            title: `Exclure un ${user.type === 'player' ? 'joueur' : 'coach / manager'}`,
           })
         }>
         Exclure
@@ -157,32 +167,40 @@ const Page = () => {
       </>
     ),
     role: userTypeToString(user.type) + (asking ? ' en attente' : ''),
-    hasPaid: user.hasPaid ? <Icon name={IconName.Tick} /> : <Icon name={IconName.Cross} />,
+    hasPaid: user.hasPaid ? (
+      <Icon name={IconName.Tick} className={styles.iconTick} />
+    ) : (
+      <Icon name={IconName.Cross} className={styles.iconCross} />
+    ),
     action: isCaptain ? actionsForUser(user, asking) : undefined,
   });
 
-  const members = team.players
+  const members: Array<{ [key: string]: unknown }> = team.players
     .concat(team.coaches)
     .map((user) => getRow(user, false))
     .concat(team.askingUsers.map((user) => getRow(user, true)));
 
-  const confirmDeleteTeamModal = () =>
+  if (team.askingUsers.length) {
+    members[team.players.length + team.coaches.length]['_separation'] = true;
+  }
+
+  const confirmDeleteTeam = () =>
     setModal({
       visible: true,
       onOk: () => {
         dispatch(deleteTeam() as unknown as Action);
-        setModal(initialModal);
+        closeModal();
       },
       content: "Es-tu sûr de vouloir dissoudre l'équipe ?",
       title: "Dissoudre l'équipe",
     });
 
-  const confirmLeaveTeamModal = () =>
+  const confirmLeaveTeam = () =>
     setModal({
       visible: true,
       onOk: () => {
         dispatch(kickUser(id) as unknown as Action);
-        setModal(initialModal);
+        closeModal();
       },
       content: "Es-tu sûr de vouloir quitter l'équipe ?",
       title: "Quitter l'équipe",
@@ -198,61 +216,55 @@ const Page = () => {
       </Title>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          <div>
+          <div className={styles.infoPart}>
             {!isSolo && (
-              <div>
+              <div className={styles.singleInfo}>
                 <strong>Mon équipe :</strong>
-                <div className={styles.descriptionValue}>{team.name}</div>
+                <span className={styles.descriptionValue}>{team.name}</span>
               </div>
             )}
-            <div>
+            <div className={styles.singleInfo}>
               <strong>Tournoi :</strong>
-              <div className={styles.descriptionValue}>{tournamentName}</div>
+              <span className={styles.descriptionValue}>{tournamentName}</span>
             </div>
           </div>
-          <div>
-            {isShopAllowed && (
-              <>
-                <div>
-                  <strong>Statut :</strong>
-                  <Helper>
-                    Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé
-                    leur place et l'équipe doit être verrouillée.
-                  </Helper>
-                  {team.lockedAt ? (
-                    <>
-                      <Icon name={IconName.Tick} className={styles.iconTick} />
-                      <div className={styles.descriptionValue}>Inscrit</div>
-                    </>
-                  ) : (
-                    <>
-                      <Icon name={IconName.Caution} className={styles.iconCaution} />
-                      <div className={styles.descriptionValue}>Non inscrit</div>
-                    </>
-                  )}
-                </div>
-                {slotsTournament && (
-                  <div>
-                    <strong> {isSolo ? 'Places' : 'Equipes'} occupées :</strong>{' '}
-                    <div
-                      className={
-                        slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
-                          ? styles.teamCompleted
-                          : styles.descriptionValue
-                      }>
-                      {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
+          <div className={styles.infoPart}>
+            <div className={styles.singleInfo}>
+              <strong>Statut :</strong>
+              <Helper>
+                Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé leur
+                place et l'équipe doit être verrouillée.
+              </Helper>
+              {team.lockedAt ? (
+                <>
+                  <Icon name={IconName.Tick} className={styles.iconTick} />
+                  <span className={styles.descriptionValue}>Inscrit</span>
+                </>
+              ) : (
+                <>
+                  <Icon name={IconName.Caution} className={styles.iconCaution} />
+                  <span className={styles.descriptionValue}>Non inscrit</span>
+                </>
+              )}
+            </div>
+            <div className={styles.singleInfo}>
+              <strong> {isSolo ? 'Places' : 'Equipes'} occupées :</strong>{' '}
+              <div
+                className={
+                  slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
+                    ? styles.teamCompleted
+                    : styles.descriptionValue
+                }>
+                {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
+              </div>
+            </div>
           </div>
         </div>
         <div onClick={() => document.location.reload()}>
           <Icon name={IconName.Refresh} />
         </div>
       </div>
-      <div className={styles.playersList}>
+      <div className={styles.members}>
         <Title level={2} type={2} className={styles.secondaryTitle}>
           Membres
         </Title>
@@ -260,19 +272,15 @@ const Page = () => {
           columns={isCaptain ? memberColumnsForCaptain : memberColumns}
           dataSource={members}
           alignRight
-          className={styles.tablePlayers}
+          className={styles.table}
         />
       </div>
       <div className={styles.buttonRow}>
-        <Button onClick={isCaptain ? confirmDeleteTeamModal : confirmLeaveTeamModal}>
+        <Button onClick={isCaptain ? confirmDeleteTeam : confirmLeaveTeam}>
           {isCaptain ? "Dissoudre l'équipe" : "Quitter l'équipe"}
         </Button>
       </div>
-      <Modal
-        onOk={modal.onOk}
-        onCancel={() => setModal({ ...initialModal, visible: false })}
-        visible={modal.visible}
-        title={modal.title}>
+      <Modal onOk={modal.onOk} onCancel={closeModal} visible={modal.visible} title={modal.title}>
         {modal.content}
       </Modal>
     </div>

@@ -25,9 +25,9 @@
   display: table;
   table-layout: auto;
   border-collapse: collapse;
+  margin: auto;
   margin-bottom: 1em;
   text-align: left;
-  margin: auto;
 
   th {
     font-size: 1.125rem;
@@ -56,6 +56,10 @@
 
     &.grayed {
       background: #ccc;
+    }
+
+    &.separate {
+      border-top: black dashed 3px;
     }
 
     &:hover {
