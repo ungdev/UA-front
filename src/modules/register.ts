@@ -31,8 +31,13 @@ export const registerUser = async (user: RegisterUser) => {
     toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
     return false;
   }
+  if (user.age === 'child' && user.legalRepresentativeAccepted === 'false') {
+    toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
+    return;
+  }
 
   delete user.passwordConfirmation;
+  delete user.legalRepresentativeAccepted;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, vérifie tes emails');
   return true;
