@@ -139,11 +139,11 @@ export default function Wrapper({
       switch (query.state) {
         case '0':
           toast.success('Le lien avec le compte Discord a bien été créé !');
-          toast.success('Tes rôles Discord te seront bientôt attribués !')
+          toast.success('Tes rôles Discord te seront bientôt attribués !');
           break;
         case '1':
           toast.success('Le lien avec le compte Discord a bien été mis à jour !');
-          toast.success('Tes rôles Discord te seront bientôt attribués !')
+          toast.success('Tes rôles Discord te seront bientôt attribués !');
           break;
         case '2':
           toast.success("Le lien avec le compte Discord n'a pas été modifié");

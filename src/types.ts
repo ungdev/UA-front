@@ -200,6 +200,7 @@ export interface Item {
 
 export interface AdminItem extends Item {
   reducedPrice: number | null;
+  display: boolean;
 }
 
 export interface Caster {

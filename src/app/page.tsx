@@ -70,7 +70,7 @@ const Home = () => {
           <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
-              <img src={banner.src} alt=""/>
+              <img src={banner.src} alt="" />
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>

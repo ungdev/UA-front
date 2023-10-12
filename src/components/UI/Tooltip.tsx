@@ -1,5 +1,5 @@
 import styles from './Tooltip.module.scss';
-import { CSSProperties, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export default function Tooltip({
   tooltip,
