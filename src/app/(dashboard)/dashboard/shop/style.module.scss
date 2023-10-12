@@ -1,10 +1,12 @@
+@import '@/variables.scss';
+
 .dashboardShop {
   padding: 50px;
 
   .primaryTitle {
     text-align: center;
-    margin-top: 3rem;
-    margin-bottom: 7rem !important;
+    margin-top: 1rem;
+    margin-bottom: 1rem !important;
   }
 
   .secondaryTitle {
@@ -54,7 +56,10 @@
         flex-direction: column;
         justify-content: space-between;
         position: sticky;
-        top: 80px;
+        top: 90px;
+        background-color: $secondary-background;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
 
         .shopFooter {
           text-align: right;
@@ -103,8 +108,8 @@
     flex-flow: column wrap;
     max-width: 100%;
 
-    .shopAndBill {
-      max-width: 100%;
+    .billWrapper {
+      width: 100%;
     }
     .shop {
       width: 100%;

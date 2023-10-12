@@ -156,9 +156,9 @@ const Account = () => {
           </Button>
         </div>
       </div>
-      <hr />
       {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
         <>
+          <hr />
           <div className="to-bring">
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
             <Collapse title="Pour te restaurer" initVisible={true}>

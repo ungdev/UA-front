@@ -49,7 +49,10 @@ const Shop = () => {
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
   // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
   // If itemPreview is null, then there is nothing to preview, and thus the modal for the preview is not displayed
-  const [itemPreview, setItemPreview] = useState<string | null>(null);
+  const [itemPreview, setItemPreview] = useState<{
+    image: string;
+    visible: boolean;
+  } | null>(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState<User[]>([]);
   // This is used to avoid users to be able to send multiple requests when paying :
@@ -236,7 +239,7 @@ const Shop = () => {
   // (or an object containing the firstname and the lastname of the person if the ticket is for an attendant)
   const onAddPlaceModalQuit = async (placeFor: string, placeId: AttendantInfo | string) => {
     setAddPlaceVisible(false);
-    if (placeFor === undefined) return;
+    if (placeFor === undefined || (placeFor === '' && placeId === '')) return;
     if (placeFor === 'attendant') {
       setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId as AttendantInfo } });
       setHasAttendant(true);
@@ -283,7 +286,7 @@ const Shop = () => {
   // Callback of SupplementList. It is called when the user wants to preview an item
   // newItemPreview is the new value of itemPreview.
   const onItemPreview = (newItemPreview: string) => {
-    setItemPreview(newItemPreview);
+    setItemPreview({ image: newItemPreview, visible: true });
   };
 
   // Called when the user clicks on the pay button
@@ -306,7 +309,7 @@ const Shop = () => {
               Places
             </Title>
             <div className={styles.buttonRow}>
-              <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
+              <Button primary onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
             </div>
           </div>
           <div className={styles.shopSection}>
@@ -381,38 +384,6 @@ const Shop = () => {
           </div>
         </div>
       </div>
-      {/*<div className={styles.shop}>
-          <div className={styles.shopSection}>
-            <Title level={2} type={2} className={styles.secondaryTitle}>
-              Places
-            </Title>
-            <div className={styles.buttonRow}>
-              <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
-            </div>
-          </div>
-          <div className={styles.shopSection}>
-            <SupplementList
-              items={items}
-              supplementCart={cart.supplements}
-              hasTicket={isPlaceInCart}
-              onSupplementCartChanges={onSupplementCartChanges}
-              onItemPreview={onItemPreview}
-              itemType="supplement"
-              shopSectionName="Accessoires"
-            />
-          </div>
-          <div className={styles.shopSection}>
-            <SupplementList
-              items={items}
-              supplementCart={cart.supplements}
-              hasTicket={isPlaceInCart}
-              onSupplementCartChanges={onSupplementCartChanges}
-              onItemPreview={onItemPreview}
-              itemType="rent"
-              shopSectionName="Location de matériel"
-            />
-          </div>
-        </div>*/}
       {addPlaceVisible && (
         <AddPlaceModal
           userId={userId}
@@ -424,11 +395,11 @@ const Shop = () => {
         />
       )}
       <Modal
-        visible={!!itemPreview}
-        onCancel={() => setItemPreview(null)}
+        visible={!!itemPreview && !!itemPreview?.visible}
+        onCancel={() => setItemPreview(itemPreview ? { ...itemPreview, visible: false } : null)}
         buttons={null}
         containerClassName={styles.itemPreviewModalContainer}>
-        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className={styles.itemPreviewImage} />}
+        {itemPreview && <img alt="Preview image" src={`/images/${itemPreview.image}`} className={styles.itemPreviewImage} />}
       </Modal>
     </div>
   );

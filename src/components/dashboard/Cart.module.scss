@@ -6,6 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
 
     svg {
       color: $primary-color;
@@ -22,10 +23,14 @@
     font-family: $montserrat;
     text-transform: uppercase;
     overflow: hidden;
-    color: $accent-color;
+    color: white;
     position: relative;
     font-size: 2.125rem;
     text-align: center;
-    margin-top: 10px;
+    margin: 0;
+  }
+
+  .emptyCart {
+    text-align: center;
   }
 }

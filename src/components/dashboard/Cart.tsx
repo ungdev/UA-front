@@ -72,6 +72,10 @@ const Cart = ({
           />
         );
       })}
+
+      {cart.tickets.userIds.length === 0 && cart.tickets.attendant === undefined && cart.supplements.length === 0 && (
+        <p className={styles.emptyCart}>Ton panier est vide</p>
+      )}
     </div>
   );
 };
