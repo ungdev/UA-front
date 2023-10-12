@@ -17,7 +17,7 @@ const Table = ({
 }: {
   /** Title and key of each column. */
   columns: { key: string; title: string }[];
-  /** Data for each row, must follow the key of each column. */
+  /** Data for each row, must follow the key of each column. You can use the key _grayed to specified if the row should look disabled. */
   dataSource: object[];
   /** Class of the table. */
   className?: string;
@@ -53,7 +53,7 @@ const Table = ({
       <tbody>
         {dataSource.length > 0 ? (
           dataSource.map((row: { [key: string]: any }, i) => (
-            <tr key={`${i}`} onClick={() => onRowClicked!(i)}>
+            <tr key={`${i}`} className={row._grayed ? styles.grayed : ''} onClick={() => onRowClicked!(i)}>
               {columns.map((column, j) => {
                 const lastColumn = j + 1 === columns.length && alignRight;
                 return (

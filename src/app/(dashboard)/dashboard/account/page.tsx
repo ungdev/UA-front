@@ -16,7 +16,7 @@ import { IconName } from '@/components/UI/Icon';
 const Account = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user)!;
-  const team = useAppSelector((state) => state.team);
+  const team = useAppSelector((state) => state.team.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);

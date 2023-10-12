@@ -194,10 +194,13 @@ export interface Item {
   infos: string | null;
   image: string | null;
   left: number | null;
+  availableFrom?: number;
+  availableUntil?: number;
 }
 
 export interface AdminItem extends Item {
   reducedPrice: number | null;
+  display: boolean;
 }
 
 export interface Caster {

@@ -20,15 +20,15 @@ const ItemModal = ({
   const [name, setName] = useState(item?.name || null);
   const [price, setPrice] = useState(item?.price || null);
   const [reducedPrice, setReducedPrice] = useState(item?.reducedPrice || null);
-  const [startDate, setStartDate] = useState(item?.startDate || null);
-  const [endDate, setEndDate] = useState(item?.endDate || null);
-  const [quantity, setQuantity] = useState(item?.quantity || null);
+  const [startDate, setStartDate] = useState(item?.availableFrom || null);
+  const [endDate, setEndDate] = useState(item?.availableUntil || null);
+  const [quantity, setQuantity] = useState(item?.left || null);
   const [infos, setInfos] = useState(item?.infos || null);
 
   return (
     <Modal
       visible={true}
-      title="Shop Item" 
+      title="Shop Item"
       onCancel={onClose ? onClose : () => {}}
       buttons={
         <>
@@ -40,15 +40,15 @@ const ItemModal = ({
                 name: name ?? '',
                 price: price ?? 0,
                 reducedPrice: reducedPrice ?? 0,
-                startDate: startDate ?? '',
-                endDate: endDate ?? '',
-                quantity: quantity ?? 0,
+                availableFrom: startDate ?? '',
+                availableUntil: endDate ?? '',
+                left: quantity ?? 0,
                 infos: infos ?? '',
               } as AdminItem;
               dispatch(
-                (updateItem(body, () => {
+                updateItem(body, () => {
                   onClose!();
-                }) as unknown as Action),
+                }) as unknown as Action,
               );
             }}>
             Enregistrer
@@ -58,11 +58,29 @@ const ItemModal = ({
       containerClassName="user-modal">
       <>
         <Input label="Nom" value={name ?? ''} onChange={setName} />
-        <Input label="Prix" value={price ?? ''} onChange={setPrice} />
-        <Input label="Prix réduit" value={reducedPrice ?? ''} onChange={setReducedPrice} />
-        <Input label="Date de début" type="datetime-local" value={startDate ?? ''} onChange={setStartDate} />
-        <Input label="Date de fin" type="datetime-local" value={endDate ?? ''} onChange={setEndDate} />
-        <Input label="Stock restant" value={quantity ?? ''} onChange={setQuantity} />
+        <Input label="Prix" value={price ?? ''} onChange={(value) => setPrice(value as unknown as number)} />
+        <Input
+          label="Prix réduit"
+          value={reducedPrice ?? ''}
+          onChange={(value) => setReducedPrice(value as unknown as number)}
+        />
+        <Input
+          label="Date de début"
+          type="datetime-local"
+          value={startDate ?? ''}
+          onChange={(value) => setStartDate(value as unknown as number)}
+        />
+        <Input
+          label="Date de fin"
+          type="datetime-local"
+          value={endDate ?? ''}
+          onChange={(value) => setEndDate(value as unknown as number)}
+        />
+        <Input
+          label="Stock restant"
+          value={quantity ?? ''}
+          onChange={(value) => setQuantity(value as unknown as number)}
+        />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
       </>
     </Modal>

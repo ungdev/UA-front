@@ -70,9 +70,8 @@ export const adminSlice = createSlice({
           return action.payload;
         }
         return item;
-      }
-      ) as AdminItem[];
-    }
+      }) as AdminItem[];
+    },
   },
 });
 
@@ -227,24 +226,23 @@ export const fetchAdminItems = () => async (dispatch: Dispatch) => {
   dispatch(setAdminItems(request));
 };
 
-export const updateItem =
-  (item: AdminItem, callback: () => void) => async (dispatch: Dispatch) => {
-    try {
-      const result = await API.patch(`admin/items/${item.id}`, {
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        description: item.description,
-        display: item.display.toString(),
-      });
+export const updateItem = (item: AdminItem, callback: () => void) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch(`admin/items/${item.id}`, {
+      name: item.name,
+      price: item.price,
+      quantity: item.left,
+      description: item.infos,
+      display: item.display.toString(),
+    });
 
-      callback();
-      toast.success('L\'item a bien été mis à jour');
+    callback();
+    toast.success("L'item a bien été mis à jour");
 
-      dispatch(updateAdminItem(result));
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    dispatch(updateAdminItem(result));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export default adminSlice.reducer;
