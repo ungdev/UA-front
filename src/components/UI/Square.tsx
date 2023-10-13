@@ -26,7 +26,7 @@ const Square = ({
 }) => {
   return (
     <div className={`${styles.square} ${className}`} onClick={onClick}>
-      <img className="lazyload" alt={alt} data-src={imgSrc} />
+      {imgSrc &&<img className="lazyload" alt={alt} data-src={imgSrc} />}
       {!imgSrc && replacementText && <div className={styles.replacementText}>{replacementText}</div>}
     </div>
   );

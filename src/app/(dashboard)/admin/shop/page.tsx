@@ -13,14 +13,14 @@ const Shop = () => {
   return (
     <div className={styles.partners}>
       <div className={styles.titleContainer}>
-        <Title level={2}>Shop Items</Title>
+        <Title level={2}>Boutique (Fonctionnalité en cours de création)</Title>
       </div>
 
       <div className={styles.squareContainer}>
         {items?.map((item, index) => (
           <Square
             key={index}
-            imgSrc={item.image ? item.image : undefined}
+            imgSrc={item.image ? "/images/" + item.image : undefined}
             alt={item.name}
             onClick={() => setSelectedItem(item)}
             replacementText={!item.image ? item.name : null}
