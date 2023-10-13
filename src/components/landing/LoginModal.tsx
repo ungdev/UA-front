@@ -48,8 +48,8 @@ function LoginModal({
     dispatch(tryLogin(loginForm, admin) as unknown as Action);
   };
 
-  const signup = () => {
-    dispatch(registerUser(signupForm) as unknown as Action);
+  const signup = async () => {
+    if (!await registerUser(signupForm)) return;
     setPanel('emailSent');
   };
 
@@ -207,7 +207,7 @@ function LoginModal({
         <>
           <p>Un email a été envoyé dans ta boîte mail. Vérifie aussi tes spams.</p>
           <p>
-            Si tu n'as pas reçu de mail: <a onClick={resend}>Renvoyer un mail</a>
+            Si tu n'as pas reçu le mail : <a onClick={resend}>Renvoyer</a>
           </p>
         </>
       ),

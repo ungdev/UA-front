@@ -13,18 +13,18 @@ export const registerSlice = createSlice({
   reducers: {},
 });
 
-export const registerUser = (user: RegisterUser) => async () => {
+export const registerUser = async (user: RegisterUser) => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');
-    return;
+    return false;
   }
   if (user.username.includes('.')) {
     toast.error('Le pseudo ne doit pas contenir de point.');
-    return;
+    return false;
   }
   if (!user.age) {
     toast.error('Tu dois cocher "Mineur" ou "Majeur" en bas du formulaire.');
-    return;
+    return false;
   }
 
   delete user.passwordConfirmation;
