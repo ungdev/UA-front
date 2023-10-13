@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { Modal, Button, Input, Radio } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
-import { registerUser } from '@/modules/register';
+import { registerUser, resendEmail } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';
 import { type Action } from '@reduxjs/toolkit';
 
@@ -48,8 +48,13 @@ function LoginModal({
     dispatch(tryLogin(loginForm, admin) as unknown as Action);
   };
 
-  const signup = () => {
-    dispatch(registerUser(signupForm) as unknown as Action);
+  const signup = async () => {
+    if (!(await registerUser(signupForm))) return;
+    setPanel('emailSent');
+  };
+
+  const resend = () => {
+    dispatch(resendEmail(signupForm) as unknown as Action);
   };
 
   const updateLogin = (field: string, value: string) => {
@@ -192,6 +197,18 @@ function LoginModal({
           <div className={styles.footerText}>
             <a onClick={() => setPanel('login')}>Se connecter</a>
           </div>
+        </>
+      ),
+      action: () => {},
+    },
+    emailSent: {
+      title: 'Email envoyé',
+      content: (
+        <>
+          <p>Un email a été envoyé dans ta boîte mail. Vérifie aussi tes spams.</p>
+          <p>
+            Si tu n'as pas reçu le mail : <a onClick={resend}>Renvoyer</a>
+          </p>
         </>
       ),
       action: () => {},

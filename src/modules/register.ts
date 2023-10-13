@@ -2,9 +2,7 @@ import { toast } from 'react-toastify';
 
 import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
-import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
-
-import { setLoginModalVisible } from '@/modules/loginModal';
+import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { setRedirect } from '@/modules/redirect';
 
 const initialState = {};
@@ -15,24 +13,23 @@ export const registerSlice = createSlice({
   reducers: {},
 });
 
-export const registerUser = (user: RegisterUser) => async (dispatch: Dispatch) => {
+export const registerUser = async (user: RegisterUser) => {
   if (user.password !== user.passwordConfirmation) {
     toast.error('Les deux mots de passe ne correspondent pas');
-    return;
+    return false;
   }
   if (user.username.includes('.')) {
     toast.error('Le pseudo ne doit pas contenir de point.');
-    return;
+    return false;
   }
   if (!user.age) {
     toast.error('Tu dois cocher "Mineur" ou "Majeur" en bas du formulaire.');
-    return;
+    return false;
   }
 
   delete user.passwordConfirmation;
   await API.post('auth/register', user);
   toast.success('Inscription réussie, vérifie tes emails');
-  dispatch(setLoginModalVisible(false) as unknown as Action);
   return true;
 };
 
@@ -46,6 +43,12 @@ export const validate = (slug: string) => async (dispatch: Dispatch) => {
   } catch (err) {
     dispatch(setRedirect('/'));
   }
+};
+
+export const resendEmail = (user: RegisterUser) => async () => {
+  await API.post('auth/resendEmail', { username: user.username, email: user.email, password: user.password });
+  toast.success('Un nouvel email a été envoyé');
+  return true;
 };
 
 export default registerSlice.reducer;
