@@ -26,12 +26,12 @@
     color: #8C979B;
     border: none;
 
-    &:hover {
+    &:not([disabled]):hover {
       color: white;
-    }
 
-    &.onLightBackground:hover {
-      color: black;
+      &.onLightBackground {
+        color: black;
+      }
     }
   }
 
@@ -43,15 +43,17 @@
       color: $secondary-color;
       background-color: transparent;
       border: 0.175rem solid $secondary-color;
+    }
 
-      &:hover {
+    &:not([disabled]):hover {
+      &.outline {
         border-color: $primary-color;
         color: $primary-color;
       }
-    }
 
-    &:not(.outline):hover {
-      background-color: $primary-color;
+      &:not(.outline) {
+        background-color: $primary-color;
+      }
     }
   }
 
@@ -63,15 +65,17 @@
       color: $accent-color;
       background-color: transparent;
       border: 0.175rem solid $accent-color;
+    }
 
-      &:hover {
+    &:hover {
+      &.outline {
         border-color: darken($accent-color, 10%);
         color: darken($accent-color, 10%);
       }
-    }
 
-    &:not(.outline):hover {
-      background-color: darken($accent-color, 10%);
+      &:not(.outline) {
+        background-color: darken($accent-color, 10%);
+      }
     }
   }
 

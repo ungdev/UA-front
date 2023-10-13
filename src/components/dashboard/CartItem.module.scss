@@ -40,7 +40,8 @@
   .reductedPrice {
     text-decoration: line-through;
     color: $primary-color;
-    font-size: 10px;
+    font-size: 0.75rem;
     vertical-align: super;
+    margin-left: 3px;
   }
 }
