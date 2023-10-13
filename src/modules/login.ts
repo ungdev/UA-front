@@ -133,9 +133,9 @@ export const resetPassword = (email: string, resetFields: () => unknown) => asyn
 export const setType = (type: UserType | undefined) => async (dispatch: Dispatch) => {
   let res = undefined;
   if (type === UserType.spectator) {
-    res = await API.post(`/users/current/spectate`);
+    res = await API.post('users/current/spectate');
   } else {
-    res = await API.delete(`/users/current/spectate`);
+    res = await API.delete('users/current/spectate');
   }
   dispatch(setUser(res) as unknown as Action);
   dispatch(updateStatus() as unknown as Action);

@@ -18,7 +18,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   // Define state variables
   const isSpectator = useAppSelector((state) => state.login.status.spectator);
   const hasTeam = useAppSelector((state) => state.login.status.team);
-  const hasPaid = useAppSelector((state) => state.login.status.paid);
 
   // Fetch admin data
   const adminPartners = useAppSelector((state) => state.admin.partners);
@@ -44,7 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
     } else if (isSpectator) {
       menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
-    } else if (hasPaid) {
+    } else {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
