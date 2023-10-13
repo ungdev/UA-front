@@ -3,20 +3,20 @@ import styles from './style.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-import { Input, Button, Title, Collapse, Icon } from '@/components/UI';
+import { Input, Button, Title, Icon } from '@/components/UI';
 import { editUser, isFakeConnection, logBackToAdmin, logout } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import { UserAge, UserEdit, UserType } from '@/types';
+import { UserEdit } from '@/types';
 import { deleteCart } from '@/modules/cart';
 import { IconName } from '@/components/UI/Icon';
 
 const Account = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user)!;
-  const team = useAppSelector((state) => state.team.team);
+  // const team = useAppSelector((state) => state.team.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -68,18 +68,18 @@ const Account = () => {
     }
   };
 
-  const downloadTicket = async () => {
-    const res = await API.get(`tickets`);
+  // const downloadTicket = async () => {
+  //   const res = await API.get(`tickets`);
 
-    const element = document.createElement('a');
-    element.href = `data:application/pdf;base64,${res.data}`;
-    element.download = 'Billet UTT Arena 2023.pdf';
-    element.style.display = 'none';
+  //   const element = document.createElement('a');
+  //   element.href = `data:application/pdf;base64,${res.data}`;
+  //   element.download = 'Billet UTT Arena 2023.pdf';
+  //   element.style.display = 'none';
 
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  };
+  //   document.body.appendChild(element);
+  //   element.click();
+  //   document.body.removeChild(element);
+  // };
 
   return (
     <div id="dashboard-account" className={styles.dashboardAccount}>
