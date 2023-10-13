@@ -15,12 +15,23 @@
   border-radius: 0.625rem;
   border: 0;
 
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   &:not(.primary, .secondary) {
     color: #8C979B;
     border: none;
 
     &:hover {
       color: white;
+    }
+
+    &.onLightBackground:hover {
+      color: black;
     }
   }
 
@@ -81,7 +92,7 @@
   }
 
   &[disabled] {
-    pointer-events: none;
+    cursor: not-allowed;
     opacity: 0.5;
   }
 }

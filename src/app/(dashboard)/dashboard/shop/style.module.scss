@@ -1,41 +1,78 @@
+@import '@/variables.scss';
+
 .dashboardShop {
+  padding: 50px;
+
+  .primaryTitle {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem !important;
+  }
+
+  .secondaryTitle {
+    width: 100%;
+    margin: 60px auto 70px auto;
+  }
+
   .shopAndBill {
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    gap: 35px;
+    justify-content: space-evenly;
+    gap: 30px;
+    align-items: stretch;
 
-    .shopSection {
-      margin-bottom: 40px;
-      max-width: 50vw;
-    }
+    .shop {
+      width: 60%;
+      display: block;
+      flex-grow: 1;
 
-    .title {
-      margin: 20px 0 0 0;
-    }
+      .shopSection {
+        margin-bottom: 40px;
 
-    .placeTitle {
-      margin-bottom: 20px;
-    }
-
-    .bill {
-      box-sizing: border-box;
-      height: fit-content;
-      width: 30%;
-      border-radius: 2px;
-      background-color: #fbfbfb;
-      padding: 10px 30px;
-
-      .shopFooter {
-        text-align: right;
-        margin-top: 38px;
-
-        .cgvCheckbox {
-          display: block ruby;
+        .buttonRow {
+          display: flex;
+          width: 100%;
+          justify-content: center;
         }
+      }
 
-        .shopButton.buttonWrapper {
-          margin-left: 16px;
+      .title {
+        margin: 20px 0 0 0;
+      }
+
+      .placeTitle {
+        margin-bottom: 20px;
+      }
+    }
+
+    .billWrapper {
+      margin: 40px auto 50px auto;
+      width: 40%;
+      flex-grow: 1;
+
+      .bill {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: sticky;
+        top: 90px;
+        background-color: $secondary-background;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+
+        .shopFooter {
+          text-align: right;
+          margin-top: 2rem;
+          bottom: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+
+          .cgv {
+            text-align: left;
+            margin-top: 1rem;
+          }
         }
       }
     }
@@ -60,14 +97,25 @@
   }
 }
 
-@media screen and (max-width: 1600px) {
-  .dashboardShop .shopAndBill {
-    flex-direction: column;
-    .bill {
-      width: 100%;
-    }
-    .shopSection {
-      max-width: unset;
+@media screen and (max-width: 1300px) {
+  .dashboardShop {
+    padding: 10px;
+    .shopAndBill {
+      flex-flow: column wrap;
+      max-width: 100%;
+
+      .billWrapper {
+        width: 100%;
+      }
+      .shop {
+        width: 100%;
+      }
+      .bill {
+        width: 100%;
+      }
+      .shopSection {
+        max-width: unset;
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
 import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
-import { Table, Card, Title } from '@/components/UI';
+import { Table, Title } from '@/components/UI';
 import { fetchAllCarts } from '@/modules/carts';
 import { fetchItems } from '@/modules/items';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -70,12 +70,15 @@ const Purchases = () => {
           0,
         );
         return (
-          <Card
+          <div
             className={`${styles.cardCart} ${
               cart.transactionState === TransactionState.authorization ? styles.authorization : ''
             }`}
             key={cart.id}>
             <>
+              <Title level={2} align="center" className={styles.primaryTitle}>
+                Achat #{cart.id}
+              </Title>
               <p>
                 Date: {date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric' })}{' '}
                 {cart.transactionState === TransactionState.authorization ? '(Paiement en cours de traitement)' : ''}
@@ -85,13 +88,22 @@ const Purchases = () => {
                 <strong>Total: {(total / 100).toFixed(2)} €</strong>
               </p>
             </>
-          </Card>
+          </div>
         );
       });
 
   return (
     <div id="dashboard-purchases" className={styles.dashboardPurchases}>
-      {carts.length ? displayCarts : <Title level={4}>Aucun achat</Title>}
+      <Title level={1} align="center" className={styles.primaryTitle}>
+        Mes Achats
+      </Title>
+      {carts.length ? (
+        displayCarts
+      ) : (
+        <Title level={4} className={styles.primaryTitle}>
+          Aucun achat
+        </Title>
+      )}
     </div>
   );
 };

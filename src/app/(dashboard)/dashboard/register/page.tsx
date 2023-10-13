@@ -6,7 +6,7 @@ import { animated, useTransition } from '@react-spring/web';
 
 import { setType } from '@/modules/login';
 
-import { Input, Button, Table, Icon } from '@/components/UI';
+import { Input, Button, Table, Icon, Title } from '@/components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
@@ -14,6 +14,12 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
+import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import playerImg from '@/../public/images/register/player.jpg';
+import coachImg from '@/../public/images/register/coach.jpg';
+import spectatorImg from '@/../public/images/register/spectator.jpg';
+import joinImg from '@/../public/images/register/join.jpg';
+import createImg from '@/../public/images/register/create.jpg';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -30,6 +36,7 @@ const Register = () => {
   const [step, setStep] = useState(1);
   const soloTeamName = `${user.username}-solo-team`;
   const [teamName, setTeamName] = useState('');
+  const [pokemonPlayerId, setPokemonPlayerId] = useState('');
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
@@ -85,45 +92,58 @@ const Register = () => {
     <>
       <a href={discordLink}>
         <Button primary>
-          <Icon name={IconName.Discord} />
-          &nbsp;&nbsp;{'Connecte-toi à ton compte Discord'}
+          <div className={styles.discordBtn}>
+            <Icon name={IconName.Discord} fill={true} />
+            {'Connecte-toi à ton compte Discord'}
+          </div>
         </Button>
       </a>
+      <div>Nous utilisons ton compte Discord pour t'assigner tes rôles sur notre serveur Discord</div>
     </>
   );
+
+  // Create a card component
+  const RegisterCard = ({ title, onClick, imgSrc }: { title: string; onClick: () => void; imgSrc: string }) => {
+    return (
+      <div className={styles.card} onClick={onClick}>
+        <img src={imgSrc} alt={title + '  background'} />
+        <p>{title}</p>
+      </div>
+    );
+  };
 
   const Step2 = (
     <>
       <div className={styles.cardContainer}>
-        <div
+        <RegisterCard
+          title="Joueur"
           onClick={() => {
             setUserType(UserType.player);
             setStep(step + 1);
             setTournamentSolo(false);
-          }}>
-          <Icon name={IconName.Gamepad} />
-          <p>Joueur</p>
-        </div>
+          }}
+          imgSrc={playerImg.src}
+        />
 
-        <div
+        <RegisterCard
+          title="Coach / Manager"
           onClick={() => {
             setUserType(UserType.coach);
             setStep(step + 1);
             setTournamentSolo(false);
-          }}>
-          <Icon name={IconName.Headset} />
-          <p>Coach / Manager</p>
-        </div>
+          }}
+          imgSrc={coachImg.src}
+        />
 
-        <div
+        <RegisterCard
+          title="Spectateur"
           onClick={() => {
             setUserType(UserType.spectator);
             setStep(step + 3);
             setTournamentSolo(true);
-          }}>
-          <Icon name={IconName.User} />
-          <p>Spectateur</p>
-        </div>
+          }}
+          imgSrc={spectatorImg.src}
+        />
       </div>
     </>
   );
@@ -131,43 +151,33 @@ const Register = () => {
   const loadTournaments = () => {
     const list = tournamentsOptions.map((element, i) => {
       return (
-        <div
-          key={i}
+        <RegisterCard
+          key={'tournament-' + i}
+          title={element.label}
+          imgSrc={getTournamentBackgroundLink(element.value)}
           onClick={() => {
             setTournament(element.value);
             setStep(step + 1);
             setTournamentSolo(false);
-          }}>
-          <img
-            src={'/tournaments/' + element.value + '.svg'}
-            alt={element.label + ' icon'}
-            height="24px"
-            width="24px"
-          />
-          <p>{element.label}</p>
-        </div>
+          }}
+        />
       );
     });
 
     if (userType === UserType.player) {
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
-          <div
-            key={i}
+          <RegisterCard
+            key={'tournament-solo-' + i}
+            title={element.label}
+            imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
               setTournament(element.value);
               setCreateTeam(true);
               setStep(step + 2);
               setTournamentSolo(true);
-            }}>
-            <img
-              src={'/tournaments/' + element.value + '.svg'}
-              alt={element.label + ' icon'}
-              height="24px"
-              width="24px"
-            />
-            <p>{element.label}</p>
-          </div>,
+            }}
+          />,
         );
       });
     }
@@ -183,23 +193,23 @@ const Register = () => {
   const Step4 = (
     <>
       <div className={styles.cardContainer}>
-        <div
+        <RegisterCard
+          title="Créer une équipe"
           onClick={() => {
             setCreateTeam(true);
             setStep(step + 1);
-          }}>
-          <Icon name={IconName.PlusSquare} />
-          <p>Créer une équipe</p>
-        </div>
+          }}
+          imgSrc={createImg.src}
+        />
 
-        <div
+        <RegisterCard
+          title="Rejoindre une équipe"
           onClick={() => {
             setCreateTeam(false);
             setStep(step + 1);
-          }}>
-          <Icon name={IconName.SignIn} />
-          <p>Rejoindre une équipe</p>
-        </div>
+          }}
+          imgSrc={joinImg.src}
+        />
       </div>
     </>
   );
@@ -249,8 +259,11 @@ const Register = () => {
         <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
       </div>
       {createTeam || userType === UserType.spectator ? (
-        <div>
+        <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
+          {tournament == 'pokemon' ? (
+            <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} />
+          ) : null}
           {tournament == 'osu' && userType !== UserType.spectator ? (
             <>
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
@@ -265,6 +278,7 @@ const Register = () => {
                   : (cT({
                       name: tournamentSolo ? soloTeamName : teamName,
                       tournamentId: tournament,
+                      pokemonPlayerId: tournament == 'pokemon' ? pokemonPlayerId : undefined,
                       userType: userType as UserType,
                     }) as unknown as Action),
               )
@@ -272,7 +286,7 @@ const Register = () => {
             disabled={!user.discordId}>
             {tournamentSolo ? 'Valider' : 'Créer mon équipe'}
           </Button>
-        </div>
+        </>
       ) : (
         <div>{tournament ? tournamentTable().content : ''}</div>
       )}
@@ -313,14 +327,27 @@ const Register = () => {
   const Stepper = () => {
     return (
       <>
-        <ul className={styles.steps}>
-          <li className={styles.active}></li>
-          <li className={step > 1 ? styles.active : ``}></li>
-          <li className={step > 2 ? styles.active : ``}></li>
-          <li className={step > 3 ? styles.active : ``}></li>
-          <li className={step > 4 ? styles.active : ``}></li>
-        </ul>
-        {transitions((styles, item) => item && <animated.div style={styles}>{renderSwitch(step)}</animated.div>)}
+        <div className={styles.stepsHeader}>
+          <Title level={2} type={1} align="center">
+            FINALISE TON INSCRIPTION
+          </Title>
+          <ul className={styles.steps}>
+            <li className={styles.active}></li>
+            <li className={step > 1 ? styles.active : ``}></li>
+            <li className={step > 2 ? styles.active : ``}></li>
+            <li className={step > 3 ? styles.active : ``}></li>
+            <li className={step > 4 ? styles.active : ``}></li>
+          </ul>
+        </div>
+
+        {transitions(
+          (style, item) =>
+            item && (
+              <animated.div style={style}>
+                <div className={styles.stepContainer}>{renderSwitch(step)}</div>
+              </animated.div>
+            ),
+        )}
 
         {backButton()}
       </>

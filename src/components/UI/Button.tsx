@@ -18,6 +18,7 @@ import styles from './Button.module.scss';
 const Button = ({
   primary = false,
   secondary = false,
+  onLightBackground = false,
   outline = false,
   large = false,
   long = false,
@@ -32,6 +33,9 @@ const Button = ({
   primary?: boolean;
   /** Whether the button is secondary or not. */
   secondary?: boolean;
+  /** Whether the button is on a light or a dark background.
+   * If this is set to true on a normal button (neither primary nor secondary), instead of fading white on hover, it fades black */
+  onLightBackground?: boolean;
   /** Whether the button is outline or not. */
   outline?: boolean;
   /** Whether the button is large or not. */
@@ -54,12 +58,12 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`${styles.button} ${primary ? styles.primary : ''} ${secondary ? styles.secondary : ''} ${className}
-                  ${outline ? styles.outline : ''} ${large ? styles.large : ''}  ${long ? styles.long : ''}
-                  ${veryLong ? styles.veryLong : ''}`}
-      onClick={onClick}
+      className={`${styles.button} ${primary ? styles.primary : ''} ${secondary ? styles.secondary : ''}
+                  ${onLightBackground ? styles.onLightBackground : ''} ${className} ${outline ? styles.outline : ''}
+                  ${large ? styles.large : ''}  ${long ? styles.long : ''} ${veryLong ? styles.veryLong : ''}`}
+      onClick={disabled ? undefined : onClick}
       disabled={disabled}>
-      {children}
+      <div className={styles.buttonContainer}>{children}</div>
     </button>
   );
 };

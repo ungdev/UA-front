@@ -16,7 +16,7 @@ import { IconName } from '@/components/UI/Icon';
 const Account = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user)!;
-  const team = useAppSelector((state) => state.team);
+  const team = useAppSelector((state) => state.team.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -29,7 +29,7 @@ const Account = () => {
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
-      setDiscordLink(res.data.link);
+      setDiscordLink(res.link);
     });
     // Scroll to discord section (as it may be below information section)
     if (window.location.href.endsWith('#discord')) discordLinkRef.current!.scrollIntoView();
@@ -84,7 +84,9 @@ const Account = () => {
   return (
     <div id="dashboard-account" className={styles.dashboardAccount}>
       <div className={styles.infos}>
-        <Title level={4}>Mes informations</Title>
+        <Title level={4} className={styles.secondaryTitle}>
+          Mes informations
+        </Title>
 
         <Input label="Place" value={user.place || ''} autocomplete="off" disabled />
         <Input label="Email" value={user.email} autocomplete="off" disabled />
@@ -120,39 +122,42 @@ const Account = () => {
         </Button>
       </div>
       <div className={styles.infos} ref={discordLinkRef}>
-        <Title level={4}>Mon compte Discord</Title>
-        {user.discordId ? (
-          <p>
-            Tu es connecté à ton compte Discord ! <span className="fas fa-check" />
-          </p>
-        ) : (
-          ''
-        )}
-        <a href={discordLink}>
-          <Button primary>
-            <Icon name={IconName.Discord} />
-            &nbsp;&nbsp;
-            {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
-          </Button>
-        </a>
+        <Title level={4} className={styles.secondaryTitle}>
+          Mon compte Discord
+        </Title>
+        <div className={styles.discordCategory}>
+          {user.discordId ? (
+            <p>
+              Tu es connecté à ton compte Discord ! <span className="fas fa-check" />
+            </p>
+          ) : (
+            ''
+          )}
+          <a href={discordLink}>
+            <Button primary>
+              <Icon name={IconName.Discord} fill={true} />
+              {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
+            </Button>
+          </a>
 
-        <Button
-          secondary
-          onClick={() => {
-            // Remove the cart from the local storage, to avoid moving carts from one account to another
-            deleteCart();
-            if (isFakeConnection()) {
-              dispatch(logBackToAdmin() as unknown as Action);
-            } else {
-              dispatch(logout() as unknown as Action);
-            }
-          }}>
-          Déconnexion
-        </Button>
+          <Button
+            secondary
+            onClick={() => {
+              // Remove the cart from the local storage, to avoid moving carts from one account to another
+              deleteCart();
+              if (isFakeConnection()) {
+                dispatch(logBackToAdmin() as unknown as Action);
+              } else {
+                dispatch(logout() as unknown as Action);
+              }
+            }}>
+            Déconnexion
+          </Button>
+        </div>
       </div>
-      <hr />
       {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
         <>
+          <hr />
           <div className="to-bring">
             <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
             <Collapse title="Pour te restaurer" initVisible={true}>

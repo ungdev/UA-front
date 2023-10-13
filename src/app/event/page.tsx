@@ -1,9 +1,11 @@
 import styles from './style.module.scss';
-import { Title } from '@/components/UI';
+import { Table, Title } from '@/components/UI';
 import imageLeft from '@/../public/images/event/left.jpg';
 import imageRight from '@/../public/images/event/right.jpg';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
+import TextStroke from '@/components/UI/TextStroke';
+import BoxContainer from '@/components/landing/BoxContainer';
 
 export const metadata: Metadata = {
   title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
@@ -41,7 +43,7 @@ export default function Page() {
           </div>
           <img src={imageRight.src} alt="bar" />
         </div>
-        {/*<Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
+        <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
         </Title>
         <div className={styles.program}>
@@ -54,7 +56,7 @@ export default function Page() {
           <BoxContainer title="Jour 3 : Dimanche" className={styles.boxContainer}>
             <p>À venir...</p>
           </BoxContainer>
-        </div>*/}
+        </div>
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
           Lieu
         </Title>
@@ -69,7 +71,7 @@ export default function Page() {
             10000 Troyes
           </div>
         </div>
-        {/* <Title level={2} type={2} className={styles.secondaryTitle}>
+        <Title level={2} type={2} className={styles.secondaryTitle}>
           Inscriptions
         </Title>
         <ol className={styles.steps}>
@@ -113,9 +115,9 @@ export default function Page() {
             </TextStroke>
             Le statut de l'équipe devient vert et l'équipe est officiellement inscrite !
           </li>
-        </ol> */}
+        </ol>
         {/* TODO : tenter d'échanger lignes et colonnes pour voir ce que ça donne */}
-        {/*<Table
+        <Table
           columns={[
             { key: 'type', title: 'Type' },
             { key: 'price', title: 'Prix' },
@@ -150,7 +152,7 @@ export default function Page() {
               description: '-----',
             },
           ]}
-        />*/}
+        />
       </div>
       <Partners />
     </>
