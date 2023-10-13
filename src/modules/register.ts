@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 
 import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { setRedirect } from '@/modules/redirect';
 import { autoLogin } from './login';
 
