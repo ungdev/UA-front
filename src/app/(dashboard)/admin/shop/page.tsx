@@ -20,7 +20,7 @@ const Shop = () => {
         {items?.map((item, index) => (
           <Square
             key={index}
-            imgSrc={item.image ? "/images/" + item.image : undefined}
+            imgSrc={item.image ? '/images/' + item.image : undefined}
             alt={item.name}
             onClick={() => setSelectedItem(item)}
             replacementText={!item.image ? item.name : null}

@@ -240,6 +240,13 @@ const Page = () => {
                   <Icon name={IconName.Tick} className={styles.iconTick} />
                   <span className={`${styles.descriptionValue} ${styles.iconTick}`}>Inscrit</span>
                 </>
+              ) : team.positionInQueue ? (
+                <>
+                  <Icon name={IconName.Caution} className={styles.iconInQueue} />
+                  <span className={`${styles.descriptionValue} ${styles.iconInQueue}`}>
+                    Dans la file dattente, position {team.positionInQueue}
+                  </span>
+                </>
               ) : (
                 <>
                   <Icon name={IconName.Caution} className={styles.iconCaution} />

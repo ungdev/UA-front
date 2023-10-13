@@ -66,6 +66,7 @@ export interface TeamWithUsers extends Team {
   players: User[];
   coaches: User[];
   askingUsers: User[];
+  positionInQueue: number | null;
 }
 
 export interface User {
