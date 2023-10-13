@@ -45,6 +45,7 @@ const AddPlaceModal = ({
     } else if (teamMembersWithoutTicket.length) {
       setPlaceFor('other');
     } else {
+      // We should never get there. But imagine there is a bug on the website... just imagine...
       toast.info("Tous les membres de l'équipe ont déjà une place !");
       onQuit('', '');
       return;

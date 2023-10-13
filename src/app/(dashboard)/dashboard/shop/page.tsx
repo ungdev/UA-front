@@ -151,7 +151,7 @@ const Shop = () => {
           ),
         )
       )
-        .filter((val): val is PromiseFulfilledResult<any> => val.status === 'fulfilled')
+        .filter((val): val is PromiseFulfilledResult<Item> => val.status === 'fulfilled')
         // Then, we only keep the return value of the Promises
         .map((result) => result.value)
         // And finally, we remove failed Promises
@@ -297,6 +297,10 @@ const Shop = () => {
     dispatch(cartPay(cart) as unknown as Action);
   };
 
+  // Hide the places section if user can't buy any places
+  const placesSectionVisible =
+    !isPlaceInCart || (age === UserAge.child && !hasAttendant) || teamMembersWithoutTicket.length;
+
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
       <Title level={1} align="center" className={styles.primaryTitle}>
@@ -304,16 +308,18 @@ const Shop = () => {
       </Title>
       <div className={styles.shopAndBill}>
         <div className={styles.shop}>
-          <div className={styles.shopSection}>
-            <Title level={2} type={2} className={styles.secondaryTitle}>
-              Places
-            </Title>
-            <div className={styles.buttonRow}>
-              <Button primary onClick={() => setAddPlaceVisible(true)}>
-                Ajouter une place
-              </Button>
+          {placesSectionVisible && (
+            <div className={styles.shopSection}>
+              <Title level={2} type={2} className={styles.secondaryTitle}>
+                Places
+              </Title>
+              <div className={styles.buttonRow}>
+                <Button primary onClick={() => setAddPlaceVisible(true)}>
+                  Ajouter une place
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
           <div className={styles.shopSection}>
             <SupplementList
               items={items}
