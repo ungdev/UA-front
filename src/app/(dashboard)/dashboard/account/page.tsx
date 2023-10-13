@@ -155,7 +155,7 @@ const Account = () => {
           </Button>
         </div>
       </div>
-      {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
+      {/* {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
         <>
           <hr />
           <div className="to-bring">
@@ -221,7 +221,7 @@ const Account = () => {
             </Button>
           </div>
         </>
-      )}
+      )} */}
     </div>
   );
 };
