@@ -124,7 +124,7 @@ export const editUser = (data: UserEdit) => async (dispatch: Dispatch) => {
 };
 
 export const resetPassword = (email: string, resetFields: () => unknown) => async (dispatch: Dispatch) => {
-  await API.post(`auth/reset-password`, { email });
+  await API.post(`auth/reset-password/ask`, { email });
   toast.success("Un email de confirmation vient d'être envoyé");
   dispatch(setLoginModalVisible(false) as unknown as Action);
   resetFields();
