@@ -27,7 +27,7 @@ const Page = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useAppDispatch();
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
-  const { id, teamId } = useAppSelector((state) => state.login.user || { id: '', teamId: null });
+  const { id, teamId, type } = useAppSelector((state) => state.login.user || { id: '', teamId: null, type: null });
   const team = useAppSelector((state) => state.team.team);
   const slotsTournament = useAppSelector((state) => state.tournament.slots);
 
@@ -140,7 +140,7 @@ const Page = () => {
               dispatch(kickUser(user.id) as unknown as Action);
               closeModal();
             },
-            content: `Confirme l'exclusion du ${user.type === 'player' ? 'joueur' : 'coach / manager'}`,
+            content: `Confirme l'exclusion du ${user.type === 'player' ? 'joueur. Cette action fera perdre sa place à ton équipe.' : 'coach / manager'}`,
             title: `Exclure un ${user.type === 'player' ? 'joueur' : 'coach / manager'}`,
           })
         }>
@@ -191,7 +191,7 @@ const Page = () => {
         dispatch(deleteTeam() as unknown as Action);
         closeModal();
       },
-      content: "Es-tu sûr de vouloir dissoudre l'équipe ?",
+      content: "Es-tu sûr de vouloir dissoudre l'équipe ? Ton équipe perdra sa place.",
       title: "Dissoudre l'équipe",
     });
 
@@ -202,7 +202,7 @@ const Page = () => {
         dispatch(kickUser(id) as unknown as Action);
         closeModal();
       },
-      content: "Es-tu sûr de vouloir quitter l'équipe ?",
+      content: "Es-tu sûr de vouloir quitter l'équipe ?" + (type === UserType.player ? ' Ton équipe perdra sa place.' : ''),
       title: "Quitter l'équipe",
     });
 

@@ -126,30 +126,25 @@ export default function Page() {
           dataSource={[
             {
               type: 'Joueur',
-              price: '-',
-              description: 'Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
+              price: '28 €',
+              description: 'Pour les joueurs SSBU : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
               type: 'Coach / Manager',
-              price: '-',
+              price: '15 €',
               description:
                 'Un justificatif pourra vous être demandé. Le nombre limite de coachs / managers par équipe sera précisé ultérieurement.',
             },
             {
               type: 'Accompagnateur',
-              price: '-',
+              price: '15 €',
               description: 'Réservé aux accompagnateurs de joueurs mineurs',
             },
             {
               type: 'Spectateur',
-              price: '-',
+              price: '10 €',
               description:
                 "Possibilité d'accéder à l'UTT Arena, sa restauration et ses activités pendant tout le weekend",
-            },
-            {
-              type: 'Bénévole',
-              price: '-',
-              description: '-----',
             },
           ]}
         />
