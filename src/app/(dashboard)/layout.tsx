@@ -53,8 +53,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
       menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
-    } else {
-      menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
     menu.push({ title: 'Mon compte', href: '/dashboard/account' });
