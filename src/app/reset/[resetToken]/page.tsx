@@ -13,7 +13,7 @@ const Reset = () => {
   const [password, setPassword] = useState('');
   const [passwordBis, setPasswordBis] = useState('');
   const reset = async () => {
-    await API.put('auth/password/update', { resetToken, password });
+    await API.put(`auth/reset-password/${resetToken}`, { resetToken, password });
     toast.success('Mot de passe réinitialisé');
     router.push('/');
   };
