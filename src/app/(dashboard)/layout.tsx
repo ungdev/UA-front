@@ -44,7 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       menu.push({ title: 'Équipe', href: '/dashboard/team' });
     } else if (isSpectator) {
       menu.push({ title: 'Spectateur', href: '/dashboard/spectator' });
-    } else if (hasPaid) {
+    } else {
       menu.push({ title: 'Inscription', href: '/dashboard/register' });
     }
 
