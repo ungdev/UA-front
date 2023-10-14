@@ -11,12 +11,8 @@ import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/upl
 import { IconName } from '@/components/UI/Icon';
 import { type Action } from '@reduxjs/toolkit';
 import { setLoginModalVisible } from '@/modules/loginModal';
-<<<<<<< HEAD
 import { setRedirect } from '@/modules/redirect';
 import { Tournament } from '@/types';
-=======
-import { Tournament } from '@/types';
->>>>>>> 58f8c2f (fix: add draggable component)
 
 export function TournamentHome({
   animations,
@@ -34,9 +30,10 @@ export function TournamentHome({
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
   const login = useAppSelector((state) => state.settings.login);
-  const tournaments = useAppSelector((state) => state.tournament.tournaments!.sort(
-    (a: Tournament, b: Tournament) => a.position - b.position,
-  ));
+  const tournaments = useAppSelector((state) =>
+    state.tournament.tournaments!.sort((a: Tournament, b: Tournament) => a.position - b.position),
+  );
+  
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);

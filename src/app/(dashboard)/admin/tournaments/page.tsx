@@ -7,7 +7,7 @@ import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { reorderTournaments } from '@/modules/admin';
-import { Action } from '@reduxjs/toolkit';
+import type { Action } from '@reduxjs/toolkit';
 
 const Tournaments = () => {
   const tournaments = useAppSelector((state) => state.admin.tournaments);
@@ -22,19 +22,21 @@ const Tournaments = () => {
 
       <div className={styles.squareContainer} ref={parentEl}>
         <DraggableList
-          items={tournaments?.sort(
-            (a: AdminTournament, b: AdminTournament) => a.position - b.position,
-          ).map((tournament, index) => (
-            <Square
-              key={index}
-              imgSrc={getTournamentImageLink(tournament.id)}
-              alt={tournament.name}
-              onClick={(e) => {
-                if((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-                setSelectedTournament(tournament);
-              }}
-            />
-          )) ?? []} 
+          items={
+            tournaments
+              ?.sort((a: AdminTournament, b: AdminTournament) => a.position - b.position)
+              .map((tournament, index) => (
+                <Square
+                  key={index}
+                  imgSrc={getTournamentImageLink(tournament.id)}
+                  alt={tournament.name}
+                  onClick={(e) => {
+                    if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+                    setSelectedTournament(tournament);
+                  }}
+                />
+              )) ?? []
+          }
           availableWidth={parentEl.current?.clientWidth ?? 0}
           blockHeight={300}
           blockWidth={300}

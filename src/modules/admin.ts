@@ -98,6 +98,7 @@ export const addPartner =
         name: partner.name,
         link: partner.link,
         display: partner.display.toString(),
+        position: partner.position,
       });
 
       if (result && logo) {
@@ -169,7 +170,7 @@ export const reorderPartners = (partners: AdminPartner[]) => async (dispatch: Di
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 export const fetchAdminTournaments = () => async (dispatch: Dispatch) => {
   const request = await API.get('admin/tournaments');

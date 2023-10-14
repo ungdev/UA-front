@@ -7,10 +7,10 @@ const meta = {
   tags: ['autodocs'],
   args: {
     items: [
-      <div style={{ width: 300, height: 300, background: 'red' }} />,
-      <div style={{ width: 300, height: 300, background: 'blue' }} />,
-      <div style={{ width: 300, height: 300, background: 'green' }} />,
-      <div style={{ width: 300, height: 300, background: 'yellow' }} />,
+      <div key={1} style={{ width: 300, height: 300, background: 'red' }} />,
+      <div key={2} style={{ width: 300, height: 300, background: 'blue' }} />,
+      <div key={3} style={{ width: 300, height: 300, background: 'green' }} />,
+      <div key={4} style={{ width: 300, height: 300, background: 'yellow' }} />,
     ],
     availableWidth: 400,
     blockWidth: 300,

@@ -6,7 +6,7 @@ import { AdminPartner } from '@/types';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { Action } from '@reduxjs/toolkit';
+import { type Action } from '@reduxjs/toolkit';
 import { reorderPartners } from '@/modules/admin';
 
 const Partners = () => {
@@ -27,19 +27,21 @@ const Partners = () => {
 
       <div className={styles.squareContainer} ref={parentEl}>
         <DraggableList
-          items={partners?.sort(
-            (a: AdminPartner, b: AdminPartner) => a.position - b.position,
-          ).map((partner, index) => (
-            <Square
-              key={index}
-              imgSrc={getPartnerLogoLink(partner.id)}
-              alt={partner.name}
-              onClick={(e) => {
-                if((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-                setSelectedPartner(partner)
-              }}
-            />
-          )) ?? []} 
+          items={
+            partners
+              ?.sort((a: AdminPartner, b: AdminPartner) => a.position - b.position)
+              .map((partner, index) => (
+                <Square
+                  key={index}
+                  imgSrc={getPartnerLogoLink(partner.id)}
+                  alt={partner.name}
+                  onClick={(e) => {
+                    if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+                    setSelectedPartner(partner);
+                  }}
+                />
+              )) ?? []
+          }
           availableWidth={parentEl.current?.clientWidth ?? 0}
           blockHeight={300}
           blockWidth={300}

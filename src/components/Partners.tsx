@@ -24,13 +24,13 @@ export default function Partners() {
     <div id="partners" className={styles.partners}>
       {!partners || partners.length === 0
         ? 'Chargement des partenaires...'
-        : partners?.sort(
-          (a: Partner, b: Partner) => a.position - b.position,
-        ).map((partner: Partner, i: number) => (
-            <a key={i} href={partner.link}>
-              <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
-            </a>
-          ))}
+        : partners
+            ?.sort((a: Partner, b: Partner) => a.position - b.position)
+            .map((partner: Partner, i: number) => (
+              <a key={i} href={partner.link}>
+                <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
+              </a>
+            ))}
     </div>
   );
 }

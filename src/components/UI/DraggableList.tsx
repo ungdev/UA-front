@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback, useState, ReactNode } from 'react';
+/* eslint-disable import/named */
 import { useSprings, animated } from '@react-spring/web';
 import styles from './DraggableList.module.scss';
 
@@ -18,7 +19,6 @@ const isInside = (
   const { left, right, bottom, top } = element.getBoundingClientRect();
   // if bottom and right not exist then it's a point
   if (!coordinate.right || !coordinate.bottom) {
-    console.log(coordinate.left, right);
     if (coordinate.left > right || coordinate.left < left) {
       return false;
     }
@@ -35,7 +35,7 @@ const isInside = (
   return true;
 };
 
-const useDraggable = ({ parentRef, onReorder}: { parentRef: React.RefObject<HTMLElement>, onReorder: () => void }) => {
+const useDraggable = ({ parentRef, onReorder }: { parentRef: React.RefObject<HTMLElement>; onReorder: () => void }) => {
   const [coordinate, setCoordinate] = useState({
     block: { x: 0, y: 0 },
     blockInitial: { x: 0, y: 0 },
@@ -135,15 +135,14 @@ const DraggableList = ({
   /** On reorder */
   onReorder?: (newOrder: number[]) => void;
 }) => {
-  if(items.length === 0 || availableWidth === 0) return null;
+  if (items.length === 0 || availableWidth === 0) return null;
 
   // -----------------------------------
   //             Constants
   // -----------------------------------
   const padding = availableWidth < 800 ? 4 : 50;
-  const blockInRow = Math.floor((availableWidth - 2*padding) / (blockWidth + blockGap));
+  const blockInRow = Math.floor((availableWidth - 2 * padding) / (blockWidth + blockGap));
   const blockCount = items.length;
-
 
   const parentRef = useRef(null);
   const {
@@ -167,7 +166,6 @@ const DraggableList = ({
   };
 
   const blocks = useRef(new Array(blockCount).fill(0).map((_, i) => i));
-
 
   const initialCoordinates = useRef(
     blocks.current.map((index) => {
@@ -226,7 +224,7 @@ const DraggableList = ({
       const newPosition = y + x + oldPosition;
       // there will be cases when block is not moved enough
       if (newPosition !== oldPosition) {
-        let newOrder = [...blocks.current];
+        const newOrder = [...blocks.current];
         // swaping
         const [toBeMoved] = newOrder.splice(oldPosition, 1);
         newOrder.splice(newPosition, 0, toBeMoved);
@@ -245,7 +243,10 @@ const DraggableList = ({
         ref={parentRef}
         style={{
           width: blockInRow * blockWidth + (blockInRow - 1) * blockGap + padding * 2,
-          height: blockHeight * Math.ceil(blockCount / blockInRow) + blockGap * (Math.ceil(blockCount / blockInRow) - 1) + padding * 2,
+          height:
+            blockHeight * Math.ceil(blockCount / blockInRow) +
+            blockGap * (Math.ceil(blockCount / blockInRow) - 1) +
+            padding * 2,
           padding: padding,
         }}>
         {springs.map((style, index) => {
