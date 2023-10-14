@@ -5,6 +5,7 @@ export interface Partner {
   id: string;
   name: string;
   link: string;
+  position: number;
 }
 
 export interface AdminPartner extends Partner {
@@ -217,6 +218,7 @@ export interface Tournament {
   playersPerTeam: number;
   lockedTeamsCount: number;
   placesLeft: number;
+  position: number;
   infos: string | null;
   format: string | null;
   cashprize: number | null;

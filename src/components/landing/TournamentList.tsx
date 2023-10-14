@@ -28,7 +28,9 @@ export default function TournamentList({
   className?: string;
 }) {
   const dispatch = useAppDispatch();
-  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const tournaments = useAppSelector((state) => state.tournament.tournaments!.sort(
+    (a: Tournament, b: Tournament) => a.position - b.position,
+  ));
   /** The ref to the slider. */
   const cardsRef = useRef<HTMLDivElement>();
 
