@@ -116,11 +116,11 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>-- € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
-            <li>-- € pour les joueurs des autres tournois</li>
-            <li>-- € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
+            <li>28 € pour les joueurs des autres tournois</li>
+            <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
             <li>
-              Pour les étudiants des écoles partenaires (réseau UT) : réduction de --€. Pense à t'inscrire avec ton
+              Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
               adresse mail étudiante.
             </li>
           </ul>
