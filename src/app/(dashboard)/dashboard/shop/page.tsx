@@ -308,7 +308,7 @@ const Shop = () => {
       </Title>
       <div className={styles.shopAndBill}>
         <div className={styles.shop}>
-          {placesSectionVisible && (
+          {placesSectionVisible ? (
             <div className={styles.shopSection}>
               <Title level={2} type={2} className={styles.secondaryTitle}>
                 Places
@@ -319,6 +319,8 @@ const Shop = () => {
                 </Button>
               </div>
             </div>
+          ) : (
+            false
           )}
           <div className={styles.shopSection}>
             <SupplementList
