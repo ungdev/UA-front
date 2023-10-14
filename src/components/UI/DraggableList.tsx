@@ -48,6 +48,10 @@ const useDraggable = ({ parentRef }: { parentRef: React.RefObject<HTMLElement> }
       ...prev,
       movingBlockIndex: null,
     }));
+    // removing the dragging class after 150ms
+    setTimeout(() => {
+      parentRef.current?.classList.remove('dragging');
+    }, 150);
   }, []);
 
   const handleMouseMove = useCallback(
@@ -95,6 +99,7 @@ const useDraggable = ({ parentRef }: { parentRef: React.RefObject<HTMLElement> }
         movingBlockIndex: index,
       }));
       event.stopPropagation();
+      parentRef.current?.classList.add('dragging');
     },
     [],
   );
@@ -223,8 +228,8 @@ const DraggableList = ({
       }
 
       // calling the onReorder callback
-      if (onReorder) {
-        onReorder(blocks.current);
+      if (onReorder && oldPosition !== newPosition && false) {
+        onReorder!(blocks.current);
       }
     }
 
