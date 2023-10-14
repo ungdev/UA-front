@@ -35,7 +35,7 @@ const isInside = (
   return true;
 };
 
-const useDraggable = ({ parentRef }: { parentRef: React.RefObject<HTMLElement> }) => {
+const useDraggable = ({ parentRef, onReorder}: { parentRef: React.RefObject<HTMLElement>, onReorder: () => void }) => {
   const [coordinate, setCoordinate] = useState({
     block: { x: 0, y: 0 },
     blockInitial: { x: 0, y: 0 },
@@ -48,6 +48,7 @@ const useDraggable = ({ parentRef }: { parentRef: React.RefObject<HTMLElement> }
       ...prev,
       movingBlockIndex: null,
     }));
+    onReorder();
     // removing the dragging class after 150ms
     setTimeout(() => {
       parentRef.current?.classList.remove('dragging');
@@ -153,6 +154,11 @@ const DraggableList = ({
     block: movingBlock,
   } = useDraggable({
     parentRef,
+    onReorder: () => {
+      if (onReorder) {
+        onReorder(blocks.current);
+      }
+    },
   });
 
   const immediateMotionsProsp = {
@@ -225,11 +231,6 @@ const DraggableList = ({
         const [toBeMoved] = newOrder.splice(oldPosition, 1);
         newOrder.splice(newPosition, 0, toBeMoved);
         blocks.current = newOrder;
-      }
-
-      // calling the onReorder callback
-      if (onReorder && oldPosition !== newPosition && false) {
-        onReorder!(blocks.current);
       }
     }
 

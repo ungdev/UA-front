@@ -50,6 +50,7 @@ const Tournaments = () => {
               const tournament = tournaments![oldIndex];
 
               // update the tournament's position
+              // TODO: uncomment this line when the backend is ready
               // tournament.position = newIndex;
 
               // update the tournaments array

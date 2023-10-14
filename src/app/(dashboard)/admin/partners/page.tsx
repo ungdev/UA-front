@@ -32,7 +32,10 @@ const Partners = () => {
               key={index}
               imgSrc={getPartnerLogoLink(partner.id)}
               alt={partner.name}
-              onClick={() => setSelectedPartner(partner)}
+              onClick={(e) => {
+                if((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+                setSelectedPartner(partner)
+              }}
             />
           )) ?? []} 
           availableWidth={parentEl.current?.clientWidth ?? 0}
@@ -52,7 +55,8 @@ const Partners = () => {
               const partner = newPartners![oldIndex];
 
               // update the tournament's position
-              partner.position = newIndex;
+              // TODO: uncomment this line when the backend is ready
+              //partner.position = newIndex;
 
               // update the tournaments array
               newPartners[newIndex] = partner;
