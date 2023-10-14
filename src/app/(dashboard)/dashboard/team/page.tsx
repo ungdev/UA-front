@@ -140,7 +140,9 @@ const Page = () => {
               dispatch(kickUser(user.id) as unknown as Action);
               closeModal();
             },
-            content: `Confirme l'exclusion du ${user.type === 'player' ? 'joueur. Cette action fera perdre sa place à ton équipe.' : 'coach / manager'}`,
+            content: `Confirme l'exclusion du ${
+              user.type === 'player' ? 'joueur. Cette action fera perdre sa place à ton équipe.' : 'coach / manager'
+            }`,
             title: `Exclure un ${user.type === 'player' ? 'joueur' : 'coach / manager'}`,
           })
         }>
@@ -202,7 +204,8 @@ const Page = () => {
         dispatch(kickUser(id) as unknown as Action);
         closeModal();
       },
-      content: "Es-tu sûr de vouloir quitter l'équipe ?" + (type === UserType.player ? ' Ton équipe perdra sa place.' : ''),
+      content:
+        "Es-tu sûr de vouloir quitter l'équipe ?" + (type === UserType.player ? ' Ton équipe perdra sa place.' : ''),
       title: "Quitter l'équipe",
     });
 
