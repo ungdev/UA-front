@@ -57,11 +57,11 @@ const PartnerModal = ({
               };
               dispatch(
                 partner == null
-                  ? (addPartner({...body, position: partners.length}, logo, () => {
+                  ? (addPartner({ ...body, position: partners.length }, logo, () => {
                       onClose!();
                     }) as unknown as Action)
-                    // in this case position is not updated so we set it to -1
-                  : (updatePartner({...body, position: -1}, logo, () => {
+                  : // in this case position is not updated so we set it to -1
+                    (updatePartner({ ...body, position: -1 }, logo, () => {
                       onClose!();
                     }) as unknown as Action),
               );

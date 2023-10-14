@@ -59,8 +59,7 @@ const Partners = () => {
               const partner = newPartners![oldIndex];
 
               // update the tournament's position
-              // TODO: uncomment this line when the backend is ready
-              //partner.position = newIndex;
+              partner.position = newIndex;
 
               // update the tournaments array
               newPartners[newIndex] = partner;

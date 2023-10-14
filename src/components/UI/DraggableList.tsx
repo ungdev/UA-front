@@ -135,8 +135,6 @@ const DraggableList = ({
   /** On reorder */
   onReorder?: (newOrder: number[]) => void;
 }) => {
-  if (items.length === 0 || availableWidth === 0) return null;
-
   // -----------------------------------
   //             Constants
   // -----------------------------------
@@ -235,6 +233,8 @@ const DraggableList = ({
     // telling the spring to animate again
     api.start(animate);
   }, [api, animate, initialCoordinates, movingBlock, movingBlockIndex]);
+
+  if (items.length === 0 || availableWidth === 0) return null;
 
   return (
     <div className={styles.blockContainer} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
