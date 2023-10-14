@@ -27,7 +27,9 @@ const Partners = () => {
 
       <div className={styles.squareContainer} ref={parentEl}>
         <DraggableList
-          items={partners?.map((partner, index) => (
+          items={partners?.sort(
+            (a: AdminPartner, b: AdminPartner) => a.position - b.position,
+          ).map((partner, index) => (
             <Square
               key={index}
               imgSrc={getPartnerLogoLink(partner.id)}

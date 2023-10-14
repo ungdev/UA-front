@@ -22,7 +22,9 @@ const Tournaments = () => {
 
       <div className={styles.squareContainer} ref={parentEl}>
         <DraggableList
-          items={tournaments?.map((tournament, index) => (
+          items={tournaments?.sort(
+            (a: AdminTournament, b: AdminTournament) => a.position - b.position,
+          ).map((tournament, index) => (
             <Square
               key={index}
               imgSrc={getTournamentImageLink(tournament.id)}
