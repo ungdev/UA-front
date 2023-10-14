@@ -43,7 +43,7 @@ export const createTeam = (bodyTeam: BodyTeam) => async (dispatch: Dispatch, get
     toast.success(`L'équipe ${bodyTeam.name} a bien été créée`);
   }
   dispatch(setTeam(res));
-  dispatch(setUser({ ...user, teamId: res.id, type: 'player' }));
+  dispatch(setUser({ ...user, teamId: res.id, type: bodyTeam.userType }));
   dispatch(updateStatus() as unknown as Action);
   dispatch(setRedirect('/dashboard/team'));
 };
