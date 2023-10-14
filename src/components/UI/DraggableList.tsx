@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useCallback, useState, ReactNode } from 'react';
 /* eslint-disable import/named */
 import { useSprings, animated } from '@react-spring/web';
