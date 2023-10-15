@@ -17,7 +17,7 @@ import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
 import { fetchPartners } from '@/modules/partners';
-import { fetchAllCarts } from "@/modules/carts";
+import { fetchAllCarts } from '@/modules/carts';
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -111,7 +111,10 @@ export default function Wrapper({
       } else if (!isSpectator && !hasTeam) {
         if (
           pathname === '/dashboard' ||
-          (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account' && pathname !== '/dashboard/purchases')
+          (isDashboard &&
+            pathname !== '/dashboard/register' &&
+            pathname !== '/dashboard/account' &&
+            pathname !== '/dashboard/purchases')
         ) {
           dispatch(setRedirect('/dashboard/register'));
         }
