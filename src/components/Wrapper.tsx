@@ -17,6 +17,7 @@ import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
 import { fetchPartners } from '@/modules/partners';
+import { fetchAllCarts } from "@/modules/carts";
 
 interface SearchParams extends ReadonlyURLSearchParams {
   action?: string;
@@ -110,7 +111,7 @@ export default function Wrapper({
       } else if (!isSpectator && !hasTeam) {
         if (
           pathname === '/dashboard' ||
-          (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+          (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account' && pathname !== '/dashboard/purchases')
         ) {
           dispatch(setRedirect('/dashboard/register'));
         }
@@ -166,6 +167,7 @@ export default function Wrapper({
 
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const partners = useAppSelector((state) => state.partners.partners);
+  const carts = useAppSelector((state) => state.carts.allCarts);
 
   // Fetch static values
   useEffect(() => {
@@ -177,6 +179,9 @@ export default function Wrapper({
 
     // Fetch Partners
     partners || dispatch(fetchPartners() as unknown as Action);
+
+    // Fetch carts
+    carts.length || dispatch(fetchAllCarts() as unknown as Action);
 
     // Automatically log in the user
     isLoggedIn || dispatch(autoLogin() as unknown as Action);

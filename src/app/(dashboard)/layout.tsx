@@ -19,6 +19,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const isSpectator = useAppSelector((state) => state.login.status.spectator);
   const hasTeam = useAppSelector((state) => state.login.status.team);
   const hasPaid = useAppSelector((state) => state.login.status.paid);
+  const hasBoughtSomething = useAppSelector((state) => !!state.carts.allCarts.length);
 
   // Fetch admin data
   const adminPartners = useAppSelector((state) => state.admin.partners);
@@ -52,6 +53,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       if (isShopAllowed) {
         menu.push({ title: 'Boutique', href: '/dashboard/shop' });
       }
+    }
+
+    if (isSpectator || hasTeam || hasBoughtSomething) {
       menu.push({ title: 'Mes achats', href: '/dashboard/purchases' });
     }
 
