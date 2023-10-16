@@ -3,11 +3,9 @@ import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 
 import { Table, Title } from '@/components/UI';
-import { fetchAllCarts } from '@/modules/carts';
 import { fetchItems } from '@/modules/items';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { useAppSelector } from '@/lib/hooks';
 import { Item, TransactionState } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 
 const columns = [
   { title: '', key: 'name' },
@@ -17,7 +15,6 @@ const columns = [
 ];
 
 const Purchases = () => {
-  const dispatch = useAppDispatch();
   const { id: userId } = useAppSelector((state) => state.login.user)!;
   const carts = useAppSelector((state) =>
     state.carts.allCarts.filter(
@@ -28,8 +25,6 @@ const Purchases = () => {
   const [items, setItems] = useState<Item[] | null>(null);
 
   useEffect(() => {
-    dispatch(fetchAllCarts() as unknown as Action);
-
     const setInitialItems = async () => setItems(await fetchItems());
     setInitialItems();
   }, []);

@@ -160,7 +160,7 @@ const SupplementList = ({
 
       const hasNotPassedStartAvailability = !!(supplement.availableFrom && supplement.availableFrom > Date.now());
       const isAfterEndAvailability = !!(supplement.availableUntil && supplement.availableUntil < Date.now());
-      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability;
+      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability || !supplement.left;
 
       // Return the row
       return {
