@@ -40,13 +40,10 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
-    if (!team && teamId) {
-      dispatch(fetchCurrentTeam() as unknown as Action);
-    } else {
-      const interval = setInterval(() => dispatch(fetchCurrentTeam() as unknown as Action), 120000);
-      return () => clearInterval(interval);
-    }
-  }, [team]);
+    dispatch(fetchCurrentTeam() as unknown as Action);
+    const interval = setInterval(() => dispatch(fetchCurrentTeam() as unknown as Action), 120000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (team && !slotsTournament) {

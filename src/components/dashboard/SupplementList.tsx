@@ -160,7 +160,7 @@ const SupplementList = ({
 
       const hasNotPassedStartAvailability = !!(supplement.availableFrom && supplement.availableFrom > Date.now());
       const isAfterEndAvailability = !!(supplement.availableUntil && supplement.availableUntil < Date.now());
-      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability || !supplement.left;
+      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability || supplement.left === 0;
 
       // Return the row
       return {
@@ -240,11 +240,10 @@ const SupplementList = ({
                 }
               }}
               disabled={disabled}>
-              Ajouter au panier
+              {disabled ? "Indisponible" : "Ajouter au panier"}
             </Button>
           </Tooltip>
-        ),
-        _grayed: disabled,
+        )
       };
     });
 
