@@ -42,13 +42,14 @@
       background-color: $accent-color;
       display: block;
       opacity: 0.2;
-      transition: clip-path 0.5s cubic-bezier(0.34, 0, 0, 1.75), opacity 0.35s ease-in-out;
-      clip-path: path('M0 5v-5h16v16h-16v-11h16l3 3l-3 3l1.5 1.5l3-3l3 3l1.5-1.5l-3-3l3-3l-1.5-1.5l-3 3l-3-3l-1.5 1.5Z');
+      transition: translate 0.5s cubic-bezier(0.34, 0, 0, 1.75), opacity 0.35s ease-in-out;
+      translate: 16px 0;
+      clip-path: path('M11.2 4.267a1.6 1.6 0 0 0-1.6.533L6.933 9.067l-1.066-1.6A1.6 1.6 0 1 0 3.734 9.6l2.667 2.667a1.067 1.067 0 0 0 1.067.533 1.6 1.6 0 0 0 1.067-.533l3.2-5.867a1.6 1.6 0 0 0-.533-1.6z');
     }
   }
 
   & > input:checked + .ui::before {
     opacity: 1;
-    clip-path: path('M0 5v-5h16v16h-16v-11h3.5l3 3l-3 3l1.5 1.5l3-3l3 3l1.5-1.5l-3-3l3-3l-1.5-1.5l-3 3l-3-3l-1.5 1.5Z');
+    translate: 0;
   }
 }
