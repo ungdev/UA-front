@@ -13,8 +13,9 @@ export default function Tooltip({
   /** The object that should be tooltiped. */
   children: ReactNode;
 }) {
+  console.log(enabled);
   if (!enabled) {
-    return <div className={styles.tooltipContainer}>{children}</div>;
+    return <div className={styles.container}>{children}</div>;
   }
   return (
     <div className={styles.container}>

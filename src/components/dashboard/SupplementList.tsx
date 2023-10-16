@@ -205,7 +205,7 @@ const SupplementList = ({
                 ? `Cet item sera disponible à partir du ${new Date(supplement.availableFrom!).toLocaleDateString()}`
                 : isAfterEndAvailability
                 ? `Cet item était disponible jusqu'au ${new Date(supplement.availableUntil!).toLocaleDateString()}`
-                : ''
+                : "Il n'y a plus de stocks pour cet item"
             }
             enabled={disabled}>
             <Button
