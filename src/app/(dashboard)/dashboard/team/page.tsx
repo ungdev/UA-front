@@ -247,7 +247,7 @@ const Page = () => {
                 <>
                   <Icon name={IconName.Caution} className={styles.iconInQueue} />
                   <span className={`${styles.descriptionValue} ${styles.iconInQueue}`}>
-                    Dans la file dattente, position {team.positionInQueue}
+                    Dans la file d'attente, position {team.positionInQueue}
                   </span>
                 </>
               ) : (

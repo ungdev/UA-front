@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchItems } from '@/modules/items';
 import { cartPay, deleteCart, loadCart, saveCart } from '@/modules/cart';
 import { fetchCurrentTeam } from '@/modules/team';
-import { Button, Title, Modal, Checkbox, Icon } from '@/components/UI';
+import { Button, Checkbox, Icon, Modal, Title } from '@/components/UI';
 import AddPlaceModal from '@/components/dashboard/AddPlaceModal';
 import { toast } from 'react-toastify';
 import SupplementList from '@/components/dashboard/SupplementList';
@@ -314,7 +314,15 @@ const Shop = () => {
                 Places
               </Title>
               <div className={styles.buttonRow}>
-                <Button primary onClick={() => setAddPlaceVisible(true)}>
+                <Button
+                  primary
+                  onClick={() => {
+                    if (!hasPaid && teamMembersWithoutTicket.length === 0 && (age === UserAge.adult || hasAttendant)) {
+                      onAddPlaceModalQuit('me', userId);
+                      return;
+                    }
+                    setAddPlaceVisible(true);
+                  }}>
                   Ajouter une place
                 </Button>
               </div>
