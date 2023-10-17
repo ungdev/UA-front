@@ -32,7 +32,7 @@
     padding: 0 1rem;
     align-items: center;
     flex-grow: 2;
-    margin: 100px 0 50px 70px;
+    margin: 100px 70px 50px 70px;
 
     .title {
       position: relative;
@@ -51,17 +51,16 @@
   .information {
     display: flex;
     justify-content: space-evenly;
-    align-items: flex-end;
+    align-items: stretch;
     width: 70%;
-    height: 13rem;
     margin: 0 auto;
+    position: relative;
 
     .boxContainer {
       width: 30%;
-      height: 10rem;
 
       &.onTop {
-        align-self: start;
+        top: -3rem;
       }
 
       // Where the content is contained in the BoxContainer
@@ -69,7 +68,7 @@
         display: block;
         padding: 15px 16px;
         line-height: 1.1;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         margin: auto;
         text-align: center;
       }
@@ -110,16 +109,15 @@
 
     .information {
       flex-direction: column;
-      align-items: center;
-      height: fit-content;
       width: 90%;
+      justify-content: stretch;
 
       .boxContainer {
         margin-top: 10px;
         width: 100%;
 
         &.onTop {
-          align-self: center;
+          top: 0;
         }
       }
     }

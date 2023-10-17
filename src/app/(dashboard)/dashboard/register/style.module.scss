@@ -1,5 +1,7 @@
 @import '@/variables.scss';
 
+$stepper-size: 30px;
+
 .dashboardRegister {
   display: flex;
   align-items: center;
@@ -12,6 +14,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.25rem;
 
     /* Stepper */
     .steps {
@@ -38,9 +41,9 @@
       li:before {
         content: counter(step);
         counter-increment: step;
-        width: 24px;
-        line-height: 24px;
-        font-size: 12px;
+        width: $stepper-size;
+        line-height: $stepper-size;
+        font-size: $stepper-size / 2;
         font-weight: bold;
         color: #333;
         background: white;
@@ -54,13 +57,13 @@
 
       li:after {
         content: '';
-        width: calc(100% - 24px);
+        width: calc(100% - $stepper-size);
         height: 2px;
         background: white;
         position: absolute;
         left: -50%;
-        margin-left: 12px;
-        top: calc(24px / 2 - 1px);
+        margin-left: $stepper-size / 2;
+        top: calc($stepper-size / 2 - 1px);
         transition: all 0.2s ease-in-out 50ms;
       }
 
@@ -183,6 +186,13 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .checkboxRules {
+    width: clamp(300px, 90%, 800px);
+    label > div {
+      margin-left: 5px;
+    }
   }
 }
 

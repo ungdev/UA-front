@@ -116,7 +116,7 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
+            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate et du tournoi Pokémon</li>
             <li>28 € pour les joueurs des autres tournois</li>
             <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
             <li>
@@ -163,9 +163,9 @@ const faq: Faq = {
       answer: (
         <>
           Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au
-          tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les personnages,{' '}
-          <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le
-          prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
+          tournoi, tu dois en effet apporter ta Nintendo Switch, son dock, le jeu SSBU avec <strong>tous</strong> les
+          personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong>{' '}
+          de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
           <br />

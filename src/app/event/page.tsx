@@ -128,7 +128,7 @@ export default function Page() {
               type: 'Joueur',
               price: '28 €',
               description:
-                'Pour les joueurs SSBU : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
+                'Pour les joueurs SSBU et Pokémon : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
               type: 'Coach / Manager',
