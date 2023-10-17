@@ -1,20 +1,40 @@
 'use client';
-import { Button, DraggableList, Square, Title } from '@/components/UI';
+import { Button, Square, Title } from '@/components/UI';
 import PartnerModal from '@/components/dashboard/PartnerModal';
-import { useAppSelector, useAppDispatch } from '@/lib/hooks';
+import { useAppSelector } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { type Action } from '@reduxjs/toolkit';
-import { reorderPartners } from '@/modules/admin';
+// import { type Action } from '@reduxjs/toolkit';
+// import { reorderPartners } from '@/modules/admin';
 
 const Partners = () => {
   const partners = useAppSelector((state) => state.admin.partners);
   const [selectedPartner, setSelectedPartner] = useState<AdminPartner | null>(null);
   const [createNewPartner, setCreateNewPartner] = useState(false);
   const parentEl = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
+
+  const [items, setItems] = useState<JSX.Element[]>([]);
+
+  useEffect(() => {
+    setItems(
+      partners
+        ?.toSorted((a: AdminPartner, b: AdminPartner) => a.position - b.position)
+        .map((partner, index) => (
+          <Square
+            key={index}
+            imgSrc={getPartnerLogoLink(partner.id)}
+            alt={partner.name}
+            onClick={(e) => {
+              if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+              setSelectedPartner(partner);
+            }}
+          />
+        )) ?? [],
+    );
+  }, [partners]);
 
   return (
     <div className={styles.partners}>
@@ -26,21 +46,10 @@ const Partners = () => {
       </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
-        <DraggableList
+        {items}
+        {/* <DraggableList
           items={
-            partners
-              ?.toSorted((a: AdminPartner, b: AdminPartner) => a.position - b.position)
-              .map((partner, index) => (
-                <Square
-                  key={index}
-                  imgSrc={getPartnerLogoLink(partner.id)}
-                  alt={partner.name}
-                  onClick={(e) => {
-                    if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-                    setSelectedPartner(partner);
-                  }}
-                />
-              )) ?? []
+           items
           }
           availableWidth={parentEl.current?.clientWidth ?? 0}
           blockHeight={300}
@@ -67,7 +76,7 @@ const Partners = () => {
               window.location.reload();
             }, 200);
           }}
-        />
+        /> */}
       </div>
 
       {(selectedPartner !== null || createNewPartner) && (

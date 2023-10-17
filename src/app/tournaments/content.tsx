@@ -30,8 +30,8 @@ export function TournamentHome({
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
   const login = useAppSelector((state) => state.settings.login);
-  const tournaments = useAppSelector((state) =>
-    state.tournament.tournaments?.toSorted((a: Tournament, b: Tournament) => a.position - b.position),
+  const tournaments = useAppSelector(
+    (state) => state.tournament.tournaments?.toSorted((a: Tournament, b: Tournament) => a.position - b.position),
   );
   
   // This is initialized when tournaments are fetched

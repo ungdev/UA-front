@@ -1,37 +1,39 @@
 'use client';
-import { DraggableList, Square, Title } from '@/components/UI';
+import { Square, Title } from '@/components/UI';
 import TournamentModal from '@/components/dashboard/TournamentModal';
-import { useAppSelector, useAppDispatch } from '@/lib/hooks';
+import { useAppSelector } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { reorderTournaments } from '@/modules/admin';
-import type { Action } from '@reduxjs/toolkit';
+// import { reorderTournaments } from '@/modules/admin';
+// import type { Action } from '@reduxjs/toolkit';
 
 const Tournaments = () => {
   const tournaments = useAppSelector((state) => state.admin.tournaments);
   const [selectedTournament, setSelectedTournament] = useState<AdminTournament | null>(null);
   const [createNewTournament, setCreateNewTournament] = useState(false);
   const parentEl = useRef<HTMLDivElement>(null);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const [items, setItems] = useState<JSX.Element[]>([]);
-  
+
   useEffect(() => {
-    setItems(tournaments
-      ?.toSorted((a: AdminTournament, b: AdminTournament) => a.position - b.position)
-      .map((tournament, index) => (
-        <Square
-          key={index}
-          imgSrc={getTournamentImageLink(tournament.id)}
-          alt={tournament.name}
-          onClick={(e) => {
-            if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-            setSelectedTournament(tournament);
-          }}
-        />
-      )) ?? [])
+    setItems(
+      tournaments
+        ?.toSorted((a: AdminTournament, b: AdminTournament) => a.position - b.position)
+        .map((tournament, index) => (
+          <Square
+            key={index}
+            imgSrc={getTournamentImageLink(tournament.id)}
+            alt={tournament.name}
+            onClick={(e) => {
+              if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+              setSelectedTournament(tournament);
+            }}
+          />
+        )) ?? [],
+    );
   }, [tournaments]);
 
   return (
@@ -39,7 +41,8 @@ const Tournaments = () => {
       <Title>Tournois</Title>
 
       <div className={styles.squareContainer} ref={parentEl}>
-        <DraggableList
+        {items}
+        {/* <DraggableList
           items={
             items
           }
@@ -68,7 +71,7 @@ const Tournaments = () => {
               window.location.reload();
             }, 200);
           }}
-        />
+        /> */}
       </div>
 
       {(selectedTournament !== null || createNewTournament) && (
