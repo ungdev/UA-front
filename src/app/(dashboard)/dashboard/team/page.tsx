@@ -12,6 +12,8 @@ import type { Action } from '@reduxjs/toolkit';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import Tooltip from '@/components/UI/Tooltip';
+import Link from 'next/link';
+import { getTournamentRulesLink } from '@/utils/uploadLink';
 
 const memberColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -212,7 +214,12 @@ const Page = () => {
         <Title level={1} className={styles.primaryTitle}>
           Équipe
         </Title>
-        <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
+        <div>
+          <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
+          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+            <Button primary>Voir les règles</Button>
+          </Link>
+        </div>
       </div>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
