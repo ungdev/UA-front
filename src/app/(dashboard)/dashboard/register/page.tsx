@@ -6,7 +6,7 @@ import { animated, useTransition } from '@react-spring/web';
 
 import { setType } from '@/modules/login';
 
-import { Input, Button, Table, Icon, Title } from '@/components/UI';
+import { Input, Button, Table, Icon, Title, Checkbox } from '@/components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
@@ -41,6 +41,7 @@ const Register = () => {
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
+  const [imageRight, setImageRight] = useState(false);
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -252,9 +253,12 @@ const Register = () => {
   const Step5 = (
     <>
       <div className={`${styles.warning} ${styles.light}`}>
-        En participant {userType === UserType.spectator ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
-        {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
-        <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>.
+        <div className={styles.rules}>
+          En participant {userType === UserType.spectator ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
+          {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
+          <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>.
+        </div>
+        <Checkbox label="J'accepte pouvoir me trouver sur des " value={imageRight} onChange={setImageRight} />
       </div>
       {createTeam || userType === UserType.spectator ? (
         <>
@@ -281,7 +285,7 @@ const Register = () => {
                     }) as unknown as Action),
               )
             }
-            disabled={!user.discordId}>
+            disabled={!user.discordId || !imageRight}>
             {tournamentSolo ? 'Valider' : 'Créer mon équipe'}
           </Button>
         </>

@@ -97,8 +97,13 @@
       background-color: $light-color;
       color: initial;
     }
+
     a {
       color: inherit;
+    }
+
+    .rules {
+      margin-bottom: 1em;
     }
   }
 
@@ -188,7 +193,7 @@
 @media screen and (max-width: 1200px) {
   .dashboardRegister {
     gap: 3rem;
-    
+
     .teamTournament > div,
     .joinSolo > div {
       width: 100%;
