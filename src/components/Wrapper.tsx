@@ -141,12 +141,15 @@ export default function Wrapper({
     // Fetch Partners
     partners || dispatch(fetchPartners() as unknown as Action);
 
-    // Fetch carts
-    carts.length || dispatch(fetchAllCarts() as unknown as Action);
-
     // Automatically log in the user
     isLoggedIn || dispatch(autoLogin() as unknown as Action);
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    // Fetch carts
+    carts.length || dispatch(fetchAllCarts() as unknown as Action);
+  }, [isLoggedIn]);
 
   // Render the layout with child components
   return (
