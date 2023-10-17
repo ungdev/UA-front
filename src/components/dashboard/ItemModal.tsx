@@ -67,14 +67,14 @@ const ItemModal = ({
         <Input
           label="Date de début"
           type="datetime-local"
-          value={startDate ?? ''}
-          onChange={(value) => setStartDate(value as unknown as number)}
+          value={startDate?.toISOString() ?? ''}
+          onChange={(value) => setStartDate(new Date(value as unknown as number))}
         />
         <Input
           label="Date de fin"
           type="datetime-local"
-          value={endDate ?? ''}
-          onChange={(value) => setEndDate(value as unknown as number)}
+          value={endDate?.toISOString() ?? ''}
+          onChange={(value) => setEndDate(new Date(value as unknown as number))}
         />
         <Input
           label="Stock restant"
