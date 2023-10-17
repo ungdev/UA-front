@@ -252,20 +252,6 @@ const Register = () => {
 
   const Step5 = (
     <>
-      <div className={`${styles.warning} ${styles.light}`}>
-        <Checkbox
-          label={
-            <>
-              En cochant cette case je certifie avoir lu et accepté{' '}
-              {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi), '} le{' '}
-              <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a> et autorise la prise de vue comme
-              indiqué dans celui-ci
-            </>
-          }
-          value={acceptedRules}
-          onChange={setAcceptedRules}
-        />
-      </div>
       {createTeam || userType === UserType.spectator ? (
         <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
@@ -277,6 +263,20 @@ const Register = () => {
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
             </>
           ) : null}
+          <div className={styles.checkboxRules}>
+            <Checkbox
+              label={
+                <>
+                  En cochant cette case je certifie avoir lu et accepté{' '}
+                  {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi), '} le{' '}
+                  <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a> et autorise la prise de vue comme
+                  indiqué dans celui-ci
+                </>
+              }
+              value={acceptedRules}
+              onChange={setAcceptedRules}
+            />
+          </div>
           <Button
             primary
             onClick={() =>
