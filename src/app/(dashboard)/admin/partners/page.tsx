@@ -29,7 +29,7 @@ const Partners = () => {
         <DraggableList
           items={
             partners
-              ?.sort((a: AdminPartner, b: AdminPartner) => a.position - b.position)
+              ?.toSorted((a: AdminPartner, b: AdminPartner) => a.position - b.position)
               .map((partner, index) => (
                 <Square
                   key={index}
@@ -47,26 +47,25 @@ const Partners = () => {
           blockWidth={300}
           blockGap={8}
           onReorder={(newOrder) => {
-            // newOrder is an array of indexes of the new order eg: [1, 0, 2, 3]
-            // we need to update the partners array
-
             // create a copy of the partners array
             const newPartners = [...partners!];
 
             // loop through the newOrder array
             newOrder.forEach((newIndex, oldIndex) => {
-              // get the tournament at the old index
-              const partner = newPartners![oldIndex];
-
-              // update the tournament's position
-              partner.position = newIndex;
-
-              // update the tournaments array
-              newPartners[newIndex] = partner;
+              // update the partners array
+              newPartners[newIndex] = {
+                ...partners![oldIndex],
+                position: newIndex,
+              };
             });
 
             // update the tournament in the store
             dispatch(reorderPartners(newPartners) as unknown as Action);
+
+            setTimeout(() => {
+              // refresh the page
+              window.location.reload();
+            }, 200);
           }}
         />
       </div>

@@ -141,7 +141,9 @@ const DraggableList = ({
   // -----------------------------------
   const padding = availableWidth < 800 ? 4 : 50;
   const blockInRow = Math.floor((availableWidth - 2 * padding) / (blockWidth + blockGap));
-  const blockCount = items.length;
+
+  const [doNotRender, setDoNotRender] = useState(false);
+  const [blockCount, setBlockCount] = useState(items.length);
 
   const parentRef = useRef(null);
   const {
@@ -198,6 +200,9 @@ const DraggableList = ({
   const [springs, api] = useSprings(blocks.current.length, animate);
 
   useEffect(() => {
+    setDoNotRender(items.length === 0 || availableWidth === 0);
+    setBlockCount(items.length);
+
     // we will save the actual id/index in movingBlockIndex
     const oldPosition = blocks.current.indexOf(movingBlockIndex!);
     if (oldPosition !== -1) {
@@ -233,9 +238,9 @@ const DraggableList = ({
 
     // telling the spring to animate again
     api.start(animate);
-  }, [api, animate, initialCoordinates, movingBlock, movingBlockIndex]);
+  }, [api, animate, initialCoordinates, movingBlock, movingBlockIndex, doNotRender]);
 
-  if (items.length === 0 || availableWidth === 0) return null;
+  //if(doNotRender) return false;
 
   return (
     <div className={styles.blockContainer} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>

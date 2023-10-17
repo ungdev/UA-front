@@ -48,10 +48,10 @@ const Register = () => {
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments
-    .sort((a: Tournament, b: Tournament) => a.position - b.position)
+    .toSorted((a: Tournament, b: Tournament) => a.position - b.position)
     .filter((tournament) => tournament.playersPerTeam > 1);
   const tournamentsSoloList = tournaments
-    .sort((a: Tournament, b: Tournament) => a.position - b.position)
+    .toSorted((a: Tournament, b: Tournament) => a.position - b.position)
     .filter((tournament) => tournament.playersPerTeam === 1);
 
   // Get tournaments category select options

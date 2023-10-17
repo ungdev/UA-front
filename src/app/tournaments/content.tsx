@@ -31,7 +31,7 @@ export function TournamentHome({
   const dispatch = useAppDispatch();
   const login = useAppSelector((state) => state.settings.login);
   const tournaments = useAppSelector((state) =>
-    state.tournament.tournaments!.sort((a: Tournament, b: Tournament) => a.position - b.position),
+    state.tournament.tournaments?.toSorted((a: Tournament, b: Tournament) => a.position - b.position),
   );
   
   // This is initialized when tournaments are fetched
