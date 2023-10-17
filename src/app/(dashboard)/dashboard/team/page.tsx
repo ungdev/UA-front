@@ -223,54 +223,50 @@ const Page = () => {
       </div>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          <div className={styles.infoPart}>
-            {!isSolo && (
-              <div className={styles.singleInfo}>
-                <strong>Mon équipe :</strong>
-                <span className={styles.descriptionValue}>{team.name}</span>
-              </div>
-            )}
+          {!isSolo && (
             <div className={styles.singleInfo}>
-              <strong>Tournoi :</strong>
-              <span className={styles.descriptionValue}>{tournamentName}</span>
+              <strong>Mon équipe :</strong>
+              <span className={styles.descriptionValue}>{team.name}</span>
             </div>
+          )}
+          <div className={styles.singleInfo}>
+            <strong>Tournoi :</strong>
+            <span className={styles.descriptionValue}>{tournamentName}</span>
           </div>
-          <div className={styles.infoPart}>
-            <div className={styles.singleInfo}>
-              <strong>Statut :</strong>
-              <Helper>
-                Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé leur
-                place et l'équipe doit être verrouillée.
-              </Helper>
-              {team.lockedAt ? (
-                <>
-                  <Icon name={IconName.Tick} className={styles.iconTick} />
-                  <span className={`${styles.descriptionValue} ${styles.iconTick}`}>Inscrit</span>
-                </>
-              ) : team.positionInQueue ? (
-                <>
-                  <Icon name={IconName.Caution} className={styles.iconInQueue} />
-                  <span className={`${styles.descriptionValue} ${styles.iconInQueue}`}>
-                    Dans la file d'attente, position {team.positionInQueue}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <Icon name={IconName.Caution} className={styles.iconCaution} />
-                  <span className={`${styles.descriptionValue} ${styles.iconCaution}`}>Non inscrit</span>
-                </>
-              )}
-            </div>
-            <div className={styles.singleInfo}>
-              <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
-              <div
-                className={
-                  slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
-                    ? styles.teamCompleted
-                    : styles.descriptionValue
-                }>
-                {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
-              </div>
+          <div className={styles.singleInfo}>
+            <strong>Statut :</strong>
+            <Helper>
+              Pour être inscrite, une équipe doit être complète, tous les membres de l'équipe doivent avoir payé leur
+              place et l'équipe doit être verrouillée.
+            </Helper>
+            {team.lockedAt ? (
+              <>
+                <Icon name={IconName.Tick} className={styles.iconTick} />
+                <span className={`${styles.descriptionValue} ${styles.iconTick}`}>Inscrit</span>
+              </>
+            ) : team.positionInQueue ? (
+              <>
+                <Icon name={IconName.Caution} className={styles.iconInQueue} />
+                <span className={`${styles.descriptionValue} ${styles.iconInQueue}`}>
+                  Dans la file d'attente, position {team.positionInQueue}
+                </span>
+              </>
+            ) : (
+              <>
+                <Icon name={IconName.Caution} className={styles.iconCaution} />
+                <span className={`${styles.descriptionValue} ${styles.iconCaution}`}>Non inscrit</span>
+              </>
+            )}
+          </div>
+          <div className={styles.singleInfo}>
+            <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
+            <div
+              className={
+                slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
+                  ? styles.teamCompleted
+                  : styles.descriptionValue
+              }>
+              {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
             </div>
           </div>
         </div>

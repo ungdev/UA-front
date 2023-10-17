@@ -29,24 +29,20 @@
       display: flex;
       flex-direction: column;
 
-      .infoPart {
+      .singleInfo {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+        height: 24px;
 
-        .singleInfo {
+        span {
           display: flex;
-          flex-direction: row;
           align-items: center;
-          gap: 5px;
-          white-space: nowrap;
 
-          span {
-            display: flex;
-            align-items: center;
-
-            svg {
-              margin-right: 3px;
-            }
+          svg {
+            margin-right: 3px;
           }
         }
       }
