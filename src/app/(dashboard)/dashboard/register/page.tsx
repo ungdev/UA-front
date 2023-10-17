@@ -41,7 +41,7 @@ const Register = () => {
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
-  const [imageRight, setImageRight] = useState(false);
+  const [acceptedRules, setAcceptedRules] = useState(false);
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -253,12 +253,18 @@ const Register = () => {
   const Step5 = (
     <>
       <div className={`${styles.warning} ${styles.light}`}>
-        <div className={styles.rules}>
-          En participant {userType === UserType.spectator ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
-          {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
-          <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>.
-        </div>
-        <Checkbox label="J'accepte pouvoir me trouver sur des " value={imageRight} onChange={setImageRight} />
+        <Checkbox
+          label={
+            <>
+              En cochant cette case je certifie avoir lu et accepté{' '}
+              {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi), '} le{' '}
+              <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a> et autorise la prise de vue comme
+              indiqué dans celui-ci
+            </>
+          }
+          value={acceptedRules}
+          onChange={setAcceptedRules}
+        />
       </div>
       {createTeam || userType === UserType.spectator ? (
         <>
@@ -285,7 +291,7 @@ const Register = () => {
                     }) as unknown as Action),
               )
             }
-            disabled={!user.discordId || !imageRight}>
+            disabled={!user.discordId || !acceptedRules}>
             {tournamentSolo ? 'Valider' : 'Créer mon équipe'}
           </Button>
         </>
