@@ -134,25 +134,11 @@ const Account = () => {
             ''
           )}
           <a href={discordLink}>
-            <Button primary>
+            <Button primary veryLong>
               <Icon name={IconName.Discord} fill={true} />
               {user.discordId ? 'Change ton compte Discord' : 'Connecte-toi à ton compte Discord'}
             </Button>
           </a>
-
-          <Button
-            secondary
-            onClick={() => {
-              // Remove the cart from the local storage, to avoid moving carts from one account to another
-              deleteCart();
-              if (isFakeConnection()) {
-                dispatch(logBackToAdmin() as unknown as Action);
-              } else {
-                dispatch(logout() as unknown as Action);
-              }
-            }}>
-            Déconnexion
-          </Button>
         </div>
       </div>
       {/* {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
