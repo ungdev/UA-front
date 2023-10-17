@@ -131,7 +131,7 @@ export default function Header({
           </Link>
           <nav>
             <div className={styles.left}>{leftContent}</div>
-            <div className={styles.right}>
+            <div className={`${styles.right} ${!connected ? styles.notConnected : ''}`}>
               {rightContent}
 
               <div className={styles.burgerContainer}>

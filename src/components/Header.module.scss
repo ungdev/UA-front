@@ -46,6 +46,10 @@ $scrollingAnimationDuration: 0.5s;
           align-items: center;
         }
 
+        .right.notConnected {
+          gap: 1rem;
+        }
+
         .underlineButton {
           position: relative;
           transition: color 0.2s ease-in-out;
