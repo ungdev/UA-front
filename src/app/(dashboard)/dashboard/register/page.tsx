@@ -164,7 +164,8 @@ const Register = () => {
       );
     });
 
-    if (userType === UserType.player) {
+    if (userType === UserType.player || userType === UserType.coach) {
+      // You can disable solo tournaments for coaches here
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
           <RegisterCard
@@ -225,23 +226,20 @@ const Register = () => {
           user.askingTeamId === team.id ? (
             <Button onClick={() => dispatch(cancelJoin(team.name) as unknown as Action)}>Annuler</Button>
           ) : (
-            <>
-              {userType == UserType.player ? (
-                <Button
-                  primary
-                  onClick={() => dispatch(joinTeam(team.id, team.name, UserType.player) as unknown as Action)}
-                  disabled={!user.discordId}>
-                  Rejoindre
-                </Button>
-              ) : (
-                <Button
-                  primary
-                  onClick={() => dispatch(joinTeam(team.id, team.name, UserType.coach) as unknown as Action)}
-                  disabled={!user.discordId}>
-                  Rejoindre
-                </Button>
-              )}
-            </>
+            <Button
+              primary
+              onClick={() =>
+                dispatch(
+                  joinTeam(
+                    team.id,
+                    team.name,
+                    userType == UserType.player ? UserType.player : UserType.coach,
+                  ) as unknown as Action,
+                )
+              }
+              disabled={!user.discordId}>
+              Rejoindre
+            </Button>
           ),
       }));
     return {
