@@ -5,7 +5,7 @@ export default function Tooltip({
   tooltip,
   enabled = true,
   className,
-  center,
+  center = false,
   children,
 }: {
   /** The string that will be displayed. It should not be too long, it would look bad otherwise, until it is fixed. */
@@ -20,7 +20,11 @@ export default function Tooltip({
   children: ReactNode;
 }) {
   if (!enabled) {
-    return <div className={`${styles.container} ${center && styles.center} ${className}`}>{children}</div>;
+    return (
+      <div className={`${styles.container} ${center ? styles.center : ''} ${className ? className : ''}`}>
+        {children}
+      </div>
+    );
   }
   return (
     <div className={`${styles.container} ${center && styles.center} ${className}`}>
