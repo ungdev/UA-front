@@ -161,7 +161,7 @@ const DraggableList = ({
     },
   });
 
-  const immediateMotionsProsp = {
+  const immediateMotionsProps = {
     x: true,
     y: true,
   };
@@ -190,7 +190,7 @@ const DraggableList = ({
         zIndex: index === movingBlockIndex ? 10 : 1,
         immediate:
           movingBlockIndex === index
-            ? (n: any) => immediateMotionsProsp[n as keyof typeof immediateMotionsProsp]
+            ? (n: any) => immediateMotionsProps[n as keyof typeof immediateMotionsProps]
             : undefined,
       };
     },
