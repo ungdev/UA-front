@@ -24,6 +24,9 @@ export const getTournamentBackgroundLink = (tournamentId: string) => {
 };
 
 export const getTournamentRulesLink = (tournamentId: string) => {
+  // WARN: this is not a recommanded way to do it
+  if(tournamentId == "osu") return "https://osu.ppy.sh/community/forums/topics/1832607";
+
   return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentRulesName(tournamentId)}.pdf`;
 };
 
