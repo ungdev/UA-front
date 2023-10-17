@@ -1,12 +1,17 @@
 .container {
   position: relative;
 
+  &.center {
+    margin: auto;
+  }
+
   .tooltip {
     position: absolute;
     top: calc(100% + 5px);
     left: 0;
     width: 100%;
     pointer-events: none;
+    z-index: 100;
 
     .content {
       padding: 5px;

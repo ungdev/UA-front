@@ -24,8 +24,8 @@ export default function Footer() {
           <Link href={'/legal'}>
             <Button>Mentions légales</Button>
           </Link>
-          <Link href={'/legal'}>
-            <Button>Politique de confidentialité</Button>
+          <Link href={'/legal#CGV'}>
+            <Button>Conditions générales de ventes</Button>
           </Link>
         </div>
         <div className={styles.right}>

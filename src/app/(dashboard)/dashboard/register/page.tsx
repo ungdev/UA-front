@@ -164,7 +164,8 @@ const Register = () => {
       );
     });
 
-    if (userType === UserType.player) {
+    if (userType === UserType.player || userType === UserType.coach) {
+      // You can disable solo tournaments for coaches here
       tournamentsSoloOptions.forEach((element, i) => {
         list.push(
           <RegisterCard
@@ -225,23 +226,20 @@ const Register = () => {
           user.askingTeamId === team.id ? (
             <Button onClick={() => dispatch(cancelJoin(team.name) as unknown as Action)}>Annuler</Button>
           ) : (
-            <>
-              {userType == UserType.player ? (
-                <Button
-                  primary
-                  onClick={() => dispatch(joinTeam(team.id, team.name, UserType.player) as unknown as Action)}
-                  disabled={!user.discordId}>
-                  Rejoindre
-                </Button>
-              ) : (
-                <Button
-                  primary
-                  onClick={() => dispatch(joinTeam(team.id, team.name, UserType.coach) as unknown as Action)}
-                  disabled={!user.discordId}>
-                  Rejoindre
-                </Button>
-              )}
-            </>
+            <Button
+              primary
+              onClick={() =>
+                dispatch(
+                  joinTeam(
+                    team.id,
+                    team.name,
+                    userType == UserType.player ? UserType.player : UserType.coach,
+                  ) as unknown as Action,
+                )
+              }
+              disabled={!user.discordId}>
+              Rejoindre
+            </Button>
           ),
       }));
     return {
@@ -256,7 +254,7 @@ const Register = () => {
       <div className={`${styles.warning} ${styles.light}`}>
         En participant {userType === UserType.spectator ? "à l'évènement" : 'au tournoi'}, j'accepte{' '}
         {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi) et '} le{' '}
-        <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>
+        <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a>.
       </div>
       {createTeam || userType === UserType.spectator ? (
         <>

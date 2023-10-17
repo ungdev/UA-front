@@ -1,6 +1,6 @@
 @import '@/variables.scss';
 
-.dashboardTeam {
+.dashboardSpectator {
   padding: 50px;
   margin: auto;
   width: clamp(300px, 100%, 1200px);
@@ -50,69 +50,24 @@
   .primaryTitle {
     margin: 0;
   }
-
-  .refresh {
-    cursor: pointer;
-  }
-
+  
   .descriptionValue {
     color: $primary-color;
     display: flex;
-  }
-
-  .teamCompleted {
-    color: greenyellow;
   }
 
   .iconCaution {
     color: yellow;
   }
 
-  .iconInQueue {
-    color: lightgreen;
-  }
-
   .iconTick {
     color: green;
-  }
-
-  .iconCross {
-    color: red;
-  }
-
-  .crown {
-    fill: #ffd700;
-    stroke: black;
-    stroke-width: 1px;
-  }
-
-  .playersList {
-    padding: 16px 0;
   }
 
   .info {
     border: 2px solid $accent-color;
     padding: 8px 16px;
     margin: 32px 0;
-  }
-
-  hr {
-    background: $accent-color;
-    height: 2px;
-    width: 100%;
-    border: none;
-    margin: 20px 0;
-  }
-
-  .members .table {
-    min-width: 100%;
-    margin-bottom: 30px;
-    width: 100%;
-    border-collapse: collapse;
-
-    tr td button {
-      white-space: nowrap;
-    }
   }
 
   .buttonRow {

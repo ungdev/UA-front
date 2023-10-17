@@ -12,6 +12,8 @@ import type { Action } from '@reduxjs/toolkit';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import Tooltip from '@/components/UI/Tooltip';
+import Link from 'next/link';
+import { getTournamentRulesLink } from '@/utils/uploadLink';
 
 const memberColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -27,7 +29,7 @@ const Page = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useAppDispatch();
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
-  const { id, teamId, type } = useAppSelector((state) => state.login.user || { id: '', teamId: null, type: null });
+  const { id, type } = useAppSelector((state) => state.login.user || { id: '', teamId: null, type: null });
   const team = useAppSelector((state) => state.team.team);
   const slotsTournament = useAppSelector((state) => state.tournament.slots);
 
@@ -40,13 +42,10 @@ const Page = () => {
   }, []);
 
   useEffect(() => {
-    if (!team && teamId) {
-      dispatch(fetchCurrentTeam() as unknown as Action);
-    } else {
-      const interval = setInterval(() => dispatch(fetchCurrentTeam() as unknown as Action), 120000);
-      return () => clearInterval(interval);
-    }
-  }, [team]);
+    dispatch(fetchCurrentTeam() as unknown as Action);
+    const interval = setInterval(() => dispatch(fetchCurrentTeam() as unknown as Action), 120000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (team && !slotsTournament) {
@@ -215,7 +214,12 @@ const Page = () => {
         <Title level={1} className={styles.primaryTitle}>
           Équipe
         </Title>
-        <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
+        <div>
+          <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
+          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+            <Button primary>Voir les règles</Button>
+          </Link>
+        </div>
       </div>
       <div className={styles.header}>
         <div className={styles.headerInfo}>
@@ -247,7 +251,7 @@ const Page = () => {
                 <>
                   <Icon name={IconName.Caution} className={styles.iconInQueue} />
                   <span className={`${styles.descriptionValue} ${styles.iconInQueue}`}>
-                    Dans la file dattente, position {team.positionInQueue}
+                    Dans la file d'attente, position {team.positionInQueue}
                   </span>
                 </>
               ) : (
