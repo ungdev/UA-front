@@ -53,7 +53,14 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             contentClassName={styles.boxContent}
             title="cashprize.txt"
             padding={false}>
-            {tournament.cashprizeDetails ?? (
+            {tournament.cashprizeDetails?.split('\n').map(function (item, idx) {
+              return (
+                <span key={idx}>
+                  {item}
+                  <br />
+                </span>
+              );
+            }) ?? (
               <>
                 <strong>Cashprize :</strong> À venir
               </>
