@@ -133,6 +133,7 @@ const SupplementList = ({
     .map((supplement) => {
       // The id we have to find in the cart
       const supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
+      const trueSupplement = items!.find((s) => s.id === supplementFullId)!;
       // Get cart supplement we are managing
       let cartSupplement = supplementCart.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
       if (!cartSupplement) {
@@ -158,9 +159,24 @@ const SupplementList = ({
           </ul>,
         ];
 
-      const hasNotPassedStartAvailability = !!(supplement.availableFrom && supplement.availableFrom > Date.now());
-      const isAfterEndAvailability = !!(supplement.availableUntil && supplement.availableUntil < Date.now());
-      const disabled = hasNotPassedStartAvailability || isAfterEndAvailability || supplement.left === 0;
+      let disableReason = '';
+      if (trueSupplement.availableFrom && trueSupplement.availableFrom > new Date(Date.now())) {
+        // Has not yet passed start of availability
+        disableReason = `Cet item sera disponible à partir du ${new Date(
+          trueSupplement.availableFrom!,
+        ).toLocaleDateString()}`;
+      } else if (trueSupplement.availableUntil && trueSupplement.availableUntil < new Date(Date.now())) {
+        // Has not yet passed start of availability
+        disableReason = `Cet item était disponible jusqu'au ${new Date(
+          trueSupplement.availableUntil!,
+        ).toLocaleDateString()}`;
+      } else if (trueSupplement.left! <= cartSupplement.quantity) {
+        // The stocks are empty
+        disableReason = "Il n'y a plus de stocks pour cet item";
+      } else if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
+        // User can only take one of this item
+        disableReason = "Tu ne peux prendre qu'un seul exemplaire de cet item";
+      }
 
       // Return the row
       return {
@@ -199,15 +215,7 @@ const SupplementList = ({
           false
         ),
         add_to_cart: (
-          <Tooltip
-            tooltip={
-              hasNotPassedStartAvailability
-                ? `Cet item sera disponible à partir du ${new Date(supplement.availableFrom!).toLocaleDateString()}`
-                : isAfterEndAvailability
-                ? `Cet item était disponible jusqu'au ${new Date(supplement.availableUntil!).toLocaleDateString()}`
-                : "Il n'y a plus de stocks pour cet item"
-            }
-            enabled={disabled}>
+          <Tooltip tooltip={disableReason} enabled={!!disableReason}>
             <Button
               secondary
               outline
@@ -239,11 +247,11 @@ const SupplementList = ({
                   setSupplementCart([...supplementCart, newSupplement]);
                 }
               }}
-              disabled={disabled}>
-              {disabled ? "Indisponible" : "Ajouter au panier"}
+              disabled={!!disableReason}>
+              {disableReason ? 'Indisponible' : 'Ajouter au panier'}
             </Button>
           </Tooltip>
-        )
+        ),
       };
     });
 

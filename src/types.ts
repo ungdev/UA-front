@@ -196,8 +196,8 @@ export interface Item {
   infos: string | null;
   image: string | null;
   left: number | null;
-  availableFrom?: number;
-  availableUntil?: number;
+  availableFrom?: Date;
+  availableUntil?: Date;
 }
 
 export interface AdminItem extends Item {

@@ -67,7 +67,7 @@
       border: 0.175rem solid $accent-color;
     }
 
-    &:hover {
+    &:not([disabled]):hover {
       &.outline {
         border-color: darken($accent-color, 10%);
         color: darken($accent-color, 10%);
@@ -98,5 +98,13 @@
   &[disabled] {
     cursor: not-allowed;
     opacity: 0.5;
+
+    &.secondary {
+      &.outline {
+        color: $secondary-background;
+        border-color: $secondary-background;
+        opacity: 1;
+      }
+    }
   }
 }
