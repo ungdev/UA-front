@@ -14,7 +14,7 @@ const Spectator = () => {
   return (
     <div id="dashboard-spectator" className={styles.dashboardSpectator}>
       <div className={styles.titleHeader}>
-        <Title level={1} className={styles.primaryTitle} align='center'>
+        <Title level={1} className={styles.primaryTitle} align="center">
           Spectateur
         </Title>
       </div>
@@ -36,7 +36,7 @@ const Spectator = () => {
                 </>
               ) : (
                 <>
-                <Icon name={IconName.Caution} className={styles.iconCaution} />
+                  <Icon name={IconName.Caution} className={styles.iconCaution} />
                   <span className={`${styles.descriptionValue} ${styles.iconCaution}`}>Non payé</span>
                 </>
               )}
