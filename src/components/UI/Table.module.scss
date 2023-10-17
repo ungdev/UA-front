@@ -1,8 +1,6 @@
 @import '@/variables.scss';
 
 .tableContainer {
-  overflow-x: auto;
-
   .pagination {
     display: flex;
     gap: 0.5rem;
@@ -25,9 +23,9 @@
   display: table;
   table-layout: auto;
   border-collapse: collapse;
+  margin: auto;
   margin-bottom: 1em;
   text-align: left;
-  margin: auto;
 
   th {
     font-size: 1.125rem;
@@ -53,6 +51,18 @@
     &:nth-child(2n) {
       background: #ddd;
     }
+
+    &.grayed {
+      background: #ccc;
+    }
+
+    &.separate {
+      border-top: black dashed 3px;
+    }
+
+    &:hover {
+      background: #d3d3d3;
+    }
   }
 
   td {
@@ -64,6 +74,13 @@
 
     &.alignRight {
       text-align: right;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
     }
   }
 

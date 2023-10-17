@@ -1,6 +1,6 @@
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { AdminPartner, AdminTournament } from '@/types';
+import { AdminPartner, AdminTournament, AdminItem } from '@/types';
 import {
   getPartnerLogoName,
   PARTNER_FOLDER,
@@ -18,11 +18,13 @@ import { toast } from 'react-toastify';
 export interface AdminAction {
   partners: AdminPartner[] | null;
   tournaments: AdminTournament[] | null;
+  items: AdminItem[] | null;
 }
 
 const initialState: AdminAction = {
   partners: null,
   tournaments: null,
+  items: null,
 };
 
 export const adminSlice = createSlice({
@@ -58,6 +60,18 @@ export const adminSlice = createSlice({
         return tournament;
       }) as AdminTournament[];
     },
+
+    setAdminItems: (state, action) => {
+      state.items = action.payload;
+    },
+    updateAdminItem: (state, action) => {
+      state.items = state.items?.map((item) => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        }
+        return item;
+      }) as AdminItem[];
+    },
   },
 });
 
@@ -68,6 +82,8 @@ export const {
   deleteAdminPartner,
   setAdminTournaments,
   updateAdminTournament,
+  setAdminItems,
+  updateAdminItem,
 } = adminSlice.actions;
 
 export const fetchAdminPartners = () => async (dispatch: Dispatch) => {
@@ -204,5 +220,29 @@ export const updateTournament =
       console.error(err);
     }
   };
+
+export const fetchAdminItems = () => async (dispatch: Dispatch) => {
+  const request = await API.get('admin/items');
+  dispatch(setAdminItems(request));
+};
+
+export const updateItem = (item: AdminItem, callback: () => void) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch(`admin/items/${item.id}`, {
+      name: item.name,
+      price: item.price,
+      quantity: item.left,
+      description: item.infos,
+      display: item.display.toString(),
+    });
+
+    callback();
+    toast.success("L'item a bien été mis à jour");
+
+    dispatch(updateAdminItem(result));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export default adminSlice.reducer;

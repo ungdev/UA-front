@@ -1,8 +1,7 @@
 import styles from './Cart.module.scss';
 import { User, Item, CartPost } from '@/types';
 import CartItem from './CartItem';
-import { Button, Icon } from '@/components/UI';
-import { IconName } from '@/components/UI/Icon';
+import { Button } from '@/components/UI';
 
 /** The cart */
 const Cart = ({
@@ -33,10 +32,9 @@ const Cart = ({
   return (
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
-        <h2>Panier</h2>
-        <Button onClick={onCartReset}>
-          {/* TODO: Make it red */}
-          <Icon name={IconName.Trash}></Icon>
+        <h2 className={styles.mainTitle}>Panier</h2>
+        <Button primary outline onClick={onCartReset}>
+          Vider le panier
         </Button>
       </div>
       {Object.entries(tickets).map(([userId, ticket]) => {
@@ -75,6 +73,10 @@ const Cart = ({
           />
         );
       })}
+
+      {cart.tickets.userIds.length === 0 && cart.tickets.attendant === undefined && cart.supplements.length === 0 && (
+        <p className={styles.emptyCart}>Ton panier est vide</p>
+      )}
     </div>
   );
 };

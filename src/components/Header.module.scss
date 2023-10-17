@@ -43,15 +43,11 @@ $scrollingAnimationDuration: 0.5s;
         .left,
         .right {
           display: flex;
+          align-items: center;
         }
 
-        .right {
-          align-items: flex-end;
+        .right.notConnected {
           gap: 1rem;
-
-          a {
-            margin-bottom: 1px;
-          }
         }
 
         .underlineButton {
@@ -81,6 +77,10 @@ $scrollingAnimationDuration: 0.5s;
           &.current {
             color: white;
           }
+        }
+
+        .disconnectIcon {
+          height: 50px;
         }
 
         .burgerContainer {

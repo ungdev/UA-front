@@ -61,7 +61,7 @@ const Legal = () => (
         directive européenne 2009/136/CE, ces cookies sont indispensables à la fourniture du service sollicité. En
         naviguant sur notre site web, vous acceptez l’utilisation de ces cookies.
       </p>
-      {/*<Title align="center" id="CGV">
+      <Title align="center" id="CGV" className={styles.cgv}>
         Conditions générales de vente
       </Title>
       <Title level={2} type={2} className={styles.articleTitle}>
@@ -267,25 +267,25 @@ const Legal = () => (
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
         de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
         demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours
-        calendaires avant la date de l'évènement, soit le 19/11/2023 17:00 CET. Toute demande doit être formulée par
+        calendaires avant la date de l'évènement, soit le 22/11/2023 17:00 CET. Toute demande doit être formulée par
         courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour
         l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra
         sur la carte bancaire ayant servi au paiement. Tout remboursement fera l'objet d'une retenue de :
       </p>
       <ul>
         <li>
-          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 14/10/2023 17:00 CET et le
-          22/10/2023 17:00 CET
+          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2023 17:00 CET et le
+          08/11/2023 17:00 CET
         </li>
         <li>
-          50% (cinquante pourcent) du montant payé si la demande est faite entre le 22/10/2023 17:00 CET et le
-          05/11/2023 17:00 CET
+          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2023 17:00 CET et le
+          15/11/2023 17:00 CET
         </li>
         <li>
-          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 05/11/2023 17:00 CET et le
-          19/11/2023 17:00 CET
+          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2023 17:00 CET et le
+          22/11/2023 17:00 CET
         </li>
-        <li>Aucun remboursement ne sera accepté au-delà du 19/11/2023 17:00 CET.</li>
+        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2023 17:00 CET.</li>
       </ul>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 13 - Force majeure
@@ -344,7 +344,7 @@ const Legal = () => (
         <br />
         Email : ung@utt.fr
         <br />
-      </p>*/}
+      </p>
     </div>
   </div>
 );

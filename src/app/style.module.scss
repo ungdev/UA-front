@@ -133,9 +133,15 @@
         align-items: center;
         flex-direction: column;
         z-index: 1;
-        .title {
-          font-size: 4rem;
+
+        img {
+          width: clamp(300px, 95%, 1200px);
         }
+
+        h2 {
+          display: none;
+        }
+
         button {
           font-size: 2rem;
         }
@@ -324,8 +330,12 @@
         }
 
         .content {
-          .title {
+          img {
+            display: none;
+          }
+          h2 {
             font-size: 2.75rem;
+            display: block;
           }
           button {
             font-size: 1.5rem;

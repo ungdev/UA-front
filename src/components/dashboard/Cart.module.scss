@@ -1,8 +1,36 @@
+@import '@/variables.scss';
+
 .cart {
-  .cart-header {
+  .cartHeader {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+
+    svg {
+      color: $primary-color;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  .mainTitle{
+    font-family: $montserrat;
+    text-transform: uppercase;
+    overflow: hidden;
+    color: white;
+    position: relative;
+    font-size: 2.125rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  .emptyCart {
+    text-align: center;
   }
 }

@@ -15,12 +15,23 @@
   border-radius: 0.625rem;
   border: 0;
 
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   &:not(.primary, .secondary) {
     color: #8C979B;
     border: none;
 
-    &:hover {
+    &:not([disabled]):hover {
       color: white;
+
+      &.onLightBackground {
+        color: black;
+      }
     }
   }
 
@@ -32,15 +43,17 @@
       color: $secondary-color;
       background-color: transparent;
       border: 0.175rem solid $secondary-color;
+    }
 
-      &:hover {
+    &:not([disabled]):hover {
+      &.outline {
         border-color: $primary-color;
         color: $primary-color;
       }
-    }
 
-    &:not(.outline):hover {
-      background-color: $primary-color;
+      &:not(.outline) {
+        background-color: $primary-color;
+      }
     }
   }
 
@@ -52,15 +65,17 @@
       color: $accent-color;
       background-color: transparent;
       border: 0.175rem solid $accent-color;
+    }
 
-      &:hover {
+    &:not([disabled]):hover {
+      &.outline {
         border-color: darken($accent-color, 10%);
         color: darken($accent-color, 10%);
       }
-    }
 
-    &:not(.outline):hover {
-      background-color: darken($accent-color, 10%);
+      &:not(.outline) {
+        background-color: darken($accent-color, 10%);
+      }
     }
   }
 
@@ -81,7 +96,14 @@
   }
 
   &[disabled] {
-    pointer-events: none;
+    cursor: not-allowed;
     opacity: 0.5;
+
+    &.secondary {
+      &.outline {
+        color: $secondary-background;
+        border-color: $secondary-background;
+      }
+    }
   }
 }

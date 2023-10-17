@@ -1,7 +1,7 @@
 'use client';
 import styles from './Wrapper.module.scss';
 import { ReactNode, Suspense, useEffect } from 'react';
-import { ReadonlyURLSearchParams, useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 import Header from './Header';
@@ -10,18 +10,14 @@ import { fetchSettings } from '@/modules/settings';
 import { autoLogin } from '@/modules/login';
 import Footer from './Footer';
 
-import { toast } from 'react-toastify';
 import { type Action } from '@reduxjs/toolkit';
 import { Permission } from '@/types';
 import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
 import { fetchPartners } from '@/modules/partners';
+import { fetchAllCarts } from '@/modules/carts';
 
-interface SearchParams extends ReadonlyURLSearchParams {
-  action?: string;
-  state?: string;
-}
 /**
  * The navigation events component that is used to track navigation events.
  * Used mainly by Matomo
@@ -70,7 +66,6 @@ export default function Wrapper({
   children: ReactNode;
 }) {
   // Import necessary hooks and modules
-  const query: SearchParams = useSearchParams();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
 
@@ -110,7 +105,10 @@ export default function Wrapper({
       } else if (!isSpectator && !hasTeam) {
         if (
           pathname === '/dashboard' ||
-          (isDashboard && pathname !== '/dashboard/register' && pathname !== '/dashboard/account')
+          (isDashboard &&
+            pathname !== '/dashboard/register' &&
+            pathname !== '/dashboard/account' &&
+            pathname !== '/dashboard/purchases')
         ) {
           dispatch(setRedirect('/dashboard/register'));
         }
@@ -128,42 +126,9 @@ export default function Wrapper({
     }
   }, [isLoggedIn, isLoginAllowed, isShopAllowed, isAdmin, isSpectator, hasTeam, pathname, isLoading]);
 
-  // TODO: implement a special route for the oauth callback
-  useEffect(() => {
-    if (isLoading) {
-      return;
-    }
-    // 1 action possible :
-    //  - oauth
-    if (query.action === 'oauth') {
-      switch (query.state) {
-        case '0':
-          toast.success('Le lien avec le compte Discord a bien été créé !');
-          break;
-        case '1':
-          toast.success('Le lien avec le compte Discord a bien été mis à jour !');
-          break;
-        case '2':
-          toast.success("Le lien avec le compte Discord n'a pas été modifié");
-          break;
-        case '3':
-          toast.error("Ce compte Discord est déjà lié au compte d'un autre utilisateur");
-          break;
-        case '4':
-          toast.error("Tu as refusé à nos services l'accès à ton compte Discord");
-          break;
-        case '5':
-          toast.error('Une erreur de requête est survenue');
-          break;
-        case '6':
-          toast.error('Une erreur inconnue est survenue');
-          break;
-      }
-    }
-  }, [isLoading]);
-
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const partners = useAppSelector((state) => state.partners.partners);
+  const carts = useAppSelector((state) => state.carts.allCarts);
 
   // Fetch static values
   useEffect(() => {
@@ -179,6 +144,12 @@ export default function Wrapper({
     // Automatically log in the user
     isLoggedIn || dispatch(autoLogin() as unknown as Action);
   }, []);
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    // Fetch carts
+    carts.length || dispatch(fetchAllCarts() as unknown as Action);
+  }, [isLoggedIn]);
 
   // Render the layout with child components
   return (

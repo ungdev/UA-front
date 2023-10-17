@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+
+  &.center {
+    margin: auto;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 100;
+
+    .content {
+      padding: 5px;
+      border-radius: 5px;
+      margin: 0 auto;
+      background-color: black;
+      color: white;
+      visibility: hidden;
+      text-align: center;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: -10px;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
+    }
+  }
+
+
+
+  &:hover {
+    .content {
+      visibility: visible;
+    }
+  }
+}

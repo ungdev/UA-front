@@ -8,15 +8,40 @@
   margin-bottom: 15px;
   align-items: center;
 
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 70%;
+
+    >div {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+  }
+
   .itemName {
     width: 80%;
     font-weight: 900;
   }
 
+  svg {
+    color: $primary-color;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: red;
+    }
+  }
+
   .reductedPrice {
     text-decoration: line-through;
     color: $primary-color;
-    font-size: 10px;
+    font-size: 0.75rem;
     vertical-align: super;
+    margin-left: 3px;
   }
 }

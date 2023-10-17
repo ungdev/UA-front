@@ -11,6 +11,7 @@ const Square = ({
   onClick = () => {},
   className = '',
   alt = '',
+  replacementText = null,
 }: {
   /** Source of the image to display above */
   imgSrc?: string | null;
@@ -20,10 +21,13 @@ const Square = ({
   className?: string;
   /** alt */
   alt?: string;
+  /** replacementText */
+  replacementText?: string | null;
 }) => {
   return (
     <div className={`${styles.square} ${className}`} onClick={onClick}>
-      <img className="lazyload" alt={alt} data-src={imgSrc} />
+      {imgSrc && <img className="lazyload" alt={alt} data-src={imgSrc} />}
+      {!imgSrc && replacementText && <div className={styles.replacementText}>{replacementText}</div>}
     </div>
   );
 };

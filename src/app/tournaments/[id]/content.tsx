@@ -9,7 +9,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.png';
 
@@ -43,9 +43,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          {/*<Link href={getTournamentRulesLink(tournament.id)} target="_blank">
-            <Button primary>Voir les règles</Button>
-          </Link>*/}
+          {loginAllowed && (
+            <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+              <Button primary>Voir les règles</Button>
+            </Link>
+          )}
         </div>
         <div className={styles.information}>
           <BoxContainer
@@ -53,7 +55,14 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             contentClassName={styles.boxContent}
             title="cashprize.txt"
             padding={false}>
-            {tournament.cashprizeDetails ?? (
+            {tournament.cashprizeDetails?.split('\n').map(function (item, idx) {
+              return (
+                <span key={idx}>
+                  {item}
+                  <br />
+                </span>
+              );
+            }) ?? (
               <>
                 <strong>Cashprize :</strong> À venir
               </>

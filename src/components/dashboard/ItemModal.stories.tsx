@@ -1,28 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import ResetModal from './ResetModal';
+import ItemModal from './ItemModal';
 import { Providers } from '@/lib/provider';
+import { AdminItem } from '@/types';
 
 const meta = {
-  title: 'Main/ResetModal',
-  component: ResetModal,
+  title: 'Dashboard/ItemModal',
+  component: ItemModal,
   tags: ['autodocs'],
-  parameters: {
-    nextjs: {
-      appDirectory: true,
-    },
-  },
   render: (args) => (
     <Providers>
-      <ResetModal {...args} />
+      <ItemModal {...args} />
     </Providers>
   ),
-} satisfies Meta<typeof ResetModal>;
+} satisfies Meta<typeof ItemModal>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    resetToken: '1234567890',
+    item: {
+      id: '1',
+    } as AdminItem,
+    onClose: () => {},
   },
 };

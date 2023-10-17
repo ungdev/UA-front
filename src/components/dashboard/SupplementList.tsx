@@ -1,9 +1,10 @@
 import styles from './SupplementList.module.scss';
-import { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import { Button, Select, Table, Title } from './../UI';
 import { toast } from 'react-toastify';
 import { Item } from '@/types';
+import Tooltip from '@/components/UI/Tooltip';
 
 const supplementColumns = [
   {
@@ -16,13 +17,12 @@ const supplementColumns = [
   },
   {
     title: '',
-    key: 'attributes',
-  },
-  {
-    title: '',
     key: 'add_to_cart',
   },
 ];
+
+const supplementColumnsWithAttribute = [...supplementColumns];
+supplementColumnsWithAttribute.splice(2, 0, { title: '', key: 'attributes' });
 
 /** This represents the supplement list in the shop */
 const SupplementList = ({
@@ -133,6 +133,7 @@ const SupplementList = ({
     .map((supplement) => {
       // The id we have to find in the cart
       const supplementFullId = getSupplementId(supplement, selectedAttributes[supplement.id]);
+      const trueSupplement = items!.find((s) => s.id === supplementFullId)!;
       // Get cart supplement we are managing
       let cartSupplement = supplementCart.find((cartSupplement) => cartSupplement.itemId === supplementFullId);
       if (!cartSupplement) {
@@ -158,20 +159,47 @@ const SupplementList = ({
           </ul>,
         ];
 
+      let disableReason = '';
+      if (trueSupplement.availableFrom && trueSupplement.availableFrom > new Date(Date.now())) {
+        // Has not yet passed start of availability
+        disableReason = `Cet item sera disponible à partir du ${new Date(
+          trueSupplement.availableFrom!,
+        ).toLocaleDateString()}`;
+      } else if (trueSupplement.availableUntil && trueSupplement.availableUntil < new Date(Date.now())) {
+        // Has not yet passed start of availability
+        disableReason = `Cet item était disponible jusqu'au ${new Date(
+          trueSupplement.availableUntil!,
+        ).toLocaleDateString()}`;
+      } else if (trueSupplement.left! <= cartSupplement.quantity) {
+        // The stocks are empty
+        disableReason = "Il n'y a plus de stocks pour cet item";
+      } else if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
+        // User can only take one of this item
+        disableReason = "Tu ne peux prendre qu'un seul exemplaire de cet item";
+      }
+
       // Return the row
       return {
         name: (
-          <>
-            {supplement.name}
+          <div className={styles.itemPresentation}>
+            <div>
+              <strong>{supplement.name}</strong>
+            </div>
+            <div className={styles.itemDescription}>{description}</div>
             {supplement.image && (
-              <Button className={styles.itemPreviewButton} onClick={() => onItemPreview(supplement.image!)}>
+              <Button
+                className={styles.itemPreviewButton}
+                onLightBackground
+                onClick={() => onItemPreview(supplement.image!)}>
                 Voir le design
               </Button>
             )}
-            <div className={styles.itemDescription}>{description}</div>
-          </>
+          </div>
         ),
-        price: `${(supplement.price / 100).toFixed(2)}€`,
+        price: `${(supplement.price / 100).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })} €`,
         attributes: supplement.attributes!.length ? (
           <Select
             options={availableAttributes}
@@ -184,39 +212,45 @@ const SupplementList = ({
             className={styles.shopInput}
           />
         ) : (
-          ''
+          false
         ),
         add_to_cart: (
-          <Button
-            onClick={() => {
-              if (supplement.left! <= cartSupplement!.quantity) {
-                toast.warn('Le stock de cet item est épuisé');
-                return;
-              }
-              if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
-                toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
-                return;
-              }
-              const newCartSupplements = [...supplementCart];
-              if (cartSupplement!.quantity) {
-                newCartSupplements.forEach(
-                  (cartSupplement) =>
-                    (cartSupplement.quantity =
-                      cartSupplement.itemId === supplementFullId
-                        ? cartSupplement.quantity + 1
-                        : cartSupplement.quantity),
-                );
-                setSupplementCart(newCartSupplements);
-              } else {
-                const newSupplement = {
-                  itemId: supplementFullId,
-                  quantity: 1,
-                };
-                setSupplementCart([...supplementCart, newSupplement]);
-              }
-            }}>
-            Ajouter au panier
-          </Button>
+          <Tooltip tooltip={disableReason} enabled={!!disableReason} center>
+            <Button
+              secondary
+              outline
+              onLightBackground
+              onClick={() => {
+                if (supplement.left! <= cartSupplement!.quantity) {
+                  toast.warn('Le stock de cet item est épuisé');
+                  return;
+                }
+                if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
+                  toast.warn("Tu ne peux prendre qu'un seul exemplaire de cet item");
+                  return;
+                }
+                const newCartSupplements = [...supplementCart];
+                if (cartSupplement!.quantity) {
+                  newCartSupplements.forEach(
+                    (cartSupplement) =>
+                      (cartSupplement.quantity =
+                        cartSupplement.itemId === supplementFullId
+                          ? cartSupplement.quantity + 1
+                          : cartSupplement.quantity),
+                  );
+                  setSupplementCart(newCartSupplements);
+                } else {
+                  const newSupplement = {
+                    itemId: supplementFullId,
+                    quantity: 1,
+                  };
+                  setSupplementCart([...supplementCart, newSupplement]);
+                }
+              }}
+              disabled={!!disableReason}>
+              {disableReason ? 'Indisponible' : 'Ajouter au panier'}
+            </Button>
+          </Tooltip>
         ),
       };
     });
@@ -224,8 +258,14 @@ const SupplementList = ({
   return (
     supplementRows.length && (
       <div className={styles.supplementList}>
-        <Title level={4}>{shopSectionName}</Title>
-        <Table columns={supplementColumns} dataSource={supplementRows} className={styles.shopTable} />
+        <Title level={2} type={2} className={styles.secondaryTitle}>
+          {shopSectionName}
+        </Title>
+        <Table
+          columns={supplementRows.some((row) => row.attributes) ? supplementColumnsWithAttribute : supplementColumns}
+          dataSource={supplementRows}
+          className={styles.shopTable}
+        />
       </div>
     )
   );

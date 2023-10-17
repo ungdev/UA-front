@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { fetchItems } from '@/modules/items';
 import { cartPay, deleteCart, loadCart, saveCart } from '@/modules/cart';
 import { fetchCurrentTeam } from '@/modules/team';
-import { Button, Title, Modal, Checkbox, Icon } from '@/components/UI';
+import { Button, Checkbox, Icon, Modal, Title } from '@/components/UI';
 import AddPlaceModal from '@/components/dashboard/AddPlaceModal';
 import { toast } from 'react-toastify';
 import SupplementList from '@/components/dashboard/SupplementList';
@@ -32,7 +32,7 @@ const Shop = () => {
   // The list of all items available
   const [items, setItems] = useState<Item[] | null>(null);
   // The team the player is in
-  const team = useAppSelector((state) => state.team);
+  const team = useAppSelector((state) => state.team.team);
   // The members of the team are the players and the coaches
   const [teamMembers, setTeamMembers] = useState<User[] | null>(null);
   // If the CGV case is checked or not
@@ -49,7 +49,10 @@ const Shop = () => {
   const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
   // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
   // If itemPreview is null, then there is nothing to preview, and thus the modal for the preview is not displayed
-  const [itemPreview, setItemPreview] = useState<string | null>(null);
+  const [itemPreview, setItemPreview] = useState<{
+    image: string;
+    visible: boolean;
+  } | null>(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState<User[]>([]);
   // This is used to avoid users to be able to send multiple requests when paying :
@@ -148,7 +151,7 @@ const Shop = () => {
           ),
         )
       )
-        .filter((val): val is PromiseFulfilledResult<any> => val.status === 'fulfilled')
+        .filter((val): val is PromiseFulfilledResult<Item> => val.status === 'fulfilled')
         // Then, we only keep the return value of the Promises
         .map((result) => result.value)
         // And finally, we remove failed Promises
@@ -236,7 +239,7 @@ const Shop = () => {
   // (or an object containing the firstname and the lastname of the person if the ticket is for an attendant)
   const onAddPlaceModalQuit = async (placeFor: string, placeId: AttendantInfo | string) => {
     setAddPlaceVisible(false);
-    if (placeFor === undefined) return;
+    if (placeFor === undefined || (placeFor === '' && placeId === '')) return;
     if (placeFor === 'attendant') {
       setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId as AttendantInfo } });
       setHasAttendant(true);
@@ -283,7 +286,7 @@ const Shop = () => {
   // Callback of SupplementList. It is called when the user wants to preview an item
   // newItemPreview is the new value of itemPreview.
   const onItemPreview = (newItemPreview: string) => {
-    setItemPreview(newItemPreview);
+    setItemPreview({ image: newItemPreview, visible: true });
   };
 
   // Called when the user clicks on the pay button
@@ -294,16 +297,39 @@ const Shop = () => {
     dispatch(cartPay(cart) as unknown as Action);
   };
 
+  // Hide the places section if user can't buy any places
+  const placesSectionVisible =
+    !isPlaceInCart || (age === UserAge.child && !hasAttendant) || teamMembersWithoutTicket.length;
+
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
+      <Title level={1} align="center" className={styles.primaryTitle}>
+        Boutique
+      </Title>
       <div className={styles.shopAndBill}>
-        <div>
-          <div className={styles.shopSection}>
-            <Title className={styles.placeTitle} level={4}>
-              Places
-            </Title>
-            <Button onClick={() => setAddPlaceVisible(true)}>Ajouter une place</Button>
-          </div>
+        <div className={styles.shop}>
+          {placesSectionVisible ? (
+            <div className={styles.shopSection}>
+              <Title level={2} type={2} className={styles.secondaryTitle}>
+                Places
+              </Title>
+              <div className={styles.buttonRow}>
+                <Button
+                  primary
+                  onClick={() => {
+                    if (!hasPaid && teamMembersWithoutTicket.length === 0 && (age === UserAge.adult || hasAttendant)) {
+                      onAddPlaceModalQuit('me', userId);
+                      return;
+                    }
+                    setAddPlaceVisible(true);
+                  }}>
+                  Ajouter une place
+                </Button>
+              </div>
+            </div>
+          ) : (
+            false
+          )}
           <div className={styles.shopSection}>
             <SupplementList
               items={items}
@@ -327,50 +353,56 @@ const Shop = () => {
             />
           </div>
         </div>
-        <div className={styles.bill}>
-          <div>
-            <Cart
-              cart={cart}
-              tickets={tickets}
-              items={items}
-              teamMembers={teamMembers}
-              onItemRemoved={onRemoveItem}
-              onTicketRemoved={onRemoveTicket}
-              onCartReset={onCartReset}
-            />
-          </div>
-          <div className={styles.shopFooter}>
-            {cart.tickets.attendant && (
-              <>
-                <div className={styles.attendantWarning}>
-                  <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus plus
-                  modifier ton accompagnateur.
-                </div>
-              </>
-            )}
-            <Checkbox
-              className={styles.cgvCheckbox}
-              label={
+        <div className={styles.billWrapper}>
+          <div className={styles.bill}>
+            <div>
+              <Cart
+                cart={cart}
+                tickets={tickets}
+                items={items}
+                teamMembers={teamMembers}
+                onItemRemoved={onRemoveItem}
+                onTicketRemoved={onRemoveTicket}
+                onCartReset={onCartReset}
+              />
+            </div>
+            <div className={styles.shopFooter}>
+              {cart.tickets.attendant && (
                 <>
-                  J'accepte les{' '}
-                  <a href="/legal#CGV" target="_blank">
-                    Conditions Générales de Vente
-                  </a>
+                  <div className={styles.attendantWarning}>
+                    <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus
+                    modifier ton accompagnateur.
+                  </div>
                 </>
-              }
-              value={isCgvAccepted}
-              onChange={setIsCgvAccepted}
-            />
-            <br />
-            <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
-            <Button
-              primary
-              className={styles.shopButton}
-              onClick={onPay}
-              disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
-              Payer
-              <Icon name={IconName.ShoppingCart} fill={true} />
-            </Button>
+              )}
+              <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
+              <br />
+              <div className={styles.cgv}>
+                <Checkbox
+                  className={styles.cgvCheckbox}
+                  label={
+                    <>
+                      J'accepte les{' '}
+                      <a href="/legal#CGV" target="_blank">
+                        Conditions Générales de Vente
+                      </a>
+                    </>
+                  }
+                  value={isCgvAccepted}
+                  onChange={setIsCgvAccepted}
+                />
+              </div>
+              <br />
+              <Button
+                primary
+                veryLong
+                className={styles.shopButton}
+                onClick={onPay}
+                disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+                <Icon name={IconName.ShoppingCart} />
+                Payer
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -385,11 +417,13 @@ const Shop = () => {
         />
       )}
       <Modal
-        visible={!!itemPreview}
-        onCancel={() => setItemPreview(null)}
+        visible={!!itemPreview && !!itemPreview?.visible}
+        onCancel={() => setItemPreview(itemPreview ? { ...itemPreview, visible: false } : null)}
         buttons={null}
         containerClassName={styles.itemPreviewModalContainer}>
-        {itemPreview && <img alt="Preview image" src={`/${itemPreview}`} className={styles.itemPreviewImage} />}
+        {itemPreview && (
+          <img alt="Preview image" src={`/images/${itemPreview.image}`} className={styles.itemPreviewImage} />
+        )}
       </Modal>
     </div>
   );

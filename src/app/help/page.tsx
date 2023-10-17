@@ -32,11 +32,11 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 12 ans
+          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 6 ans
           pour le tournoi Pokémon). Il faudra que tu présentes <strong>l'autorisation parentale</strong>
-          {/* <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
+          <a href="https://arena.utt.fr/uploads/files/Autorisation_parentale_-_UTT_Arena_2023.pdf" target="_blank">
             disponible ici
-          </a> */}
+          </a>
           , <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
           avant d'accéder à l'UTT Arena.
         </>
@@ -104,15 +104,28 @@ const faq: Faq = {
       answer: (
         <>
           Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur place.
-          Le chef d'équipe peut alors <strong>verrouiller l'équipe</strong> pour confirmer la participation de l'équipe
-          au tournoi. Une fois que l'équipe est verrouillée, le statut dans l'onglet "équipe" devient vert et ton équipe
-          est inscrite.
+          L'équipe est ensuite verrouillée, le statut dans l'onglet "équipe" devient vert et ton équipe est inscrite.
+          <br />
+          <strong>Attention :</strong> kicker un joueur de l'équipe, quitter ou dissoudre l'équipe la déverrouillera et
+          vous fera perdre votre place.
         </>
       ),
     },
     {
       question: 'Combien coûte la participation à un tournoi ?',
-      answer: 'Les prix ne sont pas encore fixés, ils vous seront communiqués dans les semaines qui arrivent.',
+      answer: (
+        <>
+          <ul>
+            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate et du tournoi Pokémon</li>
+            <li>28 € pour les joueurs des autres tournois</li>
+            <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+            <li>
+              Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
+              adresse mail étudiante.
+            </li>
+          </ul>
+        </>
+      ),
     },
     {
       question: "Dans combien de tournois puis-je m'inscrire ?",
@@ -150,9 +163,9 @@ const faq: Faq = {
       answer: (
         <>
           Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au
-          tournoi, tu dois en effet apporter ta Nintendo Switch, le jeu SSBU avec <strong>tous</strong> les personnages,{' '}
-          <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong> de 3€ sur le
-          prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
+          tournoi, tu dois en effet apporter ta Nintendo Switch, son dock, le jeu SSBU avec <strong>tous</strong> les
+          personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong>{' '}
+          de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
           <br />
           Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
           <br />

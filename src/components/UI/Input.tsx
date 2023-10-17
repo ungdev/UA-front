@@ -18,7 +18,7 @@ const Input = ({
   autoFocus = false,
 }: {
   /** The type of input to render. */
-  type?: 'text' | 'email' | 'password' | 'number';
+  type?: 'text' | 'email' | 'password' | 'number' | 'datetime-local';
   /** The label to display. */
   label?: ReactNode;
   /** The placeholder to display. */

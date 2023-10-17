@@ -1,0 +1,84 @@
+@import '@/variables.scss';
+
+.dashboardSpectator {
+  padding: 50px;
+  margin: auto;
+  width: clamp(300px, 100%, 1200px);
+
+  .titleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    width: 100%;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+
+    .headerInfo {
+      text-align: left;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+
+      .infoPart {
+        display: flex;
+        flex-direction: column;
+
+        .singleInfo {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 5px;
+          white-space: nowrap;
+
+          span {
+            display: flex;
+            align-items: center;
+
+            svg {
+              margin-right: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .primaryTitle {
+    margin: 0;
+  }
+  
+  .descriptionValue {
+    color: $primary-color;
+    display: flex;
+  }
+
+  .iconCaution {
+    color: yellow;
+  }
+
+  .iconTick {
+    color: green;
+  }
+
+  .info {
+    border: 2px solid $accent-color;
+    padding: 8px 16px;
+    margin: 32px 0;
+  }
+
+  .buttonRow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .dashboardTeam {
+    padding: 20px;
+  }
+}

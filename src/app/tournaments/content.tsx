@@ -242,11 +242,16 @@ export function TournamentHome({
           <div className={`${styles.tournamentInfo} ${fading ? styles.fading : ''}`}>
             <h2>{renderedTournament.name}</h2>
             <p>
-              {renderedTournament.cashprize !== null && (
-                <>
-                  <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
-                </>
-              )}
+              {renderedTournament.cashprize !== null &&
+                (renderedTournament.cashprize === 0 ? (
+                  <>
+                    <strong>Cashprize sous forme de lot</strong> ·{' '}
+                  </>
+                ) : (
+                  <>
+                    <strong>{renderedTournament.cashprize}€</strong> de cashprize ·{' '}
+                  </>
+                ))}
               <strong>
                 {renderedTournament.maxPlayers / renderedTournament.playersPerTeam}{' '}
                 {renderedTournament.playersPerTeam === 1 ? 'joueurs' : 'équipes'}{' '}

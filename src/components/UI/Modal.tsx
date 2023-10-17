@@ -43,7 +43,9 @@ const Modal = ({
       buttons
     ) : (
       <>
-        <Button onClick={onCancel}>Annuler</Button>
+        <Button onClick={onCancel} onLightBackground>
+          Annuler
+        </Button>
         <Button onClick={onOk} primary className={styles.okButton}>
           Ok
         </Button>

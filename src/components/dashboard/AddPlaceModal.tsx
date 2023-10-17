@@ -2,7 +2,6 @@ import styles from './AddPlaceModal.module.scss';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Modal, Button, Input, Select, Radio } from '@/components/UI';
-import { useAppSelector } from '@/lib/hooks';
 import { UserType, AttendantInfo, User } from '@/types';
 
 /** The add place modal */
@@ -32,10 +31,7 @@ const AddPlaceModal = ({
   // The id of the person.
   // If placeFor is 'attendant', then placeId is an object with 2 values : 'firstname' and 'lastname'
   const [placeId, setPlaceId] = useState<AttendantInfo | string | undefined>(undefined);
-  // The place step 0 for regular modal, 1 for text confirmation modal
-  const [step, setStep] = useState(0);
   // The user type
-  const userType = useAppSelector((state) => state.login.user && state.login.user.type);
 
   useEffect(() => {
     if (!hasTicket) {
@@ -45,6 +41,7 @@ const AddPlaceModal = ({
     } else if (teamMembersWithoutTicket.length) {
       setPlaceFor('other');
     } else {
+      // We should never get there. But imagine there is a bug on the website... just imagine...
       toast.info("Tous les membres de l'équipe ont déjà une place !");
       onQuit('', '');
       return;
@@ -78,11 +75,7 @@ const AddPlaceModal = ({
   if (!placeFor || placeId === undefined) return null;
 
   const nextStep = async () => {
-    if (!(placeFor === 'me') || userType !== UserType.spectator || step) {
-      setStep(0);
-      return addPlace();
-    }
-    setStep(step + 1);
+    return addPlace();
   };
 
   const addPlace = async () => {
@@ -106,49 +99,39 @@ const AddPlaceModal = ({
           Ajouter
         </Button>
       }>
-      {!step ? (
+      <Radio
+        label="Pour"
+        name="for"
+        options={canPayTo()}
+        value={placeFor}
+        onChange={setPlaceFor}
+        className={styles.addPlaceInput}
+      />
+      {placeFor === 'attendant' && (
         <>
-          <Radio
-            label="Pour"
-            name="for"
-            options={canPayTo()}
-            value={placeFor}
-            onChange={setPlaceFor}
-            className={styles.addPlaceInput}
+          <Input
+            label="Prénom"
+            value={(placeId as AttendantInfo).firstname}
+            onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), firstname: value })}
           />
-          {placeFor === 'attendant' && (
-            <>
-              <Input
-                label="Prénom"
-                value={(placeId as AttendantInfo).firstname}
-                onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), firstname: value })}
-              />
-              <Input
-                label="Nom"
-                value={(placeId as AttendantInfo).lastname}
-                onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), lastname: value })}
-              />
-            </>
-          )}
-          {placeFor === 'other' && (
-            <Select
-              label="Membre"
-              options={teamMembersWithoutTicket.map((member) => ({
-                value: member.id,
-                label: `${member.username} (${member.type === UserType.player ? 'Joueur' : 'Coach'})`,
-              }))}
-              value={placeId as string}
-              onChange={setPlaceId}
-              className={styles.addPlaceModal}
-            />
-          )}
+          <Input
+            label="Nom"
+            value={(placeId as AttendantInfo).lastname}
+            onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), lastname: value })}
+          />
         </>
-      ) : (
-        <>
-          En prenant une place spectateur, vous acceptez de devoir quitter l'enceinte de l'UTT Arena du samedi 3
-          décembre à 23h59 au dimanche 4 décembre à 9h, et de pouvoir accéder à tous les espaces de l'UTT Arena, excepté
-          les espaces reservés aux joueurs.
-        </>
+      )}
+      {placeFor === 'other' && (
+        <Select
+          label="Membre"
+          options={teamMembersWithoutTicket.map((member) => ({
+            value: member.id,
+            label: `${member.username} (${member.type === UserType.player ? 'Joueur' : 'Coach'})`,
+          }))}
+          value={placeId as string}
+          onChange={setPlaceId}
+          className={styles.addPlaceModal}
+        />
       )}
     </Modal>
   );

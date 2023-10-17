@@ -3,13 +3,15 @@ import styles from '@/app/tournaments/layout-top.module.scss';
 import { Button, Title } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { type Action } from '@reduxjs/toolkit';
-import { useAppDispatch } from '@/lib/hooks';
-import { usePathname, useRouter } from 'next/navigation';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { redirect, usePathname, useRouter } from 'next/navigation';
 
 export default function LayoutTop() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
+  const login = useAppSelector((state) => state.settings.login);
+
   return (
     <div className={styles.topContainer}>
       <div className={styles.top}>
@@ -41,8 +43,14 @@ export default function LayoutTop() {
           <Button
             className={styles.button}
             primary
-            onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
-            Se connecter
+            onClick={() => {
+              if (login) {
+                dispatch(redirect('/dashboard'));
+                return;
+              }
+              dispatch(setLoginModalVisible(true) as unknown as Action);
+            }}>
+            {login ? 'Dashboard' : 'Se connecter'}
           </Button>
         </div>
       </div>

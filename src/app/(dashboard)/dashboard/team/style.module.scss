@@ -1,12 +1,24 @@
 @import '@/variables.scss';
 
 .dashboardTeam {
-  .tablePlayers {
-    width: 100%;
-    margin-bottom: 30px;
+  padding: 50px;
+  margin: auto;
+  width: clamp(300px, 100%, 1200px);
 
-    .refuseButton.buttonWrapper {
-      margin-left: 10px;
+  .titleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    width: 100%;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+      width: 50%;
+      justify-content: flex-end;
     }
   }
 
@@ -17,71 +29,70 @@
     .headerInfo {
       text-align: left;
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
 
-      > div {
-        margin-bottom: 10px;
+      .singleInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+        height: 24px;
+
+        span {
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 3px;
+          }
+        }
       }
     }
   }
 
+  .primaryTitle {
+    margin: 0;
+  }
+
   .refresh {
     cursor: pointer;
-    font-size: 24px;
+  }
+
+  .descriptionValue {
+    color: $primary-color;
+    display: flex;
+  }
+
+  .teamCompleted {
+    color: greenyellow;
+  }
+
+  .iconCaution {
+    color: yellow;
+  }
+
+  .iconInQueue {
+    color: lightgreen;
+  }
+
+  .iconTick {
+    color: green;
+  }
+
+  .iconCross {
+    color: red;
+  }
+
+  .crown {
+    fill: #ffd700;
+    stroke: black;
+    stroke-width: 1px;
   }
 
   .playersList {
     padding: 16px 0;
-  }
-
-  .teamMatches {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .teamMatch {
-    width: calc(25% - 20px);
-    margin: 16px 10px;
-    text-align: left;
-
-    .opponent {
-      display: flex;
-      justify-content: space-between;
-      padding: 12px 0;
-    }
-
-    .divider {
-      padding: 0;
-      border: none;
-      height: 2px;
-      background: $light-color;
-    }
-
-    .win {
-      font-weight: 900;
-      color: #00a700;
-    }
-
-    .loss {
-      font-weight: 900;
-      color: #d10000;
-    }
-
-    .circle {
-      border-radius: 50%;
-      width: 22px;
-      height: 22px;
-      background: #333;
-      color: #fff;
-      text-align: center;
-      font-size: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .matchNote {
-      word-wrap: break-word;
-    }
   }
 
   .info {
@@ -97,22 +108,27 @@
     border: none;
     margin: 20px 0;
   }
-}
 
-@media screen and (max-width: 1300px) {
-  .dashboardTeam .teamMatch {
-    width: calc(100% / 3 - 20px);
+  .members .table {
+    min-width: 100%;
+    margin-bottom: 30px;
+    width: 100%;
+    border-collapse: collapse;
+
+    tr td button {
+      white-space: nowrap;
+    }
   }
-}
 
-@media screen and (max-width: 1100px) {
-  .dashboardTeam .teamMatch {
-    width: calc(50% - 20px);
+  .buttonRow {
+    display: flex;
+    width: 100%;
+    justify-content: center;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .dashboardTeam .teamMatch {
-    width: 100%;
+  .dashboardTeam {
+    padding: 20px;
   }
 }
