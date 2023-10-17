@@ -27,7 +27,7 @@ const Page = () => {
   const [modal, setModal] = useState(initialModal);
   const dispatch = useAppDispatch();
   const isShopAllowed = useAppSelector((state) => state.settings.shop);
-  const { id, teamId, type } = useAppSelector((state) => state.login.user || { id: '', teamId: null, type: null });
+  const { id, type } = useAppSelector((state) => state.login.user || { id: '', teamId: null, type: null });
   const team = useAppSelector((state) => state.team.team);
   const slotsTournament = useAppSelector((state) => state.tournament.slots);
 
