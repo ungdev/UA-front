@@ -12,7 +12,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Icon, { IconName } from '@/components/UI/Icon';
 import { deleteCart } from '@/modules/cart';
-import { isFakeConnection, logBackToAdmin, logout } from "@/modules/login";
+import { isFakeConnection, logBackToAdmin, logout } from '@/modules/login';
 
 /**
  * Header component that displays the logo, navigation bar, and buttons for about and login.
