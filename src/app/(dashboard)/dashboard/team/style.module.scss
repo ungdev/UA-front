@@ -16,6 +16,9 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      white-space: nowrap;
+      width: 50%;
+      justify-content: flex-end;
     }
   }
 
