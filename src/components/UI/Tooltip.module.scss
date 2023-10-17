@@ -1,6 +1,10 @@
 .container {
   position: relative;
 
+  &.center {
+    margin: auto;
+  }
+
   .tooltip {
     position: absolute;
     top: calc(100% + 5px);

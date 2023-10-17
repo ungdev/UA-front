@@ -215,7 +215,7 @@ const SupplementList = ({
           false
         ),
         add_to_cart: (
-          <Tooltip tooltip={disableReason} enabled={!!disableReason}>
+          <Tooltip tooltip={disableReason} enabled={!!disableReason} center>
             <Button
               secondary
               outline
