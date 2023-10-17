@@ -21,13 +21,11 @@ export default function Tooltip({
 }) {
   if (!enabled) {
     return (
-      <div className={`${styles.container} ${center ? styles.center : ''} ${className ? className : ''}`}>
-        {children}
-      </div>
+      <div className={`${styles.container} ${center && styles.center} ${className ? className : ''}`}>{children}</div>
     );
   }
   return (
-    <div className={`${styles.container} ${center && styles.center} ${className}`}>
+    <div className={`${styles.container} ${center && styles.center} ${className ? className : ''}`}>
       {children}
       <div className={styles.tooltip}>
         <div className={styles.content}>{tooltip}</div>

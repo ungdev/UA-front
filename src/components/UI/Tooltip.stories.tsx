@@ -14,6 +14,7 @@ export const Default: Story = {
   args: {
     children: 'Survolez ce texte !',
     tooltip: 'Ceci est une toolbox',
+    className: 'myClass',
   },
 };
 
@@ -22,5 +23,13 @@ export const Disabled: Story = {
     children: "Il n'y aura pas de tooltip",
     tooltip: 'Je vous avais prévenu',
     enabled: false,
+  },
+};
+
+export const Centered: Story = {
+  args: {
+    children: 'Survolez ce texte !',
+    tooltip: 'Ceci est une toolbox',
+    center: true,
   },
 };
