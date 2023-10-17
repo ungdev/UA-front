@@ -44,15 +44,13 @@ export default function LayoutTop() {
             className={styles.button}
             primary
             onClick={() => {
-              if(login) {
+              if (login) {
                 dispatch(redirect('/dashboard'));
                 return;
               }
               dispatch(setLoginModalVisible(true) as unknown as Action);
             }}>
-            {
-              login ? 'Dashboard' : 'Se connecter'
-            }
+            {login ? 'Dashboard' : 'Se connecter'}
           </Button>
         </div>
       </div>
