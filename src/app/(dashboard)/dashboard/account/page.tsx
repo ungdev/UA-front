@@ -4,13 +4,12 @@ import { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
 import { Input, Button, Title, Icon } from '@/components/UI';
-import { editUser, isFakeConnection, logBackToAdmin, logout } from '@/modules/login';
+import { editUser } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserEdit } from '@/types';
-import { deleteCart } from '@/modules/cart';
 import { IconName } from '@/components/UI/Icon';
 
 const Account = () => {
