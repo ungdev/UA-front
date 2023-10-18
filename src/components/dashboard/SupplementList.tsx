@@ -178,6 +178,23 @@ const SupplementList = ({
         disableReason = "Tu ne peux prendre qu'un seul exemplaire de cet item";
       }
 
+      let availabilityDescription: React.ReactNode =
+        trueSupplement.availableFrom || trueSupplement.availableUntil ? 'Disponible' : null;
+      if (trueSupplement.availableFrom) {
+        availabilityDescription = (
+          <>
+            {availabilityDescription} à partir du <strong>{trueSupplement.availableFrom.toLocaleDateString()}</strong>
+          </>
+        );
+      }
+      if (trueSupplement.availableUntil) {
+        availabilityDescription = (
+          <>
+            {availabilityDescription} jusqu'au <strong>{trueSupplement.availableUntil.toLocaleDateString()}</strong>
+          </>
+        );
+      }
+
       // Return the row
       return {
         name: (
@@ -186,6 +203,7 @@ const SupplementList = ({
               <strong>{supplement.name}</strong>
             </div>
             <div className={styles.itemDescription}>{description}</div>
+            <div className={styles.itemDescription}>{availabilityDescription}</div>
             {supplement.image && (
               <Button
                 className={styles.itemPreviewButton}
