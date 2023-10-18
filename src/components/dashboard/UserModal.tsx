@@ -126,7 +126,7 @@ const UserModal = ({
               <strong>Statut :</strong> {transactionState} (
               {cart.transactionId
                 ? `#${cart.transactionId}`
-                : cart.transactionState != TransactionState.pending
+                : cart.transactionState !== TransactionState.pending
                 ? 'Paiement validé manuellement'
                 : 'En attente de paiement'}
               )<br />
@@ -295,7 +295,7 @@ const UserModal = ({
                     key={option.value}
                     label={option.name}
                     value={
-                      permissions.find((permission) => permission === (option.value as unknown as Permission)) != null
+                      permissions.find((permission) => permission === (option.value as unknown as Permission)) !== null
                     }
                     onChange={(v) => {
                       if (v) {
@@ -329,7 +329,7 @@ const UserModal = ({
               onChange={(v) => setAge(v as unknown as UserAge)}
               disabled={
                 searchUser.type === UserType.attendant ||
-                (searchUser.hasPaid && searchUser.age === UserAge.child && searchUser.attendant != null)
+                (searchUser.hasPaid && searchUser.age === UserAge.child && searchUser.attendant !== null)
               }></Radio>
             {searchUser.type !== UserType.attendant && (
               <>

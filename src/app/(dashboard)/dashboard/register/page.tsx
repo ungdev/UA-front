@@ -11,7 +11,7 @@ import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { Tournament, UserType } from '@/types';
+import { Team, Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 import { getTournamentBackgroundLink } from '@/utils/uploadLink';
@@ -20,6 +20,7 @@ import coachImg from '@/../public/images/register/coach.jpg';
 import spectatorImg from '@/../public/images/register/spectator.jpg';
 import joinImg from '@/../public/images/register/join.jpg';
 import createImg from '@/../public/images/register/create.jpg';
+import Modal from '@/components/UI/Modal';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -42,6 +43,8 @@ const Register = () => {
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
   const [acceptedRules, setAcceptedRules] = useState(false);
+  // Contains the team the user is trying to join. This is used to remember the team, so it will be filled only when the confirmation modal will be on.
+  const [confirmationForTeam, setConfirmationForTeam] = useState<Team>();
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -175,7 +178,7 @@ const Register = () => {
             imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
               setTournament(element.value);
-              setCreateTeam(true);
+              setCreateTeam(userType === UserType.player);
               setStep(step + 2);
               setTournamentSolo(true);
             }}
@@ -217,7 +220,7 @@ const Register = () => {
   );
 
   const tournamentTable = () => {
-    const tournamentOption = tournaments.filter((tr) => tr.playersPerTeam > 1 && tr.id == tournament)[0];
+    const tournamentOption = tournaments.filter((tr) => tr.id === tournament)[0];
     const tournamentTeamsRender = (tournamentOption.teams === undefined ? [] : tournamentOption.teams)
       .filter((team) => !team.lockedAt)
       .map((team) => ({
@@ -229,15 +232,23 @@ const Register = () => {
           ) : (
             <Button
               primary
-              onClick={() =>
-                dispatch(
-                  joinTeam(
-                    team.id,
-                    team.name,
-                    userType == UserType.player ? UserType.player : UserType.coach,
-                  ) as unknown as Action,
-                )
-              }
+              onClick={() => {
+                const tournamentObject = tournaments.find((t) => t.id === tournament)!;
+                if (
+                  (userType === 'player' && team.players.length >= tournamentObject.playersPerTeam) ||
+                  (userType === 'coach' && team.coaches.length >= Math.min(tournamentObject.playersPerTeam, 2))
+                ) {
+                  setConfirmationForTeam(team);
+                } else {
+                  dispatch(
+                    joinTeam(
+                      team.id,
+                      team.name,
+                      userType === UserType.player ? UserType.player : UserType.coach,
+                    ) as unknown as Action,
+                  );
+                }
+              }}
               disabled={!user.discordId}>
               Rejoindre
             </Button>
@@ -255,10 +266,10 @@ const Register = () => {
       {createTeam || userType === UserType.spectator ? (
         <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
-          {tournament == 'pokemon' ? (
+          {tournament === 'pokemon' ? (
             <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} />
           ) : null}
-          {tournament == 'osu' && userType !== UserType.spectator ? (
+          {tournament === 'osu' && userType !== UserType.spectator ? (
             <>
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
             </>
@@ -281,12 +292,12 @@ const Register = () => {
             primary
             onClick={() =>
               dispatch(
-                userType == UserType.spectator
+                userType === UserType.spectator
                   ? (setType(UserType.spectator) as unknown as Action)
                   : (cT({
                       name: tournamentSolo ? soloTeamName : teamName,
                       tournamentId: tournament,
-                      pokemonPlayerId: tournament == 'pokemon' ? pokemonPlayerId : undefined,
+                      pokemonPlayerId: tournament === 'pokemon' ? pokemonPlayerId : undefined,
                       userType: userType as UserType,
                     }) as unknown as Action),
               )
@@ -319,12 +330,12 @@ const Register = () => {
   };
 
   const backButton = () => {
-    if (((step == 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
+    if (((step === 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
       return (
         <Button
           primary
           onClick={() =>
-            setStep(userType == UserType.spectator ? step - 3 : tournamentSolo && step == 5 ? step - 2 : step - 1)
+            setStep(userType === UserType.spectator ? step - 3 : tournamentSolo && step === 5 ? step - 2 : step - 1)
           }>
           {'Retour'}
         </Button>
@@ -365,6 +376,22 @@ const Register = () => {
   return (
     <div id="dashboard-register" className={styles.dashboardRegister}>
       {Stepper()}
+      <Modal
+        visible={!!confirmationForTeam}
+        onCancel={() => setConfirmationForTeam(undefined)}
+        onOk={() => {
+          setConfirmationForTeam(undefined);
+          dispatch(
+            joinTeam(
+              confirmationForTeam!.id,
+              confirmationForTeam!.name,
+              userType === UserType.player ? UserType.player : UserType.coach,
+            ) as unknown as Action,
+          );
+        }}>
+        Cette équipe a déjà atteint son nombre maximal de {userType === 'player' ? 'joueurs' : 'coachs'}. Tu ne pourras
+        donc être accepté que si l'un d'eux quitte l'équipe ou est expulsé.
+      </Modal>
     </div>
   );
 };

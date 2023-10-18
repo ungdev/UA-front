@@ -40,7 +40,7 @@ const FileUpload = ({
       <label>{label}</label>
 
       <div className={styles.imageContainer} onClick={handleUploadClick}>
-        {!error && (value !== '' || preview != null) && type != 'pdf' && (
+        {!error && (value !== '' || preview !== null) && type !== 'pdf' && (
           <img
             onError={() => {
               setError(true);
@@ -51,7 +51,7 @@ const FileUpload = ({
           />
         )}
 
-        {!error && (value !== '' || preview != null) && type == 'pdf' && (
+        {!error && (value !== '' || preview !== null) && type === 'pdf' && (
           <>
             <embed
               onLoad={() => {

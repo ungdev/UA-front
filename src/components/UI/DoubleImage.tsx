@@ -21,7 +21,7 @@ export default function DoubleImage({
   const [swapped, setSwapped] = useState(null as boolean | null);
 
   const swap = () => {
-    if (swapped == null) {
+    if (swapped === null) {
       setSwapped(true);
       return;
     }
@@ -33,13 +33,13 @@ export default function DoubleImage({
       <BoxContainer
         title="image1.jpg"
         padding={false}
-        className={swapped != null ? (swapped ? styles.image1forward : styles.image1backward) : ''}>
+        className={swapped !== null ? (swapped ? styles.image1forward : styles.image1backward) : ''}>
         <img src={image1} alt="Information Image" onClick={swap} />
       </BoxContainer>
       <BoxContainer
         title="image.jpg"
         padding={false}
-        className={swapped != null ? (swapped ? styles.image2forward : styles.image2backward) : ''}>
+        className={swapped !== null ? (swapped ? styles.image2forward : styles.image2backward) : ''}>
         <img src={image2} alt="Information Image" onClick={swap} />
       </BoxContainer>
     </div>

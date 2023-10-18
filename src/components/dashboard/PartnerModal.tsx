@@ -55,7 +55,7 @@ const PartnerModal = ({
                 display,
               };
               dispatch(
-                partner == null
+                partner === null
                   ? (addPartner(body, logo, () => {
                       onClose!();
                     }) as unknown as Action)
