@@ -178,7 +178,7 @@ const Register = () => {
             imgSrc={getTournamentBackgroundLink(element.value)}
             onClick={() => {
               setTournament(element.value);
-              setCreateTeam(userType === UserType.coach ? false : true);
+              setCreateTeam(userType === UserType.player);
               setStep(step + 2);
               setTournamentSolo(true);
             }}
@@ -220,7 +220,7 @@ const Register = () => {
   );
 
   const tournamentTable = () => {
-    const tournamentOption = tournaments.filter((tr) => tr.id == tournament)[0];
+    const tournamentOption = tournaments.filter((tr) => tr.id === tournament)[0];
     const tournamentTeamsRender = (tournamentOption.teams === undefined ? [] : tournamentOption.teams)
       .filter((team) => !team.lockedAt)
       .map((team) => ({
