@@ -96,10 +96,9 @@ const Home = () => {
           <Counter value={8} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
           <Counter
-            value={5000}
+            value={5190}
             valueText=" €"
             name="de cashprize"
-            toCome="Cashprize"
             className={styles.middleCounter}
           />
           <VerticalDivider className={styles.divider} />
