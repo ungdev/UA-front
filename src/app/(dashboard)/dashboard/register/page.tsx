@@ -11,7 +11,7 @@ import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
 import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { Tournament, UserType } from '@/types';
+import { Team, Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 import { getTournamentBackgroundLink } from '@/utils/uploadLink';
@@ -20,6 +20,7 @@ import coachImg from '@/../public/images/register/coach.jpg';
 import spectatorImg from '@/../public/images/register/spectator.jpg';
 import joinImg from '@/../public/images/register/join.jpg';
 import createImg from '@/../public/images/register/create.jpg';
+import Modal from '@/components/UI/Modal';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -42,6 +43,8 @@ const Register = () => {
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
   const [acceptedRules, setAcceptedRules] = useState(false);
+  // Contains the team the user is trying to join. This is used to remember the team, so it will be filled only when the confirmation modal will be on.
+  const [confirmationForTeam, setConfirmationForTeam] = useState<Team>();
 
   // Split multiplayer and solo tournaments
   const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
@@ -229,15 +232,23 @@ const Register = () => {
           ) : (
             <Button
               primary
-              onClick={() =>
-                dispatch(
-                  joinTeam(
-                    team.id,
-                    team.name,
-                    userType == UserType.player ? UserType.player : UserType.coach,
-                  ) as unknown as Action,
-                )
-              }
+              onClick={() => {
+                const tournamentObject = tournaments.find((t) => t.id === tournament)!;
+                if (
+                  (userType === 'player' && team.players.length >= tournamentObject.playersPerTeam) ||
+                  (userType === 'coach' && team.coaches.length >= Math.min(tournamentObject.playersPerTeam, 1))
+                ) {
+                  setConfirmationForTeam(team);
+                } else {
+                  dispatch(
+                    joinTeam(
+                      team.id,
+                      team.name,
+                      userType == UserType.player ? UserType.player : UserType.coach,
+                    ) as unknown as Action,
+                  );
+                }
+              }}
               disabled={!user.discordId}>
               Rejoindre
             </Button>
@@ -365,6 +376,22 @@ const Register = () => {
   return (
     <div id="dashboard-register" className={styles.dashboardRegister}>
       {Stepper()}
+      <Modal
+        visible={!!confirmationForTeam}
+        onCancel={() => setConfirmationForTeam(undefined)}
+        onOk={() => {
+          setConfirmationForTeam(undefined);
+          dispatch(
+            joinTeam(
+              confirmationForTeam!.id,
+              confirmationForTeam!.name,
+              userType == UserType.player ? UserType.player : UserType.coach,
+            ) as unknown as Action,
+          );
+        }}>
+        Cette équipe a déjà atteint son nombre maximal de {userType === 'player' ? 'joueurs' : 'coachs'}. Tu ne pourras
+        donc être accepté que si l'un d'eux quitte l'équipe ou est expulsé.
+      </Modal>
     </div>
   );
 };
