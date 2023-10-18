@@ -262,7 +262,7 @@ const Page = () => {
             <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
             <div
               className={
-                slotsTournament[team.tournamentId].available == slotsTournament[team.tournamentId].total
+                slotsTournament[team.tournamentId].available === slotsTournament[team.tournamentId].total
                   ? styles.teamCompleted
                   : styles.descriptionValue
               }>
