@@ -80,7 +80,7 @@ const AddPlaceModal = ({
 
   const addPlace = async () => {
     if (placeFor === 'attendant') {
-      if ((placeId as AttendantInfo).firstname == '' || (placeId as AttendantInfo).lastname == '') {
+      if ((placeId as AttendantInfo).firstname === '' || (placeId as AttendantInfo).lastname === '') {
         toast.error('Tu dois renseigner le prénom et le nom de ton accompagnateur.');
         return;
       }

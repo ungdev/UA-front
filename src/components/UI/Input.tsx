@@ -44,8 +44,8 @@ const Input = ({
     if (
       type === 'number' &&
       newValue !== '' &&
-      min != undefined &&
-      max != undefined &&
+      min !== undefined &&
+      max !== undefined &&
       (parseInt(newValue) < min || parseInt(newValue) > max)
     ) {
       return;

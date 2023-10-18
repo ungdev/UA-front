@@ -61,7 +61,7 @@ const Cart = ({
         />
       )}
       {cart.supplements.map((supplement) => {
-        const item = items.find((item) => item.id == supplement.itemId);
+        const item = items.find((item) => item.id === supplement.itemId);
         return (
           <CartItem
             key={item!.id}

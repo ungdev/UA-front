@@ -244,7 +244,7 @@ const Register = () => {
                     joinTeam(
                       team.id,
                       team.name,
-                      userType == UserType.player ? UserType.player : UserType.coach,
+                      userType === UserType.player ? UserType.player : UserType.coach,
                     ) as unknown as Action,
                   );
                 }
@@ -266,10 +266,10 @@ const Register = () => {
       {createTeam || userType === UserType.spectator ? (
         <>
           {!tournamentSolo ? <Input label="Nom d'équipe" value={teamName} onChange={setTeamName} /> : null}
-          {tournament == 'pokemon' ? (
+          {tournament === 'pokemon' ? (
             <Input label="ID de Joueur Pokémon" value={pokemonPlayerId} onChange={setPokemonPlayerId} />
           ) : null}
-          {tournament == 'osu' && userType !== UserType.spectator ? (
+          {tournament === 'osu' && userType !== UserType.spectator ? (
             <>
               <div className={styles.warning}>Il est nécessaire d'être qualifié pour s'inscrire à ce tournoi.</div>
             </>
@@ -292,12 +292,12 @@ const Register = () => {
             primary
             onClick={() =>
               dispatch(
-                userType == UserType.spectator
+                userType === UserType.spectator
                   ? (setType(UserType.spectator) as unknown as Action)
                   : (cT({
                       name: tournamentSolo ? soloTeamName : teamName,
                       tournamentId: tournament,
-                      pokemonPlayerId: tournament == 'pokemon' ? pokemonPlayerId : undefined,
+                      pokemonPlayerId: tournament === 'pokemon' ? pokemonPlayerId : undefined,
                       userType: userType as UserType,
                     }) as unknown as Action),
               )
@@ -330,12 +330,12 @@ const Register = () => {
   };
 
   const backButton = () => {
-    if (((step == 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
+    if (((step === 2 && !user.discordId) || step > 2) && !user.askingTeamId) {
       return (
         <Button
           primary
           onClick={() =>
-            setStep(userType == UserType.spectator ? step - 3 : tournamentSolo && step == 5 ? step - 2 : step - 1)
+            setStep(userType === UserType.spectator ? step - 3 : tournamentSolo && step === 5 ? step - 2 : step - 1)
           }>
           {'Retour'}
         </Button>
@@ -385,7 +385,7 @@ const Register = () => {
             joinTeam(
               confirmationForTeam!.id,
               confirmationForTeam!.name,
-              userType == UserType.player ? UserType.player : UserType.coach,
+              userType === UserType.player ? UserType.player : UserType.coach,
             ) as unknown as Action,
           );
         }}>

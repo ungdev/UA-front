@@ -223,7 +223,7 @@ const Shop = () => {
     }, 0) +
     (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant')!.price : 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
-      const item = items.find((item) => item.id == cartSupplement.itemId);
+      const item = items.find((item) => item.id === cartSupplement.itemId);
       if (!item) {
         toast.warn(
           "Une erreur s'est produite lors du calcul du prix. Le prix affiché n'est peut-être pas exact. Si ce problème se reproduit, contacte le support",
