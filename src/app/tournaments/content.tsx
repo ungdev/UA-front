@@ -11,6 +11,7 @@ import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/upl
 import { IconName } from '@/components/UI/Icon';
 import { type Action } from '@reduxjs/toolkit';
 import { setLoginModalVisible } from '@/modules/loginModal';
+import redirect, { setRedirect } from '@/modules/redirect';
 
 export function TournamentHome({
   animations,
@@ -28,6 +29,7 @@ export function TournamentHome({
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  const login = useAppSelector((state) => state.settings.login);
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);
@@ -273,8 +275,14 @@ export function TournamentHome({
             <Button
               className={styles.button}
               primary
-              onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
-              S'inscrire
+              onClick={() => {
+                if (login) {
+                  dispatch(setRedirect('/dashboard') as unknown as Action);
+                  return;
+                }
+                dispatch(setLoginModalVisible(true) as unknown as Action);
+              }}>
+              {login ? 'Dashboard' : 'Se connecter'}
             </Button>
           </div>
         </div>
