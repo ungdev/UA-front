@@ -4,7 +4,8 @@ import { Button, Title } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { type Action } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { redirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { setRedirect } from '@/modules/redirect';
 
 export default function LayoutTop() {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ export default function LayoutTop() {
             primary
             onClick={() => {
               if (login) {
-                dispatch(redirect('/dashboard'));
+                dispatch(setRedirect('/dashboard') as unknown as Action);
                 return;
               }
               dispatch(setLoginModalVisible(true) as unknown as Action);

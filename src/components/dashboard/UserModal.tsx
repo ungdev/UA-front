@@ -292,7 +292,7 @@ const UserModal = ({
               <div className={styles.checkboxContainer}>
                 {permissionOptions.map((option) => (
                   <Checkbox
-                    key={option.value}
+                    key={option.name}
                     label={option.name}
                     value={
                       permissions.find((permission) => permission === (option.value as unknown as Permission)) !== null
