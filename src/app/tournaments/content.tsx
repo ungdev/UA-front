@@ -247,7 +247,7 @@ export function TournamentHome({
               {renderedTournament.cashprize !== null &&
                 (renderedTournament.cashprize === 0 ? (
                   <>
-                    <strong>Cashprize sous forme de lot</strong> ·{' '}
+                    <strong>Cashprize sous forme de lots</strong> ·{' '}
                   </>
                 ) : (
                   <>
