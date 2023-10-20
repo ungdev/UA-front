@@ -118,7 +118,7 @@ export interface UserWithTeamAndMessageAndTournamentInfo extends User {
       name: string;
     };
     captainId: string;
-    locked: Date | null;
+    lockedAt: Date | null;
   };
 }
 

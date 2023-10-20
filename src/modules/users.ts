@@ -43,7 +43,7 @@ const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.name : '',
     teamName: user.team ? user.team.name : user.type === UserType.spectator ? '(spectateur)' : '',
-    lockedLabel: user.team && user.team.locked ? '✔' : '✖',
+    lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scannedAt ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',
