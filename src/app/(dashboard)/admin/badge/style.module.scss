@@ -1,10 +1,10 @@
 .badgePage {
-  display: flex;
-  gap: 10px;
 
-  > * {
-    flex: 1;
+  .fileUpload {
+    width: 70%;
+    margin: auto;
   }
+  /*
 
   .croppingImage {
     width: 100%;
@@ -33,6 +33,21 @@
         position: relative;
         aspect-ratio: auto;
         width: 100%;
+      }
+    }
+  }*/
+  .arrows {
+    width: 100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+
+      &.disabled {
+        cursor: initial;
+        opacity: 0.5;
       }
     }
   }

@@ -9,6 +9,7 @@ import background from '@/../public/images/background.jpg';
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
 import { Title } from '@/components/UI';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(
@@ -29,24 +30,23 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 export default function BadgePage() {
   const [file, setFile] = useState<string | undefined>();
   const [crop, setCrop] = useState<Crop>();
+  const [slide, setSlide] = useState(0);
 
-  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
-    const { width, height } = e.currentTarget;
-    setCrop(centerAspectCrop(width, height, 1));
-  }
+  const selectImageSlide = () => {
+    return (
+      <FileUpload
+        label="La photo sur ton badge"
+        value={'test'}
+        onChange={(file) => setFile(URL.createObjectURL(file))}
+        type="png"
+        className={styles.fileUpload}
+      />
+    );
+  };
 
-  document.documentElement.style.setProperty('--half-size', crop ? `${crop.width / 2}px` : '0px');
-
-  return (
-    <>
-      <Title level={1}>Badge (Fonctionnalité en cours de création)</Title>
-      <div id="badge-page" className={styles.badgePage}>
-        <FileUpload
-          label="La photo sur ton badge"
-          value={'test'}
-          onChange={(file) => setFile(URL.createObjectURL(file))}
-          type="png"
-        />
+  const cropImageSlide = () => {
+    return (
+      <>
         <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
           <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} />
         </ReactCrop>
@@ -69,6 +69,36 @@ export default function BadgePage() {
             />
           </div>
           <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
+        </div>
+      </>
+    );
+  };
+
+  const slides = [selectImageSlide, cropImageSlide];
+
+  function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+    const { width, height } = e.currentTarget;
+    setCrop(centerAspectCrop(width, height, 1));
+  }
+
+  document.documentElement.style.setProperty('--half-size', crop ? `${crop.width / 2}px` : '0px');
+
+  return (
+    <>
+      <Title level={1}>Badge (Fonctionnalité en cours de création)</Title>
+      <div id="badge-page" className={styles.badgePage}>
+        {slides[slide]()}
+        <div className={styles.arrows}>
+          <Icon
+            name={IconName.ChevronLeft}
+            onClick={() => slide > 0 && setSlide(slide - 1)}
+            className={slide === 0 ? styles.disabled : ''}
+          />
+          <Icon
+            name={IconName.ChevronRight}
+            onClick={() => slide < slides.length - 1 && setSlide(slide + 1)}
+            className={slide === slides.length - 1 ? styles.disabled : ''}
+          />
         </div>
       </div>
     </>

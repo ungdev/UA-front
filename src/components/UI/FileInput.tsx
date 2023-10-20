@@ -10,6 +10,7 @@ const FileUpload = ({
   value,
   onChange,
   type,
+  className = '',
 }: {
   /** The label to display. */
   label: string;
@@ -19,6 +20,8 @@ const FileUpload = ({
   onChange: (file: File) => void;
   /** The type of file to accept. */
   type: 'png' | 'jpg' | 'pdf';
+  /** A string to add to the className */
+  className?: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
@@ -36,7 +39,7 @@ const FileUpload = ({
   };
 
   return (
-    <div className={styles.fileinput}>
+    <div className={`${styles.fileinput} ${className}`}>
       <label>{label}</label>
 
       <div className={styles.imageContainer} onClick={handleUploadClick}>
