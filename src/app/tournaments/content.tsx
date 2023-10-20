@@ -11,7 +11,7 @@ import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/upl
 import { IconName } from '@/components/UI/Icon';
 import { type Action } from '@reduxjs/toolkit';
 import { setLoginModalVisible } from '@/modules/loginModal';
-import redirect, { setRedirect } from '@/modules/redirect';
+import { setRedirect } from '@/modules/redirect';
 
 export function TournamentHome({
   animations,
