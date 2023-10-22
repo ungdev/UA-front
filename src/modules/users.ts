@@ -176,7 +176,7 @@ export const saveUser =
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
-    dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
+    dispatch(updateUser({ ...userModal, ...user, ...body }) as unknown as Action);
   };
 
 export const createUser = (body: object, callback: () => void) => async () => {
