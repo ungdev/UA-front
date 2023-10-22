@@ -28,8 +28,9 @@ export function TournamentHome({
 }) {
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
-  const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const login = useAppSelector((state) => state.settings.login);
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);

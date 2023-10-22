@@ -15,7 +15,7 @@
     left: 10px;
     height: 18px;
     width: calc(var(--fullness) * 100% - 20px);
-    background-color: $pink-button-color;
+    background-color: $secondary-color;
     border-radius: 25.5px;
     transition: width 1s ease-in-out;
   }

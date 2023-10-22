@@ -14,6 +14,15 @@
   cursor: pointer;
   border-radius: 10px;
   text-align: center;
+  gap: 1rem;
+
+  .text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: $primary-color;
+    text-decoration: none;
+  }
 
   &.dark {
     background-color: $dark-color;
@@ -26,6 +35,8 @@
     object-fit: cover;
     object-position: center;
     transition: all 0.2s ease-in-out;
+    user-select: none;
+    pointer-events: none;
   }
 
   &:hover {

@@ -2,6 +2,8 @@ import Button from './Button';
 import Card from './Card';
 import Checkbox from './Checkbox';
 import Collapse from './Collapse';
+import Divider from './Divider';
+import DraggableList from './DraggableList';
 import FileInput from './FileInput';
 import Helper from './Helper';
 import Icon from './Icon';
@@ -18,7 +20,6 @@ import Textarea from './Textarea';
 import TextBlock from './TextBlock';
 import Title from './Title';
 import VideoContainer from './VideoContainer';
-import Divider from './Divider';
 import VerticalDivider from './VerticalDivider';
 
 export {
@@ -26,6 +27,7 @@ export {
   Card,
   Checkbox,
   Collapse,
+  DraggableList,
   Divider,
   FileInput,
   Helper,

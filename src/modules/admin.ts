@@ -98,6 +98,7 @@ export const addPartner =
         name: partner.name,
         link: partner.link,
         display: partner.display.toString(),
+        position: partner.position,
       });
 
       if (result && logo) {
@@ -148,6 +149,24 @@ export const deletePartner = (partnerId: string, callback: () => void) => async 
 
     dispatch(deleteAdminPartner(partnerId));
     dispatch(normalPartners.deletePartner(partnerId));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const reorderPartners = (partners: AdminPartner[]) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch('admin/partners', {
+      partners: partners.map((partner) => ({
+        id: partner.id,
+        position: partner.position,
+      })),
+    });
+
+    toast.success('Les partenaires ont bien été réordonnés');
+
+    dispatch(setAdminPartners(result));
+    dispatch(normalPartners.setPartners(result));
   } catch (err) {
     console.error(err);
   }
@@ -220,6 +239,24 @@ export const updateTournament =
       console.error(err);
     }
   };
+
+export const reorderTournaments = (tournaments: AdminTournament[]) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch('admin/tournaments', {
+      tournaments: tournaments.map((tournament) => ({
+        id: tournament.id,
+        position: tournament.position,
+      })),
+    });
+
+    toast.success('Les tournois ont bien été réordonnés');
+
+    dispatch(setAdminTournaments(result));
+    dispatch(normalTournament.setTournaments(result));
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const fetchAdminItems = () => async (dispatch: Dispatch) => {
   const request = await API.get('admin/items');
