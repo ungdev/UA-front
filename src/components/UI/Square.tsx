@@ -12,6 +12,7 @@ const Square = ({
   className = '',
   alt = '',
   replacementText = null,
+  text = '',
 }: {
   /** Source of the image to display above */
   imgSrc?: string | null;
@@ -23,11 +24,14 @@ const Square = ({
   alt?: string;
   /** replacementText */
   replacementText?: string | null;
+  /** text */
+  text?: string;
 }) => {
   return (
     <div className={`${styles.square} ${className}`} onClick={onClick}>
       {imgSrc && <img className="lazyload" alt={alt} data-src={imgSrc} />}
       {!imgSrc && replacementText && <div className={styles.replacementText}>{replacementText}</div>}
+      {text && <div className={styles.text}>{text}</div>}
     </div>
   );
 };
