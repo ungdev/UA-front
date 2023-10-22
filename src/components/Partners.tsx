@@ -31,11 +31,11 @@ export default function Partners({
         ? 'Chargement des partenaires...'
         : partners?.map((partner: Partner, i: number) => (
             <a key={i} href={partner.link}>
-              { cards ? (
+              {cards ? (
                 <Square
                   imgSrc={getPartnerLogoLink(partner.id)}
                   alt={partner.name}
-                  text={partner.name}
+                  // text={partner.name}
                 />
               ) : (
                 <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
