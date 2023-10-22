@@ -20,7 +20,7 @@
   .textAndImage {
     display: flex;
     overflow: hidden;
-    background-color: $light-blue;
+    background-color: $light-color;
     color: #002d40;
     max-height: 250px;
     margin: 5rem 85px 0 85px;
@@ -101,7 +101,7 @@
       font-size: 3rem;
       font-weight: 800;
       text-align: center;
-      background-color: $light-blue;
+      background-color: $light-color;
       border-radius: 100%;
     }
   }
