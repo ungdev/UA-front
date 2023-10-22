@@ -79,12 +79,10 @@ const Page = () => {
     }
   };
 
-  const acceptUserButton = (user: User, teamFull: boolean) => (
-    <Tooltip enabled={teamFull} tooltip={`L'équipe est déjà pleine.`}>
-      <Button onClick={() => dispatch(acceptUser(user) as unknown as Action)} secondary outline disabled={teamFull}>
-        Accepter
-      </Button>
-    </Tooltip>
+  const acceptUserButton = (user: User) => (
+    <Button onClick={() => dispatch(acceptUser(user) as unknown as Action)} secondary outline>
+      Accepter
+    </Button>
   );
 
   const refuseUserButton = (user: User) => (
@@ -153,9 +151,8 @@ const Page = () => {
   const actionsForUser = (user: User, asking: boolean) => {
     if (!isCaptain) return;
     if (user.id === id) return;
-    const isFull = tournament!.playersPerTeam === team.players.length;
     if (asking) {
-      return [acceptUserButton(user, isFull), refuseUserButton(user)];
+      return [acceptUserButton(user), refuseUserButton(user)];
     }
     return [promoteUserButton(user), kickUserButton(user)];
   };
