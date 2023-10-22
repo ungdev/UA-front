@@ -1,24 +1,26 @@
 'use client';
-import { Button, Square, Title } from '@/components/UI';
+import { Button, DraggableList, Loader, Square, Title } from '@/components/UI';
 import PartnerModal from '@/components/dashboard/PartnerModal';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-// import { type Action } from '@reduxjs/toolkit';
-// import { reorderPartners } from '@/modules/admin';
+import { type Action } from '@reduxjs/toolkit';
+import { reorderPartners } from '@/modules/admin';
 
 const Partners = () => {
   const partners = useAppSelector((state) => state.admin.partners);
   const [selectedPartner, setSelectedPartner] = useState<AdminPartner | null>(null);
   const [createNewPartner, setCreateNewPartner] = useState(false);
   const parentEl = useRef<HTMLDivElement>(null);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [items, setItems] = useState<JSX.Element[]>([]);
+  const [didReorder, setDidReorder] = useState(false);
 
   useEffect(() => {
+    if (didReorder) return;
     setItems(
       partners
         ?.toSorted((a: AdminPartner, b: AdminPartner) => a.position - b.position)
@@ -46,37 +48,36 @@ const Partners = () => {
       </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
-        {items}
-        {/* <DraggableList
-          items={
-           items
-          }
-          availableWidth={parentEl.current?.clientWidth ?? 0}
-          blockHeight={300}
-          blockWidth={300}
-          blockGap={8}
-          onReorder={(newOrder) => {
-            // create a copy of the partners array
-            const newPartners = [...partners!];
+        {items.length !== 0 ? (
+          <DraggableList
+            items={items}
+            availableWidth={parentEl.current?.clientWidth ?? 0}
+            blockHeight={300}
+            blockWidth={300}
+            blockGap={8}
+            onReorder={(newOrder) => {
+              // create a copy of the partners array
+              const newPartners = [...partners!];
 
-            // loop through the newOrder array
-            newOrder.forEach((newIndex, oldIndex) => {
-              // update the partners array
-              newPartners[newIndex] = {
-                ...partners![oldIndex],
-                position: newIndex,
-              };
-            });
+              // loop through the newOrder array
+              newOrder.forEach((newIndex, oldIndex) => {
+                // update the partners array
+                newPartners[newIndex] = {
+                  ...partners![oldIndex],
+                  position: newIndex,
+                };
+              });
 
-            // update the tournament in the store
-            dispatch(reorderPartners(newPartners) as unknown as Action);
+              // Avoid rerendering the list to avoid rebuilding the reorder component that may fail
+              setDidReorder(true);
 
-            setTimeout(() => {
-              // refresh the page
-              window.location.reload();
-            }, 200);
-          }}
-        /> */}
+              // update the tournament in the store
+              dispatch(reorderPartners(newPartners) as unknown as Action);
+            }}
+          />
+        ) : (
+          <Loader />
+        )}
       </div>
 
       {(selectedPartner !== null || createNewPartner) && (

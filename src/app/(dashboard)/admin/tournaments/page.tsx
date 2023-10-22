@@ -1,24 +1,26 @@
 'use client';
-import { Square, Title } from '@/components/UI';
+import { DraggableList, Loader, Square, Title } from '@/components/UI';
 import TournamentModal from '@/components/dashboard/TournamentModal';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-// import { reorderTournaments } from '@/modules/admin';
-// import type { Action } from '@reduxjs/toolkit';
+import { reorderTournaments } from '@/modules/admin';
+import type { Action } from '@reduxjs/toolkit';
 
 const Tournaments = () => {
   const tournaments = useAppSelector((state) => state.admin.tournaments);
   const [selectedTournament, setSelectedTournament] = useState<AdminTournament | null>(null);
   const [createNewTournament, setCreateNewTournament] = useState(false);
   const parentEl = useRef<HTMLDivElement>(null);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [items, setItems] = useState<JSX.Element[]>([]);
+  const [didReorder, setDidReorder] = useState(false);
 
   useEffect(() => {
+    if(didReorder) return;
     setItems(
       tournaments
         ?.toSorted((a: AdminTournament, b: AdminTournament) => a.position - b.position)
@@ -41,8 +43,8 @@ const Tournaments = () => {
       <Title>Tournois</Title>
 
       <div className={styles.squareContainer} ref={parentEl}>
-        {items}
-        {/* <DraggableList
+        {items.length !== 0 ? (
+          <DraggableList
           items={
             items
           }
@@ -63,15 +65,17 @@ const Tournaments = () => {
               };
             });
 
+            // Avoid rerendering the list to avoid rebuilding the reorder component that may fail
+            setDidReorder(true);
+
             // update the tournament in the store
             dispatch(reorderTournaments(newTournaments) as unknown as Action);
-
-            setTimeout(() => {
-              // refresh the page
-              window.location.reload();
-            }, 200);
           }}
-        /> */}
+        />
+        ) : (
+          <Loader />
+        )}
+        
       </div>
 
       {(selectedTournament !== null || createNewTournament) && (
