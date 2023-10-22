@@ -12,7 +12,6 @@ import { IconName } from '@/components/UI/Icon';
 import { type Action } from '@reduxjs/toolkit';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { setRedirect } from '@/modules/redirect';
-import { Tournament } from '@/types';
 
 export function TournamentHome({
   animations,
@@ -30,10 +29,8 @@ export function TournamentHome({
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
   const login = useAppSelector((state) => state.settings.login);
-  const tournaments = useAppSelector(
-    (state) => state.tournament.tournaments?.toSorted((a: Tournament, b: Tournament) => a.position - b.position),
-  );
-  
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+
   // This is initialized when tournaments are fetched
   const [selectedTournamentIndex, setSelectedTournamentIndex] = useState(-1);
   const [renderedTournamentIndex, setRenderedTournamentIndex] = useState(-1);

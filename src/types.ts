@@ -5,11 +5,11 @@ export interface Partner {
   id: string;
   name: string;
   link: string;
-  position: number;
 }
 
 export interface AdminPartner extends Partner {
   display: boolean;
+  position: number;
 }
 
 export interface Settings {
@@ -218,7 +218,6 @@ export interface Tournament {
   playersPerTeam: number;
   lockedTeamsCount: number;
   placesLeft: number;
-  position: number;
   infos: string | null;
   format: string | null;
   cashprize: number | null;
@@ -231,6 +230,7 @@ export interface AdminTournament extends Tournament {
   display: boolean;
   displayCasters: boolean;
   displayCashprize: boolean;
+  position: number;
 }
 
 export enum UserType {

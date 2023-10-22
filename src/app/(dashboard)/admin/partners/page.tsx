@@ -22,19 +22,17 @@ const Partners = () => {
   useEffect(() => {
     if (didReorder) return;
     setItems(
-      partners
-        ?.toSorted((a: AdminPartner, b: AdminPartner) => a.position - b.position)
-        .map((partner, index) => (
-          <Square
-            key={index}
-            imgSrc={getPartnerLogoLink(partner.id)}
-            alt={partner.name}
-            onClick={(e) => {
-              if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-              setSelectedPartner(partner);
-            }}
-          />
-        )) ?? [],
+      partners?.map((partner, index) => (
+        <Square
+          key={index}
+          imgSrc={getPartnerLogoLink(partner.id)}
+          alt={partner.name}
+          onClick={(e) => {
+            if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
+            setSelectedPartner(partner);
+          }}
+        />
+      )) ?? [],
     );
   }, [partners]);
 

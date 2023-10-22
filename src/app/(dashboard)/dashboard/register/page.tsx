@@ -47,12 +47,8 @@ const Register = () => {
   const [confirmationForTeam, setConfirmationForTeam] = useState<Team>();
 
   // Split multiplayer and solo tournaments
-  const tournamentsList = tournaments
-    .toSorted((a: Tournament, b: Tournament) => a.position - b.position)
-    .filter((tournament) => tournament.playersPerTeam > 1);
-  const tournamentsSoloList = tournaments
-    .toSorted((a: Tournament, b: Tournament) => a.position - b.position)
-    .filter((tournament) => tournament.playersPerTeam === 1);
+  const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
+  const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
 
   // Get tournaments category select options
   const tournamentsOptions = tournamentsList.map((tournament) => ({
