@@ -43,7 +43,7 @@ const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.name : '',
     teamName: user.team ? user.team.name : user.type === UserType.spectator ? '(spectateur)' : '',
-    lockedLabel: user.team && user.team.locked ? '✔' : '✖',
+    lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scannedAt ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',
@@ -176,7 +176,7 @@ export const saveUser =
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
-    dispatch(updateUser({ ...userModal, ...user }) as unknown as Action);
+    dispatch(updateUser({ ...userModal, ...user, ...body }) as unknown as Action);
   };
 
 export const createUser = (body: object, callback: () => void) => async () => {
