@@ -6,11 +6,12 @@ import { fetchPartners, PartnersAction } from '@/modules/partners';
 import { Partner } from '@/types';
 import { type Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
+import { Square } from './UI';
 
 /**
  * Renders a list of partners with their logos as clickable links.
  */
-export default function Partners() {
+export default function Partners({ cards = false }: { cards?: boolean }) {
   const dispatch = useAppDispatch();
   const partners = useAppSelector((state) => (state.partners as PartnersAction).partners);
 
@@ -25,8 +26,16 @@ export default function Partners() {
       {!partners || partners.length === 0
         ? 'Chargement des partenaires...'
         : partners?.map((partner: Partner, i: number) => (
-            <a key={i} href={partner.link}>
-              <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
+            <a key={i} href={partner.link} target="_blank">
+              {cards ? (
+                <Square
+                  imgSrc={getPartnerLogoLink(partner.id)}
+                  alt={partner.name}
+                  // text={partner.name}
+                />
+              ) : (
+                <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
+              )}
             </a>
           ))}
     </div>
