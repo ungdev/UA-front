@@ -5,6 +5,7 @@ import { AdminPartner } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { addPartner, deletePartner, updatePartner } from '@/modules/admin';
+import partners from '@/modules/partners';
 
 /** The partner modal */
 const PartnerModal = ({
@@ -55,11 +56,12 @@ const PartnerModal = ({
                 display,
               };
               dispatch(
-                partner === null
-                  ? (addPartner(body, logo, () => {
+                partner == null
+                  ? (addPartner({ ...body, position: partners.length }, logo, () => {
                       onClose!();
                     }) as unknown as Action)
-                  : (updatePartner(body, logo, () => {
+                  : // in this case position is not updated so we set it to -1
+                    (updatePartner({ ...body, position: -1 }, logo, () => {
                       onClose!();
                     }) as unknown as Action),
               );

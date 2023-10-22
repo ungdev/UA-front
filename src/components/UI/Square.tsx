@@ -17,7 +17,7 @@ const Square = ({
   /** Source of the image to display above */
   imgSrc?: string | null;
   /** Function called when the user clicks on the button */
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   /** Class of the square */
   className?: string;
   /** alt */

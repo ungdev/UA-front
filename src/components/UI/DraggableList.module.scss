@@ -1,0 +1,25 @@
+.blockContainer {
+    flex-grow: 2;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+
+    .wrapper {
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    .block {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+}

@@ -35,6 +35,8 @@
     object-fit: cover;
     object-position: center;
     transition: all 0.2s ease-in-out;
+    user-select: none;
+    pointer-events: none;
   }
 
   &:hover {

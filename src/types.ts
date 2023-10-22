@@ -9,6 +9,7 @@ export interface Partner {
 
 export interface AdminPartner extends Partner {
   display: boolean;
+  position: number;
 }
 
 export interface Settings {
@@ -229,6 +230,7 @@ export interface AdminTournament extends Tournament {
   display: boolean;
   displayCasters: boolean;
   displayCashprize: boolean;
+  position: number;
 }
 
 export enum UserType {
