@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
-import Tooltip from '@/components/UI/Tooltip';
 import Link from 'next/link';
 import { getTournamentRulesLink } from '@/utils/uploadLink';
 
