@@ -216,6 +216,7 @@ export interface Tournament {
   name: string;
   maxPlayers: number;
   playersPerTeam: number;
+  coachesPerTeam: number;
   lockedTeamsCount: number;
   placesLeft: number;
   infos: string | null;

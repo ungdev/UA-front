@@ -24,6 +24,7 @@ const TournamentModal = ({
   const [name, setName] = useState(tournament?.name || null);
   const [maxPlayers, setMaxPlayers] = useState(tournament?.maxPlayers || null);
   const [playersPerTeam, setPlayersPerTeam] = useState(tournament?.playersPerTeam || null);
+  const [coachesPerTeam, setCoachesPerTeam] = useState(tournament?.coachesPerTeam || null);
   const [infos, setInfos] = useState(tournament?.infos || null);
   const [format, setFormat] = useState(tournament?.format || null);
   const [cashprize, setCashprize] = useState(tournament?.cashprize || null);
@@ -54,6 +55,7 @@ const TournamentModal = ({
                 name: name ?? '',
                 maxPlayers: maxPlayers ?? 0,
                 playersPerTeam: playersPerTeam ?? 0,
+                coachesPerTeam: coachesPerTeam ?? 0,
                 lockedTeamsCount: 0,
                 placesLeft: 0,
                 infos: infos,
@@ -90,6 +92,12 @@ const TournamentModal = ({
           type="number"
           value={playersPerTeam ?? ''}
           onChange={(e) => setPlayersPerTeam(parseInt(e))}
+        />
+        <Input
+          label="Nombre maximal de coachs par équipe"
+          type="number"
+          value={coachesPerTeam ?? ''}
+          onChange={(e) => setCoachesPerTeam(parseInt(e))}
         />
         <Input label="Infos" value={infos ?? ''} onChange={setInfos} />
         <Textarea label="Format" value={format ?? ''} onChange={setFormat} />
