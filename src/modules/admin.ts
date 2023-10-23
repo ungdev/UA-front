@@ -268,10 +268,15 @@ export const updateItem = (item: AdminItem, callback: () => void) => async (disp
   try {
     const result = await API.patch(`admin/items/${item.id}`, {
       name: item.name,
+      category: item.category,
+      attribute: item.attribute,
       price: item.price,
-      quantity: item.left,
-      description: item.infos,
-      display: item.display.toString(),
+      reducedPrice: item.reducedPrice,
+      stockDifference: item.left,
+      infos: item.infos,
+      // availableFrom: item.availableFrom,
+      // availableUntil: item.availableUntil,
+      // display: item.display.toString(),
     });
 
     callback();
@@ -282,5 +287,22 @@ export const updateItem = (item: AdminItem, callback: () => void) => async (disp
     console.error(err);
   }
 };
+
+export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch('admin/items', {
+      items: items.map((item) => ({
+        id: item.id,
+        position: item.position,
+      })),
+    });
+
+    toast.success('Les items ont bien été réordonnés');
+
+    dispatch(setAdminItems(result));
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 export default adminSlice.reducer;

@@ -203,6 +203,8 @@ export interface Item {
 
 export interface AdminItem extends Item {
   reducedPrice: number | null;
+  stock: number | null;
+  position: number;
   display: boolean;
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Input, Textarea } from '@/components/UI';
+import { Modal, Button, Input, Textarea, Checkbox, Select } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminItem } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
@@ -22,8 +22,18 @@ const ItemModal = ({
   const [reducedPrice, setReducedPrice] = useState(item?.reducedPrice || null);
   const [startDate, setStartDate] = useState(item?.availableFrom || null);
   const [endDate, setEndDate] = useState(item?.availableUntil || null);
-  const [quantity, setQuantity] = useState(item?.left || null);
+  const [quantity, setQuantity] = useState(item?.stock || null);
   const [infos, setInfos] = useState(item?.infos || null);
+  const [display, setDisplay] = useState(item?.display || false);
+
+  const [attribute, setAttribute] = useState(item?.attribute || null);
+  const [category, setCategory] = useState(item?.category || null);
+
+  const categories = [
+    ["rent", "Location"],
+    ["supplement", "Supplément"],
+    ["ticket", "Ticket"],
+  ];
 
   return (
     <Modal
@@ -38,12 +48,16 @@ const ItemModal = ({
               const body = {
                 id: id ?? '',
                 name: name ?? '',
+                category: category ?? '',
+                attribute: attribute ?? '',
                 price: price ?? 0,
                 reducedPrice: reducedPrice ?? 0,
                 availableFrom: startDate ?? '',
                 availableUntil: endDate ?? '',
-                left: quantity ?? 0,
+                // we update the stock through a difference between the current stock and the quantity in order to avoid conflicts if an order is made at the same time
+                left: (quantity! - item!.stock!) ?? item!.stock!,
                 infos: infos ?? '',
+                display,
               } as AdminItem;
               dispatch(
                 updateItem(body, () => {
@@ -64,17 +78,33 @@ const ItemModal = ({
           value={reducedPrice ?? ''}
           onChange={(value) => setReducedPrice(value as unknown as number)}
         />
+        <Select
+          label="Catégorie"
+          options={categories.map((category) => ({
+            value: category[0],
+            label: category[1],
+          }))}
+          value={category as string}
+          onChange={setCategory}
+        />
+        <Input label="Attribut" value={attribute ?? ''} onChange={setAttribute} />
         <Input
           label="Date de début"
           type="datetime-local"
-          value={startDate?.toISOString() ?? ''}
-          onChange={(value) => setStartDate(new Date(value as unknown as number))}
+          value={new Date(startDate) ?? ''}
+          onChange={(value) => {
+            if((new Date(value) !== "Invalid Date") && !isNaN(new Date(value))) {
+              setStartDate(new Date(value as unknown as number));
+            }
+          }}
         />
         <Input
           label="Date de fin"
           type="datetime-local"
-          value={endDate?.toISOString() ?? ''}
-          onChange={(value) => setEndDate(new Date(value as unknown as number))}
+          value={new Date(endDate) ?? ''}
+          onChange={(value) => {
+            
+          }}
         />
         <Input
           label="Stock restant"
@@ -82,6 +112,7 @@ const ItemModal = ({
           onChange={(value) => setQuantity(value as unknown as number)}
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
+        <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
   );
