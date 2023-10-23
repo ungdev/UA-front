@@ -131,7 +131,12 @@ const About = () => {
           </div>
         )}
       </div>
-      <Partners />
+      <div className="">
+        <Title level={2} type={1} align="center">
+          Nos partenaires
+        </Title>
+        <Partners cards />
+      </div>
     </>
   );
 };

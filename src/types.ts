@@ -9,6 +9,7 @@ export interface Partner {
 
 export interface AdminPartner extends Partner {
   display: boolean;
+  position: number;
 }
 
 export interface Settings {
@@ -118,7 +119,7 @@ export interface UserWithTeamAndMessageAndTournamentInfo extends User {
       name: string;
     };
     captainId: string;
-    locked: Date | null;
+    lockedAt: Date | null;
   };
 }
 
@@ -229,6 +230,7 @@ export interface AdminTournament extends Tournament {
   display: boolean;
   displayCasters: boolean;
   displayCashprize: boolean;
+  position: number;
 }
 
 export enum UserType {

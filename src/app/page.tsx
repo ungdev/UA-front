@@ -67,7 +67,7 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/t_QP8_bYJ1c" />,
+          <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/Rapw-tXMeDU" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
               <img src={banner.src} alt="" />
