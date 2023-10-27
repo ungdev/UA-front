@@ -101,14 +101,24 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         {loginAllowed && (
           <Table
             className={styles.table}
-            columns={[
+            columns={tournament.playersPerTeam > 1 ? [
               { key: 'name', title: 'Nom' },
+              { key: 'players', title: 'Joueurs' },
+            ] : [
               { key: 'players', title: 'Joueurs' },
             ]}
             dataSource={tournament.teams
               .filter((team) => team.lockedAt)
-              .map((team) => ({
+              .map((team) => (tournament.playersPerTeam > 1 ? {
                 name: team.name,
+                players: team.players.map((player) => (
+                  <>
+                    {player.username}
+                    <br />
+                  </>
+                )),
+              }: 
+              {
                 players: team.players.map((player) => (
                   <>
                     {player.username}
