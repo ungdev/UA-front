@@ -24,44 +24,44 @@ const CartItem = ({
   return (
     <div className={styles.cartItem}>
       <div className={styles.left}>
-        <Icon name={IconName.Trash} onClick={onRemove} />
-        <div className="">
-          <div className={styles.itemName}>{itemName}</div>
-          <div>
-            {quantity} x{' '}
-            {reducedUnitPrice !== null ? (
-              <>
-                {(reducedUnitPrice / 100).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
-                €
-                <span className={styles.reductedPrice}>
-                  {(unitPrice / 100).toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                  })}
-                  €
-                </span>
-              </>
-            ) : (
-              <>
+        <div className={styles.itemName}>{itemName}</div>
+        <div>
+          {quantity} x{' '}
+          {reducedUnitPrice !== null ? (
+            <>
+              {(reducedUnitPrice / 100).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+              €
+              <span className={styles.reductedPrice}>
                 {(unitPrice / 100).toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
                 €
-              </>
-            )}
-          </div>
+              </span>
+            </>
+          ) : (
+            <>
+              {(unitPrice / 100).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
+              €
+            </>
+          )}
         </div>
       </div>
-      <div>
-        {((quantity * (reducedUnitPrice || unitPrice)) / 100).toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}
-        €
+      <div className={styles.right}>
+        <div className="">
+          {((quantity * (reducedUnitPrice || unitPrice)) / 100).toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+          €
+        </div>
+        <Icon name={IconName.Trash} onClick={onRemove} />
       </div>
     </div>
   );
