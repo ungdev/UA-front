@@ -119,14 +119,10 @@ const Home = () => {
             <Icon name={IconName.MapPin} />
             TROYES
           </Link>
-          {/*<Link href={'/event#program'} className={styles.moreInfoContainer}>
+          <Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
             1, 2, 3 Décembre 2023
-          </Link>*/}
-          <Button onClick={() => toast.info("Plus d'infos à venir")} className={styles.moreInfoContainer}>
-            <Icon name={IconName.Calendar} />
-            1, 2, 3 Décembre 2023
-          </Button>
+          </Link>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
