@@ -274,9 +274,9 @@ export const updateItem = (item: AdminItem, callback: () => void) => async (disp
       reducedPrice: item.reducedPrice,
       stockDifference: item.left,
       infos: item.infos,
-      // availableFrom: item.availableFrom,
-      // availableUntil: item.availableUntil,
-      // display: item.display.toString(),
+      availableFrom: item.availableFrom,
+      availableUntil: item.availableUntil,
+      display: item.display.toString(),
     });
 
     callback();

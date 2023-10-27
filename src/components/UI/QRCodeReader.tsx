@@ -17,7 +17,7 @@ const QRCodeReader = ({
   className?: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isEnabled, setIsEnabled] = useState(true);
+  const [isEnabled, setIsEnabled] = useState(false);
   const [scanner, setScanner] = useState<QrScanner | null>(null);
 
   useEffect(() => {
@@ -49,6 +49,8 @@ const QRCodeReader = ({
     <div className={className}>
       <video ref={videoRef}></video>
       <Button
+        secondary
+        outline
         onClick={() => {
           setIsEnabled((prev) => !prev);
           if (isEnabled) {

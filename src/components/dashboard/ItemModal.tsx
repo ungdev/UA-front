@@ -35,6 +35,17 @@ const ItemModal = ({
     ['ticket', 'Ticket'],
   ];
 
+  const convertToDateTimeLocalString = (date: Date) => {
+    date = new Date(date);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  };
+
   return (
     <Modal
       visible={true}
@@ -59,6 +70,11 @@ const ItemModal = ({
                 infos: infos ?? '',
                 display,
               } as AdminItem;
+
+              if (attribute === '') {
+                delete body.attribute;
+              }
+
               dispatch(
                 updateItem(body, () => {
                   onClose!();
@@ -91,21 +107,17 @@ const ItemModal = ({
         <Input
           label="Date de début"
           type="datetime-local"
-          value={new Date(startDate) ?? ''}
+          value={startDate ? convertToDateTimeLocalString(startDate) : ''}
           onChange={(value) => {
-            if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
-              setStartDate(new Date(value as unknown as number));
-            }
+            setStartDate(new Date(value as unknown as number));
           }}
         />
         <Input
           label="Date de fin"
           type="datetime-local"
-          value={new Date(endDate) ?? ''}
+          value={endDate ? convertToDateTimeLocalString(endDate) : ''}
           onChange={(value) => {
-            if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
-              setEndDate(new Date(value as unknown as number));
-            }
+            setEndDate(new Date(value as unknown as number));
           }}
         />
         <Input
