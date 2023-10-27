@@ -5,6 +5,7 @@ export interface Partner {
   id: string;
   name: string;
   link: string;
+  description: string;
 }
 
 export interface AdminPartner extends Partner {
@@ -203,6 +204,8 @@ export interface Item {
 
 export interface AdminItem extends Item {
   reducedPrice: number | null;
+  stock: number | null;
+  position: number;
   display: boolean;
 }
 

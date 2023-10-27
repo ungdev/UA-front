@@ -280,7 +280,7 @@ const SupplementList = ({
           {shopSectionName}
         </Title>
         <Table
-          columns={supplementRows.some((row) => row.attributes) ? supplementColumnsWithAttribute : supplementColumns}
+          columns={supplementRows.some((row) => row?.attributes) ? supplementColumnsWithAttribute : supplementColumns}
           dataSource={supplementRows}
           className={styles.shopTable}
         />

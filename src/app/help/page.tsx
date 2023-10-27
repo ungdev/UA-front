@@ -36,9 +36,12 @@ const faq: Faq = {
           Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 6 ans
           pour le tournoi Pokémon). Il faudra que tu présentes <strong>l'autorisation parentale</strong>
           <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2023.pdf`} target="_blank">
+            {' '}
             disponible ici
           </a>
-          , <strong>ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne</strong>{' '}
+          , <strong>
+            ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne
+          </strong>{' '}
           avant d'accéder à l'UTT Arena.
         </>
       ),

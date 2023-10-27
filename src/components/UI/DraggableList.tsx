@@ -36,7 +36,15 @@ const isInside = (
   return true;
 };
 
-const useDraggable = ({ parentRef, onReorder }: { parentRef: React.RefObject<HTMLElement>; onReorder: () => void }) => {
+const useDraggable = ({
+  parentRef,
+  onReorder,
+  enabled,
+}: {
+  parentRef: React.RefObject<HTMLElement>;
+  onReorder: () => void;
+  enabled: boolean;
+}) => {
   const [coordinate, setCoordinate] = useState({
     block: { x: 0, y: 0 },
     blockInitial: { x: 0, y: 0 },
@@ -106,6 +114,15 @@ const useDraggable = ({ parentRef, onReorder }: { parentRef: React.RefObject<HTM
     [],
   );
 
+  if (!enabled)
+    return {
+      handleMouseDown: () => {},
+      handleMouseMove: () => {},
+      handleMouseUp: () => {},
+      block: { x: 0, y: 0 },
+      movingBlockIndex: null,
+    };
+
   return {
     handleMouseDown,
     handleMouseMove,
@@ -122,6 +139,7 @@ const DraggableList = ({
   blockHeight,
   blockGap,
   onReorder,
+  enabled = true,
 }: {
   /** Items to display */
   items: ReactNode[];
@@ -134,7 +152,9 @@ const DraggableList = ({
   /** Block gap */
   blockGap: number;
   /** On reorder */
-  onReorder?: (newOrder: number[]) => void;
+  onReorder: (newOrder: number[]) => void;
+  /** Enabled */
+  enabled?: boolean;
 }) => {
   // -----------------------------------
   //             Constants
@@ -155,10 +175,9 @@ const DraggableList = ({
   } = useDraggable({
     parentRef,
     onReorder: () => {
-      if (onReorder) {
-        onReorder(blocks.current);
-      }
+      onReorder!(blocks.current);
     },
+    enabled,
   });
 
   const immediateMotionsProps = {
