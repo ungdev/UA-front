@@ -303,6 +303,6 @@ export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) =
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 export default adminSlice.reducer;

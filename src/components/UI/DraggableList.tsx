@@ -36,7 +36,15 @@ const isInside = (
   return true;
 };
 
-const useDraggable = ({ parentRef, onReorder, enabled }: { parentRef: React.RefObject<HTMLElement>; onReorder: () => void, enabled: boolean }) => {
+const useDraggable = ({
+  parentRef,
+  onReorder,
+  enabled,
+}: {
+  parentRef: React.RefObject<HTMLElement>;
+  onReorder: () => void;
+  enabled: boolean;
+}) => {
   const [coordinate, setCoordinate] = useState({
     block: { x: 0, y: 0 },
     blockInitial: { x: 0, y: 0 },
@@ -106,13 +114,14 @@ const useDraggable = ({ parentRef, onReorder, enabled }: { parentRef: React.RefO
     [],
   );
 
-  if(!enabled) return {
-    handleMouseDown: () => {},
-    handleMouseMove: () => {},
-    handleMouseUp: () => {},
-    block: { x: 0, y: 0 },
-    movingBlockIndex: null,
-  };
+  if (!enabled)
+    return {
+      handleMouseDown: () => {},
+      handleMouseMove: () => {},
+      handleMouseUp: () => {},
+      block: { x: 0, y: 0 },
+      movingBlockIndex: null,
+    };
 
   return {
     handleMouseDown,

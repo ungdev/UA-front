@@ -22,15 +22,21 @@ const QRCodeReader = ({
 
   useEffect(() => {
     const video = videoRef.current!;
-    setScanner(new QrScanner(video, (result) => {
-      onCode(result);
-    }, {
-      highlightScanRegion: true,
-      highlightCodeOutline: true,
-    }));
+    setScanner(
+      new QrScanner(
+        video,
+        (result) => {
+          onCode(result);
+        },
+        {
+          highlightScanRegion: true,
+          highlightCodeOutline: true,
+        },
+      ),
+    );
 
     scanner?.start().catch((error) => {
-      toast.error('Impossible d\'accéder à la caméra.');
+      toast.error("Impossible d'accéder à la caméra.");
       console.error(error);
     });
 
@@ -42,16 +48,15 @@ const QRCodeReader = ({
   return (
     <div className={className}>
       <video ref={videoRef}></video>
-      <Button onClick={
-        () => {
+      <Button
+        onClick={() => {
           setIsEnabled((prev) => !prev);
           if (isEnabled) {
             scanner?.stop();
           } else {
             scanner?.start();
           }
-        }
-      }>
+        }}>
         {isEnabled ? 'Désactiver' : 'Activer'}
       </Button>
     </div>

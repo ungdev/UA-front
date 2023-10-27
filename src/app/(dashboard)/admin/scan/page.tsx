@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 import { useState, useRef } from 'react';
 
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
-import { Input, Title, Button, Card, QRCodeReader, Icon } from '@/components/UI/index';
+import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserType } from '@/types';
@@ -17,7 +17,6 @@ const Entry = () => {
   const dispatch = useAppDispatch();
 
   const onCodeScanned = (code: QrScanner.ScanResult) => {
-    console.log(code);
     const base64Code = window.btoa(code.data);
     if (scannedUser || base64Code === lastCode.current) return;
     lastCode.current = base64Code;
@@ -141,7 +140,9 @@ const Entry = () => {
                 />
               </>
             )}
-            <Button primary type="submit">{scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}</Button>
+            <Button primary type="submit">
+              {scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
+            </Button>
           </form>
         </div>
       </div>

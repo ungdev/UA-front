@@ -19,8 +19,8 @@ const Partners = () => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
   const [reorderEnabled, setReorderEnabled] = useState(false);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     if (didReorder) return;
     setItems(
       partners?.map((partner, index) => (
@@ -40,7 +40,9 @@ const Partners = () => {
   return (
     <div className={styles.partners}>
       <div className={styles.titleContainer}>
-        <Title level={2} gutterBottom={false}>Partenaires</Title>
+        <Title level={2} gutterBottom={false}>
+          Partenaires
+        </Title>
         <div>
           <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
             {reorderEnabled ? 'Terminer' : 'Réorganiser'}

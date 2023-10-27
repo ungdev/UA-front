@@ -28,7 +28,7 @@ const Shop = () => {
           alt={item.name}
           onClick={(e) => {
             if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;
-            setSelectedItem(item)
+            setSelectedItem(item);
           }}
           replacementText={!item.image ? item.name : null}
         />
@@ -39,14 +39,16 @@ const Shop = () => {
   return (
     <div className={styles.shop}>
       <div className={styles.titleContainer}>
-        <Title level={2} gutterBottom={false}>Boutique</Title>
+        <Title level={2} gutterBottom={false}>
+          Boutique
+        </Title>
         <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
           {reorderEnabled ? 'Terminer' : 'Réorganiser'}
         </Button>
       </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
-      {items.length !== 0 ? (
+        {items.length !== 0 ? (
           <DraggableList
             items={items}
             availableWidth={parentEl.current?.clientWidth ?? 0}

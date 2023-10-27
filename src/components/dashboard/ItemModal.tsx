@@ -30,9 +30,9 @@ const ItemModal = ({
   const [category, setCategory] = useState(item?.category || null);
 
   const categories = [
-    ["rent", "Location"],
-    ["supplement", "Supplément"],
-    ["ticket", "Ticket"],
+    ['rent', 'Location'],
+    ['supplement', 'Supplément'],
+    ['ticket', 'Ticket'],
   ];
 
   return (
@@ -55,7 +55,7 @@ const ItemModal = ({
                 availableFrom: startDate ?? '',
                 availableUntil: endDate ?? '',
                 // we update the stock through a difference between the current stock and the quantity in order to avoid conflicts if an order is made at the same time
-                left: (quantity! - item!.stock!) ?? item!.stock!,
+                left: quantity! - item!.stock! ?? item!.stock!,
                 infos: infos ?? '',
                 display,
               } as AdminItem;
@@ -93,19 +93,16 @@ const ItemModal = ({
           type="datetime-local"
           value={new Date(startDate) ?? ''}
           onChange={(value) => {
-            if((new Date(value) !== "Invalid Date") && !isNaN(new Date(value))) {
+            if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
               setStartDate(new Date(value as unknown as number));
             }
           }}
         />
-        <Input
-          label="Date de fin"
-          type="datetime-local"
-          value={new Date(endDate) ?? ''}
-          onChange={(value) => {
-            
-          }}
-        />
+        <Input label="Date de fin" type="datetime-local" value={new Date(endDate) ?? ''} onChange={(value) => {
+          if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
+            setEndDate(new Date(value as unknown as number));
+          }
+        }} />
         <Input
           label="Stock restant"
           value={quantity ?? ''}

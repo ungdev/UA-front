@@ -5,6 +5,7 @@ export interface Partner {
   id: string;
   name: string;
   link: string;
+  description: string;
 }
 
 export interface AdminPartner extends Partner {

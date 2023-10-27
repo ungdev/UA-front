@@ -40,7 +40,9 @@ const Tournaments = () => {
   return (
     <div className={styles.tournaments}>
       <div className={styles.titleContainer}>
-        <Title level={2} gutterBottom={false}>Tournois</Title>
+        <Title level={2} gutterBottom={false}>
+          Tournois
+        </Title>
         <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
           {reorderEnabled ? 'Terminer' : 'Réorganiser'}
         </Button>
