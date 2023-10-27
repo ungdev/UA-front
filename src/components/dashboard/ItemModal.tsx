@@ -98,11 +98,16 @@ const ItemModal = ({
             }
           }}
         />
-        <Input label="Date de fin" type="datetime-local" value={new Date(endDate) ?? ''} onChange={(value) => {
-          if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
-            setEndDate(new Date(value as unknown as number));
-          }
-        }} />
+        <Input
+          label="Date de fin"
+          type="datetime-local"
+          value={new Date(endDate) ?? ''}
+          onChange={(value) => {
+            if (new Date(value) !== 'Invalid Date' && !isNaN(new Date(value))) {
+              setEndDate(new Date(value as unknown as number));
+            }
+          }}
+        />
         <Input
           label="Stock restant"
           value={quantity ?? ''}

@@ -24,7 +24,6 @@ import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-ligh
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
 import banner from '@/../public/images/banner.png';
-import { toast } from 'react-toastify';
 
 const Home = () => {
   const dispatch = useAppDispatch();
