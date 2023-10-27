@@ -1,5 +1,5 @@
 'use client';
-import { DraggableList, Loader, Square, Title } from '@/components/UI';
+import { Button, DraggableList, Loader, Square, Title } from '@/components/UI';
 import ItemModal from '@/components/dashboard/ItemModal';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminItem } from '@/types';
@@ -16,6 +16,7 @@ const Shop = () => {
 
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
+  const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
     if (didReorder) return;
@@ -38,7 +39,10 @@ const Shop = () => {
   return (
     <div className={styles.shop}>
       <div className={styles.titleContainer}>
-        <Title level={2}>Boutique (Fonctionnalité en cours de création)</Title>
+        <Title level={2} gutterBottom={false}>Boutique</Title>
+        <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
+          {reorderEnabled ? 'Terminer' : 'Réorganiser'}
+        </Button>
       </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
@@ -48,7 +52,8 @@ const Shop = () => {
             availableWidth={parentEl.current?.clientWidth ?? 0}
             blockHeight={300}
             blockWidth={300}
-            blockGap={8}
+            blockGap={12}
+            enabled={reorderEnabled}
             onReorder={(newOrder) => {
               // create a copy of the partners array
               const newItems = [...shopItems!];
