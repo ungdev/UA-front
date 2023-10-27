@@ -40,9 +40,7 @@ const QRCodeReader = ({
       console.error(error);
     });
 
-    return () => {
-      scanner?.destroy();
-    };
+    return () => scanner?.destroy();
   }, []);
 
   return (

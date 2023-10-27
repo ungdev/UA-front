@@ -139,7 +139,7 @@ const DraggableList = ({
   blockHeight,
   blockGap,
   onReorder,
-  enabled = false,
+  enabled = true,
 }: {
   /** Items to display */
   items: ReactNode[];
