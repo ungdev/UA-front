@@ -97,6 +97,7 @@ export const addPartner =
       const result = await API.post('admin/partners', {
         name: partner.name,
         link: partner.link,
+        description: partner.description,
         display: partner.display.toString(),
         position: partner.position,
       });
@@ -121,6 +122,7 @@ export const updatePartner =
       const result = await API.patch(`admin/partners/${partner.id}`, {
         name: partner.name,
         link: partner.link,
+        description: partner.description,
         display: partner.display.toString(),
       });
 
