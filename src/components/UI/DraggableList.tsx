@@ -152,7 +152,7 @@ const DraggableList = ({
   /** Block gap */
   blockGap: number;
   /** On reorder */
-  onReorder?: (newOrder: number[]) => void;
+  onReorder: (newOrder: number[]) => void;
   /** Enabled */
   enabled?: boolean;
 }) => {
