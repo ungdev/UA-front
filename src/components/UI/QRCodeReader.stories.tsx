@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import QRCodeReader from './QRCodeReader';
-import { QRCode } from 'jsqr';
+import QrScanner from 'qr-scanner';
 
 const meta = {
   title: 'UI/QRCodeReader',
@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onCode(code: QRCode) {
+    onCode(code: QrScanner.ScanResult) {
       console.log(code);
     },
     className: 'test',
