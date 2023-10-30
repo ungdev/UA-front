@@ -1,5 +1,5 @@
 'use client';
-import { DraggableList, Loader, Square, Title } from '@/components/UI';
+import { Button, DraggableList, Loader, Square, Title } from '@/components/UI';
 import TournamentModal from '@/components/dashboard/TournamentModal';
 import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
@@ -18,6 +18,7 @@ const Tournaments = () => {
 
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
+  const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
     if (didReorder) return;
@@ -38,7 +39,14 @@ const Tournaments = () => {
 
   return (
     <div className={styles.tournaments}>
-      <Title>Tournois</Title>
+      <div className={styles.titleContainer}>
+        <Title level={2} gutterBottom={false}>
+          Tournois
+        </Title>
+        <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
+          {reorderEnabled ? 'Terminer' : 'Réorganiser'}
+        </Button>
+      </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
         {items.length !== 0 ? (
@@ -47,7 +55,8 @@ const Tournaments = () => {
             availableWidth={parentEl.current?.clientWidth ?? 0}
             blockHeight={300}
             blockWidth={300}
-            blockGap={8}
+            blockGap={12}
+            enabled={reorderEnabled}
             onReorder={(newOrder) => {
               // create a copy of the tournaments array
               const newTournaments = [...tournaments!];

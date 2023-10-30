@@ -18,6 +18,7 @@ const Partners = () => {
 
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
+  const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
     if (didReorder) return;
@@ -39,10 +40,17 @@ const Partners = () => {
   return (
     <div className={styles.partners}>
       <div className={styles.titleContainer}>
-        <Title level={2}>Partenaires</Title>
-        <Button primary onClick={() => setCreateNewPartner(true)}>
-          Ajouter un partenaire
-        </Button>
+        <Title level={2} gutterBottom={false}>
+          Partenaires
+        </Title>
+        <div>
+          <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
+            {reorderEnabled ? 'Terminer' : 'Réorganiser'}
+          </Button>
+          <Button primary onClick={() => setCreateNewPartner(true)}>
+            Ajouter un partenaire
+          </Button>
+        </div>
       </div>
 
       <div className={styles.squareContainer} ref={parentEl}>
@@ -52,7 +60,8 @@ const Partners = () => {
             availableWidth={parentEl.current?.clientWidth ?? 0}
             blockHeight={300}
             blockWidth={300}
-            blockGap={8}
+            blockGap={12}
+            enabled={reorderEnabled}
             onReorder={(newOrder) => {
               // create a copy of the partners array
               const newPartners = [...partners!];

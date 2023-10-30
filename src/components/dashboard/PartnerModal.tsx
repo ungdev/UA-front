@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Modal, Button, Checkbox, Input, FileInput } from '@/components/UI';
+import { Modal, Button, Checkbox, Input, FileInput, Textarea } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
@@ -23,6 +23,7 @@ const PartnerModal = ({
   const [name, setName] = useState(partner?.name || null);
   const [logo, setLogo] = useState<File | null>(null);
   const [display, setDisplay] = useState(partner?.display || false);
+  const [description, setDescription] = useState(partner?.description || null);
 
   return (
     <Modal
@@ -53,6 +54,7 @@ const PartnerModal = ({
                 id: id ?? '',
                 name: name ?? '',
                 link: link ?? '',
+                description: description ?? '',
                 display,
               };
               dispatch(
@@ -74,6 +76,7 @@ const PartnerModal = ({
       <>
         <Input label="Nom" value={name ?? ''} onChange={setName} />
         <Input label="Lien" value={link ?? ''} onChange={setLink} />
+        <Textarea label="Description" value={description ?? ''} onChange={setDescription} />
         <FileInput label="Logo" value={partner ? getPartnerLogoLink(partner.id) : ''} onChange={setLogo} type="png" />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>

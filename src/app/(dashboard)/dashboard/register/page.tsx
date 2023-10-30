@@ -236,7 +236,7 @@ const Register = () => {
                 const tournamentObject = tournaments.find((t) => t.id === tournament)!;
                 if (
                   (userType === 'player' && team.players.length >= tournamentObject.playersPerTeam) ||
-                  (userType === 'coach' && team.coaches.length >= Math.min(tournamentObject.playersPerTeam, 2))
+                  (userType === 'coach' && team.coaches.length >= tournamentObject.coachesPerTeam)
                 ) {
                   setConfirmationForTeam(team);
                 } else {

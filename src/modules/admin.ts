@@ -97,6 +97,7 @@ export const addPartner =
       const result = await API.post('admin/partners', {
         name: partner.name,
         link: partner.link,
+        description: partner.description,
         display: partner.display.toString(),
         position: partner.position,
       });
@@ -121,6 +122,7 @@ export const updatePartner =
       const result = await API.patch(`admin/partners/${partner.id}`, {
         name: partner.name,
         link: partner.link,
+        description: partner.description,
         display: partner.display.toString(),
       });
 
@@ -191,6 +193,7 @@ export const updateTournament =
         name: tournament.name,
         maxPlayers: tournament.maxPlayers,
         playersPerTeam: tournament.playersPerTeam,
+        coachesPerTeam: tournament.coachesPerTeam,
         display: tournament.display.toString(),
         displayCasters: tournament.displayCasters.toString(),
         displayCashprize: tournament.displayCashprize.toString(),
@@ -267,9 +270,14 @@ export const updateItem = (item: AdminItem, callback: () => void) => async (disp
   try {
     const result = await API.patch(`admin/items/${item.id}`, {
       name: item.name,
+      category: item.category,
+      attribute: item.attribute,
       price: item.price,
-      quantity: item.left,
-      description: item.infos,
+      reducedPrice: item.reducedPrice,
+      stockDifference: item.left,
+      infos: item.infos,
+      availableFrom: item.availableFrom,
+      availableUntil: item.availableUntil,
       display: item.display.toString(),
     });
 
@@ -277,6 +285,23 @@ export const updateItem = (item: AdminItem, callback: () => void) => async (disp
     toast.success("L'item a bien été mis à jour");
 
     dispatch(updateAdminItem(result));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) => {
+  try {
+    const result = await API.patch('admin/items', {
+      items: items.map((item) => ({
+        id: item.id,
+        position: item.position,
+      })),
+    });
+
+    toast.success('Les items ont bien été réordonnés');
+
+    dispatch(setAdminItems(result));
   } catch (err) {
     console.error(err);
   }
