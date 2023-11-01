@@ -192,8 +192,6 @@ export const updateTournament =
       const data = {
         name: tournament.name,
         maxPlayers: tournament.maxPlayers,
-        playersPerTeam: tournament.playersPerTeam,
-        coachesPerTeam: tournament.coachesPerTeam,
         display: tournament.display.toString(),
         displayCasters: tournament.displayCasters.toString(),
         displayCashprize: tournament.displayCashprize.toString(),
