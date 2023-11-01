@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 import { useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
-import Table from '@/components/UI/Table';
+// import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.png';
@@ -98,7 +98,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
           className={styles.fillingBar}
         />
-        {loginAllowed && (
+        {/* {loginAllowed && (
           <Table
             className={styles.table}
             columns={
@@ -132,7 +132,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
                     },
               )}
           />
-        )}
+        )} */}
       </div>
     </TournamentSwitcherAnimation>
   );
