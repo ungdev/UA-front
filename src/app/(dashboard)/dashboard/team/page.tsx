@@ -254,7 +254,7 @@ const Page = () => {
               </>
             )}
           </div>
-          <div className={styles.singleInfo}>
+          {/* <div className={styles.singleInfo}>
             <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
             <div
               className={
@@ -264,7 +264,7 @@ const Page = () => {
               }>
               {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className={styles.members}>
