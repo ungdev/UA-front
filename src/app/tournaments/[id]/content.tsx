@@ -2,7 +2,7 @@
 import styles from './style.module.scss';
 import { Button, Icon, Title } from '@/components/UI';
 import BoxContainer from '@/components/landing/BoxContainer';
-import FillingBar from '@/components/UI/FillingBar';
+// import FillingBar from '@/components/UI/FillingBar';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
@@ -19,6 +19,8 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
   const loginAllowed = useAppSelector((state) => state.settings.login);
 
   if (!tournaments) return null;
+  // TODO: Remove next line
+  if (animate === undefined) animate = true;
 
   const tournament = tournaments!.find((tournament) => tournament.id === tournamentId);
   if (!tournament) return notFound();
@@ -90,14 +92,14 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               : tournament.casters?.map((caster) => caster.name + ' ')}
           </BoxContainer>
         </div>
-        <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
+        {/* <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
           {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} : {tournament.lockedTeamsCount} /{' '}
           {tournament.maxPlayers / tournament.playersPerTeam}
         </Title>
         <FillingBar
           fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
           className={styles.fillingBar}
-        />
+        /> */}
         {/* {loginAllowed && (
           <Table
             className={styles.table}
