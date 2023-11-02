@@ -7,7 +7,6 @@ import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import tournament from '@/modules/tournament';
 
 const columnTitles = {
   fullname: 'Nom',
