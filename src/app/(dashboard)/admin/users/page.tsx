@@ -7,6 +7,7 @@ import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import tournament from '@/modules/tournament';
 
 const columnTitles = {
   fullname: 'Nom',
@@ -48,17 +49,6 @@ const scannedOptions = [
   { name: 'Non scanné', value: 'false' },
 ];
 
-const tournamentOptions = [
-  { name: 'Tous', value: 'all' },
-  { name: 'LoL', value: 'lol' },
-  { name: 'Rocket League', value: 'rl' },
-  { name: 'CS:GO', value: 'csgo' },
-  { name: 'SSBU', value: 'ssbu' },
-  { name: 'TFT', value: 'tft' },
-  { name: 'osu!', value: 'osu' },
-  { name: 'Libre', value: 'open' },
-];
-
 const INITIAL_FILTERS = {
   type: 'all',
   payment: 'all',
@@ -90,6 +80,7 @@ const Users = () => {
     tournamentName: true,
     place: true,
   });
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
   useEffect(() => {
     if (isLoggedIn && !isFetched) {
@@ -100,6 +91,15 @@ const Users = () => {
   useEffect(() => {
     dispatch(fetchUsers(filters, search) as unknown as Action);
   }, [filters]);
+
+  if (!tournaments) {
+    return false;
+  }
+
+  const tournamentOptions = [
+    { name: 'Tous', value: 'all' },
+    ...tournaments.map((tournament) => ({ name: tournament.name, value: tournament.id })),
+  ];
 
   const applySearch = () => {
     dispatch(fetchUsers(filters, search) as unknown as Action);
@@ -182,6 +182,7 @@ const Users = () => {
           options={tournamentOptions}
           value={filters.tournament}
           onChange={(v) => setFilters({ ...filters, tournament: v })}
+          className={styles.tournamentFilter}
         />
 
         <hr />
