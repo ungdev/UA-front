@@ -32,43 +32,50 @@ export default function BadgePage() {
   const [crop, setCrop] = useState<Crop>();
   const [slide, setSlide] = useState(0);
 
-  const selectImageSlide = () => {
-    return (
-      <FileUpload
-        label="La photo sur ton badge"
-        value={'test'}
-        onChange={(file) => setFile(URL.createObjectURL(file))}
-        type="png"
-        className={styles.fileUpload}
-      />
-    );
-  };
+  const selectImageSlide = () => (
+    <FileUpload
+      label="Upload la photo de ton badge"
+      value={'test'}
+      onChange={(file) => setFile(URL.createObjectURL(file))}
+      type="png"
+      className={styles.fileUpload}
+      bg="#002D40"
+    />
+  );
 
   const cropImageSlide = () => {
     return (
       <>
-        <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
-          <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} />
-        </ReactCrop>
-        <div className={styles.result}>
-          <div className={styles.imageWrapper}>
+        <div className="cropImageSlideContainer">
+          <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
             <img
-              alt="Image croppée"
-              className={styles.image}
+              className={styles.croppingImage}
+              alt="Image à cropper"
               src={file}
-              style={
-                crop
-                  ? {
-                      transform: `scale(${100 / crop.width}, ${100 / crop.height})`,
-                      left: `${-crop.x}%`,
-                      top: `${-crop.y}%`,
-                      transformOrigin: `${crop.x}% ${crop.y}%`,
-                    }
-                  : undefined
-              }
+              onLoad={onImageLoad}
+              style={{ width: '40vh' }}
             />
+          </ReactCrop>
+          <div className={styles.result} style={{ width: '40vh' }}>
+            <div className={styles.imageWrapper}>
+              <img
+                alt="Image croppée"
+                className={styles.image}
+                src={file}
+                style={
+                  crop
+                    ? {
+                        transform: `scale(${100 / crop.width}, ${100 / crop.height})`,
+                        left: `${-crop.x}%`,
+                        top: `${-crop.y}%`,
+                        transformOrigin: `${crop.x}% ${crop.y}%`,
+                      }
+                    : undefined
+                }
+              />
+            </div>
+            <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
           </div>
-          <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
         </div>
       </>
     );
@@ -85,7 +92,10 @@ export default function BadgePage() {
 
   return (
     <>
-      <Title level={1}>Badge (Fonctionnalité en cours de création)</Title>
+      <div style={{ height: '5vh' }}></div>
+      <Title level={1} align="center">
+        Badge
+      </Title>
       <div id="badge-page" className={styles.badgePage}>
         {slides[slide]()}
         <div className={styles.arrows}>
@@ -101,6 +111,7 @@ export default function BadgePage() {
           />
         </div>
       </div>
+      <div style={{ height: '5vh' }}></div>
     </>
   );
 }

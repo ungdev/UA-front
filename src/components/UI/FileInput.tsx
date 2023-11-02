@@ -11,6 +11,7 @@ const FileUpload = ({
   onChange,
   type,
   className = '',
+  bg = 'white',
 }: {
   /** The label to display. */
   label: string;
@@ -22,6 +23,8 @@ const FileUpload = ({
   type: 'png' | 'jpg' | 'pdf';
   /** A string to add to the className */
   className?: string;
+  /** The background color when there no image has been uploaded*/
+  bg?: string;
 }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<boolean>(false);
@@ -42,7 +45,7 @@ const FileUpload = ({
     <div className={`${styles.fileinput} ${className}`}>
       <label>{label}</label>
 
-      <div className={styles.imageContainer} onClick={handleUploadClick}>
+      <div style={{ backgroundColor: bg }} className={styles.imageContainer} onClick={handleUploadClick}>
         {!error && (value !== '' || preview !== null) && type !== 'pdf' && (
           <img
             onError={() => {
