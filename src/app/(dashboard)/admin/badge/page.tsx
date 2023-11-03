@@ -46,35 +46,50 @@ export default function BadgePage() {
   const cropImageSlide = () => {
     return (
       <>
-        <div className="cropImageSlideContainer">
-          <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
-            <img
-              className={styles.croppingImage}
-              alt="Image à cropper"
-              src={file}
-              onLoad={onImageLoad}
-              style={{ width: '40vh' }}
-            />
-          </ReactCrop>
-          <div className={styles.result} style={{ width: '40vh' }}>
-            <div className={styles.imageWrapper}>
-              <img
-                alt="Image croppée"
-                className={styles.image}
-                src={file}
-                style={
-                  crop
-                    ? {
-                        transform: `scale(${100 / crop.width}, ${100 / crop.height})`,
-                        left: `${-crop.x}%`,
-                        top: `${-crop.y}%`,
-                        transformOrigin: `${crop.x}% ${crop.y}%`,
-                      }
-                    : undefined
-                }
-              />
+        <div className={styles.cropImageSlideContainer}>
+          <div className={styles.cropImageContainer}>
+            {file === undefined ? (
+              <p className={styles.error}>
+                <b>Veuillez upload votre image !</b>
+              </p>
+            ) : (
+              <ReactCrop
+                crop={crop}
+                onChange={(_, c) => setCrop(c)}
+                minWidth={250}
+                aspect={1}
+                keepSelection
+                circularCrop>
+                <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} />
+              </ReactCrop>
+            )}
+          </div>
+          <div>
+            <h3 style={{ textAlign: 'center' }}>Preview</h3>
+            <div className={styles.result}>
+              <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
+              <div className={styles.imageWrapper}>
+                {file === undefined ? (
+                  <div className={styles.fakeImage}></div>
+                ) : (
+                  <img
+                    alt="Image croppée"
+                    className={styles.image}
+                    src={file}
+                    style={
+                      crop
+                        ? {
+                            transform: `scale(${100 / crop.width}, ${100 / crop.height})`,
+                            left: `${-crop.x}%`,
+                            top: `${-crop.y}%`,
+                            transformOrigin: `${crop.x}% ${crop.y}%`,
+                          }
+                        : undefined
+                    }
+                  />
+                )}
+              </div>
             </div>
-            <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
           </div>
         </div>
       </>

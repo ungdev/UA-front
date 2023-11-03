@@ -1,41 +1,13 @@
 .badgePage {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
 
   .fileUpload {
     width: 70%;
     margin: auto;
   }
-  /*
-
-  .croppingImage {
-    width: 100%;
-    aspect-ratio: auto;
-  }
-
-  .result {
-    position: relative;
-    //width: 30%;
-
-    .background {
-      width: 100%;
-    }
-
-    .imageWrapper {
-      overflow: hidden;
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      width: 30%;
-      aspect-ratio: 1;
-      border-radius: 100%;
-      border: white solid;
-
-      .image {
-        position: relative;
-        aspect-ratio: auto;
-        width: 100%;
-      }
-    }
-  }*/
   .arrows {
     width: 100px;
     margin: auto;
@@ -51,9 +23,56 @@
       }
     }
   }
-}
+  .cropImageSlideContainer {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    justify-content: space-evenly;
+    align-items: center;
 
-.cropImageSlideContainer {
-  display: flex;
-  flex-direction: row;
+    .error {
+      text-align: center;
+      color: rgba(255, 102, 0, 0.726);
+    }
+    .result {
+      position: relative;
+      margin: 1em;
+
+      .background {
+        height: 50vh;
+        border-radius: 30px;
+        -webkit-box-shadow: 5px 5px 11px 0px rgba(0, 0, 0, 0.091);
+        box-shadow: 5px 5px 11px 0px rgba(0,0,0,0.27);
+      }
+      .imageWrapper {
+        overflow: hidden;
+        position: absolute;
+        top: 7vh;
+        left: 7vh;
+        width: 20vh;
+        aspect-ratio: 1;
+        border-radius: 100%;
+        border: white solid;
+
+        .image {
+          position: relative;
+          aspect-ratio: 1;
+          width: 100%;
+        }
+        .fakeImage {
+          width: 100%;
+          height: 100%;
+          background-color: rgba(216, 237, 255, 0.516);
+        }
+      }
+    }
+    .cropImageContainer {
+      border: 5px solid #002D40;
+      padding: 20px;
+      width: 20%;
+      -webkit-border-radius: 18px;
+      -moz-border-radius: 18px;
+      border-radius: 18px;
+    }
+  }
 }
