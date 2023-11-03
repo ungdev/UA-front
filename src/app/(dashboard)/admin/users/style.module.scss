@@ -17,7 +17,7 @@
       margin: 0;
     }
 
-    .addButton{
+    .addButton {
       display: flex;
       height: fit-content;
       flex-flow: column;
@@ -35,6 +35,10 @@
 
     hr {
       background: $primary-color !important;
+    }
+
+    .tournamentFilter {
+      line-height: 1.5rem;
     }
   }
 
@@ -83,20 +87,18 @@
       padding: 0 12px;
     }
   }
-
-
 }
 @media screen and (max-width: 1024px) {
-    .adminUser {
-      .rowAddButton {
-        display: flex;
-        flex-flow: column;
-        vertical-align: middle;
+  .adminUser {
+    .rowAddButton {
+      display: flex;
+      flex-flow: column;
+      vertical-align: middle;
 
-        .userTitle {
-          margin-bottom: 10px;
-          padding: 10px;
-        }
+      .userTitle {
+        margin-bottom: 10px;
+        padding: 10px;
       }
     }
   }
+}
