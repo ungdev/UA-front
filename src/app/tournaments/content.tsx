@@ -28,7 +28,7 @@ export function TournamentHome({
 }) {
   const fadeDuration = animations !== 'none' ? 200 : 0;
   const dispatch = useAppDispatch();
-  const login = useAppSelector((state) => state.settings.login);
+  const status = useAppSelector((state) => state.login.status);
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
   // This is initialized when tournaments are fetched
@@ -277,13 +277,13 @@ export function TournamentHome({
               className={styles.button}
               primary
               onClick={() => {
-                if (login) {
+                if (status.login) {
                   dispatch(setRedirect('/dashboard') as unknown as Action);
                   return;
                 }
                 dispatch(setLoginModalVisible(true) as unknown as Action);
               }}>
-              {login ? 'Dashboard' : 'Se connecter'}
+              {status.login ? 'Dashboard' : 'Se connecter'}
             </Button>
           </div>
         </div>

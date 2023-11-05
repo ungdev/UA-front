@@ -11,7 +11,7 @@ export default function LayoutTop() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
-  const login = useAppSelector((state) => state.settings.login);
+  const status = useAppSelector((state) => state.login.status);
 
   return (
     <div className={styles.topContainer}>
@@ -45,13 +45,13 @@ export default function LayoutTop() {
             className={styles.button}
             primary
             onClick={() => {
-              if (login) {
+              if (status.login) {
                 dispatch(setRedirect('/dashboard') as unknown as Action);
                 return;
               }
               dispatch(setLoginModalVisible(true) as unknown as Action);
             }}>
-            {login ? 'Dashboard' : 'Se connecter'}
+            {status ? 'Dashboard' : 'Se connecter'}
           </Button>
         </div>
       </div>
