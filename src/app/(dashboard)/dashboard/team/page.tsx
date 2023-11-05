@@ -254,17 +254,19 @@ const Page = () => {
               </>
             )}
           </div>
-          {/* <div className={styles.singleInfo}>
-            <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
-            <div
-              className={
-                slotsTournament[team.tournamentId].available === slotsTournament[team.tournamentId].total
-                  ? styles.teamCompleted
-                  : styles.descriptionValue
-              }>
-              {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
+          {(team.lockedAt || team.positionInQueue) && (
+            <div className={styles.singleInfo}>
+              <strong> {isSolo ? 'Places' : 'Equipes'} libres :</strong>{' '}
+              <div
+                className={
+                  slotsTournament[team.tournamentId].available === slotsTournament[team.tournamentId].total
+                    ? styles.teamCompleted
+                    : styles.descriptionValue
+                }>
+                {slotsTournament[team.tournamentId].available} / {slotsTournament[team.tournamentId].total}
+              </div>
             </div>
-          </div> */}
+          )}
         </div>
       </div>
       <div className={styles.members}>
