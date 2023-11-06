@@ -20,8 +20,6 @@ const Legal = () => (
         <br />
         N° RNA : W103000699
         <br />
-        N° de TVA intracommunautaire : FR50500164249
-        <br />
         N° d'immatriculation RCS : 500164249
         <br />
         12 rue Marie Curie, 10000 Troyes
@@ -79,6 +77,14 @@ const Legal = () => (
         03 25 71 85 50
         <br />
         ung@utt.fr
+      </p>
+      <p>
+        Concernant la responsabilité du matériel, chaque participant à notre compétition d'e-sport l'UTT Arena est tenu
+        d'amener son propre matériel, y compris tout équipement informatique, clavier, souris, casque, moniteur, et
+        autres accessoires nécessaires à sa participation. En apportant leur propre matériel, les joueurs reconnaissent
+        qu'ils en sont entièrement responsables, y compris la qualité, la performance, et l'état de leur équipement.
+        L’UTT Arena ne peut être tenu responsable des problèmes techniques, défaillances matérielles, ou toute autre
+        question liée à la qualité de l'équipement des participants.
       </p>
       <p>
         Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena ainsi que du
@@ -333,8 +339,6 @@ const Legal = () => (
         UTT Net Group, association loi 1901
         <br />
         N° RNA : W103000699
-        <br />
-        N° de TVA intracommunautaire : FR50500164249
         <br />
         N° d'immatriculation RCS : 500164249
         <br />
