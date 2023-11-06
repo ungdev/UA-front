@@ -65,9 +65,9 @@
 
               &:first-child {
                 white-space: nowrap;
-                border-right-width: 1rem;
                 border-style: solid;
                 border-color: transparent;
+                border-width: 0 1rem 0 0;
                 text-align: right;
               }
             }
