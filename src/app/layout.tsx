@@ -3,7 +3,7 @@ import '@/styles.scss';
 import type { Metadata } from 'next';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
-import { googleVerification, uploadsUrl } from '@/utils/environment';
+import { googleVerification, uploadsUrl, appUrl } from '@/utils/environment';
 import { headers } from 'next/headers';
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,10 +36,11 @@ export const metadata: Metadata = {
     "Au programme, 7 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
     'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
     "Alors prépare tout ton stuff et impose-toi dans l'arène !",
+  metadataBase: new URL(appUrl()),
   openGraph: {
     siteName: 'UTT Arena 2023',
     title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
-    url: 'https://arena.utt.fr/',
+    url: appUrl(),
     type: 'website',
     images: [
       {
