@@ -47,14 +47,65 @@ export default function Page() {
           Programme
         </Title>
         <div className={styles.program}>
-          <BoxContainer title="Jour 1 : Vendredi" className={styles.boxContainer}>
-            <p>À venir...</p>
+          <BoxContainer
+            title="Jour 1 : Vendredi"
+            padding={false}
+            className={styles.boxContainer}
+            contentClassName={styles.boxContainerContent}>
+            <table>
+              <tr>
+                <td>
+                  <strong>17h00</strong>
+                </td>
+                <td>Ouverture</td>
+              </tr>
+            </table>
           </BoxContainer>
-          <BoxContainer title="Jour 2 : Samedi" className={styles.boxContainer}>
-            <p>À venir...</p>
+          <BoxContainer
+            title="Jour 2 : Samedi"
+            padding={false}
+            className={styles.boxContainer}
+            contentClassName={styles.boxContainerContent}>
+            <table>
+              <tr>
+                <td>
+                  <strong>9h00</strong>
+                </td>
+                <td>Checkin</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>10h00</strong>
+                </td>
+                <td> Début des tournois</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>Jusqu'à 23h00</strong>
+                </td>
+                <td> Fin des tournois pour la journée</td>
+              </tr>
+            </table>
           </BoxContainer>
-          <BoxContainer title="Jour 3 : Dimanche" className={styles.boxContainer}>
-            <p>À venir...</p>
+          <BoxContainer
+            title="Jour 3 : Dimanche"
+            className={styles.boxContainer}
+            padding={false}
+            contentClassName={styles.boxContainerContent}>
+            <table>
+              <tr>
+                <td>
+                  <strong>17h00</strong>
+                </td>
+                <td>Fin des tournois</td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>18h00</strong>
+                </td>
+                <td>Fermeture de la LAN</td>
+              </tr>
+            </table>
           </BoxContainer>
         </div>
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
@@ -148,6 +199,7 @@ export default function Page() {
                 "Possibilité d'accéder à l'UTT Arena, sa restauration et ses activités pendant tout le weekend",
             },
           ]}
+          className={styles.informationTable}
         />
       </div>
       <Partners />
