@@ -7,7 +7,7 @@ import { ChangeEvent, useRef, useState } from 'react';
  */
 const FileUpload = ({
   label,
-  value,
+  value = '',
   onChange,
   type,
   className = '',
@@ -16,7 +16,7 @@ const FileUpload = ({
   /** The label to display. */
   label: string;
   /** The value of the file. */
-  value: string;
+  value?: string;
   /** The function to call when the file changes. */
   onChange: (file: File) => void;
   /** The type of file to accept. */
