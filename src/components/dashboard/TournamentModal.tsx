@@ -131,8 +131,7 @@ const TournamentModal = ({
                 setCasters(newCasters);
                 setCastersCount(castersCount - 1);
               }}>
-              {/* TODO: make it work */}
-              <Icon name={IconName.Trash} />
+              <Icon name={IconName.Trash} className={styles.trashIcon} />
             </Button>
           </div>
         ))}
