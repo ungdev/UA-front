@@ -72,6 +72,10 @@
           .cgv {
             text-align: left;
             margin-top: 1rem;
+
+            > label {
+              gap: 0.75rem;
+            }
           }
         }
       }

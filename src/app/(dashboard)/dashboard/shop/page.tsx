@@ -386,6 +386,7 @@ const Shop = () => {
                       <a href="/legal#CGV" target="_blank">
                         Conditions Générales de Vente
                       </a>
+                      &nbsp;(Attention aux conditions de remboursement !)
                     </>
                   }
                   value={isCgvAccepted}
