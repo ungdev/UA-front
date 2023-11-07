@@ -130,7 +130,7 @@ const Home = () => {
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs :{' '}
             <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>,{' '}
-            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>Osu!</strong>,{' '}
+            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>osu!</strong>,{' '}
             <strong>Pokémon</strong> et <strong>un tournoi libre</strong>. <br />
             Tous les tournois donnent accès à la salle, à la buvette et à ses autres activités{' '}
             <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les joueurs des tournois PC
