@@ -122,7 +122,8 @@ const faq: Faq = {
           <ul>
             <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate et du tournoi Pokémon</li>
             <li>28 € pour les joueurs des autres tournois</li>
-            <li>15 € en tant que coach, manager ou accompagnateur (pour les mineurs)</li>
+            <li>15 € en tant que coach, manager</li>
+            <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
             <li>
               Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
               adresse mail étudiante.
