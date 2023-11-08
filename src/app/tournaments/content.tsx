@@ -264,7 +264,7 @@ export function TournamentHome({
             <p>
               {renderedTournament.casters !== null && renderedTournament.casters.length > 0 && (
                 <>
-                  Casté par <strong>{renderedTournament.casters?.map((caster) => caster.name + ' ')}</strong>
+                  Casté par <strong>{renderedTournament.casters?.map((caster) => caster.name).join(', ')}</strong>
                 </>
               )}
             </p>

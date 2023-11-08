@@ -92,7 +92,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               ? 'À venir'
               : tournament.casters.length === 0
               ? 'Aucun caster pour ce tournoi'
-              : tournament.casters?.map((caster) => caster.name + ' ')}
+              : tournament.casters?.map((caster) => caster.name).join(', ')}
           </BoxContainer>
         </div>
         {loginAllowed &&
