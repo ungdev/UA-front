@@ -1,15 +1,20 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line import/named
-import { centerCrop, Crop, makeAspectCrop, ReactCrop } from 'react-image-crop';
+import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/background.jpg';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
-import { Title } from '@/components/UI';
+import { Button, Title } from '@/components/UI';
 import Icon, { IconName } from '@/components/UI/Icon';
+import TeamMember from '@/components/landing/TeamMember';
+import { toast } from 'react-toastify';
+import { uploadProfilePicture } from '@/modules/users';
+import { useAppDispatch } from '@/lib/hooks';
+import { type Action } from '@reduxjs/toolkit';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(
@@ -28,11 +33,30 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 }
 
 export default function BadgePage() {
+  const dispatch = useAppDispatch();
   const [file, setFile] = useState<string | undefined>();
   const [crop, setCrop] = useState<Crop>();
   const [slide, setSlide] = useState(0);
   const [canGoToNextSlide, setCanGoToNextSlide] = useState(false);
   const croppingImageRef = useRef<HTMLImageElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const onCrop = (c: PercentCrop) => {
+    setCrop(c);
+    if (!croppingImageRef.current || !canvasRef.current || !crop) return;
+    const ctx = canvasRef.current.getContext('2d')!;
+    ctx.drawImage(
+      croppingImageRef.current,
+      croppingImageRef.current.naturalWidth * (crop.x / 100),
+      croppingImageRef.current.naturalHeight * (crop.y / 100),
+      croppingImageRef.current.naturalWidth * (crop.width / 100),
+      croppingImageRef.current.naturalHeight * (crop.height / 100),
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height,
+    );
+  };
 
   const selectImageSlide = () => (
     <>
@@ -60,52 +84,63 @@ export default function BadgePage() {
 
   const cropImageSlide = () => {
     return (
-      <div className={styles.cropImageSlideContainer}>
-        <div className={styles.cropImageContainer}>
-          <ReactCrop
-            crop={crop}
-            onChange={(_, c) => setCrop(c)}
-            minWidth={
-              croppingImageRef.current
-                ? 250 * (croppingImageRef.current.width / croppingImageRef.current.naturalWidth)
-                : 0
-            }
-            aspect={1}
-            keepSelection
-            circularCrop>
-            <img
-              className={styles.croppingImage}
-              alt="Image à cropper"
-              src={file}
-              onLoad={onImageLoad}
-              ref={croppingImageRef}
-            />
-          </ReactCrop>
-        </div>
-        <div>
-          <h3 style={{ textAlign: 'center' }}>Preview</h3>
-          <div className={styles.result}>
-            <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
-            <div className={styles.imageWrapper}>
+      <>
+        <div className={styles.cropImageSlideContainer}>
+          <div className={styles.cropImageContainer}>
+            <ReactCrop
+              crop={crop}
+              onChange={(_, c) => onCrop(c)}
+              minWidth={
+                croppingImageRef.current
+                  ? 250 * (croppingImageRef.current.width / croppingImageRef.current.naturalWidth)
+                  : 0
+              }
+              aspect={1}
+              keepSelection
+              circularCrop>
               <img
-                alt="Image croppée"
-                className={styles.image}
+                className={styles.croppingImage}
+                alt="Image à cropper"
                 src={file}
-                style={
-                  crop
-                    ? {
-                        transform: `scale(${100 / crop.width}, ${100 / crop.height})`,
-                        left: `${-crop.x}%`,
-                        top: `${-crop.y}%`,
-                        transformOrigin: `${crop.x}% ${crop.y}%`,
-                      }
-                    : undefined
-                }
+                onLoad={onImageLoad}
+                ref={croppingImageRef}
               />
+            </ReactCrop>
+          </div>
+          <div>
+            <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
+            {canvasRef.current && (
+              <TeamMember
+                color="#123455"
+                member={{
+                  image: canvasRef.current.toDataURL(),
+                  job: 'test',
+                  name: 'Alexandre (encore lui)',
+                }}></TeamMember>
+            )}
+          </div>
+          <div>
+            <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
+            <div className={styles.result}>
+              <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
+              <div className={styles.imageWrapper}>
+                <canvas className={styles.image} ref={canvasRef} width={300} height={300} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <Button
+          primary
+          onClick={() =>
+            !canvasRef.current
+              ? toast.warn(
+                  'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
+                )
+              : canvasRef.current.toBlob((blob) => blob && dispatch(uploadProfilePicture(blob) as unkown as Action))
+          }>
+          Définir comme image de profil
+        </Button>
+      </>
     );
   };
 
@@ -123,7 +158,7 @@ export default function BadgePage() {
       <Title level={1} align="center">
         Badge
       </Title>
-      <div id="badge-page" className={styles.content}>
+      <div className={styles.content}>
         {slides[slide]()}
         <div className={styles.arrows}>
           <Icon

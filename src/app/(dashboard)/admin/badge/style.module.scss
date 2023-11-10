@@ -58,7 +58,6 @@
             width: 20vh;
             aspect-ratio: 1;
             border-radius: 100%;
-            border: white solid;
 
             .image {
               position: relative;
@@ -75,6 +74,7 @@
       margin: auto;
       display: flex;
       justify-content: space-between;
+      margin-top: 5vh;
 
       svg {
         cursor: pointer;

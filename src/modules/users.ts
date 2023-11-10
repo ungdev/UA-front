@@ -8,6 +8,7 @@ import {
   UserWithTeamAndMessageAndTournamentInfo,
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
+import { uploadFile } from '@/utils/upload';
 
 interface UsersAction {
   isFetched: boolean;
@@ -193,6 +194,16 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   dispatch(updateUser({ ...userModal, hasPaid: false }) as unknown as Action);
   dispatch(
     lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action,
+  );
+};
+
+export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const file = new File([blob], `test.png`);
+  const state = getState();
+  await uploadFile(
+    file,
+    `${state.login.user?.lastname}-${state.login.user?.firstname}-${state.login.user?.id}`,
+    'admin',
   );
 };
 

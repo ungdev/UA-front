@@ -7,6 +7,7 @@ import uaImage1 from '@/../public/images/about/ua-1.jpg';
 import uaImage2 from '@/../public/images/about/ua-2.jpg';
 import ungImage1 from '@/../public/images/about/ung-1.jpg';
 import ungImage2 from '@/../public/images/about/ung-2.jpg';
+import TeamMember from '@/components/landing/TeamMember';
 
 interface TeamMember {
   name: string;
@@ -113,17 +114,7 @@ const About = () => {
               {Object.keys(team).map((key) => (
                 <>
                   {team[key].members.map((member) => (
-                    <div
-                      key={member.name}
-                      className={styles.member}
-                      style={{ '--team-color': team[key].color } as React.CSSProperties}>
-                      <div className={styles.imgContainer}>
-                        <div className={styles.imageFont}></div>
-                        <img src={member.image} alt={member.name} />
-                      </div>
-                      <span>{member.name}</span>
-                      <span>{member.job}</span>
-                    </div>
+                    <TeamMember member={member} color={team[key].color} key={member.name}></TeamMember>
                   ))}
                 </>
               ))}
