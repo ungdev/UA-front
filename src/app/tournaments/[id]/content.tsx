@@ -6,13 +6,17 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.png';
 import FillingBar from '@/components/UI/FillingBar';
+// TODO: Remove next 3 lines
+import { useDispatch } from 'react-redux';
+import { fetchCurrentTeam } from '@/modules/team';
+import type { Action } from '@reduxjs/toolkit';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -20,6 +24,12 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
   const loginAllowed = useAppSelector((state) => state.settings.login);
   const status = useAppSelector((state) => state.login.status);
   const team = useAppSelector((state) => state.team.team);
+
+  // TODO: Remove next 4 lines
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (status.team && !team) dispatch(fetchCurrentTeam() as unknown as Action);
+  }, [status.team]);
 
   if (!tournaments) return null;
   // TODO: Remove next line
