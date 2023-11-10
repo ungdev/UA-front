@@ -1,7 +1,7 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/background.jpg';
@@ -43,14 +43,14 @@ export default function BadgePage() {
 
   const onCrop = (c: PercentCrop) => {
     setCrop(c);
-    if (!croppingImageRef.current || !canvasRef.current || !crop) return;
+    if (!croppingImageRef.current || !canvasRef.current || !c) return;
     const ctx = canvasRef.current.getContext('2d')!;
     ctx.drawImage(
       croppingImageRef.current,
-      croppingImageRef.current.naturalWidth * (crop.x / 100),
-      croppingImageRef.current.naturalHeight * (crop.y / 100),
-      croppingImageRef.current.naturalWidth * (crop.width / 100),
-      croppingImageRef.current.naturalHeight * (crop.height / 100),
+      croppingImageRef.current.naturalWidth * (c.x / 100),
+      croppingImageRef.current.naturalHeight * (c.y / 100),
+      croppingImageRef.current.naturalWidth * (c.width / 100),
+      croppingImageRef.current.naturalHeight * (c.height / 100),
       0,
       0,
       canvasRef.current.width,
@@ -109,15 +109,14 @@ export default function BadgePage() {
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-            {canvasRef.current && (
-              <TeamMember
-                color="#123455"
-                member={{
-                  image: canvasRef.current.toDataURL(),
-                  job: 'test',
-                  name: 'Alexandre (encore lui)',
-                }}></TeamMember>
-            )}
+
+            <TeamMember
+              color="#123455"
+              member={{
+                image: canvasRef.current?.toDataURL() ?? '',
+                job: 'test',
+                name: 'Alexandre (encore lui)',
+              }}></TeamMember>
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
@@ -136,7 +135,7 @@ export default function BadgePage() {
               ? toast.warn(
                   'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
                 )
-              : canvasRef.current.toBlob((blob) => blob && dispatch(uploadProfilePicture(blob) as unkown as Action))
+              : canvasRef.current.toBlob((blob) => blob && dispatch(uploadProfilePicture(blob) as unknown as Action))
           }>
           Définir comme image de profil
         </Button>
@@ -148,7 +147,7 @@ export default function BadgePage() {
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
-    setCrop(centerAspectCrop(width, height, 1));
+    onCrop(centerAspectCrop(width, height, 1));
   }
 
   document.documentElement.style.setProperty('--half-size', crop ? `${crop.width / 2}px` : '0px');
