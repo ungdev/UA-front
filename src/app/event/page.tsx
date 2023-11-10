@@ -138,7 +138,7 @@ export default function Page() {
             },
             {
               type: 'Accompagnateur',
-              price: '15 €',
+              price: '10 €',
               description: 'Réservé aux accompagnateurs de joueurs mineurs',
             },
             {
