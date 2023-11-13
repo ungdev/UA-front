@@ -222,7 +222,7 @@ const Register = () => {
   const tournamentTable = () => {
     const tournamentOption = tournaments.filter((tr) => tr.id === tournament)[0];
     const tournamentTeamsRender = (tournamentOption.teams === undefined ? [] : tournamentOption.teams)
-      .filter((team) => !team.lockedAt)
+      .filter((team) => (userType === 'coach' ? true : !team.lockedAt))
       .map((team) => ({
         team: user.askingTeamId === team.id ? `${team.name} (demande en attente)` : team.name,
         players: team.players.map(({ username }) => username).join(', '),
