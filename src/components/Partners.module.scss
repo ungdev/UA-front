@@ -10,6 +10,12 @@
     height: 60px;
     object-fit: contain;
   }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: stretch;
+  }
 }
 
 @media screen and (max-width: 700px) {
