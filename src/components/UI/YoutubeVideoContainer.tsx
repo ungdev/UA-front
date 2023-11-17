@@ -45,7 +45,7 @@ const YoutubeVideoContainer = ({
       labnolIframe(ref.current!);
     };
     ref.current!.appendChild(div);
-  }
+  };
 
   useEffect(() => {
     setTimeout(() => {

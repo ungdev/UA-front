@@ -29,11 +29,14 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: appUrl(),
+  },
   title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
   description:
-    "L'UTT Arena revient pour sa 21ème édition les 1, 2 et 3 décembre 2023." +
-    "Au programme, 7 tournois sur des incontournables de l'esport " +
-    "de nombreuses animations, du cashprize et des lots à gagner. " +
+    "L'UTT Arena revient les 1, 2 et 3 décembre 2023." +
+    "8 tournois sur des incontournables de l'esport, " +
+    'de nombreuses animations, du cashprize et des lots à gagner. ' +
     "Alors prépare tout ton stuff et impose-toi dans l'arène !",
   metadataBase: new URL(appUrl()),
   openGraph: {
@@ -49,7 +52,7 @@ export const metadata: Metadata = {
         height: 500,
       },
     ],
-    description: 'Entrez dans l’arène les 1, 2 et 3 décembre pour le retour de la compétition e-sport Troyenne !',
+    description: 'Entrez dans l’arène les 1, 2 et 3 décembre pour le retour de la compétition esport Troyenne !',
   },
   twitter: {
     title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
         alt: "Bannière de l'UTT Arena 2023, les 1, 2 et 3 décembre 2023",
       },
     ],
-    description: 'Entrez dans l’arène les 1, 2 et 3 décembre 2023 pour le retour de la compétition e-sport Troyenne !',
+    description: 'Entrez dans l’arène les 1, 2 et 3 décembre 2023 pour le retour de la compétition esport Troyenne !',
   },
   manifest: '/manifest.json',
   icons: {

@@ -37,22 +37,26 @@ export default function Footer() {
             <Button>FAQ</Button>
           </Link>
           <div className={styles.socials}>
-            <Link href={'https://discord.gg/WhxZwKU'} aria-label="Discord">
+            <Link href={'https://discord.gg/WhxZwKU'} aria-label="Discord" rel="noopener" passHref={true}>
               <Icon name={IconName.Discord} fill={true} />
             </Link>
-            <Link href={'https://www.twitch.tv/uttarena'} aria-label="Twitch">
+            <Link href={'https://www.twitch.tv/uttarena'} aria-label="Twitch" rel="noopener" passHref={true}>
               <Icon name={IconName.Twitch} fill={true} />
             </Link>
-            <Link href={'https://www.youtube.com/user/UTTNetGroup/'} aria-label="Youtube">
+            <Link
+              href={'https://www.youtube.com/user/UTTNetGroup/'}
+              aria-label="Youtube"
+              rel="noopener"
+              passHref={true}>
               <Icon name={IconName.Youtube} fill={true} />
             </Link>
-            <Link href={'https://www.instagram.com/uttarena/'} aria-label="Instagram">
+            <Link href={'https://www.instagram.com/uttarena/'} aria-label="Instagram" rel="noopener" passHref={true}>
               <Icon name={IconName.Instagram} fill={true} />
             </Link>
-            <Link href={'https://twitter.com/uttarena'} aria-label="Twitter">
+            <Link href={'https://twitter.com/uttarena'} aria-label="Twitter" rel="noopener" passHref={true}>
               <Icon name={IconName.Twitter} fill={true} />
             </Link>
-            <Link href={'https://www.facebook.com/UTTArena'} aria-label="Facebook">
+            <Link href={'https://www.facebook.com/UTTArena'} aria-label="Facebook" rel="noopener" passHref={true}>
               <Icon name={IconName.Facebook} fill={true} />
             </Link>
           </div>

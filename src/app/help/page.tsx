@@ -52,7 +52,7 @@ const faq: Faq = {
         <>
           Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
           streaming est{' '}
-          <a href="https://forms.gle/jp9NKHJiVGVTUHCu9" target="_blank">
+          <a href="https://forms.gle/jp9NKHJiVGVTUHCu9" target="_blank" rel="noopener">
             disponible ici
           </a>
           . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
@@ -285,7 +285,7 @@ const Help = () => {
         </p>
         <p>
           Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le{' '}
-          <Link href="https://discord.gg/WhxZwKU" target="_blank">
+          <Link href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener">
             serveur Discord de l’UTT Arena
           </Link>
           .

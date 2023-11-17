@@ -70,7 +70,7 @@ const Home = () => {
           <YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
-              <img src={banner.src} alt="" />
+              <img src={banner.src} alt="Rejoindre l'aventure" />
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
@@ -84,7 +84,9 @@ const Home = () => {
       />
 
       <AppearFromSide className={styles.ctaMain}>
-        <Title level={1} type={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
+        <Title level={2} type={1}>
+          LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST
+        </Title>
         <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
           <Button secondary>Découvrir l’évènement</Button>
@@ -127,7 +129,7 @@ const Home = () => {
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title>Les tournois de l'UA23</Title>
+          <Title level={2}>Les tournois de l'UA23</Title>
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs :{' '}
             <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>,{' '}
