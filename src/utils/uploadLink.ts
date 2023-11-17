@@ -20,7 +20,9 @@ export const getTournamentImageLink = (tournamentId: string) => {
 };
 
 export const getTournamentBackgroundLink = (tournamentId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(tournamentId)}.webp`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(
+    tournamentId,
+  )}.webp`;
 };
 
 export const getTournamentRulesLink = (tournamentId: string) => {
@@ -36,5 +38,5 @@ export const getPartnerLogoName = (partnerId: string) => {
 };
 
 export const getPartnerLogoLink = (partnerId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.webp`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.png`;
 };
