@@ -55,9 +55,13 @@ export default function Page() {
             <table>
               <tr>
                 <td>
-                  <strong>17h00</strong>
+                  <strong>17h</strong>
                 </td>
-                <td>Ouverture</td>
+                <td>
+                  Ouverture de l'UTT Arena
+                  <br />
+                  Installation des joueurs !
+                </td>
               </tr>
             </table>
           </BoxContainer>
@@ -69,21 +73,21 @@ export default function Page() {
             <table>
               <tr>
                 <td>
-                  <strong>9h00</strong>
+                  <strong>9h</strong>
                 </td>
-                <td>Checkin</td>
+                <td>Checkin des joueurs</td>
               </tr>
               <tr>
                 <td>
-                  <strong>10h00</strong>
+                  <strong>17h-19h</strong>
                 </td>
-                <td> Début des tournois</td>
+                <td>Finale SSBU</td>
               </tr>
               <tr>
                 <td>
-                  <strong>Jusqu'à 23h00</strong>
+                  <strong>21h-23h</strong>
                 </td>
-                <td> Fin des tournois pour la journée</td>
+                <td>Finale osu!</td>
               </tr>
             </table>
           </BoxContainer>
@@ -95,13 +99,13 @@ export default function Page() {
             <table>
               <tr>
                 <td>
-                  <strong>17h00</strong>
+                  <strong>9h</strong>
                 </td>
-                <td>Fin des tournois</td>
+                <td>Début des tournois</td>
               </tr>
               <tr>
                 <td>
-                  <strong>18h00</strong>
+                  <strong>17h45</strong>
                 </td>
                 <td>Fermeture de la LAN</td>
               </tr>
