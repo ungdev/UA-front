@@ -16,11 +16,11 @@ export const getTournamentRulesName = (tournamentId: string) => {
 };
 
 export const getTournamentImageLink = (tournamentId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentImageName(tournamentId)}.jpg`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentImageName(tournamentId)}.webp`;
 };
 
 export const getTournamentBackgroundLink = (tournamentId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(tournamentId)}.jpg`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(tournamentId)}.webp`;
 };
 
 export const getTournamentRulesLink = (tournamentId: string) => {
@@ -36,5 +36,5 @@ export const getPartnerLogoName = (partnerId: string) => {
 };
 
 export const getPartnerLogoLink = (partnerId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.png`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.webp`;
 };

@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import logo from '@/../public/images/logo.png';
+import logo from '@/../public/images/logo.webp';
 import LoginModal from './landing/LoginModal';
 import { Button, Modal, Title } from './UI';
 import { setLoginModalVisible } from '@/modules/loginModal';

@@ -11,7 +11,7 @@ import { useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
-import logoUA from '@/../public/images/logo-notext.png';
+import logoUA from '@/../public/images/logo-notext.webp';
 import FillingBar from '@/components/UI/FillingBar';
 // TODO: Remove next 3 lines
 import { useDispatch } from 'react-redux';

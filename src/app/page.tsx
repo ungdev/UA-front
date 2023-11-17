@@ -8,7 +8,7 @@ import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer 
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
-import moon from '@/../public/images/clouds/parallax/moon.png';
+import moon from '@/../public/images/clouds/parallax/moon.webp';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
@@ -16,14 +16,14 @@ import TournamentList from '@/components/landing/TournamentList';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import { type Action } from '@reduxjs/toolkit';
-import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.png';
-import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.png';
-import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.png';
-import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
-import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
-import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
-import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
-import banner from '@/../public/images/banner.png';
+import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.webp';
+import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.webp';
+import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.webp';
+import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.webp';
+import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.webp';
+import doubleImage1 from '@/../public/images/home/double-image-1.webp';
+import doubleImage2 from '@/../public/images/home/double-image-2.webp';
+import banner from '@/../public/images/banner.webp';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +54,7 @@ const Home = () => {
         slides={[
           <div key={'slide-1'} className={styles.homeHeader}>
             <div id="logo" className={styles.logo}>
-              <img src="/images/logo-notext.png" alt="Logo" loading="lazy" />
+              <img src="/images/logo-notext.webp" alt="Logo" loading="lazy" />
             </div>
             <div className={styles.homeTitle}>
               <TextStroke className={styles.main} classNameOfStroke={styles.stroke} width={20}>

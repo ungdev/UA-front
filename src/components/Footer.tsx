@@ -2,7 +2,7 @@
 import styles from './Footer.module.scss';
 import Button from './UI/Button';
 
-import logo from '@/../public/images/logo-footer.png';
+import logo from '@/../public/images/logo-footer.webp';
 import Link from 'next/link';
 import { Icon } from './UI';
 import { useState } from 'react';
