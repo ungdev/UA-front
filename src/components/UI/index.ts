@@ -19,7 +19,7 @@ import Tabs from './Tabs';
 import Textarea from './Textarea';
 import TextBlock from './TextBlock';
 import Title from './Title';
-import VideoContainer from './VideoContainer';
+import YoutubeVideoContainer from './YoutubeVideoContainer';
 import VerticalDivider from './VerticalDivider';
 
 export {
@@ -44,6 +44,6 @@ export {
   Textarea,
   TextBlock,
   Title,
-  VideoContainer,
+  YoutubeVideoContainer,
   VerticalDivider,
 };

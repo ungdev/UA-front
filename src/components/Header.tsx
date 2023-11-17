@@ -1,6 +1,7 @@
 'use client';
 import styles from './Header.module.scss';
 import Link from 'next/link';
+import Image from 'next/image'
 
 import logo from '@/../public/images/logo.png';
 import LoginModal from './landing/LoginModal';
@@ -127,7 +128,7 @@ export default function Header({
       <header ref={header as MutableRefObject<HTMLDivElement>} id="header" className={styles.header}>
         <div className={styles.content}>
           <Link href="/">
-            <img src={logo.src} alt="Logo UA23" />
+            <Image src={logo.src} width={72} height={61.5} alt="Logo UA23" />
           </Link>
           <nav>
             <div className={styles.left}>{leftContent}</div>

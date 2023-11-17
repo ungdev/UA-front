@@ -7,6 +7,7 @@ import { Partner } from '@/types';
 import { type Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { Square } from './UI';
+import Image from 'next/image';
 
 /**
  * Renders a list of partners with their logos as clickable links.

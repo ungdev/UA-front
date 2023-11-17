@@ -4,7 +4,7 @@ import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
-import { VerticalDivider, Button, Title, Icon, VideoContainer, TextBlock } from '@/components/UI';
+import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
@@ -24,6 +24,7 @@ import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-ligh
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
 import banner from '@/../public/images/banner.png';
+import Image from 'next/image';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ const Home = () => {
         slides={[
           <div key={'slide-1'} className={styles.homeHeader}>
             <div id="logo" className={styles.logo}>
-              <img src="/images/logo-notext.png" alt="Logo" />
+              <Image src="/images/logo-notext.png" width={395} height={339} alt="Logo" />
             </div>
             <div className={styles.homeTitle}>
               <TextStroke className={styles.main} classNameOfStroke={styles.stroke} width={20}>
@@ -66,7 +67,7 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/Rapw-tXMeDU" />,
+          <YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
               <img src={banner.src} alt="" />
@@ -83,7 +84,7 @@ const Home = () => {
       />
 
       <AppearFromSide className={styles.ctaMain}>
-        <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
+        <Title level={1} type={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
         <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
           <Button secondary>Découvrir l’évènement</Button>

@@ -31,10 +31,9 @@ const lexend = Lexend({
 export const metadata: Metadata = {
   title: 'UTT Arena 2023 - 1, 2 et 3 décembre 2023',
   description:
-    'Viens participer au célèbre tournoi du Grand-Est ! ' +
-    "L'UTT Arena revient pour sa 21ème édition les 1, 2 et 3 décembre 2023. " +
-    "Au programme, 7 tournois sur des incontournables de l'esport, du skill, des personnalités et des rencontres, " +
-    'de nombreuses animations, du cashprize et des lots à gagner, qui rendront cette édition plus intense et vibrante que jamais. ' +
+    "L'UTT Arena revient pour sa 21ème édition les 1, 2 et 3 décembre 2023." +
+    "Au programme, 7 tournois sur des incontournables de l'esport " +
+    "de nombreuses animations, du cashprize et des lots à gagner. " +
     "Alors prépare tout ton stuff et impose-toi dans l'arène !",
   metadataBase: new URL(appUrl()),
   openGraph: {
@@ -98,12 +97,25 @@ export const metadata: Metadata = {
     'tournoi esport',
     'LAN',
     'LAN Troyes',
+    'LAN Aube',
+    'LAN Grand-Est',
+    'Grand-Est',
+    'Aube',
+    'Troyes',
+    'compétition',
+    'compétition esport',
+    'compétition e-sport',
+    'compétition gaming',
+    'compétition gaming Troyes',
+    'compétition gaming Aube',
+    'compétition gaming Grand-Est',
+    'compétition gaming France',
+    'France',
   ],
   themeColor: '#202020',
   viewport: {
     width: 'device-width',
     initialScale: 1,
-    maximumScale: 1,
   },
   verification: {
     google: googleVerification(),

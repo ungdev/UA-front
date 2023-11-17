@@ -37,23 +37,23 @@ export default function Footer() {
             <Button>FAQ</Button>
           </Link>
           <div className={styles.socials}>
-            <Link href={'https://discord.gg/WhxZwKU'}>
+            <Link href={'https://discord.gg/WhxZwKU'} aria-label="Discord">
               <Icon name={IconName.Discord} fill={true} />
             </Link>
-            <Link href={'https://www.twitch.tv/uttarena'}>
+            <Link href={'https://www.twitch.tv/uttarena'} aria-label="Twitch">
               <Icon name={IconName.Twitch} fill={true} />
             </Link>
-            <Link href={'https://www.youtube.com/user/UTTNetGroup/'}>
+            <Link href={'https://www.youtube.com/user/UTTNetGroup/'} aria-label="Youtube">
               <Icon name={IconName.Youtube} fill={true} />
             </Link>
-            <Link href={'https://www.instagram.com/uttarena/'}>
+            <Link href={'https://www.instagram.com/uttarena/'} aria-label="Instagram">
               <Icon name={IconName.Instagram} fill={true} />
             </Link>
-            <Link href={'https://www.facebook.com/UTTArena'}>
-              <Icon name={IconName.Facebook} fill={true} />
-            </Link>
-            <Link href={'https://twitter.com/uttarena'}>
+            <Link href={'https://twitter.com/uttarena'} aria-label="Twitter">
               <Icon name={IconName.Twitter} fill={true} />
+            </Link>
+            <Link href={'https://www.facebook.com/UTTArena'} aria-label="Facebook">
+              <Icon name={IconName.Facebook} fill={true} />
             </Link>
           </div>
         </div>
