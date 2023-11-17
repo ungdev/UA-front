@@ -24,14 +24,14 @@ const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {
       <div className={styles.mainContent}>
         <div className={styles.background}></div>
         <div className={styles.backgroundElements}>
-          <img src={constellation1.src} alt="background" className={styles.constellation11} />
-          <img src={cloud3.src} alt="background" className={styles.cloud3} />
-          <img src={cloud2.src} alt="background" className={styles.constellation21} />
-          <img src={constellation2.src} alt="background" className={styles.constellation22} />
-          <img src={cloud1.src} alt="background" className={styles.constellation31} />
-          <img src={cloud4.src} alt="background" className={styles.constellation12} />
-          <img src={constellation1.src} alt="background" className={styles.constellation13} />
-          <img src={constellation3.src} alt="background" className={styles.constellation23} />
+          <img src={constellation1.src} alt="background" className={styles.constellation11} loading="lazy" />
+          <img src={cloud3.src} alt="background" className={styles.cloud3} loading="lazy" />
+          <img src={cloud2.src} alt="background" className={styles.constellation21} loading="lazy" />
+          <img src={constellation2.src} alt="background" className={styles.constellation22} loading="lazy" />
+          <img src={cloud1.src} alt="background" className={styles.constellation31} loading="lazy" />
+          <img src={cloud4.src} alt="background" className={styles.constellation12} loading="lazy" />
+          <img src={constellation1.src} alt="background" className={styles.constellation13} loading="lazy" />
+          <img src={constellation3.src} alt="background" className={styles.constellation23} loading="lazy" />
         </div>
         {children}
       </div>

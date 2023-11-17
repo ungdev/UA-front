@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Icon } from './UI';
 import { useState } from 'react';
 import { IconName } from './UI/Icon';
+import Image from 'next/image';
 
 /**
  * Footer component that displays legal information and contact details.
@@ -17,7 +18,7 @@ export default function Footer() {
     <footer id="footer" className={styles.footer}>
       <div className={styles.row}>
         <div>
-          <img src={logo.src} alt="Logo UA23" />
+          <Image src={logo.src} alt="Logo UA23" width={340} height={139} />
         </div>
         <div className={styles.middle}>
           <h3>Informations légales</h3>

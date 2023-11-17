@@ -119,7 +119,7 @@ const About = () => {
                       style={{ '--team-color': team[key].color } as React.CSSProperties}>
                       <div className={styles.imgContainer}>
                         <div className={styles.imageFont}></div>
-                        <img src={member.image} alt={member.name} />
+                        <img src={member.image} alt={member.name} loading="lazy" />
                       </div>
                       <span>{member.name}</span>
                       <span>{member.job}</span>

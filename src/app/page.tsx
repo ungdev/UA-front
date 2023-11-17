@@ -24,7 +24,6 @@ import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-ligh
 import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
 import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
 import banner from '@/../public/images/banner.png';
-import Image from 'next/image';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -32,22 +31,22 @@ const Home = () => {
     <div id="home" className={styles.home}>
       <Parallax className={styles.parallax}>
         <ParallaxElementSettings speed={2.6} className={styles.parallaxCloud1}>
-          <img src={parallaxCloud1.src} alt="background" />
+          <img src={parallaxCloud1.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2.3} className={styles.parallaxCloud2}>
-          <img src={parallaxCloud2.src} alt="background" />
+          <img src={parallaxCloud2.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={1.9} className={styles.parallaxCloud2Light}>
-          <img src={parallaxCloud2Light.src} alt="background" />
+          <img src={parallaxCloud2Light.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={3} className={styles.parallaxCloud3}>
-          <img src={parallaxCloud3.src} alt="background" />
+          <img src={parallaxCloud3.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2.5} className={styles.parallaxCloud3Light}>
-          <img src={parallaxCloud3Light.src} alt="background" />
+          <img src={parallaxCloud3Light.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2} className={styles.parallaxMoon}>
-          <img src={moon.src} alt="background" />
+          <img src={moon.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
       </Parallax>
       <Slider
@@ -55,7 +54,7 @@ const Home = () => {
         slides={[
           <div key={'slide-1'} className={styles.homeHeader}>
             <div id="logo" className={styles.logo}>
-              <Image src="/images/logo-notext.png" width={395} height={339} alt="Logo" />
+              <img src="/images/logo-notext.png" alt="Logo" loading="lazy" />
             </div>
             <div className={styles.homeTitle}>
               <TextStroke className={styles.main} classNameOfStroke={styles.stroke} width={20}>

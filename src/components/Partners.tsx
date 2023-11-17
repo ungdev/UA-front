@@ -31,7 +31,7 @@ export default function Partners({ cards = false }: { cards?: boolean }) {
               {cards ? (
                 <Square imgSrc={getPartnerLogoLink(partner.id)} alt={partner.name} text={partner.description} long />
               ) : (
-                <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} />
+                <img src={getPartnerLogoLink(partner.id)} alt={`Logo ${partner.name}`} loading="lazy" />
               )}
             </Link>
           ))}

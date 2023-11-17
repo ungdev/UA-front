@@ -48,7 +48,7 @@ export default function BadgePage() {
           type="png"
         />
         <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
-          <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} />
+          <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} loading="lazy" />
         </ReactCrop>
         <div className={styles.result}>
           <div className={styles.imageWrapper}>
@@ -68,7 +68,7 @@ export default function BadgePage() {
               }
             />
           </div>
-          <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
+          <img alt="Arrière plan du résultat" className={styles.background} src={background.src} loading="lazy" />
         </div>
       </div>
     </>

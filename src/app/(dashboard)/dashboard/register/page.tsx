@@ -110,7 +110,7 @@ const Register = () => {
   const RegisterCard = ({ title, onClick, imgSrc }: { title: string; onClick: () => void; imgSrc: string }) => {
     return (
       <div className={styles.card} onClick={onClick}>
-        <img src={imgSrc} alt={title + '  background'} />
+        <img src={imgSrc} alt={title + '  background'} loading="lazy" />
         <p>{title}</p>
       </div>
     );

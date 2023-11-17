@@ -66,7 +66,7 @@ const Card = ({
     <div className={`${styles.card} ${className} ${dark && styles.dark}`}>
       {imgSrc && (
         <>
-          <img className={`${styles.cardImage} ${classNameImg}`} alt={alt} data-src={imgSrc} />
+          <img className={`${styles.cardImage} ${classNameImg}`} alt={alt} data-src={imgSrc} loading="lazy" />
           {divider === 'belowImage' && <Divider />}
         </>
       )}
