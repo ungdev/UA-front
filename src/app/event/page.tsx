@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 import { Table, Title } from '@/components/UI';
-import imageLeft from '@/../public/images/event/left.jpg';
-import imageRight from '@/../public/images/event/right.jpg';
+import imageLeft from '@/../public/images/event/left.webp';
+import imageRight from '@/../public/images/event/right.webp';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';

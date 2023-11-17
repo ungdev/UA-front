@@ -37,7 +37,7 @@ export default function DoubleImage({
         <img src={image1} loading="lazy" alt="Information Image" onClick={swap} />
       </BoxContainer>
       <BoxContainer
-        title="image.jpg"
+        title="image2.jpg"
         padding={false}
         className={swapped !== null ? (swapped ? styles.image2forward : styles.image2backward) : ''}>
         <img src={image2} loading="lazy" alt="Information Image" onClick={swap} />

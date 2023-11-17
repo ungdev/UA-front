@@ -3,10 +3,10 @@ import styles from './style.module.scss';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
 import { useAppSelector } from '@/lib/hooks';
-import uaImage1 from '@/../public/images/about/ua-1.jpg';
-import uaImage2 from '@/../public/images/about/ua-2.jpg';
-import ungImage1 from '@/../public/images/about/ung-1.jpg';
-import ungImage2 from '@/../public/images/about/ung-2.jpg';
+import uaImage1 from '@/../public/images/about/ua-1.webp';
+import uaImage2 from '@/../public/images/about/ua-2.webp';
+import ungImage1 from '@/../public/images/about/ung-1.webp';
+import ungImage2 from '@/../public/images/about/ung-2.webp';
 
 interface TeamMember {
   name: string;
