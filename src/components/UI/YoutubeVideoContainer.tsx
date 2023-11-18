@@ -37,6 +37,7 @@ const YoutubeVideoContainer = ({
     div.setAttribute('data-id', videoId!);
     const thumbNode = document.createElement('img');
     thumbNode.src = `//i.ytimg.com/vi/${videoId}/0.jpg`;
+    thumbNode.alt = 'Youtube Video';
     div.appendChild(thumbNode);
     const playButton = document.createElement('div');
     playButton.setAttribute('class', styles.play);
