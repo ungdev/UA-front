@@ -15,9 +15,44 @@ http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <priority>0.8</priority>
 </url>
 <url>
-  <loc>https://arena.utt.fr/event</loc>
+  <loc>https://arena.utt.fr/tournaments/lol</loc>
   <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://arena.utt.fr/tournaments/ssbu</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://arena.utt.fr/tournaments/cs2</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+<!-- <url>
+  <loc>https://arena.utt.fr/tournaments/rl</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url> -->
+<url>
+  <loc>https://arena.utt.fr/tournaments/osu</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://arena.utt.fr/tournaments/tft</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://arena.utt.fr/tournaments/pokemon</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
+</url>
+<url>
+  <loc>https://arena.utt.fr/tournaments/open</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.7</priority>
 </url>
 <url>
   <loc>https://arena.utt.fr/help</loc>
