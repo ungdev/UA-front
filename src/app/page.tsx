@@ -84,7 +84,7 @@ const Home = () => {
 
       <AppearFromSide className={styles.ctaMain}>
         <Title level={2} type={1}>
-          LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST
+          La plus grande compétition e-sport du grand est
         </Title>
         <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
