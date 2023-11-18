@@ -261,12 +261,10 @@ const Legal = () => (
         Justificatif
       </Title>
       <p>
-        Pour garantir la sécurité et le bon déroulement de l'événement, l’Organisateur est libre de contrôler l’identité
-        des participants. Dans ce cas, le participant doit être en mesure de justifier de son identité à l’aide d'une
-        pièce d'identité en cours de validité est obligatoire en complément du billet d'entrée. Un participant mineur
-        doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une photocopie de
-        la pièce d’identité d’un de ses responsables légaux. Cette mesure vise à assurer l'identification des
-        participants et à renforcer la sûreté de l'événement pour l'ensemble des visiteurs.
+        L’Organisateur est libre de contrôler l’identité des participants. Dans ce cas, le participant doit être en
+        mesure de justifier de son identité à l’aide d’un document officiel comportant une photographie. Un participant
+        mineur doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une
+        photocopie de la pièce d’identité d’un de ses responsables légaux.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 12 - Droit de rétractation

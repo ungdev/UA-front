@@ -11,7 +11,7 @@ import { useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
-import logoUA from '@/../public/images/logo-notext.webp';
+import logoUA from '@/../public/images/logo-notext.png';
 import FillingBar from '@/components/UI/FillingBar';
 // TODO: Remove next 3 lines
 import { useDispatch } from 'react-redux';
@@ -53,7 +53,7 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
         </Link>
         <div className={styles.headerContainer}>
           <div className={styles.title}>
-            <img src={logoUA.src} alt="Logo UA23" loading="lazy" />
+            <img src={logoUA.src} alt="Logo UA23" />
             <Title level={1} type={1} className={styles.tournamentName}>
               {tournament.name}
             </Title>
@@ -101,8 +101,8 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             {tournament.casters === undefined || tournament.casters === null
               ? 'À venir'
               : tournament.casters.length === 0
-                ? 'Aucun caster pour ce tournoi'
-                : tournament.casters?.map((caster) => caster.name).join(', ')}
+              ? 'Aucun caster pour ce tournoi'
+              : tournament.casters?.map((caster) => caster.name).join(', ')}
           </BoxContainer>
         </div>
         {loginAllowed &&
