@@ -1,7 +1,7 @@
 import styles from './style.module.scss';
 import { Table, Title } from '@/components/UI';
-import imageLeft from '@/../public/images/event/left.jpg';
-import imageRight from '@/../public/images/event/right.jpg';
+import imageLeft from '@/../public/images/event/left.webp';
+import imageRight from '@/../public/images/event/right.webp';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
@@ -22,7 +22,7 @@ export default function Page() {
           Présentation
         </Title>
         <div className={`${styles.textAndImage} ${styles.imageLeft}`}>
-          <img src={imageLeft.src} alt="foo" />
+          <img src={imageLeft.src} alt="Image de gauche" loading="lazy" />
           <div className={styles.text}>
             L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
@@ -41,7 +41,7 @@ export default function Page() {
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
             merci également à tous les bénévoles qui rendent possible l'organisation de ce beau projet.
           </div>
-          <img src={imageRight.src} alt="bar" />
+          <img src={imageRight.src} alt="Image de droite" loading="lazy" />
         </div>
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
