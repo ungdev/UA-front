@@ -49,7 +49,31 @@
     margin-top: 58px;
 
     .boxContainer {
-      width: fit-content;
+      width: 20%;
+
+      .boxContainerContent {
+        height: 100%;
+        padding: 10px;
+        gap: 0;
+
+        table {
+          margin: 0;
+
+          tr {
+            td {
+              vertical-align: top;
+
+              &:first-child {
+                white-space: nowrap;
+                border-style: solid;
+                border-color: transparent;
+                border-width: 0 1rem 0 0;
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -106,7 +130,7 @@
     }
   }
 
-  table {
+  .informationTable {
     width: 80%;
     margin: 1rem auto;
   }
@@ -173,7 +197,7 @@
       }
     }
 
-    table {
+    .informationTable {
       margin: 1rem 3%;
       width: 94%;
     }

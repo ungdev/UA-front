@@ -3,10 +3,10 @@ import styles from './style.module.scss';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
 import { useAppSelector } from '@/lib/hooks';
-import uaImage1 from '@/../public/images/about/ua-1.jpg';
-import uaImage2 from '@/../public/images/about/ua-2.jpg';
-import ungImage1 from '@/../public/images/about/ung-1.jpg';
-import ungImage2 from '@/../public/images/about/ung-2.jpg';
+import uaImage1 from '@/../public/images/about/ua-1.webp';
+import uaImage2 from '@/../public/images/about/ua-2.webp';
+import ungImage1 from '@/../public/images/about/ung-1.webp';
+import ungImage2 from '@/../public/images/about/ung-2.webp';
 
 interface TeamMember {
   name: string;
@@ -119,7 +119,7 @@ const About = () => {
                       style={{ '--team-color': team[key].color } as React.CSSProperties}>
                       <div className={styles.imgContainer}>
                         <div className={styles.imageFont}></div>
-                        <img src={member.image} alt={member.name} />
+                        <img src={member.image} alt={member.name} loading="lazy" />
                       </div>
                       <span>{member.name}</span>
                       <span>{member.job}</span>
