@@ -4,7 +4,7 @@ import FileUpload from '@/components/UI/FileInput';
 import { useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, ReactCrop } from 'react-image-crop';
-import background from '@/../public/images/background.webp';
+import background from '@/../public/images/background.jpg';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
@@ -48,7 +48,7 @@ export default function BadgePage() {
           type="png"
         />
         <ReactCrop crop={crop} onChange={(_, c) => setCrop(c)} minWidth={250} aspect={1} keepSelection circularCrop>
-          <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} loading="lazy" />
+          <img className={styles.croppingImage} alt="Image à cropper" src={file} onLoad={onImageLoad} />
         </ReactCrop>
         <div className={styles.result}>
           <div className={styles.imageWrapper}>
@@ -68,7 +68,7 @@ export default function BadgePage() {
               }
             />
           </div>
-          <img alt="Arrière plan du résultat" className={styles.background} src={background.src} loading="lazy" />
+          <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
         </div>
       </div>
     </>

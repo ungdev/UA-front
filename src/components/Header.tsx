@@ -1,11 +1,10 @@
 'use client';
 import styles from './Header.module.scss';
 import Link from 'next/link';
-import Image from 'next/image';
 
-import logo from '@/../public/images/logo.webp';
+import logo from '@/../public/images/logo.png';
 import LoginModal from './landing/LoginModal';
-import { Button, Modal, Title } from './UI';
+import { Button, Modal } from './UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import type { Action } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -128,11 +127,7 @@ export default function Header({
       <header ref={header as MutableRefObject<HTMLDivElement>} id="header" className={styles.header}>
         <div className={styles.content}>
           <Link href="/">
-            <Image src={logo.src} width={72} height={61.5} alt="Logo UA23" />
-            {/* For SEO */}
-            <Title level={1} className={styles.hidden}>
-              UTT Arena 2023
-            </Title>
+            <img src={logo.src} alt="Logo UA23" />
           </Link>
           <nav>
             <div className={styles.left}>{leftContent}</div>

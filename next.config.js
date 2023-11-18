@@ -34,22 +34,6 @@ const nextConfig = {
       },
     ];
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'arena.utt.fr',
-        port: '',
-        pathname: '/uploads/files/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'dev.arena.uttnetgroup.fr',
-        port: '',
-        pathname: '/uploads/files/**',
-      },
-    ],
-  },
 };
 
 module.exports = nextConfig;

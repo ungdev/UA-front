@@ -423,12 +423,7 @@ const Shop = () => {
         buttons={null}
         containerClassName={styles.itemPreviewModalContainer}>
         {itemPreview && (
-          <img
-            alt="Preview image"
-            src={`/images/${itemPreview.image}`}
-            className={styles.itemPreviewImage}
-            loading="lazy"
-          />
+          <img alt="Preview image" src={`/images/${itemPreview.image}`} className={styles.itemPreviewImage} />
         )}
       </Modal>
     </div>
