@@ -25,7 +25,7 @@ export function generateCsp() {
       { name: 'font-src', values: ["'self'", 'data:', 'fonts.gstatic.com', 'fonts.googleapis.com', 'github.com'] },
       {
         name: 'img-src',
-        values: ["'self'", 'data:', '*.utt.fr', 'blob:', '*.uttnetgroup.fr'],
+        values: ["'self'", 'data:', '*.utt.fr', 'blob:', '*.uttnetgroup.fr', '*.ibb.co', '*.ytimg.com'],
       },
       { name: 'worker-src', values: ["'self'", 'blob:'] },
       { name: 'frame-ancestors', values: ["'none'"] },

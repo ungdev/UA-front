@@ -69,7 +69,7 @@ const Home = () => {
           <YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
-              <img src={banner.src} alt="Rejoindre l'aventure" />
+              <img src={banner.src} alt="Rejoindre l'aventure" loading="lazy" />
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
