@@ -1,8 +1,6 @@
 'use client';
 import styles from './Card.module.scss';
 import Link from 'next/link';
-import 'lazysizes';
-import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 import Button from '@/components/UI/Button';
 import Divider from '@/components/UI/Divider';

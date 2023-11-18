@@ -1,7 +1,5 @@
 'use client';
 import styles from './Square.module.scss';
-import 'lazysizes';
-import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 /**
  * Square component that displays an image, content and a button.
