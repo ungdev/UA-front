@@ -238,6 +238,7 @@ export function TournamentHome({
                       data-index={i}
                       className={`${styles.tournament} ${i === selectedTournamentIndex ? styles.selected : ''}`}
                       onClick={() => selectTournament(i)}
+                      loading="lazy"
                     />
                   ))}
             </div>

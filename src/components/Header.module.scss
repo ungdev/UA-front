@@ -192,6 +192,10 @@ $scrollingAnimationDuration: 0.5s;
       }
     }
   }
+
+  .hidden {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1024px) {

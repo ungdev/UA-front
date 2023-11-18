@@ -4,11 +4,11 @@ import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
-import { VerticalDivider, Button, Title, Icon, VideoContainer, TextBlock } from '@/components/UI';
+import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
-import moon from '@/../public/images/clouds/parallax/moon.png';
+import moon from '@/../public/images/clouds/parallax/moon.webp';
 import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
@@ -16,14 +16,14 @@ import TournamentList from '@/components/landing/TournamentList';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
 import { type Action } from '@reduxjs/toolkit';
-import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.png';
-import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.png';
-import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.png';
-import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.png';
-import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.png';
-import doubleImage1 from '@/../public/images/home/double-image-1.jpg';
-import doubleImage2 from '@/../public/images/home/double-image-2.jpg';
-import banner from '@/../public/images/banner.png';
+import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.webp';
+import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.webp';
+import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.webp';
+import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.webp';
+import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.webp';
+import doubleImage1 from '@/../public/images/home/double-image-1.webp';
+import doubleImage2 from '@/../public/images/home/double-image-2.webp';
+import banner from '@/../public/images/banner.webp';
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -31,22 +31,22 @@ const Home = () => {
     <div id="home" className={styles.home}>
       <Parallax className={styles.parallax}>
         <ParallaxElementSettings speed={2.6} className={styles.parallaxCloud1}>
-          <img src={parallaxCloud1.src} alt="background" />
+          <img src={parallaxCloud1.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2.3} className={styles.parallaxCloud2}>
-          <img src={parallaxCloud2.src} alt="background" />
+          <img src={parallaxCloud2.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={1.9} className={styles.parallaxCloud2Light}>
-          <img src={parallaxCloud2Light.src} alt="background" />
+          <img src={parallaxCloud2Light.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={3} className={styles.parallaxCloud3}>
-          <img src={parallaxCloud3.src} alt="background" />
+          <img src={parallaxCloud3.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2.5} className={styles.parallaxCloud3Light}>
-          <img src={parallaxCloud3Light.src} alt="background" />
+          <img src={parallaxCloud3Light.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
         <ParallaxElementSettings speed={2} className={styles.parallaxMoon}>
-          <img src={moon.src} alt="background" />
+          <img src={moon.src} alt="background" loading="lazy" />
         </ParallaxElementSettings>
       </Parallax>
       <Slider
@@ -54,7 +54,7 @@ const Home = () => {
         slides={[
           <div key={'slide-1'} className={styles.homeHeader}>
             <div id="logo" className={styles.logo}>
-              <img src="/images/logo-notext.png" alt="Logo" />
+              <img src="/images/logo-notext.webp" alt="Logo" loading="lazy" />
             </div>
             <div className={styles.homeTitle}>
               <TextStroke className={styles.main} classNameOfStroke={styles.stroke} width={20}>
@@ -66,10 +66,10 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          <VideoContainer key={'slide-2'} src="https://www.youtube.com/embed/Rapw-tXMeDU" />,
+          <YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
-              <img src={banner.src} alt="" />
+              <img src={banner.src} alt="Rejoindre l'aventure" />
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
@@ -83,7 +83,9 @@ const Home = () => {
       />
 
       <AppearFromSide className={styles.ctaMain}>
-        <Title level={1}>LA PLUS GRANDE COMPÉTITION E-SPORT DU GRAND EST</Title>
+        <Title level={2} type={1}>
+          La plus grande compétition e-sport du grand est
+        </Title>
         <TextStroke className={styles.ctaMainSubtitle}>Prépare toi à entrer dans l’arène !</TextStroke>
         <Link href="/event">
           <Button secondary>Découvrir l’évènement</Button>
@@ -126,7 +128,7 @@ const Home = () => {
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title>Les tournois de l'UA23</Title>
+          <Title level={2}>Les tournois de l'UA23</Title>
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs :{' '}
             <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>,{' '}

@@ -22,9 +22,10 @@
   .partners {
     margin: 0 10%;
     padding-bottom: 4rem;
+    flex-direction: column;
 
     img {
-      width: 100px;
+      width: 200px;
       height: auto;
     }
 

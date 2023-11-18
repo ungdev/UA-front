@@ -16,11 +16,13 @@ export const getTournamentRulesName = (tournamentId: string) => {
 };
 
 export const getTournamentImageLink = (tournamentId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentImageName(tournamentId)}.jpg`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentImageName(tournamentId)}.webp`;
 };
 
 export const getTournamentBackgroundLink = (tournamentId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(tournamentId)}.jpg`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${TOURNAMENT_FOLDER}/${getTournamentBackgroundName(
+    tournamentId,
+  )}.webp`;
 };
 
 export const getTournamentRulesLink = (tournamentId: string) => {

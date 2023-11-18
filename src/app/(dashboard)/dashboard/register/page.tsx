@@ -15,11 +15,11 @@ import { Team, Tournament, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 import { getTournamentBackgroundLink } from '@/utils/uploadLink';
-import playerImg from '@/../public/images/register/player.jpg';
-import coachImg from '@/../public/images/register/coach.jpg';
-import spectatorImg from '@/../public/images/register/spectator.jpg';
-import joinImg from '@/../public/images/register/join.jpg';
-import createImg from '@/../public/images/register/create.jpg';
+import playerImg from '@/../public/images/register/player.webp';
+import coachImg from '@/../public/images/register/coach.webp';
+import spectatorImg from '@/../public/images/register/spectator.webp';
+import joinImg from '@/../public/images/register/join.webp';
+import createImg from '@/../public/images/register/create.webp';
 import Modal from '@/components/UI/Modal';
 
 const columns = [
@@ -110,7 +110,7 @@ const Register = () => {
   const RegisterCard = ({ title, onClick, imgSrc }: { title: string; onClick: () => void; imgSrc: string }) => {
     return (
       <div className={styles.card} onClick={onClick}>
-        <img src={imgSrc} alt={title + '  background'} />
+        <img src={imgSrc} alt={title + '  background'} loading="lazy" />
         <p>{title}</p>
       </div>
     );
