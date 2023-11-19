@@ -42,6 +42,7 @@ export enum Permission {
   anim = 'anim',
   admin = 'admin',
   repo = 'repo',
+  orga = 'orga',
 }
 
 export interface Team {
@@ -87,6 +88,7 @@ export interface User {
   askingTeamId: string | null;
   attendant: UserAttendant;
   age: UserAge;
+  orgaRoles: Array<{ commissionRole: 'respo' | 'member'; commission: Commission }>;
 }
 
 export interface UserEdit {
@@ -246,8 +248,11 @@ export interface Orga {
 export interface Commission {
   id: string;
   name: string;
-  masterCommission: string;
   color: string;
+  masterCommission: string;
+}
+
+export interface CommissionWithOrgas extends Commission {
   roles: { respo: Orga[]; member: Orga[] };
 }
 

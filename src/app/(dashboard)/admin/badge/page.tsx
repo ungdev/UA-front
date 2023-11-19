@@ -13,7 +13,7 @@ import Icon, { IconName } from '@/components/UI/Icon';
 import TeamMember from '@/components/landing/TeamMember';
 import { toast } from 'react-toastify';
 import { uploadProfilePicture } from '@/modules/users';
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { type Action } from '@reduxjs/toolkit';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
@@ -34,6 +34,7 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 
 export default function BadgePage() {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.login.user);
   const [file, setFile] = useState<string | undefined>();
   const [crop, setCrop] = useState<Crop>();
   const [slide, setSlide] = useState(0);
@@ -111,12 +112,8 @@ export default function BadgePage() {
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
             <TeamMember
               color="#123455"
-              member={{
-                id: 'ABCDEF',
-                firstname: 'Alexandre (encore lui)',
-                lastname: 'Dupont (ou Dupond, je sais jamais)',
-              }}
-              role={'respo'}
+              member={user!}
+              role={user!.orgaRoles[0].commissionRole}
               image={canvasRef.current?.toDataURL() ?? ''}
             />
           </div>

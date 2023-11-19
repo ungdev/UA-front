@@ -3,7 +3,7 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
-  Commission,
+  CommissionWithOrgas,
   Permission,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
@@ -19,7 +19,7 @@ interface UsersAction {
   itemsPerPage: number;
   //filters: any;
   lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
-  orgas: Commission[] | null;
+  orgas: CommissionWithOrgas[] | null;
 }
 
 interface UserFilters extends Record<string, string | undefined> {
