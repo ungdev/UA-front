@@ -41,6 +41,7 @@ export default function BadgePage() {
   const [canGoToNextSlide, setCanGoToNextSlide] = useState(false);
   const croppingImageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [roleToPreview, setRoleToPreview] = useState(0);
 
   const onCrop = (c: PercentCrop) => {
     setCrop(c);
@@ -111,22 +112,45 @@ export default function BadgePage() {
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
             <TeamMember
-              color="#123455"
+              color={user!.orgaRoles[roleToPreview].commissionRole}
               member={user!}
-              role={user!.orgaRoles[0].commissionRole}
+              role={user!.orgaRoles[roleToPreview].commissionRole}
               image={canvasRef.current?.toDataURL() ?? ''}
             />
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
-            <div className={styles.result}>
-              <img alt="Arrière plan du résultat" className={styles.background} src={background.src} />
+            <div className={styles.badgePreview}>
+              <img alt="Arrière plan du badge" className={styles.background} src={background.src} />
               <div className={styles.imageWrapper}>
                 <canvas className={styles.image} ref={canvasRef} width={300} height={300} />
               </div>
             </div>
           </div>
         </div>
+        {user!.orgaRoles.length > 1 && (
+          <div className={styles.changePreviewRole}>
+            Preview avec tes autres rôles
+            <div className={styles.changePreviewRoleArrows}>
+              <Icon
+                name={IconName.ChevronLeft}
+                onClick={() => {
+                  setRoleToPreview(roleToPreview - 1);
+                }}
+                className={roleToPreview === 0 ? styles.disabled : ''}
+              />
+              {user!.orgaRoles[roleToPreview].commissionRole === 'respo' ? 'Responsable' : 'Membre'}{' '}
+              {user!.orgaRoles[roleToPreview].commission.name}
+              <Icon
+                name={IconName.ChevronRight}
+                onClick={() => {
+                  setRoleToPreview(roleToPreview + 1);
+                }}
+                className={roleToPreview === user!.orgaRoles.length - 1 ? styles.disabled : ''}
+              />
+            </div>
+          </div>
+        )}
         <Button
           primary
           onClick={() =>

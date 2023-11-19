@@ -23,15 +23,6 @@
 
     // Slide 2
     & {
-      .cropImageContainer {
-        border: 5px solid #002d40;
-        padding: 20px;
-        width: 20%;
-        -webkit-border-radius: 18px;
-        -moz-border-radius: 18px;
-        border-radius: 18px;
-      }
-
       .cropImageSlideContainer {
         display: flex;
         flex-direction: row;
@@ -39,7 +30,16 @@
         justify-content: space-evenly;
         align-items: center;
 
-        .result {
+        .cropImageContainer {
+          border: 5px solid #002d40;
+          padding: 20px;
+          width: 20%;
+          -webkit-border-radius: 18px;
+          -moz-border-radius: 18px;
+          border-radius: 18px;
+        }
+
+        .badgePreview {
           position: relative;
           margin: 1em;
 
@@ -63,6 +63,33 @@
               position: relative;
               aspect-ratio: 1;
               width: 100%;
+            }
+          }
+        }
+      }
+      .changePreviewRole {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        height: 6rem;
+        width: 100%;
+        font-weight: 800;
+        font-size: 1.25rem;
+        text-align: center;
+
+        .changePreviewRoleArrows {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          margin-top: 20px;
+
+          svg {
+            cursor: pointer;
+
+            &.disabled {
+              cursor: initial;
+              pointer-events: none;
+              opacity: 0.5;
             }
           }
         }
