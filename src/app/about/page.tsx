@@ -12,76 +12,6 @@ import { useEffect } from 'react';
 import { fetchOrgas } from '@/modules/users';
 import { type Action } from '@reduxjs/toolkit';
 
-interface TeamMember {
-  name: string;
-  job: string;
-  image: string;
-}
-
-interface OurTeam {
-  [key: string]: {
-    name: string;
-    color: string;
-    members: TeamMember[];
-  };
-}
-
-const team: OurTeam = {
-  dev: {
-    name: 'Développement',
-    color: '#FF0000',
-    members: [
-      {
-        name: 'Alexandre',
-        job: 'Respo Dev',
-        image: 'https://picsum.photos/200',
-      },
-      {
-        name: 'Alexandre',
-        job: 'Développeur',
-        image: 'https://picsum.photos/200',
-      },
-      {
-        name: 'Alexandre',
-        job: 'Développeur',
-        image: 'https://picsum.photos/200',
-      },
-    ],
-  },
-  com: {
-    name: 'Communication',
-    color: '#0000FF',
-    members: [
-      {
-        name: 'Alexandre',
-        job: 'Respo com',
-        image: 'https://picsum.photos/200',
-      },
-      {
-        name: 'Alexandre',
-        job: 'Communication',
-        image: 'https://picsum.photos/200',
-      },
-    ],
-  },
-  graphisme: {
-    name: 'Graphisme',
-    color: '#00FF00',
-    members: [
-      {
-        name: 'Alexandre',
-        job: 'Respo graphisme',
-        image: 'https://picsum.photos/200',
-      },
-      {
-        name: 'Alexandre',
-        job: 'Graphiste',
-        image: 'https://picsum.photos/200',
-      },
-    ],
-  },
-} as OurTeam;
-
 // export const metadata: Metadata = {
 //   title: 'À propos - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
 // }
@@ -99,7 +29,7 @@ const About = () => {
     <>
       <div className={styles.aboutContainer}>
         <div className={styles.aboutUa}>
-          <TextBlock title="UTT Arena" images={[uaImage1.src, uaImage2.src]}>
+          <TextBlock title="UTT Arena" titleLevel={2} images={[uaImage1.src, uaImage2.src]}>
             <br />
             L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué
@@ -107,7 +37,7 @@ const About = () => {
           </TextBlock>
         </div>
         <div className={styles.aboutUng}>
-          <TextBlock title="UTT Net Group" images={[ungImage1.src, ungImage2.src]} left>
+          <TextBlock title="UTT Net Group" titleLevel={2} images={[ungImage1.src, ungImage2.src]} left>
             L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />

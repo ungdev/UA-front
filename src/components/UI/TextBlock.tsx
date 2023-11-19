@@ -15,7 +15,7 @@ const TextBlock = ({
   /** The title to display. */
   title: string;
   /** The true level of the title (not the displayed one) */
-  titleLevel: number;
+  titleLevel?: number;
   /** The text to display. */
   children: React.ReactNode;
   /** The images to display. */
