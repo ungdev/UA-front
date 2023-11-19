@@ -1,24 +1,29 @@
 import styles from './TeamMember.module.scss';
+import { getProfilePictureUrl } from '@/modules/users';
 
 export default function TeamMember({
   member,
+  role,
   color,
+  image,
 }: {
   member: {
-    name: string;
-    job: string;
-    image: string;
+    id: string;
+    firstname: string;
+    lastname: string;
   };
+  role: 'respo' | 'member';
   color: string;
+  image?: string | undefined;
 }) {
   return (
     <div className={styles.member} style={{ '--team-color': color } as React.CSSProperties}>
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
-        <img src={member.image} alt={member.name} />
+        <img src={image ?? getProfilePictureUrl(member)} alt={`${member.firstname} ${member.lastname}`} />
       </div>
-      <span>{member.name}</span>
-      <span>{member.job}</span>
+      <span>{`${member.firstname} ${member.lastname}`}</span>
+      <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
     </div>
   );
 }

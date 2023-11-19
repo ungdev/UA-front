@@ -7,12 +7,15 @@ import DoubleImage from '@/components/UI/DoubleImage';
  */
 const TextBlock = ({
   title,
+  titleLevel = 3,
   children,
   images,
   left = false,
 }: {
   /** The title to display. */
   title: string;
+  /** The true level of the title (not the displayed one) */
+  titleLevel: number;
   /** The text to display. */
   children: React.ReactNode;
   /** The images to display. */
@@ -22,7 +25,7 @@ const TextBlock = ({
 }) => (
   <div className={styles.informationContainer}>
     <div className={`${styles.left} ${left ? styles.first : ''}`}>
-      <Title level={3} type={1}>
+      <Title level={titleLevel} type={1}>
         {title}
       </Title>
       <p className={styles.informationText}>{children}</p>

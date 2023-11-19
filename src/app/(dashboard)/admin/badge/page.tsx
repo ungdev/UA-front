@@ -109,14 +109,16 @@ export default function BadgePage() {
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-
             <TeamMember
               color="#123455"
               member={{
-                image: canvasRef.current?.toDataURL() ?? '',
-                job: 'test',
-                name: 'Alexandre (encore lui)',
-              }}></TeamMember>
+                id: 'ABCDEF',
+                firstname: 'Alexandre (encore lui)',
+                lastname: 'Dupont (ou Dupond, je sais jamais)',
+              }}
+              role={'respo'}
+              image={canvasRef.current?.toDataURL() ?? ''}
+            />
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>

@@ -3,6 +3,7 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
+  Commission,
   Permission,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
@@ -18,6 +19,7 @@ interface UsersAction {
   itemsPerPage: number;
   //filters: any;
   lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
+  orgas: Commission[] | null;
 }
 
 interface UserFilters extends Record<string, string | undefined> {
@@ -36,6 +38,7 @@ const initialState: UsersAction = {
   itemsPerPage: 25,
   //filters: {},
   lookupUser: null,
+  orgas: null,
 };
 
 const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
@@ -69,10 +72,16 @@ export const usersSlice = createSlice({
         lookupUser: action.payload,
       };
     },
+    setOrgas: (state, action) => {
+      return {
+        ...state,
+        orgas: action.payload,
+      };
+    },
   },
 });
 
-export const { setUsers, setLookupUser } = usersSlice.actions;
+export const { setUsers, setLookupUser, setOrgas } = usersSlice.actions;
 
 export const getTicketPrice = async (userId: string) => {
   return await API.get(`users/${userId}/ticket`);
@@ -197,14 +206,18 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
+export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
+  `${user.lastname}-${user.firstname}-${user.id}`;
+
 export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
   const file = new File([blob], `test.png`);
   const state = getState();
-  await uploadFile(
-    file,
-    `${state.login.user?.lastname}-${state.login.user?.firstname}-${state.login.user?.id}`,
-    'admin',
-  );
+  await uploadFile(file, getProfilePictureUrl(state.login.user!), 'admin');
+};
+
+export const fetchOrgas = () => async (dispatch: Dispatch) => {
+  const res = await API.get('users/orgas');
+  dispatch(setOrgas(res));
 };
 
 export default usersSlice.reducer;

@@ -237,6 +237,20 @@ export interface AdminTournament extends Tournament {
   position: number;
 }
 
+export interface Orga {
+  id: string;
+  firstname: string;
+  lastname: string;
+}
+
+export interface Commission {
+  id: string;
+  name: string;
+  masterCommission: string;
+  color: string;
+  roles: { respo: Orga[]; member: Orga[] };
+}
+
 export enum UserType {
   player = 'player',
   coach = 'coach',

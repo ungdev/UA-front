@@ -2,12 +2,15 @@
 import styles from './style.module.scss';
 import { TextBlock, Title } from '@/components/UI';
 import Partners from '@/components/Partners';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import uaImage1 from '@/../public/images/about/ua-1.jpg';
 import uaImage2 from '@/../public/images/about/ua-2.jpg';
 import ungImage1 from '@/../public/images/about/ung-1.jpg';
 import ungImage2 from '@/../public/images/about/ung-2.jpg';
 import TeamMember from '@/components/landing/TeamMember';
+import { useEffect } from 'react';
+import { fetchOrgas } from '@/modules/users';
+import { type Action } from '@reduxjs/toolkit';
 
 interface TeamMember {
   name: string;
@@ -84,7 +87,13 @@ const team: OurTeam = {
 // }
 
 const About = () => {
+  const dispatch = useAppDispatch();
   const trombiAllowed = useAppSelector((state) => state.settings.trombi);
+  const orgas = useAppSelector((state) => state.users.orgas);
+
+  useEffect(() => {
+    if (!orgas && trombiAllowed) dispatch(fetchOrgas() as unknown as Action);
+  }, [trombiAllowed]);
 
   return (
     <>
@@ -105,22 +114,31 @@ const About = () => {
           </TextBlock>
         </div>
 
-        {trombiAllowed && (
-          <div className={styles.aboutTeam}>
-            <Title level={2} type={1} align="center">
-              Notre équipe
-            </Title>
-            <div className={styles.content}>
-              {Object.keys(team).map((key) => (
-                <>
-                  {team[key].members.map((member) => (
-                    <TeamMember member={member} color={team[key].color} key={member.name}></TeamMember>
-                  ))}
-                </>
-              ))}
+        {trombiAllowed &&
+          (!orgas ? (
+            'Chargement des orgas...'
+          ) : (
+            <div className={styles.aboutTeam}>
+              <Title level={2} type={1} align="center">
+                Notre équipe
+              </Title>
+              <div className={styles.content}>
+                {orgas.map((commission) => (
+                  <div key={commission.id}>
+                    <Title className={styles.commissionName} level={3} type={commission.masterCommission ? 3 : 2}>
+                      {commission.name}
+                    </Title>
+                    {commission.roles.respo.map((orga) => (
+                      <TeamMember member={orga} color={commission.color} role={'respo'} key={orga.id} />
+                    ))}
+                    {commission.roles.member.map((orga) => (
+                      <TeamMember member={orga} color={commission.color} role={'member'} key={orga.id} />
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          ))}
       </div>
       <div className="">
         <Title level={2} type={1} align="center">
