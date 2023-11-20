@@ -16,12 +16,21 @@
   text-align: center;
   gap: 1rem;
 
+  &.long {
+    width: clamp(300px, 100%, 450px);
+    max-width: 450px;
+    min-height: 300px;
+    height: initial;
+    padding: 1rem;
+  }
+
   .text {
-    font-size: 1.5rem;
+    font-size: 0.925rem;
     font-weight: 500;
     line-height: 1.5;
-    color: $primary-color;
-    text-decoration: none;
+    color: white !important;
+    text-decoration: none !important;
+    white-space: pre-wrap;
   }
 
   &.dark {

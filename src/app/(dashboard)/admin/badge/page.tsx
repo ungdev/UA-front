@@ -4,7 +4,7 @@ import FileUpload from '@/components/UI/FileInput';
 import { useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
-import background from '@/../public/images/background.jpg';
+import background from '@/../public/images/background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';

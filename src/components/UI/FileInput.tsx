@@ -54,6 +54,7 @@ const FileUpload = ({
             }}
             src={preview ? preview : value}
             alt={label}
+            loading="lazy"
           />
         )}
 

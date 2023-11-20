@@ -1,7 +1,5 @@
 'use client';
 import styles from './Square.module.scss';
-import 'lazysizes';
-import 'lazysizes/plugins/attrchange/ls.attrchange';
 
 /**
  * Square component that displays an image, content and a button.
@@ -13,6 +11,7 @@ const Square = ({
   alt = '',
   replacementText = null,
   text = '',
+  long = false,
 }: {
   /** Source of the image to display above */
   imgSrc?: string | null;
@@ -26,10 +25,12 @@ const Square = ({
   replacementText?: string | null;
   /** text */
   text?: string;
+  /** long */
+  long?: boolean;
 }) => {
   return (
-    <div className={`${styles.square} ${className}`} onClick={onClick}>
-      {imgSrc && <img className="lazyload" alt={alt} data-src={imgSrc} />}
+    <div className={`${styles.square} ${className} ${long ? styles.long : ''}`} onClick={onClick}>
+      {imgSrc && <img alt={alt} src={imgSrc} loading="lazy" />}
       {!imgSrc && replacementText && <div className={styles.replacementText}>{replacementText}</div>}
       {text && <div className={styles.text}>{text}</div>}
     </div>
