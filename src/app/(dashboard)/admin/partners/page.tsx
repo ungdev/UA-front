@@ -1,5 +1,5 @@
 'use client';
-import { Button, DraggableList, Loader, Square, Title } from '@/components/UI';
+import { Button, DraggableList, Square, Title } from '@/components/UI';
 import PartnerModal from '@/components/dashboard/PartnerModal';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
