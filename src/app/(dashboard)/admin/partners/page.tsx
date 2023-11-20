@@ -7,7 +7,7 @@ import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { type Action } from '@reduxjs/toolkit';
-import { reorderPartners } from '@/modules/admin';
+import { fetchAdminPartners, reorderPartners } from '@/modules/admin';
 
 const Partners = () => {
   const partners = useAppSelector((state) => state.admin.partners);
@@ -19,6 +19,10 @@ const Partners = () => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
   const [reorderEnabled, setReorderEnabled] = useState(false);
+
+  useEffect(() => {
+    if (!partners) dispatch(fetchAdminPartners() as unknown as Action);
+  }, []);
 
   useEffect(() => {
     if (didReorder) return;
@@ -83,7 +87,7 @@ const Partners = () => {
             }}
           />
         ) : (
-          <Loader />
+          'Aucun partenaire pour le moment'
         )}
       </div>
 

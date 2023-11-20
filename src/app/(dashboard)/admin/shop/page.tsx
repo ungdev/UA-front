@@ -6,7 +6,7 @@ import { AdminItem } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { type Action } from '@reduxjs/toolkit';
-import { reorderItems } from '@/modules/admin';
+import { fetchAdminItems, reorderItems } from '@/modules/admin';
 
 const Shop = () => {
   const shopItems = useAppSelector((state) => state.admin.items);
@@ -17,6 +17,10 @@ const Shop = () => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
   const [reorderEnabled, setReorderEnabled] = useState(false);
+
+  useEffect(() => {
+    if (!items) dispatch(fetchAdminItems() as unknown as Action);
+  }, []);
 
   useEffect(() => {
     if (didReorder) return;
