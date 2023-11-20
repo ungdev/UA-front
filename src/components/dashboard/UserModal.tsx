@@ -17,6 +17,7 @@ import {
 import type { Action } from '@reduxjs/toolkit';
 
 const permissionOptions = [
+  { name: 'Orga', value: Permission.orga.toString() },
   { name: 'Stream', value: Permission.stream.toString() },
   { name: 'Entrée', value: Permission.entry.toString() },
   { name: 'Vestiaire', value: Permission.repo.toString() },
