@@ -75,7 +75,7 @@ export default function Page() {
                 <td>
                   <strong>9h</strong>
                 </td>
-                <td>Checkin des joueurs</td>
+                <td>Check-in des joueurs</td>
               </tr>
               <tr>
                 <td>
