@@ -128,8 +128,8 @@ const UserModal = ({
               {cart.transactionId
                 ? `#${cart.transactionId}`
                 : cart.transactionState !== TransactionState.pending
-                ? 'Paiement validé manuellement'
-                : 'En attente de paiement'}
+                  ? 'Paiement validé manuellement'
+                  : 'En attente de paiement'}
               )<br />
               {(cart.transactionState === TransactionState.paid ||
                 cart.transactionState === TransactionState.refunded) && (
