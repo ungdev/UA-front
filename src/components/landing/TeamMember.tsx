@@ -7,13 +7,17 @@ export default function TeamMember({
   color,
   image,
 }: {
+  /** The user to display. */
   member: {
     id: string;
     firstname: string;
     lastname: string;
   };
+  /** Which role the user has, in the commission we are rendering this component for. */
   role: 'respo' | 'member';
+  /** The color that represents the commission we are rendering. */
   color: string;
+  /** The image of the user. If no image is given, it will take the image at the default link. */
   image?: string | undefined;
 }) {
   return (
