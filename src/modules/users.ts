@@ -150,6 +150,7 @@ export const lookupUser =
               team: user.team,
               attendant: user.attendant,
               customMessage: user.customMessage,
+              orgaRoles: user.orgaRoles,
               carts: res,
             }
           : null,

@@ -1,13 +1,14 @@
 import styles from './UserModal.module.scss';
 import { useEffect, useState } from 'react';
-import { validatePay, saveUser, refundCart, lookupUser, createUser } from '@/modules/users';
+import { createUser, lookupUser, refundCart, saveUser, validatePay } from '@/modules/users';
 import { connectAs } from '@/modules/login';
-import { Modal, Button, Radio, Checkbox, Input, Card, Textarea } from './../UI';
+import { Button, Card, Checkbox, Input, Modal, Radio, Select, Textarea } from './../UI';
 
 import { API } from '@/utils/api';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import {
+  Commission,
   Permission,
   TransactionState,
   UserAge,
@@ -15,6 +16,7 @@ import {
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
+import Icon, { IconName } from '@/components/UI/Icon';
 
 const permissionOptions = [
   { name: 'Orga', value: Permission.orga.toString() },
@@ -53,6 +55,8 @@ const UserModal = ({
   const isAnim = useAppSelector((state) => state.login.user?.permissions?.includes?.(Permission.anim));
   const hasEntryPermission =
     useAppSelector((state) => state.login.user?.permissions?.includes?.(Permission.entry)) || isAdmin;
+  const [commissions, setCommissions] = useState<Commission[]>([]);
+
   const [lastname, setLastname] = useState('');
   const [firstname, setFirstname] = useState('');
   const [username, setUsername] = useState('');
@@ -60,10 +64,15 @@ const UserModal = ({
   const [password, setPassword] = useState('');
   const [customMessage, setCustomMessage] = useState<string | null | undefined>('');
   const [permissions, setPermissions] = useState<Permission[]>([]);
+  const [orgaRoles, setOrgaRoles] = useState<Array<{ commissionRole: 'respo' | 'member'; commission: string }>>([]);
   const [place, setPlace] = useState('');
   const [type, setType] = useState<UserType>();
   const [age, setAge] = useState<UserAge>();
   const [discordId, setDiscordId] = useState('');
+
+  useEffect(() => {
+    API.get('commissions').then(setCommissions);
+  }, []);
 
   useEffect(() => {
     if (!searchUser) return;
@@ -77,6 +86,12 @@ const UserModal = ({
     setType(searchUser.type);
     setAge(searchUser.age);
     setDiscordId(searchUser.discordId || '');
+    setOrgaRoles(
+      searchUser.orgaRoles.map((orgaRole) => ({
+        commissionRole: orgaRole.commissionRole,
+        commission: orgaRole.commission.id,
+      })),
+    );
   }, [searchUser]);
 
   const addPermission = (permission: Permission) => {
@@ -160,6 +175,12 @@ const UserModal = ({
     });
   };
 
+  const getCommissionsAvailable = (include?: string) => {
+    return commissions.filter(
+      (commission) => !orgaRoles.find((role) => role.commission === commission.id) || commission.id === include,
+    );
+  };
+
   return (
     <Modal
       visible={true}
@@ -191,6 +212,7 @@ const UserModal = ({
                       customMessage,
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
+                      orgaRoles,
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
@@ -311,6 +333,57 @@ const UserModal = ({
               </div>
             </div>
           </>
+        )}
+        {isAdmin && (
+          <div className={styles.row}>
+            <div className={styles.key}>Commissions :</div>
+            <div className={styles.commissionsList}>
+              {orgaRoles.map((role, i) => (
+                <div className={styles.orgaRolesRow} key={i}>
+                  <Select
+                    options={getCommissionsAvailable(role.commission).map((commission) => ({
+                      value: commission.id,
+                      label: commission.name,
+                    }))}
+                    value={role.commission}
+                    onChange={(v) => {
+                      const newOrgaRoles = [...orgaRoles];
+                      orgaRoles[i].commission = commissions.find((commission) => commission.id === v)!.id;
+                      setOrgaRoles(newOrgaRoles);
+                    }}
+                  />
+                  <Select
+                    options={[
+                      { value: 'member', label: 'Membre' },
+                      { value: 'respo', label: 'Responsable' },
+                    ]}
+                    value={role.commissionRole}
+                    onChange={(v) => {
+                      const newOrgaRoles = [...orgaRoles];
+                      newOrgaRoles[i].commissionRole = v as 'respo' | 'member';
+                      setOrgaRoles(newOrgaRoles);
+                    }}
+                  />
+                  <Icon
+                    name={IconName.Trash}
+                    onClick={() => {
+                      const newOrgaRoles = [...orgaRoles];
+                      newOrgaRoles.splice(i, 1);
+                      setOrgaRoles(newOrgaRoles);
+                    }}
+                    className={styles.deleteCommission}
+                  />
+                </div>
+              ))}
+            </div>
+            <Button
+              onClick={() =>
+                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }])
+              }
+              disabled={commissions.length === orgaRoles.length}>
+              Ajouter une commission
+            </Button>
+          </div>
         )}
         {searchUser && (isAnim || isAdmin) && (
           <>

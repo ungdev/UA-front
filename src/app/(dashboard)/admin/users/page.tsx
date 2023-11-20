@@ -86,6 +86,16 @@ const Users = () => {
   });
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
+  const applySearch = (page?: number) => {
+    dispatch(
+      fetchUsers(
+        { ...filters, permissions: filters.permissions.length > 0 ? filters.permissions.join(',') : undefined },
+        search,
+        page,
+      ) as unknown as Action,
+    );
+  };
+
   useEffect(() => {
     if (isLoggedIn && !isFetched) {
       dispatch(fetchUsers() as unknown as Action);
@@ -104,16 +114,6 @@ const Users = () => {
     { name: 'Tous', value: 'all' },
     ...tournaments.map((tournament) => ({ name: tournament.name, value: tournament.id })),
   ];
-
-  const applySearch = (page?: number) => {
-    dispatch(
-      fetchUsers(
-        { ...filters, permissions: filters.permissions.length > 0 ? filters.permissions.join(',') : undefined },
-        search,
-        page,
-      ) as unknown as Action,
-    );
-  };
 
   // Update only 1 information display state
   const updateInfoToDisplay = (info: string, display: boolean) => {

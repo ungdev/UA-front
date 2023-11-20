@@ -88,7 +88,7 @@ export interface User {
   askingTeamId: string | null;
   attendant: UserAttendant;
   age: UserAge;
-  orgaRoles: Array<{ commissionRole: 'respo' | 'member'; commission: Commission }>;
+  orgaRoles: OrgaRole[];
 }
 
 export interface UserEdit {
@@ -243,6 +243,11 @@ export interface Orga {
   id: string;
   firstname: string;
   lastname: string;
+}
+
+export interface OrgaRole {
+  commissionRole: 'respo' | 'member';
+  commission: Commission;
 }
 
 export interface Commission {
