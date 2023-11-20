@@ -28,6 +28,7 @@ interface UserFilters extends Record<string, string | undefined> {
   locked?: string;
   payment?: string;
   scan?: string;
+  permissions?: string;
 }
 
 const initialState: UsersAction = {
@@ -107,7 +108,8 @@ export const fetchUsers =
         !searchFilters.tournament &&
         !searchFilters.locked &&
         !searchFilters.payment &&
-        !searchFilters.scan
+        !searchFilters.scan &&
+        !searchFilters.permissions
           ? ''
           : '&' + new URLSearchParams(searchFilters as Record<string, string>).toString()),
     );
@@ -207,7 +209,7 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
 };
 
 export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
-  `${user.lastname}-${user.firstname}-${user.id}`;
+  `${user.lastname.replace(/\W/g, '')}-${user.firstname.replace(/\W/g, '')}-${user.id}`;
 
 export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
   const file = new File([blob], `test.png`);
