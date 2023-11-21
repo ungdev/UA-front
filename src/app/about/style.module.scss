@@ -3,7 +3,8 @@
 .aboutContainer {
   padding: 5rem 0;
 
-  .aboutUa, .aboutUng {
+  .aboutUa,
+  .aboutUng {
     width: clamp(300px, 80%, 1920px);
     margin: 10px auto 100px auto;
   }
@@ -16,49 +17,14 @@
       margin-bottom: 3rem;
     }
 
-    .content {
+    .content > div {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
       gap: 4rem;
-      .member {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .imgContainer {
-          width: 150px;
-          height: 150px;
-          position: relative;
-          img {
-            z-index: 10;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-          }
-          .imageFont {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--team-color);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            transform: scaleY(102%) translateX(5px);
-          }
-        }
-        span {
-          margin-top: 1rem;
-          font-size: 1.5rem;
-          font-weight: 500;
-          color: #fff;
-          font-family: $lexend;
-        }
-      }
+      text-align: center;
+      margin-top: 4rem;
     }
-
   }
 }
