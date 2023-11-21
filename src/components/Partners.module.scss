@@ -5,10 +5,19 @@
   gap: 60px 146px;
   margin: 0 15%;
   padding-bottom: 4rem;
+  align-items: center;
 
   img {
     height: 60px;
     object-fit: contain;
+
+    // That's not clean
+    // But I don't care
+    // Nah
+    &.nrj {
+      height: unset;
+      width: 100px;
+    }
   }
 
   a {
