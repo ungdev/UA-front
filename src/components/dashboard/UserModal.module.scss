@@ -32,18 +32,36 @@
     .row {
       margin: 14px 0;
       box-sizing: border-box;
-    }
 
-    .row > .key {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
+      > .key {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
 
-    .row > .checkboxContainer {
-      display: flex;
-      flex-flow: row wrap;
-      align-items: center;
-      gap: 10px;
+      > .checkboxContainer {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      > .commissionsList {
+        .orgaRolesRow {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .deleteCommission {
+            width: 24px;
+            height: 24px;
+
+            &:hover {
+              color: red;
+              cursor: pointer;
+            }
+          }
+        }
+      }
     }
-  }
+}

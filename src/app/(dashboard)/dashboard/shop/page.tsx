@@ -12,7 +12,7 @@ import SupplementList from '@/components/dashboard/SupplementList';
 import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { AttendantInfo, CartItem, Item, User, UserAge, UserType } from '@/types';
+import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 
@@ -21,14 +21,7 @@ import { IconName } from '@/components/UI/Icon';
 const Shop = () => {
   const dispatch = useAppDispatch();
   // Informations about the user
-  const {
-    id: userId,
-    hasPaid,
-    username,
-    age,
-    attendant,
-    type: userType,
-  } = useAppSelector((state) => state.login.user) as User;
+  const user = useAppSelector((state) => state.login.user) as User;
   // The list of all items available
   const [items, setItems] = useState<Item[] | null>(null);
   // The team the player is in
@@ -40,13 +33,13 @@ const Shop = () => {
   // If the modal to add a place is visible
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
   // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
-  const [hasAttendant, setHasAttendant] = useState(!!attendant);
+  const [hasAttendant, setHasAttendant] = useState(!!user.attendant);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
   //const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   // The content of the current cart. The API doesn't know about this before the player clicks on the pay button
   const [cart, setCart] = useState(loadCart());
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
-  const [isPlaceInCart, setIsPlaceInCart] = useState(hasPaid);
+  const [isPlaceInCart, setIsPlaceInCart] = useState(user.hasPaid);
   // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
   // If itemPreview is null, then there is nothing to preview, and thus the modal for the preview is not displayed
   const [itemPreview, setItemPreview] = useState<{
@@ -70,18 +63,23 @@ const Shop = () => {
 
   // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
-    if (userType !== UserType.spectator) dispatch(fetchCurrentTeam() as unknown as Action);
-    else
+    if (user.teamId) {
+      dispatch(fetchCurrentTeam() as unknown as Action);
+    } else if (user.type === UserType.spectator) {
+      // Organizers should not be able to buy tickets if they are not in a team
       setTeamMembers([
         {
-          id: userId,
-          hasPaid,
-          username,
-          age,
-          attendant,
-          type: userType,
+          id: user.id,
+          hasPaid: user.hasPaid,
+          username: user.username,
+          age: user.age,
+          attendant: user.attendant,
+          type: user.type,
         } as User,
       ]);
+    } else {
+      setTeamMembers([]);
+    }
 
     (async () => {
       setItems(await fetchItems());
@@ -126,7 +124,7 @@ const Shop = () => {
   useEffect(() => {
     if (!cart || !teamMembers || !items) return;
     // Checking if place is in cart
-    if (cart.tickets.userIds.find((id) => id === userId)) {
+    if (cart.tickets.userIds.find((id) => id === user.id)) {
       setIsPlaceInCart(true);
     }
     // Checking if user has an attendant in the cart
@@ -136,7 +134,7 @@ const Shop = () => {
     // Initializing teamMembersWithoutTicket
     setTeamMembersWithoutTicket(
       teamMembers.filter(
-        (member) => !cart.tickets.userIds.includes(member.id) && member.id !== userId && !member.hasPaid,
+        (member) => !cart.tickets.userIds.includes(member.id) && member.id !== user.id && !member.hasPaid,
       ),
     );
     if (tickets) return;
@@ -146,8 +144,8 @@ const Shop = () => {
       // First, we make all the requests
       const ticketsArray = (
         await Promise.allSettled(
-          cart.tickets.userIds.map((user) =>
-            user === userId ? items.find((item) => item.id === `ticket-${userType}`) : getTicketPrice(user),
+          cart.tickets.userIds.map((userId) =>
+            userId === user.id ? items.find((item) => item.id === `ticket-${user.type}`) : getTicketPrice(userId),
           ),
         )
       )
@@ -178,17 +176,17 @@ const Shop = () => {
   // When the user removes a ticket.
   // 'user' is either a user object, or undefined if it is the ticket of an attendant
   // 'ticketIndex' is the index of the ticket in the cart if user is not undefined
-  const onRemoveTicket = (user: User | undefined, ticketIndex: number | undefined) => {
-    if (user === undefined) {
+  const onRemoveTicket = (userOfTicket: User | undefined, ticketIndex: number | undefined) => {
+    if (userOfTicket === undefined) {
       setHasAttendant(false);
       setCart({ ...cart, tickets: { ...cart.tickets, attendant: undefined } });
     } else {
       // Modify the states
-      if (user.id === userId) {
+      if (userOfTicket.id === user.id) {
         setIsPlaceInCart(false);
       } else {
         const newMembersWithoutTicket = [...teamMembersWithoutTicket];
-        newMembersWithoutTicket.push(user);
+        newMembersWithoutTicket.push(userOfTicket);
         setTeamMembersWithoutTicket(newMembersWithoutTicket);
       }
       // Modify the cart
@@ -197,7 +195,7 @@ const Shop = () => {
       setCart({ ...cart, tickets: { ...cart.tickets, userIds: updatedCartTickets } });
       // Remove the item from the tickets
       const newTickets = { ...tickets } as typeof tickets;
-      delete newTickets[user.id];
+      delete newTickets[userOfTicket.id];
       setTickets(newTickets);
     }
   };
@@ -248,7 +246,7 @@ const Shop = () => {
       const newTickets = { ...tickets };
       newTickets[placeId as string] =
         placeFor === 'me'
-          ? items.find((item) => item.id === `ticket-${userType}`)
+          ? items.find((item) => item.id === `ticket-${user.type}`)
           : await getTicketPrice(placeId as string);
       setTickets(newTickets);
       if (placeFor === 'me') {
@@ -270,7 +268,7 @@ const Shop = () => {
   // Callback of <Cart /> when the user decides to reset the entire cart
   const onCartReset = () => {
     const membersOfTickets = cart.tickets.userIds.map((ticket) => {
-      if (ticket === userId) {
+      if (ticket === user.id) {
         setIsPlaceInCart(false);
       }
       return teamMembers.find((member) => member.id === ticket);
@@ -299,7 +297,9 @@ const Shop = () => {
 
   // Hide the places section if user can't buy any places
   const placesSectionVisible =
-    !isPlaceInCart || (age === UserAge.child && !hasAttendant) || teamMembersWithoutTicket.length;
+    (!isPlaceInCart && !user.permissions.includes(Permission.orga)) ||
+    (user.age === UserAge.child && !hasAttendant) ||
+    teamMembersWithoutTicket.length;
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
@@ -317,8 +317,12 @@ const Shop = () => {
                 <Button
                   primary
                   onClick={() => {
-                    if (!hasPaid && teamMembersWithoutTicket.length === 0 && (age === UserAge.adult || hasAttendant)) {
-                      onAddPlaceModalQuit('me', userId);
+                    if (
+                      !user.hasPaid &&
+                      teamMembersWithoutTicket.length === 0 &&
+                      (user.age === UserAge.adult || hasAttendant)
+                    ) {
+                      onAddPlaceModalQuit('me', user.id);
                       return;
                     }
                     setAddPlaceVisible(true);
@@ -409,11 +413,11 @@ const Shop = () => {
       </div>
       {addPlaceVisible && (
         <AddPlaceModal
-          userId={userId}
-          username={username}
+          userId={user.id}
+          username={user.username}
           hasTicket={isPlaceInCart}
           teamMembersWithoutTicket={teamMembersWithoutTicket}
-          needsAttendant={age === UserAge.child && !hasAttendant}
+          needsAttendant={user.age === UserAge.child && !hasAttendant}
           onQuit={onAddPlaceModalQuit}
         />
       )}

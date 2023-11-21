@@ -1,38 +1,120 @@
-.badgePage {
-  display: flex;
-  gap: 10px;
+.page {
+  padding: 5vh 0;
 
-  > * {
-    flex: 1;
-  }
-
-  .croppingImage {
+  .content {
+    display: flex;
+    align-items: center;
     width: 100%;
-    aspect-ratio: auto;
-  }
+    flex-direction: column;
 
-  .result {
-    position: relative;
-    //width: 30%;
+    // Slide 1
+    & {
+      .fileUpload {
+        width: 70%;
+        margin: auto;
+      }
 
-    .background {
-      width: 100%;
+      .warning {
+        &.hidden {
+          display: none;
+        }
+      }
     }
 
-    .imageWrapper {
-      overflow: hidden;
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      width: 30%;
-      aspect-ratio: 1;
-      border-radius: 100%;
-      border: white solid;
+    // Slide 2
+    & {
+      .cropImageSlideContainer {
+        display: flex;
+        flex-direction: row;
+        width: 95%;
+        justify-content: space-evenly;
+        align-items: center;
 
-      .image {
-        position: relative;
-        aspect-ratio: auto;
+        .cropImageContainer {
+          border: 5px solid #002d40;
+          padding: 20px;
+          width: 20%;
+          -webkit-border-radius: 18px;
+          -moz-border-radius: 18px;
+          border-radius: 18px;
+        }
+
+        .badgePreview {
+          position: relative;
+          margin: 1em;
+
+          .background {
+            height: 50vh;
+            border-radius: 30px;
+            -webkit-box-shadow: 5px 5px 11px 0px rgba(0, 0, 0, 0.091);
+            box-shadow: 5px 5px 11px 0px rgba(0, 0, 0, 0.27);
+          }
+
+          .imageWrapper {
+            overflow: hidden;
+            position: absolute;
+            top: 7vh;
+            left: 7vh;
+            width: 20vh;
+            aspect-ratio: 1;
+            border-radius: 100%;
+
+            .image {
+              position: relative;
+              aspect-ratio: 1;
+              width: 100%;
+            }
+          }
+        }
+      }
+      .changePreviewRole {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        height: 6rem;
         width: 100%;
+        font-weight: 800;
+        font-size: 1.25rem;
+        text-align: center;
+
+        .changePreviewRoleArrows {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          margin-top: 20px;
+
+          svg {
+            cursor: pointer;
+
+            &.disabled {
+              cursor: initial;
+              pointer-events: none;
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+    }
+
+    .arrows {
+      width: 100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 5vh;
+
+      svg {
+        cursor: pointer;
+
+        &.invisible {
+          visibility: hidden;
+        }
+
+        &.disabled {
+          cursor: initial;
+          pointer-events: none;
+          opacity: 0.5;
+        }
       }
     }
   }

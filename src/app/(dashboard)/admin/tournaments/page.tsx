@@ -6,7 +6,7 @@ import { AdminTournament } from '@/types';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { reorderTournaments } from '@/modules/admin';
+import { fetchAdminTournaments, reorderTournaments } from '@/modules/admin';
 import type { Action } from '@reduxjs/toolkit';
 
 const Tournaments = () => {
@@ -19,6 +19,10 @@ const Tournaments = () => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
   const [reorderEnabled, setReorderEnabled] = useState(false);
+
+  useEffect(() => {
+    if (!tournaments) dispatch(fetchAdminTournaments() as unknown as Action);
+  }, []);
 
   useEffect(() => {
     if (didReorder) return;
