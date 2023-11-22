@@ -282,3 +282,12 @@ export enum TransactionState {
   refunded = 'refunded',
   authorization = 'authorization',
 }
+
+export interface UserFilters extends Record<string, string | undefined> {
+  type?: string;
+  tournament?: string;
+  locked?: string;
+  payment?: string;
+  scan?: string;
+  permissions?: string;
+}
