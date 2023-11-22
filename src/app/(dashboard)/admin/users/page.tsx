@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 
 import { Radio, Input, Button, Table, Checkbox, Title } from '@/components/UI';
 import UserModal from '@/components/dashboard/UserModal';
-import { fetchUsers, lookupUser, UserFilters } from '@/modules/users';
+import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import { UserFilters } from "@/types";
 
 const columnTitles = {
   fullname: 'Nom',

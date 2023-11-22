@@ -4,11 +4,11 @@ import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
   CommissionWithOrgas,
-  Permission,
+  Permission, UserFilters,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
-  UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
-} from '@/types';
+  UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin
+} from "@/types";
 import { uploadFile } from '@/utils/upload';
 
 interface UsersAction {
@@ -20,15 +20,6 @@ interface UsersAction {
   //filters: any;
   lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
   orgas: CommissionWithOrgas[] | null;
-}
-
-export interface UserFilters extends Record<string, string | undefined> {
-  type?: string;
-  tournament?: string;
-  locked?: string;
-  payment?: string;
-  scan?: string;
-  permissions?: string;
 }
 
 const initialState: UsersAction = {
