@@ -102,13 +102,14 @@ export default function Wrapper({
       dispatch(setRedirect('/'));
       return;
     }
-    if (pathname === '/dashboard' && permissions.includes(Permission.orga)) {
-      dispatch(setRedirect('/admin'));
-      return;
+    if (pathname === '/dashboard') {
+      if (permissions.includes(Permission.orga)) dispatch(setRedirect('/admin'));
+      else if (hasTeam) dispatch(setRedirect('/dashboard/team'));
+      else if (isSpectator) dispatch(setRedirect('/dashboard/spectator'));
+      else dispatch(setRedirect('/dashboard/register'));
     }
-    if (pathname === '/dashboard' || pathname === '/dashboard/register') {
-      if (hasTeam) dispatch(setRedirect('/dashboard/team'));
-      if (isSpectator) dispatch(setRedirect('/dashboard/spectator'));
+    if (pathname === '/dashboard/register' && (hasTeam || isSpectator)) {
+      dispatch(setRedirect('/dashboard'));
       return;
     }
     if (pathname === '/dashboard/shop' && !isShopAllowed) {
