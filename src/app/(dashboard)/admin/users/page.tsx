@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { Radio, Input, Button, Table, Checkbox, Title } from '@/components/UI';
 import UserModal from '@/components/dashboard/UserModal';
-import { fetchUsers, lookupUser } from '@/modules/users';
+import { fetchUsers, lookupUser, UserFilters } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
 
@@ -87,7 +87,17 @@ const Users = () => {
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
   const applySearch = (page?: number) => {
-    dispatch(fetchUsers({ ...filters, permissions: filters.permissions.join(',') }, search, page) as unknown as Action);
+    const userFilters: UserFilters = {
+      locked: filters.locked,
+      scan: filters.scan,
+      payment: filters.payment,
+      type: filters.type,
+      tournament: filters.tournament,
+    };
+    if (filters.permissions.length > 0) {
+      userFilters.permissions = filters.permissions.join(',');
+    }
+    dispatch(fetchUsers(userFilters, search, page) as unknown as Action);
   };
 
   useEffect(() => {

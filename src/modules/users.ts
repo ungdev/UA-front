@@ -22,7 +22,7 @@ interface UsersAction {
   orgas: CommissionWithOrgas[] | null;
 }
 
-interface UserFilters extends Record<string, string | undefined> {
+export interface UserFilters extends Record<string, string | undefined> {
   type?: string;
   tournament?: string;
   locked?: string;
