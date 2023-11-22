@@ -4,11 +4,12 @@ import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
   CommissionWithOrgas,
-  Permission, UserFilters,
+  Permission,
+  UserFilters,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
-  UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin
-} from "@/types";
+  UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
+} from '@/types';
 import { uploadFile } from '@/utils/upload';
 
 interface UsersAction {
