@@ -87,13 +87,7 @@ const Users = () => {
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
   const applySearch = (page?: number) => {
-    dispatch(
-      fetchUsers(
-        { ...filters, permissions: filters.permissions.length > 0 ? filters.permissions.join(',') : undefined },
-        search,
-        page,
-      ) as unknown as Action,
-    );
+    dispatch(fetchUsers({ ...filters, permissions: filters.permissions.join(',') }, search, page) as unknown as Action);
   };
 
   useEffect(() => {
