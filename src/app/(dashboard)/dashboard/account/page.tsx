@@ -50,6 +50,9 @@ const Account = () => {
       // Remove null fields from `data`
       Object.keys(data).forEach((key) => data[key] === null && delete data[key]);
 
+      // Remove empty fields from `data`
+      Object.keys(data).forEach((key) => data[key] === '' && delete data[key]);
+
       // Stop request if the user only filled the `oldPassword`
       if (Object.keys(data).length < 2) {
         toast.error('Si tu veux modifier ton compte, mets à jour une information');

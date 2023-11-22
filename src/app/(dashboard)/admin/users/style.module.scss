@@ -40,6 +40,18 @@
     .tournamentFilter {
       line-height: 1.5rem;
     }
+
+    .permissionFilter {
+      color: #858585;
+
+      .permissionFilterContainer {
+        color: white;
+        padding: 10px;
+        > label {
+          margin-right: 10px;
+        }
+      }
+    }
   }
 
   .infoToDisplay {

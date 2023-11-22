@@ -1,9 +1,8 @@
-import { User, UserEdit, UserType } from '@/types';
+import { Permission, User, UserEdit, UserType } from '@/types';
 import { type Action, type Dispatch, createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { toast } from 'react-toastify';
-import { hasOrgaPermission } from '@/utils/permission';
 import { RootState } from '@/lib/store';
 import { setTeam } from '@/modules/team';
 import { setRedirect } from '@/modules/redirect';
@@ -96,7 +95,7 @@ export const tryLogin =
     if (res.captivePortalSuccess) {
       toast.success("Tu es maintenant connecté au réseau de l'UTT Arena");
     }
-    if (hasOrgaPermission(res.user.permissions)) {
+    if (res.user.permissions.includes(Permission.orga)) {
       dispatch(setRedirect('/admin'));
     } else {
       dispatch(setRedirect('/dashboard'));
@@ -224,10 +223,10 @@ export const updateStatus = () => (dispatch: Dispatch, getState: () => RootState
     );
   }
 
-  if (user && state.login.status.admin !== hasOrgaPermission(user.permissions)) {
+  if (user && state.login.status.admin !== user.permissions.includes(Permission.orga)) {
     dispatch(
       setStatus({
-        admin: hasOrgaPermission(user.permissions),
+        admin: user.permissions.includes(Permission.orga),
       }) as unknown as Action,
     );
   }

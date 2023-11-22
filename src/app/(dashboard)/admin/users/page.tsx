@@ -25,7 +25,6 @@ const statusOptions = [
   { name: 'Tous', value: 'all' },
   { name: 'Joueur', value: 'player' },
   { name: 'Spectateur', value: 'spectator' },
-  { name: 'Orga', value: 'orga' },
   { name: 'Coach', value: 'coach' },
   { name: 'Accompagnateur', value: 'attendant' },
 ];
@@ -54,7 +53,13 @@ const INITIAL_FILTERS = {
   locked: 'all',
   scan: 'all',
   tournament: 'all',
+  permissions: [] as string[],
 };
+
+const permissionOptions = [
+  { id: 'orga', name: 'Orga' },
+  { id: 'admin', name: 'Admin' },
+];
 
 const Users = () => {
   const dispatch = useAppDispatch();
@@ -81,6 +86,16 @@ const Users = () => {
   });
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
+  const applySearch = (page?: number) => {
+    dispatch(
+      fetchUsers(
+        { ...filters, permissions: filters.permissions.length > 0 ? filters.permissions.join(',') : undefined },
+        search,
+        page,
+      ) as unknown as Action,
+    );
+  };
+
   useEffect(() => {
     if (isLoggedIn && !isFetched) {
       dispatch(fetchUsers() as unknown as Action);
@@ -88,7 +103,7 @@ const Users = () => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    dispatch(fetchUsers(filters, search) as unknown as Action);
+    applySearch();
   }, [filters]);
 
   if (!tournaments) {
@@ -99,10 +114,6 @@ const Users = () => {
     { name: 'Tous', value: 'all' },
     ...tournaments.map((tournament) => ({ name: tournament.name, value: tournament.id })),
   ];
-
-  const applySearch = () => {
-    dispatch(fetchUsers(filters, search) as unknown as Action);
-  };
 
   // Update only 1 information display state
   const updateInfoToDisplay = (info: string, display: boolean) => {
@@ -183,6 +194,29 @@ const Users = () => {
           onChange={(v) => setFilters({ ...filters, tournament: v })}
           className={styles.tournamentFilter}
         />
+        <br />
+        <div className={styles.permissionFilter}>
+          Permissions
+          <div className={styles.permissionFilterContainer}>
+            {permissionOptions.map((option) => (
+              <Checkbox
+                label={option.name}
+                value={filters.permissions.includes(option.id)}
+                onChange={(v) => {
+                  if (v) {
+                    setFilters({ ...filters, permissions: [...filters.permissions, option.id] });
+                  } else {
+                    setFilters({
+                      ...filters,
+                      permissions: filters.permissions.filter((permission) => permission !== option.id),
+                    });
+                  }
+                }}
+                key={option.id}
+              />
+            ))}
+          </div>
+        </div>
 
         <hr />
 
@@ -223,7 +257,7 @@ const Users = () => {
           total,
           page,
           pageSize: itemsPerPage,
-          goToPage: (page) => dispatch(fetchUsers(filters, search, page) as unknown as Action),
+          goToPage: applySearch,
         }}
         onRowClicked={(i) => dispatch(lookupUser(users[i]) as unknown as Action)}
       />

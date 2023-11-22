@@ -80,7 +80,7 @@ export default function Wrapper({
 
   // Get user informations from Redux store
   const isLoggedIn = useAppSelector((state) => state.login.status.login);
-  const isAdmin = useAppSelector((state) => state.login.status.admin);
+  const isOrga = useAppSelector((state) => state.login.status.admin);
   const isSpectator = useAppSelector((state) => state.login.status.spectator);
   const hasTeam = useAppSelector((state) => state.login.status.team);
 
@@ -89,42 +89,75 @@ export default function Wrapper({
       return;
     }
 
-    if (isAdminPanel && !isLoggedIn) {
-      if (pathname !== '/admin/login' || isLoginAllowed) {
-        dispatch(setRedirect('/'));
-      }
-    } else if (isDashboard && (!isLoggedIn || !isLoginAllowed)) {
-      dispatch(setRedirect('/'));
-    } else if (isLoggedIn) {
-      if (hasTeam && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-        dispatch(setRedirect('/dashboard/team'));
-      } else if (pathname === '/dashboard/shop' && !isShopAllowed) {
+    // Admin login
+    if (pathname === '/admin/login') {
+      if (isLoggedIn) {
         dispatch(setRedirect('/dashboard'));
-      } else if (isSpectator && (pathname === '/dashboard' || pathname === '/dashboard/register')) {
-        dispatch(setRedirect('/dashboard/spectator'));
-      } else if (!isSpectator && !hasTeam) {
-        if (
-          pathname === '/dashboard' ||
-          (isDashboard &&
-            pathname !== '/dashboard/register' &&
-            pathname !== '/dashboard/account' &&
-            pathname !== '/dashboard/purchases')
-        ) {
-          dispatch(setRedirect('/dashboard/register'));
-        }
       }
-      if (!isAdmin && isAdminPanel) {
-        dispatch(setRedirect('/dashboard'));
-      } else if (
-        pathname === '/admin' &&
-        (permissions.includes(Permission.admin) || permissions.includes(Permission.anim))
-      ) {
-        dispatch(setRedirect('/admin/users'));
-      } else if (pathname === '/admin' && permissions.includes(Permission.entry)) {
-        dispatch(setRedirect('/admin/scan'));
-      }
+      return;
     }
-  }, [isLoggedIn, isLoginAllowed, isShopAllowed, isAdmin, isSpectator, hasTeam, pathname, isLoading]);
+
+    // Dashboard
+    if (isDashboard && !isLoggedIn) {
+      dispatch(setRedirect('/'));
+      return;
+    }
+    if (pathname === '/dashboard' || pathname === '/dashboard/register') {
+      if (hasTeam) dispatch(setRedirect('/dashboard/team'));
+      if (isSpectator) dispatch(setRedirect('/dashboard/spectator'));
+      return;
+    }
+    if (pathname === '/dashboard/shop' && !isShopAllowed) {
+      dispatch(setRedirect('/dashboard'));
+      return;
+    }
+    if (
+      !isSpectator &&
+      !hasTeam &&
+      !isOrga &&
+      isDashboard &&
+      !['/dashboard/register', '/dashboard/account', '/dashboard/purchases'].includes(pathname)
+    ) {
+      dispatch(setRedirect('/dashboard/register'));
+    }
+
+    // Admin panel
+    if (isAdminPanel && !isOrga) {
+      dispatch(setRedirect('/dashboard'));
+      return;
+    }
+    if (pathname === '/admin') {
+      if (permissions.includes(Permission.anim) || permissions.includes(Permission.admin))
+        dispatch(setRedirect('/admin/users'));
+      else if (permissions.includes(Permission.entry) || permissions.includes(Permission.admin))
+        dispatch(setRedirect('/admin/scan'));
+      else dispatch(setRedirect('/admin/badge'));
+      return;
+    }
+    if (
+      pathname === '/admin/users' &&
+      !permissions.includes(Permission.anim) &&
+      !permissions.includes(Permission.admin)
+    ) {
+      dispatch(setRedirect('/admin'));
+      return;
+    }
+    if (
+      pathname === '/admin/scan' &&
+      !permissions.includes(Permission.entry) &&
+      !permissions.includes(Permission.admin)
+    ) {
+      dispatch(setRedirect('/admin'));
+      return;
+    }
+    if (
+      ['/admin/tournaments', '/admin/shop', '/admin/partners', '/admin/settings'].includes(pathname) &&
+      !permissions.includes(Permission.admin)
+    ) {
+      dispatch(setRedirect('/admin'));
+      return;
+    }
+  }, [isLoggedIn, isLoginAllowed, isShopAllowed, isOrga, isSpectator, hasTeam, pathname, isLoading]);
 
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   const partners = useAppSelector((state) => state.partners.partners);
@@ -161,7 +194,7 @@ export default function Wrapper({
         </main>
       ) : (
         <div id="page-container" className={styles.pageContainer}>
-          <Header connected={isLoggedIn} admin={isAdmin} />
+          <Header connected={isLoggedIn} admin={isOrga} />
           <main>{children}</main>
           <Footer />
         </div>

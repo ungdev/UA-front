@@ -42,6 +42,7 @@ export enum Permission {
   anim = 'anim',
   admin = 'admin',
   repo = 'repo',
+  orga = 'orga',
 }
 
 export interface Team {
@@ -87,6 +88,7 @@ export interface User {
   askingTeamId: string | null;
   attendant: UserAttendant;
   age: UserAge;
+  orgaRoles: OrgaRole[];
 }
 
 export interface UserEdit {
@@ -235,6 +237,28 @@ export interface AdminTournament extends Tournament {
   displayCasters: boolean;
   displayCashprize: boolean;
   position: number;
+}
+
+export interface Orga {
+  id: string;
+  firstname: string;
+  lastname: string;
+}
+
+export interface OrgaRole {
+  commissionRole: 'respo' | 'member';
+  commission: Commission;
+}
+
+export interface Commission {
+  id: string;
+  name: string;
+  color: string;
+  masterCommission: string;
+}
+
+export interface CommissionWithOrgas extends Commission {
+  roles: { respo: Orga[]; member: Orga[] };
 }
 
 export enum UserType {

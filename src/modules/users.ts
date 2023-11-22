@@ -3,11 +3,13 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
+  CommissionWithOrgas,
   Permission,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
+import { uploadFile } from '@/utils/upload';
 
 interface UsersAction {
   isFetched: boolean;
@@ -17,6 +19,7 @@ interface UsersAction {
   itemsPerPage: number;
   //filters: any;
   lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
+  orgas: CommissionWithOrgas[] | null;
 }
 
 interface UserFilters extends Record<string, string | undefined> {
@@ -25,6 +28,7 @@ interface UserFilters extends Record<string, string | undefined> {
   locked?: string;
   payment?: string;
   scan?: string;
+  permissions?: string;
 }
 
 const initialState: UsersAction = {
@@ -35,6 +39,7 @@ const initialState: UsersAction = {
   itemsPerPage: 25,
   //filters: {},
   lookupUser: null,
+  orgas: null,
 };
 
 const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
@@ -68,10 +73,16 @@ export const usersSlice = createSlice({
         lookupUser: action.payload,
       };
     },
+    setOrgas: (state, action) => {
+      return {
+        ...state,
+        orgas: action.payload,
+      };
+    },
   },
 });
 
-export const { setUsers, setLookupUser } = usersSlice.actions;
+export const { setUsers, setLookupUser, setOrgas } = usersSlice.actions;
 
 export const getTicketPrice = async (userId: string) => {
   return await API.get(`users/${userId}/ticket`);
@@ -97,7 +108,8 @@ export const fetchUsers =
         !searchFilters.tournament &&
         !searchFilters.locked &&
         !searchFilters.payment &&
-        !searchFilters.scan
+        !searchFilters.scan &&
+        !searchFilters.permissions
           ? ''
           : '&' + new URLSearchParams(searchFilters as Record<string, string>).toString()),
     );
@@ -138,6 +150,7 @@ export const lookupUser =
               team: user.team,
               attendant: user.attendant,
               customMessage: user.customMessage,
+              orgaRoles: user.orgaRoles,
               carts: res,
             }
           : null,
@@ -194,6 +207,20 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   dispatch(
     lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action,
   );
+};
+
+export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
+  `${user.lastname.replace(/\W/g, '')}-${user.firstname.replace(/\W/g, '')}-${user.id}`;
+
+export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
+  const file = new File([blob], `test.png`);
+  const state = getState();
+  await uploadFile(file, getProfilePictureUrl(state.login.user!), 'admin');
+};
+
+export const fetchOrgas = () => async (dispatch: Dispatch) => {
+  const res = await API.get('users/orgas');
+  dispatch(setOrgas(res));
 };
 
 export default usersSlice.reducer;
