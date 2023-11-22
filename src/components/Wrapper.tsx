@@ -102,6 +102,10 @@ export default function Wrapper({
       dispatch(setRedirect('/'));
       return;
     }
+    if (pathname === '/dashboard' && permissions.includes(Permission.orga)) {
+      dispatch(setRedirect('/admin'));
+      return;
+    }
     if (pathname === '/dashboard' || pathname === '/dashboard/register') {
       if (hasTeam) dispatch(setRedirect('/dashboard/team'));
       if (isSpectator) dispatch(setRedirect('/dashboard/spectator'));
