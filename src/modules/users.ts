@@ -5,6 +5,7 @@ import { RootState } from '@/lib/store';
 import {
   CommissionWithOrgas,
   Permission,
+  UserFilters,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
@@ -20,15 +21,6 @@ interface UsersAction {
   //filters: any;
   lookupUser: UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin | null;
   orgas: CommissionWithOrgas[] | null;
-}
-
-interface UserFilters extends Record<string, string | undefined> {
-  type?: string;
-  tournament?: string;
-  locked?: string;
-  payment?: string;
-  scan?: string;
-  permissions?: string;
 }
 
 const initialState: UsersAction = {
