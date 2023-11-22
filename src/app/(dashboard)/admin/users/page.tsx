@@ -7,7 +7,7 @@ import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import { UserFilters } from "@/types";
+import { UserFilters } from '@/types';
 
 const columnTitles = {
   fullname: 'Nom',
