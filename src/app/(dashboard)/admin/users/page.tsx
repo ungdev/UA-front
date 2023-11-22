@@ -7,6 +7,7 @@ import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
+import { UserFilters } from '@/types';
 
 const columnTitles = {
   fullname: 'Nom',
@@ -87,13 +88,17 @@ const Users = () => {
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
   const applySearch = (page?: number) => {
-    dispatch(
-      fetchUsers(
-        { ...filters, permissions: filters.permissions.length > 0 ? filters.permissions.join(',') : undefined },
-        search,
-        page,
-      ) as unknown as Action,
-    );
+    const userFilters: UserFilters = {
+      locked: filters.locked,
+      scan: filters.scan,
+      payment: filters.payment,
+      type: filters.type,
+      tournament: filters.tournament,
+    };
+    if (filters.permissions.length > 0) {
+      userFilters.permissions = filters.permissions.join(',');
+    }
+    dispatch(fetchUsers(userFilters, search, page) as unknown as Action);
   };
 
   useEffect(() => {

@@ -1,17 +1,12 @@
 FROM node:18 AS base
 RUN npm install -g pnpm
 
-FROM base AS deps
+FROM base AS builder
 WORKDIR /srv/app
 
 COPY --chown=node:node package.json pnpm-lock.yaml ./
 
 RUN pnpm install --frozen-lockfile
-
-FROM base AS builder
-WORKDIR /srv/app
-
-COPY --from=deps /srv/app/node_modules ./node_modules
 
 COPY --chown=node:node . .
 
