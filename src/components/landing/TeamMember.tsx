@@ -1,5 +1,6 @@
 import styles from './TeamMember.module.scss';
-import { getProfilePictureUrl } from '@/modules/users';
+import { getProfilePictureFilename } from '@/modules/users';
+import { uploadsUrl } from '@/utils/environment';
 
 export default function TeamMember({
   member,
@@ -24,7 +25,10 @@ export default function TeamMember({
     <div className={styles.member} style={{ '--team-color': color } as React.CSSProperties}>
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
-        <img src={image ?? getProfilePictureUrl(member)} alt={`${member.firstname} ${member.lastname}`} />
+        <img
+          src={image ?? `${uploadsUrl()}/orgas/${getProfilePictureFilename(member)}.png`}
+          alt={`${member.firstname} ${member.lastname}`}
+        />
       </div>
       <span>{`${member.firstname} ${member.lastname}`}</span>
       <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>

@@ -201,13 +201,13 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
-export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
+export const getProfilePictureFilename = (user: { id: string; firstname: string; lastname: string }) =>
   `${user.lastname.replace(/\W/g, '')}-${user.firstname.replace(/\W/g, '')}-${user.id}`;
 
 export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
-  const file = new File([blob], `test.png`);
+  const file = new File([blob], `test.png`, { type: 'image/png' });
   const state = getState();
-  await uploadFile(file, getProfilePictureUrl(state.login.user!), 'admin');
+  await uploadFile(file, getProfilePictureFilename(state.login.user!), 'orga');
 };
 
 export const fetchOrgas = () => async (dispatch: Dispatch) => {
