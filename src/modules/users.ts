@@ -11,6 +11,8 @@ import {
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
+import { uploadsUrl } from '@/utils/environment';
+import { setUser } from '@/modules/login';
 
 interface UsersAction {
   isFetched: boolean;
@@ -142,8 +144,8 @@ export const lookupUser =
               team: user.team,
               attendant: user.attendant,
               customMessage: user.customMessage,
-              orgaRoles: user.orgaRoles,
               carts: res,
+              orga: user.orga,
             }
           : null,
       ),
@@ -176,12 +178,21 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, getState: 
 };
 
 export const saveUser =
-  (id: string, body: object, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  (id: string, body: any, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
-    dispatch(updateUser({ ...userModal, ...user, ...body }) as unknown as Action);
+    dispatch(
+      updateUser({
+        ...userModal,
+        ...user,
+        ...{ ...body, orga: user.permissions.includes(Permission.orga) ? { roles: body.orgaRoles } : null },
+      }) as unknown as Action,
+    );
+    if (id === state.login.user?.id) {
+      dispatch(setUser(await API.get(`users/current`)));
+    }
   };
 
 export const createUser = (body: object, callback: () => void) => async () => {
@@ -201,13 +212,17 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
-export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
-  `${user.lastname.replace(/\W/g, '')}-${user.firstname.replace(/\W/g, '')}-${user.id}`;
+export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.webp`;
 
-export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
+export const uploadProfilePicture = async (
+  blob: Blob,
+  displayName: boolean,
+  displayUsername: boolean,
+  displayPhoto: boolean,
+) => {
   const file = new File([blob], `test.png`);
-  const state = getState();
-  await uploadFile(file, getProfilePictureUrl(state.login.user!), 'admin');
+  const { filename } = await API.patch(`admin/users/trombi`, { displayName, displayUsername, displayPhoto });
+  await uploadFile(file, filename, 'admin');
 };
 
 export const fetchOrgas = () => async (dispatch: Dispatch) => {
