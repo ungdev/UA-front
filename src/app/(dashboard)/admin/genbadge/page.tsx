@@ -4,14 +4,15 @@ import styles from './style.module.scss';
 import { useState } from 'react';
 import { IconName } from '@/components/UI/Icon';
 import { generateBadges } from '@/modules/admin';
+import { BadgePermission, BadgeType } from '@/types';
 
 const GenBadges = () => {
   const [fieldCount, setFieldCount] = useState(1);
   const [fields, setFields] = useState<
     {
-      type: 'orgas' | 'custom' | 'single';
+      type: BadgeType;
       name?: string;
-      permission?: 'none' | 'orgaprice' | 'fullaccess';
+      permission?: BadgePermission;
       quantity?: number;
       email?: string;
     }[]
@@ -29,7 +30,7 @@ const GenBadges = () => {
           Badge Generator
         </Title>
         <div>
-          <Button primary onClick={() => addBadgeField()}>
+          <Button primary onClick={addBadgeField}>
             Ajouter un champ
           </Button>
         </div>
@@ -43,7 +44,7 @@ const GenBadges = () => {
               value={fields![i]?.type}
               onChange={(e) => {
                 const newFields = [...fields!];
-                newFields[i] = { ...newFields[i], type: e as any };
+                newFields[i] = { ...newFields[i], type: e as BadgeType };
                 setFields(newFields);
               }}
               options={[
@@ -71,7 +72,7 @@ const GenBadges = () => {
                   value={fields![i]!.permission ?? ''}
                   onChange={(e) => {
                     const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], permission: e as any };
+                    newFields[i] = { ...newFields[i], permission: e as BadgePermission };
                     setFields(newFields);
                   }}
                   options={[
@@ -122,11 +123,7 @@ const GenBadges = () => {
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button
-          primary
-          onClick={() => {
-            generateBadges(fields);
-          }}>
+        <Button primary onClick={() => generateBadges(fields)}>
           Générer les badges
         </Button>
       </div>
