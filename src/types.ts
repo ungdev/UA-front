@@ -88,7 +88,7 @@ export interface User {
   askingTeamId: string | null;
   attendant: UserAttendant;
   age: UserAge;
-  orgaRoles: OrgaRole[];
+  orga: OrgaData | null;
 }
 
 export interface UserEdit {
@@ -244,6 +244,10 @@ export interface Orga {
   name?: string;
   username?: string;
   photoFilename?: string;
+}
+
+export interface OrgaData {
+  roles: OrgaRole[];
 }
 
 export interface OrgaRole {

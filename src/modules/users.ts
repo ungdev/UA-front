@@ -12,6 +12,7 @@ import {
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
 import { uploadsUrl } from '@/utils/environment';
+import { setUser } from '@/modules/login';
 
 interface UsersAction {
   isFetched: boolean;
@@ -143,8 +144,8 @@ export const lookupUser =
               team: user.team,
               attendant: user.attendant,
               customMessage: user.customMessage,
-              orgaRoles: user.orgaRoles,
               carts: res,
+              orga: user.orga,
             }
           : null,
       ),
@@ -156,6 +157,7 @@ export const updateUser = (updateUser: any) => async (dispatch: Dispatch, getSta
   const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
+  console.log(updateUser);
   dispatch(
     setUsers({
       users: formatUsers,
@@ -177,12 +179,21 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, getState: 
 };
 
 export const saveUser =
-  (id: string, body: object, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  (id: string, body: any, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, body);
     toast.success(`${username} mis à jour`);
-    dispatch(updateUser({ ...userModal, ...user, ...body }) as unknown as Action);
+    dispatch(
+      updateUser({
+        ...userModal,
+        ...user,
+        ...{ ...body, orga: user.permissions.includes(Permission.orga) ? { roles: body.orgaRoles } : null },
+      }) as unknown as Action,
+    );
+    if (id === state.login.user?.id) {
+      dispatch(setUser(await API.get(`users/current`)));
+    }
   };
 
 export const createUser = (body: object, callback: () => void) => async () => {

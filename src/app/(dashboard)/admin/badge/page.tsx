@@ -129,12 +129,16 @@ export default function BadgePage() {
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-            <TeamMember
-              color={user!.orgaRoles[roleToPreview].commissionRole}
-              member={user!}
-              role={user!.orgaRoles[roleToPreview].commissionRole}
-              image={canvasRef.current?.toDataURL() ?? ''}
-            />
+            {user!.orga!.roles.length > 0 ? (
+              <TeamMember
+                color={user!.orga!.roles[roleToPreview].commissionRole}
+                member={user!}
+                role={user!.orga!.roles[roleToPreview].commissionRole}
+                image={canvasRef.current?.toDataURL() ?? ''}
+              />
+            ) : (
+              "Vous n'avez pas de commission"
+            )}
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
@@ -146,7 +150,7 @@ export default function BadgePage() {
             </div>
           </div>
         </div>
-        {user!.orgaRoles.length > 1 && (
+        {user!.orga!.roles.length > 1 && (
           <div className={styles.changePreviewRole}>
             Preview avec tes autres rôles
             <div className={styles.changePreviewRoleArrows}>
@@ -157,14 +161,14 @@ export default function BadgePage() {
                 }}
                 className={roleToPreview === 0 ? styles.disabled : ''}
               />
-              {user!.orgaRoles[roleToPreview].commissionRole === 'respo' ? 'Responsable' : 'Membre'}{' '}
-              {user!.orgaRoles[roleToPreview].commission.name}
+              {user!.orga!.roles[roleToPreview].commissionRole === 'respo' ? 'Responsable' : 'Membre'}{' '}
+              {user!.orga!.roles[roleToPreview].commission.name}
               <Icon
                 name={IconName.ChevronRight}
                 onClick={() => {
                   setRoleToPreview(roleToPreview + 1);
                 }}
-                className={roleToPreview === user!.orgaRoles.length - 1 ? styles.disabled : ''}
+                className={roleToPreview === user!.orga!.roles.length - 1 ? styles.disabled : ''}
               />
             </div>
           </div>
