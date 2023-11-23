@@ -157,7 +157,6 @@ export const updateUser = (updateUser: any) => async (dispatch: Dispatch, getSta
   const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
   const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
   const formatUsers = format(updatedUsers);
-  console.log(updateUser);
   dispatch(
     setUsers({
       users: formatUsers,

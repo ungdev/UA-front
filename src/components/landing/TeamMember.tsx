@@ -1,5 +1,6 @@
 import styles from './TeamMember.module.scss';
 import { Orga } from '@/types';
+import defaultImage from '@/../public/images/logo.webp';
 
 export default function TeamMember({
   member,
@@ -21,12 +22,7 @@ export default function TeamMember({
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
         <img
-          src={
-            image ??
-            (member.photoFilename
-              ? member.photoFilename
-              : 'https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg')
-          }
+          src={image ?? (member.photoFilename ? member.photoFilename : defaultImage.src)}
           alt={`${member.name ?? member.username}`}
         />
       </div>

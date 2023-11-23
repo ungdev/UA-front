@@ -4,7 +4,7 @@ import FileUpload from '@/components/UI/FileInput';
 import { useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
-import background from '../../../../../public/images/badge-preview-background.webp';
+import background from '@/../public/images/badge-preview-background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
@@ -137,7 +137,7 @@ export default function BadgePage() {
                 image={canvasRef.current?.toDataURL() ?? ''}
               />
             ) : (
-              "Vous n'avez pas de commission"
+              "Vous n'avez pas de commission assignée"
             )}
           </div>
           <div>
