@@ -311,6 +311,6 @@ export const generateBadges = async (badges: object) => {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 export default adminSlice.reducer;
