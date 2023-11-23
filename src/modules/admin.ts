@@ -305,4 +305,12 @@ export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) =
   }
 };
 
+export const generateBadges = async (badges: object) => {
+  try {
+    await API.post('admin/badges', badges);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export default adminSlice.reducer;

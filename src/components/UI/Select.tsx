@@ -9,6 +9,7 @@ const Select = ({
   value,
   onChange,
   disabled = false,
+  required = false,
   className = '',
 }: {
   /** Label to display */
@@ -24,6 +25,8 @@ const Select = ({
   onChange: (value: string) => void;
   /** Is the field disabled ? */
   disabled?: boolean;
+  /** Is the field required ? */
+  required?: boolean;
   /** An optional class name to add to the container */
   className?: string;
 }) => (
@@ -31,7 +34,7 @@ const Select = ({
     <label>
       <div className={styles.selectLabel}>{label}</div>
 
-      <select value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled}>
+      <select value={value} onChange={(e) => onChange(e.target.value)} disabled={disabled} required={required}>
         {options.map((option) => (
           <option value={option.value} key={option.value}>
             {option.label}
