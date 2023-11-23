@@ -4,7 +4,6 @@ import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
   CommissionWithOrgas,
-  Orga,
   Permission,
   UserFilters,
   UserType,
