@@ -202,7 +202,7 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
-export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.png`;
+export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.webp`;
 
 export const uploadProfilePicture = async (
   blob: Blob,
