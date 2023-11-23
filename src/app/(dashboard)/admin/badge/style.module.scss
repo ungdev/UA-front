@@ -96,6 +96,18 @@
       }
     }
 
+    // Slide 3
+    & {
+      gap: 40px;
+
+      .pseudoCheckbox {
+        margin-left: 30px;
+        &.hide {
+          display: none;
+        }
+      }
+    }
+
     .arrows {
       width: 100px;
       margin: auto;

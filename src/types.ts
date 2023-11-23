@@ -241,8 +241,9 @@ export interface AdminTournament extends Tournament {
 
 export interface Orga {
   id: string;
-  firstname: string;
-  lastname: string;
+  name?: string;
+  username?: string;
+  photoFilename?: string;
 }
 
 export interface OrgaRole {

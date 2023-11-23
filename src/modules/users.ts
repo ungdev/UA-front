@@ -4,6 +4,7 @@ import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
   CommissionWithOrgas,
+  Orga,
   Permission,
   UserFilters,
   UserType,
@@ -11,6 +12,7 @@ import {
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
+import { uploadsUrl } from '@/utils/environment';
 
 interface UsersAction {
   isFetched: boolean;
@@ -201,13 +203,17 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
-export const getProfilePictureUrl = (user: { id: string; firstname: string; lastname: string }) =>
-  `${user.lastname.replace(/\W/g, '')}-${user.firstname.replace(/\W/g, '')}-${user.id}`;
+export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.png`;
 
-export const uploadProfilePicture = (blob: Blob) => async (dispatch: Dispatch, getState: () => RootState) => {
+export const uploadProfilePicture = async (
+  blob: Blob,
+  displayName: boolean,
+  displayUsername: boolean,
+  displayPhoto: boolean,
+) => {
   const file = new File([blob], `test.png`);
-  const state = getState();
-  await uploadFile(file, getProfilePictureUrl(state.login.user!), 'admin');
+  const { filename } = await API.patch(`admin/users/trombi`, { displayName, displayUsername, displayPhoto });
+  await uploadFile(file, filename, 'admin');
 };
 
 export const fetchOrgas = () => async (dispatch: Dispatch) => {

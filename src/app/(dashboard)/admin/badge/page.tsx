@@ -4,7 +4,7 @@ import FileUpload from '@/components/UI/FileInput';
 import { useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
-import background from '@/../public/images/background.webp';
+import background from '../../../../../public/images/badge-preview-background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
@@ -13,8 +13,8 @@ import Icon, { IconName } from '@/components/UI/Icon';
 import TeamMember from '@/components/landing/TeamMember';
 import { toast } from 'react-toastify';
 import { uploadProfilePicture } from '@/modules/users';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { type Action } from '@reduxjs/toolkit';
+import { useAppSelector } from '@/lib/hooks';
+import Checkbox from '@/components/UI/Checkbox';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(
@@ -33,7 +33,6 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 }
 
 export default function BadgePage() {
-  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user);
   const [file, setFile] = useState<string | undefined>();
   const [crop, setCrop] = useState<Crop>();
@@ -42,6 +41,25 @@ export default function BadgePage() {
   const croppingImageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [roleToPreview, setRoleToPreview] = useState(0);
+  const [displayName, setDisplayName] = useState(false);
+  const [displayUsername, setDisplayUsername] = useState(false);
+  const [displayPhoto, setDisplayPhoto] = useState(false);
+  const [blob, setBlob] = useState<Blob | null>(null);
+
+  const nextSlide = () => {
+    if (slide === 1) {
+      if (!canvasRef.current) {
+        toast.warn(
+          'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
+        );
+        return;
+      } else {
+        canvasRef.current.toBlob((blob) => setBlob(blob));
+      }
+    }
+    setCanGoToNextSlide(slide === 0);
+    setSlide(slide + 1);
+  };
 
   const onCrop = (c: PercentCrop) => {
     setCrop(c);
@@ -151,22 +169,33 @@ export default function BadgePage() {
             </div>
           </div>
         )}
+      </>
+    );
+  };
+
+  const privacyPreferencesSlide = () => {
+    return (
+      <>
+        <div>
+          <Checkbox label="Afficher le nom" value={displayName} onChange={setDisplayName} />
+          <Checkbox
+            label="Afficher le pseudo"
+            value={displayUsername}
+            onChange={setDisplayUsername}
+            className={`${styles.pseudoCheckbox} ${!displayName ? styles.hide : ''}`}
+          />
+        </div>
+        <Checkbox label="Afficher la photo" value={displayPhoto} onChange={setDisplayPhoto} />
         <Button
           primary
-          onClick={() =>
-            !canvasRef.current
-              ? toast.warn(
-                  'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
-                )
-              : canvasRef.current.toBlob((blob) => blob && dispatch(uploadProfilePicture(blob) as unknown as Action))
-          }>
+          onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
           Définir comme image de profil
         </Button>
       </>
     );
   };
 
-  const slides = [selectImageSlide, cropImageSlide];
+  const slides = [selectImageSlide, cropImageSlide, privacyPreferencesSlide];
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -193,10 +222,7 @@ export default function BadgePage() {
           />
           <Icon
             name={IconName.ChevronRight}
-            onClick={() => {
-              setSlide(slide + 1);
-              setCanGoToNextSlide(false);
-            }}
+            onClick={nextSlide}
             className={slide === slides.length - 1 ? styles.invisible : !canGoToNextSlide ? styles.disabled : ''}
           />
         </div>
