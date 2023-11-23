@@ -38,5 +38,5 @@ export const getPartnerLogoName = (partnerId: string) => {
 };
 
 export const getPartnerLogoLink = (partnerId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.png`;
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.webp`;
 };

@@ -4,7 +4,7 @@ import FileUpload from '@/components/UI/FileInput';
 import { useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
-import background from '@/../public/images/background.webp';
+import background from '@/../public/images/badge-preview-background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
@@ -13,8 +13,8 @@ import Icon, { IconName } from '@/components/UI/Icon';
 import TeamMember from '@/components/landing/TeamMember';
 import { toast } from 'react-toastify';
 import { uploadProfilePicture } from '@/modules/users';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { type Action } from '@reduxjs/toolkit';
+import { useAppSelector } from '@/lib/hooks';
+import Checkbox from '@/components/UI/Checkbox';
 
 function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: number) {
   return centerCrop(
@@ -33,7 +33,6 @@ function centerAspectCrop(mediaWidth: number, mediaHeight: number, aspect: numbe
 }
 
 export default function BadgePage() {
-  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user);
   const [file, setFile] = useState<string | undefined>();
   const [crop, setCrop] = useState<Crop>();
@@ -42,6 +41,25 @@ export default function BadgePage() {
   const croppingImageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [roleToPreview, setRoleToPreview] = useState(0);
+  const [displayName, setDisplayName] = useState(false);
+  const [displayUsername, setDisplayUsername] = useState(false);
+  const [displayPhoto, setDisplayPhoto] = useState(false);
+  const [blob, setBlob] = useState<Blob | null>(null);
+
+  const nextSlide = () => {
+    if (slide === 1) {
+      if (!canvasRef.current) {
+        toast.warn(
+          'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
+        );
+        return;
+      } else {
+        canvasRef.current.toBlob((blob) => setBlob(blob));
+      }
+    }
+    setCanGoToNextSlide(slide === 0);
+    setSlide(slide + 1);
+  };
 
   const onCrop = (c: PercentCrop) => {
     setCrop(c);
@@ -111,12 +129,16 @@ export default function BadgePage() {
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-            <TeamMember
-              color={user!.orgaRoles[roleToPreview].commissionRole}
-              member={user!}
-              role={user!.orgaRoles[roleToPreview].commissionRole}
-              image={canvasRef.current?.toDataURL() ?? ''}
-            />
+            {user!.orga!.roles.length > 0 ? (
+              <TeamMember
+                color={user!.orga!.roles[roleToPreview].commissionRole}
+                member={user!}
+                role={user!.orga!.roles[roleToPreview].commissionRole}
+                image={canvasRef.current?.toDataURL() ?? ''}
+              />
+            ) : (
+              "Vous n'avez pas de commission assignée"
+            )}
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
@@ -128,7 +150,7 @@ export default function BadgePage() {
             </div>
           </div>
         </div>
-        {user!.orgaRoles.length > 1 && (
+        {user!.orga!.roles.length > 1 && (
           <div className={styles.changePreviewRole}>
             Preview avec tes autres rôles
             <div className={styles.changePreviewRoleArrows}>
@@ -139,34 +161,45 @@ export default function BadgePage() {
                 }}
                 className={roleToPreview === 0 ? styles.disabled : ''}
               />
-              {user!.orgaRoles[roleToPreview].commissionRole === 'respo' ? 'Responsable' : 'Membre'}{' '}
-              {user!.orgaRoles[roleToPreview].commission.name}
+              {user!.orga!.roles[roleToPreview].commissionRole === 'respo' ? 'Responsable' : 'Membre'}{' '}
+              {user!.orga!.roles[roleToPreview].commission.name}
               <Icon
                 name={IconName.ChevronRight}
                 onClick={() => {
                   setRoleToPreview(roleToPreview + 1);
                 }}
-                className={roleToPreview === user!.orgaRoles.length - 1 ? styles.disabled : ''}
+                className={roleToPreview === user!.orga!.roles.length - 1 ? styles.disabled : ''}
               />
             </div>
           </div>
         )}
+      </>
+    );
+  };
+
+  const privacyPreferencesSlide = () => {
+    return (
+      <>
+        <div>
+          <Checkbox label="Afficher le nom" value={displayName} onChange={setDisplayName} />
+          <Checkbox
+            label="Afficher le pseudo"
+            value={displayUsername}
+            onChange={setDisplayUsername}
+            className={`${styles.pseudoCheckbox} ${!displayName ? styles.hide : ''}`}
+          />
+        </div>
+        <Checkbox label="Afficher la photo" value={displayPhoto} onChange={setDisplayPhoto} />
         <Button
           primary
-          onClick={() =>
-            !canvasRef.current
-              ? toast.warn(
-                  'Wow, tu cliques plus vite que ton ombre (ou que ton pc, à voir), attends encore quelques millisecondes, même si pour toi ça doit être une éternité',
-                )
-              : canvasRef.current.toBlob((blob) => blob && dispatch(uploadProfilePicture(blob) as unknown as Action))
-          }>
+          onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
           Définir comme image de profil
         </Button>
       </>
     );
   };
 
-  const slides = [selectImageSlide, cropImageSlide];
+  const slides = [selectImageSlide, cropImageSlide, privacyPreferencesSlide];
 
   function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
     const { width, height } = e.currentTarget;
@@ -193,10 +226,7 @@ export default function BadgePage() {
           />
           <Icon
             name={IconName.ChevronRight}
-            onClick={() => {
-              setSlide(slide + 1);
-              setCanGoToNextSlide(false);
-            }}
+            onClick={nextSlide}
             className={slide === slides.length - 1 ? styles.invisible : !canGoToNextSlide ? styles.disabled : ''}
           />
         </div>

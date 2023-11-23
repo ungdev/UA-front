@@ -1,5 +1,6 @@
 import styles from './TeamMember.module.scss';
-import { getProfilePictureUrl } from '@/modules/users';
+import { Orga } from '@/types';
+import defaultImage from '@/../public/images/logo.webp';
 
 export default function TeamMember({
   member,
@@ -8,11 +9,7 @@ export default function TeamMember({
   image,
 }: {
   /** The user to display. */
-  member: {
-    id: string;
-    firstname: string;
-    lastname: string;
-  };
+  member: Orga;
   /** Which role the user has, in the commission we are rendering this component for. */
   role: 'respo' | 'member';
   /** The color that represents the commission we are rendering. */
@@ -24,9 +21,13 @@ export default function TeamMember({
     <div className={styles.member} style={{ '--team-color': color } as React.CSSProperties}>
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
-        <img src={image ?? getProfilePictureUrl(member)} alt={`${member.firstname} ${member.lastname}`} />
+        <img
+          src={image ?? (member.photoFilename ? member.photoFilename : defaultImage.src)}
+          alt={`${member.name ?? member.username}`}
+        />
       </div>
-      <span>{`${member.firstname} ${member.lastname}`}</span>
+      {member.name && <span>{member.name}</span>}
+      {member.username && <span>{member.username}</span>}
       <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
     </div>
   );
