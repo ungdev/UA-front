@@ -47,7 +47,7 @@ const GenBadges = () => {
                   { label: 'Custom', value: 'custom' },
                   { label: 'Single orga', value: 'single' },
                 ]
-              } required />
+              } required/>
 
               {fields![i]?.type === 'custom' && (
                 <>
