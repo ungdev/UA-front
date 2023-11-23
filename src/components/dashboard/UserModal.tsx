@@ -258,6 +258,7 @@ const UserModal = ({
       }
       containerClassName={styles.userModal}>
       <>
+        <Input label="ID" value={searchUser?.id ?? ''} readOnly />
         <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin && !isAnim} />
         <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin && !isAnim} />
         {(!searchUser || searchUser.type !== UserType.attendant) && (

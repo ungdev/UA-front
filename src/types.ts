@@ -296,3 +296,6 @@ export interface UserFilters extends Record<string, string | undefined> {
   scan?: string;
   permissions?: string;
 }
+
+export type BadgeType = 'orgas' | 'custom' | 'single';
+export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess';
