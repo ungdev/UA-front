@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-
+import styles from './style.module.scss';
 import { Input, Button, Title } from '@/components/UI';
 import { API } from '@/utils/api';
 
@@ -24,21 +24,26 @@ const Reset = () => {
   }
 
   return (
-    <div>
-      <Title level={3}>Réinitialiser le mot de passe</Title>
-      <Input value={password} onChange={setPassword} label="Nouveau mot de passe" type="password" />
-      <Input value={passwordBis} onChange={setPasswordBis} label="Confirmer nouveau mot de passe" type="password" />
-      <Button
-        primary
-        onClick={() => {
-          if (password !== passwordBis) {
-            toast.error('Les deux mots de passe ne sont pas identiques');
-          } else {
-            reset();
-          }
-        }}>
-        Modifier
-      </Button>
+    <div className={styles.reset}>
+      <div>
+        <Title level={3} align="center">
+          Réinitialiser le mot de passe
+        </Title>
+        <Input value={password} onChange={setPassword} label="Nouveau mot de passe" type="password" />
+        <Input value={passwordBis} onChange={setPasswordBis} label="Confirmer nouveau mot de passe" type="password" />
+        <Button
+          primary
+          veryLong
+          onClick={() => {
+            if (password !== passwordBis) {
+              toast.error('Les deux mots de passe ne sont pas identiques');
+            } else {
+              reset();
+            }
+          }}>
+          Modifier
+        </Button>
+      </div>
     </div>
   );
 };
