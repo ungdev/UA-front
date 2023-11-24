@@ -1,7 +1,7 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/badge-preview-background.webp';
@@ -46,6 +46,15 @@ export default function BadgePage() {
   const [displayPhoto, setDisplayPhoto] = useState(false);
   const [blob, setBlob] = useState<Blob | null>(null);
 
+  useEffect(() => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d')!;
+      ctx.fillStyle = '#29292a';
+      ctx.rect(0, 0, 300, 300);
+      onCrop(crop as PercentCrop);
+    }
+  }, [canvasRef.current, croppingImageRef.current]);
+
   const nextSlide = () => {
     if (slide === 1) {
       if (!canvasRef.current) {
@@ -65,6 +74,7 @@ export default function BadgePage() {
     setCrop(c);
     if (!croppingImageRef.current || !canvasRef.current || !c) return;
     const ctx = canvasRef.current.getContext('2d')!;
+    ctx.fill();
     ctx.drawImage(
       croppingImageRef.current,
       croppingImageRef.current.naturalWidth * (c.x / 100),
@@ -88,9 +98,7 @@ export default function BadgePage() {
           setFile(url);
           const image = new Image();
           image.src = url;
-          image.onload = () => {
-            setCanGoToNextSlide(image.width >= 250 && image.height >= 250);
-          };
+          image.onload = () => setCanGoToNextSlide(image.width >= 250 && image.height >= 250);
         }}
         type="png"
         className={styles.fileUpload}
