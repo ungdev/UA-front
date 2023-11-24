@@ -1,0 +1,53 @@
+.genbadges {
+  padding: 3rem 5rem;
+
+  .titleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    > * {
+      max-width: 50%;
+      margin-bottom: 0;
+      > * {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    > * {
+      max-width: 50%;
+      margin-bottom: 0;
+      > * {
+        margin-left: 1rem;
+      }
+    }
+
+    .field {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    
+      > button {
+        margin: 1.25rem 0;
+        padding: 0.75rem 1rem;
+        svg {
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .buttonContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+}

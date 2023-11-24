@@ -11,7 +11,6 @@ import {
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
-import { uploadsUrl } from '@/utils/environment';
 import { setUser } from '@/modules/login';
 
 interface UsersAction {
@@ -212,17 +211,15 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
   );
 };
 
-export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.webp`;
-
 export const uploadProfilePicture = async (
   blob: Blob,
   displayName: boolean,
   displayUsername: boolean,
   displayPhoto: boolean,
 ) => {
-  const file = new File([blob], `test.png`);
+  const file = new File([blob], `test.png`, { type: 'image/png' });
   const { filename } = await API.patch(`admin/users/trombi`, { displayName, displayUsername, displayPhoto });
-  await uploadFile(file, filename, 'admin');
+  await uploadFile(file, filename, 'orga');
 };
 
 export const fetchOrgas = () => async (dispatch: Dispatch) => {

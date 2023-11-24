@@ -55,6 +55,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     if (permissions.includes(Permission.orga)) {
       menu.push({ title: 'Badge', href: '/admin/badge' });
     }
+    if (permissions.includes(Permission.admin)) {
+      menu.push({ title: 'Badge Generator', href: '/admin/genbadge' });
+    }
 
     // Account panel
     menu.push({ title: 'Compte', href: '/dashboard/account' });

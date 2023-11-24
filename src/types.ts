@@ -262,6 +262,8 @@ export interface Commission {
   masterCommission: string;
 }
 
+export type CommissionRole = 'respo' | 'member';
+
 export interface CommissionWithOrgas extends Commission {
   roles: { respo: Orga[]; member: Orga[] };
 }
@@ -295,4 +297,19 @@ export interface UserFilters extends Record<string, string | undefined> {
   payment?: string;
   scan?: string;
   permissions?: string;
+}
+
+export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
+export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess';
+
+export interface Badge {
+  type: BadgeType;
+  name?: string;
+  permission?: BadgePermission;
+  quantity?: number;
+  email?: string;
+  firstname?: string;
+  lastname?: string;
+  commissionId?: string;
+  commissionRole?: CommissionRole;
 }
