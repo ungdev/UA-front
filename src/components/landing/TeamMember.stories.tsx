@@ -12,7 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    member: { id: 'ABCDEF', firstname: 'Jean', lastname: 'Dupont' },
+    member: { id: 'ABCDEF', name: 'Jean Dupont', username: 'superjean' },
     color: '#FF0000',
     role: 'member',
   },
@@ -20,7 +20,7 @@ export const Default: Story = {
 
 export const WithGivenImage: Story = {
   args: {
-    member: { id: 'ABCDEF', firstname: 'Jean', lastname: 'Dupont' },
+    member: { id: 'ABCDEF', name: 'Jean Dupont', username: 'superjean' },
     color: '#FF0000',
     role: 'member',
     image: 'https://picsum.photos/200',

@@ -88,7 +88,7 @@ export interface User {
   askingTeamId: string | null;
   attendant: UserAttendant;
   age: UserAge;
-  orgaRoles: OrgaRole[];
+  orga: OrgaData | null;
 }
 
 export interface UserEdit {
@@ -241,8 +241,13 @@ export interface AdminTournament extends Tournament {
 
 export interface Orga {
   id: string;
-  firstname: string;
-  lastname: string;
+  name?: string;
+  username?: string;
+  photoFilename?: string;
+}
+
+export interface OrgaData {
+  roles: OrgaRole[];
 }
 
 export interface OrgaRole {
@@ -291,3 +296,6 @@ export interface UserFilters extends Record<string, string | undefined> {
   scan?: string;
   permissions?: string;
 }
+
+export type BadgeType = 'orgas' | 'custom' | 'single';
+export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess';

@@ -15,7 +15,9 @@ const Input = ({
   className = '',
   autocomplete = '',
   disabled = false,
+  readOnly = false,
   autoFocus = false,
+  required = false,
 }: {
   /** The type of input to render. */
   type?: 'text' | 'email' | 'password' | 'number' | 'datetime-local';
@@ -37,8 +39,12 @@ const Input = ({
   autocomplete?: string;
   /** Is the input disabled ? */
   disabled?: boolean;
+  /** Is the input read-only ? */
+  readOnly?: boolean;
   /** Should the input have the focus by default ? */
   autoFocus?: boolean;
+  /** Is the input required ? */
+  required?: boolean;
 }) => {
   const handleChange = (newValue: string) => {
     if (
@@ -66,8 +72,10 @@ const Input = ({
           onChange={(e) => handleChange(e.target.value)}
           autoComplete={autocomplete}
           disabled={disabled}
+          readOnly={readOnly}
           title={disabled ? 'Tu ne peux pas modifier ce champ' : undefined}
           autoFocus={autoFocus}
+          required={required}
         />
       </label>
     </div>

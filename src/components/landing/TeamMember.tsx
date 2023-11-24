@@ -1,6 +1,7 @@
 import styles from './TeamMember.module.scss';
-import { getProfilePictureFilename } from '@/modules/users';
 import { uploadsUrl } from '@/utils/environment';
+import { Orga } from '@/types';
+import defaultImage from '@/../public/images/logo.webp';
 
 export default function TeamMember({
   member,
@@ -9,11 +10,7 @@ export default function TeamMember({
   image,
 }: {
   /** The user to display. */
-  member: {
-    id: string;
-    firstname: string;
-    lastname: string;
-  };
+  member: Orga;
   /** Which role the user has, in the commission we are rendering this component for. */
   role: 'respo' | 'member';
   /** The color that represents the commission we are rendering. */
@@ -26,11 +23,12 @@ export default function TeamMember({
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
         <img
-          src={image ?? `${uploadsUrl()}/orgas/${getProfilePictureFilename(member)}.png`}
-          alt={`${member.firstname} ${member.lastname}`}
+          src={image ?? (member.photoFilename ? `${uploadsUrl()}/orgas/${member.photoFilename}.webp` : defaultImage.src)}
+          alt={`${member.name ?? member.username}`}
         />
       </div>
-      <span>{`${member.firstname} ${member.lastname}`}</span>
+      {member.name && <span>{member.name}</span>}
+      {member.username && <span>{member.username}</span>}
       <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
     </div>
   );
