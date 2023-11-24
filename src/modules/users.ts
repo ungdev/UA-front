@@ -11,7 +11,6 @@ import {
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
-import { uploadsUrl } from '@/utils/environment';
 import { setUser } from '@/modules/login';
 
 interface UsersAction {
@@ -211,8 +210,6 @@ export const refundCart = (id: string) => async (dispatch: Dispatch, getState: (
     lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action,
   );
 };
-
-export const getProfilePictureUrl = (filename: string) => `${uploadsUrl()}/orgas/${filename}.webp`;
 
 export const uploadProfilePicture = async (
   blob: Blob,
