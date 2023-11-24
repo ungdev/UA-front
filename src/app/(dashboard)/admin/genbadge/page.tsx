@@ -23,12 +23,12 @@ const GenBadges = () => {
   }, []);
 
   return (
-    <form className={styles.genbadges} onSubmit={
-      (e) => {
+    <form
+      className={styles.genbadges}
+      onSubmit={(e) => {
         e.preventDefault();
         generateBadges(fields);
-      }
-    }>
+      }}>
       <div className={styles.titleContainer}>
         <Title level={2} gutterBottom={false}>
           Badge Generator
@@ -54,10 +54,8 @@ const GenBadges = () => {
                 } else if (e === 'singlecustom') {
                   newFields[i] = { type: e as BadgeType, commissionId: commissions[0].id, commissionRole: 'member' };
                 } else {
-                  newFields[i] = { type: e as BadgeType, permission:  'restricted'};
+                  newFields[i] = { type: e as BadgeType, permission: 'restricted' };
                 }
-
-                console.log(newFields[i]);
 
                 setFields(newFields);
               }}
@@ -165,14 +163,15 @@ const GenBadges = () => {
                   value={fields![i]?.commissionRole ?? ''}
                   onChange={(e) => {
                     const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole};
+                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole };
                     setFields(newFields);
                   }}
                   options={[
                     { label: 'Membre', value: 'member' },
                     { label: 'Responsable', value: 'respo' },
                   ]}
-                  required />
+                  required
+                />
               </>
             )}
 
@@ -190,7 +189,7 @@ const GenBadges = () => {
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button primary onClick={() => generateBadges(fields)} type='submit'>
+        <Button primary onClick={() => generateBadges(fields)} type="submit">
           Générer les badges
         </Button>
       </div>
