@@ -1,30 +1,34 @@
 'use client';
 import { Button, Icon, Input, Select, Title } from '@/components/UI';
 import styles from './style.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IconName } from '@/components/UI/Icon';
 import { generateBadges } from '@/modules/admin';
-import { BadgePermission, BadgeType } from '@/types';
+import { Badge, BadgePermission, BadgeType, Commission, CommissionRole } from '@/types';
+import { API } from '@/utils/api';
 
 const GenBadges = () => {
   const [fieldCount, setFieldCount] = useState(1);
-  const [fields, setFields] = useState<
-    {
-      type: BadgeType;
-      name?: string;
-      permission?: BadgePermission;
-      quantity?: number;
-      email?: string;
-    }[]
-  >([{ type: 'orgas' }]);
+  const [fields, setFields] = useState<Badge[]>([{ type: 'orgas' }]);
+
+  const [commissions, setCommissions] = useState<Commission[]>([]);
 
   const addBadgeField = () => {
     setFieldCount(fieldCount + 1);
     setFields([...fields, { type: 'orgas' }]);
   };
 
+  useEffect(() => {
+    API.get('commissions').then(setCommissions);
+  }, []);
+
   return (
-    <div className={styles.genbadges}>
+    <form
+      className={styles.genbadges}
+      onSubmit={(e) => {
+        e.preventDefault();
+        generateBadges(fields);
+      }}>
       <div className={styles.titleContainer}>
         <Title level={2} gutterBottom={false}>
           Badge Generator
@@ -44,13 +48,22 @@ const GenBadges = () => {
               value={fields![i]?.type}
               onChange={(e) => {
                 const newFields = [...fields!];
-                newFields[i] = { ...newFields[i], type: e as BadgeType };
+
+                if (e === 'orgas' || e === 'single') {
+                  newFields[i] = { type: e as BadgeType };
+                } else if (e === 'singlecustom') {
+                  newFields[i] = { type: e as BadgeType, commissionId: commissions[0].id, commissionRole: 'member' };
+                } else {
+                  newFields[i] = { type: e as BadgeType, permission: 'restricted' };
+                }
+
                 setFields(newFields);
               }}
               options={[
                 { label: 'Orgas', value: 'orgas' },
                 { label: 'Custom', value: 'custom' },
                 { label: 'Single orga', value: 'single' },
+                { label: 'Single custom', value: 'singlecustom' },
               ]}
               required
             />
@@ -76,7 +89,7 @@ const GenBadges = () => {
                     setFields(newFields);
                   }}
                   options={[
-                    { label: 'Aucune', value: 'none' },
+                    { label: 'Aucune', value: 'restricted' },
                     { label: 'Prix Orga', value: 'orgaprice' },
                     { label: 'Full Access', value: 'fullaccess' },
                   ]}
@@ -109,6 +122,59 @@ const GenBadges = () => {
               />
             )}
 
+            {fields![i]?.type === 'singlecustom' && (
+              <>
+                <Input
+                  label="Nom"
+                  value={fields![i]?.lastname}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], lastname: e };
+                    setFields(newFields);
+                  }}
+                  required
+                />
+                <Input
+                  label="Prénom"
+                  value={fields![i]?.firstname}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], firstname: e };
+                    setFields(newFields);
+                  }}
+                  required
+                />
+                <Select
+                  label="Commission"
+                  value={fields![i]?.commissionId ?? ''}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], commissionId: e };
+                    setFields(newFields);
+                  }}
+                  options={commissions.map((commission) => ({
+                    label: commission.name,
+                    value: commission.id,
+                  }))}
+                  required
+                />
+                <Select
+                  label="Rôle"
+                  value={fields![i]?.commissionRole ?? ''}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole };
+                    setFields(newFields);
+                  }}
+                  options={[
+                    { label: 'Membre', value: 'member' },
+                    { label: 'Responsable', value: 'respo' },
+                  ]}
+                  required
+                />
+              </>
+            )}
+
             <Button
               primary
               onClick={() => {
@@ -123,11 +189,11 @@ const GenBadges = () => {
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button primary onClick={() => generateBadges(fields)}>
+        <Button primary onClick={() => generateBadges(fields)} type="submit">
           Générer les badges
         </Button>
       </div>
-    </div>
+    </form>
   );
 };
 
