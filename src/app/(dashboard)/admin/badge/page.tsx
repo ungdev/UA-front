@@ -1,7 +1,7 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/badge-preview-background.webp';
