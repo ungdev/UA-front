@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import {
   Commission,
+  CommissionRole,
   Permission,
   TransactionState,
   UserAge,
@@ -64,7 +65,7 @@ const UserModal = ({
   const [password, setPassword] = useState('');
   const [customMessage, setCustomMessage] = useState<string | null | undefined>('');
   const [permissions, setPermissions] = useState<Permission[]>([]);
-  const [orgaRoles, setOrgaRoles] = useState<Array<{ commissionRole: 'respo' | 'member'; commission: string }>>([]);
+  const [orgaRoles, setOrgaRoles] = useState<Array<{ commissionRole: CommissionRole; commission: string }>>([]);
   const [place, setPlace] = useState('');
   const [type, setType] = useState<UserType>();
   const [age, setAge] = useState<UserAge>();

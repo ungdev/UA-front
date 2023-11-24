@@ -1,6 +1,6 @@
 import { createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { AdminPartner, AdminTournament, AdminItem } from '@/types';
+import { AdminPartner, AdminTournament, AdminItem, Badge } from '@/types';
 import {
   getPartnerLogoName,
   PARTNER_FOLDER,
@@ -305,7 +305,7 @@ export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) =
   }
 };
 
-export const generateBadges = async (badges: object) => {
+export const generateBadges = async (badges: Badge[]) => {
   try {
     await API.post('admin/badges', badges);
   } catch (err) {
