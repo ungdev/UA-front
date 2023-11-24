@@ -8,13 +8,11 @@ import { Badge, BadgePermission, BadgeType, Commission, CommissionRole } from '@
 import { API } from '@/utils/api';
 
 const GenBadges = () => {
-  const [fieldCount, setFieldCount] = useState(1);
   const [fields, setFields] = useState<Badge[]>([{ type: 'orgas' }]);
 
   const [commissions, setCommissions] = useState<Commission[]>([]);
 
   const addBadgeField = () => {
-    setFieldCount(fieldCount + 1);
     setFields([...fields, { type: 'orgas' }]);
   };
 
@@ -41,7 +39,7 @@ const GenBadges = () => {
       </div>
 
       <div className={styles.formContainer}>
-        {Array.from(Array(fieldCount).keys()).map((i) => (
+        {Array.from(Array(fields.length).keys()).map((i) => (
           <div key={`field-${i}`} className={styles.field}>
             <Select
               label="Type"
@@ -181,7 +179,6 @@ const GenBadges = () => {
                 const newFields = [...fields!];
                 newFields.splice(i, 1);
                 setFields(newFields);
-                setFieldCount(fieldCount - 1);
               }}>
               <Icon name={IconName.Trash} className={styles.trashIcon} />
             </Button>
