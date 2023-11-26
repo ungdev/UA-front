@@ -59,7 +59,9 @@ export default function BadgePage() {
   useEffect(() => {
     if (!user) return;
     setRoleToPreview(
-      user.orga!.roles.findIndex((commission) => commission.commission.id === user.orga!.mainCommission),
+      user.orga!.mainCommission
+        ? user.orga!.roles.findIndex((commission) => commission.commission.id === user.orga!.mainCommission)
+        : 0,
     );
   }, [user]);
 
