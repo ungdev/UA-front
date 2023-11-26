@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import {
   Commission,
-  CommissionRole,
+  OrgaRole,
   Permission,
   TransactionState,
   UserAge,
@@ -65,7 +65,7 @@ const UserModal = ({
   const [password, setPassword] = useState('');
   const [customMessage, setCustomMessage] = useState<string | null | undefined>('');
   const [permissions, setPermissions] = useState<Permission[]>([]);
-  const [orgaRoles, setOrgaRoles] = useState<Array<{ commissionRole: CommissionRole; commission: string }>>([]);
+  const [orgaRoles, setOrgaRoles] = useState<OrgaRole[]>([]);
   const [mainCommissionIndex, setMainCommissionIndex] = useState<number | null>(null);
   const [place, setPlace] = useState('');
   const [type, setType] = useState<UserType>();
@@ -91,7 +91,7 @@ const UserModal = ({
     setOrgaRoles(
       searchUser.orga?.roles.map((orgaRole) => ({
         commissionRole: orgaRole.commissionRole,
-        commission: orgaRole.commission.id,
+        commission: orgaRole.commission,
       })) ?? [],
     );
     setMainCommissionIndex(
@@ -183,7 +183,7 @@ const UserModal = ({
 
   const getCommissionsAvailable = (include?: string) => {
     return commissions.filter(
-      (commission) => !orgaRoles.find((role) => role.commission === commission.id) || commission.id === include,
+      (commission) => !orgaRoles.find((role) => role.commission.id === commission.id) || commission.id === include,
     );
   };
 
@@ -219,7 +219,7 @@ const UserModal = ({
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
                       orgaRoles,
-                      orgaMainCommission: orgaRoles ? orgaRoles[mainCommissionIndex!].commission : undefined,
+                      orgaMainCommission: orgaRoles ? orgaRoles[mainCommissionIndex!].commission.id : undefined,
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
@@ -355,14 +355,14 @@ const UserModal = ({
                     onClick={() => setMainCommissionIndex(i)}
                   />
                   <Select
-                    options={getCommissionsAvailable(role.commission).map((commission) => ({
+                    options={getCommissionsAvailable(role.commission.id).map((commission) => ({
                       value: commission.id,
                       label: commission.name,
                     }))}
-                    value={role.commission}
+                    value={role.commission.id}
                     onChange={(v) => {
                       const newOrgaRoles = [...orgaRoles];
-                      orgaRoles[i].commission = commissions.find((commission) => commission.id === v)!.id;
+                      newOrgaRoles[i].commission = commissions.find((commission) => commission.id === v)!;
                       setOrgaRoles(newOrgaRoles);
                     }}
                   />
@@ -398,7 +398,7 @@ const UserModal = ({
             </div>
             <Button
               onClick={() => {
-                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }]);
+                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0] }]);
                 if (orgaRoles.length === 0) {
                   setMainCommissionIndex(0);
                 }
