@@ -148,7 +148,7 @@ export default function BadgePage() {
             </div>
           </div>
           <div>
-            <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
+            <h3 style={{ textAlign: 'center' }}>Preview de l'image</h3>
             <div className={styles.badgePreview}>
               <img alt="Arrière plan du badge" className={styles.background} src={background.src} />
               <div className={styles.imageWrapper}>
