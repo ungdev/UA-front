@@ -27,7 +27,7 @@ export default function TeamMember({
             src={
               image ?? (member.photoFilename ? `${uploadsUrl()}/orgas/${member.photoFilename}.webp` : defaultImage.src)
             }
-            className={(!member.photoFilename && !image) ? styles.defaultImage : ''}
+            className={!member.photoFilename && !image ? styles.defaultImage : ''}
             alt={`${member.name ?? member.username}`}
           />
         </div>
