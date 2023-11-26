@@ -40,7 +40,7 @@ export default function BadgePage() {
   const [canGoToNextSlide, setCanGoToNextSlide] = useState(false);
   const croppingImageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [roleToPreview] = useState(0);
+  const [roleToPreview, setRoleToPreview] = useState(0);
   const [displayName, setDisplayName] = useState(false);
   const [displayUsername, setDisplayUsername] = useState(false);
   const [displayPhoto, setDisplayPhoto] = useState(false);
@@ -55,6 +55,13 @@ export default function BadgePage() {
       onCrop(crop as PercentCrop);
     }
   }, [canvasRef.current, croppingImageRef.current, backgroundColor]);
+
+  useEffect(() => {
+    if (!user) return;
+    setRoleToPreview(
+      user.orga!.roles.findIndex((commission) => commission.commission.id === user.orga!.mainCommission),
+    );
+  }, [user]);
 
   const nextSlide = () => {
     if (slide === 1) {
