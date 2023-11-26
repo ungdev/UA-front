@@ -20,7 +20,6 @@
   }
 
   .infos,
-  .ticket,
   .notif {
     max-width: 100%;
     margin: 0px 50px;
@@ -36,15 +35,7 @@
   }
 
   .ticket {
-    width: 250px;
-  }
-
-  hr {
-    background: $accent-color;
-    height: 2px;
-    width: 100%;
-    border: none;
-    margin: 20px 0;
+    margin-top: 2rem;
   }
 
   input:disabled {
@@ -53,16 +44,16 @@
 }
 
 @media screen and (max-width: 1000px) {
-  #dashboardAccount {
+  .dashboardAccount {
     flex-flow: column wrap;
     max-width: 100%;
 
     .infos,
-    .ticket,
+    .tickets,
     .notif {
-      max-width: 100%;
+      width: 100%;
       margin: 0px;
-      padding: 50px;
+      padding: 1rem;
     }
 
     .infos {
