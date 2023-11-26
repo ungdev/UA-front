@@ -22,12 +22,15 @@ export default function TeamMember({
     <div className={styles.member} style={{ '--team-color': color } as React.CSSProperties}>
       <div className={styles.imgContainer}>
         <div className={styles.imageFont}></div>
-        <img
-          src={
-            image ?? (member.photoFilename ? `${uploadsUrl()}/orgas/${member.photoFilename}.webp` : defaultImage.src)
-          }
-          alt={`${member.name ?? member.username}`}
-        />
+        <div className={styles.imageBackground}>
+          <img
+            src={
+              image ?? (member.photoFilename ? `${uploadsUrl()}/orgas/${member.photoFilename}.webp` : defaultImage.src)
+            }
+            className={(!member.photoFilename && !image) ? styles.defaultImage : ''}
+            alt={`${member.name ?? member.username}`}
+          />
+        </div>
       </div>
       {member.name && <span>{member.name}</span>}
       {member.username && <span>{member.username}</span>}

@@ -18,7 +18,24 @@
       border-radius: 50%;
       top: 0;
       left: 0;
+
+      &.defaultImage {
+        transform-origin: center;
+        object-fit: contain;
+        transform: scale(0.8);
+        border-radius: initial;
+        margin-left: 0.3125rem;
+      }
     }
+
+    .imageBackground {
+      position: absolute;
+      background-color: $secondary-background;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
     .imageFont {
       position: absolute;
       top: 0;
