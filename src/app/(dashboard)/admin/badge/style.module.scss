@@ -154,3 +154,19 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .page {
+    .content {
+      .cropImageSlideContainer {
+        flex-direction: column;
+        width: 100%;
+
+        .cropImageContainer {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

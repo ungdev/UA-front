@@ -8,6 +8,7 @@
     width: 150px;
     height: 150px;
     position: relative;
+    margin-bottom: 1rem;
     img {
       z-index: 10;
       position: absolute;
@@ -30,8 +31,8 @@
       transform: scaleY(102%) translateX(5px);
     }
   }
+
   span {
-    margin-top: 1rem;
     font-size: 1.5rem;
     font-weight: 500;
     color: #fff;

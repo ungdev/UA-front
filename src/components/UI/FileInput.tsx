@@ -20,7 +20,7 @@ const FileUpload = ({
   /** The function to call when the file changes. */
   onChange: (file: File) => void;
   /** The type of file to accept. */
-  type: 'png' | 'jpg' | 'pdf';
+  type: ('png' | 'jpg' | 'pdf' | 'webp')[];
   /** A string to add to the className */
   className?: string;
   /** The background color when there no image has been uploaded*/
@@ -46,7 +46,7 @@ const FileUpload = ({
       <label>{label}</label>
 
       <div style={{ backgroundColor: bg }} className={styles.imageContainer} onClick={handleUploadClick}>
-        {!error && (value !== '' || preview !== null) && type !== 'pdf' && (
+        {!error && (value !== '' || preview !== null) && !type.includes('pdf') && (
           <img
             onError={() => {
               setError(true);
@@ -58,7 +58,7 @@ const FileUpload = ({
           />
         )}
 
-        {!error && (value !== '' || preview !== null) && type === 'pdf' && (
+        {!error && (value !== '' || preview !== null) && type.includes('pdf') && (
           <>
             <embed
               onLoad={() => {
@@ -78,11 +78,21 @@ const FileUpload = ({
         )}
 
         <p className={error || (value === '' && preview === null) ? 'black' : ''}>
-          Choisir un fichier {type.toUpperCase()}
+          Choisir un fichier{' '}
+          {type
+            .map((t) => `.${t}`)
+            .join(', ')
+            .toUpperCase()}
         </p>
       </div>
 
-      <input type="file" ref={inputRef} onChange={handleFileChange} style={{ display: 'none' }} accept={`.${type}`} />
+      <input
+        type="file"
+        ref={inputRef}
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+        accept={type.map((t) => `.${t}`).join(', ')}
+      />
     </div>
   );
 };

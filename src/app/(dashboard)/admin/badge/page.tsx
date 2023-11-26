@@ -8,7 +8,7 @@ import background from '@/../public/images/badge-preview-background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
-import { Button, Radio, Title } from '@/components/UI';
+import { Button, Title } from '@/components/UI';
 import Icon, { IconName } from '@/components/UI/Icon';
 import TeamMember from '@/components/landing/TeamMember';
 import { toast } from 'react-toastify';
@@ -40,7 +40,7 @@ export default function BadgePage() {
   const [canGoToNextSlide, setCanGoToNextSlide] = useState(false);
   const croppingImageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [roleToPreview, setRoleToPreview] = useState(0);
+  const [roleToPreview] = useState(0);
   const [displayName, setDisplayName] = useState(false);
   const [displayUsername, setDisplayUsername] = useState(false);
   const [displayPhoto, setDisplayPhoto] = useState(false);
@@ -101,7 +101,7 @@ export default function BadgePage() {
           image.src = url;
           image.onload = () => setCanGoToNextSlide(image.width >= 300 && image.height >= 300);
         }}
-        type="png"
+        type={['png', 'jpg', 'webp']}
         className={styles.fileUpload}
         bg="#002D40"
       />
@@ -191,7 +191,7 @@ export default function BadgePage() {
           </Title>
           {user!.orga!.roles.length > 0 ? (
             <TeamMember
-              color={user!.orga!.roles[roleToPreview].commissionRole}
+              color={user!.orga!.roles[roleToPreview].commission.color}
               member={{
                 ...user!,
                 name: displayName ? user?.firstname + ' ' + user?.lastname : undefined,
