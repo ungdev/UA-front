@@ -88,7 +88,6 @@ const UserModal = ({
     setType(searchUser.type);
     setAge(searchUser.age);
     setDiscordId(searchUser.discordId || '');
-    console.log(searchUser);
     setOrgaRoles(
       searchUser.orga?.roles.map((orgaRole) => ({
         commissionRole: orgaRole.commissionRole,
