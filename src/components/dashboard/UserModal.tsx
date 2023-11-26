@@ -362,7 +362,7 @@ const UserModal = ({
                     value={role.commission}
                     onChange={(v) => {
                       const newOrgaRoles = [...orgaRoles];
-                      orgaRoles[i].commission = commissions.find((commission) => commission.id === v)!.id;
+                      newOrgaRoles[i].commission = commissions.find((commission) => commission.id === v)!.id;
                       setOrgaRoles(newOrgaRoles);
                     }}
                   />
