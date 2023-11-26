@@ -3,9 +3,14 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
+<<<<<<< Updated upstream
+=======
+  Commission,
+>>>>>>> Stashed changes
   CommissionWithOrgas,
   OrgaRole,
   Permission,
+  UserAge,
   UserFilters,
   UserType,
   UserWithTeamAndMessageAndTournamentInfo,
@@ -13,6 +18,21 @@ import {
 } from '@/types';
 import { uploadFile } from '@/utils/upload';
 import { setUser } from '@/modules/login';
+
+interface PatchUserData {
+  type?: UserType;
+  age?: UserAge;
+  permissions?: Permission[];
+  place?: string | null;
+  discordId?: string | null;
+  customMessage?: string | null;
+  username?: string;
+  lastname?: string;
+  firstname?: string;
+  email?: string;
+  orgaRoles?: OrgaRole[];
+  orgaMainCommission?: Commission | null;
+}
 
 interface UsersAction {
   isFetched: boolean;
@@ -178,7 +198,7 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, getState: 
 };
 
 export const saveUser =
-  (id: string, body: any, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  (id: string, body: PatchUserData, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, {
