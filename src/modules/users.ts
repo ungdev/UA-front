@@ -190,7 +190,6 @@ export const saveUser =
       orgaMainCommission: body.orgaMainCommission?.id,
     });
     toast.success(`${username} mis à jour`);
-    console.log(body.orgaRoles);
     dispatch(
       updateUser({
         ...userModal,
