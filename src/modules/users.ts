@@ -16,21 +16,6 @@ import {
 import { uploadFile } from '@/utils/upload';
 import { setUser } from '@/modules/login';
 
-interface PatchUserData {
-  type?: UserType;
-  age?: UserAge;
-  permissions?: Permission[];
-  place?: string | null;
-  discordId?: string | null;
-  customMessage?: string | null;
-  username?: string;
-  lastname?: string;
-  firstname?: string;
-  email?: string;
-  orgaRoles?: OrgaRole[];
-  orgaMainCommission?: Commission | null;
-}
-
 interface UsersAction {
   isFetched: boolean;
   users: Array<UserWithTeamAndMessageAndTournamentInfo>;
@@ -195,7 +180,25 @@ export const validatePay = (id: string) => async (dispatch: Dispatch, getState: 
 };
 
 export const saveUser =
-  (id: string, body: PatchUserData, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
+  (
+    id: string,
+    body: {
+      type?: UserType;
+      age?: UserAge;
+      permissions?: Permission[];
+      place?: string | null;
+      discordId?: string | null;
+      customMessage?: string | null;
+      username?: string;
+      lastname?: string;
+      firstname?: string;
+      email?: string;
+      orgaRoles?: OrgaRole[];
+      orgaMainCommission?: Commission | null;
+    },
+    username: string,
+  ) =>
+  async (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, {
