@@ -1,7 +1,7 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/badge-preview-background.webp';
@@ -98,14 +98,14 @@ export default function BadgePage() {
           setFile(url);
           const image = new Image();
           image.src = url;
-          image.onload = () => setCanGoToNextSlide(image.width >= 250 && image.height >= 250);
+          image.onload = () => setCanGoToNextSlide(image.width >= 300 && image.height >= 300);
         }}
         type="png"
         className={styles.fileUpload}
         bg="#002D40"
       />
       <div className={`${styles.warning} ${!file || canGoToNextSlide ? styles.hidden : ''}`}>
-        L'image doit avoir une taille minimale de 250x250 pixels
+        L'image doit avoir une taille minimale de 300x300 pixels
       </div>
     </>
   );
@@ -136,19 +136,6 @@ export default function BadgePage() {
             </ReactCrop>
           </div>
           <div>
-            <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-            {user!.orga!.roles.length > 0 ? (
-              <TeamMember
-                color={user!.orga!.roles[roleToPreview].commissionRole}
-                member={user!}
-                role={user!.orga!.roles[roleToPreview].commissionRole}
-                image={canvasRef.current?.toDataURL() ?? ''}
-              />
-            ) : (
-              "Vous n'avez pas de commission assignée"
-            )}
-          </div>
-          <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
             <div className={styles.badgePreview}>
               <img alt="Arrière plan du badge" className={styles.background} src={background.src} />
@@ -158,7 +145,7 @@ export default function BadgePage() {
             </div>
           </div>
         </div>
-        {user!.orga!.roles.length > 1 && (
+        {/* {user!.orga!.roles.length > 1 && (
           <div className={styles.changePreviewRole}>
             Preview avec tes autres rôles
             <div className={styles.changePreviewRoleArrows}>
@@ -180,7 +167,7 @@ export default function BadgePage() {
               />
             </div>
           </div>
-        )}
+        )} */}
       </>
     );
   };
@@ -198,10 +185,27 @@ export default function BadgePage() {
           />
         </div>
         <Checkbox label="Afficher la photo" value={displayPhoto} onChange={setDisplayPhoto} />
+        <div>
+          <Title align='center' level={3} type={3}>Preview sur le trombi</Title>
+          {user!.orga!.roles.length > 0 ? (
+            <TeamMember
+              color={user!.orga!.roles[roleToPreview].commissionRole}
+              member={{
+                ...user!,
+                name: displayName ? user?.firstname + ' ' + user?.lastname : undefined,
+                username: (displayUsername || !displayName) ? user?.username : undefined,
+              }}
+              role={user!.orga!.roles[roleToPreview].commissionRole}
+              image={(blob && displayPhoto) ? URL.createObjectURL(blob)! : undefined}
+            />
+          ) : (
+            "Vous n'avez pas de commission assignée"
+          )}
+        </div>
         <Button
           primary
           onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
-          Définir comme image de profil
+          Enregistrer 
         </Button>
       </>
     );
@@ -219,7 +223,7 @@ export default function BadgePage() {
   return (
     <div id="badge-page" className={styles.page}>
       <Title level={1} align="center">
-        Badge
+        {slide === 2 ? 'Préférences du trombi' : 'Badge'}
       </Title>
       <div className={styles.content}>
         {slides[slide]()}

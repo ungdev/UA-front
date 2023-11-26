@@ -31,7 +31,7 @@ export default function TeamMember({
       </div>
       {member.name && <span>{member.name}</span>}
       {member.username && <span>{member.username}</span>}
-      <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
+      <span className={styles.role}>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
     </div>
   );
 }
