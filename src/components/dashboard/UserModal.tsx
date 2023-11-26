@@ -219,14 +219,7 @@ const UserModal = ({
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
                       orgaRoles,
-<<<<<<< Updated upstream
-                      orgaMainCommission:
-                        orgaRoles && orgaRoles[mainCommissionIndex!]
-                          ? orgaRoles[mainCommissionIndex!].commission.id
-                          : undefined,
-=======
                       orgaMainCommission: orgaRoles ? orgaRoles[mainCommissionIndex!].commission : undefined,
->>>>>>> Stashed changes
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;

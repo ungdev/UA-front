@@ -3,10 +3,7 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
-<<<<<<< Updated upstream
-=======
   Commission,
->>>>>>> Stashed changes
   CommissionWithOrgas,
   OrgaRole,
   Permission,
