@@ -1,14 +1,14 @@
 'use client';
 import styles from './style.module.scss';
 import FileUpload from '@/components/UI/FileInput';
-import { use, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // eslint-disable-next-line import/named
 import { centerCrop, Crop, makeAspectCrop, PercentCrop, ReactCrop } from 'react-image-crop';
 import background from '@/../public/images/badge-preview-background.webp';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import './CustomReactCrop.scss';
-import { Button, Title } from '@/components/UI';
+import { Button, Radio, Title } from '@/components/UI';
 import Icon, { IconName } from '@/components/UI/Icon';
 import TeamMember from '@/components/landing/TeamMember';
 import { toast } from 'react-toastify';
@@ -45,15 +45,16 @@ export default function BadgePage() {
   const [displayUsername, setDisplayUsername] = useState(false);
   const [displayPhoto, setDisplayPhoto] = useState(false);
   const [blob, setBlob] = useState<Blob | null>(null);
+  const [backgroundColor, setBackgroundColor] = useState<string>('#ffffff');
 
   useEffect(() => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d')!;
-      ctx.fillStyle = '#29292a';
+      ctx.fillStyle = backgroundColor;
       ctx.rect(0, 0, 300, 300);
       onCrop(crop as PercentCrop);
     }
-  }, [canvasRef.current, croppingImageRef.current]);
+  }, [canvasRef.current, croppingImageRef.current, backgroundColor]);
 
   const nextSlide = () => {
     if (slide === 1) {
@@ -126,14 +127,13 @@ export default function BadgePage() {
               aspect={1}
               keepSelection
               circularCrop>
-              <img
-                className={styles.croppingImage}
-                alt="Image à cropper"
-                src={file}
-                onLoad={onImageLoad}
-                ref={croppingImageRef}
-              />
+              <img alt="Image à cropper" src={file} onLoad={onImageLoad} ref={croppingImageRef} />
             </ReactCrop>
+            <div className={styles.backgroundColorSelect}>
+              Couleur d'arrière plan :
+              <div className={`${styles.color} ${styles.whiteColor}`} onClick={() => setBackgroundColor('#ffffff')} />
+              <div className={`${styles.color} ${styles.blueColor}`} onClick={() => setBackgroundColor('#002D40')} />
+            </div>
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
@@ -186,17 +186,19 @@ export default function BadgePage() {
         </div>
         <Checkbox label="Afficher la photo" value={displayPhoto} onChange={setDisplayPhoto} />
         <div>
-          <Title align='center' level={3} type={3}>Preview sur le trombi</Title>
+          <Title align="center" level={3} type={3}>
+            Preview sur le trombi
+          </Title>
           {user!.orga!.roles.length > 0 ? (
             <TeamMember
               color={user!.orga!.roles[roleToPreview].commissionRole}
               member={{
                 ...user!,
                 name: displayName ? user?.firstname + ' ' + user?.lastname : undefined,
-                username: (displayUsername || !displayName) ? user?.username : undefined,
+                username: displayUsername || !displayName ? user?.username : undefined,
               }}
               role={user!.orga!.roles[roleToPreview].commissionRole}
-              image={(blob && displayPhoto) ? URL.createObjectURL(blob)! : undefined}
+              image={blob && displayPhoto ? URL.createObjectURL(blob)! : undefined}
             />
           ) : (
             "Vous n'avez pas de commission assignée"
@@ -205,7 +207,7 @@ export default function BadgePage() {
         <Button
           primary
           onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
-          Enregistrer 
+          Enregistrer
         </Button>
       </>
     );
