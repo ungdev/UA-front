@@ -48,6 +48,8 @@ const requestAPI = (
           response.headers.get('content-type')?.includes('application/json')
         ) {
           return response.json();
+        } else if (response.headers.get('content-type')?.includes('application/pdf')) {
+          return response.blob();
         } else {
           return response.text();
         }
@@ -76,7 +78,7 @@ const requestAPI = (
         toast.error("Temps d'attente dépassé");
         reject(new Error('Request timed out'));
       }
-    }, 10000);
+    }, 20000);
   });
 
 // Set the authorization header with the given token for next requests
