@@ -244,10 +244,12 @@ export interface Orga {
   name?: string;
   username?: string;
   photoFilename?: string;
+  mainCommission?: string;
 }
 
 export interface OrgaData {
   roles: OrgaRole[];
+  mainCommission: string;
 }
 
 export interface OrgaRole {
@@ -258,6 +260,7 @@ export interface OrgaRole {
 export interface Commission {
   id: string;
   name: string;
+  nameOnBadge: string;
   color: string;
   masterCommission: string;
 }

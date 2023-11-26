@@ -77,7 +77,12 @@ const PartnerModal = ({
         <Input label="Nom" value={name ?? ''} onChange={setName} />
         <Input label="Lien" value={link ?? ''} onChange={setLink} />
         <Textarea label="Description" value={description ?? ''} onChange={setDescription} />
-        <FileInput label="Logo" value={partner ? getPartnerLogoLink(partner.id) : ''} onChange={setLogo} type="png" />
+        <FileInput
+          label="Logo"
+          value={partner ? getPartnerLogoLink(partner.id) : ''}
+          onChange={setLogo}
+          type={['png']}
+        />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>

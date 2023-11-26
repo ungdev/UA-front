@@ -66,6 +66,7 @@ const UserModal = ({
   const [customMessage, setCustomMessage] = useState<string | null | undefined>('');
   const [permissions, setPermissions] = useState<Permission[]>([]);
   const [orgaRoles, setOrgaRoles] = useState<Array<{ commissionRole: CommissionRole; commission: string }>>([]);
+  const [mainCommissionIndex, setMainCommissionIndex] = useState<number | null>(null);
   const [place, setPlace] = useState('');
   const [type, setType] = useState<UserType>();
   const [age, setAge] = useState<UserAge>();
@@ -92,6 +93,10 @@ const UserModal = ({
         commissionRole: orgaRole.commissionRole,
         commission: orgaRole.commission.id,
       })) ?? [],
+    );
+    setMainCommissionIndex(
+      searchUser.orga?.roles.findIndex((orgaRole) => orgaRole.commission.id === searchUser.orga?.mainCommission) ??
+        null,
     );
   }, [searchUser]);
 
@@ -214,6 +219,7 @@ const UserModal = ({
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
                       orgaRoles,
+                      orgaMainCommission: orgaRoles ? orgaRoles[mainCommissionIndex!].commission : undefined,
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
@@ -342,6 +348,12 @@ const UserModal = ({
             <div className={styles.commissionsList}>
               {orgaRoles.map((role, i) => (
                 <div className={styles.orgaRolesRow} key={i}>
+                  <Icon
+                    name={IconName.Star}
+                    fill={true}
+                    className={`${styles.mainCommissionIcon} ${i === mainCommissionIndex ? styles.selected : ''}`}
+                    onClick={() => setMainCommissionIndex(i)}
+                  />
                   <Select
                     options={getCommissionsAvailable(role.commission).map((commission) => ({
                       value: commission.id,
@@ -372,6 +384,12 @@ const UserModal = ({
                       const newOrgaRoles = [...orgaRoles];
                       newOrgaRoles.splice(i, 1);
                       setOrgaRoles(newOrgaRoles);
+                      if (i === mainCommissionIndex) {
+                        setMainCommissionIndex(newOrgaRoles.length === 0 ? null : 0);
+                      } else if (i < mainCommissionIndex!) {
+                        // The commission went up 1 position
+                        setMainCommissionIndex(mainCommissionIndex! - 1);
+                      }
                     }}
                     className={styles.deleteCommission}
                   />
@@ -379,9 +397,12 @@ const UserModal = ({
               ))}
             </div>
             <Button
-              onClick={() =>
-                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }])
-              }
+              onClick={() => {
+                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }]);
+                if (orgaRoles.length === 0) {
+                  setMainCommissionIndex(0);
+                }
+              }}
               disabled={commissions.length === orgaRoles.length}>
               Ajouter une commission
             </Button>

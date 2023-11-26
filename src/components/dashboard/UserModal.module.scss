@@ -52,6 +52,15 @@
           align-items: center;
           gap: 10px;
 
+          .mainCommissionIcon {
+            width: 24px;
+            height: 24px;
+
+            &.selected {
+              color: yellow;
+            }
+          }
+
           .deleteCommission {
             width: 24px;
             height: 24px;
