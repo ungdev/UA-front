@@ -94,6 +94,10 @@ const UserModal = ({
         commission: orgaRole.commission.id,
       })) ?? [],
     );
+    setMainCommissionIndex(
+      searchUser.orga?.roles.findIndex((orgaRole) => orgaRole.commission.id === searchUser.orga?.mainCommission) ??
+        null,
+    );
   }, [searchUser]);
 
   const addPermission = (permission: Permission) => {
@@ -215,6 +219,7 @@ const UserModal = ({
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
                       orgaRoles,
+                      orgaMainCommission: orgaRoles ? orgaRoles[mainCommissionIndex!].commission : undefined,
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
@@ -344,11 +349,10 @@ const UserModal = ({
               {orgaRoles.map((role, i) => (
                 <div className={styles.orgaRolesRow} key={i}>
                   <Icon
-                    name={IconName.Instagram}
+                    name={IconName.Star}
+                    fill={true}
                     className={`${styles.mainCommissionIcon} ${i === mainCommissionIndex ? styles.selected : ''}`}
-                    onClick={() => {
-                      setMainCommissionIndex(i);
-                    }}
+                    onClick={() => setMainCommissionIndex(i)}
                   />
                   <Select
                     options={getCommissionsAvailable(role.commission).map((commission) => ({
@@ -393,9 +397,12 @@ const UserModal = ({
               ))}
             </div>
             <Button
-              onClick={() =>
-                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }])
-              }
+              onClick={() => {
+                setOrgaRoles([...orgaRoles, { commissionRole: 'member', commission: getCommissionsAvailable()[0].id }]);
+                if (orgaRoles.length === 0) {
+                  setMainCommissionIndex(0);
+                }
+              }}
               disabled={commissions.length === orgaRoles.length}>
               Ajouter une commission
             </Button>
