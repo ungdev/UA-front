@@ -65,6 +65,9 @@ export default function BadgePage() {
     );
   }, [user]);
 
+  const hasNextSlide = () =>
+    user?.orga!.roles.every((role) => role.commission.id === 'vieux') ? slide !== 1 : slide !== 2;
+
   const nextSlide = () => {
     if (slide === 1) {
       if (!canvasRef.current) {
@@ -145,7 +148,7 @@ export default function BadgePage() {
             </div>
           </div>
           <div>
-            <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
+            <h3 style={{ textAlign: 'center' }}>Preview de l'image</h3>
             <div className={styles.badgePreview}>
               <img alt="Arrière plan du badge" className={styles.background} src={background.src} />
               <div className={styles.imageWrapper}>
@@ -213,11 +216,6 @@ export default function BadgePage() {
             "Vous n'avez pas de commission assignée"
           )}
         </div>
-        <Button
-          primary
-          onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
-          Enregistrer
-        </Button>
       </>
     );
   };
@@ -238,6 +236,13 @@ export default function BadgePage() {
       </Title>
       <div className={styles.content}>
         {slides[slide]()}
+        {!hasNextSlide() && (
+          <Button
+            primary
+            onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
+            Enregistrer
+          </Button>
+        )}
         <div className={styles.arrows}>
           <Icon
             name={IconName.ChevronLeft}
@@ -250,7 +255,7 @@ export default function BadgePage() {
           <Icon
             name={IconName.ChevronRight}
             onClick={nextSlide}
-            className={slide === slides.length - 1 ? styles.invisible : !canGoToNextSlide ? styles.disabled : ''}
+            className={!hasNextSlide() ? styles.invisible : !canGoToNextSlide ? styles.disabled : ''}
           />
         </div>
       </div>

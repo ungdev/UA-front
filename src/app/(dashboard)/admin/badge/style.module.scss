@@ -36,8 +36,6 @@
           border: 5px solid #002d40;
           padding: 20px;
           width: 20%;
-          -webkit-border-radius: 18px;
-          -moz-border-radius: 18px;
           border-radius: 18px;
 
           .backgroundColorSelect {
@@ -77,9 +75,9 @@
           .imageWrapper {
             overflow: hidden;
             position: absolute;
-            top: 7vh;
-            left: 7vh;
-            width: 20vh;
+            top: 6vh;
+            left: 8vh;
+            width: 15vh;
             aspect-ratio: 1;
             border-radius: 100%;
 
