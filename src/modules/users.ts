@@ -3,7 +3,9 @@ import { API } from '@/utils/api';
 import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
 import { RootState } from '@/lib/store';
 import {
+  CommissionRole,
   CommissionWithOrgas,
+  OrgaRole,
   Permission,
   UserFilters,
   UserType,
@@ -180,8 +182,16 @@ export const saveUser =
   (id: string, body: any, username: string) => async (dispatch: Dispatch, getState: () => RootState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
-    const { data: user } = await API.patch(`admin/users/${id}`, body);
+    const { data: user } = await API.patch(`admin/users/${id}`, {
+      ...body,
+      orgaRoles: body.orgaRoles?.map((role: OrgaRole) => ({
+        commissionRole: role.commissionRole,
+        commission: role.commission.id,
+      })),
+      orgaMainCommission: body.orgaMainCommission?.id,
+    });
     toast.success(`${username} mis à jour`);
+    console.log(body.orgaRoles);
     dispatch(
       updateUser({
         ...userModal,
@@ -189,7 +199,10 @@ export const saveUser =
         ...{
           ...body,
           orga: user.permissions.includes(Permission.orga)
-            ? { roles: body.orgaRoles, mainCommission: body.orgaMainCommission }
+            ? {
+                roles: body.orgaRoles,
+                mainCommission: body.orgaMainCommission,
+              }
             : null,
         },
       }) as unknown as Action,
