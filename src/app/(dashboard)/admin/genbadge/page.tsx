@@ -186,7 +186,7 @@ const GenBadges = () => {
         ))}
       </div>
       <div className={styles.buttonContainer}>
-        <Button primary onClick={() => generateBadges(fields)} type="submit">
+        <Button primary type="submit">
           Générer les badges
         </Button>
       </div>

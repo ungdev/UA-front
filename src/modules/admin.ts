@@ -307,7 +307,13 @@ export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) =
 
 export const generateBadges = async (badges: Badge[]) => {
   try {
-    await API.post('admin/badges', badges);
+    const response = await API.post('admin/badges', { fields: badges }, 60000);
+
+    const data = window.URL.createObjectURL(response);
+    const link = document.createElement('a');
+    link.href = data;
+    link.download = 'badges.pdf';
+    link.click();
   } catch (err) {
     console.error(err);
   }

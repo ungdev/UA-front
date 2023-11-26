@@ -56,7 +56,7 @@ export const Default: Story = {
         askingTeamId: null,
         age: UserAge.adult,
         attendant: {} as UserAttendant,
-        orga: { roles: [] },
+        orga: null,
       },
     ],
     onItemRemoved: () => {},

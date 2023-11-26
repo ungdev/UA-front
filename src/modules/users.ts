@@ -186,7 +186,12 @@ export const saveUser =
       updateUser({
         ...userModal,
         ...user,
-        ...{ ...body, orga: user.permissions.includes(Permission.orga) ? { roles: body.orgaRoles } : null },
+        ...{
+          ...body,
+          orga: user.permissions.includes(Permission.orga)
+            ? { roles: body.orgaRoles, mainCommission: body.orgaMainCommission }
+            : null,
+        },
       }) as unknown as Action,
     );
     if (id === state.login.user?.id) {

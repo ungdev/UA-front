@@ -16,7 +16,7 @@ export default function TeamMember({
   /** The color that represents the commission we are rendering. */
   color: string;
   /** The image of the user. If no image is given, it will take the image at the default link. */
-  image?: string | undefined;
+  image?: string;
 }) {
   return (
     <div className={styles.member} style={{ '--team-color': color } as React.CSSProperties}>
@@ -31,7 +31,7 @@ export default function TeamMember({
       </div>
       {member.name && <span>{member.name}</span>}
       {member.username && <span>{member.username}</span>}
-      <span>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
+      <span className={styles.role}>{role === 'respo' ? 'Responsable' : 'Membre'}</span>
     </div>
   );
 }

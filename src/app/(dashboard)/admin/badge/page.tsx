@@ -45,15 +45,25 @@ export default function BadgePage() {
   const [displayUsername, setDisplayUsername] = useState(false);
   const [displayPhoto, setDisplayPhoto] = useState(false);
   const [blob, setBlob] = useState<Blob | null>(null);
+  const [backgroundColor, setBackgroundColor] = useState<string>('#ffffff');
 
   useEffect(() => {
     if (canvasRef.current) {
       const ctx = canvasRef.current.getContext('2d')!;
-      ctx.fillStyle = '#29292a';
+      ctx.fillStyle = backgroundColor;
       ctx.rect(0, 0, 300, 300);
       onCrop(crop as PercentCrop);
     }
-  }, [canvasRef.current, croppingImageRef.current]);
+  }, [canvasRef.current, croppingImageRef.current, backgroundColor]);
+
+  useEffect(() => {
+    if (!user) return;
+    setRoleToPreview(
+      user.orga!.mainCommission
+        ? user.orga!.roles.findIndex((commission) => commission.commission.id === user.orga!.mainCommission)
+        : 0,
+    );
+  }, [user]);
 
   const nextSlide = () => {
     if (slide === 1) {
@@ -98,14 +108,14 @@ export default function BadgePage() {
           setFile(url);
           const image = new Image();
           image.src = url;
-          image.onload = () => setCanGoToNextSlide(image.width >= 250 && image.height >= 250);
+          image.onload = () => setCanGoToNextSlide(image.width >= 300 && image.height >= 300);
         }}
-        type="png"
+        type={['png', 'jpg', 'webp']}
         className={styles.fileUpload}
         bg="#002D40"
       />
       <div className={`${styles.warning} ${!file || canGoToNextSlide ? styles.hidden : ''}`}>
-        L'image doit avoir une taille minimale de 250x250 pixels
+        L'image doit avoir une taille minimale de 300x300 pixels
       </div>
     </>
   );
@@ -126,27 +136,13 @@ export default function BadgePage() {
               aspect={1}
               keepSelection
               circularCrop>
-              <img
-                className={styles.croppingImage}
-                alt="Image à cropper"
-                src={file}
-                onLoad={onImageLoad}
-                ref={croppingImageRef}
-              />
+              <img alt="Image à cropper" src={file} onLoad={onImageLoad} ref={croppingImageRef} />
             </ReactCrop>
-          </div>
-          <div>
-            <h3 style={{ textAlign: 'center' }}>Preview sur le trombi</h3>
-            {user!.orga!.roles.length > 0 ? (
-              <TeamMember
-                color={user!.orga!.roles[roleToPreview].commissionRole}
-                member={user!}
-                role={user!.orga!.roles[roleToPreview].commissionRole}
-                image={canvasRef.current?.toDataURL() ?? ''}
-              />
-            ) : (
-              "Vous n'avez pas de commission assignée"
-            )}
+            <div className={styles.backgroundColorSelect}>
+              Couleur d'arrière plan :
+              <div className={`${styles.color} ${styles.whiteColor}`} onClick={() => setBackgroundColor('#ffffff')} />
+              <div className={`${styles.color} ${styles.blueColor}`} onClick={() => setBackgroundColor('#002D40')} />
+            </div>
           </div>
           <div>
             <h3 style={{ textAlign: 'center' }}>Preview du badge</h3>
@@ -158,7 +154,7 @@ export default function BadgePage() {
             </div>
           </div>
         </div>
-        {user!.orga!.roles.length > 1 && (
+        {/* {user!.orga!.roles.length > 1 && (
           <div className={styles.changePreviewRole}>
             Preview avec tes autres rôles
             <div className={styles.changePreviewRoleArrows}>
@@ -180,7 +176,7 @@ export default function BadgePage() {
               />
             </div>
           </div>
-        )}
+        )} */}
       </>
     );
   };
@@ -198,10 +194,29 @@ export default function BadgePage() {
           />
         </div>
         <Checkbox label="Afficher la photo" value={displayPhoto} onChange={setDisplayPhoto} />
+        <div>
+          <Title align="center" level={3} type={3}>
+            Preview sur le trombi
+          </Title>
+          {user!.orga!.roles.length > 0 ? (
+            <TeamMember
+              color={user!.orga!.roles[roleToPreview].commission.color}
+              member={{
+                ...user!,
+                name: displayName ? user?.firstname + ' ' + user?.lastname : undefined,
+                username: displayUsername || !displayName ? user?.username : undefined,
+              }}
+              role={user!.orga!.roles[roleToPreview].commissionRole}
+              image={blob && displayPhoto ? URL.createObjectURL(blob)! : undefined}
+            />
+          ) : (
+            "Vous n'avez pas de commission assignée"
+          )}
+        </div>
         <Button
           primary
           onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
-          Définir comme image de profil
+          Enregistrer
         </Button>
       </>
     );
@@ -219,7 +234,7 @@ export default function BadgePage() {
   return (
     <div id="badge-page" className={styles.page}>
       <Title level={1} align="center">
-        Badge
+        {slide === 2 ? 'Préférences du trombi' : 'Badge'}
       </Title>
       <div className={styles.content}>
         {slides[slide]()}

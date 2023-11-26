@@ -10,6 +10,7 @@ const requestAPI = (
   body: object | null = null,
   disableCache = false,
   file = false,
+  timeoutMaxTime = 10000,
 ): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;
@@ -48,6 +49,8 @@ const requestAPI = (
           response.headers.get('content-type')?.includes('application/json')
         ) {
           return response.json();
+        } else if (response.headers.get('content-type')?.includes('application/pdf')) {
+          return response.blob();
         } else {
           return response.text();
         }
@@ -76,7 +79,7 @@ const requestAPI = (
         toast.error("Temps d'attente dépassé");
         reject(new Error('Request timed out'));
       }
-    }, 10000);
+    }, timeoutMaxTime);
   });
 
 // Set the authorization header with the given token for next requests
@@ -86,11 +89,16 @@ const getAuthorizationToken = () => {
 
 // Access the API through different HTTP methods
 export const API = {
-  get: (route: string) => requestAPI('GET', apiUrl(), route, true),
-  post: (route: string, body: object = {}) => requestAPI('POST', apiUrl(), route, true, body),
-  put: (route: string, body: object = {}) => requestAPI('PUT', apiUrl(), route, true, body),
-  patch: (route: string, body: object = {}) => requestAPI('PATCH', apiUrl(), route, true, body),
-  delete: (route: string) => requestAPI('DELETE', apiUrl(), route, true),
+  get: (route: string, timeout?: number) =>
+    requestAPI('GET', apiUrl(), route, true, undefined, undefined, undefined, timeout ?? 10000),
+  post: (route: string, body: object = {}, timeout?: number) =>
+    requestAPI('POST', apiUrl(), route, true, body, undefined, undefined, timeout ?? 10000),
+  put: (route: string, body: object = {}, timeout?: number) =>
+    requestAPI('PUT', apiUrl(), route, true, body, undefined, undefined, timeout ?? 10000),
+  patch: (route: string, body: object = {}, timeout?: number) =>
+    requestAPI('PATCH', apiUrl(), route, true, body, undefined, undefined, timeout ?? 10000),
+  delete: (route: string, timeout?: number) =>
+    requestAPI('DELETE', apiUrl(), route, true, undefined, undefined, undefined, timeout ?? 10000),
 };
 
 export const uploads = {
