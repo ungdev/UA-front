@@ -219,10 +219,7 @@ const UserModal = ({
                       type: undefined as UserType | undefined,
                       permissions: undefined as Permission[] | undefined,
                       orgaRoles,
-                      orgaMainCommission:
-                        orgaRoles && orgaRoles[mainCommissionIndex!]
-                          ? orgaRoles[mainCommissionIndex!].commission.id
-                          : undefined,
+                      orgaMainCommission: orgaRoles.length > 0 ? orgaRoles[mainCommissionIndex!].commission : undefined,
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
