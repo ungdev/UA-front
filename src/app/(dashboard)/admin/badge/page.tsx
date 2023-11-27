@@ -240,8 +240,13 @@ export default function BadgePage() {
           <Button
             primary
             onClick={() => {
-              canvasRef.current!.toBlob((blob) => setBlob(blob));
-              uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto);
+              if (canvasRef.current) {
+                canvasRef.current!.toBlob((blob) => {
+                  uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto);
+                });
+              } else {
+                uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto);
+              }
             }}>
             Enregistrer
           </Button>
