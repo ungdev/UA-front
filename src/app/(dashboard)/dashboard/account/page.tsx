@@ -3,19 +3,19 @@ import styles from './style.module.scss';
 import { useEffect, useState, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-import { Input, Button, Title, Icon } from '@/components/UI';
+import { Input, Button, Title, Icon, Collapse } from '@/components/UI';
 import { editUser } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import type { Action } from '@reduxjs/toolkit';
-import { UserEdit } from '@/types';
+import { UserAge, UserEdit, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 
 const Account = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user)!;
-  // const team = useAppSelector((state) => state.team.team);
+  const team = useAppSelector((state) => state.team.team);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -25,6 +25,7 @@ const Account = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [discordLink, setDiscordLink] = useState('');
   const discordLinkRef = useRef<HTMLDivElement>(null);
+  const [displayTicket, setDisplayTicket] = useState(false);
 
   useEffect(() => {
     API.get('discord/connect').then((res) => {
@@ -35,7 +36,14 @@ const Account = () => {
   }, []);
 
   useEffect(() => {
-    user && user.teamId && dispatch(fetchCurrentTeam() as unknown as Action);
+    setDisplayTicket(
+      (user.hasPaid &&
+        ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt))) as boolean,
+    );
+  }, [team]);
+
+  useEffect(() => {
+    user.teamId && dispatch(fetchCurrentTeam() as unknown as Action);
   }, []);
 
   const edit = () => {
@@ -70,23 +78,20 @@ const Account = () => {
     }
   };
 
-  // const downloadTicket = async () => {
-  //   const res = await API.get(`tickets`);
+  const downloadTicket = async () => {
+    const response = await API.get(`tickets`);
 
-  //   const element = document.createElement('a');
-  //   element.href = `data:application/pdf;base64,${res.data}`;
-  //   element.download = 'Billet UTT Arena 2023.pdf';
-  //   element.style.display = 'none';
-
-  //   document.body.appendChild(element);
-  //   element.click();
-  //   document.body.removeChild(element);
-  // };
+    const data = window.URL.createObjectURL(response);
+    const link = document.createElement('a');
+    link.href = data;
+    link.download = 'Billet UTT Arena 2023.pdf';
+    link.click();
+  };
 
   return (
     <div id="dashboard-account" className={styles.dashboardAccount}>
       <div className={styles.infos}>
-        <Title level={4} className={styles.secondaryTitle}>
+        <Title level={4} align="center" className={styles.secondaryTitle}>
           Mes informations
         </Title>
 
@@ -124,7 +129,7 @@ const Account = () => {
         </Button>
       </div>
       <div className={styles.infos} ref={discordLinkRef}>
-        <Title level={4} className={styles.secondaryTitle}>
+        <Title level={4} align="center" className={styles.secondaryTitle}>
           Mon compte Discord
         </Title>
         <div className={styles.discordCategory}>
@@ -142,74 +147,66 @@ const Account = () => {
             </Button>
           </a>
         </div>
-      </div>
-      {/* {user.hasPaid && ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt)) && (
-        <>
-          <hr />
-          <div className="to-bring">
-            <Title level={4}>Ce que tu dois apporter le jour de l'UA</Title>
-            <Collapse title="Pour te restaurer" initVisible={true}>
-              <ul>
-                <li>
-                  Gourde <strong>vide</strong>
-                </li>
-                <li>
-                  Apporter de la nourriture est <strong>interdit</strong>
-                </li>
-              </ul>
-            </Collapse>
-            <Collapse title="Pour rentrer dans le Cube Parc des expositions" initVisible={true}>
-              <ul>
-                <li>Ton billet</li>
-                <li>Ta pièce d’identité</li>
-                {user.age === UserAge.child && <li>Une attestation parentale et les documents demandés dessus</li>}
-              </ul>
-            </Collapse>
-            <Collapse title="Pour jouer" initVisible={true}>
-              <ul>
-                <li>
-                  Une multiprise : il n'y a qu'une seule prise par joueur donc si tu veux brancher plusieurs choses,
-                  elle sera ta meilleure amie
-                </li>
-                <li>Un câble ethernet</li>
-                <li>
-                  Ton setup complet (sauf si tu l'as loué) :
-                  <ul>
-                    <li>Tour</li>
-                    <li>Écran</li>
-                    <li>Câble HDMI / VGA</li>
-                    <li>Souris</li>
-                    <li>Clavier</li>
-                    <li>Manette</li>
-                  </ul>
-                </li>
-                <li>
-                  Si tu as pris la réduction SSBU, ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI
-                </li>
-              </ul>
-            </Collapse>
-            <Collapse
-              title={
-                <span>
-                  D'autres trucs qui <del>pourraient</del> <strong>te seront</strong> utiles
-                </span>
-              }
-              initVisible={true}>
-              <ul>
-                <li>De quoi te laver</li>
-                <li>De quoi dormir : un sac de couchage et un tapis de sol</li>
-              </ul>
-            </Collapse>
-          </div>
-          <hr />
-          <div className="ticket">
-            <Title level={4}>Mon billet</Title>
-            <Button primary onClick={downloadTicket}>
+        {displayTicket && (
+          <div className={styles.ticket}>
+            <Title level={4} align="center">
+              Mon billet
+            </Title>
+            <Button primary veryLong onClick={downloadTicket}>
               Télécharger mon billet
             </Button>
           </div>
-        </>
-      )} */}
+        )}
+      </div>
+      {displayTicket && (
+        <div className="to-bring">
+          <Title level={4} align="center">
+            Ce que tu dois apporter le jour de l'UA
+          </Title>
+          <Collapse title="Pour te restaurer" initVisible={true}>
+            <ul>
+              <li>
+                Gourde <strong>vide</strong>
+              </li>
+              <li>
+                Apporter de la nourriture ou de la boisson est <strong>interdit</strong>
+              </li>
+            </ul>
+          </Collapse>
+          <Collapse title="Pour rentrer dans la Halle Sportive" initVisible={true}>
+            <ul>
+              <li>Ton billet</li>
+              <li>Ta pièce d’identité</li>
+              {user.age === UserAge.child && <li>Une attestation parentale et les documents demandés dessus</li>}
+            </ul>
+          </Collapse>
+          <Collapse title="Pour jouer" initVisible={true}>
+            <ul>
+              <li>
+                Une multiprise : il n'y a qu'une seule prise par joueur donc si tu veux brancher plusieurs choses, elle
+                sera ta meilleure amie
+              </li>
+              <li>Un câble ethernet (7m)</li>
+              <li>
+                Ton setup complet :
+                <ul>
+                  <li>Tour</li>
+                  <li>Écran</li>
+                  <li>Câble HDMI / VGA</li>
+                  <li>Souris</li>
+                  <li>Clavier</li>
+                  <li>Manette</li>
+                </ul>
+              </li>
+              {team && team.tournamentId === 'ssbu' && (
+                <li>
+                  Si tu as pris la réduction SSBU, ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI
+                </li>
+              )}
+            </ul>
+          </Collapse>
+        </div>
+      )}
     </div>
   );
 };
