@@ -239,7 +239,10 @@ export default function BadgePage() {
         {!hasNextSlide() && (
           <Button
             primary
-            onClick={() => uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto)}>
+            onClick={() => {
+              canvasRef.current!.toBlob((blob) => setBlob(blob));
+              uploadProfilePicture(blob!, displayName, !displayName || displayUsername, displayPhoto);
+            }}>
             Enregistrer
           </Button>
         )}
