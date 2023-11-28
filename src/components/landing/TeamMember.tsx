@@ -31,7 +31,7 @@ export default function TeamMember({
         <div className={styles.imageBackground}>
           <img
             src={
-              image ?? (member.photoFilename ? `${uploadsUrl()}/orgas/${member.photoFilename}.webp` : defaultImage.src)
+              image ?? (member.photoFilename ? `${uploadsUrl()}/orga/${member.photoFilename}.webp` : defaultImage.src)
             }
             className={!member.photoFilename && !image ? styles.defaultImage : ''}
             alt={`${member.name ?? member.username}`}
