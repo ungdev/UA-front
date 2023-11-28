@@ -69,6 +69,10 @@ export default function Footer() {
           onClick={() => setCopyrightTurned(!copyrightTurned)}>
           © {new Date().getFullYear()} UTT Net Group
         </Button>
+        <div className={styles.riotGamesDisclaimer}>
+          Cette compétition n'est pas affiliée à Riot Games, Inc. ni parrainée par cette dernière ou League of Legends
+          Esports.
+        </div>
       </div>
     </footer>
   );
