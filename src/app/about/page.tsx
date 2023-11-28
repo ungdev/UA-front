@@ -59,10 +59,10 @@ const About = () => {
                       {commission.name}
                     </Title>
                     {commission.roles.respo.map((orga) => (
-                      <TeamMember member={orga} color={commission.color} role={'respo'} key={orga.id} />
+                      <TeamMember member={orga} commission={commission} role={'respo'} key={orga.id} />
                     ))}
                     {commission.roles.member.map((orga) => (
-                      <TeamMember member={orga} color={commission.color} role={'member'} key={orga.id} />
+                      <TeamMember member={orga} commission={commission} role={'member'} key={orga.id} />
                     ))}
                   </div>
                 ))}
