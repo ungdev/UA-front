@@ -203,7 +203,7 @@ export default function BadgePage() {
           </Title>
           {user!.orga!.roles.length > 0 ? (
             <TeamMember
-              color={user!.orga!.roles[roleToPreview].commission.color}
+              commission={user!.orga!.roles[roleToPreview].commission}
               member={{
                 ...user!,
                 name: displayName ? user?.firstname + ' ' + user?.lastname : undefined,
