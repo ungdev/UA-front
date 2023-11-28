@@ -262,7 +262,7 @@ export interface Commission {
   name: string;
   nameOnBadge: string;
   color: string;
-  masterCommission: string;
+  masterCommission?: string;
 }
 
 export type CommissionRole = 'respo' | 'member';
