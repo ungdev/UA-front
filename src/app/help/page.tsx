@@ -95,7 +95,10 @@ const faq: Faq = {
           Cette année, les spectateurs voulant assister à l'UTT Arena devront acheter leur place à la billetterie de
           l'UTT Arena. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu
           vidéo, et visiter les stands de nos partenaires. Vous pouvez prendre votre place en vous inscrivant sur ce
-          site.
+          site. <br />
+          Si tu es mineur et que tu souhaites participer à l'événement, il faudra que tu présentes l'autorisation
+          parentale <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2023.pdf`}>disponible ici</a>, ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la
+          tienne avant d'accéder à l'UTT Arena.
         </>
       ),
     },
