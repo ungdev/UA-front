@@ -19,7 +19,7 @@ const Shop = () => {
   const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
-    if (!items) dispatch(fetchAdminItems() as unknown as Action);
+    if (!shopItems) dispatch(fetchAdminItems() as unknown as Action);
   }, []);
 
   useEffect(() => {
