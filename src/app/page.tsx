@@ -61,8 +61,8 @@ const Home = () => {
                 UTT Arena
               </TextStroke>
               <p>
-                <span className={styles.accent}>1</span>, <span className={styles.accent}>2</span> et{' '}
-                <span className={styles.accent}>3</span> décembre 2023
+                <span className={styles.accent}>6</span>, <span className={styles.accent}>7</span> et{' '}
+                <span className={styles.accent}>8</span> décembre 2024
               </p>
             </div>
           </div>,
@@ -103,10 +103,10 @@ const Home = () => {
       </AppearFromSide>
 
       <AppearFromSide className={styles.information}>
-        <TextBlock title="UTT Arena 2023" images={[doubleImage1.src, doubleImage2.src]}>
+        <TextBlock title="UTT Arena 2024" images={[doubleImage1.src, doubleImage2.src]}>
           Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les{' '}
-          <strong>1, 2 et 3 décembre 2023</strong> dans un tout nouveau lieu : au sein des locaux de l’Université de
-          Technologie de Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie !{' '}
+          <strong>6, 7 et 8 décembre 2024</strong> dans un tout nouveau lieu : au sein des locaux de l’Université de
+          Technologie de Troyes ! Nous vous attendons nombreux pour cette 22e édition afin de passer 2 jours de folie !{' '}
           <br />
           <br />
           Au programme : <strong>8 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
@@ -122,13 +122,13 @@ const Home = () => {
           </Link>
           <Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
-            1, 2, 3 Décembre 2023
+            6, 7, 8 Décembre 2024
           </Link>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title level={2}>Les tournois de l'UA23</Title>
+          <Title level={2}>Les tournois de l'UA24</Title>
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs :{' '}
             <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>,{' '}

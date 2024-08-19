@@ -31,7 +31,7 @@ const About = () => {
         <div className={styles.aboutUa}>
           <TextBlock title="UTT Arena" titleLevel={2} images={[uaImage1.src, uaImage2.src]}>
             <br />
-            L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            L'UTT Arena revient cette année pour sa 22ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué
             de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </TextBlock>

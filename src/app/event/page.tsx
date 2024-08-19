@@ -8,7 +8,7 @@ import TextStroke from '@/components/UI/TextStroke';
 import BoxContainer from '@/components/landing/BoxContainer';
 
 export const metadata: Metadata = {
-  title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
+  title: 'Évènement - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
 };
 
 export default function Page() {
@@ -28,7 +28,7 @@ export default function Page() {
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
-            L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            L'UTT Arena revient cette année pour sa 22ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par l'espace Argence, l'UTT Arena a évolué de
             manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
