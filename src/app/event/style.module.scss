@@ -22,7 +22,9 @@
     overflow: hidden;
     background-color: $light-color;
     color: #002d40;
-    max-height: 250px;
+    height: max-content;
+    max-height: max-content;
+    max-height: 300px;
     margin: 5rem 85px 0 85px;
     border-radius: 1.25rem;
 
@@ -30,10 +32,13 @@
       aspect-ratio: 1 / 1;
       width: 30%;
       object-fit: cover;
+      max-height: 350px;
+      margin: auto 0 auto 0;
+      border-radius: 1.25rem;
     }
 
     .text {
-      margin: 3.125rem 4.375rem;
+      margin: 3.125rem 2.375rem;
       font-size: 1.1rem;
       place-self: center;
       width: 90%;
