@@ -10,7 +10,6 @@ import ungImage2 from '@/../public/images/about/ung-2.webp';
 import TeamMember from '@/components/landing/TeamMember';
 import { useEffect } from 'react';
 import { fetchOrgas } from '@/modules/users';
-import { type Action } from '@reduxjs/toolkit';
 
 // export const metadata: Metadata = {
 //   title: 'À propos - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
@@ -22,7 +21,7 @@ const About = () => {
   const orgas = useAppSelector((state) => state.users.orgas);
 
   useEffect(() => {
-    if (!orgas && trombiAllowed) dispatch(fetchOrgas() as unknown as Action);
+    if (!orgas && trombiAllowed) dispatch(fetchOrgas());
   }, [trombiAllowed]);
 
   return (

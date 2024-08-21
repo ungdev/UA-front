@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Modal, Button, Checkbox, Input, FileInput, Textarea, Icon } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import { getTournamentBackgroundLink, getTournamentImageLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { updateTournament } from '@/modules/admin';
 import { IconName } from '@/components/UI/Icon';
@@ -68,7 +67,7 @@ const TournamentModal = ({
               dispatch(
                 updateTournament(body, image, backgroundImage, rules, () => {
                   onClose!();
-                }) as unknown as Action,
+                }),
               );
             }}>
             Enregistrer

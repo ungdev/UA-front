@@ -2,7 +2,6 @@
 import { Checkbox } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { updateSetting } from '@/modules/settings';
-import type { Action } from '@reduxjs/toolkit';
 import styles from './style.module.scss';
 
 const Settings = () => {
@@ -13,7 +12,7 @@ const Settings = () => {
 
   const changeSetting = (setting: string, value: boolean) => {
     // TODO: add confirmation modal
-    dispatch(updateSetting(setting, value) as unknown as Action);
+    dispatch(updateSetting(setting, value));
   };
 
   const changeLogin = (value: boolean) => changeSetting('login', value);

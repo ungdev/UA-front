@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { API } from '@/utils/api';
-import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
-import { RootState } from '@/lib/store';
+import { createSlice } from '@reduxjs/toolkit';
+import { AppThunk } from '@/lib/store';
 import {
   Commission,
   CommissionWithOrgas,
@@ -85,8 +85,8 @@ export const getTicketPrice = async (userId: string) => {
 };
 
 export const fetchUsers =
-  (filters?: UserFilters, search?: string, page = 0) =>
-  async (dispatch: Dispatch) => {
+  (filters?: UserFilters, search?: string, page = 0): AppThunk =>
+  async (dispatch) => {
     if (!filters) {
       return;
     }
@@ -122,7 +122,8 @@ export const fetchUsers =
   };
 
 export const lookupUser =
-  (user?: UserWithTeamAndMessageAndTournamentInfo) => async (dispatch: Dispatch, getState: () => RootState) => {
+  (user?: UserWithTeamAndMessageAndTournamentInfo): AppThunk =>
+  async (dispatch, getState) => {
     const state = getState();
     const res =
       user && state.login.user?.permissions?.includes?.(Permission.admin)
@@ -154,30 +155,34 @@ export const lookupUser =
     );
   };
 
-export const updateUser = (updateUser: any) => async (dispatch: Dispatch, getState: () => RootState) => {
-  const state = getState();
-  const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
-  const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
-  const formatUsers = format(updatedUsers);
-  dispatch(
-    setUsers({
-      users: formatUsers,
-      total: state.users.total,
-      page: state.users.page,
-      itemsPerPage: state.users.itemsPerPage,
-      isFetched: true,
-    }),
-  );
-};
+export const updateUser =
+  (updateUser: any): AppThunk =>
+  async (dispatch, getState) => {
+    const state = getState();
+    const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
+    const updatedUsers = users.map((user) => (user.id === updateUser.id ? updateUser : user));
+    const formatUsers = format(updatedUsers);
+    dispatch(
+      setUsers({
+        users: formatUsers,
+        total: state.users.total,
+        page: state.users.page,
+        itemsPerPage: state.users.itemsPerPage,
+        isFetched: true,
+      }),
+    );
+  };
 
-export const validatePay = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
-  const state = getState();
-  const userModal = state.users.lookupUser;
-  await API.post(`admin/users/${id}/force-pay`, {});
-  toast.success('Paiement validé');
-  dispatch(updateUser({ ...userModal, hasPaid: true }) as unknown as Action);
-  dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action);
-};
+export const validatePay =
+  (id: string): AppThunk =>
+  async (dispatch, getState) => {
+    const state = getState();
+    const userModal = state.users.lookupUser;
+    await API.post(`admin/users/${id}/force-pay`, {});
+    toast.success('Paiement validé');
+    dispatch(updateUser({ ...userModal, hasPaid: true }));
+    dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo));
+  };
 
 export const saveUser =
   (
@@ -197,8 +202,8 @@ export const saveUser =
       orgaMainCommission?: Commission | null;
     },
     username: string,
-  ) =>
-  async (dispatch: Dispatch, getState: () => RootState) => {
+  ): AppThunk =>
+  async (dispatch, getState) => {
     const state = getState();
     const userModal = state.users.lookupUser;
     const { data: user } = await API.patch(`admin/users/${id}`, {
@@ -223,29 +228,31 @@ export const saveUser =
               }
             : null,
         },
-      }) as unknown as Action,
+      }),
     );
     if (id === state.login.user?.id) {
       dispatch(setUser(await API.get(`users/current`)));
     }
   };
 
-export const createUser = (body: object, callback: () => void) => async () => {
-  const user = await API.post(`admin/users`, body);
-  toast.success(`${user.username} a été crée`);
-  callback();
-};
+export const createUser =
+  (body: object, callback: () => void): AppThunk =>
+  async () => {
+    const user = await API.post(`admin/users`, body);
+    toast.success(`${user.username} a été crée`);
+    callback();
+  };
 
-export const refundCart = (id: string) => async (dispatch: Dispatch, getState: () => RootState) => {
-  const state = getState();
-  await API.post(`admin/carts/${id}/refund`, {});
-  const userModal = state.users.lookupUser;
-  toast.success('Le panier a été marqué comme remboursé');
-  dispatch(updateUser({ ...userModal, hasPaid: false }) as unknown as Action);
-  dispatch(
-    lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo) as unknown as Action,
-  );
-};
+export const refundCart =
+  (id: string): AppThunk =>
+  async (dispatch, getState) => {
+    const state = getState();
+    await API.post(`admin/carts/${id}/refund`, {});
+    const userModal = state.users.lookupUser;
+    toast.success('Le panier a été marqué comme remboursé');
+    dispatch(updateUser({ ...userModal, hasPaid: false }));
+    dispatch(lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo));
+  };
 
 export const uploadProfilePicture = async (
   blob: Blob,
@@ -258,7 +265,7 @@ export const uploadProfilePicture = async (
   await uploadFile(file, filename, 'orga');
 };
 
-export const fetchOrgas = () => async (dispatch: Dispatch) => {
+export const fetchOrgas = (): AppThunk => async (dispatch) => {
   const res = await API.get('users/orgas');
   dispatch(setOrgas(res));
 };

@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { useEffect } from 'react';
 import { fetchPartners } from '@/modules/partners';
 import { Partner } from '@/types';
-import { type Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { Square } from './UI';
 import Link from 'next/link';
@@ -18,7 +17,7 @@ export default function Partners({ cards = false }: { cards?: boolean }) {
 
   useEffect(() => {
     if (!partners) {
-      dispatch(fetchPartners as unknown as Action);
+      dispatch(fetchPartners);
     }
   }, []);
 

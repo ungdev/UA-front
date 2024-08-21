@@ -7,7 +7,6 @@ import { getTournamentImageLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminTournaments, reorderTournaments } from '@/modules/admin';
-import type { Action } from '@reduxjs/toolkit';
 
 const Tournaments = () => {
   const tournaments = useAppSelector((state) => state.admin.tournaments);
@@ -21,7 +20,7 @@ const Tournaments = () => {
   const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
-    if (!tournaments) dispatch(fetchAdminTournaments() as unknown as Action);
+    if (!tournaments) dispatch(fetchAdminTournaments());
   }, []);
 
   useEffect(() => {
@@ -78,7 +77,7 @@ const Tournaments = () => {
               setDidReorder(true);
 
               // update the tournament in the store
-              dispatch(reorderTournaments(newTournaments) as unknown as Action);
+              dispatch(reorderTournaments(newTournaments));
             }}
           />
         ) : (

@@ -1,15 +1,13 @@
 'use client';
 import styles from './LoginModal.module.scss';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-
 import { Modal, Button, Input, Radio } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { registerUser, resendEmail } from '@/modules/register';
 import { tryLogin, resetPassword } from '@/modules/login';
-import { type Action } from '@reduxjs/toolkit';
 import Checkbox from '@/components/UI/Checkbox';
 import { RegisterUser } from '@/types';
+import { useAppDispatch } from '@/lib/hooks';
 
 const initialSignup: RegisterUser = {
   firstname: '',
@@ -39,7 +37,7 @@ function LoginModal({
   /** Determines whether the modal is for the admin login or not. */
   admin?: boolean;
 }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   // Get panel key value
   const [panel, setPanel] = useState('login');
@@ -48,7 +46,7 @@ function LoginModal({
   const [forgotEmail, setForgotEmail] = useState('');
 
   const login = () => {
-    dispatch(tryLogin(loginForm, admin) as unknown as Action);
+    dispatch(tryLogin(loginForm, admin));
   };
 
   const signup = async () => {
@@ -57,7 +55,7 @@ function LoginModal({
   };
 
   const resend = () => {
-    dispatch(resendEmail(signupForm) as unknown as Action);
+    dispatch(resendEmail(signupForm));
   };
 
   const updateLogin = (field: string, value: string) => {
@@ -202,7 +200,7 @@ function LoginModal({
 
           <Button
             primary
-            onClick={() => dispatch(resetPassword(forgotEmail, resetFields) as unknown as Action)}
+            onClick={() => dispatch(resetPassword(forgotEmail, resetFields))}
             className={styles.forgotModalButton}
             type="submit">
             Envoyer
@@ -235,7 +233,7 @@ function LoginModal({
       visible={visible}
       buttons={null}
       onCancel={() => {
-        dispatch(setLoginModalVisible(false) as unknown as Action);
+        dispatch(setLoginModalVisible(false));
       }}
       className={styles.loginModal}>
       <form

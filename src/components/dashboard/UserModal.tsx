@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { createUser, lookupUser, refundCart, saveUser, validatePay } from '@/modules/users';
 import { connectAs } from '@/modules/login';
 import { Button, Card, Checkbox, Input, Modal, Radio, Select, Textarea } from './../UI';
-
 import { API } from '@/utils/api';
 import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
@@ -16,7 +15,6 @@ import {
   UserType,
   UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin,
 } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import Icon, { IconName } from '@/components/UI/Icon';
 
 const permissionOptions = [
@@ -126,7 +124,7 @@ const UserModal = ({
               const res = await API.get(`admin/users?userId=${cartItem.forUser.id}`);
               if (res.data.users.length !== 1) return toast.error("Cet utilisateur n'existe pas");
               const [targetUser] = res.data.users;
-              return dispatch(lookupUser(targetUser) as unknown as Action);
+              return dispatch(lookupUser(targetUser));
             }}>
             {cartItem.forUser.username ?? `${searchUser!.attendant.firstname} ${searchUser!.attendant.lastname}`}
           </a>
@@ -172,7 +170,7 @@ const UserModal = ({
             <ul className={styles.cartItems}>{cartItems}</ul>
             {cart.transactionState === TransactionState.paid && (
               <p>
-                <Button onClick={() => dispatch(refundCart(cart.id) as unknown as Action)}>Rembourser</Button>
+                <Button onClick={() => dispatch(refundCart(cart.id))}>Rembourser</Button>
               </p>
             )}
           </>
@@ -197,9 +195,7 @@ const UserModal = ({
           {searchUser ? (
             <>
               {hasEntryPermission && searchUser && !searchUser.hasPaid && (
-                <Button
-                  onClick={() => dispatch(validatePay(searchUser.id) as unknown as Action)}
-                  disabled={!searchUser.type}>
+                <Button onClick={() => dispatch(validatePay(searchUser.id))} disabled={!searchUser.type}>
                   Valider le paiement
                 </Button>
               )}
@@ -223,9 +219,7 @@ const UserModal = ({
                     };
                     if (type) body.type = type;
                     if (isAdmin) body.permissions = permissions;
-                    dispatch(
-                      saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname) as unknown as Action,
-                    );
+                    dispatch(saveUser(searchUser.id, body, searchUser.username ?? searchUser.firstname));
                   }}>
                   Enregistrer
                 </Button>
@@ -233,7 +227,7 @@ const UserModal = ({
               {isAdmin && (
                 <Button
                   primary
-                  onClick={() => dispatch(connectAs(searchUser.id) as unknown as Action)}
+                  onClick={() => dispatch(connectAs(searchUser.id))}
                   disabled={searchUser.type === UserType.attendant}>
                   Se connecter en tant que cet utilisateur
                 </Button>
@@ -255,7 +249,7 @@ const UserModal = ({
                 dispatch(
                   createUser(body, () => {
                     onClose!();
-                  }) as unknown as Action,
+                  }),
                 );
               }}>
               Créer l'utilisteur

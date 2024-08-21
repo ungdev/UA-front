@@ -2,9 +2,10 @@ import { toast } from 'react-toastify';
 
 import { RegisterUser } from '@/types';
 import { API } from '@/utils/api';
-import { type Action, createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { setRedirect } from '@/modules/redirect';
 import { autoLogin } from './login';
+import { AppThunk } from '@/lib/store';
 
 const initialState = {};
 
@@ -43,19 +44,21 @@ export const registerUser = async (user: RegisterUser) => {
   return true;
 };
 
-export const validate = (slug: string) => async (dispatch: Dispatch) => {
-  try {
-    const res = await API.post('auth/validate/' + slug, undefined);
-    localStorage.setItem('utt-arena-userid', res.user.id);
-    localStorage.setItem('utt-arena-token', res.token);
+export const validate =
+  (slug: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      const res = await API.post('auth/validate/' + slug, undefined);
+      localStorage.setItem('utt-arena-userid', res.user.id);
+      localStorage.setItem('utt-arena-token', res.token);
 
-    dispatch(autoLogin() as unknown as Action);
+      dispatch(autoLogin());
 
-    dispatch(setRedirect('/dashboard'));
-  } catch (err) {
-    dispatch(setRedirect('/'));
-  }
-};
+      dispatch(setRedirect('/dashboard'));
+    } catch {
+      dispatch(setRedirect('/'));
+    }
+  };
 
 export const resendEmail = (user: RegisterUser) => async () => {
   await API.post('auth/resendEmail', { username: user.username, email: user.email, password: user.password });

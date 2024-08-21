@@ -12,7 +12,6 @@ import { API } from '@/utils/api';
 import { uploadsUrl } from '@/utils/environment';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Team, Tournament, UserType } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 import playerImg from '@/../public/images/register/player.webp';
@@ -228,7 +227,7 @@ const Register = () => {
         players: team.players.map(({ username }) => username).join(', '),
         action:
           user.askingTeamId === team.id ? (
-            <Button onClick={() => dispatch(cancelJoin(team.name) as unknown as Action)}>Annuler</Button>
+            <Button onClick={() => dispatch(cancelJoin(team.name))}>Annuler</Button>
           ) : (
             <Button
               primary
@@ -241,11 +240,7 @@ const Register = () => {
                   setConfirmationForTeam(team);
                 } else {
                   dispatch(
-                    joinTeam(
-                      team.id,
-                      team.name,
-                      userType === UserType.player ? UserType.player : UserType.coach,
-                    ) as unknown as Action,
+                    joinTeam(team.id, team.name, userType === UserType.player ? UserType.player : UserType.coach),
                   );
                 }
               }}
@@ -293,13 +288,13 @@ const Register = () => {
             onClick={() =>
               dispatch(
                 userType === UserType.spectator
-                  ? (setType(UserType.spectator) as unknown as Action)
-                  : (cT({
+                  ? setType(UserType.spectator)
+                  : cT({
                       name: tournamentSolo ? soloTeamName : teamName,
                       tournamentId: tournament,
                       pokemonPlayerId: tournament === 'pokemon' ? pokemonPlayerId : undefined,
                       userType: userType as UserType,
-                    }) as unknown as Action),
+                    }),
               )
             }
             disabled={!user.discordId || !acceptedRules}>
@@ -386,7 +381,7 @@ const Register = () => {
               confirmationForTeam!.id,
               confirmationForTeam!.name,
               userType === UserType.player ? UserType.player : UserType.coach,
-            ) as unknown as Action,
+            ),
           );
         }}>
         Cette équipe a déjà atteint son nombre maximal de {userType === 'player' ? 'joueurs' : 'coachs'}. Tu ne pourras
