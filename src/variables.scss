@@ -1,7 +1,8 @@
 /** Main Colors **/
 $primary-color: #f5b7c7;
 $secondary-color: #2E82B7;
-$accent-color: #1aa6b7;
+$accent-color: #66C4AB;
+$filter-color: #1aa6b7;
 
 $light-color: #fff;
 $dark-color: #29292a;
@@ -11,7 +12,7 @@ $light-pink-button-color: #f5ecb7;
 $primary-background: #17124A;
 $secondary-background: #171a69;
 
-$gradient: linear-gradient(135deg, $accent-color 15%, $dark-color 85%);
+$gradient: linear-gradient(135deg, $filter-color 15%, $dark-color 85%);
 
 /** Fonts **/
 $montserrat: var(--font-montserrat);
@@ -20,7 +21,7 @@ $lexend: var(--font-lexend);
 /**
 #17124A
 #2E82B7
-#66C4AB
+
 #F3DFBF
 #F5B7C7
 **/
