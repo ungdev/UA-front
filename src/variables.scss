@@ -1,18 +1,26 @@
 /** Main Colors **/
 $primary-color: #66c4ab;
-$secondary-color: #f5b7c7;
-$accent-color: #f5b7c7;
+$secondary-color: #2E82B7;
+$accent-color: #1aa6b7;
 
-$light-color: #d9ecf2;
+$light-color: #f5b7c7;
 $dark-color: #29292a;
-$light-pink-button-color: #f5b7c7;
+$light-pink-button-color: #f5ecb7;
 
 /** Background **/
-$primary-background: #15191c;
-$secondary-background: #687277;
+$primary-background: #17124A;
+$secondary-background: #171a69;
 
 $gradient: linear-gradient(135deg, $accent-color 15%, $dark-color 85%);
 
 /** Fonts **/
 $montserrat: var(--font-montserrat);
 $lexend: var(--font-lexend);
+
+/**
+#17124A
+#2E82B7
+#66C4AB
+#F3DFBF
+#F5B7C7
+**/
