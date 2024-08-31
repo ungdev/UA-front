@@ -289,7 +289,7 @@ const Help = () => {
         </p>
         <p>
           Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le{' '}
-          <Link href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener">
+          <Link href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener" className={styles.darkBackground}>
             serveur Discord de l’UTT Arena
           </Link>
           .
@@ -300,9 +300,13 @@ const Help = () => {
           <br />
           12, rue Marie Curie 10 000 Troyes
           <br />
-          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a>
+          <a href="mailto:UTT%20Arena<arena@utt.fr>" className={styles.darkBackground}>
+            arena@utt.fr
+          </a>
           <br />
-          <a href="tel:+33325718550">+33 (0) 3 25 71 85 50</a>
+          <a href="tel:+33325718550" className={styles.darkBackground}>
+            +33 (0) 3 25 71 85 50
+          </a>
         </p>
 
         <Input label="Nom" value={name} onChange={setName} />

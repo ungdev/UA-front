@@ -10,6 +10,10 @@
   .faq, .contact {
     width: clamp(300px, 80%, 1200px);
     margin: auto;
+
+      .darkBackground {
+        color: $primary-color;
+      }
   }
 
   .faq {
