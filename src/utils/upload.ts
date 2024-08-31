@@ -19,7 +19,7 @@ export const uploadFile = async (file: File, name: string, path: string) => {
 };
 
 export const deleteFile = async (path: string) => {
-  const response = await uploads.delete('admin/delete/' + encodeURIComponent(path));
+  const response = await uploads.delete('admin/upload/' + encodeURIComponent(path));
 
   if (response.status === 0) {
     toast.success(response.message);
