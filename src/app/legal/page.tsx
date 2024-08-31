@@ -59,6 +59,7 @@ const Legal = () => (
         directive européenne 2009/136/CE, ces cookies sont indispensables à la fourniture du service sollicité. En
         naviguant sur notre site web, vous acceptez l’utilisation de ces cookies.
       </p>
+      {/*
       <Title align="center" id="CGV" className={styles.cgv}>
         Conditions générales de vente
       </Title>
@@ -351,6 +352,7 @@ const Legal = () => (
         Email : ung@utt.fr
         <br />
       </p>
+      */}
     </div>
   </div>
 );
