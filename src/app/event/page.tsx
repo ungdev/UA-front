@@ -35,7 +35,7 @@ export default function Page() {
         </div>
         <div className={`${styles.textAndImage} ${styles.imageRight}`}>
           <div className={styles.text}>
-            À présent l'UTT Arena c'est 524 joueurs, 8 tournois, des prix à gagner et des tournois commentés en direct
+            À présent l'UTT Arena c'est 416 joueurs, 6 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
@@ -46,6 +46,8 @@ export default function Page() {
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
         </Title>
+        <div className={styles.avenir}>A venir</div>
+        {/*
         <div className={styles.program}>
           <BoxContainer
             title="Jour 1 : Vendredi"
@@ -112,6 +114,7 @@ export default function Page() {
             </table>
           </BoxContainer>
         </div>
+        */}
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
           Lieu
         </Title>
@@ -183,7 +186,7 @@ export default function Page() {
               type: 'Joueur',
               price: '28 €',
               description:
-                'Pour les joueurs SSBU et Pokémon : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
+                'Pour les joueurs SSBU : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
               type: 'Coach / Manager',
