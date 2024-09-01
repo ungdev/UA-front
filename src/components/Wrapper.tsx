@@ -180,7 +180,7 @@ export default function Wrapper({
     }
 
     // Fetch Partners
-    if (partners) {
+    if (!partners) {
       dispatch(fetchPartners());
     }
 
