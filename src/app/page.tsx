@@ -4,7 +4,7 @@ import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
-import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
+import { VerticalDivider, Button, Title, Icon, TextBlock } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';

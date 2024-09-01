@@ -5,7 +5,6 @@ import imageRight from '@/../public/images/event/right.webp';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
-import BoxContainer from '@/components/landing/BoxContainer';
 
 export const metadata: Metadata = {
   title: 'Évènement - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
