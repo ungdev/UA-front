@@ -1,6 +1,6 @@
 import Wrapper from '@/components/Wrapper';
 import '@/styles.scss';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl, appUrl } from '@/utils/environment';
@@ -115,14 +115,15 @@ export const metadata: Metadata = {
     'compétition gaming France',
     'France',
   ],
-  themeColor: '#202020',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
   verification: {
     google: googleVerification(),
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#202020',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

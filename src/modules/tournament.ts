@@ -1,6 +1,7 @@
 import { Tournament } from '@/types';
 import { API } from '@/utils/api';
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { AppThunk } from '@/lib/store';
 
 export interface TournamentAction {
   tournaments: Tournament[] | null;
@@ -40,12 +41,12 @@ export const tournamentSlice = createSlice({
 
 export const { setTournaments, updateTournament, setSlots } = tournamentSlice.actions;
 
-export const fetchTournaments = () => async (dispatch: Dispatch) => {
+export const fetchTournaments = (): AppThunk => async (dispatch) => {
   const res = await API.get('tournaments');
   dispatch(setTournaments(res));
 };
 
-export const fetchSlots = () => async (dispatch: Dispatch) => {
+export const fetchSlots = (): AppThunk => async (dispatch) => {
   const res = await API.get('tournaments?paidOnly=true');
   const slots = res.reduce(
     (

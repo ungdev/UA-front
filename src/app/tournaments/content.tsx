@@ -9,7 +9,6 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { getTournamentBackgroundLink, getTournamentImageLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
-import { type Action } from '@reduxjs/toolkit';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { setRedirect } from '@/modules/redirect';
 
@@ -279,10 +278,10 @@ export function TournamentHome({
               primary
               onClick={() => {
                 if (status.login) {
-                  dispatch(setRedirect('/dashboard') as unknown as Action);
+                  dispatch(setRedirect('/dashboard'));
                   return;
                 }
-                dispatch(setLoginModalVisible(true) as unknown as Action);
+                dispatch(setLoginModalVisible(true));
               }}>
               {status.login ? 'Dashboard' : 'Se connecter'}
             </Button>

@@ -1,4 +1,5 @@
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { AppThunk } from '@/lib/store';
 
 const initialState = {
   visible: false,
@@ -16,8 +17,10 @@ export const loginModalSlice = createSlice({
 
 export const { setVisible } = loginModalSlice.actions;
 
-export const setLoginModalVisible = (visible: boolean) => (dispatch: Dispatch) => {
-  dispatch(setVisible(visible));
-};
+export const setLoginModalVisible =
+  (visible: boolean): AppThunk =>
+  (dispatch) => {
+    dispatch(setVisible(visible));
+  };
 
 export default loginModalSlice.reducer;

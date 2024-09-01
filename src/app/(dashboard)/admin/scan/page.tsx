@@ -5,7 +5,6 @@ import { useState, useRef } from 'react';
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
 import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserType } from '@/types';
 import QrScanner from 'qr-scanner';
 import { IconName } from '@/components/UI/Icon';
@@ -20,7 +19,7 @@ const Entry = () => {
     const base64Code = window.btoa(code.data);
     if (scannedUser || base64Code === lastCode.current) return;
     lastCode.current = base64Code;
-    return dispatch(scan(base64Code) as unknown as Action);
+    return dispatch(scan(base64Code));
   };
 
   return (
@@ -109,16 +108,13 @@ const Entry = () => {
                 <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
               </p>
               <div className={styles.buttonRow}>
-                <Button
-                  primary={true}
-                  disabled={scannedUser.hasPaid}
-                  onClick={() => dispatch(registerCashPayment() as unknown as Action)}>
+                <Button primary={true} disabled={scannedUser.hasPaid} onClick={() => dispatch(registerCashPayment())}>
                   Valider le paiement
                 </Button>
                 <Button
                   primary={true}
                   disabled={!scannedUser.hasPaid || !!scannedUser.scannedAt}
-                  onClick={() => dispatch(bypassQrScan() as unknown as Action)}>
+                  onClick={() => dispatch(bypassQrScan())}>
                   Valider l'entrée
                 </Button>
               </div>
@@ -128,7 +124,11 @@ const Entry = () => {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              scannedUser ? dispatch(setSearchUser(null)) : dispatch(searchUser(userIdentifiable) as unknown as Action);
+              if (scannedUser) {
+                dispatch(setSearchUser(null));
+              } else {
+                dispatch(searchUser(userIdentifiable));
+              }
             }}>
             {!scannedUser && (
               <>

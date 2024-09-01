@@ -1,6 +1,7 @@
 import { CartWithCartItems } from '@/types';
 import { API } from '@/utils/api';
-import { type Dispatch, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { AppThunk } from '@/lib/store';
 
 interface CartsAction {
   allCarts: CartWithCartItems[];
@@ -22,7 +23,7 @@ export const cartsSlice = createSlice({
 
 export const { setAllCarts } = cartsSlice.actions;
 
-export const fetchAllCarts = () => async (dispatch: Dispatch) => {
+export const fetchAllCarts = (): AppThunk => async (dispatch) => {
   const res = await API.get('users/current/carts');
   dispatch(setAllCarts(res));
 };
