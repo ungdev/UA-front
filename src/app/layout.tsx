@@ -9,21 +9,21 @@ import { headers } from 'next/headers';
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize/modern-normalize.css';
 import Script from 'next/script';
-import { Montserrat, Lexend } from 'next/font/google';
+import { Kanit } from 'next/font/google';
+import Agenor from 'next/font/local';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
 
-const montserrat = Montserrat({
-  weight: ['400', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-montserrat',
+const agenor = Agenor({
+  src: '../../public/fonts/AgenorNeue-Regular.otf',
+  variable: '--font-agenor',
   fallback: ['sans-serif'],
   display: 'swap',
 });
 
-const lexend = Lexend({
+const kanit = Kanit({
   weight: '400',
   subsets: ['latin'],
-  variable: '--font-lexend',
+  variable: '--font-kanit',
   fallback: ['sans-serif'],
   display: 'swap',
 });
@@ -130,7 +130,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const nonce = headers().get('x-nonce') || '';
 
   return (
-    <html lang="fr" className={`${montserrat.variable} ${lexend.variable}`}>
+    <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
       <body>
         <Script src="/matomo.js" nonce={nonce} strategy="lazyOnload" />
         <Providers>
