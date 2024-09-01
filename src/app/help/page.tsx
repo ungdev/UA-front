@@ -33,9 +33,9 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong> (ou 6 ans
-          pour le tournoi Pokémon). Il faudra que tu présentes <strong>l'autorisation parentale</strong>
-          <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2023.pdf`} target="_blank">
+          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong>. Il faudra
+          que tu présentes <strong>l'autorisation parentale</strong>
+          <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2024.pdf`} target="_blank">
             {' '}
             disponible ici
           </a>
@@ -52,7 +52,7 @@ const faq: Faq = {
         <>
           Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
           streaming est{' '}
-          <a href="https://forms.gle/jp9NKHJiVGVTUHCu9" target="_blank" rel="noopener">
+          <a href="https://forms.gle/MMfeFuiBQGcwg9hY8" target="_blank" rel="noopener">
             disponible ici
           </a>
           . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
@@ -66,7 +66,7 @@ const faq: Faq = {
       answer: (
         <>
           Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-          <a href="https://discord.gg/WhxZwKU">Tu peux rejoindre notre Discord ici.</a>
+          <a href="https://discord.gg/tkRrVZYXmT">Tu peux rejoindre notre Discord ici.</a>
         </>
       ),
     },
@@ -97,7 +97,7 @@ const faq: Faq = {
           vidéo, et visiter les stands de nos partenaires. Vous pouvez prendre votre place en vous inscrivant sur ce
           site. <br />
           Si tu es mineur et que tu souhaites participer à l'événement, il faudra que tu présentes l'autorisation
-          parentale <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2023.pdf`}>disponible ici</a>, ainsi
+          parentale <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2024.pdf`}>disponible ici</a>, ainsi
           qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne avant d'accéder à l'UTT
           Arena.
         </>
@@ -122,7 +122,7 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate et du tournoi Pokémon</li>
+            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
             <li>28 € pour les joueurs des autres tournois</li>
             <li>15 € en tant que coach, manager</li>
             <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
@@ -289,7 +289,7 @@ const Help = () => {
         </p>
         <p>
           Tu peux nous contacter via le formulaire ci-dessous ou bien envoyer ton message sur le{' '}
-          <Link href="https://discord.gg/WhxZwKU" target="_blank" rel="noopener">
+          <Link href="https://discord.gg/tkRrVZYXmT" target="_blank" rel="noopener" className={styles.darkBackground}>
             serveur Discord de l’UTT Arena
           </Link>
           .
@@ -300,9 +300,13 @@ const Help = () => {
           <br />
           12, rue Marie Curie 10 000 Troyes
           <br />
-          <a href="mailto:UTT%20Arena<arena@utt.fr>">arena@utt.fr</a>
+          <a href="mailto:UTT%20Arena<arena@utt.fr>" className={styles.darkBackground}>
+            arena@utt.fr
+          </a>
           <br />
-          <a href="tel:+33325718550">+33 (0) 3 25 71 85 50</a>
+          <a href="tel:+33325718550" className={styles.darkBackground}>
+            +33 (0) 3 25 71 85 50
+          </a>
         </p>
 
         <Input label="Nom" value={name} onChange={setName} />

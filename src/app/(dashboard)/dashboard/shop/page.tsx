@@ -386,7 +386,7 @@ const Shop = () => {
                   label={
                     <>
                       J'accepte les{' '}
-                      <a href="/legal#CGV" target="_blank">
+                      <a href="/legal#CGV" target="_blank" className={styles.darkBackground}>
                         Conditions Générales de Vente
                       </a>
                       &nbsp;(Attention aux conditions de remboursement !)
