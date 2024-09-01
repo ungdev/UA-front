@@ -2,8 +2,8 @@ import { toast } from 'react-toastify';
 
 import { API } from '@/utils/api';
 import { UserWithTeamAndMessageAndTournamentInfo } from '@/types';
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
-import { RootState } from '@/lib/store';
+import { createSlice } from '@reduxjs/toolkit';
+import { AppThunk } from '@/lib/store';
 
 interface UserEntryAction {
   searchUser: UserWithTeamAndMessageAndTournamentInfo | null;
@@ -25,7 +25,7 @@ export const userEntrySlice = createSlice({
 
 export const { setSearchUser } = userEntrySlice.actions;
 
-export const registerCashPayment = () => async (dispatch: Dispatch, getState: () => RootState) => {
+export const registerCashPayment = (): AppThunk => async (dispatch, getState) => {
   const state = getState();
   const currentUser = state.userEntry.searchUser;
   if (!currentUser?.id) {
@@ -44,25 +44,29 @@ export const registerCashPayment = () => async (dispatch: Dispatch, getState: ()
   );
 };
 
-export const searchUser = (userIdentifiable: string) => async (dispatch: Dispatch) => {
-  const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
-  if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
-  else dispatch(setSearchUser(list.users[0]));
-};
+export const searchUser =
+  (userIdentifiable: string): AppThunk =>
+  async (dispatch) => {
+    const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
+    if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
+    else dispatch(setSearchUser(list.users[0]));
+  };
 
-export const scan = (qrcode: string) => async (dispatch: Dispatch) => {
-  try {
-    const { data: user } = await API.post(`admin/scan`, {
-      qrcode,
-    });
-    toast.success('Utilisateur scanné');
-    dispatch(setSearchUser(user));
-  } catch (error: any) {
-    toast.error(error);
-  }
-};
+export const scan =
+  (qrcode: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      const { data: user } = await API.post(`admin/scan`, {
+        qrcode,
+      });
+      toast.success('Utilisateur scanné');
+      dispatch(setSearchUser(user));
+    } catch (error: any) {
+      toast.error(error);
+    }
+  };
 
-export const bypassQrScan = () => async (dispatch: Dispatch, getState: () => RootState) => {
+export const bypassQrScan = (): AppThunk => async (dispatch, getState) => {
   const state = getState();
   const currentUser = state.userEntry.searchUser;
   if (!currentUser?.id) throw new Error('Cannot validate entry of undefined user');

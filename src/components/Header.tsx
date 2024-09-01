@@ -7,7 +7,6 @@ import logo from '@/../public/images/logo.webp';
 import LoginModal from './landing/LoginModal';
 import { Button, Modal, Title } from './UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
-import type { Action } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -96,9 +95,9 @@ export default function Header({
             // Remove the cart from the local storage, to avoid moving carts from one account to another
             deleteCart();
             if (isFakeConnection()) {
-              dispatch(logBackToAdmin() as unknown as Action);
+              dispatch(logBackToAdmin());
             } else {
-              dispatch(logout() as unknown as Action);
+              dispatch(logout());
             }
           }}>
           <Icon name={IconName.SignOut} className={styles.disconnectIcon} />
@@ -114,7 +113,7 @@ export default function Header({
           secondary
           onClick={() => {
             closeBurger();
-            dispatch(setLoginModalVisible(true) as unknown as Action);
+            dispatch(setLoginModalVisible(true));
           }}>
           Connexion
         </Button>
@@ -161,10 +160,10 @@ export default function Header({
         ) : (
           <Modal
             title="Connexion"
-            onCancel={() => dispatch(setLoginModalVisible(false) as unknown as Action)}
+            onCancel={() => dispatch(setLoginModalVisible(false))}
             visible={isVisible}
             buttons={
-              <Button primary onClick={() => dispatch(setLoginModalVisible(false) as unknown as Action)}>
+              <Button primary onClick={() => dispatch(setLoginModalVisible(false))}>
                 Fermer
               </Button>
             }>

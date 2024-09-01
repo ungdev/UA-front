@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Modal, Button, Input, Textarea, Checkbox, Select } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminItem } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import { updateItem } from '@/modules/admin';
 
 /** The partner modal */
@@ -78,7 +77,7 @@ const ItemModal = ({
               dispatch(
                 updateItem(body, () => {
                   onClose!();
-                }) as unknown as Action,
+                }),
               );
             }}>
             Enregistrer

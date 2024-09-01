@@ -2,7 +2,6 @@
 import styles from '@/app/tournaments/layout-top.module.scss';
 import { Button, Title } from '@/components/UI';
 import { setLoginModalVisible } from '@/modules/loginModal';
-import { type Action } from '@reduxjs/toolkit';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { usePathname, useRouter } from 'next/navigation';
 import { setRedirect } from '@/modules/redirect';
@@ -46,10 +45,10 @@ export default function LayoutTop() {
             primary
             onClick={() => {
               if (status.login) {
-                dispatch(setRedirect('/dashboard') as unknown as Action);
+                dispatch(setRedirect('/dashboard'));
                 return;
               }
-              dispatch(setLoginModalVisible(true) as unknown as Action);
+              dispatch(setLoginModalVisible(true));
             }}>
             {status ? 'Dashboard' : 'Se connecter'}
           </Button>

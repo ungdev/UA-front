@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Modal, Button, Checkbox, Input, FileInput, Textarea } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { addPartner, deletePartner, updatePartner } from '@/modules/admin';
 import partners from '@/modules/partners';
@@ -40,7 +39,7 @@ const PartnerModal = ({
                 dispatch(
                   deletePartner(id, () => {
                     onClose!();
-                  }) as unknown as Action,
+                  }),
                 );
               }}>
               Supprimer
@@ -59,13 +58,13 @@ const PartnerModal = ({
               };
               dispatch(
                 partner == null
-                  ? (addPartner({ ...body, position: partners.length }, logo, () => {
+                  ? addPartner({ ...body, position: partners.length }, logo, () => {
                       onClose!();
-                    }) as unknown as Action)
+                    })
                   : // in this case position is not updated so we set it to -1
-                    (updatePartner({ ...body, position: -1 }, logo, () => {
+                    updatePartner({ ...body, position: -1 }, logo, () => {
                       onClose!();
-                    }) as unknown as Action),
+                    }),
               );
             }}>
             Enregistrer

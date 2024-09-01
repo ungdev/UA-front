@@ -6,7 +6,6 @@ import { AdminPartner } from '@/types';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { type Action } from '@reduxjs/toolkit';
 import { fetchAdminPartners, reorderPartners } from '@/modules/admin';
 
 const Partners = () => {
@@ -21,7 +20,7 @@ const Partners = () => {
   const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
-    if (!partners) dispatch(fetchAdminPartners() as unknown as Action);
+    if (!partners) dispatch(fetchAdminPartners());
   }, []);
 
   useEffect(() => {
@@ -83,7 +82,7 @@ const Partners = () => {
               setDidReorder(true);
 
               // update the tournament in the store
-              dispatch(reorderPartners(newPartners) as unknown as Action);
+              dispatch(reorderPartners(newPartners));
             }}
           />
         ) : (

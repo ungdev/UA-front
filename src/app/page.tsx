@@ -15,7 +15,6 @@ import TextStroke from '@/components/UI/TextStroke';
 import TournamentList from '@/components/landing/TournamentList';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
-import { type Action } from '@reduxjs/toolkit';
 import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.webp';
 import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.webp';
 import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.webp';
@@ -73,7 +72,7 @@ const Home = () => {
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
-              <Button secondary large long onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
+              <Button secondary large long onClick={() => dispatch(setLoginModalVisible(true))}>
                 S'inscrire
               </Button>
             </div>

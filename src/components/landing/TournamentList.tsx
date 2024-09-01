@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import React, { LegacyRef, useEffect, useRef } from 'react';
 import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
-import { type Action } from '@reduxjs/toolkit';
 import { Tournament } from '@/types';
 import { Button } from '@/components/UI';
 
@@ -35,7 +34,7 @@ export default function TournamentList({
   /** Fetch the tournaments. */
   useEffect(() => {
     if (!tournaments) {
-      dispatch(fetchTournaments() as unknown as Action);
+      dispatch(fetchTournaments());
     }
   }, []);
 

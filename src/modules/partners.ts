@@ -1,6 +1,7 @@
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
 import { Partner } from '@/types';
+import { AppThunk } from '@/lib/store';
 
 export interface PartnersAction {
   partners: Partner[] | null;
@@ -18,7 +19,7 @@ export const partnersSlice = createSlice({
       state.partners = action.payload;
     },
     addPartner: (state, action) => {
-      state.partners ? (state.partners = [...state.partners!, action.payload]) : (state.partners = [action.payload]);
+      state.partners = state.partners ? [...state.partners!, action.payload] : [action.payload];
     },
     updatePartner: (state, action) => {
       state.partners = state.partners?.map((partner) => {
@@ -36,7 +37,7 @@ export const partnersSlice = createSlice({
 
 export const { setPartners, addPartner, updatePartner, deletePartner } = partnersSlice.actions;
 
-export const fetchPartners = () => async (dispatch: Dispatch) => {
+export const fetchPartners = (): AppThunk => async (dispatch) => {
   const request = await API.get('partners');
   dispatch(setPartners(request));
 };

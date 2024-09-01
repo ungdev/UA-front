@@ -26,4 +26,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    onReorder: (order) =>
+      console.log(order.map((id) => (id === 0 ? 'red' : id === 1 ? 'blue' : id === 2 ? 'green' : 'yellow'))),
+  },
+};

@@ -2,7 +2,6 @@
 import { Button, Icon, Title } from '@/components/UI';
 import { setType } from '@/modules/login';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 
 import styles from './style.module.scss';
@@ -45,7 +44,7 @@ const Spectator = () => {
         </div>
       </div>
       <div className={styles.buttonRow}>
-        {!hasPaid && <Button onClick={() => dispatch(setType(undefined) as unknown as Action)}>Changer de rôle</Button>}
+        {!hasPaid && <Button onClick={() => dispatch(setType(undefined))}>Changer de rôle</Button>}
       </div>
     </div>
   );

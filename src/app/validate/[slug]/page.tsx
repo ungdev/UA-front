@@ -4,7 +4,6 @@ import { useParams, usePathname, useRouter } from 'next/navigation';
 
 import { validate } from '@/modules/register';
 import { useAppDispatch } from '@/lib/hooks';
-import { type Action } from '@reduxjs/toolkit';
 
 const Valid = () => {
   const params = useParams();
@@ -14,7 +13,7 @@ const Valid = () => {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(validate(slug as string) as unknown as Action);
+    dispatch(validate(slug as string));
     replace(pathname);
   }, []);
 

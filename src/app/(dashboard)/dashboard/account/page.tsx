@@ -8,7 +8,6 @@ import { editUser } from '@/modules/login';
 import { API } from '@/utils/api';
 import { fetchCurrentTeam } from '@/modules/team';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import type { Action } from '@reduxjs/toolkit';
 import { UserAge, UserEdit, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 
@@ -43,7 +42,9 @@ const Account = () => {
   }, [team]);
 
   useEffect(() => {
-    user.teamId && dispatch(fetchCurrentTeam() as unknown as Action);
+    if (user.teamId) {
+      dispatch(fetchCurrentTeam());
+    }
   }, []);
 
   const edit = () => {
@@ -66,7 +67,7 @@ const Account = () => {
         toast.error('Si tu veux modifier ton compte, mets à jour une information');
       } else {
         // Send the request to the api
-        dispatch(editUser(data as unknown as UserEdit) as unknown as Action);
+        dispatch(editUser(data as unknown as UserEdit));
 
         // Reset password fields
         setOldpassword('');

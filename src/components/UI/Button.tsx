@@ -23,7 +23,7 @@ const Button = ({
   large = false,
   long = false,
   veryLong = false,
-  onClick = () => {},
+  onClick = undefined, // default to undefined to avoid bugs
   children = '',
   type = 'button',
   disabled = false,
