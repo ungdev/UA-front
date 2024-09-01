@@ -185,7 +185,7 @@ export default function Wrapper({
     }
 
     // Automatically log in the user
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       dispatch(autoLogin());
     }
   }, []);
