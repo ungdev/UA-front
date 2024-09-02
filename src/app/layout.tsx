@@ -21,7 +21,7 @@ const agenor = Agenor({
 });
 
 const kanit = Kanit({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-kanit',
   fallback: ['sans-serif'],
