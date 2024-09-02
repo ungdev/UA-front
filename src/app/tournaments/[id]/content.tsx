@@ -56,11 +56,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          {loginAllowed && (
+          {/*{loginAllowed && (
             <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
               <Button primary>Voir les règles</Button>
             </Link>
-          )}
+          )}*/}
         </div>
         <div className={styles.information}>
           <BoxContainer
