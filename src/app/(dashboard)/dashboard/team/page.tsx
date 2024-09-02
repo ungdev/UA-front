@@ -10,8 +10,6 @@ import { Button, Helper, Icon, Modal, Table, Title } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
-import Link from 'next/link';
-import { getTournamentRulesLink } from '@/utils/uploadLink';
 
 const memberColumns = [
   { title: 'Pseudo', key: 'username' },

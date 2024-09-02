@@ -9,7 +9,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.webp';
 import FillingBar from '@/components/UI/FillingBar';
