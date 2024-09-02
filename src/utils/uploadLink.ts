@@ -1,5 +1,6 @@
 // Consts
 export const TOURNAMENT_FOLDER = 'tournaments';
+export const ITEM_FOLDER = 'items';
 export const PARTNER_FOLDER = 'partners';
 
 // Tournaments
@@ -39,4 +40,13 @@ export const getPartnerLogoName = (partnerId: string) => {
 
 export const getPartnerLogoLink = (partnerId: string) => {
   return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${PARTNER_FOLDER}/${getPartnerLogoName(partnerId)}.webp`;
+};
+
+// Items
+export const getItemLogoName = (itemId: string) => {
+  return `${itemId}-logo`;
+};
+
+export const getItemLogoLink = (itemId: string) =>{
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${ITEM_FOLDER}/${getItemLogoName(itemId)}.webp`;
 };

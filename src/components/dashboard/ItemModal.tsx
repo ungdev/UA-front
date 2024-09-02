@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Modal, Button, Input, Textarea, Checkbox, Select } from '@/components/UI';
+import { Modal, Button, Input, Textarea, Checkbox, Select, FileInput } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminItem } from '@/types';
 import { updateItem } from '@/modules/admin';
+import { getItemLogoLink } from '@/utils/uploadLink';
 
 /** The partner modal */
 const ItemModal = ({
@@ -23,6 +24,7 @@ const ItemModal = ({
   const [endDate, setEndDate] = useState(item?.availableUntil || null);
   const [quantity, setQuantity] = useState(item?.stock || null);
   const [infos, setInfos] = useState(item?.infos || null);
+  const [logo, setLogo] = useState<File | null>(null);
   const [display, setDisplay] = useState(item?.display || false);
 
   const [attribute, setAttribute] = useState(item?.attribute || null);
@@ -75,7 +77,7 @@ const ItemModal = ({
               }
 
               dispatch(
-                updateItem(body, () => {
+                updateItem(body, logo, () => {
                   onClose!();
                 }),
               );
@@ -125,6 +127,7 @@ const ItemModal = ({
           onChange={(value) => setQuantity(value as unknown as number)}
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
+        <FileInput label="Logo" value={item ? getItemLogoLink(item.id) : ''} onChange={setLogo} type={['png']} />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>

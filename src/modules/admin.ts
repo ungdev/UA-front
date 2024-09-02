@@ -274,7 +274,7 @@ export const fetchAdminItems = (): AppThunk => async (dispatch) => {
 };
 
 export const updateItem =
-  (item: AdminItem, callback: () => void): AppThunk =>
+  (item: AdminItem, logo: File | null, callback: () => void): AppThunk =>
   async (dispatch) => {
     try {
       const result = await API.patch(`admin/items/${item.id}`, {
