@@ -122,7 +122,7 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
+            <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
             <li>28 € pour les joueurs des autres tournois</li>
             <li>15 € en tant que coach, manager</li>
             <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
