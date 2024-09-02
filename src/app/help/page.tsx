@@ -142,7 +142,8 @@ const faq: Faq = {
   Paiement: [
     {
       question: 'Puis-je payer en espèces ?',
-      answer: "Non, payer en espèce n'est pas possible pour s'inscrire à l'UTT Arena",
+      answer:
+        "Payer en espèce sur place n'est possible que pour les places spectateurs. Si vous êtes un joueur, vous devez impérativement payer en ligne via la billetterie.",
     },
     {
       question: 'Puis-je payer par PayPal ?',
