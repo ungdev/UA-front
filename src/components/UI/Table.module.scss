@@ -1,6 +1,7 @@
 @import '@/variables.scss';
 
 .tableContainer {
+  overflow: scroll;
   .pagination {
     display: flex;
     gap: 0.5rem;
