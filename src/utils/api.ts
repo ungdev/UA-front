@@ -23,7 +23,9 @@ const requestAPI = (
     const headers = new Headers();
     if (authorizationHeader) {
       headers.append('Authorization', token ? `Bearer ${token}` : '');
-      !file && headers.append('Content-Type', 'application/json');
+      if (!file) {
+        headers.append('Content-Type', 'application/json');
+      }
     }
 
     fetch(baseURL + route + (disableCache ? '?nocache=' + new Date().getTime() : ''), {

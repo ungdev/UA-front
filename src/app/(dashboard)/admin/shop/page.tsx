@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminItem } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
-import { type Action } from '@reduxjs/toolkit';
 import { fetchAdminItems, reorderItems } from '@/modules/admin';
 
 const Shop = () => {
@@ -19,7 +18,7 @@ const Shop = () => {
   const [reorderEnabled, setReorderEnabled] = useState(false);
 
   useEffect(() => {
-    if (!shopItems) dispatch(fetchAdminItems() as unknown as Action);
+    if (!shopItems) dispatch(fetchAdminItems());
   }, []);
 
   useEffect(() => {
@@ -77,7 +76,7 @@ const Shop = () => {
               setDidReorder(true);
 
               // update the tournament in the store
-              dispatch(reorderItems(newItems) as unknown as Action);
+              dispatch(reorderItems(newItems));
             }}
           />
         ) : (

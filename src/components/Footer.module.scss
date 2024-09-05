@@ -6,7 +6,7 @@
   overflow: hidden;
 
   img {
-    height: 139px;
+    width: 225px;
   }
 
   h3 {
@@ -50,7 +50,7 @@
 
       // Credits : https://alvaromontoro.com/blog/68002/creating-a-firework-effect-with-css
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         top: 50%;
         left: 50%;
@@ -63,45 +63,38 @@
         --color4: lime;
         --color5: gold;
         --color6: mediumseagreen;
-        background: radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
-                    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
-                    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
-                    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
-
-                      /* bottom right */
-                    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 80% 90%,
-                    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 95% 90%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 90% 70%,
-                    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 60%,
-                    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 55% 80%,
-                    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 70% 77%,
-
-                      /* bottom left */
-                    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
-                    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 70%,
-                    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 10% 60%,
-                    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 31% 80%,
-                    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 28% 77%,
-                    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 13% 72%,
-
-                      /* top left */
-                    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 80% 10%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 95% 14%,
-                    radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 90% 23%,
-                    radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 43%,
-                    radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 85% 27%,
-                    radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 77% 37%,
-                    radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 60% 7%,
-
-                      /* top right */
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 22% 14%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 45% 20%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 34%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 10% 29%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 31% 37%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 28% 7%,
-                    radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 13% 42%;
+        background:
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 50% 0%,
+          radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 50%,
+          radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 50% 100%,
+          radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 0% 50%,
+          /* bottom right */ radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 80% 90%,
+          radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 95% 90%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 90% 70%,
+          radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 100% 60%,
+          radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 55% 80%,
+          radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 70% 77%,
+          /* bottom left */ radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 22% 90%,
+          radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 45% 90%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 70%,
+          radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 10% 60%,
+          radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 31% 80%,
+          radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 28% 77%,
+          radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 13% 72%,
+          /* top left */ radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 80% 10%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 95% 14%,
+          radial-gradient(circle, var(--color2) var(--particleSize), #0000 0) 90% 23%,
+          radial-gradient(circle, var(--color3) var(--particleSize), #0000 0) 100% 43%,
+          radial-gradient(circle, var(--color4) var(--particleSize), #0000 0) 85% 27%,
+          radial-gradient(circle, var(--color5) var(--particleSize), #0000 0) 77% 37%,
+          radial-gradient(circle, var(--color6) var(--particleSize), #0000 0) 60% 7%,
+          /* top right */ radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 22% 14%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 45% 20%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 33% 34%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 10% 29%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 31% 37%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 28% 7%,
+          radial-gradient(circle, var(--color1) var(--particleSize), #0000 0) 13% 42%;
         background-size: 0.5vmin 0.5vmin;
         background-repeat: no-repeat;
         opacity: 0;
@@ -139,7 +132,7 @@
       width: 24px;
       height: 24px;
       padding: 2px;
-      color: #8C979B;
+      color: #8c979b;
       transition: all 0.3s ease-in-out;
 
       &:hover {
@@ -190,6 +183,8 @@
 
 @media screen and (max-width: 341px) {
   .footer {
+    text-align: center;
+
     img {
       height: unset;
     }

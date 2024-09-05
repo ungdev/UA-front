@@ -4,7 +4,7 @@ import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
-import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
+import { VerticalDivider, Button, Title, Icon, TextBlock } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
@@ -15,7 +15,6 @@ import TextStroke from '@/components/UI/TextStroke';
 import TournamentList from '@/components/landing/TournamentList';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
-import { type Action } from '@reduxjs/toolkit';
 import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.webp';
 import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.webp';
 import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.webp';
@@ -61,19 +60,19 @@ const Home = () => {
                 UTT Arena
               </TextStroke>
               <p>
-                <span className={styles.accent}>1</span>, <span className={styles.accent}>2</span> et{' '}
-                <span className={styles.accent}>3</span> décembre 2023
+                <span className={styles.accent}>6</span>, <span className={styles.accent}>7</span> et{' '}
+                <span className={styles.accent}>8</span> décembre 2024
               </p>
             </div>
           </div>,
-          <YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,
+          /*<YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,*/
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
               <img src={banner.src} alt="Rejoindre l'aventure" loading="lazy" />
               <Title level={2} type={1} align="center">
                 Rejoignez l'aventure
               </Title>
-              <Button secondary large long onClick={() => dispatch(setLoginModalVisible(true) as unknown as Action)}>
+              <Button secondary large long onClick={() => dispatch(setLoginModalVisible(true))}>
                 S'inscrire
               </Button>
             </div>
@@ -94,23 +93,22 @@ const Home = () => {
 
       <AppearFromSide fromRight className={styles.dataFlexing}>
         <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
-          <Counter value={8} name="Tournois" className={styles.sideCounter} />
+          <Counter value={6} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={5190} valueText=" €" name="de cashprize" className={styles.middleCounter} />
+          <Counter value={4850} valueText=" €" name="de cashprize" className={styles.middleCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={524} name="Participants" className={styles.sideCounter} />
+          <Counter value={416} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
       </AppearFromSide>
 
       <AppearFromSide className={styles.information}>
-        <TextBlock title="UTT Arena 2023" images={[doubleImage1.src, doubleImage2.src]}>
+        <TextBlock title="UTT Arena 2024" images={[doubleImage1.src, doubleImage2.src]}>
           Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les{' '}
-          <strong>1, 2 et 3 décembre 2023</strong> dans un tout nouveau lieu : au sein des locaux de l’Université de
-          Technologie de Troyes ! Nous vous attendons nombreux pour cette 21e édition afin de passer 2 jours de folie !{' '}
+          <strong>6, 7 et 8 décembre 2024</strong> au sein des locaux de l’Université de Technologie de Troyes ! Nous{' '}
+          vous attendons nombreux pour cette 22e édition afin de passer 2 jours de folie ! <br />
           <br />
-          <br />
-          Au programme : <strong>8 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
-          parmis les <strong>524 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
+          Au programme : <strong>6 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
+          parmis les <strong>416 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
           <strong>cashprizes</strong>, <strong>lots</strong> et de nombreuses <strong>autres surprises</strong> ! Et
           pour animer cette édition, <strong>des guests d’exception</strong> viendront caster cette édition qui
           s’annonce enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
@@ -122,22 +120,22 @@ const Home = () => {
           </Link>
           <Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
-            1, 2, 3 Décembre 2023
+            6, 7, 8 Décembre 2024
           </Link>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title level={2}>Les tournois de l'UA23</Title>
+          <Title level={2}>Les tournois de l'UA24</Title>
           <div className={styles.textContent}>
-            Cette année, l’UTT Arena propose <strong>8 tournois</strong> aux joueurs :{' '}
-            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Rocket League</strong>,{' '}
-            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>osu!</strong>,{' '}
-            <strong>Pokémon</strong> et <strong>un tournoi libre</strong>. <br />
+            Cette année, l’UTT Arena propose <strong>6 tournois</strong> aux joueurs :{' '}
+            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>,{' '}
+            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et{' '}
+            <strong>un tournoi multigaming</strong>. <br />
             Tous les tournois donnent accès à la salle, à la buvette et à ses autres activités{' '}
             <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les joueurs des tournois PC
-            et libre (donc hors SSBU et Pokémon) auront accès à une <strong>place assise fixe</strong> où installer
-            leurs ordinateurs. N’hésitez pas et rejoignez-nous dans l’arène !
+            et multigaming (donc hors SSBU) auront accès à une <strong>place assise fixe</strong> où installer leurs
+            ordinateurs. N’hésitez pas et rejoignez-nous dans l’arène !
           </div>
         </div>
         <TournamentList className={styles.list} />

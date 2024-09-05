@@ -73,6 +73,10 @@
             text-align: left;
             margin-top: 1rem;
 
+            .darkBackground {
+              color: $primary-color
+            }
+
             > label {
               gap: 0.75rem;
             }

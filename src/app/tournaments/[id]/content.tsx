@@ -7,16 +7,14 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcherAnimation';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.webp';
 import FillingBar from '@/components/UI/FillingBar';
-// TODO: Remove next 3 lines
-import { useDispatch } from 'react-redux';
+// TODO: Remove next line
 import { fetchCurrentTeam } from '@/modules/team';
-import type { Action } from '@reduxjs/toolkit';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -26,9 +24,9 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
   const team = useAppSelector((state) => state.team.team);
 
   // TODO: Remove next 4 lines
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    if (status.team && !team) dispatch(fetchCurrentTeam() as unknown as Action);
+    if (status.team && !team) dispatch(fetchCurrentTeam());
   }, [status.team]);
 
   if (!tournaments) return null;
@@ -58,11 +56,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          {loginAllowed && (
+          {/*{loginAllowed && (
             <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
               <Button primary>Voir les règles</Button>
             </Link>
-          )}
+          )}*/}
         </div>
         <div className={styles.information}>
           <BoxContainer

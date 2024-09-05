@@ -13,7 +13,6 @@ import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
-import type { Action } from '@reduxjs/toolkit';
 import { IconName } from '@/components/UI/Icon';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
@@ -64,7 +63,7 @@ const Shop = () => {
   // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
     if (user.teamId) {
-      dispatch(fetchCurrentTeam() as unknown as Action);
+      dispatch(fetchCurrentTeam());
     } else if (user.type === UserType.spectator) {
       // Organizers should not be able to buy tickets if they are not in a team
       setTeamMembers([
@@ -292,7 +291,7 @@ const Shop = () => {
   const onPay = () => {
     setHasRequestedPayment(true);
     deleteCart();
-    dispatch(cartPay(cart) as unknown as Action);
+    dispatch(cartPay(cart));
   };
 
   // Hide the places section if user can't buy any places
@@ -387,7 +386,7 @@ const Shop = () => {
                   label={
                     <>
                       J'accepte les{' '}
-                      <a href="/legal#CGV" target="_blank">
+                      <a href="/legal#CGV" target="_blank" className={styles.darkBackground}>
                         Conditions Générales de Vente
                       </a>
                       &nbsp;(Attention aux conditions de remboursement !)

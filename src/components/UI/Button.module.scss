@@ -4,7 +4,7 @@
   display: inline-block;
   padding: 0.75rem 1.25rem;
   margin: 0;
-  font-family: $montserrat;
+  font-family: $agenor;
   font-size: 1em;
   font-weight: bold;
   cursor: pointer;
@@ -40,19 +40,19 @@
     background-color: $secondary-color;
 
     &.outline {
-      color: $secondary-color;
+      color: $accent-color;
       background-color: transparent;
-      border: 0.175rem solid $secondary-color;
+      border: 0.175rem solid $accent-color;
     }
 
     &:not([disabled]):hover {
       &.outline {
-        border-color: $primary-color;
-        color: $primary-color;
+        border-color: $accent-color;
+        color: $accent-color;
       }
 
       &:not(.outline) {
-        background-color: $primary-color;
+        background-color: $accent-color;
       }
     }
   }

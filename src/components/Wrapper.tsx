@@ -10,7 +10,6 @@ import { fetchSettings } from '@/modules/settings';
 import { autoLogin } from '@/modules/login';
 import Footer from './Footer';
 
-import { type Action } from '@reduxjs/toolkit';
 import { Permission } from '@/types';
 import Loading from '@/app/loader';
 import { setRedirect } from '@/modules/redirect';
@@ -171,22 +170,32 @@ export default function Wrapper({
   // Fetch static values
   useEffect(() => {
     // Fetch Settings
-    isLoginAllowed || dispatch(fetchSettings() as unknown as Action);
+    if (!isLoginAllowed) {
+      dispatch(fetchSettings());
+    }
 
     // Fetch Tournaments
-    tournaments || dispatch(fetchTournaments() as unknown as Action);
+    if (!tournaments) {
+      dispatch(fetchTournaments());
+    }
 
     // Fetch Partners
-    partners || dispatch(fetchPartners() as unknown as Action);
+    if (!partners) {
+      dispatch(fetchPartners());
+    }
 
     // Automatically log in the user
-    isLoggedIn || dispatch(autoLogin() as unknown as Action);
+    if (!isLoggedIn) {
+      dispatch(autoLogin());
+    }
   }, []);
 
   useEffect(() => {
     if (!isLoggedIn) return;
     // Fetch carts
-    carts.length || dispatch(fetchAllCarts() as unknown as Action);
+    if (!carts.length) {
+      dispatch(fetchAllCarts());
+    }
   }, [isLoggedIn]);
 
   // Render the layout with child components

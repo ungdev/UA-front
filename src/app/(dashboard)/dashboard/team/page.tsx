@@ -8,11 +8,8 @@ import { fetchSettings } from '@/modules/settings';
 import { fetchSlots, fetchTournaments } from '@/modules/tournament';
 import { Button, Helper, Icon, Modal, Table, Title } from '@/components/UI';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import type { Action } from '@reduxjs/toolkit';
 import { Tournament, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
-import Link from 'next/link';
-import { getTournamentRulesLink } from '@/utils/uploadLink';
 
 const memberColumns = [
   { title: 'Pseudo', key: 'username' },
@@ -37,24 +34,26 @@ const Page = () => {
   const tournaments: Tournament[] | null = useAppSelector((state) => state.tournament.tournaments);
 
   useEffect(() => {
-    isShopAllowed || dispatch(fetchSettings() as unknown as Action);
+    if (!isShopAllowed) {
+      dispatch(fetchSettings());
+    }
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCurrentTeam() as unknown as Action);
-    const interval = setInterval(() => dispatch(fetchCurrentTeam() as unknown as Action), 120000);
+    dispatch(fetchCurrentTeam());
+    const interval = setInterval(() => dispatch(fetchCurrentTeam()), 120000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
     if (team && !slotsTournament) {
-      dispatch(fetchSlots() as unknown as Action);
+      dispatch(fetchSlots());
     }
   }, [team]);
 
   useEffect(() => {
     if (team && !tournaments) {
-      dispatch(fetchTournaments() as unknown as Action);
+      dispatch(fetchTournaments());
     }
   }, [team]);
 
@@ -79,7 +78,7 @@ const Page = () => {
   };
 
   const acceptUserButton = (user: User) => (
-    <Button onClick={() => dispatch(acceptUser(user) as unknown as Action)} secondary outline>
+    <Button onClick={() => dispatch(acceptUser(user))} secondary outline>
       Accepter
     </Button>
   );
@@ -92,7 +91,7 @@ const Page = () => {
         setModal({
           visible: true,
           onOk: () => {
-            dispatch(refuseUser(user) as unknown as Action);
+            dispatch(refuseUser(user));
             closeModal();
           },
           content: `Veux-tu refuser ${user.username} ?`,
@@ -112,7 +111,7 @@ const Page = () => {
           setModal({
             visible: true,
             onOk: () => {
-              dispatch(setCaptain(user.id) as unknown as Action);
+              dispatch(setCaptain(user.id));
               closeModal();
             },
             content: "Confirme le nouveau chef d'équipe",
@@ -133,7 +132,7 @@ const Page = () => {
           setModal({
             visible: true,
             onOk: () => {
-              dispatch(kickUser(user.id) as unknown as Action);
+              dispatch(kickUser(user.id));
               closeModal();
             },
             content: `Confirme l'exclusion du ${
@@ -185,7 +184,7 @@ const Page = () => {
     setModal({
       visible: true,
       onOk: () => {
-        dispatch(deleteTeam() as unknown as Action);
+        dispatch(deleteTeam());
         closeModal();
       },
       content: "Es-tu sûr de vouloir dissoudre l'équipe ? Ton équipe perdra sa place.",
@@ -196,7 +195,7 @@ const Page = () => {
     setModal({
       visible: true,
       onOk: () => {
-        dispatch(kickUser(id) as unknown as Action);
+        dispatch(kickUser(id));
         closeModal();
       },
       content:
@@ -212,9 +211,9 @@ const Page = () => {
         </Title>
         <div>
           <Icon name={IconName.Refresh} className={styles.refresh} onClick={() => document.location.reload()} />
-          <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
+          {/*<Link href={getTournamentRulesLink(tournament.id)} target="_blank">
             <Button primary>Voir les règles</Button>
-          </Link>
+          </Link>*/}
         </div>
       </div>
       <div className={styles.header}>

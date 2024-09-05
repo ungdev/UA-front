@@ -6,7 +6,6 @@ import { Radio, Input, Button, Table, Checkbox, Title } from '@/components/UI';
 import UserModal from '@/components/dashboard/UserModal';
 import { fetchUsers, lookupUser } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import type { Action } from '@reduxjs/toolkit';
 import { UserFilters } from '@/types';
 
 const columnTitles = {
@@ -98,12 +97,12 @@ const Users = () => {
     if (filters.permissions.length > 0) {
       userFilters.permissions = filters.permissions.join(',');
     }
-    dispatch(fetchUsers(userFilters, search, page) as unknown as Action);
+    dispatch(fetchUsers(userFilters, search, page));
   };
 
   useEffect(() => {
     if (isLoggedIn && !isFetched) {
-      dispatch(fetchUsers() as unknown as Action);
+      dispatch(fetchUsers());
     }
   }, [isLoggedIn]);
 
@@ -264,13 +263,13 @@ const Users = () => {
           pageSize: itemsPerPage,
           goToPage: applySearch,
         }}
-        onRowClicked={(i) => dispatch(lookupUser(users[i]) as unknown as Action)}
+        onRowClicked={(i) => dispatch(lookupUser(users[i]))}
       />
       {(searchUser || createUser) && (
         <UserModal
           searchUser={!createUser ? searchUser : null}
           onClose={() => {
-            dispatch(lookupUser() as unknown as Action);
+            dispatch(lookupUser());
             setCreateUser(false);
           }}></UserModal>
       )}

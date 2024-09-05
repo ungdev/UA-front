@@ -1,4 +1,4 @@
-import { createSlice, type Dispatch } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
 import { AdminPartner, AdminTournament, AdminItem, Badge } from '@/types';
 import {
@@ -14,6 +14,7 @@ import { deleteFile, uploadFile } from '@/utils/upload';
 import * as normalPartners from '@/modules/partners';
 import * as normalTournament from '@/modules/tournament';
 import { toast } from 'react-toastify';
+import { AppThunk } from '@/lib/store';
 
 export interface AdminAction {
   partners: AdminPartner[] | null;
@@ -35,7 +36,7 @@ export const adminSlice = createSlice({
       state.partners = action.payload;
     },
     addAdminPartner: (state, action) => {
-      state.partners ? (state.partners = [...state.partners!, action.payload]) : (state.partners = [action.payload]);
+      state.partners = state.partners ? [...state.partners!, action.payload] : [action.payload];
     },
     updateAdminPartner: (state, action) => {
       state.partners = state.partners?.map((partner) => {
@@ -86,13 +87,14 @@ export const {
   updateAdminItem,
 } = adminSlice.actions;
 
-export const fetchAdminPartners = () => async (dispatch: Dispatch) => {
+export const fetchAdminPartners = (): AppThunk => async (dispatch) => {
   const request = await API.get('admin/partners');
   dispatch(setAdminPartners(request));
 };
 
 export const addPartner =
-  (partner: AdminPartner, logo: File | null, callback: () => void) => async (dispatch: Dispatch) => {
+  (partner: AdminPartner, logo: File | null, callback: () => void): AppThunk =>
+  async (dispatch) => {
     try {
       const result = await API.post('admin/partners', {
         name: partner.name,
@@ -117,7 +119,8 @@ export const addPartner =
   };
 
 export const updatePartner =
-  (partner: AdminPartner, logo: File | null, callback: () => void) => async (dispatch: Dispatch) => {
+  (partner: AdminPartner, logo: File | null, callback: () => void): AppThunk =>
+  async (dispatch) => {
     try {
       const result = await API.patch(`admin/partners/${partner.id}`, {
         name: partner.name,
@@ -140,41 +143,45 @@ export const updatePartner =
     }
   };
 
-export const deletePartner = (partnerId: string, callback: () => void) => async (dispatch: Dispatch) => {
-  try {
-    await API.delete(`admin/partners/${partnerId}`);
+export const deletePartner =
+  (partnerId: string, callback: () => void): AppThunk =>
+  async (dispatch) => {
+    try {
+      await API.delete(`admin/partners/${partnerId}`);
 
-    await deleteFile(getPartnerLogoLink(partnerId).replace(process.env.NEXT_PUBLIC_UPLOADS_URL!, ''));
+      await deleteFile(getPartnerLogoLink(partnerId).replace(process.env.NEXT_PUBLIC_UPLOADS_URL!, ''));
 
-    callback();
-    toast.success('Le partenaire a bien été supprimé');
+      callback();
+      toast.success('Le partenaire a bien été supprimé');
 
-    dispatch(deleteAdminPartner(partnerId));
-    dispatch(normalPartners.deletePartner(partnerId));
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch(deleteAdminPartner(partnerId));
+      dispatch(normalPartners.deletePartner(partnerId));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-export const reorderPartners = (partners: AdminPartner[]) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.patch('admin/partners', {
-      partners: partners.map((partner) => ({
-        id: partner.id,
-        position: partner.position,
-      })),
-    });
+export const reorderPartners =
+  (partners: AdminPartner[]): AppThunk =>
+  async (dispatch) => {
+    try {
+      const result = await API.patch('admin/partners', {
+        partners: partners.map((partner) => ({
+          id: partner.id,
+          position: partner.position,
+        })),
+      });
 
-    toast.success('Les partenaires ont bien été réordonnés');
+      toast.success('Les partenaires ont bien été réordonnés');
 
-    dispatch(setAdminPartners(result));
-    dispatch(normalPartners.setPartners(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch(setAdminPartners(result));
+      dispatch(normalPartners.setPartners(result));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-export const fetchAdminTournaments = () => async (dispatch: Dispatch) => {
+export const fetchAdminTournaments = (): AppThunk => async (dispatch) => {
   const request = await API.get('admin/tournaments');
   dispatch(setAdminTournaments(request));
 };
@@ -186,8 +193,8 @@ export const updateTournament =
     background: File | null,
     rules: File | null,
     callback: () => void,
-  ) =>
-  async (dispatch: Dispatch) => {
+  ): AppThunk =>
+  async (dispatch) => {
     try {
       const data = {
         name: tournament.name,
@@ -241,69 +248,75 @@ export const updateTournament =
     }
   };
 
-export const reorderTournaments = (tournaments: AdminTournament[]) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.patch('admin/tournaments', {
-      tournaments: tournaments.map((tournament) => ({
-        id: tournament.id,
-        position: tournament.position,
-      })),
-    });
+export const reorderTournaments =
+  (tournaments: AdminTournament[]): AppThunk =>
+  async (dispatch) => {
+    try {
+      const result = await API.patch('admin/tournaments', {
+        tournaments: tournaments.map((tournament) => ({
+          id: tournament.id,
+          position: tournament.position,
+        })),
+      });
 
-    toast.success('Les tournois ont bien été réordonnés');
+      toast.success('Les tournois ont bien été réordonnés');
 
-    dispatch(setAdminTournaments(result));
-    dispatch(normalTournament.setTournaments(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch(setAdminTournaments(result));
+      dispatch(normalTournament.setTournaments(result));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-export const fetchAdminItems = () => async (dispatch: Dispatch) => {
+export const fetchAdminItems = (): AppThunk => async (dispatch) => {
   const request = await API.get('admin/items');
   dispatch(setAdminItems(request));
 };
 
-export const updateItem = (item: AdminItem, callback: () => void) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.patch(`admin/items/${item.id}`, {
-      name: item.name,
-      category: item.category,
-      attribute: item.attribute,
-      price: item.price,
-      reducedPrice: item.reducedPrice,
-      stockDifference: item.left,
-      infos: item.infos,
-      availableFrom: item.availableFrom,
-      availableUntil: item.availableUntil,
-      display: item.display.toString(),
-    });
+export const updateItem =
+  (item: AdminItem, callback: () => void): AppThunk =>
+  async (dispatch) => {
+    try {
+      const result = await API.patch(`admin/items/${item.id}`, {
+        name: item.name,
+        category: item.category,
+        attribute: item.attribute,
+        price: item.price,
+        reducedPrice: item.reducedPrice,
+        stockDifference: item.left,
+        infos: item.infos,
+        availableFrom: item.availableFrom,
+        availableUntil: item.availableUntil,
+        display: item.display.toString(),
+      });
 
-    callback();
-    toast.success("L'item a bien été mis à jour");
+      callback();
+      toast.success("L'item a bien été mis à jour");
 
-    dispatch(updateAdminItem(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch(updateAdminItem(result));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-export const reorderItems = (items: AdminItem[]) => async (dispatch: Dispatch) => {
-  try {
-    const result = await API.patch('admin/items', {
-      items: items.map((item) => ({
-        id: item.id,
-        position: item.position,
-      })),
-    });
+export const reorderItems =
+  (items: AdminItem[]): AppThunk =>
+  async (dispatch) => {
+    try {
+      const result = await API.patch('admin/items', {
+        items: items.map((item) => ({
+          id: item.id,
+          position: item.position,
+        })),
+      });
 
-    toast.success('Les items ont bien été réordonnés');
+      toast.success('Les items ont bien été réordonnés');
 
-    dispatch(setAdminItems(result));
-  } catch (err) {
-    console.error(err);
-  }
-};
+      dispatch(setAdminItems(result));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
 export const generateBadges = async (badges: Badge[]) => {
   try {

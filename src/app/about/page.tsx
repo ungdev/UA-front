@@ -10,7 +10,6 @@ import ungImage2 from '@/../public/images/about/ung-2.webp';
 import TeamMember from '@/components/landing/TeamMember';
 import { useEffect } from 'react';
 import { fetchOrgas } from '@/modules/users';
-import { type Action } from '@reduxjs/toolkit';
 
 // export const metadata: Metadata = {
 //   title: 'À propos - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
@@ -22,7 +21,7 @@ const About = () => {
   const orgas = useAppSelector((state) => state.users.orgas);
 
   useEffect(() => {
-    if (!orgas && trombiAllowed) dispatch(fetchOrgas() as unknown as Action);
+    if (!orgas && trombiAllowed) dispatch(fetchOrgas());
   }, [trombiAllowed]);
 
   return (
@@ -31,14 +30,17 @@ const About = () => {
         <div className={styles.aboutUa}>
           <TextBlock title="UTT Arena" titleLevel={2} images={[uaImage1.src, uaImage2.src]}>
             <br />
-            L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            L'UTT Arena revient cette année pour sa 22ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par le festival des jeux, l'UTT Arena a évolué
             de manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </TextBlock>
         </div>
         <div className={styles.aboutUng}>
           <TextBlock title="UTT Net Group" titleLevel={2} images={[ungImage1.src, ungImage2.src]} left>
-            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            L'UTT Arena (UA) est le plus gros évènement de l'association{' '}
+            <a href="https://ung.utt.fr" target="_blank" className={styles.darkBackground}>
+              UTT Net Group
+            </a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
           </TextBlock>

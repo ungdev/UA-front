@@ -5,10 +5,9 @@ import imageRight from '@/../public/images/event/right.webp';
 import Partners from '@/components/Partners';
 import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
-import BoxContainer from '@/components/landing/BoxContainer';
 
 export const metadata: Metadata = {
-  title: 'Évènement - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
+  title: 'Évènement - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
 };
 
 export default function Page() {
@@ -28,14 +27,14 @@ export default function Page() {
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
-            L'UTT Arena revient cette année pour sa 21ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            L'UTT Arena revient cette année pour sa 22ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par l'espace Argence, l'UTT Arena a évolué de
             manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
         </div>
         <div className={`${styles.textAndImage} ${styles.imageRight}`}>
           <div className={styles.text}>
-            À présent l'UTT Arena c'est 524 joueurs, 8 tournois, des prix à gagner et des tournois commentés en direct
+            À présent l'UTT Arena c'est 416 joueurs, 6 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
@@ -46,6 +45,8 @@ export default function Page() {
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="program">
           Programme
         </Title>
+        <div className={styles.avenir}>A venir</div>
+        {/*
         <div className={styles.program}>
           <BoxContainer
             title="Jour 1 : Vendredi"
@@ -112,6 +113,7 @@ export default function Page() {
             </table>
           </BoxContainer>
         </div>
+        */}
         <Title level={2} type={2} className={`${styles.secondaryTitle} ${styles.elementWithRef}`} id="location">
           Lieu
         </Title>
@@ -183,7 +185,7 @@ export default function Page() {
               type: 'Joueur',
               price: '28 €',
               description:
-                'Pour les joueurs SSBU et Pokémon : 24€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
+                'Pour les joueurs SSBU : 15€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
               type: 'Coach / Manager',
