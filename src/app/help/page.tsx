@@ -273,7 +273,7 @@ const Help = () => {
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '')}-${index}`
                 }>
-                <p>{question.answer}</p>
+                <div className={styles.answer}>{question.answer}</div>
               </Collapse>
             ))}
           </div>
