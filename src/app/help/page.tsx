@@ -241,6 +241,11 @@ const Help = () => {
       setEmail('');
       setMessage('');
       setSubject('');
+
+      if (user) {
+        setName(user.firstname + ' ' + user.lastname);
+        setEmail(user.email);
+      }
     }
   };
 
