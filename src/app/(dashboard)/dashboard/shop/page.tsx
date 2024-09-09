@@ -15,12 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-
-// Don't worry, that's a public key
-const stripe = loadStripe(
-  'pk_test_51PtRFGB2cqLsT861KoqLpvY3fHClqff3WGC5sts79i7Z1wFpTF8HNmHba5Uu9aI07ZeAAalKg0aa2lcakCb2n5VL006hemNjEa',
-);
+import { stripe } from '@/utils/stripe';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
