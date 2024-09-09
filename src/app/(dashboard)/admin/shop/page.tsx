@@ -6,6 +6,8 @@ import { AdminItem } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminItems, reorderItems } from '@/modules/admin';
+import Modal from '@/components/UI/Modal';
+import { API } from '@/utils/api';
 
 const Shop = () => {
   const shopItems = useAppSelector((state) => state.admin.items);
@@ -16,6 +18,12 @@ const Shop = () => {
   const [items, setItems] = useState<JSX.Element[]>([]);
   const [didReorder, setDidReorder] = useState(false);
   const [reorderEnabled, setReorderEnabled] = useState(false);
+  const [synchronizePopup, setSynchronizePopup] = useState(false);
+
+  const synchronizeWithStripe = async () => {
+    await API.patch('admin/items/stripe-sync');
+    setSynchronizePopup(false);
+  };
 
   useEffect(() => {
     if (!shopItems) dispatch(fetchAdminItems());
@@ -45,6 +53,9 @@ const Shop = () => {
         <Title level={2} gutterBottom={false}>
           Boutique
         </Title>
+        <Button primary outline onClick={() => setSynchronizePopup(true)}>
+          Synchroniser avec Stripe
+        </Button>
         <Button primary outline onClick={() => setReorderEnabled((prev) => !prev)}>
           {reorderEnabled ? 'Terminer' : 'Réorganiser'}
         </Button>
@@ -91,6 +102,12 @@ const Shop = () => {
             setSelectedItem(null);
           }}
         />
+      )}
+
+      {synchronizePopup && (
+        <Modal visible={true} onCancel={() => setSynchronizePopup(false)} onOk={synchronizeWithStripe}>
+          Ne faites pas de synchronisation si cela n'est pas nécessaire. Voulez-vous vraiment continuer ?
+        </Modal>
       )}
     </div>
   );
