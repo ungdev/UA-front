@@ -16,6 +16,7 @@ import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } fr
 import { IconName } from '@/components/UI/Icon';
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
 import { stripe } from '@/utils/stripe';
+import { setRedirect } from '@/modules/redirect';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -295,6 +296,7 @@ const Shop = () => {
     setHasRequestedPayment(true);
     deleteCart();
     setStripeToken(await cartPay(cart));
+    dispatch(setRedirect(`/dashboard/stripe?stripeToken=${stripeToken}`));
   };
 
   // Hide the places section if user can't buy any places
