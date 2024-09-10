@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Aide - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
+  title: 'Aide - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
 };
 
 export default function Layout({ children }: { children: ReactNode }) {
