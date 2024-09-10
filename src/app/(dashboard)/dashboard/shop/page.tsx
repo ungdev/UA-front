@@ -297,7 +297,7 @@ const Shop = () => {
     deleteCart();
     const token = await cartPay(cart);
     setStripeToken(token);
-    dispatch(setRedirect(`/dashboard/stripe?stripeToken=${token}`));
+    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}`));
   };
 
   // Hide the places section if user can't buy any places
@@ -407,7 +407,7 @@ const Shop = () => {
                 primary
                 veryLong
                 className={styles.shopButton}
-                onClick={onPay || dispatch(setRedirect(`/dashboard/stripe?stripeToken=${stripeToken}`))}
+                onClick={onPay || dispatch(setRedirect(`/dashboard/payment?stripeToken=${stripeToken}`))}
                 disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
                 <Icon name={IconName.ShoppingCart} />
                 Payer
