@@ -14,7 +14,7 @@ import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
-import { getItemLogoLink } from '@/utils/uploadLink';
+import { getItemImageLink } from '@/utils/uploadLink';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -284,7 +284,7 @@ const Shop = () => {
   // Callback of SupplementList. It is called when the user wants to preview an item
   // newItemPreview is the new value of itemPreview.
   const onItemPreview = (id: string) => {
-    setItemPreview({ id: id, visible: true });
+    setItemPreview({ id, visible: true });
   };
 
   // Called when the user clicks on the pay button
@@ -429,7 +429,7 @@ const Shop = () => {
         {itemPreview && (
           <img
             alt="Preview image"
-            src={getItemLogoLink(itemPreview.id)}
+            src={getItemImageLink(itemPreview.id)}
             className={styles.itemPreviewImage}
             loading="lazy"
           />

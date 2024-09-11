@@ -9,7 +9,7 @@ import {
   getTournamentRulesName,
   getTournamentBackgroundName,
   getPartnerLogoLink,
-  getItemLogoName,
+  getItemImageName,
   ITEM_FOLDER,
 } from '@/utils/uploadLink';
 import { deleteFile, uploadFile } from '@/utils/upload';
@@ -276,7 +276,7 @@ export const fetchAdminItems = (): AppThunk => async (dispatch) => {
 };
 
 export const updateItem =
-  (item: AdminItem, logo: File | null, callback: () => void): AppThunk =>
+  (item: AdminItem, image: File | null, callback: () => void): AppThunk =>
   async (dispatch) => {
     try {
       const result = await API.patch(`admin/items/${item.id}`, {
@@ -290,11 +290,11 @@ export const updateItem =
         availableFrom: item.availableFrom,
         availableUntil: item.availableUntil,
         display: item.display.toString(),
-        image: logo ? true : false,
+        image: image ? true : false,
       });
 
-      if (result && logo) {
-        await uploadFile(logo, getItemLogoName(result.id), ITEM_FOLDER);
+      if (result && image) {
+        await uploadFile(image, getItemImageName(result.id), ITEM_FOLDER);
       }
 
       callback();

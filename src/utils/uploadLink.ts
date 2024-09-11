@@ -43,10 +43,10 @@ export const getPartnerLogoLink = (partnerId: string) => {
 };
 
 // Items
-export const getItemLogoName = (itemId: string) => {
+export const getItemImageName = (itemId: string) => {
   return `${itemId}-logo`;
 };
 
-export const getItemLogoLink = (itemId: string) => {
-  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${ITEM_FOLDER}/${getItemLogoName(itemId)}.webp`;
+export const getItemImageLink = (itemId: string) => {
+  return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${ITEM_FOLDER}/${getItemImageName(itemId)}.webp`;
 };

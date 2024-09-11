@@ -3,7 +3,7 @@ import { Modal, Button, Input, Textarea, Checkbox, Select, FileInput } from '@/c
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminItem } from '@/types';
 import { updateItem } from '@/modules/admin';
-import { getItemLogoLink } from '@/utils/uploadLink';
+import { getItemImageLink } from '@/utils/uploadLink';
 
 /** The partner modal */
 const ItemModal = ({
@@ -24,7 +24,7 @@ const ItemModal = ({
   const [endDate, setEndDate] = useState(item?.availableUntil || null);
   const [quantity, setQuantity] = useState(item?.stock || null);
   const [infos, setInfos] = useState(item?.infos || null);
-  const [logo, setLogo] = useState<File | null>(null);
+  const [image, setImage] = useState<File | null>(null);
   const [display, setDisplay] = useState(item?.display || false);
 
   const [attribute, setAttribute] = useState(item?.attribute || null);
@@ -73,7 +73,7 @@ const ItemModal = ({
               } as AdminItem;
 
               dispatch(
-                updateItem(body, logo, () => {
+                updateItem(body, image, () => {
                   onClose!();
                 }),
               );
@@ -123,7 +123,7 @@ const ItemModal = ({
           onChange={(value) => setQuantity(value as unknown as number)}
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
-        <FileInput label="Logo" value={item ? getItemLogoLink(item.id) : ''} onChange={setLogo} type={['png']} />
+        <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setImage} type={['png']} />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
