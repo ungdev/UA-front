@@ -14,8 +14,6 @@ import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
-import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js';
-import { stripe } from '@/utils/stripe';
 import { setRedirect } from '@/modules/redirect';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
@@ -416,13 +414,6 @@ const Shop = () => {
           </div>
         </div>
       </div>
-      {stripeToken && (
-        <div>
-          <EmbeddedCheckoutProvider stripe={stripe} options={{ clientSecret: stripeToken }}>
-            <EmbeddedCheckout />
-          </EmbeddedCheckoutProvider>
-        </div>
-      )}
       {addPlaceVisible && (
         <AddPlaceModal
           userId={user.id}

@@ -4,11 +4,12 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 import variables from '@/variables.module.scss';
+import { useSearchParams } from 'next/navigation';
 
 const PaymentLayout = ({ children }: { children: React.ReactNode }) => {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const stripeToken = urlParams.get('stripeToken') || urlParams.get('payment_intent_client_secret');
+  const search = useSearchParams();
+  const stripeToken = search.get('stripeToken');
+
   const appearance = {
     theme: 'stripe',
     variables: {

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 import { useStripe } from '@stripe/react-stripe-js';
 import { PaymentIntentResult } from '@stripe/stripe-js';
@@ -9,17 +9,12 @@ import styles from '../style.module.scss';
 
 const Payment = () => {
   const router = useRouter();
-
+  const search = useSearchParams();
+  const clientSecret = search.get('payment_intent_client_secret');
   const stripe = useStripe();
 
   useEffect(() => {
-    if (!stripe) {
-      return;
-    }
-
-    const clientSecret = new URLSearchParams(window.location.search).get('payment_intent_client_secret');
-
-    if (!clientSecret) {
+    if (!stripe || !clientSecret) {
       return;
     }
 
@@ -40,7 +35,7 @@ const Payment = () => {
 
       router.push('/dashboard');
     });
-  }, [stripe]);
+  }, [stripe, clientSecret]);
 
   return (
     <div className={styles.callbackLoader}>
