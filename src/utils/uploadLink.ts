@@ -47,6 +47,6 @@ export const getItemLogoName = (itemId: string) => {
   return `${itemId}-logo`;
 };
 
-export const getItemLogoLink = (itemId: string) =>{
+export const getItemLogoLink = (itemId: string) => {
   return `${process.env.NEXT_PUBLIC_UPLOADS_URL}/${ITEM_FOLDER}/${getItemLogoName(itemId)}.webp`;
 };
