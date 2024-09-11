@@ -148,7 +148,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1048px) {
   .eventPage {
     .textAndImage {
       flex-direction: column;
@@ -191,6 +191,10 @@
         order: -1;
         line-height: 100%;
         width: 100%;
+      }
+
+      .text {
+        text-align: center;
       }
     }
 

@@ -122,7 +122,7 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>24 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
+            <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
             <li>28 € pour les joueurs des autres tournois</li>
             <li>15 € en tant que coach, manager</li>
             <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
@@ -143,7 +143,7 @@ const faq: Faq = {
     {
       question: 'Puis-je payer en espèces ?',
       answer:
-        'Il sera possible de payer en espèces sur place, mais à tes risques et périls, car il y a de fortes chances que toutes les places soient déjà parties.',
+        "Payer en espèce sur place n'est possible que pour les places spectateurs. Si vous êtes un joueur, vous devez impérativement payer en ligne via la billetterie.",
     },
     {
       question: 'Puis-je payer par PayPal ?',
@@ -241,6 +241,11 @@ const Help = () => {
       setEmail('');
       setMessage('');
       setSubject('');
+
+      if (user) {
+        setName(user.firstname + ' ' + user.lastname);
+        setEmail(user.email);
+      }
     }
   };
 
@@ -273,7 +278,7 @@ const Help = () => {
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '')}-${index}`
                 }>
-                <p>{question.answer}</p>
+                <div className={styles.answer}>{question.answer}</div>
               </Collapse>
             ))}
           </div>

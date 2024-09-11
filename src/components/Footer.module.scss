@@ -6,7 +6,7 @@
   overflow: hidden;
 
   img {
-    width: 230px;
+    width: 225px;
   }
 
   h3 {
@@ -183,6 +183,8 @@
 
 @media screen and (max-width: 341px) {
   .footer {
+    text-align: center;
+
     img {
       height: unset;
     }
