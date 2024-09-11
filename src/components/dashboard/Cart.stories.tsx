@@ -34,7 +34,7 @@ export const Default: Story = {
         id: '1',
         name: 'Item 1',
         price: 100,
-        image: 'https://via.placeholder.com/150',
+        image: true,
         infos: 'test',
         left: 10,
       },
