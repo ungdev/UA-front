@@ -43,7 +43,7 @@ const SupplementList = ({
   /** The function to call when the supplement cart changes */
   onSupplementCartChanges: (newSupplementCart: typeof supplementCart) => void;
   /** The function to call when the user wants to preview an item */
-  onItemPreview: (image: string) => void;
+  onItemPreview: (id: string) => void;
   /** The item type */
   itemType: string;
   /** The shop section name */
@@ -208,7 +208,7 @@ const SupplementList = ({
               <Button
                 className={styles.itemPreviewButton}
                 onLightBackground
-                onClick={() => onItemPreview(supplement.image!)}>
+                onClick={() => onItemPreview(supplement.id!)}>
                 Voir le design
               </Button>
             )}

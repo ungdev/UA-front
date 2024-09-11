@@ -14,6 +14,7 @@ import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
+import { getItemLogoLink } from '@/utils/uploadLink';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -42,8 +43,8 @@ const Shop = () => {
   // The item that is beeing previewed. This is a string containing the relative path to the image, starting from public/
   // If itemPreview is null, then there is nothing to preview, and thus the modal for the preview is not displayed
   const [itemPreview, setItemPreview] = useState<{
-    image: string;
     visible: boolean;
+    id: string;
   } | null>(null);
   // The members of the team who didn't buy a ticket
   const [teamMembersWithoutTicket, setTeamMembersWithoutTicket] = useState<User[]>([]);
@@ -282,8 +283,8 @@ const Shop = () => {
 
   // Callback of SupplementList. It is called when the user wants to preview an item
   // newItemPreview is the new value of itemPreview.
-  const onItemPreview = (newItemPreview: string) => {
-    setItemPreview({ image: newItemPreview, visible: true });
+  const onItemPreview = (id: string) => {
+    setItemPreview({ id: id, visible: true });
   };
 
   // Called when the user clicks on the pay button
@@ -428,7 +429,7 @@ const Shop = () => {
         {itemPreview && (
           <img
             alt="Preview image"
-            src={`/images/${itemPreview.image}`}
+            src={getItemLogoLink(itemPreview.id)}
             className={styles.itemPreviewImage}
             loading="lazy"
           />
