@@ -1,7 +1,7 @@
 'use client';
 
 import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
+import { Appearance, loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 import variables from '@/variables.module.scss';
 import { useSearchParams } from 'next/navigation';
@@ -17,7 +17,7 @@ const PaymentLayout = ({ children }: { children: React.ReactNode }) => {
       colorBackground: variables.primaryBackground,
       colorText: variables.lightColor,
     },
-  };
+  } satisfies Appearance;
   const options = {
     clientSecret: stripeToken,
     appearance,

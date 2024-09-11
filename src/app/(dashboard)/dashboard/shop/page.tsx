@@ -60,7 +60,6 @@ const Shop = () => {
       }
     | undefined
   >(undefined);
-  const [stripeToken, setStripeToken] = useState<string | null>(null);
 
   // Fetch items, team and checks if user already have an attendant
   useEffect(() => {
@@ -294,7 +293,6 @@ const Shop = () => {
     setHasRequestedPayment(true);
     deleteCart();
     const token = await cartPay(cart);
-    setStripeToken(token);
     dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}`));
   };
 
@@ -405,7 +403,7 @@ const Shop = () => {
                 primary
                 veryLong
                 className={styles.shopButton}
-                onClick={onPay || dispatch(setRedirect(`/dashboard/payment?stripeToken=${stripeToken}`))}
+                onClick={onPay}
                 disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
                 <Icon name={IconName.ShoppingCart} />
                 Payer

@@ -28,7 +28,9 @@ const Payment = () => {
       } else if (paymentIntent.status === 'requires_payment_method') {
         toast.error('Le paiement a échoué. Veuillez réessayer.');
       } else if (paymentIntent.status === 'processing') {
-        toast.error('Le paiement est en cours de traitement.');
+        toast.error(
+          'Le paiement est en cours de traitement. Vous recevrez un email de confirmation une fois le paiement effectué.',
+        );
       } else {
         toast.error("Une erreur inattendue s'est produite lors du paiement.");
       }
