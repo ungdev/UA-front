@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 
 const PaymentLayout = ({ children }: { children: React.ReactNode }) => {
   const search = useSearchParams();
-  const stripeToken = search.get('stripeToken');
+  const stripeToken = search.get('stripeToken') ?? search.get('payment_intent_client_secret');
 
   const appearance = {
     theme: 'stripe',
