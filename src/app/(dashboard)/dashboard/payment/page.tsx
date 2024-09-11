@@ -31,7 +31,7 @@ const Payment = () => {
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, the customer will be redirected to
-    // your `/payment/callback`.
+    // `/payment/callback`.
     if (error.type === 'card_error' || error.type === 'validation_error') {
       setMessage(error.message!.toString());
     } else {
