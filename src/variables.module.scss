@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+/** Export colors for TS **/
+:export {
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    accentColor: $accent-color;
+    filterColor: $filter-color;
+    lightColor: $light-color;
+    darkColor: $dark-color;
+    lightPinkButtonColor: $light-pink-button-color;
+    primaryBackground: $primary-background;
+    secondaryBackground: $secondary-background;
+}

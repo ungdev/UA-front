@@ -14,6 +14,7 @@ import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
+import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
@@ -289,10 +290,11 @@ const Shop = () => {
 
   // Called when the user clicks on the pay button
   // Sets hasRequestedPayment to true to disable the pay button, and requests the payment to the API
-  const onPay = () => {
+  const onPay = async () => {
     setHasRequestedPayment(true);
     deleteCart();
-    dispatch(cartPay(cart));
+    const token = await cartPay(cart);
+    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}`));
   };
 
   // Hide the places section if user can't buy any places
