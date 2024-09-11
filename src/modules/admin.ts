@@ -9,6 +9,8 @@ import {
   getTournamentRulesName,
   getTournamentBackgroundName,
   getPartnerLogoLink,
+  getItemLogoName,
+  ITEM_FOLDER,
 } from '@/utils/uploadLink';
 import { deleteFile, uploadFile } from '@/utils/upload';
 import * as normalPartners from '@/modules/partners';
@@ -288,7 +290,12 @@ export const updateItem =
         availableFrom: item.availableFrom,
         availableUntil: item.availableUntil,
         display: item.display.toString(),
+        image: logo ? true : false,
       });
+
+      if (result && logo) {
+        await uploadFile(logo, getItemLogoName(result.id), ITEM_FOLDER);
+      }
 
       callback();
       toast.success("L'item a bien été mis à jour");

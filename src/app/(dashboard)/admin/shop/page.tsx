@@ -6,6 +6,7 @@ import { AdminItem } from '@/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminItems, reorderItems } from '@/modules/admin';
+import { getItemLogoLink } from '@/utils/uploadLink';
 
 const Shop = () => {
   const shopItems = useAppSelector((state) => state.admin.items);
@@ -27,7 +28,7 @@ const Shop = () => {
       shopItems?.map((item, index) => (
         <Square
           key={index}
-          imgSrc={item.image ? '/images/' + item.image : undefined}
+          imgSrc={item.image ? getItemLogoLink(item.id) : undefined}
           alt={item.name}
           onClick={(e) => {
             if ((e!.target as ChildNode).parentElement?.parentElement?.classList.contains('dragging')) return;

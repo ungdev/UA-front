@@ -198,7 +198,7 @@ export interface Item {
   attributes?: string[] | null;
   price: number;
   infos: string | null;
-  image: string | null;
+  image: boolean | null;
   left: number | null;
   availableFrom?: Date;
   availableUntil?: Date;
