@@ -6,4 +6,4 @@ export const apiUrl = () => process.env.NEXT_PUBLIC_API_URL || '';
 export const uploadsUrl = () => process.env.NEXT_PUBLIC_UPLOADS_URL || '';
 // export const googleAnalyticsId = () => process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || '';
 export const googleVerification = () => process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '';
-export const stripePublicKey = () => process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || '';
+export const stripePublicKey = () => `${process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}` || '';
