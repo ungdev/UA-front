@@ -49,7 +49,7 @@ const ItemModal = ({
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  function deleteImage(): boolean {
+  function deleteLogo(): boolean {
     deleteImg = true;
     return deleteImg;
   }
@@ -137,7 +137,7 @@ const ItemModal = ({
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
         <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
-        <Button primary onClick={(deleteImg = deleteImage)}></Button>
+        <Button primary onClick={(deleteImg = deleteLogo())}></Button>
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
@@ -148,3 +148,4 @@ export default ItemModal;
 
 // ToDo : add variable delete in updateItem to deleteFile
 //        modify the button to delete the logo
+//        check how work different button because onClick => void
