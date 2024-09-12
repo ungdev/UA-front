@@ -30,6 +30,8 @@ const ItemModal = ({
   const [attribute, setAttribute] = useState(item?.attribute || null);
   const [category, setCategory] = useState(item?.category || null);
 
+  let deleteImg: boolean;
+
   const categories = [
     ['rent', 'Location'],
     ['supplement', 'Supplément'],
@@ -47,6 +49,11 @@ const ItemModal = ({
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
+  function deleteImage(): boolean {
+    deleteImg = true;
+    return deleteImg;
+  }
+
   return (
     <Modal
       visible={true}
@@ -58,7 +65,7 @@ const ItemModal = ({
             primary
             onClick={() => {
               let image;
-              if (item?.image || logo) {
+              if ((item?.image || logo) && !deleteImg) {
                 image = true;
               }
 
@@ -130,6 +137,7 @@ const ItemModal = ({
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
         <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
+        <Button primary onClick={(deleteImg = deleteImage)}></Button>
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
@@ -137,3 +145,6 @@ const ItemModal = ({
 };
 
 export default ItemModal;
+
+// ToDo : add variable delete in updateItem to deleteFile
+//        modify the button to delete the logo
