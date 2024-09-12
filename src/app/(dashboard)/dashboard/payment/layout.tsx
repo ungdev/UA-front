@@ -1,11 +1,13 @@
 'use client';
 
 import { Elements } from '@stripe/react-stripe-js';
-import { Appearance, loadStripe, StripeElementsOptions } from '@stripe/stripe-js';
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
+import { Appearance, StripeElementsOptions } from '@stripe/stripe-js';
+
 import variables from '@/variables.module.scss';
 import { useSearchParams } from 'next/navigation';
+import { stripe } from '@/utils/stripe';
 
+const stripePromise = stripe;
 const PaymentLayout = ({ children }: { children: React.ReactNode }) => {
   const search = useSearchParams();
   const stripeToken = search.get('stripeToken') ?? search.get('payment_intent_client_secret');
