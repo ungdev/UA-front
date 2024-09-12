@@ -64,11 +64,11 @@ const ItemModal = ({
                 attribute: attribute ? attribute : null,
                 price: price ?? 0,
                 reducedPrice: reducedPrice ?? 0,
-                availableFrom: startDate ?? '',
-                availableUntil: endDate ?? '',
+                availableFrom: startDate ? startDate : null,
+                availableUntil: endDate ? endDate : null,
                 // we update the stock through a difference between the current stock and the quantity in order to avoid conflicts if an order is made at the same time
                 left: quantity! - item!.stock! ?? item!.stock!,
-                infos: infos ?? '',
+                infos: infos ? infos : null,
                 display: display ?? false,
               } as AdminItem;
 

@@ -290,7 +290,7 @@ export const updateItem =
         availableFrom: item.availableFrom,
         availableUntil: item.availableUntil,
         display: item.display.toString(),
-        image: image ? true : false,
+        image: !!image,
       });
 
       if (result && image) {

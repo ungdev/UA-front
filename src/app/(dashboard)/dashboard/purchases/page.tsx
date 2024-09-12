@@ -95,7 +95,7 @@ const Purchases = () => {
       {carts.length ? (
         displayCarts
       ) : (
-        <Title level={4} className={styles.primaryTitle}>
+        <Title type={3} level={3} className={styles.primaryTitle} align="center">
           Aucun achat
         </Title>
       )}
