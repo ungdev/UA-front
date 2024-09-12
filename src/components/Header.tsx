@@ -127,7 +127,7 @@ export default function Header({
       <header ref={header as MutableRefObject<HTMLDivElement>} id="header" className={styles.header}>
         <div className={styles.content}>
           <Link href="/">
-            <Image src={logo.src} width={72} height={61.5} alt="Logo UA23" />
+            <Image src={logo.src} width={72} height={61.5} alt="Logo UA24" />
             {/* For SEO */}
             <Title level={1} className={styles.hidden}>
               UTT Arena 2024

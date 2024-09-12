@@ -59,7 +59,6 @@ const Legal = () => (
         directive européenne 2009/136/CE, ces cookies sont indispensables à la fourniture du service sollicité. En
         naviguant sur notre site web, vous acceptez l’utilisation de ces cookies.
       </p>
-      {/*
       <Title align="center" id="CGV" className={styles.cgv}>
         Conditions générales de vente
       </Title>
@@ -80,31 +79,34 @@ const Legal = () => (
         ung@utt.fr
       </p>
       <p>
-        Concernant la responsabilité du matériel, chaque participant à notre compétition d'e-sport l'UTT Arena est tenu
-        d'amener son propre matériel, y compris tout équipement informatique, clavier, souris, casque, moniteur, et
+        Concernant la responsabilité du matériel, chaque participant à notre compétition d'e-sport l'UTT Arena 2024 est
+        tenu d'amener son propre matériel, y compris tout équipement informatique, clavier, souris, casque, moniteur, et
         autres accessoires nécessaires à sa participation. En apportant leur propre matériel, les joueurs reconnaissent
         qu'ils en sont entièrement responsables, y compris la qualité, la performance, et l'état de leur équipement.
-        L’UTT Arena ne peut être tenu responsable des problèmes techniques, défaillances matérielles, ou toute autre
-        question liée à la qualité de l'équipement des participants.
       </p>
       <p>
-        Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena ainsi que du
+        L’UTT Arena 2024 ne peut être tenu responsable des problèmes techniques, défaillances matérielles, ou toute
+        autre question liée à la qualité de l'équipement des participants.
+      </p>
+      <p>
+        Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena 2024 ainsi que du
         matériel en prévente.
         <br />
         Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la
-        passation de sa commande. La validation de la commande vaut donc acceptation des conditions générales de vente.
+        passation de sa commande. La validation de la commande vaut donc acceptation les conditions générales de vente.
       </p>
       <p>
         Le paiement est assuré par le prestataire suivant :<br />
-        BDE UTT, association loi 1901
+        Stripe Payments Europe, Ltd. (SPEL)
         <br />
-        N° RNA : W103000735
+        Directeur de la publication : StephenO’Callaghan
         <br />
-        12 rue Marie Curie, 10000 Troyes
+        Téléphone (numéro vert) : +33 805 11 19 67 (numéro vert)
         <br />
-        03 25 71 76 74
+        Adresse e-mail : heretohelp@stripe.com
         <br />
-        bde@utt.fr
+        Adresse (hors services juridiques) :<br />
+        10 Boulevard Haussmann, 75009 Paris, France
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 1 - Principe
@@ -112,20 +114,20 @@ const Legal = () => (
       <p>
         Les présentes conditions générales expriment l'intégralité des obligations des parties. En ce sens, l'acheteur
         est réputé les accepter sans réserve. Les présentes conditions générales sont accessibles sur le site de l'UTT
-        Arena et prévaudront, le cas échéant, sur toute autre version ou tout autre document contradictoire. Le vendeur
-        et l'acheteur conviennent que les présentes conditions générales régissent exclusivement leur relation. Le
-        vendeur se réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès
+        Arena 2024 et prévaudront, le cas échéant, sur toute autre version ou tout autre document contradictoire. Le
+        vendeur et l'acheteur conviennent que les présentes conditions générales régissent exclusivement leur relation.
+        Le vendeur se réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès
         leur mise en ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les
         usages en vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes
-        conditions générales de vente sont valables jusqu'au 31 décembre 2023 inclus.
+        conditions générales de vente sont valables jusqu'au 31 janvier 2025 inclus.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 2 - Contenu
       </Title>
       Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre
-      de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena. Les
-      présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena. Ces achats
-      concernent les produits suivants : place pour l’évènement UTT Arena 2023 et matériel en prévente.
+      de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena 2024.
+      Les présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena 2024. Ces
+      achats concernent les produits suivants : place pour l’évènement UTT Arena 2024 et matériel en prévente.
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 3 - Informations précontractuelles
       </Title>
@@ -137,7 +139,7 @@ const Legal = () => (
       téléphonique et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du
       contenu numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions
       contractuelles. Les produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de
-      place pour l’évènement UTT Arena 2023, l’UNG se réserve le droit de demander un justificatif pour les coachs et
+      place pour l’évènement UTT Arena 2024, l’UNG se réserve le droit de demander un justificatif pour les coachs et
       managers, et si le justificatif n’est pas suffisant, peut annuler l’achat de la place et procéder à son
       remboursement intégral sans dédommagement.
       <Title level={2} type={2} className={styles.articleTitle}>
@@ -152,7 +154,7 @@ const Legal = () => (
       montant. Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans
       certains cas, notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le
       vendeur se réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation
-      de la commande ne signifie pas que le client pourra accéder à l’évènement UTT Arena 2023. Seul le statut “Inscrit”
+      de la commande ne signifie pas que le client pourra accéder à l’évènement UTT Arena 2024. Seul le statut “Inscrit”
       sur la page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de
       place pour l’évènement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque
       de disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
@@ -190,8 +192,8 @@ const Legal = () => (
       </Title>
       <p>
         Les produits sont décrits et présentés avec la plus grande exactitude possible. Toutefois, si des erreurs ou des
-        omissions ont pu se produire quant à cette présentation, la responsabilité du vendeur ne pourrait être engagée.
-        Les photographies des produits ne sont pas contractuelles.
+        commissions ont pu se produire quant à cette présentation, la responsabilité du vendeur ne pourrait être
+        engagée. Les photographies des produits ne sont pas contractuelles.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 9 - Tarifs
@@ -225,16 +227,16 @@ const Legal = () => (
         Livraison
       </Title>
       <p>
-        Les billets électroniques ou un lien permettant de les télécharger sont envoyés sur la messagerie électronique
+        Les billets électroniques ou un lien permettant de les télécharger seront envoyés sur la messagerie électronique
         de l’acheteur après chaque commande.
       </p>
       <Title level={3} type={3} className={styles.subArticleTitle}>
         Support
       </Title>
       <p>
-        Afin d’être accepté, le billet peut être imprimé en noir et blanc ou couleur, sur du Papier A4 blanc et vierge
-        ou présenté en format numérique. Ce dernier doit présenter un état total d’intégrité et de lisibilité correct :
-        les billets endommagés ou illisibles seront considérés comme non valables. L’organisateur décline toute
+        Afin d’être accepté, le billet peut être imprimé en noir et blanc ou couleur sur du Papier A4 blanc et vierge ou
+        présenté en format numérique. Ce dernier doit présenter un état total d’intégrité et de lisibilité correct : les
+        billets endommagés ou illisibles seront considérés comme non valables. L’organisateur décline toute
         responsabilité concernant toute anomalie pouvant survenir au cours d’une commande, du téléchargement ou de
         l’impression d’un billet. Il ne sera remis aucun duplicata autre que le seul billet initial.
       </p>
@@ -242,7 +244,7 @@ const Legal = () => (
         Unicité
       </Title>
       <p>
-        Un billet ne peut être utilisé qu’une seule fois pour accéder à l’évènement. Ainsi en cas de perte, vol,
+        Un billet ne peut être utilisé qu’une seule fois pour accéder à l'évènement. Ainsi en cas de perte, vol,
         duplication, seule la première personne à présenter le billet sera admise à assister à la manifestation. Un
         détenteur de billet qui aurait déjà été utilisé ne pourra prétendre à aucun remboursement. Le billet est
         uniquement valable pour le lieu, la date et l'heure auquel il appartient. Le billet doit être conservé jusqu’à
@@ -252,7 +254,7 @@ const Legal = () => (
         Contrôle
       </Title>
       <p>
-        L’Organisateur est libre de contrôler la validité des billets lors de l’accès à l’évènement. Le participant doit
+        L’Organisateur est libre de contrôler la validité des billets lors de l’accès à l'évènement. Le participant doit
         veiller à la confidentialité de son billet. L’accès à l'évènement peut être refusé à un participant qui présente
         un billet déjà utilisé. L’Organisateur n’est pas tenu de vérifier l’authenticité du billet. Après la
         présentation du billet, un bracelet sera remis au participant. Ce bracelet sera valable pendant toute la durée
@@ -262,12 +264,12 @@ const Legal = () => (
         Justificatif
       </Title>
       <p>
-        Pour garantir la sécurité et le bon déroulement de l'événement, l’Organisateur est libre de contrôler l’identité
+        Pour garantir la sécurité et le bon déroulement de l'évènement, l’Organisateur est libre de contrôler l’identité
         des participants. Dans ce cas, le participant doit être en mesure de justifier de son identité à l’aide d'une
-        pièce d'identité en cours de validité est obligatoire en complément du billet d'entrée. Un participant mineur
-        doit présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une photocopie de
-        la pièce d’identité d’un de ses responsables légaux. Cette mesure vise à assurer l'identification des
-        participants et à renforcer la sûreté de l'événement pour l'ensemble des visiteurs.
+        pièce d'identité en cours de validité en complément du billet d'entrée nominatif. Un participant mineur doit
+        présenter une pièce d’identité, une autorisation du ou des représentants légaux ainsi qu’une photocopie de la
+        pièce d’identité d’un de ses responsables légaux. Cette mesure vise à assurer l'identification des participants
+        et à renforcer la sûreté de l'évènement pour l'ensemble des visiteurs.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 12 - Droit de rétractation
@@ -276,25 +278,25 @@ const Legal = () => (
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
         de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
         demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours
-        calendaires avant la date de l'évènement, soit le 22/11/2023 17:00 CET. Toute demande doit être formulée par
+        calendaires avant la date de l'évènement, soit le 22/11/2024 17:00 CET. Toute demande doit être formulée par
         courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour
         l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra
         sur la carte bancaire ayant servi au paiement. Tout remboursement fera l'objet d'une retenue de :
       </p>
       <ul>
         <li>
-          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2023 17:00 CET et le
-          08/11/2023 17:00 CET
+          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2024 17:00 CET et le
+          08/11/2024 17:00 CET
         </li>
         <li>
-          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2023 17:00 CET et le
-          15/11/2023 17:00 CET
+          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2024 17:00 CET et le
+          15/11/2024 17:00 CET
         </li>
         <li>
-          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2023 17:00 CET et le
-          22/11/2023 17:00 CET
+          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2024 17:00 CET et le
+          22/11/2024 17:00 CET
         </li>
-        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2023 17:00 CET.</li>
+        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2024 17:00 CET.</li>
       </ul>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 13 - Force majeure
@@ -321,23 +323,83 @@ const Legal = () => (
         partielle de ce contenu est strictement interdite et est susceptible de constituer un délit de contrefaçon.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
-        Article 15 - Données personnelles
+        Article 15 - Vidéosurveillance
+      </Title>
+      <p>
+        Pour des raisons de sécurité des personnes et des biens, le participant est informé et accepte que le lieu de
+        déroulement de l'évènement de l'UTT Arena 2024 est susceptible d’être équipé de caméras de vidéosurveillance.
+        Ces images sont susceptibles d’être utilisées pour les besoins résultant de poursuites judiciaires à l’encontre
+        de tout individu.
+        <br />
+        Pour connaître vos droits concernant les données collectées, la durée de conservation des images, ainsi que les
+        coordonnées de notre Délégué à la Protection des Données (DPO), veuillez vous référer à l'article 17 des
+        Conditions Générales de Vente.
+      </p>
+      <Title level={2} type={2} className={styles.articleTitle}>
+        Article 16 - Interdiction de sortie de matériel de nuit
+      </Title>
+      <p>
+        Pour des raisons de sécurité des personnes et des biens, le participant est informé et accepte que les sorties
+        de matériel de nuit soient interdites. Les horaires précis de l’interdiction seront communiqués par les
+        organisateurs de l’évènement aux participants d'une manière lisible et compréhensible avant et pendant
+        l’évènement.
+        <br />
+        Si le participant souhaite sortir du matériel, il devra justifier son identité, et se conformer à enregistrement
+        du matériel sorti par le participant. Les registres d’enregistrement sont susceptibles d’être utilisés pour les
+        besoins résultant de poursuites judiciaires à l’encontre de tout individu.
+        <br />
+        Pour connaître vos droits concernant les données collectées lors de cet enregistrement, la durée de conservation
+        des images, ainsi que les coordonnées de notre Délégué à la Protection des Données (DPO), veuillez vous référer
+        à l'article 17 des Conditions Générales de Vente.
+      </p>
+      <Title level={2} type={2} className={styles.articleTitle}>
+        Article 17 - Données personnelles
       </Title>
       <p>
         Chaque utilisateur du site web a un droit permanent d'accès et de rectification sur toutes les données le
         concernant, conformément aux textes européens et aux lois nationales en vigueur. Il vous suffit d'en faire la
         demande par courrier électronique (arena@utt.fr). Ce droit peut être exercé dans les conditions et selon les
-        modalités définies sur le site de l'UTT Arena. Les données nominatives fournies par l'acheteur sont nécessaires
-        au traitement de sa commande et à l'établissement de ses factures. Elles peuvent être communiquées aux
-        partenaires du vendeur chargés de l'exécution, du traitement, de la gestion et du paiement des commandes. Notre
-        système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’évènement. Nous conservons les
-        autorisations parentales pour une durée de 1 an suivant la fin de l’évènement.
+        modalités définies sur le site de l'UTT Arena 2024. Les données nominatives fournies par l'acheteur sont
+        nécessaires au traitement de sa commande et à l'établissement de ses factures. Elles peuvent être communiquées
+        aux partenaires du vendeur chargés de l'exécution, du traitement, de la gestion et du paiement des commandes.
+        Notre système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’évènement. Nous conservons les
+        autorisations parentales pour une durée de 1 an suivant la fin de l’évènement. Le registre d’enregistrement du
+        matériel sorti de nuit par chaque participant sera conservé pour une durée de 1 mois.
+        <br />
+        Les images de vidéosurveillance captées durant l'évènement UTT Arena 2024 seront conservées pour une durée de 1
+        mois suivant la fin de l'évènement. Ces données sont captées et conservées afin d'assurer la sécurité des
+        personnes et des biens durant l'évènement. Conformément à l’article L.253-5 du Code de la sécurité intérieure,
+        chaque participant intéressé dispose d’un droit d’accès aux images de vidéoprotection captées durant l'évènement
+        et peut l’exercer pendant le délai de conservation des images par courrier à destination de l'association
+        organisant l'évènement UTT Arena 2024, ou à la CNIL.
+        <br />
+        <br />
+        L'adresse de l'association organisant l'évènement UTT Arena 2024 :
+        <br />
+        UTT Net Group
+        <br />
+        12 rue Marie Curie, 10004 Troyes
+        <br />
+        L'adresse de la CNIL :
+        <br />
+        CNIL – 3 place Fontenoy – TSA 80715 – 75334 PARIS CEDEX 07.
+        <br />
+        <br />
+        En cas de question sur le traitement des données personnelles collectées dans le cadre de l'évènement UTT Arena
+        2024, nous vous prions de <br /> contacter :
+        <br />
+        Guillaume ETHEVE,
+        <br />
+        Président de l'association UTT Net Group organisant l'évènement UTT Arena 2024 et Délégué à la Protection des
+        Données
+        <br />
+        Téléphone : 03 25 71 85 50
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
-        Article 16 - Mentions Légales
+        Article 18 - Mentions Légales
       </Title>
       <p>
-        L’évènement UTT Arena 2023 est organisé par :<br />
+        L’évènement UTT Arena 2024 est organisé par :<br />
         <br />
         UTT Net Group, association loi 1901
         <br />
@@ -352,7 +414,6 @@ const Legal = () => (
         Email : ung@utt.fr
         <br />
       </p>
-      */}
     </div>
   </div>
 );
