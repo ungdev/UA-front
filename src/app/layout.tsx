@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   keywords: [
     'UTT',
     'UTT Arena',
-    'UTT Arena 2023',
+    'UTT Arena 2024',
     'esport',
     'e-sport',
     'gaming',

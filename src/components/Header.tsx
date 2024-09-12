@@ -130,7 +130,7 @@ export default function Header({
             <Image src={logo.src} width={72} height={61.5} alt="Logo UA23" />
             {/* For SEO */}
             <Title level={1} className={styles.hidden}>
-              UTT Arena 2023
+              UTT Arena 4
             </Title>
           </Link>
           <nav>
