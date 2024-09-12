@@ -12,7 +12,7 @@ import SupplementList from '@/components/dashboard/SupplementList';
 import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { AttendantInfo, CartItem, Item, Permission, User, UserAge, UserType } from '@/types';
+import { AttendantInfo, CartItem, Item, User, UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
@@ -299,9 +299,7 @@ const Shop = () => {
 
   // Hide the places section if user can't buy any places
   const placesSectionVisible =
-    (!isPlaceInCart && !user.permissions.includes(Permission.orga)) ||
-    (user.age === UserAge.child && !hasAttendant) ||
-    teamMembersWithoutTicket.length;
+    !isPlaceInCart || (user.age === UserAge.child && !hasAttendant) || teamMembersWithoutTicket.length;
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
