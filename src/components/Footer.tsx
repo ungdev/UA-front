@@ -40,7 +40,7 @@ export default function Footer() {
             <Button>FAQ</Button>
           </Link>
           <div className={styles.socials}>
-            <Link href={'https://discord.gg/WhxZwKU'} aria-label="Discord" rel="noopener" passHref={true}>
+            <Link href={'https://discord.gg/tkRrVZYXmT'} aria-label="Discord" rel="noopener" passHref={true}>
               <Icon name={IconName.Discord} fill={true} />
             </Link>
             <Link href={'https://www.twitch.tv/uttarena'} aria-label="Twitch" rel="noopener" passHref={true}>

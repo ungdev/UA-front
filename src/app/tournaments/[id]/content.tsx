@@ -137,12 +137,12 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
                           name: team.name,
                           // Commented for security reasons
                           //
-                          // players: team.players.map((player) => (
-                          //   <>
-                          //     {player.username}
-                          //     <br />
-                          //   </>
-                          // )),
+                          players: team.players.map((player) => (
+                            <>
+                              {player.username}
+                              <br />
+                            </>
+                          )),
                         }
                       : {
                           players: team.players.map((player) => (
