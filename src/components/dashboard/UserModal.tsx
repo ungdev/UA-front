@@ -133,22 +133,37 @@ const UserModal = ({
       ));
       const date = new Date(cart.paidAt as Date);
       let transactionState = '';
-      if (cart.transactionState === TransactionState.paid) transactionState = 'payé';
-      if (cart.transactionState === TransactionState.refunded) transactionState = 'remboursé';
-      if (cart.transactionState === TransactionState.canceled) transactionState = 'annulé';
-      if (cart.transactionState === TransactionState.refused) transactionState = 'refusé';
-      if (cart.transactionState === TransactionState.authorization) transactionState = "en cours d'autorisation";
-
+      switch (cart.transactionState) {
+        case TransactionState.paid:
+          transactionState = 'payé';
+          break;
+        case TransactionState.refunded:
+          transactionState = 'remboursé';
+          break;
+        case TransactionState.canceled:
+          transactionState = 'annulé';
+          break;
+        case TransactionState.processing:
+          transactionState = "en cours d'autorisation ";
+          break;
+        case TransactionState.pending:
+          transactionState = `en attente de paiement (créé à ${date.toLocaleString()})`;
+          break;
+        case TransactionState.expired:
+          transactionState = 'expiré';
+          break;
+        default:
+          transactionState = `Inconnu : ${cart.transactionState}`;
+      }
       return (
         <Card className={styles[`cart-${cart.transactionState}`]} key={cart.transactionId}>
           <>
             <p>
               <strong>Statut :</strong> {transactionState} (
-              {cart.transactionId
-                ? `#${cart.transactionId}`
-                : cart.transactionState !== TransactionState.pending
+              {cart.transactionId ??
+                (cart.transactionState !== TransactionState.pending
                   ? 'Paiement validé manuellement'
-                  : 'En attente de paiement'}
+                  : 'En attente de paiement')}
               )<br />
               {(cart.transactionState === TransactionState.paid ||
                 cart.transactionState === TransactionState.refunded) && (
