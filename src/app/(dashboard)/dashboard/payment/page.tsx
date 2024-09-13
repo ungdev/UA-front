@@ -109,7 +109,11 @@ const Payment = () => {
   }, [items, cart, teamMembers]);
 
   if (!items || !teamMembers || !tickets || !cart) {
-    return <Loader />;
+    return (
+      <div className={styles.loader}>
+        <Loader />
+      </div>
+    );
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

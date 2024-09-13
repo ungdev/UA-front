@@ -1,10 +1,12 @@
 @import '@/variables.scss';
 
-.callbackLoader {
+.loader {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
+
 .paymentContainer {
   .stripePaymentContainer {
     display: flex;
