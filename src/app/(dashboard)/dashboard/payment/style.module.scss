@@ -1,15 +1,57 @@
-.stripeForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    padding: 4rem;
+@import '@/variables.scss';
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-.callbackLoader {
+.paymentContainer {
+  .stripePaymentContainer {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 2rem;
+
+    .bill {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: sticky;
+      top: 90px;
+      background-color: $secondary-background;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      width: 40%;
+    }
+
+    .stripeForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      width: 60%;
+      padding: 4rem;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .paymentContainer {
+    .stripePaymentContainer {
+      flex-direction: column;
+
+      .stripeForm {
+        width: 100%;
+      }
+
+      .bill {
+        width: 100%;
+      }
+    }
+  }
 }
