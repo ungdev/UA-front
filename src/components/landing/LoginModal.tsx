@@ -50,7 +50,7 @@ function LoginModal({
   };
 
   const signup = async () => {
-    if (!(await registerUser(signupForm))) return;
+    if (!(await registerUser({ ...signupForm }))) return;
     setPanel('emailSent');
   };
 
