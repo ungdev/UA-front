@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Modal, Button, Input, Textarea, Checkbox, Select } from '@/components/UI';
+import { Modal, Button, Input, Textarea, Checkbox, Select, FileInput } from '@/components/UI';
 import { useAppDispatch } from '@/lib/hooks';
 import { AdminItem } from '@/types';
 import { updateItem } from '@/modules/admin';
+import { getItemImageLink } from '@/utils/uploadLink';
 
 /** The partner modal */
 const ItemModal = ({
@@ -23,6 +24,7 @@ const ItemModal = ({
   const [endDate, setEndDate] = useState(item?.availableUntil || null);
   const [quantity, setQuantity] = useState(item?.stock || null);
   const [infos, setInfos] = useState(item?.infos || null);
+  const [logo, setLogo] = useState<File | null>(null);
   const [display, setDisplay] = useState(item?.display || false);
 
   const [attribute, setAttribute] = useState(item?.attribute || null);
@@ -55,27 +57,29 @@ const ItemModal = ({
           <Button
             primary
             onClick={() => {
+              let image;
+              if (item?.image || logo) {
+                image = true;
+              }
+
               const body = {
                 id: id ?? '',
                 name: name ?? '',
                 category: category ?? '',
-                attribute: attribute ?? '',
+                attribute: attribute ? attribute : null,
                 price: price ?? 0,
                 reducedPrice: reducedPrice ?? 0,
-                availableFrom: startDate ?? '',
-                availableUntil: endDate ?? '',
+                availableFrom: startDate ? startDate : null,
+                availableUntil: endDate ? endDate : null,
+                image: image ?? false,
                 // we update the stock through a difference between the current stock and the quantity in order to avoid conflicts if an order is made at the same time
                 left: quantity! - item!.stock! ?? item!.stock!,
-                infos: infos ?? '',
-                display,
+                infos: infos ? infos : null,
+                display: display ?? false,
               } as AdminItem;
 
-              if (attribute === '') {
-                delete body.attribute;
-              }
-
               dispatch(
-                updateItem(body, () => {
+                updateItem(body, logo, () => {
                   onClose!();
                 }),
               );
@@ -125,6 +129,7 @@ const ItemModal = ({
           onChange={(value) => setQuantity(value as unknown as number)}
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
+        <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>

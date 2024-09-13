@@ -198,7 +198,7 @@ export interface Item {
   attributes?: string[] | null;
   price: number;
   infos: string | null;
-  image: string | null;
+  image: boolean | null;
   left: number | null;
   availableFrom?: Date;
   availableUntil?: Date;
@@ -288,9 +288,9 @@ export enum TransactionState {
   pending = 'pending',
   paid = 'paid',
   canceled = 'canceled',
-  refused = 'refused',
+  processing = 'processing',
   refunded = 'refunded',
-  authorization = 'authorization',
+  expired = 'expired',
 }
 
 export interface UserFilters extends Record<string, string | undefined> {

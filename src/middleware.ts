@@ -30,7 +30,7 @@ export function generateCsp() {
       { name: 'worker-src', values: ["'self'", 'blob:'] },
       { name: 'frame-ancestors', values: ["'none'"] },
       { name: 'form-action', values: ["'self'"] },
-      { name: 'frame-src', values: ["'self'", 'www.youtube.com', '*.google.com'] },
+      { name: 'frame-src', values: ["'self'", 'www.youtube.com', '*.google.com', '*.stripe.com'] },
     ];
   }
 

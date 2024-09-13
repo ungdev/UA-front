@@ -241,6 +241,11 @@ const Help = () => {
       setEmail('');
       setMessage('');
       setSubject('');
+
+      if (user) {
+        setName(user.firstname + ' ' + user.lastname);
+        setEmail(user.email);
+      }
     }
   };
 
@@ -273,7 +278,7 @@ const Help = () => {
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '')}-${index}`
                 }>
-                <p>{question.answer}</p>
+                <div className={styles.answer}>{question.answer}</div>
               </Collapse>
             ))}
           </div>

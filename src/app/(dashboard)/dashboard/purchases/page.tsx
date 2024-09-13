@@ -19,7 +19,7 @@ const Purchases = () => {
   const carts = useAppSelector((state) =>
     state.carts.allCarts.filter(
       (cart) =>
-        cart.transactionState === TransactionState.paid || cart.transactionState === TransactionState.authorization,
+        cart.transactionState === TransactionState.paid || cart.transactionState === TransactionState.processing,
     ),
   );
   const [items, setItems] = useState<Item[] | null>(null);
@@ -67,16 +67,16 @@ const Purchases = () => {
         return (
           <div
             className={`${styles.cardCart} ${
-              cart.transactionState === TransactionState.authorization ? styles.authorization : ''
+              cart.transactionState === TransactionState.processing ? styles.authorization : ''
             }`}
             key={cart.id}>
             <>
-              <Title level={2} align="center" className={styles.primaryTitle}>
+              <Title level={2} type={3} align="center" className={styles.primaryTitle}>
                 Achat #{cart.id}
               </Title>
               <p>
                 Date: {date.toLocaleDateString('fr-FR', { year: 'numeric', month: 'numeric', day: 'numeric' })}{' '}
-                {cart.transactionState === TransactionState.authorization ? '(Paiement en cours de traitement)' : ''}
+                {cart.transactionState === TransactionState.processing ? '(Paiement en cours de traitement)' : ''}
               </p>
               <Table columns={columns} dataSource={dataSource} className={styles.cart} />
               <p className={styles.cartTotal}>
@@ -95,7 +95,7 @@ const Purchases = () => {
       {carts.length ? (
         displayCarts
       ) : (
-        <Title level={4} className={styles.primaryTitle}>
+        <Title type={3} level={3} className={styles.primaryTitle} align="center">
           Aucun achat
         </Title>
       )}

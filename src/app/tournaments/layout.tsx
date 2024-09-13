@@ -13,7 +13,7 @@ import ScrollUp from '@/components/UI/ScrollUp';
 import LayoutTop from '@/app/tournaments/layout-top';
 
 export const metadata: Metadata = {
-  title: 'Tournois - UTT Arena 2023 - 1, 2 et 3 décembre 2023',
+  title: 'Tournois - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
 };
 
 const TournamentsLayout = ({ children }: { children: React.ReactNode }) => {

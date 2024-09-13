@@ -275,8 +275,11 @@ const Register = () => {
                 <>
                   En cochant cette case je certifie avoir lu et accepté{' '}
                   {userType !== UserType.spectator && 'le règlement du tournoi (disponible sur la page du tournoi), '}{' '}
-                  le <a href={`${uploadsUrl()}/rules/ua.pdf`}>règlement de l'UTT Arena</a> et autorise la prise de vue
-                  comme indiqué dans celui-ci
+                  le{' '}
+                  <a href={`${uploadsUrl()}/rules/ua.pdf`} target="_blank">
+                    règlement de l'UTT Arena
+                  </a>{' '}
+                  et autorise la prise de vue comme indiqué dans celui-ci
                 </>
               }
               value={acceptedRules}

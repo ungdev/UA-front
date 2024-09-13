@@ -21,7 +21,7 @@ const agenor = Agenor({
 });
 
 const kanit = Kanit({
-  weight: '400',
+  weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-kanit',
   fallback: ['sans-serif'],
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   keywords: [
     'UTT',
     'UTT Arena',
-    'UTT Arena 2023',
+    'UTT Arena 2024',
     'esport',
     'e-sport',
     'gaming',

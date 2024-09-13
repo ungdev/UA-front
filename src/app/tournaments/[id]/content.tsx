@@ -9,7 +9,7 @@ import TournamentSwitcherAnimation from '@/components/landing/TournamentSwitcher
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 // import Table from '@/components/UI/Table';
-import { getTournamentBackgroundLink } from '@/utils/uploadLink';
+import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.webp';
 import FillingBar from '@/components/UI/FillingBar';
@@ -56,11 +56,11 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
               {tournament.name}
             </Title>
           </div>
-          {/*{loginAllowed && (
+          {loginAllowed && (
             <Link href={getTournamentRulesLink(tournament.id)} target="_blank">
               <Button primary>Voir les règles</Button>
             </Link>
-          )}*/}
+          )}
         </div>
         <div className={styles.information}>
           <BoxContainer
@@ -137,12 +137,12 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
                           name: team.name,
                           // Commented for security reasons
                           //
-                          // players: team.players.map((player) => (
-                          //   <>
-                          //     {player.username}
-                          //     <br />
-                          //   </>
-                          // )),
+                          players: team.players.map((player) => (
+                            <>
+                              {player.username}
+                              <br />
+                            </>
+                          )),
                         }
                       : {
                           players: team.players.map((player) => (

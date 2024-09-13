@@ -27,9 +27,9 @@ export const cartSlice = createSlice({
 
 export const { setCart, setCartItems } = cartSlice.actions;
 
-export const cartPay = (cart: CartPost) => async () => {
+export const cartPay = async (cart: CartPost) => {
   const res = await API.post(`users/current/carts`, cart);
-  window.location = res.url;
+  return res.checkoutSecret as string;
 };
 
 export const saveCart = (cart: CartPost) => {
