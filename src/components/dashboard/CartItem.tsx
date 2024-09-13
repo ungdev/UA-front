@@ -19,7 +19,7 @@ const CartItem = ({
   /** The reduced unit price */
   reducedUnitPrice?: number | null;
   /** The function to call when the item is removed */
-  onRemove: () => void;
+  onRemove: (() => void) | null;
 }) => {
   return (
     <div className={styles.cartItem}>
@@ -61,7 +61,7 @@ const CartItem = ({
           })}
           €
         </div>
-        <Icon name={IconName.Trash} onClick={onRemove} />
+        {onRemove && <Icon name={IconName.Trash} onClick={onRemove} />}
       </div>
     </div>
   );

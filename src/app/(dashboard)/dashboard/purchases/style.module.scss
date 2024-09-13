@@ -14,7 +14,7 @@
   }
 
   .cardCart {
-    width: 100%;
+    width: calc(100% - 4rem);
     margin: 0 2rem;
     background-color: $secondary-background;
     padding: 1rem;
@@ -36,6 +36,15 @@
 
     .cartTotal {
       text-align: right;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dashboardPurchases {
+    .cardCart {
+      width: calc(100% - 2rem);
+      margin: 0 1rem;
     }
   }
 }

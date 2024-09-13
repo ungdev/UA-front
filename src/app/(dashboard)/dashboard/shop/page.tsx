@@ -294,7 +294,7 @@ const Shop = () => {
     setHasRequestedPayment(true);
     deleteCart();
     const token = await cartPay(cart);
-    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}`));
+    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
   };
 
   // Hide the places section if user can't buy any places
