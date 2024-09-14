@@ -4,7 +4,7 @@ import path from 'path';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Path to the directory containing your MDX files
-  const siteDirectory = path.join(process.cwd(), 'tournaments'); // your blog directory maybe different
+  const siteDirectory = path.join(process.cwd(), '/src/app'); // your blog directory maybe different
 
   // Retrieve all MDX file paths recursively
   const tsxFilePaths = getAllTsxFilePaths(siteDirectory);
