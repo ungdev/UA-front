@@ -7,7 +7,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteDirectory = path.join(process.cwd(), '/src/app'); // your blog directory maybe different
 
   // Retrieve all MDX file paths recursively
-  const tsxFilePaths = getAllTsxFilePaths(siteDirectory);
+  const filePaths = getAllFilePaths(siteDirectory);
+
+  const tsxFilePaths = filePaths.filter((filePath) => {
+    if (filePath.slice(-4) === '.tsx') {
+      return filePath;
+    }
+  });
 
   // Generate URLs and add them to the sitemap
   const sitemap = tsxFilePaths.map((filePath) => {
@@ -34,13 +40,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 }
 
 // Recursively retrieve all MDX file paths
-function getAllTsxFilePaths(directory: string): string[] {
+function getAllFilePaths(directory: string): string[] {
   const fileNames = fs.readdirSync(directory);
   const filePaths = fileNames.map((fileName) => {
     const filePath = path.join(directory, fileName);
     const stat = fs.statSync(filePath);
     if (stat.isDirectory()) {
-      return getAllTsxFilePaths(filePath);
+      return getAllFilePaths(filePath);
     } else {
       return filePath;
     }
