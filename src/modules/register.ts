@@ -37,9 +37,7 @@ export const registerUser = async (user: RegisterUser) => {
     return;
   }
 
-  delete user.passwordConfirmation;
-  delete user.legalRepresentativeAccepted;
-  await API.post('auth/register', user);
+  await API.post('auth/register', { ...user, passwordConfirmation: undefined, legalRepresentativeAccepted: undefined });
   toast.success('Inscription réussie, vérifie tes emails');
   return true;
 };
