@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemap = tsxFilePaths.map((filePath) => {
     const category = path.basename(path.dirname(filePath));
     const url = `${process.env.NEXT_PUBLIC_URL}/${category}`;
-    const changeFrequency = 'weekly';
+    const changeFrequency = 'weekly' as const;
     const lastModified = fs.statSync(filePath).mtime;
     return {
       url,
@@ -34,7 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${process.env.NEXT_PUBLIC_URL}`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'weekly' as const,
     },
     // Add other URLs here
   );
