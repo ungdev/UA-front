@@ -20,10 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const sitemap = tsxFilePaths.map((filePath) => {
     const category = path.basename(path.dirname(filePath));
     const url = `${process.env.NEXT_PUBLIC_URL}/${category}`;
+    const changeFrequency = 'weekly';
     const lastModified = fs.statSync(filePath).mtime;
     return {
       url,
       lastModified,
+      changeFrequency,
     };
   });
 
@@ -32,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${process.env.NEXT_PUBLIC_URL}`,
       lastModified: new Date(),
+      changeFrequency: 'weekly',
     },
     // Add other URLs here
   );
@@ -39,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return sitemap;
 }
 
-// Recursively retrieve all TSX file paths
+// Recursively retrieve all file paths
 function getAllFilePaths(directory: string): string[] {
   const fileNames = fs.readdirSync(directory);
   const filePaths = fileNames.map((fileName) => {
