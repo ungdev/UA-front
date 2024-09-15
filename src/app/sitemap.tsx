@@ -3,12 +3,13 @@ import fs from 'fs';
 import path from 'path';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Path to the directory containing your MDX files
-  const siteDirectory = path.join(process.cwd(), '/src/app'); // your blog directory maybe different
+  // Path to the directory containing your TSX files
+  const siteDirectory = path.join(process.cwd(), '/src/app');
 
-  // Retrieve all MDX file paths recursively
+  // Retrieve all file paths recursively
   const filePaths = getAllFilePaths(siteDirectory);
 
+  // Select only .tsx files
   const tsxFilePaths = filePaths.filter((filePath) => {
     if (filePath.slice(-4) === '.tsx') {
       return filePath;
@@ -17,9 +18,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Generate URLs and add them to the sitemap
   const sitemap = tsxFilePaths.map((filePath) => {
-    const slug = path.basename(filePath, '.tsx'); // remove the .mdx extension from the file name to get the slug
     const category = path.basename(path.dirname(filePath));
-    const url = `${process.env.NEXT_PUBLIC_URL}/${category}/${slug}`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/${category}`;
     const lastModified = fs.statSync(filePath).mtime;
     return {
       url,
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return sitemap;
 }
 
-// Recursively retrieve all MDX file paths
+// Recursively retrieve all TSX file paths
 function getAllFilePaths(directory: string): string[] {
   const fileNames = fs.readdirSync(directory);
   const filePaths = fileNames.map((fileName) => {
