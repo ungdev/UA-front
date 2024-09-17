@@ -1,8 +1,12 @@
 import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
+import { fetchId } from '@/modules/tournament';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  /*const res = fetchId().then((truc: any) => {
+    console.log(truc);
+  });*/
   const tournamentId = ['lol', 'cs2', 'osu'];
   // Path to the directory containing your TSX files
   const siteDirectory = path.join(process.cwd(), '/src/app');

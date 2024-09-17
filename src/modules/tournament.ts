@@ -73,4 +73,12 @@ export const fetchSlots = (): AppThunk => async (dispatch) => {
   dispatch(setSlots(slots));
 };
 
+/*export const fetchId = async (): Promise<string[]> => {
+  const res = await API.get('tournaments');
+  const resId = res.map((tournament: Tournament) => {
+    return tournament.id;
+  });
+  return resId;
+};*/
+
 export default tournamentSlice.reducer;
