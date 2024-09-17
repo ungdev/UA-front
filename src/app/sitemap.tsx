@@ -1,13 +1,19 @@
 import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
-import { fetchId } from '@/modules/tournament';
+import { API } from '@/utils/api';
+import { Tournament } from '@/types';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  /*const res = fetchId().then((truc: any) => {
-    console.log(truc);
-  });*/
-  const tournamentId = ['lol', 'cs2', 'osu'];
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const tournaments: Tournament[] = await API.get('tournaments');
+
+  console.log(tournaments);
+
+  const tournamentId = tournaments.map((tournament) => {
+    return tournament.id;
+  });
+
+  //const tournamentId = ['lol', 'cs2', 'osu'];
   // Path to the directory containing your TSX files
   const siteDirectory = path.join(process.cwd(), '/src/app');
 
