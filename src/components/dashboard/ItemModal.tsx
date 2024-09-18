@@ -148,4 +148,4 @@ export default ItemModal;
 
 // ToDo : add variable delete in updateItem to deleteFile
 //        modify the button to delete the logo
-//        check how work different button because onClick => void
+//        check how work different button because onClick => void or onClick -> close the modal and delete image then reopen the modal
