@@ -1,10 +1,6 @@
 import { MetadataRoute } from 'next';
 import fs from 'fs';
 import path from 'path';
-import { API } from '@/utils/api';
-import { Tournament } from '@/types';
-import { tournamentsId } from '@/modules/tournament';
-import { useSearchParams } from 'next/navigation';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   //const tournamentId = await tournamentsId();
