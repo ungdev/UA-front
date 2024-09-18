@@ -58,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${process.env.NEXT_PUBLIC_URL}/tournament/${id}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
-      priority: 1.0,
+      priority: 0.8,
     });
   }
 
@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${process.env.NEXT_PUBLIC_URL}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: 0.8,
+    priority: 1.0,
   });
 
   return sitemap;

@@ -86,7 +86,7 @@ const requestAPI = (
 
 // Set the authorization header with the given token for next requests
 const getAuthorizationToken = () => {
-  return typeof localStorage !== 'undefined' ? localStorage.getItem('utt-arena-token') : undefined;
+  return localStorage.getItem('utt-arena-token');
 };
 
 // Access the API through different HTTP methods
