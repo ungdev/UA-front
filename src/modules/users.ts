@@ -39,15 +39,31 @@ const initialState: UsersAction = {
 };
 
 const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
+  function userType(type: string) {
+    switch (type) {
+      case UserType.player:
+        return 'Joueur';
+      case UserType.coach:
+        return 'Coach';
+      case UserType.spectator:
+        return 'Spectateur';
+      case UserType.attendant:
+        return 'Accompagnateur';
+      default:
+        return type;
+    }
+  }
+
   return users.map((user) => ({
     ...user,
     fullname: `${user.firstname} ${user.lastname}`,
     tournamentName: user.team ? user.team.tournament.name : '',
-    teamName: user.team ? user.team.name : user.type === UserType.spectator ? '(spectateur)' : '',
+    teamName: user.team ? user.team.name : '',
     lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
     paidLabel: user.hasPaid ? '✔' : '✖',
     scannedLabel: user.scannedAt ? '✔' : '✖',
     permissionsLabel: user.permissions.join(', ') || '',
+    status: user.type ? userType(user.type) : '',
   }));
 };
 
