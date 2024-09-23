@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /dashboard/
-Disallow: /admin/
-Disallow: /uploads/
-Sitemap: https://arena.utt.fr/sitemap.xml
