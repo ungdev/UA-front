@@ -17,6 +17,7 @@ const columnTitles = {
   scannedLabel: 'Scanné',
   permissionsLabel: 'Permissions',
   teamName: 'Équipe',
+  status: 'Rôle',
   tournamentName: 'Tournoi',
   place: 'Place',
 };
@@ -86,6 +87,7 @@ const Users = () => {
     lockedLabel: true,
     paidLabel: true,
     scannedLabel: true,
+    status: true,
     permissionsLabel: true,
     teamName: true,
     tournamentName: true,
