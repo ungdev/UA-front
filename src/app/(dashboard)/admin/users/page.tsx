@@ -17,6 +17,7 @@ const columnTitles = {
   scannedLabel: 'Scanné',
   permissionsLabel: 'Permissions',
   teamName: 'Équipe',
+  status: 'Rôle',
   tournamentName: 'Tournoi',
   place: 'Place',
 };
@@ -27,6 +28,12 @@ const statusOptions = [
   { name: 'Spectateur', value: 'spectator' },
   { name: 'Coach', value: 'coach' },
   { name: 'Accompagnateur', value: 'attendant' },
+];
+
+const ageOptions = [
+  { name: 'Tous', value: 'all' },
+  { name: 'Mineur', value: 'child' },
+  { name: 'Majeur', value: 'adult' },
 ];
 
 const lockedOptions = [
@@ -53,6 +60,7 @@ const INITIAL_FILTERS = {
   locked: 'all',
   scan: 'all',
   tournament: 'all',
+  age: 'all',
   permissions: [] as string[],
 };
 
@@ -79,6 +87,7 @@ const Users = () => {
     lockedLabel: true,
     paidLabel: true,
     scannedLabel: true,
+    status: true,
     permissionsLabel: true,
     teamName: true,
     tournamentName: true,
@@ -93,6 +102,7 @@ const Users = () => {
       payment: filters.payment,
       type: filters.type,
       tournament: filters.tournament,
+      age: filters.age,
     };
     if (filters.permissions.length > 0) {
       userFilters.permissions = filters.permissions.join(',');
@@ -156,6 +166,15 @@ const Users = () => {
           options={statusOptions}
           value={filters.type}
           onChange={(v) => setFilters({ ...filters, type: v })}
+        />
+        <br />
+        <Radio
+          label="Age"
+          name="ageFilter"
+          row
+          options={ageOptions}
+          value={filters.age}
+          onChange={(v) => setFilters({ ...filters, age: v })}
         />
         <br />
         <Radio

@@ -40,7 +40,7 @@ const Payment = () => {
   }, [stripe, clientSecret]);
 
   return (
-    <div className={styles.callbackLoader}>
+    <div className={styles.loader}>
       <Loader />
     </div>
   );

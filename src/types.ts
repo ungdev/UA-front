@@ -288,9 +288,9 @@ export enum TransactionState {
   pending = 'pending',
   paid = 'paid',
   canceled = 'canceled',
-  refused = 'refused',
+  processing = 'processing',
   refunded = 'refunded',
-  authorization = 'authorization',
+  expired = 'expired',
 }
 
 export interface UserFilters extends Record<string, string | undefined> {
@@ -300,6 +300,7 @@ export interface UserFilters extends Record<string, string | undefined> {
   payment?: string;
   scan?: string;
   permissions?: string;
+  age?: string;
 }
 
 export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
