@@ -46,6 +46,14 @@ export const fetchTournaments = (): AppThunk => async (dispatch) => {
   dispatch(setTournaments(res));
 };
 
+export const tournamentsId = async (): Promise<string[]> => {
+  const tournaments: Tournament[] = await API.get('tournaments');
+  const tournamentsId = tournaments.map((tournament) => {
+    return tournament.id;
+  });
+  return tournamentsId;
+};
+
 export const fetchSlots = (): AppThunk => async (dispatch) => {
   const res = await API.get('tournaments?paidOnly=true');
   const slots = res.reduce(
