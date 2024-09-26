@@ -132,7 +132,7 @@ function LoginModal({
             autocomplete="family-name"
           />
           <Input
-            label="Pseudo (Nom d'invocateur pour LoL)"
+            label="Pseudo (Nom d'invocateur pour LoL avec #)"
             value={signupForm.username}
             onChange={(value: string) => updateSignup('username', value)}
             autocomplete="nickname"

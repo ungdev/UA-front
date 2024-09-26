@@ -100,7 +100,12 @@ const Account = () => {
         <Input label="Email" value={user.email} autocomplete="off" disabled />
         <Input label="Prénom" value={firstname} onChange={setFirstname} autocomplete="off" disabled />
         <Input label="Nom" value={lastname} onChange={setLastname} autocomplete="off" disabled />
-        <Input label="Pseudo (Nom d'invocateur pour LoL)" value={username} onChange={setUsername} autocomplete="off" />
+        <Input
+          label="Pseudo (Nom d'invocateur pour LoL avec #)"
+          value={username}
+          onChange={setUsername}
+          autocomplete="off"
+        />
         <Input
           label="Nouveau mot de passe"
           value={password}
