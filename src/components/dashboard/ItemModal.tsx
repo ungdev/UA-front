@@ -136,6 +136,7 @@ const ItemModal = ({
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
         <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
         <Checkbox label="Supprimer l'image" value={deleteImg} onChange={deleteLogo} />
+        <br />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
