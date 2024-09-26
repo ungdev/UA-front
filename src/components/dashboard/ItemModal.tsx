@@ -26,11 +26,10 @@ const ItemModal = ({
   const [infos, setInfos] = useState(item?.infos || null);
   const [logo, setLogo] = useState<File | null>(null);
   const [display, setDisplay] = useState(item?.display || false);
+  const [deleteImg, setDeleteImg] = useState(false);
 
   const [attribute, setAttribute] = useState(item?.attribute || null);
   const [category, setCategory] = useState(item?.category || null);
-
-  let deleteImg: boolean;
 
   const categories = [
     ['rent', 'Location'],
@@ -49,9 +48,8 @@ const ItemModal = ({
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
-  function deleteLogo(): boolean {
-    deleteImg = true;
-    return deleteImg;
+  function deleteLogo(): void {
+    setDeleteImg(!deleteImg);
   }
 
   return (
@@ -137,7 +135,7 @@ const ItemModal = ({
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
         <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
-        <Button primary onClick={(deleteImg = deleteLogo())}></Button>
+        <Checkbox label="Supprimer l'image" value={deleteImg} onChange={deleteLogo} />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
