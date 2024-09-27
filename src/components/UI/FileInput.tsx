@@ -6,6 +6,7 @@ import { ChangeEvent, useRef, useState } from 'react';
  * Renders a component that allows the user to upload a file.
  */
 const FileUpload = ({
+  textColor = 'white',
   label,
   value = '',
   onChange,
@@ -13,6 +14,8 @@ const FileUpload = ({
   className = '',
   bg = 'white',
 }: {
+  /** The text color when there no image has been uploaded */
+  textColor?: string;
   /** The label to display. */
   label: string;
   /** The value of the file. */
@@ -77,7 +80,7 @@ const FileUpload = ({
           </>
         )}
 
-        <p className={error || (value === '' && preview === null) ? 'black' : ''}>
+        <p style={{ color: textColor }} className={error || (value === '' && preview === null) ? 'black' : ''}>
           Choisir un fichier{' '}
           {type
             .map((t) => `.${t}`)

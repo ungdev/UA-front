@@ -135,6 +135,7 @@ const ItemModal = ({
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
         <FileInput
+          textColor="black"
           label="Logo"
           value={item && item?.image ? getItemImageLink(item.id) : ''}
           onChange={setLogo}

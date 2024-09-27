@@ -77,6 +77,7 @@ const PartnerModal = ({
         <Input label="Lien" value={link ?? ''} onChange={setLink} />
         <Textarea label="Description" value={description ?? ''} onChange={setDescription} />
         <FileInput
+          textColor="black"
           label="Logo"
           value={partner ? getPartnerLogoLink(partner.id) : ''}
           onChange={setLogo}

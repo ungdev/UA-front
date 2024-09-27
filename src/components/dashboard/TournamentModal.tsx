@@ -141,18 +141,21 @@ const TournamentModal = ({
         </div>
 
         <FileInput
+          textColor="black"
           label="Image"
           value={tournament ? getTournamentImageLink(tournament.id) : ''}
           onChange={setImage}
           type={['jpg']}
         />
         <FileInput
+          textColor="black"
           label="Image de fond"
           value={tournament ? getTournamentBackgroundLink(tournament.id) : ''}
           onChange={setBackgroundImage}
           type={['jpg']}
         />
         <FileInput
+          textColor="black"
           label="Règles"
           value={tournament ? getTournamentRulesLink(tournament.id) : ''}
           onChange={setRules}
