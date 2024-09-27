@@ -26,6 +26,7 @@ const ItemModal = ({
   const [infos, setInfos] = useState(item?.infos || null);
   const [logo, setLogo] = useState<File | null>(null);
   const [display, setDisplay] = useState(item?.display || false);
+  const [deleteImg, setDeleteImg] = useState(false);
 
   const [attribute, setAttribute] = useState(item?.attribute || null);
   const [category, setCategory] = useState(item?.category || null);
@@ -47,6 +48,10 @@ const ItemModal = ({
     return `${year}-${month}-${day}T${hours}:${minutes}`;
   };
 
+  function deleteLogo(): void {
+    setDeleteImg(!deleteImg);
+  }
+
   return (
     <Modal
       visible={true}
@@ -58,7 +63,7 @@ const ItemModal = ({
             primary
             onClick={() => {
               let image;
-              if (item?.image || logo) {
+              if ((item?.image || logo) && !deleteImg) {
                 image = true;
               }
 
@@ -129,7 +134,15 @@ const ItemModal = ({
           onChange={(value) => setQuantity(value as unknown as number)}
         />
         <Textarea label="Description" value={infos ?? ''} onChange={setInfos} />
-        <FileInput label="Logo" value={item ? getItemImageLink(item.id) : ''} onChange={setLogo} type={['png']} />
+        <FileInput
+          textColor="black"
+          label="Logo"
+          value={item && item?.image ? getItemImageLink(item.id) : ''}
+          onChange={setLogo}
+          type={['png']}
+        />
+        <Checkbox label="Supprimer l'image" value={deleteImg} onChange={deleteLogo} />
+        <br />
         <Checkbox label="Display" value={display} onChange={setDisplay} />
       </>
     </Modal>
