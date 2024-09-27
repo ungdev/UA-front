@@ -79,15 +79,15 @@ const Account = () => {
     }
   };
 
-  const downloadTicket = async () => {
-    const response = await API.get(`tickets`);
+  // const downloadTicket = async () => {
+  //   const response = await API.get(`tickets`);
 
-    const data = window.URL.createObjectURL(response);
-    const link = document.createElement('a');
-    link.href = data;
-    link.download = 'Billet UTT Arena 2024.pdf';
-    link.click();
-  };
+  //   const data = window.URL.createObjectURL(response);
+  //   const link = document.createElement('a');
+  //   link.href = data;
+  //   link.download = 'Billet UTT Arena 2024.pdf';
+  //   link.click();
+  // };
 
   return (
     <div id="dashboard-account" className={styles.dashboardAccount}>
@@ -153,7 +153,7 @@ const Account = () => {
             </Button>
           </a>
         </div>
-        {displayTicket && (
+        {/* {displayTicket && (
           <div className={styles.ticket}>
             <Title level={4} align="center">
               Mon billet
@@ -162,7 +162,7 @@ const Account = () => {
               Télécharger mon billet
             </Button>
           </div>
-        )}
+        )} */}
       </div>
       {displayTicket && (
         <div className="to-bring">
