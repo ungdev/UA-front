@@ -16,6 +16,7 @@ import { setRedirect } from '@/modules/redirect';
 import { fetchTournaments } from '@/modules/tournament';
 import { fetchPartners } from '@/modules/partners';
 import { fetchAllCarts } from '@/modules/carts';
+import { toast } from 'react-toastify';
 
 /**
  * The navigation events component that is used to track navigation events.
@@ -139,25 +140,30 @@ export default function Wrapper({
       return;
     }
     if (
-      pathname === '/admin/users' &&
+      ['/admin/users', '/admin/tournaments'].includes(pathname) &&
       !permissions.includes(Permission.anim) &&
       !permissions.includes(Permission.admin)
     ) {
+      toast.error('Il faut être administrateur ou avoir la permission anim pour accéder à cette page');
       dispatch(setRedirect('/admin'));
       return;
     }
+
     if (
       pathname === '/admin/scan' &&
       !permissions.includes(Permission.entry) &&
       !permissions.includes(Permission.admin)
     ) {
+      toast.error('Il faut être administrateur ou avoir la permission entry pour accéder à cette page');
       dispatch(setRedirect('/admin'));
       return;
     }
+
     if (
-      ['/admin/tournaments', '/admin/shop', '/admin/partners', '/admin/settings'].includes(pathname) &&
+      ['/admin/shop', '/admin/settings', '/admin/partners'].includes(pathname) &&
       !permissions.includes(Permission.admin)
     ) {
+      toast.error('Il faut être administrateur pour accéder à cette page');
       dispatch(setRedirect('/admin'));
       return;
     }
