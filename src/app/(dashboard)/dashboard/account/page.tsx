@@ -37,7 +37,8 @@ const Account = () => {
 
   useEffect(() => {
     setDisplayTicket(
-      (areTicketsAllowed && user.hasPaid &&
+      (areTicketsAllowed &&
+        user.hasPaid &&
         ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt))) as boolean,
     );
   }, [team]);

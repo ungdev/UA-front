@@ -26,7 +26,7 @@ const Settings = () => {
       <Checkbox label="Autoriser le login" onChange={changeLogin} value={loginAllowed} />
       <Checkbox label="Autoriser la boutique" onChange={changeShop} value={shopAllowed} />
       <Checkbox label="Autoriser le trombi" onChange={changeTrombi} value={trombiAllowed} />
-      <Checkbox label="Autoriser l'affichage des billets" onChange={changeTickets} value={trombiAllowed} />
+      <Checkbox label="Autoriser l'affichage des billets" onChange={changeTickets} value={ticketsAllowed} />
     </div>
   );
 };
