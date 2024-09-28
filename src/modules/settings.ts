@@ -7,6 +7,7 @@ const initialState: Settings = {
   login: false,
   shop: false,
   trombi: false,
+  tickets: false,
 };
 
 export const settingsSlice = createSlice({
@@ -34,6 +35,7 @@ export const fetchSettings = (): AppThunk => async (dispatch) => {
         login: false,
         shop: false,
         trombi: false,
+        tickets: false,
       }),
     );
   }
