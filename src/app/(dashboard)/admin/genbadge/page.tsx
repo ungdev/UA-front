@@ -142,7 +142,7 @@ const GenBadges = () => {
                   }}
                   required
                 />
-                <Select
+                <Input
                   label="Commission"
                   value={fields![i]?.commissionId ?? ''}
                   onChange={(e) => {
@@ -150,10 +150,22 @@ const GenBadges = () => {
                     newFields[i] = { ...newFields[i], commissionId: e };
                     setFields(newFields);
                   }}
-                  options={commissions.map((commission) => ({
-                    label: commission.name,
-                    value: commission.id,
-                  }))}
+                  required
+                />
+                <Select
+                  label="Permissions"
+                  value={fields![i]?.permission ?? ''}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], permission: e };
+                    setFields(newFields);
+                  }}
+                  options={[
+                    { label: 'Invité', value: 'invite' },
+                    { label: 'Restreint', value: 'restricted' },
+                    { label: 'Organisateur', value: 'orga' },
+                    { label: 'Accès total', value: 'fullaccess' },
+                  ]}
                   required
                 />
                 <Select
