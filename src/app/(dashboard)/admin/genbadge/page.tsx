@@ -163,7 +163,7 @@ const GenBadges = () => {
                   options={[
                     { label: 'Invité', value: 'invite' },
                     { label: 'Restreint', value: 'restricted' },
-                    { label: 'Organisateur', value: 'orga' },
+                    { label: 'Organisateur', value: 'orgaprice' },
                     { label: 'Accès total', value: 'fullaccess' },
                   ]}
                   required
