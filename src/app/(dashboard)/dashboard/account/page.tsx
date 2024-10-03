@@ -15,6 +15,7 @@ const Account = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.login.user)!;
   const team = useAppSelector((state) => state.team.team);
+  const areTicketsAllowed = useAppSelector((state) => state.settings.tickets);
 
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -36,7 +37,8 @@ const Account = () => {
 
   useEffect(() => {
     setDisplayTicket(
-      (user.hasPaid &&
+      (areTicketsAllowed &&
+        user.hasPaid &&
         ((user.type !== UserType.coach && user.type !== UserType.player) || (team && team.lockedAt))) as boolean,
     );
   }, [team]);
@@ -79,15 +81,15 @@ const Account = () => {
     }
   };
 
-  // const downloadTicket = async () => {
-  //   const response = await API.get(`tickets`);
+  const downloadTicket = async () => {
+    const response = await API.get(`tickets`);
 
-  //   const data = window.URL.createObjectURL(response);
-  //   const link = document.createElement('a');
-  //   link.href = data;
-  //   link.download = 'Billet UTT Arena 2024.pdf';
-  //   link.click();
-  // };
+    const data = window.URL.createObjectURL(response);
+    const link = document.createElement('a');
+    link.href = data;
+    link.download = 'Billet UTT Arena 2024.pdf';
+    link.click();
+  };
 
   return (
     <div id="dashboard-account" className={styles.dashboardAccount}>
@@ -153,7 +155,7 @@ const Account = () => {
             </Button>
           </a>
         </div>
-        {/* {displayTicket && (
+        {displayTicket && (
           <div className={styles.ticket}>
             <Title level={4} align="center">
               Mon billet
@@ -162,7 +164,7 @@ const Account = () => {
               Télécharger mon billet
             </Button>
           </div>
-        )} */}
+        )}
       </div>
       {displayTicket && (
         <div className="to-bring">
