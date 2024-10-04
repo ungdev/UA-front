@@ -161,10 +161,11 @@ const GenBadges = () => {
                     setFields(newFields);
                   }}
                   options={[
-                    { label: 'Invité', value: 'invite' },
+                    { label: 'Aucune', value: '' },
                     { label: 'Restreint', value: 'restricted' },
                     { label: 'Organisateur', value: 'orgaprice' },
                     { label: 'Accès total', value: 'fullaccess' },
+                    { label: 'Invité', value: 'invite' },
                   ]}
                   required
                 />
