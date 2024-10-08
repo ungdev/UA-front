@@ -157,7 +157,7 @@ const GenBadges = () => {
                   value={fields![i]?.permission ?? ''}
                   onChange={(e) => {
                     const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], permission: e };
+                    newFields[i] = { ...newFields[i], permission: e as BadgePermission };
                     setFields(newFields);
                   }}
                   options={[
