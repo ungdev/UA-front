@@ -17,6 +17,7 @@ export interface Settings {
   login: boolean;
   shop: boolean;
   trombi: boolean;
+  tickets: boolean;
 }
 
 export interface RegisterUser {
