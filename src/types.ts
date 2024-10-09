@@ -305,7 +305,7 @@ export interface UserFilters extends Record<string, string | undefined> {
 }
 
 export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
-export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess';
+export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess' | 'invite';
 
 export interface Badge {
   type: BadgeType;
