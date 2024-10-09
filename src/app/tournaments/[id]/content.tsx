@@ -103,59 +103,53 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
                 : tournament.casters?.map((caster) => caster.name).join(', ')}
           </BoxContainer>
         </div>
-        {loginAllowed &&
-          status.login &&
-          (status.admin || (status.team && (team?.lockedAt || team?.positionInQueue))) && (
-            <>
-              <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
-                {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} :{' '}
-                {tournament.lockedTeamsCount} / {tournament.maxPlayers / tournament.playersPerTeam}
-              </Title>
-              <FillingBar
-                fullness={
-                  animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0
-                }
-                className={styles.fillingBar}
-              />
-              <Table
-                className={styles.table}
-                columns={
-                  tournament.playersPerTeam > 1
-                    ? [
-                        { key: 'name', title: "Nom de l'équipe" },
-                        // Commented for security reasons
-                        //
-                        // { key: 'players', title: 'Joueurs' },
-                      ]
-                    : [{ key: 'players', title: 'Joueurs' }]
-                }
-                dataSource={tournament.teams
-                  .filter((team) => team.lockedAt)
-                  .map((team) =>
-                    tournament.playersPerTeam > 1
-                      ? {
-                          name: team.name,
-                          // Commented for security reasons
-                          //
-                          players: team.players.map((player) => (
-                            <>
-                              {player.username}
-                              <br />
-                            </>
-                          )),
-                        }
-                      : {
-                          players: team.players.map((player) => (
-                            <>
-                              {player.username}
-                              <br />
-                            </>
-                          )),
-                        },
-                  )}
-              />
-            </>
-          )}
+        <>
+          <Title level={3} type={1} align="center" className={styles.enrolledTeams}>
+            {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} : {tournament.lockedTeamsCount}{' '}
+            / {tournament.maxPlayers / tournament.playersPerTeam}
+          </Title>
+          <FillingBar
+            fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
+            className={styles.fillingBar}
+          />
+          <Table
+            className={styles.table}
+            columns={
+              tournament.playersPerTeam > 1
+                ? [
+                    { key: 'name', title: "Nom de l'équipe" },
+                    // Commented for security reasons
+                    //
+                    // { key: 'players', title: 'Joueurs' },
+                  ]
+                : [{ key: 'players', title: 'Joueurs' }]
+            }
+            dataSource={tournament.teams
+              .filter((team) => team.lockedAt)
+              .map((team) =>
+                tournament.playersPerTeam > 1
+                  ? {
+                      name: team.name,
+                      // Commented for security reasons
+                      //
+                      players: team.players.map((player) => (
+                        <>
+                          {player.username}
+                          <br />
+                        </>
+                      )),
+                    }
+                  : {
+                      players: team.players.map((player) => (
+                        <>
+                          {player.username}
+                          <br />
+                        </>
+                      )),
+                    },
+              )}
+          />
+        </>
       </div>
     </TournamentSwitcherAnimation>
   );
