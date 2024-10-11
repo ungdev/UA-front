@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 import { IconName } from '@/components/UI/Icon';
 import { generateBadges } from '@/modules/admin';
-import { Badge, BadgePermission, BadgeType, Commission, CommissionRole } from '@/types';
+import { Badge, BadgePermission, BadgeType, Commission } from '@/types';
 import { API } from '@/utils/api';
 
 const GenBadges = () => {
@@ -168,6 +168,15 @@ const GenBadges = () => {
                     { label: 'Invité', value: 'invite' },
                   ]}
                   required
+                />
+                <Input
+                  label="Image"
+                  value={fields![i]?.image ?? ''}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], image: e };
+                    setFields(newFields);
+                  }}
                 />
               </>
             )}
