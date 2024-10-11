@@ -169,20 +169,6 @@ const GenBadges = () => {
                   ]}
                   required
                 />
-                <Select
-                  label="Rôle"
-                  value={fields![i]?.commissionRole ?? ''}
-                  onChange={(e) => {
-                    const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole };
-                    setFields(newFields);
-                  }}
-                  options={[
-                    { label: 'Membre', value: 'member' },
-                    { label: 'Responsable', value: 'respo' },
-                  ]}
-                  required
-                />
               </>
             )}
 
