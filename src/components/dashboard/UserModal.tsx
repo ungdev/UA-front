@@ -275,26 +275,20 @@ const UserModal = ({
       containerClassName={styles.userModal}>
       <>
         <Input label="ID" value={searchUser?.id ?? ''} readOnly />
-        <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin && !isAnim} />
-        <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin && !isAnim} />
+        <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin} />
+        <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin} />
         {(!searchUser || searchUser.type !== UserType.attendant) && (
           <>
-            <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin && !isAnim} />
-            <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin && !isAnim} />
+            <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin} />
+            <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin} />
             {!searchUser && (
-              <Input
-                label="Mot de passe"
-                type="password"
-                value={password}
-                onChange={setPassword}
-                disabled={!isAdmin && !isAnim}
-              />
+              <Input label="Mot de passe" type="password" value={password} onChange={setPassword} disabled={!isAdmin} />
             )}
             <Textarea
               label="Infos complémentaires"
               value={customMessage ?? ''}
               onChange={setCustomMessage}
-              disabled={!isAdmin && !isAnim}
+              disabled={!isAdmin}
             />
             {searchUser && (
               <>
@@ -426,7 +420,7 @@ const UserModal = ({
               options={typeOptions}
               value={type?.toString()}
               onChange={(v) => setType(v as unknown as UserType)}
-              disabled={searchUser.hasPaid}></Radio>
+              disabled={searchUser.hasPaid || !isAdmin}></Radio>
             <Radio
               label="Âge"
               name="age"
@@ -435,13 +429,14 @@ const UserModal = ({
               value={age?.toString()}
               onChange={(v) => setAge(v as unknown as UserAge)}
               disabled={
+                !isAdmin ||
                 searchUser.type === UserType.attendant ||
                 (searchUser.hasPaid && searchUser.age === UserAge.child && searchUser.attendant !== null)
               }></Radio>
             {searchUser.type !== UserType.attendant && (
               <>
                 <Input label="Place" value={place} onChange={setPlace} />
-                <Input label="Discord Id" value={discordId} onChange={setDiscordId}></Input>
+                <Input label="Discord Id" value={discordId} onChange={setDiscordId} disabled={!isAdmin}></Input>
               </>
             )}
           </>
