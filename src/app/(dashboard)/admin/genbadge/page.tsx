@@ -183,6 +183,15 @@ const GenBadges = () => {
                   ]}
                   required
                 />
+                <Input
+                  label="Place"
+                  value={fields![i]?.place}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], place: e };
+                    setFields(newFields);
+                  }}
+                />
               </>
             )}
 

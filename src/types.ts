@@ -308,6 +308,7 @@ export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
 export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess' | 'invite';
 
 export interface Badge {
+  place?: string;
   type: BadgeType;
   name?: string;
   permission?: BadgePermission;
