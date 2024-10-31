@@ -319,4 +319,5 @@ export interface Badge {
   lastname?: string;
   commissionId?: string;
   commissionRole?: CommissionRole;
+  image?: string;
 }

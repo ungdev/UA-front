@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 import { IconName } from '@/components/UI/Icon';
 import { generateBadges } from '@/modules/admin';
-import { Badge, BadgePermission, BadgeType, Commission, CommissionRole } from '@/types';
+import { Badge, BadgePermission, BadgeType, Commission } from '@/types';
 import { API } from '@/utils/api';
 
 const GenBadges = () => {
@@ -169,19 +169,14 @@ const GenBadges = () => {
                   ]}
                   required
                 />
-                <Select
-                  label="Rôle"
-                  value={fields![i]?.commissionRole ?? ''}
+                <Input
+                  label="Image"
+                  value={fields![i]?.image ?? ''}
                   onChange={(e) => {
                     const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole };
+                    newFields[i] = { ...newFields[i], image: e };
                     setFields(newFields);
                   }}
-                  options={[
-                    { label: 'Membre', value: 'member' },
-                    { label: 'Responsable', value: 'respo' },
-                  ]}
-                  required
                 />
                 <Input
                   label="Place"
