@@ -24,7 +24,7 @@ const permissionOptions = [
   { name: 'Vestiaire', value: Permission.repo.toString() },
   { name: 'Animation', value: Permission.anim.toString() },
   { name: 'Admin', value: Permission.admin.toString() },
-  { name: 'Premier secours', value: Permission.firstaid.toString() },
+  { name: 'Premiers secours', value: Permission.firstaid.toString() },
 ];
 
 const typeOptions = [
