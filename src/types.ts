@@ -44,6 +44,7 @@ export enum Permission {
   admin = 'admin',
   repo = 'repo',
   orga = 'orga',
+  firstaid = 'firstaid',
 }
 
 export interface Team {
