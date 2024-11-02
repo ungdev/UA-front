@@ -251,7 +251,7 @@ const Users = () => {
           <Input
             value={search}
             onChange={setSearch}
-            label="Giga recherche"
+            label="Turbo recherche"
             placeholder="Nom, pseudo, email, équipe, id, discordId"
           />
           <Button primary type="submit">
