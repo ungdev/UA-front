@@ -317,3 +317,13 @@ export interface Badge {
   commissionId?: string;
   commissionRole?: CommissionRole;
 }
+
+export enum MailType {
+  general = 'general',
+  focused = 'focused',
+  custom = 'custom',
+}
+
+export interface Mail {
+  type: MailType;
+}
