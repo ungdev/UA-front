@@ -50,7 +50,7 @@ const Mails = () => {
           title="Mail Ciblé"
           onClick={() => {
             setMailType(MailType.focused);
-            setStep(step + 1);
+            setStep(step + 2);
           }}
           imgSrc={focusedMailImg.src}
         />
@@ -58,10 +58,30 @@ const Mails = () => {
           title="Mail Custom"
           onClick={() => {
             setMailType(MailType.custom);
-            setStep(step + 1);
+            setStep(step + 3);
           }}
           imgSrc={customMailImg.src}
         />
+      </div>
+    </>
+  );
+
+  const General = (
+    <>
+      <div className=""></div>
+    </>
+  );
+
+  const Focused = (
+    <>
+      <div className=""></div>
+    </>
+  );
+
+  const Custom = (
+    <>
+      <div className="">
+        <Title>Cette features n'est pas encore disponible</Title>
       </div>
     </>
   );
@@ -71,11 +91,11 @@ const Mails = () => {
       case 1:
         return Step1;
       case 2:
-        return Step2;
+        return General;
       case 3:
-        return Step3;
+        return Focused;
       case 4:
-        return Step4;
+        return Custom;
       case 5:
         return Step5;
       default:
@@ -86,7 +106,7 @@ const Mails = () => {
   const backButton = () => {
     if (step > 1) {
       return (
-        <Button primary onClick={() => setStep(step - 1)}>
+        <Button primary onClick={() => setStep(step === 2 ? step - 1 : step === 3 ? step - 2 : step - 3)}>
           {'Retour'}
         </Button>
       );
@@ -100,13 +120,6 @@ const Mails = () => {
           <Title level={2} type={1} align="center">
             ENVOIE DE MAILS
           </Title>
-          <ul className={styles.steps}>
-            <li className={styles.active}></li>
-            <li className={step > 1 ? styles.active : ``}></li>
-            <li className={step > 2 ? styles.active : ``}></li>
-            <li className={step > 3 ? styles.active : ``}></li>
-            <li className={step > 4 ? styles.active : ``}></li>
-          </ul>
         </div>
 
         {transitions(
