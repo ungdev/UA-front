@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { AdminPartner, AdminTournament, AdminItem, Badge } from '@/types';
+import { AdminPartner, AdminTournament, AdminItem, Badge, MailType } from '@/types';
 import {
   getPartnerLogoName,
   PARTNER_FOLDER,
@@ -334,6 +334,25 @@ export const generateBadges = async (badges: Badge[]) => {
     link.href = data;
     link.download = 'badges.pdf';
     link.click();
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const sendMails = async (type: MailType, content: string) => {
+  try {
+    switch (type) {
+      case MailType.general:
+        await API.post('admin/emails/sendGeneral', { content });
+        toast.success('Les mails ont bien été envoyés');
+        break;
+      case MailType.focused:
+        break;
+      case MailType.custom:
+        break;
+      default:
+        break;
+    }
   } catch (err) {
     console.error(err);
   }

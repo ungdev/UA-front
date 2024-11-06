@@ -3,10 +3,10 @@ import styles from './style.module.scss';
 import { useState } from 'react';
 
 import { useAppDispatch } from '@/lib/hooks';
-import Mail from '@types';
 import { MailType } from '@/types';
-import { Button, Title } from '@/components/UI';
+import { Button, Select, Title } from '@/components/UI';
 import { animated, useTransition } from '@react-spring/web';
+import { sendMails } from '@/modules/admin';
 import generalMailImg from '@/../public/images/mails/generalmail.webp';
 import focusedMailImg from '@/../public/images/mails/focusedmail.webp';
 import customMailImg from '@/../public/images/mails/custommail.webp';
@@ -16,6 +16,7 @@ const Mails = () => {
 
   const [step, setStep] = useState(1);
   const [mailType, setMailType] = useState<MailType>();
+  const [mailContent, setMailContent] = useState<string>('');
 
   const transitions = useTransition(step, {
     from: { opacity: 0, transform: `translate3d(100%,0,0)` },
@@ -68,13 +69,40 @@ const Mails = () => {
 
   const General = (
     <>
-      <div className=""></div>
+      <div className="">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMails(mailType, mailContent);
+          }}>
+          <Select
+            label="Type de mail"
+            value={mailContent !== null ? mailContent : ''}
+            onChange={setMailContent}
+            options={[
+              { label: 'Rejoindre le Discord', value: 'joindiscord' },
+              { label: 'Autorisation parental', value: 'minor' },
+              { label: 'Joueur non payés', value: 'notpaid' },
+              { label: 'Joueur non payés SSBU', value: 'notpaidssbu' },
+              { label: 'Tickets', value: 'tickets' },
+            ]}
+            required
+          />
+          <div className={styles.buttonContainer}>
+            <Button primary type="submit">
+              Envoyer les mail
+            </Button>
+          </div>
+        </form>
+      </div>
     </>
   );
 
   const Focused = (
     <>
-      <div className=""></div>
+      <div className="">
+        <Title>Cette features arrive soon</Title>
+      </div>
     </>
   );
 
@@ -96,8 +124,6 @@ const Mails = () => {
         return Focused;
       case 4:
         return Custom;
-      case 5:
-        return Step5;
       default:
         break;
     }
