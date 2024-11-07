@@ -339,7 +339,7 @@ export const generateBadges = async (badges: Badge[]) => {
   }
 };
 
-export const sendMails = async (type: MailType, content: string) => {
+export const sendMails = async (type: MailType | undefined, content: string) => {
   try {
     switch (type) {
       case MailType.general:
@@ -351,6 +351,7 @@ export const sendMails = async (type: MailType, content: string) => {
       case MailType.custom:
         break;
       default:
+        toast.error("Erreur lors de l'envoi des mails");
         break;
     }
   } catch (err) {
