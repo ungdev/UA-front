@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { useAppDispatch } from '@/lib/hooks';
 import { MailType } from '@/types';
-import { Button, Select, Title } from '@/components/UI';
+import { Button, Checkbox, Select, Title } from '@/components/UI';
 import { animated, useTransition } from '@react-spring/web';
 import { sendMails } from '@/modules/admin';
 import generalMailImg from '@/../public/images/mails/generalmail.webp';
@@ -17,6 +17,7 @@ const Mails = () => {
   const [step, setStep] = useState(1);
   const [mailType, setMailType] = useState<MailType>();
   const [mailContent, setMailContent] = useState<string>('');
+  const [preview, setPreview] = useState<boolean>(false);
 
   const transitions = useTransition(step, {
     from: { opacity: 0, transform: `translate3d(100%,0,0)` },
@@ -73,7 +74,7 @@ const Mails = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            sendMails(mailType, mailContent);
+            sendMails(mailType, mailContent, preview);
           }}>
           <Select
             label="Type de mail"
@@ -88,6 +89,7 @@ const Mails = () => {
             ]}
             required
           />
+          <Checkbox key="preview" label="Preview" value={preview} onChange={setPreview} />
           <div className={styles.buttonContainer}>
             <Button primary type="submit">
               Envoyer les mail

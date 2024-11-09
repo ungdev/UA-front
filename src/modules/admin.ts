@@ -339,11 +339,11 @@ export const generateBadges = async (badges: Badge[]) => {
   }
 };
 
-export const sendMails = async (type: MailType | undefined, content: string) => {
+export const sendMails = async (type: MailType | undefined, content: string, preview: boolean) => {
   try {
     switch (type) {
       case MailType.general:
-        await API.post('admin/emails/sendGeneral', { content });
+        await API.post('admin/emails/', { content, preview });
         toast.success('Les mails ont bien été envoyés');
         break;
       case MailType.focused:
