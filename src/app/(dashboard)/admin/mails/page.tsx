@@ -90,6 +90,8 @@ const Mails = () => {
             required
           />
           <Checkbox key="preview" label="Preview" value={preview} onChange={setPreview} />
+          <br />
+          <br />
           <div className={styles.buttonContainer}>
             <Button primary type="submit">
               Envoyer les mail
