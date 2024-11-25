@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import { useAppDispatch } from '@/lib/hooks';
 import { MailType } from '@/types';
-import { Button, Checkbox, Select, Title } from '@/components/UI';
+import { Button, Checkbox, Input, Select, Title } from '@/components/UI';
 import { animated, useTransition } from '@react-spring/web';
-import { sendMails } from '@/modules/admin';
+import { sendGeneralMails } from '@/modules/admin';
 import generalMailImg from '@/../public/images/mails/generalmail.webp';
 import focusedMailImg from '@/../public/images/mails/focusedmail.webp';
 import customMailImg from '@/../public/images/mails/custommail.webp';
@@ -17,6 +17,7 @@ const Mails = () => {
   const [step, setStep] = useState(1);
   const [mailType, setMailType] = useState<MailType>();
   const [mailContent, setMailContent] = useState<string>('');
+  const [mailTemplate, setMailTemplate] = useState<string>('');
   const [preview, setPreview] = useState<boolean>(false);
 
   const transitions = useTransition(step, {
@@ -70,11 +71,11 @@ const Mails = () => {
 
   const General = (
     <>
-      <div className="">
+      <div className={styles.generalMail}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            sendMails(mailType, mailContent, preview);
+            sendGeneralMails(mailContent, preview);
           }}>
           <Select
             label="Type de mail"
@@ -89,9 +90,13 @@ const Mails = () => {
             ]}
             required
           />
-          <Checkbox key="preview" label="Preview" value={preview} onChange={setPreview} />
-          <br />
-          <br />
+          <Checkbox
+            className={styles.mailCheckbox}
+            key="preview"
+            label="Preview"
+            value={preview}
+            onChange={setPreview}
+          />
           <div className={styles.buttonContainer}>
             <Button primary type="submit">
               Envoyer les mail
@@ -105,7 +110,17 @@ const Mails = () => {
   const Focused = (
     <>
       <div className="">
-        <Title>Cette features arrive soon</Title>
+        {/*
+        <Input label="Utilisateurs" value="" required />
+        <Select
+          label="Template de mail"
+          value={mailTemplate !== null ? mailTemplate : ''}
+          onChange={setMailTemplate}
+          options={[{ label: 'TKT bb', value: 'tktbb' }]}
+          required
+        />
+        */}
+        <Title>Cette features n'est pas encore disponible</Title>
       </div>
     </>
   );
@@ -167,7 +182,7 @@ const Mails = () => {
   };
 
   return (
-    <div id="dashboard-register" className={styles.dashboardRegister}>
+    <div id="dashboard-register" className={styles.dashboardMail}>
       {Stepper()}
     </div>
   );

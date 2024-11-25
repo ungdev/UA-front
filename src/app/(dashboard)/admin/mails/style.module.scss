@@ -2,7 +2,7 @@
 
 $stepper-size: 30px;
 
-.dashboardRegister {
+.dashboardMail {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,6 +194,12 @@ $stepper-size: 30px;
       margin-left: 5px;
     }
   }
+
+  .generalMail {
+    .mailCheckbox {
+      padding-bottom: 1.4rem;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -240,4 +246,3 @@ $stepper-size: 30px;
     }
   }
 }
-  

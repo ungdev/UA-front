@@ -339,21 +339,11 @@ export const generateBadges = async (badges: Badge[]) => {
   }
 };
 
-export const sendMails = async (type: MailType | undefined, content: string, preview: boolean) => {
+export const sendGeneralMails = async (generalMail: string, preview: boolean) => {
   try {
-    switch (type) {
-      case MailType.general:
-        await API.post('admin/emails/', { content, preview });
-        toast.success('Les mails ont bien été envoyés');
-        break;
-      case MailType.focused:
-        break;
-      case MailType.custom:
-        break;
-      default:
-        toast.error("Erreur lors de l'envoi des mails");
-        break;
-    }
+    const response = await API.post('admin/emails/', { generalMail, preview }, 60000);
+
+    toast.success(response);
   } catch (err) {
     console.error(err);
   }
