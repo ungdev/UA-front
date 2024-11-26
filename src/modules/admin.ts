@@ -341,9 +341,9 @@ export const generateBadges = async (badges: Badge[]) => {
 
 export const sendGeneralMails = async (generalMail: string, preview: boolean) => {
   try {
-    const response = await API.post('admin/emails/', { generalMail, preview }, 60000);
+    await API.post('admin/emails/', { generalMail, preview }, 60000);
 
-    toast.success(response);
+    toast.success('Les mails ont bien été envoyés');
   } catch (err) {
     console.error(err);
   }
