@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { AdminPartner, AdminTournament, AdminItem, Badge, MailType } from '@/types';
+import { AdminPartner, AdminTournament, AdminItem, Badge } from '@/types';
 import {
   getPartnerLogoName,
   PARTNER_FOLDER,

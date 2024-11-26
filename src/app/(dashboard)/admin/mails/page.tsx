@@ -2,9 +2,8 @@
 import styles from './style.module.scss';
 import { useState } from 'react';
 
-import { useAppDispatch } from '@/lib/hooks';
-import { MailType } from '@/types';
-import { Button, Checkbox, Input, Select, Title } from '@/components/UI';
+import { Button, Checkbox, Select, Title } from '@/components/UI';
+// eslint-disable-next-line import/named
 import { animated, useTransition } from '@react-spring/web';
 import { sendGeneralMails } from '@/modules/admin';
 import generalMailImg from '@/../public/images/mails/generalmail.webp';
@@ -12,12 +11,9 @@ import focusedMailImg from '@/../public/images/mails/focusedmail.webp';
 import customMailImg from '@/../public/images/mails/custommail.webp';
 
 const Mails = () => {
-  const dispatch = useAppDispatch();
-
   const [step, setStep] = useState(1);
-  const [mailType, setMailType] = useState<MailType>();
   const [mailContent, setMailContent] = useState<string>('');
-  const [mailTemplate, setMailTemplate] = useState<string>('');
+  //const [mailTemplate, setMailTemplate] = useState<string>('');
   const [preview, setPreview] = useState<boolean>(false);
 
   const transitions = useTransition(step, {
@@ -44,7 +40,6 @@ const Mails = () => {
         <MailCard
           title="Mail Général"
           onClick={() => {
-            setMailType(MailType.general);
             setStep(step + 1);
           }}
           imgSrc={generalMailImg.src}
@@ -52,7 +47,6 @@ const Mails = () => {
         <MailCard
           title="Mail Ciblé"
           onClick={() => {
-            setMailType(MailType.focused);
             setStep(step + 2);
           }}
           imgSrc={focusedMailImg.src}
@@ -60,7 +54,6 @@ const Mails = () => {
         <MailCard
           title="Mail Custom"
           onClick={() => {
-            setMailType(MailType.custom);
             setStep(step + 3);
           }}
           imgSrc={customMailImg.src}

@@ -321,13 +321,3 @@ export interface Badge {
   commissionRole?: CommissionRole;
   image?: string;
 }
-
-export enum MailType {
-  general = 'general',
-  focused = 'focused',
-  custom = 'custom',
-}
-
-export interface Mail {
-  type: MailType;
-}
