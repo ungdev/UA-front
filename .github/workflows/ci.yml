@@ -76,7 +76,7 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v6
-        with: 
+        with:
           push: true
           build-args: |
             NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL_DEV }}
@@ -105,7 +105,7 @@ jobs:
           password: ${{ secrets.REGISTRY_TOKEN }}
       - name: Build and push
         uses: docker/build-push-action@v6
-        with: 
+        with:
           push: true
           build-args: |
             NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
