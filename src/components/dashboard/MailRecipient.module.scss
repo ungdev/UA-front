@@ -1,0 +1,21 @@
+@import '@/variables.scss';
+
+.mailRecipient {
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: #717171;
+  border: 0 none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #641616;
+    color: white;
+  }
+}

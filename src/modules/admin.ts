@@ -339,4 +339,14 @@ export const generateBadges = async (badges: Badge[]) => {
   }
 };
 
+export const sendGeneralMails = async (generalMail: string, preview: boolean) => {
+  try {
+    const response = await API.post('admin/emails/', { generalMail, preview }, 60000);
+
+    toast.success(response);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export default adminSlice.reducer;
