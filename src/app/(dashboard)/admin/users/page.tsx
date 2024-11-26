@@ -248,7 +248,12 @@ const Users = () => {
             e.preventDefault();
             applySearch();
           }}>
-          <Input value={search} onChange={setSearch} label="Giga recherche" placeholder="Nom, pseudo, email, équipe" />
+          <Input
+            value={search}
+            onChange={setSearch}
+            label="Turbo recherche"
+            placeholder="Nom, pseudo, email, équipe, id, discordId"
+          />
           <Button primary type="submit">
             Rechercher
           </Button>

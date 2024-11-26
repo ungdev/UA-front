@@ -17,6 +17,7 @@ export interface Settings {
   login: boolean;
   shop: boolean;
   trombi: boolean;
+  tickets: boolean;
 }
 
 export interface RegisterUser {
@@ -43,6 +44,7 @@ export enum Permission {
   admin = 'admin',
   repo = 'repo',
   orga = 'orga',
+  firstaid = 'firstaid',
 }
 
 export interface Team {
@@ -304,9 +306,10 @@ export interface UserFilters extends Record<string, string | undefined> {
 }
 
 export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
-export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess';
+export type BadgePermission = 'restricted' | 'orgaprice' | 'fullaccess' | 'invite';
 
 export interface Badge {
+  place?: string;
   type: BadgeType;
   name?: string;
   permission?: BadgePermission;
@@ -316,6 +319,7 @@ export interface Badge {
   lastname?: string;
   commissionId?: string;
   commissionRole?: CommissionRole;
+  image?: string;
 }
 
 export enum MailType {

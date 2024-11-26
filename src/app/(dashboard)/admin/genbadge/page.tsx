@@ -4,7 +4,7 @@ import styles from './style.module.scss';
 import { useEffect, useState } from 'react';
 import { IconName } from '@/components/UI/Icon';
 import { generateBadges } from '@/modules/admin';
-import { Badge, BadgePermission, BadgeType, Commission, CommissionRole } from '@/types';
+import { Badge, BadgePermission, BadgeType, Commission } from '@/types';
 import { API } from '@/utils/api';
 
 const GenBadges = () => {
@@ -142,7 +142,7 @@ const GenBadges = () => {
                   }}
                   required
                 />
-                <Select
+                <Input
                   label="Commission"
                   value={fields![i]?.commissionId ?? ''}
                   onChange={(e) => {
@@ -150,25 +150,42 @@ const GenBadges = () => {
                     newFields[i] = { ...newFields[i], commissionId: e };
                     setFields(newFields);
                   }}
-                  options={commissions.map((commission) => ({
-                    label: commission.name,
-                    value: commission.id,
-                  }))}
                   required
                 />
                 <Select
-                  label="Rôle"
-                  value={fields![i]?.commissionRole ?? ''}
+                  label="Permissions"
+                  value={fields![i]?.permission ?? ''}
                   onChange={(e) => {
                     const newFields = [...fields!];
-                    newFields[i] = { ...newFields[i], commissionRole: e as CommissionRole };
+                    newFields[i] = { ...newFields[i], permission: e as BadgePermission };
                     setFields(newFields);
                   }}
                   options={[
-                    { label: 'Membre', value: 'member' },
-                    { label: 'Responsable', value: 'respo' },
+                    { label: 'Aucune', value: '' },
+                    { label: 'Restreint', value: 'restricted' },
+                    { label: 'Organisateur', value: 'orgaprice' },
+                    { label: 'Accès total', value: 'fullaccess' },
+                    { label: 'Invité', value: 'invite' },
                   ]}
                   required
+                />
+                <Input
+                  label="Image"
+                  value={fields![i]?.image ?? ''}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], image: e };
+                    setFields(newFields);
+                  }}
+                />
+                <Input
+                  label="Place"
+                  value={fields![i]?.place}
+                  onChange={(e) => {
+                    const newFields = [...fields!];
+                    newFields[i] = { ...newFields[i], place: e };
+                    setFields(newFields);
+                  }}
                 />
               </>
             )}

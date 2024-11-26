@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         node-version: [18]
@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     strategy:
       matrix:
         node-version: [18]
@@ -58,34 +58,62 @@ jobs:
           url: ${{ secrets.SLACK_WEBHOOK_URL }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
-  deploy:
-    if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/teaser' || github.ref == 'refs/heads/dev') }}
-    runs-on: ubuntu-latest
+  deploy-dev:
+    if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/dev') }}
+    runs-on: self-hosted
     needs:
       - lint
       - build
-    env:
-      RESOURCE_NAME: ${{ github.ref == 'refs/heads/master' && 'prod-front' || github.ref == 'refs/heads/teaser' && 'prod-teaser' || 'dev-front' }}
     steps:
-      - uses: actions/checkout@v3
-      - name: Install oc
-        uses: redhat-actions/oc-installer@v1
+      - uses: actions/checkout@v4
+      - name: Install docker
+        uses: docker/setup-buildx-action@v3
+      - name: Login to registry
+        uses: docker/login-action@v3
         with:
-          oc_version: '4.6'
-      - name: Login to OKD
-        run: oc login --token=${{ secrets.OKD_TOKEN }} --server=${{ secrets.OKD_SERVER }}
-
-      - name: Change the project
-        run: oc project ${{ secrets.OKD_PROJECT }}
-
-      - name: Start the build
-        run: oc start-build ${{ env.RESOURCE_NAME }} --follow
-
-      - uses: lazy-actions/slatify@master
-        if: ${{ always() }}
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
         with:
-          type: ${{ job.status }}
-          job_name: '*Deployment to ${{ env.RESOURCE_NAME }}*'
-          commit: true
-          url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          push: true
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL_DEV }}
+            NEXT_PUBLIC_UPLOADS_URL=${{ secrets.NEXT_PUBLIC_UPLOADS_URL_DEV }}
+            NEXT_PUBLIC_GOOGLE_VERIFICATION=${{ secrets.NEXT_PUBLIC_GOOGLE_VERIFICATION_DEV }}
+            NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL_DEV }}
+            NEXT_PUBLIC_STRIPE_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_DEV }}
+            ENVIRONMENT=${{ secrets.ENVIRONMENT_DEV }}
+          tags: |
+            ${{ secrets.REGISTRY_URL }}/uttarena/front:${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+  deploy-prod:
+    if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/master') }}
+    runs-on: self-hosted
+    needs:
+      - lint
+      - build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install docker
+        uses: docker/setup-buildx-action@v3
+      - name: Login to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.REGISTRY_URL }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          build-args: |
+            NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_UPLOADS_URL=${{ secrets.NEXT_PUBLIC_UPLOADS_URL }}
+            NEXT_PUBLIC_GOOGLE_VERIFICATION=${{ secrets.NEXT_PUBLIC_GOOGLE_VERIFICATION }}
+            NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
+            NEXT_PUBLIC_STRIPE_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLIC_KEY }}
+            ENVIRONMENT=${{ secrets.ENVIRONMENT }}
+          tags: |
+            ${{ secrets.REGISTRY_URL }}/uttarena/front:${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
+

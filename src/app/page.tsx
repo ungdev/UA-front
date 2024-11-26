@@ -4,7 +4,7 @@ import Partners from '@/components/Partners';
 import Slider from '@/components/landing/Slider';
 import Counter from '@/components/landing/Counter';
 import BoxContainer from '@/components/landing/BoxContainer';
-import { VerticalDivider, Button, Title, Icon, TextBlock } from '@/components/UI';
+import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
@@ -65,7 +65,7 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          /*<YoutubeVideoContainer key={'slide-2'} id="Rapw-tXMeDU" />,*/
+          <YoutubeVideoContainer key={'slide-2'} id="geOoiwoYtps" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
               <img src={banner.src} alt="Rejoindre l'aventure" loading="lazy" />
@@ -95,7 +95,7 @@ const Home = () => {
         <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
           <Counter value={6} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={4850} valueText=" €" name="de cashprize" className={styles.middleCounter} />
+          <Counter value={4900} valueText=" €" name="de cashprize" className={styles.middleCounter} />
           <VerticalDivider className={styles.divider} />
           <Counter value={416} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
