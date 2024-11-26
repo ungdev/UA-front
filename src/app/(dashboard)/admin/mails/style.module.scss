@@ -1,0 +1,248 @@
+@import '@/variables.scss';
+
+$stepper-size: 30px;
+
+.dashboardMail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3rem 0;
+
+  .stepsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+
+    /* Stepper */
+    .steps {
+      overflow: hidden;
+      display: flex;
+      width: 320px;
+      justify-content: space-between;
+      align-items: center;
+      counter-reset: step;
+      padding: 0;
+      margin: 0;
+
+      li {
+        list-style-type: none;
+        color: white;
+        text-transform: uppercase;
+        font-size: 12px;
+        width: 33.33%;
+        float: left;
+        position: relative;
+        margin: 0;
+      }
+
+      li:before {
+        content: counter(step);
+        counter-increment: step;
+        width: $stepper-size;
+        line-height: $stepper-size;
+        font-size: $stepper-size / 2;
+        font-weight: bold;
+        color: #333;
+        background: white;
+        border-radius: 3px;
+        margin: 0 auto 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease-in-out 0ms;
+      }
+
+      li:after {
+        content: '';
+        width: calc(100% - $stepper-size);
+        height: 2px;
+        background: white;
+        position: absolute;
+        left: -50%;
+        margin-left: $stepper-size / 2;
+        top: calc($stepper-size / 2 - 1px);
+        transition: all 0.2s ease-in-out 50ms;
+      }
+
+      li:first-child:after {
+        /*connector not needed before the first step*/
+        content: none;
+      }
+
+      li.active:before {
+        transition: all 0.2s ease-in-out 50ms;
+      }
+
+      li.active:after {
+        transition: all 0.2s ease-in-out 0ms;
+      }
+
+      li.active:before,
+      li.active:after {
+        background: $secondary-color;
+        color: white;
+      }
+    }
+  }
+
+  .warning {
+    border-radius: 2px;
+    background-color: $accent-color;
+    border: 1px solid $accent-color;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+
+    &.light {
+      background-color: $light-color;
+      color: initial;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    max-width: calc(300px * 4 + 1.5rem * 7);
+
+    div {
+      width: 300px;
+      height: 126px;
+      padding: 25px;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      text-align: center;
+      color: $dark-color;
+      gap: 0.5rem;
+      overflow: hidden;
+      position: relative;
+
+      p {
+        margin: 0;
+        color: white;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.7rem;
+      }
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        filter: brightness(0.4);
+        z-index: -1;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        img {
+          filter: brightness(0.25);
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .stepContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    min-height: 40vh;
+
+    .discordBtn {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .tableColumnAction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .createRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .checkboxRules {
+    width: clamp(300px, 90%, 800px);
+    label > div {
+      margin-left: 5px;
+    }
+  }
+
+  .generalMail {
+    .mailCheckbox {
+      padding-bottom: 1.4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboardRegister {
+    gap: 3rem;
+
+    .teamTournament > div,
+    .joinSolo > div {
+      width: 100%;
+    }
+
+    .teamTournament {
+      display: block;
+      border: none;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+
+      .createTeam,
+      .joinTeam {
+        border-bottom: 2px solid #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .joinSolo .createSoloTeam {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .select {
+      max-width: none;
+    }
+
+    .centerMobile {
+      margin: 0 auto;
+      display: block;
+
+      &.buttonWrapper {
+        margin: 0 auto;
+        display: table;
+      }
+    }
+  }
+}
