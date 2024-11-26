@@ -84,6 +84,7 @@ jobs:
             NEXT_PUBLIC_GOOGLE_VERIFICATION=${{ secrets.NEXT_PUBLIC_GOOGLE_VERIFICATION_DEV }}
             NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL_DEV }}
             NEXT_PUBLIC_STRIPE_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLIC_KEY_DEV }}
+            ENVIRONMENT=${{ secrets.ENVIRONMENT_DEV }}
           tags: |
             ${{ secrets.REGISTRY_URL }}/uttarena/front:${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
   deploy-prod:
@@ -112,6 +113,7 @@ jobs:
             NEXT_PUBLIC_GOOGLE_VERIFICATION=${{ secrets.NEXT_PUBLIC_GOOGLE_VERIFICATION }}
             NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
             NEXT_PUBLIC_STRIPE_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLIC_KEY }}
+            ENVIRONMENT=${{ secrets.ENVIRONMENT }}
           tags: |
             ${{ secrets.REGISTRY_URL }}/uttarena/front:${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
 
