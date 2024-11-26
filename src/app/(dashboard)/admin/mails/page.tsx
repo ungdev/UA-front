@@ -12,7 +12,7 @@ import customMailImg from '@/../public/images/mails/custommail.webp';
 
 const Mails = () => {
   const [step, setStep] = useState(1);
-  const [mailContent, setMailContent] = useState<string>('');
+  const [mailContent, setMailContent] = useState<string>('joindiscord');
   //const [mailTemplate, setMailTemplate] = useState<string>('');
   const [preview, setPreview] = useState<boolean>(false);
 
