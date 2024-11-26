@@ -344,6 +344,9 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
     await API.post('admin/emails/', { generalMail, preview }, 60000);
 
     toast.success('Les mails ont bien été envoyés');
+    const response = await API.post('admin/emails/', { generalMail, preview }, 60000);
+
+    toast.success(response);
   } catch (err) {
     console.error(err);
   }
