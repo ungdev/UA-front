@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { UserAge, UserType } from '@/types';
 import QrScanner from 'qr-scanner';
 import { IconName } from '@/components/UI/Icon';
+import { toast } from 'react-toastify';
 
 const Entry = () => {
   const scannedUser = useAppSelector((state) => state.userEntry.searchUser);
@@ -30,13 +31,38 @@ const Entry = () => {
         </Title>
         <div>
           {!scannedUser ? (
-            <div className={styles.scanner}>
-              <div className={styles.scannerPlaceholder}>
-                <Icon name={IconName.Camera} />
-                Veuillez activer votre caméra
+            <>
+              <div className={styles.scanner}>
+                <div className={styles.scannerPlaceholder}>
+                  <Icon name={IconName.Camera} />
+                  Veuillez activer votre caméra
+                </div>
+                <QRCodeReader onCode={(code) => onCodeScanned(code)} className={styles.scannerPreview}></QRCodeReader>
               </div>
-              <QRCodeReader onCode={(code) => onCodeScanned(code)} className={styles.scannerPreview}></QRCodeReader>
-            </div>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (scannedUser) {
+                    toast.info('yo');
+                    dispatch(setSearchUser(null));
+                  } else {
+                    toast.info('yassssss');
+                    dispatch(searchUser(userIdentifiable));
+                  }
+                }}>
+                <>
+                  <div>Saisie manuelle</div>
+                  <Input
+                    label="Entrer l'ID de l'utilisateur ( a changer pour le mail mais pour l'instant je test comme ca"
+                    onChange={setUserIdentifiable}
+                    value={userIdentifiable}
+                  />
+                </>
+                <Button primary type="submit">
+                  {scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
+                </Button>
+              </form>
+            </>
           ) : (
             <>
               <p>
@@ -121,29 +147,6 @@ const Entry = () => {
             </>
           )}
           <hr />
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (scannedUser) {
-                dispatch(setSearchUser(null));
-              } else {
-                dispatch(searchUser(userIdentifiable));
-              }
-            }}>
-            {!scannedUser && (
-              <>
-                <div>Saisie manuelle</div>
-                <Input
-                  label="Entrer l'adresse mail de l'utilisateur"
-                  onChange={setUserIdentifiable}
-                  value={userIdentifiable}
-                />
-              </>
-            )}
-            <Button primary type="submit">
-              {scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
-            </Button>
-          </form>
         </div>
       </div>
     </div>

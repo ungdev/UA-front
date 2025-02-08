@@ -46,10 +46,26 @@ export const registerCashPayment = (): AppThunk => async (dispatch, getState) =>
 
 export const searchUser =
   (userIdentifiable: string): AppThunk =>
-  async (dispatch) => {
+  /*async (dispatch) => {
     const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
-    if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
+    toast.info('CA marche as faut fix mais le call est abominable');
+    console.log('Réponse API:', list);
+    toast.info(JSON.stringify(list));
+    if (list?.users?.length !== 1) toast.error('Aucun utilisateur trouvé');
     else dispatch(setSearchUser(list.users[0]));
+  };
+  */
+  async (dispatch) => {
+    const userId = userIdentifiable;
+    try {
+      const { data: user } = await API.post(`admin/scan`, {
+        userId,
+      });
+      toast.success('Utilisateur trouvé');
+      dispatch(setSearchUser(user));
+    } catch (error: any) {
+      toast.error(error);
+    }
   };
 
 export const scan =
