@@ -2,13 +2,12 @@
 import styles from './style.module.scss';
 import { useState, useRef } from 'react';
 
-import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
+import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser, leavePanel } from '@/modules/userEntry';
 import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { UserAge, UserType } from '@/types';
 import QrScanner from 'qr-scanner';
 import { IconName } from '@/components/UI/Icon';
-import { toast } from 'react-toastify';
 
 const Entry = () => {
   const scannedUser = useAppSelector((state) => state.userEntry.searchUser);
@@ -43,17 +42,15 @@ const Entry = () => {
                 onSubmit={(event) => {
                   event.preventDefault();
                   if (scannedUser) {
-                    toast.info('yo');
                     dispatch(setSearchUser(null));
                   } else {
-                    toast.info('yassssss');
                     dispatch(searchUser(userIdentifiable));
                   }
                 }}>
                 <>
                   <div>Saisie manuelle</div>
                   <Input
-                    label="Entrer l'ID de l'utilisateur ( a changer pour le mail mais pour l'instant je test comme ca"
+                    label="Entrer le mail de l'utilisateur"
                     onChange={setUserIdentifiable}
                     value={userIdentifiable}
                   />
@@ -135,13 +132,16 @@ const Entry = () => {
               </p>
               <div className={styles.buttonRow}>
                 <Button primary={true} disabled={scannedUser.hasPaid} onClick={() => dispatch(registerCashPayment())}>
-                  Valider le paiement
+                  Valider le paiement et l'entrée
                 </Button>
                 <Button
                   primary={true}
                   disabled={!scannedUser.hasPaid || !!scannedUser.scannedAt}
                   onClick={() => dispatch(bypassQrScan())}>
                   Valider l'entrée
+                </Button>
+                <Button primary={true} onClick={() => dispatch(leavePanel())}>
+                  Changer de personne
                 </Button>
               </div>
             </>

@@ -46,23 +46,15 @@ export const registerCashPayment = (): AppThunk => async (dispatch, getState) =>
 
 export const searchUser =
   (userIdentifiable: string): AppThunk =>
-  /*async (dispatch) => {
-    const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
-    toast.info('CA marche as faut fix mais le call est abominable');
-    console.log('Réponse API:', list);
-    toast.info(JSON.stringify(list));
-    if (list?.users?.length !== 1) toast.error('Aucun utilisateur trouvé');
-    else dispatch(setSearchUser(list.users[0]));
-  };
-  */
   async (dispatch) => {
-    const userId = userIdentifiable;
     try {
-      const { data: user } = await API.post(`admin/scan`, {
-        userId,
-      });
-      toast.success('Utilisateur trouvé');
-      dispatch(setSearchUser(user));
+      const response = await API.get(`admin/users?search=${userIdentifiable}`);
+      const list = response;
+      if (!list || !Array.isArray(list.users)) {
+        toast.error('Aucun utilisateur trouvé');
+      } else {
+        dispatch(setSearchUser(list.users[0]));
+      }
     } catch (error: any) {
       toast.error(error);
     }
@@ -95,6 +87,10 @@ export const bypassQrScan = (): AppThunk => async (dispatch, getState) => {
   } catch (error: any) {
     toast.error(error);
   }
+};
+
+export const leavePanel = (): AppThunk => async (dispatch) => {
+  dispatch(setSearchUser(null));
 };
 
 export default userEntrySlice.reducer;
