@@ -1,12 +1,11 @@
 'use client';
 import styles from './style.module.scss';
 import { useState, useRef } from 'react';
-
+import base45 from 'base45';
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser, leavePanel } from '@/modules/userEntry';
 import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { UserAge, UserType } from '@/types';
-import QrScanner from 'qr-scanner';
 import { IconName } from '@/components/UI/Icon';
 
 const Entry = () => {
@@ -15,8 +14,12 @@ const Entry = () => {
   const lastCode = useRef<string>();
   const dispatch = useAppDispatch();
 
-  const onCodeScanned = (code: QrScanner.ScanResult) => {
-    const base64Code = window.btoa(code.data);
+  const onCodeScanned = (code: QRCodeResult) => {
+    console.log('Donnée brute du QR code:', code.data);
+    const binaryData = base45.decode(String(code.data));
+    console.log('Donnée décodée du QR code:', binaryData);
+    const base64Code = binaryData.toString('base64');
+    console.log('Donnée en base64 du QR code:', base64Code);
     if (scannedUser || base64Code === lastCode.current) return;
     lastCode.current = base64Code;
     return dispatch(scan(base64Code));
