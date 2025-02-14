@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import QRCodeReader from './QRCodeReader';
-import QrScanner from 'qr-scanner';
 
 const meta = {
   title: 'UI/QRCodeReader',
