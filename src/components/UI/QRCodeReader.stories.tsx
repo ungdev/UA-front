@@ -16,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    onCode(code: QrScanner.ScanResult) {
+    onCode(code: { data: string }) {
       console.log(code);
     },
     className: 'test',

@@ -14,15 +14,12 @@ const Entry = () => {
   const lastCode = useRef<string>();
   const dispatch = useAppDispatch();
 
-  const onCodeScanned = (code: QRCodeResult) => {
-    console.log('Donnée brute du QR code:', code.data);
+  const onCodeScanned = (code: { data: string }) => {
     const binaryData = base45.decode(String(code.data));
-    console.log('Donnée décodée du QR code:', binaryData);
     const base64Code = binaryData.toString('base64');
-    console.log('Donnée en base64 du QR code:', base64Code);
     if (scannedUser || base64Code === lastCode.current) return;
     lastCode.current = base64Code;
-    return dispatch(scan(base64Code));
+    dispatch(scan(base64Code));
   };
 
   return (
@@ -39,7 +36,11 @@ const Entry = () => {
                   <Icon name={IconName.Camera} />
                   Veuillez activer votre caméra
                 </div>
-                <QRCodeReader onCode={(code) => onCodeScanned(code)} className={styles.scannerPreview}></QRCodeReader>
+                <QRCodeReader
+                  onCode={onCodeScanned}
+                  className={styles.scannerPreview}
+                  autoStart={scannedUser === null} // la caméra démarre dès que scannedUser est null
+                />
               </div>
               <form
                 onSubmit={(event) => {
@@ -51,7 +52,7 @@ const Entry = () => {
                   }
                 }}>
                 <>
-                  <div>Saisie manuelle</div>
+                  <div className="saisie">Saisie manuelle</div>
                   <Input
                     label="Entrer le mail de l'utilisateur"
                     onChange={setUserIdentifiable}

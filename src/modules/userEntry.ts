@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-
 import { API } from '@/utils/api';
 import { UserWithTeamAndMessageAndTournamentInfo } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
@@ -64,9 +63,7 @@ export const scan =
   (qrcode: string): AppThunk =>
   async (dispatch) => {
     try {
-      const { data: user } = await API.post(`admin/scan`, {
-        qrcode,
-      });
+      const user = await API.post(`admin/scan`, { qrcode });
       toast.success('Utilisateur scanné');
       dispatch(setSearchUser(user));
     } catch (error: any) {

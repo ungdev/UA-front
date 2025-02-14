@@ -13,9 +13,11 @@ interface QRCodeReaderProps {
   onCode: (code: QRCodeResult) => void;
   /** Classe CSS optionnelle */
   className?: string;
+  /** Démarre automatiquement le scanner si true */
+  autoStart?: boolean;
 }
 
-const QRCodeReader = ({ onCode, className = '' }: QRCodeReaderProps) => {
+const QRCodeReader = ({ onCode, className = '', autoStart = false }: QRCodeReaderProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -44,7 +46,16 @@ const QRCodeReader = ({ onCode, className = '' }: QRCodeReaderProps) => {
     return () => {
       stopScanner();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Surveille l'autoStart : dès que c'est true, et que la caméra est disponible, on démarre le scanner
+  useEffect(() => {
+    if (autoStart && cameraId && !isEnabled) {
+      toggleScanner();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStart, cameraId]);
 
   const stopScanner = async () => {
     if (!html5QrCodeRef.current) return;
@@ -72,7 +83,7 @@ const QRCodeReader = ({ onCode, className = '' }: QRCodeReaderProps) => {
       const config = { fps: 10, qrbox: 250 };
       html5QrCodeRef.current
         .start(
-          cameraId, // <-- Correction ici, on passe directement l'ID de la caméra
+          cameraId,
           config,
           (decodedText) => {
             onCode({ data: decodedText });
