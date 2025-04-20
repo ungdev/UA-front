@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from 'next';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl, appUrl } from '@/utils/environment';
-import { headers } from 'next/headers';
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize/modern-normalize.css';
