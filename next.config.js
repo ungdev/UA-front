@@ -50,6 +50,14 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/umami.js',
+        destination: 'https://analytics.uttnetgroup.fr/script.js',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -127,18 +127,24 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Get header x-nonce
-  const nonce = headers().get('x-nonce') || '';
-
   return (
-    <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
-      <body>
-        <Script src="/matomo.js" nonce={nonce} strategy="lazyOnload" />
-        <Providers>
-          <Wrapper>{children}</Wrapper>
-        </Providers>
-        <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
-      </body>
-    </html>
+    <>
+      {process.env.NODE_ENV === 'production' && (
+        <Script
+          defer
+          src="/umami.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          data-host-url="https://analytics.uttnetgroup.fr"
+        />
+      )}
+      <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
+        <body>
+          <Providers>
+            <Wrapper>{children}</Wrapper>
+          </Providers>
+          <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
+        </body>
+      </html>
+    </>
   );
 }
