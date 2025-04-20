@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { expect } from '@storybook/jest';
+import { expect } from '@storybook/test';
 import * as matchers from '@testing-library/jest-dom/matchers';
 expect.extend(matchers);
 

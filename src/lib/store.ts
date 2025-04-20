@@ -1,11 +1,12 @@
 // eslint-disable-next-line import/named
 import { configureStore, type UnknownAction } from '@reduxjs/toolkit';
-import { type ThunkAction, thunk } from 'redux-thunk';
+import { type ThunkAction } from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from '@/modules';
 import { nodeEnv } from '@/utils/environment';
 
-const middleware = [thunk];
+// Initialize with empty array - thunk is already included by default
+const middleware: Array<never> = [];
 
 if (nodeEnv() === 'development') {
   middleware.push(createLogger({ collapsed: true }) as never);
