@@ -50,7 +50,7 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: '/umami.js',
