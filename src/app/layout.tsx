@@ -11,6 +11,7 @@ import Script from 'next/script';
 import { Kanit } from 'next/font/google';
 import Agenor from 'next/font/local';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { headers } from 'next/headers';
 
 const agenor = Agenor({
   src: '../../public/fonts/AgenorNeue-Regular.otf',
@@ -126,6 +127,8 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  //Get the nonce from the request headers
+  const nonce = headers().get('x-nonce') || '';
   return (
     <>
       {process.env.NODE_ENV === 'production' && (
@@ -134,6 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           src="/umami.js"
           data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
           data-host-url="https://analytics.uttnetgroup.fr"
+          nonce={nonce}
         />
       )}
       <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
