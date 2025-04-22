@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import { configureStore, type UnknownAction } from '@reduxjs/toolkit';
 import { type ThunkAction } from 'redux-thunk';
 import { createLogger } from 'redux-logger';
