@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from 'next';
 import { Providers } from '@/lib/provider';
 import { ToastContainer, Flip } from 'react-toastify';
 import { googleVerification, uploadsUrl, appUrl } from '@/utils/environment';
-import { headers } from 'next/headers';
 // Dependencies CSS files
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize/modern-normalize.css';
@@ -12,6 +11,7 @@ import Script from 'next/script';
 import { Kanit } from 'next/font/google';
 import Agenor from 'next/font/local';
 import { Icon } from 'next/dist/lib/metadata/types/metadata-types';
+import { headers } from 'next/headers';
 
 const agenor = Agenor({
   src: '../../public/fonts/AgenorNeue-Regular.otf',
@@ -127,18 +127,27 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Get header x-nonce
+  //Get the nonce from the request headers
   const nonce = headers().get('x-nonce') || '';
-
   return (
-    <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
-      <body>
-        <Script src="/matomo.js" nonce={nonce} strategy="lazyOnload" />
-        <Providers>
-          <Wrapper>{children}</Wrapper>
-        </Providers>
-        <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
-      </body>
-    </html>
+    <>
+      {process.env.NODE_ENV === 'production' && (
+        <Script
+          defer
+          src="/umami.js"
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          data-host-url="https://analytics.uttnetgroup.fr"
+          nonce={nonce}
+        />
+      )}
+      <html lang="fr" className={`${agenor.variable} ${kanit.variable}`}>
+        <body>
+          <Providers>
+            <Wrapper>{children}</Wrapper>
+          </Providers>
+          <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
+        </body>
+      </html>
+    </>
   );
 }

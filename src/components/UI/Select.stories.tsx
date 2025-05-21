@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Select from './Select';
-import { userEvent, within } from '@storybook/testing-library';
-import { expect } from '@storybook/jest';
+import { userEvent, within } from '@storybook/test';
+import { expect } from '@storybook/test';
 
 const meta = {
   title: 'UI/Select',
