@@ -59,7 +59,7 @@ export default defineConfig([
 
       'import/resolver': {
         node: {
-          extensions: ['.js', '.jsx'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
       },
     },
