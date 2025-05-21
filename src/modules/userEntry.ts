@@ -54,8 +54,8 @@ export const searchUser =
       } else {
         dispatch(setSearchUser(list.users[0]));
       }
-    } catch (error: any) {
-      toast.error(error);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -66,8 +66,8 @@ export const scan =
       const user = await API.post(`admin/scan`, { qrcode });
       toast.success('Utilisateur scanné');
       dispatch(setSearchUser(user));
-    } catch (error: any) {
-      toast.error(error);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -81,8 +81,8 @@ export const bypassQrScan = (): AppThunk => async (dispatch, getState) => {
     });
     toast.success('Utilisateur scanné');
     dispatch(setSearchUser(user));
-  } catch (error: any) {
-    toast.error(error);
+  } catch (error) {
+    console.error(error);
   }
 };
 

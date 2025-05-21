@@ -16,7 +16,6 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
 });
-
 export default defineConfig([
   {
     extends: fixupConfigRules(
@@ -40,21 +39,20 @@ export default defineConfig([
     },
 
     languageOptions: {
-      globals: {},
       parser: tsParser,
-      ecmaVersion: 2018,
       sourceType: 'module',
-      ecmaFeatures: {
-        jsx: true,
-      },
+      globals: {},
     },
 
     settings: {
       react: {
         version: 'detect',
       },
-
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
       'import/resolver': {
+        typescript: {}, // active le resolver
         node: {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
@@ -78,14 +76,8 @@ export default defineConfig([
   {
     files: ['**/*.tsx'],
     ignores: ['**/*.stories.tsx'],
-
     rules: {
-      'no-console': [
-        'error',
-        {
-          allow: ['warn', 'error'],
-        },
-      ],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
 ]);

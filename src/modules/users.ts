@@ -179,7 +179,7 @@ export const lookupUser =
   };
 
 export const updateUser =
-  (updateUser: any): AppThunk =>
+  (updateUser: UserWithTeamAndMessageAndTournamentInfo): AppThunk =>
   async (dispatch, getState) => {
     const state = getState();
     const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
@@ -203,8 +203,10 @@ export const validatePay =
     const userModal = state.users.lookupUser;
     await API.post(`admin/users/${id}/force-pay`, {});
     toast.success('Paiement validé');
-    dispatch(updateUser({ ...userModal, hasPaid: true }));
-    dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo));
+    if (userModal) {
+      dispatch(updateUser({ ...userModal, hasPaid: true }));
+      dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo));
+    }
   };
 
 export const saveUser =
@@ -273,8 +275,10 @@ export const refundCart =
     await API.post(`admin/carts/${id}/refund`, {});
     const userModal = state.users.lookupUser;
     toast.success('Le panier a été marqué comme remboursé');
-    dispatch(updateUser({ ...userModal, hasPaid: false }));
-    dispatch(lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo));
+    if (userModal) {
+      dispatch(updateUser({ ...userModal, hasPaid: false }));
+      dispatch(lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo));
+    }
   };
 
 export const uploadProfilePicture = async (
