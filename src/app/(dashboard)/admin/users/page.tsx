@@ -18,6 +18,7 @@ const columnTitles = {
   permissionsLabel: 'Permissions',
   teamName: 'Équipe',
   status: 'Rôle',
+  commission: 'Commission',
   tournamentName: 'Tournoi',
   place: 'Place',
 };
@@ -62,6 +63,7 @@ const INITIAL_FILTERS = {
   tournament: 'all',
   age: 'all',
   permissions: [] as string[],
+  commission: 'all',
 };
 
 const permissionOptions = [
@@ -89,6 +91,7 @@ const Users = () => {
     scannedLabel: true,
     status: true,
     permissionsLabel: true,
+    commission: true,
     teamName: true,
     tournamentName: true,
     place: true,
@@ -103,6 +106,7 @@ const Users = () => {
       type: filters.type,
       tournament: filters.tournament,
       age: filters.age,
+      commission: filters.commission,
     };
     if (filters.permissions.length > 0) {
       userFilters.permissions = filters.permissions.join(',');
