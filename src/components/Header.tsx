@@ -110,7 +110,7 @@ export default function Header({
         </Link>
       ) : (
         <Button
-          secondary
+          primary
           onClick={() => {
             closeBurger();
             dispatch(setLoginModalVisible(true));

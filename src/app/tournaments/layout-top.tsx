@@ -26,7 +26,7 @@ export default function LayoutTop() {
         <div className={styles.buttons}>
           <Button
             className={styles.button}
-            primary
+            secondary
             onClick={() => {
               if (pathname === '/tournaments') {
                 router.replace('/tournaments?scroll=true', {
@@ -42,7 +42,7 @@ export default function LayoutTop() {
           </Button>
           <Button
             className={styles.button}
-            primary
+            secondary
             onClick={() => {
               if (status.login) {
                 dispatch(setRedirect('/dashboard'));

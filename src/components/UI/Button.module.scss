@@ -23,7 +23,7 @@
   }
 
   &:not(.primary, .secondary) {
-    color: #8C979B;
+    color: #8c979b;
     border: none;
 
     &:not([disabled]):hover {
@@ -37,7 +37,7 @@
 
   &.primary {
     color: white;
-    background-color: $secondary-color;
+    background-color: $primary-color;
 
     &.outline {
       color: $accent-color;
