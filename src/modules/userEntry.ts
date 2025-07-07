@@ -55,6 +55,7 @@ export const searchUser =
         dispatch(setSearchUser(list.users[0]));
       }
     } catch (error) {
+      toast.error("Erreur lors de la recherche de l'utilisateur");
       console.error(error);
     }
   };
@@ -67,6 +68,7 @@ export const scan =
       toast.success('Utilisateur scanné');
       dispatch(setSearchUser(user));
     } catch (error) {
+      toast.error("Erreur lors de la recherche de l'utilisateur");
       console.error(error);
     }
   };
@@ -82,6 +84,7 @@ export const bypassQrScan = (): AppThunk => async (dispatch, getState) => {
     toast.success('Utilisateur scanné');
     dispatch(setSearchUser(user));
   } catch (error) {
+    toast.error("Erreur lors de la recherche de l'utilisateur");
     console.error(error);
   }
 };
