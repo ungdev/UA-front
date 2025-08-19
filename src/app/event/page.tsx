@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
-  title: 'Évènement - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
+  title: 'Évènement - UTT Arena 2025 - 28, 29 et 30 novembre 2025',
 };
 
 export default function Page() {
