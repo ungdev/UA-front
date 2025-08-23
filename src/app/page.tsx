@@ -129,13 +129,13 @@ const Home = () => {
           <Title level={2}>Les tournois de l'UA25</Title>
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>6 tournois</strong> aux joueurs :{' '}
-            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>,{' '}
-            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et{' '}
-            <strong>un tournoi multigaming</strong>. <br />
+            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Valorant</strong>,{' '}
+            <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et <strong>un tournoi multigaming</strong>.{' '}
+            <br />
             Tous les tournois donnent accès à la salle, à la buvette et à ses autres activités{' '}
             <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les joueurs des tournois PC
-            et multigaming (donc hors SSBU) auront accès à une <strong>place assise fixe</strong> où installer leurs
-            ordinateurs. N’hésitez pas et rejoignez-nous dans l’arène !
+            et multigaming auront accès à une <strong>place assise fixe</strong> où installer leurs ordinateurs.
+            N’hésitez pas et rejoignez-nous dans l’arène !
           </div>
         </div>
         <TournamentList className={styles.list} />

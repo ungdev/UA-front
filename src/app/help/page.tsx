@@ -122,8 +122,8 @@ const faq: Faq = {
       answer: (
         <>
           <ul>
-            <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li>
-            <li>28 € pour les joueurs des autres tournois</li>
+            {/* <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li> */}
+            <li>28 € pour les joueurs, tout tournois confondus</li>
             <li>15 € en tant que coach, manager</li>
             <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
             <li>
@@ -164,35 +164,35 @@ const faq: Faq = {
       ),
     },
   ],
-  'Tournoi Super Smash Bros Ultimate': [
-    {
-      question: 'Dois-je apporter ma console ?',
-      answer: (
-        <>
-          Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au
-          tournoi, tu dois en effet apporter ta Nintendo Switch, son dock, le jeu SSBU avec <strong>tous</strong> les
-          personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong>{' '}
-          de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
-          <br />
-          Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
-          <br />
-          <br />
-          <strong>
-            Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera facturé
-            sur place.
-          </strong>
-        </>
-      ),
-    },
-    {
-      question: 'Puis-je apporter mon PC ?',
-      answer: "Non, car tu n'auras pas de place pour installer ton setup.",
-    },
-    {
-      question: 'Dois-je apporter mes manettes ?',
-      answer: 'Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube sans oublier ton adaptateur.',
-    },
-  ],
+  // 'Tournoi Super Smash Bros Ultimate': [
+  //   {
+  //     question: 'Dois-je apporter ma console ?',
+  //     answer: (
+  //       <>
+  //         Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au
+  //         tournoi, tu dois en effet apporter ta Nintendo Switch, son dock, le jeu SSBU avec <strong>tous</strong> les
+  //         personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong>{' '}
+  //         de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
+  //         <br />
+  //         Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
+  //         <br />
+  //         <br />
+  //         <strong>
+  //           Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera facturé
+  //           sur place.
+  //         </strong>
+  //       </>
+  //     ),
+  //   },
+  //   {
+  //     question: 'Puis-je apporter mon PC ?',
+  //     answer: "Non, car tu n'auras pas de place pour installer ton setup.",
+  //   },
+  //   {
+  //     question: 'Dois-je apporter mes manettes ?',
+  //     answer: 'Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube sans oublier ton adaptateur.',
+  //   },
+  // ],
 } as Faq;
 
 const Help = () => {
