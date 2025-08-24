@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   //console.log(tournamentId);
 
-  const tournamentId = ['lol', 'cs2', 'osu', 'val', 'tft', 'open'];
+  const tournamentId = ['lol', 'cs2', 'osu', 'valo', 'tft', 'open'];
   // 'ssbu',
   // Path to the directory containing your TSX files
   const siteDirectory = path.join(process.cwd(), '/src/app');
