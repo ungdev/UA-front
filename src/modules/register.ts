@@ -28,13 +28,9 @@ export const registerUser = async (user: RegisterUser) => {
     toast.error('Tu dois cocher "Mineur" ou "Majeur" en bas du formulaire.');
     return false;
   }
-  if (user.age === 'child' && user.legalRepresentativeAccepted === 'false') {
-    toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
+  if (user.age === 'child') {
+    toast.error("Tu dois avoir plus de 16 ans");
     return false;
-  }
-  if (user.age === 'child' && user.legalRepresentativeAccepted === 'false') {
-    toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
-    return;
   }
 
   await API.post('auth/register', { ...user, passwordConfirmation: undefined, legalRepresentativeAccepted: undefined });
