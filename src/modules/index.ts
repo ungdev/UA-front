@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/named
 import { combineReducers } from '@reduxjs/toolkit';
 import loginModal from '@/modules/loginModal';
 import login from '@/modules/login';

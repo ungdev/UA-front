@@ -25,7 +25,7 @@ export const registerUser = async (user: RegisterUser) => {
     return false;
   }
   if (user.age == '') {
-    toast.error('Tu dois avoir plus de 16 ans le jour de l\'UTT Arena');
+    toast.error("Tu dois avoir plus de 16 ans le jour de l'UTT Arena");
     return false;
   }
 

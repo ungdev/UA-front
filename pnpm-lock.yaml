@@ -35,6 +35,9 @@ importers:
       base45:
         specifier: ^2.0.1
         version: 2.0.1
+      eslint-plugin-react:
+        specifier: ^7.37.5
+        version: 7.37.5(eslint@9.34.0(jiti@1.21.7))
       modern-normalize:
         specifier: ^3.0.1
         version: 3.0.1
