@@ -60,13 +60,13 @@ function LoginModal({
 
   const signup = async () => {
     if (birthDate) {
-      const UADate = new Date(2025, 11, 28);
+      const UADate = new Date(2025, 10, 28);
       const ageDifMs = UADate.getTime() - birthDate.getTime();
       const ageDate = new Date(ageDifMs);
       const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-      if (age < 16) {
+      if (age < 18 && age >= 16) {
         signupForm.age = 'child';
-      } else {
+      } else if (age >= 18) {
         signupForm.age = 'adult';
       }
     }

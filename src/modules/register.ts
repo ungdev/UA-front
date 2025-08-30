@@ -24,12 +24,8 @@ export const registerUser = async (user: RegisterUser) => {
     toast.error('Le pseudo ne doit pas contenir de point.');
     return false;
   }
-  if (!user.age) {
-    toast.error('Tu dois cocher "Mineur" ou "Majeur" en bas du formulaire.');
-    return false;
-  }
-  if (user.age === 'child') {
-    toast.error("Tu dois avoir plus de 16 ans");
+  if (user.age == '') {
+    toast.error('Tu dois avoir plus de 16 ans le jour de l\'UTT Arena');
     return false;
   }
 
