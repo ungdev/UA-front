@@ -1,4 +1,4 @@
-FROM node:18 AS base
+FROM node:22 AS base
 
 ARG NEXT_PUBLIC_API_URL=http://localhost:3000
 ARG NEXT_PUBLIC_UPLOADS_URL=https://arena.dev.uttnetgroup.fr/uploads/files
