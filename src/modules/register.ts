@@ -24,17 +24,9 @@ export const registerUser = async (user: RegisterUser) => {
     toast.error('Le pseudo ne doit pas contenir de point.');
     return false;
   }
-  if (!user.age) {
-    toast.error('Tu dois cocher "Mineur" ou "Majeur" en bas du formulaire.');
+  if (user.age == '') {
+    toast.error("Tu dois avoir plus de 16 ans le jour de l'UTT Arena");
     return false;
-  }
-  if (user.age === 'child' && user.legalRepresentativeAccepted === 'false') {
-    toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
-    return false;
-  }
-  if (user.age === 'child' && user.legalRepresentativeAccepted === 'false') {
-    toast.error("Tu dois avoir plus de 16 ans ou l'autorisation de ton responsable légal pour effectuer l'inscription");
-    return;
   }
 
   await API.post('auth/register', { ...user, passwordConfirmation: undefined, legalRepresentativeAccepted: undefined });

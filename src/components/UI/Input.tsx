@@ -20,7 +20,7 @@ const Input = ({
   required = false,
 }: {
   /** The type of input to render. */
-  type?: 'text' | 'email' | 'password' | 'number' | 'datetime-local';
+  type?: 'text' | 'email' | 'password' | 'number' | 'datetime-local' | 'date';
   /** The label to display. */
   label?: ReactNode;
   /** The placeholder to display. */
