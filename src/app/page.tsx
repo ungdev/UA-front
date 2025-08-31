@@ -60,7 +60,7 @@ const Home = () => {
                 UTT Arena
               </TextStroke>
               <p>
-                <span className={styles.accent}>28</span>, <span className={styles.accent}>28</span> et{' '}
+                <span className={styles.accent}>28</span>, <span className={styles.accent}>29</span> et{' '}
                 <span className={styles.accent}>30</span> novembre 2025
               </p>
             </div>
