@@ -3,7 +3,7 @@ import styles from './style.module.scss';
 import { Title } from '@/components/UI';
 
 export const metadata: Metadata = {
-  title: 'Mentions légales - UTT Arena 2024 - 6,7 et 8 décembre 2024',
+  title: 'Mentions légales - UTT Arena 2025 - 28, 29 et 30 novembre 2025',
 };
 
 const Legal = () => (
@@ -79,17 +79,17 @@ const Legal = () => (
         ung@utt.fr
       </p>
       <p>
-        Concernant la responsabilité du matériel, chaque participant à notre compétition d'e-sport l'UTT Arena 2024 est
+        Concernant la responsabilité du matériel, chaque participant à notre compétition d'e-sport l'UTT Arena 2025 est
         tenu d'amener son propre matériel, y compris tout équipement informatique, clavier, souris, casque, moniteur, et
         autres accessoires nécessaires à sa participation. En apportant leur propre matériel, les joueurs reconnaissent
         qu'ils en sont entièrement responsables, y compris la qualité, la performance, et l'état de leur équipement.
       </p>
       <p>
-        L’UTT Arena 2024 ne peut être tenu responsable des problèmes techniques, défaillances matérielles, ou toute
+        L’UTT Arena 2025 ne peut être tenu responsable des problèmes techniques, défaillances matérielles, ou toute
         autre question liée à la qualité de l'équipement des participants.
       </p>
       <p>
-        Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena 2024 ainsi que du
+        Le site https://arena.utt.fr commercialise les places pour la compétition sportive UTT Arena 2025 ainsi que du
         matériel en prévente.
         <br />
         Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la
@@ -114,7 +114,7 @@ const Legal = () => (
       <p>
         Les présentes conditions générales expriment l'intégralité des obligations des parties. En ce sens, l'acheteur
         est réputé les accepter sans réserve. Les présentes conditions générales sont accessibles sur le site de l'UTT
-        Arena 2024 et prévaudront, le cas échéant, sur toute autre version ou tout autre document contradictoire. Le
+        Arena 2025 et prévaudront, le cas échéant, sur toute autre version ou tout autre document contradictoire. Le
         vendeur et l'acheteur conviennent que les présentes conditions générales régissent exclusivement leur relation.
         Le vendeur se réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès
         leur mise en ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les
@@ -125,9 +125,9 @@ const Legal = () => (
         Article 2 - Contenu
       </Title>
       Les présentes conditions générales ont pour objet de définir les droits et obligations des parties dans le cadre
-      de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena 2024.
-      Les présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena 2024. Ces
-      achats concernent les produits suivants : place pour l’évènement UTT Arena 2024 et matériel en prévente.
+      de la vente en ligne de biens proposés par le vendeur à l'acheteur, à partir du site internet de l'UTT Arena 2025.
+      Les présentes conditions ne concernent que les achats effectués sur le site Internet de l'UTT Arena 2025. Ces
+      achats concernent les produits suivants : place pour l’évènement UTT Arena 2025 et matériel en prévente.
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 3 - Informations précontractuelles
       </Title>
@@ -139,7 +139,7 @@ const Legal = () => (
       téléphonique et électronique, et à ses activités : celles relatives aux garanties légales, aux fonctionnalités du
       contenu numérique et à l'existence et aux modalités de mise en œuvre des garanties et autres conditions
       contractuelles. Les produits sont mis en vente selon la limite des stocks disponibles. Concernant la vente de
-      place pour l’évènement UTT Arena 2024, l’UNG se réserve le droit de demander un justificatif pour les coachs et
+      place pour l’évènement UTT Arena 2025, l’UNG se réserve le droit de demander un justificatif pour les coachs et
       managers, et si le justificatif n’est pas suffisant, peut annuler l’achat de la place et procéder à son
       remboursement intégral sans dédommagement.
       <Title level={2} type={2} className={styles.articleTitle}>
@@ -154,7 +154,7 @@ const Legal = () => (
       montant. Toute commande vaut acceptation des prix et description des produits disponibles à la vente. Dans
       certains cas, notamment pour défaut de paiement, adresse erronée ou autre problème sur le compte de l'acheteur, le
       vendeur se réserve le droit de bloquer la commande de l'acheteur jusqu'à la résolution du problème. La validation
-      de la commande ne signifie pas que le client pourra accéder à l’évènement UTT Arena 2024. Seul le statut “Inscrit”
+      de la commande ne signifie pas que le client pourra accéder à l’évènement UTT Arena 2025. Seul le statut “Inscrit”
       sur la page de l’équipe vaut validation de la place commandée. Dans le cas où le client a validé une commande de
       place pour l’évènement mais qu’il ne peut verrouiller son équipe et ainsi accéder au statut “Inscrit” par manque
       de disponibilité, un remboursement intégral sans dédommagement supplémentaire pourra être adressé par courriel à
@@ -278,25 +278,25 @@ const Legal = () => (
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
         de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
         demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours
-        calendaires avant la date de l'évènement, soit le 22/11/2024 17:00 CET. Toute demande doit être formulée par
+        calendaires avant la date de l'évènement, soit le 22/11/2025 17:00 CET. Toute demande doit être formulée par
         courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour
         l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra
         sur la carte bancaire ayant servi au paiement. Tout remboursement fera l'objet d'une retenue de :
       </p>
       <ul>
         <li>
-          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2024 17:00 CET et le
-          08/11/2024 17:00 CET
+          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2025 17:00 CET et le
+          08/11/2025 17:00 CET
         </li>
         <li>
-          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2024 17:00 CET et le
-          15/11/2024 17:00 CET
+          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2025 17:00 CET et le
+          15/11/2025 17:00 CET
         </li>
         <li>
-          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2024 17:00 CET et le
-          22/11/2024 17:00 CET
+          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2025 17:00 CET et le
+          22/11/2025 17:00 CET
         </li>
-        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2024 17:00 CET.</li>
+        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2025 17:00 CET.</li>
       </ul>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 13 - Force majeure
@@ -327,7 +327,7 @@ const Legal = () => (
       </Title>
       <p>
         Pour des raisons de sécurité des personnes et des biens, le participant est informé et accepte que le lieu de
-        déroulement de l'évènement de l'UTT Arena 2024 est susceptible d’être équipé de caméras de vidéosurveillance.
+        déroulement de l'évènement de l'UTT Arena 2025 est susceptible d’être équipé de caméras de vidéosurveillance.
         Ces images sont susceptibles d’être utilisées pour les besoins résultant de poursuites judiciaires à l’encontre
         de tout individu.
         <br />
@@ -359,22 +359,22 @@ const Legal = () => (
         Chaque utilisateur du site web a un droit permanent d'accès et de rectification sur toutes les données le
         concernant, conformément aux textes européens et aux lois nationales en vigueur. Il vous suffit d'en faire la
         demande par courrier électronique (arena@utt.fr). Ce droit peut être exercé dans les conditions et selon les
-        modalités définies sur le site de l'UTT Arena 2024. Les données nominatives fournies par l'acheteur sont
+        modalités définies sur le site de l'UTT Arena 2025. Les données nominatives fournies par l'acheteur sont
         nécessaires au traitement de sa commande et à l'établissement de ses factures. Elles peuvent être communiquées
         aux partenaires du vendeur chargés de l'exécution, du traitement, de la gestion et du paiement des commandes.
         Notre système héberge les données pour une durée de 1 à 3 ans suivant la fin de l’évènement. Nous conservons les
         autorisations parentales pour une durée de 1 an suivant la fin de l’évènement. Le registre d’enregistrement du
         matériel sorti de nuit par chaque participant sera conservé pour une durée de 1 mois.
         <br />
-        Les images de vidéosurveillance captées durant l'évènement UTT Arena 2024 seront conservées pour une durée de 1
+        Les images de vidéosurveillance captées durant l'évènement UTT Arena 2025 seront conservées pour une durée de 1
         mois suivant la fin de l'évènement. Ces données sont captées et conservées afin d'assurer la sécurité des
         personnes et des biens durant l'évènement. Conformément à l’article L.253-5 du Code de la sécurité intérieure,
         chaque participant intéressé dispose d’un droit d’accès aux images de vidéoprotection captées durant l'évènement
         et peut l’exercer pendant le délai de conservation des images par courrier à destination de l'association
-        organisant l'évènement UTT Arena 2024, ou à la CNIL.
+        organisant l'évènement UTT Arena 2025, ou à la CNIL.
         <br />
         <br />
-        L'adresse de l'association organisant l'évènement UTT Arena 2024 :
+        L'adresse de l'association organisant l'évènement UTT Arena 2025 :
         <br />
         UTT Net Group
         <br />
@@ -386,11 +386,11 @@ const Legal = () => (
         <br />
         <br />
         En cas de question sur le traitement des données personnelles collectées dans le cadre de l'évènement UTT Arena
-        2024, nous vous prions de <br /> contacter :
+        2025, nous vous prions de <br /> contacter :
         <br />
         Guillaume ETHEVE,
         <br />
-        Président de l'association UTT Net Group organisant l'évènement UTT Arena 2024 et Délégué à la Protection des
+        Président de l'association UTT Net Group organisant l'évènement UTT Arena 2025 et Délégué à la Protection des
         Données
         <br />
         Téléphone : 03 25 71 85 50
@@ -399,7 +399,7 @@ const Legal = () => (
         Article 18 - Mentions Légales
       </Title>
       <p>
-        L’évènement UTT Arena 2024 est organisé par :<br />
+        L’évènement UTT Arena 2025 est organisé par :<br />
         <br />
         UTT Net Group, association loi 1901
         <br />

@@ -206,11 +206,11 @@ const Account = () => {
                   <li>Manette</li>
                 </ul>
               </li>
-              {team && team.tournamentId === 'ssbu' && (
+              {/* {team && team.tournamentId === 'ssbu' && (
                 <li>
                   Si tu as pris la réduction SSBU, ta Switch, le jeu SSBU avec tous les personnages et un câble HDMI
                 </li>
-              )}
+              )} */}
             </ul>
           </Collapse>
         </div>

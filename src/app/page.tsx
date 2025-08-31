@@ -60,8 +60,8 @@ const Home = () => {
                 UTT Arena
               </TextStroke>
               <p>
-                <span className={styles.accent}>6</span>, <span className={styles.accent}>7</span> et{' '}
-                <span className={styles.accent}>8</span> décembre 2024
+                <span className={styles.accent}>28</span>, <span className={styles.accent}>29</span> et{' '}
+                <span className={styles.accent}>30</span> novembre 2025
               </p>
             </div>
           </div>,
@@ -102,10 +102,10 @@ const Home = () => {
       </AppearFromSide>
 
       <AppearFromSide className={styles.information}>
-        <TextBlock title="UTT Arena 2024" images={[doubleImage1.src, doubleImage2.src]}>
+        <TextBlock title="UTT Arena 2025" images={[doubleImage1.src, doubleImage2.src]}>
           Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les{' '}
-          <strong>6, 7 et 8 décembre 2024</strong> au sein des locaux de l’Université de Technologie de Troyes ! Nous{' '}
-          vous attendons nombreux pour cette 22e édition afin de passer 2 jours de folie ! <br />
+          <strong>28, 29 et 30 novembre 2025</strong> au sein des locaux de l’Université de Technologie de Troyes ! Nous{' '}
+          vous attendons nombreux pour cette 23e édition afin de passer 2 jours de folie ! <br />
           <br />
           Au programme : <strong>6 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
           parmis les <strong>416 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
@@ -120,22 +120,22 @@ const Home = () => {
           </Link>
           <Link href={'/event#program'} className={styles.moreInfoContainer}>
             <Icon name={IconName.Calendar} />
-            6, 7, 8 Décembre 2024
+            28, 29 et 30 novembre 2025
           </Link>
         </div>
       </AppearFromSide>
       <div className={styles.tournaments}>
         <div className={styles.text}>
-          <Title level={2}>Les tournois de l'UA24</Title>
+          <Title level={2}>Les tournois de l'UA25</Title>
           <div className={styles.textContent}>
             Cette année, l’UTT Arena propose <strong>6 tournois</strong> aux joueurs :{' '}
-            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>,{' '}
-            <strong>Super Smash Bros. Ultimate</strong>, <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et{' '}
-            <strong>un tournoi multigaming</strong>. <br />
+            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Valorant</strong>,{' '}
+            <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et <strong>un tournoi multigaming</strong>.{' '}
+            <br />
             Tous les tournois donnent accès à la salle, à la buvette et à ses autres activités{' '}
             <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les joueurs des tournois PC
-            et multigaming (donc hors SSBU) auront accès à une <strong>place assise fixe</strong> où installer leurs
-            ordinateurs. N’hésitez pas et rejoignez-nous dans l’arène !
+            et multigaming auront accès à une <strong>place assise fixe</strong> où installer leurs ordinateurs.
+            N’hésitez pas et rejoignez-nous dans l’arène !
           </div>
         </div>
         <TournamentList className={styles.list} />
