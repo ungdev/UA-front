@@ -33,7 +33,7 @@ const faq: Faq = {
       question: "Quel est l'âge minimum pour participer aux tournois ?",
       answer: (
         <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>15 ans lors de l'évènement</strong>. Il faudra
+          Pour participer aux tournois, il faut avoir au minimum <strong>16 ans lors de l'évènement</strong>. Il faudra
           que tu présentes <strong>l'autorisation parentale</strong>
           <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2024.pdf`} target="_blank">
             {' '}
@@ -125,7 +125,6 @@ const faq: Faq = {
             {/* <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li> */}
             <li>28 € pour les joueurs, tout tournois confondus</li>
             <li>15 € en tant que coach, manager</li>
-            <li>10 € en tant qu'accompagnateur (pour les mineurs)</li>
             <li>
               Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
               adresse mail étudiante.

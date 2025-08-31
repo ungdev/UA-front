@@ -105,7 +105,7 @@ const Home = () => {
         <TextBlock title="UTT Arena 2025" images={[doubleImage1.src, doubleImage2.src]}>
           Le rendez-vous incontournable des amateurs de gaming de la région Grand-Est est de retour ! Il aura lieu les{' '}
           <strong>28, 29 et 30 novembre 2025</strong> au sein des locaux de l’Université de Technologie de Troyes ! Nous{' '}
-          vous attendons nombreux pour cette 22e édition afin de passer 2 jours de folie ! <br />
+          vous attendons nombreux pour cette 23e édition afin de passer 2 jours de folie ! <br />
           <br />
           Au programme : <strong>6 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
           parmis les <strong>416 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
