@@ -7,19 +7,11 @@ import BoxContainer from '@/components/landing/BoxContainer';
 import { VerticalDivider, Button, Title, Icon, TextBlock, YoutubeVideoContainer } from '@/components/UI';
 import AppearFromSide from '@/components/UI/AppearFromSide';
 import Link from 'next/link';
-import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
-import moon from '@/../public/images/clouds/parallax/moon.webp';
-import Parallax from '@/components/parallax/Parallax';
 import { IconName } from '@/components/UI/Icon';
 import TextStroke from '@/components/UI/TextStroke';
 import TournamentList from '@/components/landing/TournamentList';
 import { setLoginModalVisible } from '@/modules/loginModal';
 import { useAppDispatch } from '@/lib/hooks';
-import parallaxCloud1 from '@/../public/images/clouds/parallax/cloud-1.webp';
-import parallaxCloud2 from '@/../public/images/clouds/parallax/cloud-2.webp';
-import parallaxCloud2Light from '@/../public/images/clouds/parallax/cloud-2-light.webp';
-import parallaxCloud3 from '@/../public/images/clouds/parallax/cloud-3.webp';
-import parallaxCloud3Light from '@/../public/images/clouds/parallax/cloud-3-light.webp';
 import doubleImage1 from '@/../public/images/home/double-image-1.webp';
 import doubleImage2 from '@/../public/images/home/double-image-2.webp';
 import banner from '@/../public/images/banner.webp';
@@ -28,26 +20,6 @@ const Home = () => {
   const dispatch = useAppDispatch();
   return (
     <div id="home" className={styles.home}>
-      <Parallax className={styles.parallax}>
-        <ParallaxElementSettings speed={2.6} className={styles.parallaxCloud1}>
-          <img src={parallaxCloud1.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2.3} className={styles.parallaxCloud2}>
-          <img src={parallaxCloud2.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-        <ParallaxElementSettings speed={1.9} className={styles.parallaxCloud2Light}>
-          <img src={parallaxCloud2Light.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-        <ParallaxElementSettings speed={3} className={styles.parallaxCloud3}>
-          <img src={parallaxCloud3.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2.5} className={styles.parallaxCloud3Light}>
-          <img src={parallaxCloud3Light.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-        <ParallaxElementSettings speed={2} className={styles.parallaxMoon}>
-          <img src={moon.src} alt="background" loading="lazy" />
-        </ParallaxElementSettings>
-      </Parallax>
       <Slider
         className={styles.slider}
         slides={[
@@ -65,7 +37,7 @@ const Home = () => {
               </p>
             </div>
           </div>,
-          <YoutubeVideoContainer key={'slide-2'} id="geOoiwoYtps" />,
+          <YoutubeVideoContainer key={'slide-2'} id="315SgDcRU2M" />,
           <div key={'slide-3'} className={styles.homeHeader}>
             <div className={styles.content}>
               <img src={banner.src} alt="Rejoindre l'aventure" loading="lazy" />
@@ -93,11 +65,11 @@ const Home = () => {
 
       <AppearFromSide fromRight className={styles.dataFlexing}>
         <BoxContainer title="chiffres.txt" className={styles.boxContainer}>
-          <Counter value={6} name="Tournois" className={styles.sideCounter} />
+          <Counter value={7} name="Tournois" className={styles.sideCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={4900} valueText=" €" name="de cashprize" className={styles.middleCounter} />
+          <Counter value={5850} valueText=" €" name="de cashprize" className={styles.middleCounter} />
           <VerticalDivider className={styles.divider} />
-          <Counter value={416} name="Participants" className={styles.sideCounter} />
+          <Counter value={496} name="Participants" className={styles.sideCounter} />
         </BoxContainer>
       </AppearFromSide>
 
