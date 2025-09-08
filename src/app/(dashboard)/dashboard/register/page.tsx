@@ -37,17 +37,22 @@ const Register = () => {
   const soloTeamName = `${user.username}-solo-team`;
   const [teamName, setTeamName] = useState('');
   const [pokemonPlayerId, setPokemonPlayerId] = useState('');
+  const [ffsuLicense, setFfsuLicense] = useState(user.ffsuLicense || '');
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
   const [acceptedRules, setAcceptedRules] = useState(false);
+  const [certifyFfsu, setCertifyFfsu] = useState(false);
   // Contains the team the user is trying to join. This is used to remember the team, so it will be filled only when the confirmation modal will be on.
   const [confirmationForTeam, setConfirmationForTeam] = useState<Team>();
 
   // Split multiplayer and solo tournaments
-  const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1);
-  const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1);
+  const tournamentsList = tournaments.filter((tournament) => tournament.playersPerTeam > 1 && !tournament.ffsu);
+  const tournamentsSoloList = tournaments.filter((tournament) => tournament.playersPerTeam === 1 && !tournament.ffsu);
+
+  // Get Ffsu tournaments
+  const tournamentsFfsuList = tournaments.filter((tournament) => tournament.ffsu === true);
 
   // Get tournaments category select options
   const tournamentsOptions = tournamentsList.map((tournament) => ({
@@ -56,6 +61,11 @@ const Register = () => {
   }));
 
   const tournamentsSoloOptions = tournamentsSoloList.map((tournament) => ({
+    label: tournament.name,
+    value: tournament.id,
+  }));
+
+  const tournamentsFfsuOptions = tournamentsFfsuList.map((tournament) => ({
     label: tournament.name,
     value: tournament.id,
   }));
@@ -142,7 +152,7 @@ const Register = () => {
           title="Spectateur"
           onClick={() => {
             setUserType(UserType.spectator);
-            setStep(step + 3);
+            setStep(step + 4);
             setTournamentSolo(true);
           }}
           imgSrc={spectatorImg.src}
@@ -160,8 +170,22 @@ const Register = () => {
           imgSrc={getTournamentBackgroundLink(element.value)}
           onClick={() => {
             setTournament(element.value);
-            setStep(step + 1);
+            setStep(step + 2);
             setTournamentSolo(false);
+          }}
+        />
+      );
+    });
+
+    tournamentsFfsuOptions.forEach((element, i) => {
+      list.push(
+        <RegisterCard
+          key={'tournament-ffsu-' + i}
+          title={element.label}
+          imgSrc={getTournamentBackgroundLink(element.value)}
+          onClick={() => {
+            setTournament(element.value);
+            setStep(step + 1);
           }}
         />
       );
@@ -178,7 +202,7 @@ const Register = () => {
             onClick={() => {
               setTournament(element.value);
               setCreateTeam(userType === UserType.player);
-              setStep(step + 2);
+              setStep(step + 3);
               setTournamentSolo(true);
             }}
           />,
@@ -195,6 +219,32 @@ const Register = () => {
   );
 
   const Step4 = (
+    <>
+      <div className={styles.checkboxRules}>
+        <Input label="Numéro de license FFSU" value={ffsuLicense} onChange={setFfsuLicense} />
+        <Checkbox
+          label={
+            <>
+              En cochant cette case je certifie que le numéro de licence FFSU que j'ai renseigné est valide et que je suis bien licencié(e) 
+              à la FFSU pour la saison en cours. Ce tournoi sera par conséquent gratuit mais ne disposera pas de cashprize.
+            </>
+          }
+          value={certifyFfsu}
+          onChange={setCertifyFfsu}
+        />
+      </div>
+      <Button
+        primary
+        onClick={() => {
+          setStep(step + 1);
+        }}
+        disabled={!user.discordId || !certifyFfsu}>
+        {'Valider'}
+      </Button>
+    </>
+  );
+
+  const Step5 = (
     <>
       <div className={styles.cardContainer}>
         <RegisterCard
@@ -256,7 +306,7 @@ const Register = () => {
     };
   };
 
-  const Step5 = (
+  const Step6 = (
     <>
       {createTeam || userType === UserType.spectator ? (
         <>
@@ -322,6 +372,8 @@ const Register = () => {
         return Step4;
       case 5:
         return Step5;
+      case 6:
+        return Step6;
       default:
         break;
     }
@@ -333,7 +385,7 @@ const Register = () => {
         <Button
           primary
           onClick={() =>
-            setStep(userType === UserType.spectator ? step - 3 : tournamentSolo && step === 5 ? step - 2 : step - 1)
+            setStep(userType === UserType.spectator ? step - 4 : tournamentSolo && step === 6 ? step - 3 : step === 5 ? step - 2 : step - 1)
           }>
           {'Retour'}
         </Button>
@@ -354,6 +406,7 @@ const Register = () => {
             <li className={step > 2 ? styles.active : ``}></li>
             <li className={step > 3 ? styles.active : ``}></li>
             <li className={step > 4 ? styles.active : ``}></li>
+            <li className={step > 5 ? styles.active : ``}></li>
           </ul>
         </div>
 
