@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 // eslint-disable-next-line import/named
 import { animated, useTransition } from '@react-spring/web';
 
-import { setType } from '@/modules/login';
+import { editUserFfsu, setType } from '@/modules/login';
 
 import { Input, Button, Table, Icon, Title, Checkbox } from '@/components/UI';
 import { createTeam as cT, joinTeam, cancelJoin } from '@/modules/team';
@@ -37,10 +37,11 @@ const Register = () => {
   const soloTeamName = `${user.username}-solo-team`;
   const [teamName, setTeamName] = useState('');
   const [pokemonPlayerId, setPokemonPlayerId] = useState('');
-  const [ffsuLicense, setFfsuLicense] = useState(user.ffsuLicense || '');
+  const [ffsuLicense, setFfsuLicense] = useState<string | null>(user.ffsuLicense || null);
   const [tournaments, setTournaments] = useState<Tournament[]>([]);
   const [tournament, setTournament] = useState('');
   const [tournamentSolo, setTournamentSolo] = useState(false);
+  const [tournamentFfsu, setTournamentFfsu] = useState(false);
   const [createTeam, setCreateTeam] = useState(false);
   const [acceptedRules, setAcceptedRules] = useState(false);
   const [certifyFfsu, setCertifyFfsu] = useState(false);
@@ -186,6 +187,7 @@ const Register = () => {
           onClick={() => {
             setTournament(element.value);
             setStep(step + 1);
+            setTournamentFfsu(true);
           }}
         />
       );
@@ -221,7 +223,7 @@ const Register = () => {
   const Step4 = (
     <>
       <div className={styles.checkboxRules}>
-        <Input label="Numéro de license FFSU" value={ffsuLicense} onChange={setFfsuLicense} />
+        <Input label="Numéro de license FFSU" value={ffsuLicense || ''} onChange={setFfsuLicense} />
         <Checkbox
           label={
             <>
@@ -237,6 +239,8 @@ const Register = () => {
         primary
         onClick={() => {
           setStep(step + 1);
+          const license = ffsuLicense?.length === 0 ? null : ffsuLicense;
+          dispatch(editUserFfsu({ ffsuLicense: license }));
         }}
         disabled={!user.discordId || !certifyFfsu}>
         {'Valider'}

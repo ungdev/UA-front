@@ -99,6 +99,10 @@ export interface UserEdit {
   newPassword: string;
 }
 
+export interface UserEditFfsu {
+  ffsuLicense: string | null;
+}
+
 export interface UserRestricted {
   id: string;
   username: string;
