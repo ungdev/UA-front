@@ -16,6 +16,7 @@ import { AttendantInfo, CartItem, Item, User, UserAge, UserType } from '@/types'
 import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
+import { API } from '@/utils/api';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -293,8 +294,14 @@ const Shop = () => {
   const onPay = async () => {
     setHasRequestedPayment(true);
     deleteCart();
-    const token = await cartPay(cart);
-    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
+    if (totalPrice) {
+      const token = await cartPay(cart);
+      dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
+    } else {
+      API.post('carts/ffsu').then(() => {
+        dispatch(setRedirect('/dashboard/team'));
+      });
+    }
   };
 
   // Hide the places section if user can't buy any places
@@ -403,7 +410,7 @@ const Shop = () => {
                 veryLong
                 className={styles.shopButton}
                 onClick={onPay}
-                disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+                disabled={(!totalPrice && (cart.tickets.userIds.length === 0)) || !isCgvAccepted || hasRequestedPayment}>
                 <Icon name={IconName.ShoppingCart} />
                 Payer
               </Button>
