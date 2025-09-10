@@ -17,12 +17,20 @@ const initialSignup: RegisterUser = {
   password: '',
   passwordConfirmation: '',
   age: '',
-  legalRepresentativeAccepted: 'false',
 };
 
 const initialLogin = {
   login: '',
   password: '',
+};
+
+const convertToDateTimeLocalString = (date: Date) => {
+  date = new Date(date);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
 };
 
 /**
@@ -44,12 +52,24 @@ function LoginModal({
   const [loginForm, setLoginForm] = useState(initialLogin);
   const [signupForm, setSignupForm] = useState(initialSignup);
   const [forgotEmail, setForgotEmail] = useState('');
+  const [birthDate, setBirthDate] = useState<Date | null>(null)
 
   const login = () => {
     dispatch(tryLogin(loginForm, admin));
   };
 
   const signup = async () => {
+    if (birthDate) {
+      const UADate = new Date(2025, 10, 28);
+      const ageDifMs = UADate.getTime() - birthDate.getTime();
+      const ageDate = new Date(ageDifMs);
+      const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      if (age < 18 && age >= 16) {
+        signupForm.age = 'child';
+      } else if (age >= 18) {
+        signupForm.age = 'adult';
+      }
+    }
     if (!(await registerUser(signupForm))) return;
     setPanel('emailSent');
   };
@@ -158,29 +178,12 @@ function LoginModal({
             type="password"
             autocomplete="new-password"
           />
-          <Radio
-            label="Le 6 décembre 2024, tu seras :"
-            options={[
-              { value: 'child', name: 'Mineur' },
-              { value: 'adult', name: 'Majeur' },
-            ]}
-            name="age"
-            value={signupForm.age}
-            onChange={(value: string) => {
-              setSignupForm({
-                ...signupForm,
-                age: value,
-                legalRepresentativeAccepted: 'false',
-              });
-            }}
-            row={true}></Radio>
-          {signupForm.age === 'child' && (
-            <Checkbox
-              label="Je certifie avoir plus de 16 ans ou eu l'autorisation de mon représentant légal pour me créer un compte sur ce site."
-              value={signupForm.legalRepresentativeAccepted === 'true'}
-              onChange={(value) => updateSignup('legalRepresentativeAccepted', value ? 'true' : 'false')}
-            />
-          )}
+          <Input
+            label="Date de naissance"
+            type="date"
+            value={birthDate ? convertToDateTimeLocalString(birthDate) : ''}
+            onChange={(value) => {setBirthDate(new Date(value as unknown as number))}}
+          />
           <Button primary className={styles.signupModalButton} type="submit">
             S'inscrire
           </Button>
