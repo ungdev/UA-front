@@ -246,9 +246,13 @@ export function TournamentHome({
             <h2>{renderedTournament.name}</h2>
             <p>
               {renderedTournament.cashprize !== null &&
-                (renderedTournament.cashprize === 0 ? (
+                (renderedTournament.cashprize === 0 && !renderedTournament.ffsu ? (
                   <>
                     <strong>Cashprize sous forme de lots</strong> ·{' '}
+                  </>
+                ) : renderedTournament.ffsu ? (
+                  <>
+                    <strong>Pas de cashprize sur ce tournois</strong> ·{' '}
                   </>
                 ) : (
                   <>
