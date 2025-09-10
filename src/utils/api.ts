@@ -11,6 +11,7 @@ const requestAPI = (
   disableCache = false,
   file = false,
   timeoutMaxTime = 10000,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> =>
   new Promise((resolve, reject) => {
     let didTimeOut = false;

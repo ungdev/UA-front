@@ -54,17 +54,23 @@ const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
     }
   }
 
-  return users.map((user) => ({
-    ...user,
-    fullname: `${user.firstname} ${user.lastname}`,
-    tournamentName: user.team ? user.team.tournament.name : '',
-    teamName: user.team ? user.team.name : '',
-    lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
-    paidLabel: user.hasPaid ? '✔' : '✖',
-    scannedLabel: user.scannedAt ? '✔' : '✖',
-    permissionsLabel: user.permissions.join(', ') || '',
-    status: user.type ? userType(user.type) : '',
-  }));
+  return users.map((user) => {
+    console.log('User OrgaData:', user.orga); // <-- Log pour voir ce que contient user.orga
+    console.log('Main Commission:', user.orga?.mainCommission); // <-- Log spécifique sur la commission
+
+    return {
+      ...user,
+      fullname: `${user.firstname} ${user.lastname}`,
+      tournamentName: user.team ? user.team.tournament.name : '',
+      teamName: user.team ? user.team.name : '',
+      lockedLabel: user.team && user.team.lockedAt ? '✔' : '✖',
+      paidLabel: user.hasPaid ? '✔' : '✖',
+      scannedLabel: user.scannedAt ? '✔' : '✖',
+      permissionsLabel: user.permissions.join(', ') || '',
+      commission: user.orga?.mainCommission || '',
+      status: user.type ? userType(user.type) : '',
+    };
+  });
 };
 
 export const usersSlice = createSlice({
@@ -173,7 +179,7 @@ export const lookupUser =
   };
 
 export const updateUser =
-  (updateUser: any): AppThunk =>
+  (updateUser: UserWithTeamAndMessageAndTournamentInfo): AppThunk =>
   async (dispatch, getState) => {
     const state = getState();
     const users: Array<UserWithTeamAndMessageAndTournamentInfo> = state.users.users;
@@ -197,8 +203,10 @@ export const validatePay =
     const userModal = state.users.lookupUser;
     await API.post(`admin/users/${id}/force-pay`, {});
     toast.success('Paiement validé');
-    dispatch(updateUser({ ...userModal, hasPaid: true }));
-    dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo));
+    if (userModal) {
+      dispatch(updateUser({ ...userModal, hasPaid: true }));
+      dispatch(lookupUser({ ...userModal, hasPaid: true } as UserWithTeamAndMessageAndTournamentInfo));
+    }
   };
 
 export const saveUser =
@@ -241,7 +249,7 @@ export const saveUser =
           orga: user.permissions.includes(Permission.orga)
             ? {
                 roles: body.orgaRoles,
-                mainCommission: body.orgaMainCommission,
+                mainCommission: body.orgaMainCommission?.id || body.orgaMainCommission || '', // Always a string
               }
             : null,
         },
@@ -267,8 +275,10 @@ export const refundCart =
     await API.post(`admin/carts/${id}/refund`, {});
     const userModal = state.users.lookupUser;
     toast.success('Le panier a été marqué comme remboursé');
-    dispatch(updateUser({ ...userModal, hasPaid: false }));
-    dispatch(lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo));
+    if (userModal) {
+      dispatch(updateUser({ ...userModal, hasPaid: false }));
+      dispatch(lookupUser({ ...userModal, hasPaid: false } as UserWithTeamAndMessageAndTournamentInfo));
+    }
   };
 
 export const uploadProfilePicture = async (
