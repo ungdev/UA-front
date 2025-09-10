@@ -57,6 +57,7 @@ export const Default: Story = {
         age: UserAge.adult,
         attendant: {} as UserAttendant,
         orga: null,
+        ffsuLicense: 'A45D4F4F78'
       },
     ],
     onItemRemoved: () => {},

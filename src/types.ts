@@ -87,6 +87,7 @@ export interface User {
   discordId: string | null;
   teamId: string | null;
   askingTeamId: string | null;
+  ffsuLicense: string | null;
   attendant: UserAttendant;
   age: UserAge;
   orga: OrgaData | null;
@@ -96,6 +97,10 @@ export interface UserEdit {
   username: string;
   password: string;
   newPassword: string;
+}
+
+export interface UserEditFfsu {
+  ffsuLicense: string | null;
 }
 
 export interface UserRestricted {
@@ -227,6 +232,7 @@ export interface Tournament {
   placesLeft: number;
   infos: string | null;
   format: string | null;
+  ffsu: boolean;
   cashprize: number | null;
   cashprizeDetails: string | null;
   casters: Caster[] | null;
