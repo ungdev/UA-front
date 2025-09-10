@@ -79,8 +79,8 @@ const Home = () => {
           <strong>28, 29 et 30 novembre 2025</strong> au sein des locaux de l’Université de Technologie de Troyes ! Nous{' '}
           vous attendons nombreux pour cette 23e édition afin de passer 2 jours de folie ! <br />
           <br />
-          Au programme : <strong>6 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
-          parmis les <strong>416 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
+          Au programme : <strong>7 tournois</strong> sur tes jeux favoris, <strong>48h</strong> pour montrer tes skills
+          parmis les <strong>496 joueurs</strong> qui composeront l’évènement, et tenter de remporter les{' '}
           <strong>cashprizes</strong>, <strong>lots</strong> et de nombreuses <strong>autres surprises</strong> ! Et
           pour animer cette édition, <strong>des guests d’exception</strong> viendront caster cette édition qui
           s’annonce enflammée ! Alors prépare tout ton stuff et impose toi dans l’arène !
@@ -100,10 +100,10 @@ const Home = () => {
         <div className={styles.text}>
           <Title level={2}>Les tournois de l'UA25</Title>
           <div className={styles.textContent}>
-            Cette année, l’UTT Arena propose <strong>6 tournois</strong> aux joueurs :{' '}
-            <strong>League of Legends</strong>, <strong>Counter-Strike 2</strong>, <strong>Valorant</strong>,{' '}
-            <strong>Teamfight Tactics</strong>, <strong>osu!</strong>, et <strong>un tournoi multigaming</strong>.{' '}
-            <br />
+            Cette année, l’UTT Arena propose <strong>7 tournois</strong> aux joueurs :{' '}
+            <strong>League of Legends</strong>, <strong>League of Legends (FFSU)</strong>,{' '}
+            <strong>Counter-Strike 2</strong>, <strong>Valorant</strong>, <strong>Teamfight Tactics</strong>,{' '}
+            <strong>osu!</strong>, et <strong>un tournoi multigaming</strong>. <br />
             Tous les tournois donnent accès à la salle, à la buvette et à ses autres activités{' '}
             <strong>du vendredi soir au dimanche</strong> en <strong>24h/24</strong>. Tous les joueurs des tournois PC
             et multigaming auront accès à une <strong>place assise fixe</strong> où installer leurs ordinateurs.

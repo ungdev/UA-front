@@ -34,7 +34,7 @@ export default function Page() {
         </div>
         <div className={`${styles.textAndImage} ${styles.imageRight}`}>
           <div className={styles.text}>
-            À présent l'UTT Arena c'est 416 joueurs, 6 tournois, des prix à gagner et des tournois commentés en direct
+            À présent l'UTT Arena c'est 496 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
@@ -191,7 +191,7 @@ export default function Page() {
               price: '15 €',
               description:
                 'Un justificatif pourra vous être demandé. Le nombre limite de coachs / managers par équipe sera précisé ultérieurement.',
-            },  
+            },
             {
               type: 'Spectateur',
               price: '10 €',

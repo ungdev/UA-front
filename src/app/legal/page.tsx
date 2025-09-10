@@ -119,7 +119,7 @@ const Legal = () => (
         Le vendeur se réserve le droit de modifier ponctuellement ses conditions générales. Elles seront applicables dès
         leur mise en ligne. Si une condition de vente venait à faire défaut, elle serait considérée être régie par les
         usages en vigueur dans le secteur de la vente à distance dont les sociétés ont siège en France. Les présentes
-        conditions générales de vente sont valables jusqu'au 31 janvier 2025 inclus.
+        conditions générales de vente sont valables jusqu'au 31 janvier 2026 inclus.
       </p>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 2 - Contenu
