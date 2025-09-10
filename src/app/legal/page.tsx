@@ -41,7 +41,7 @@ const Legal = () => (
         d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut
         exercer ce droit en effectuant une demande par mail à l’adresse arena@utt.fr
         <br />
-        Le responsable du traitement des données est Guillaume ETHEVE.
+        Le responsable du traitement des données est Matthieu Tourrette.
         <br />
         L’équipe technique et les administrateurs du site pourront accéder aux données.
         <br />
@@ -278,25 +278,25 @@ const Legal = () => (
         Conformément à l'article L. 121-20-4 du code de la consommation, les inscriptions ne font pas l'objet d'un droit
         de rétractation. Toute commande est ferme et définitive. Toutefois, l'organisateur autorise tout inscrit à
         demander une annulation et un remboursement partiel ou total de son inscription, au plus tard 14 jours
-        calendaires avant la date de l'évènement, soit le 22/11/2025 17:00 CET. Toute demande doit être formulée par
+        calendaires avant la date de l'évènement, soit le 14/11/2025 17:00 CET. Toute demande doit être formulée par
         courriel adressé à arena@utt.fr, précisant le nom d'utilisateur et l'adresse courriel utilisée pour
         l'inscription. Le remboursement sera exécuté sous quinzaine à dater de la fin de l'évènement, et interviendra
         sur la carte bancaire ayant servi au paiement. Tout remboursement fera l'objet d'une retenue de :
       </p>
       <ul>
         <li>
-          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 01/11/2025 17:00 CET et le
-          08/11/2025 17:00 CET
+          25% (vingt-cinq pourcent) du montant payé si la demande est faite entre le 24/10/2025 17:00 CET et le
+          31/10/2025 17:00 CET
         </li>
         <li>
-          50% (cinquante pourcent) du montant payé si la demande est faite entre le 08/11/2025 17:00 CET et le
-          15/11/2025 17:00 CET
+          50% (cinquante pourcent) du montant payé si la demande est faite entre le 31/10/2025 17:00 CET et le
+          07/11/2025 17:00 CET
         </li>
         <li>
-          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 15/11/2025 17:00 CET et le
-          22/11/2025 17:00 CET
+          75% (soixante-quinze pourcent) du montant payé si la demande est faite entre le 07/11/2025 17:00 CET et le
+          14/11/2025 17:00 CET
         </li>
-        <li>Aucun remboursement ne sera accepté au-delà du 22/11/2025 17:00 CET.</li>
+        <li>Aucun remboursement ne sera accepté au-delà du 14/11/2025 17:00 CET.</li>
       </ul>
       <Title level={2} type={2} className={styles.articleTitle}>
         Article 13 - Force majeure
@@ -388,7 +388,7 @@ const Legal = () => (
         En cas de question sur le traitement des données personnelles collectées dans le cadre de l'évènement UTT Arena
         2025, nous vous prions de <br /> contacter :
         <br />
-        Guillaume ETHEVE,
+        Matthieu Tourrette,
         <br />
         Président de l'association UTT Net Group organisant l'évènement UTT Arena 2025 et Délégué à la Protection des
         Données
