@@ -33,6 +33,7 @@ const SupplementList = ({
   onItemPreview,
   itemType,
   shopSectionName,
+  disabled
 }: {
   /** The items */
   items: Item[] | undefined;
@@ -48,6 +49,8 @@ const SupplementList = ({
   itemType: string;
   /** The shop section name */
   shopSectionName: string;
+  /** If the list is disabled */
+  disabled?: string;
 }) => {
   // The supplements sorted by type. In this array, there are ONLY supplements, there aren't any tickets.
   // If two items have the name {something}-{attribute_item_1} and {something}-{attribute_item_2}, then they are of the same type
@@ -176,6 +179,8 @@ const SupplementList = ({
       } else if (supplement.price < 0 && cartSupplement!.quantity >= 1) {
         // User can only take one of this item
         disableReason = "Tu ne peux prendre qu'un seul exemplaire de cet item";
+      } else if (disabled) {
+        disableReason = disabled;
       }
 
       let availabilityDescription: React.ReactNode =
