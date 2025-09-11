@@ -74,7 +74,7 @@
             margin-top: 1rem;
 
             .darkBackground {
-              color: $primary-color
+              color: $primary-color;
             }
 
             > label {
@@ -83,14 +83,6 @@
           }
         }
       }
-    }
-  }
-
-  .attendantWarning {
-    margin-bottom: 10px;
-
-    span {
-      color: #d10000;
     }
   }
 

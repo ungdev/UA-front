@@ -240,10 +240,7 @@ const UserModal = ({
                 </Button>
               )}
               {isAdmin && (
-                <Button
-                  primary
-                  onClick={() => dispatch(connectAs(searchUser.id))}
-                  disabled={searchUser.type === UserType.attendant}>
+                <Button primary onClick={() => dispatch(connectAs(searchUser.id))}>
                   Se connecter en tant que cet utilisateur
                 </Button>
               )}
@@ -277,41 +274,39 @@ const UserModal = ({
         <Input label="ID" value={searchUser?.id ?? ''} readOnly />
         <Input label="Nom" value={lastname} onChange={setLastname} disabled={!isAdmin} />
         <Input label="Prénom" value={firstname} onChange={setFirstname} disabled={!isAdmin} />
-        {(!searchUser || searchUser.type !== UserType.attendant) && (
-          <>
-            <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin} />
-            <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin} />
-            {!searchUser && (
-              <Input label="Mot de passe" type="password" value={password} onChange={setPassword} disabled={!isAdmin} />
-            )}
-            <Textarea
-              label="Infos complémentaires"
-              value={customMessage ?? ''}
-              onChange={setCustomMessage}
-              disabled={!isAdmin}
-            />
-            {searchUser && (
-              <>
-                <p>
-                  <strong>Équipe :</strong>{' '}
-                  {searchUser?.team?.name ?? (
-                    <>
-                      <em className={styles.default}>N'a pas encore d'équipe</em>
-                    </>
-                  )}
-                </p>
-                <p>
-                  <strong>Tournoi :</strong>{' '}
-                  {searchUser?.team?.tournament?.name ?? (
-                    <>
-                      <em className={styles.default}>N'est pas encore inscrit à un tournoi</em>
-                    </>
-                  )}
-                </p>
-              </>
-            )}
-          </>
-        )}
+        <>
+          <Input label="Pseudo" value={username} onChange={setUsername} disabled={!isAdmin} />
+          <Input label="Email" value={email} onChange={setEmail} disabled={!isAdmin} />
+          {!searchUser && (
+            <Input label="Mot de passe" type="password" value={password} onChange={setPassword} disabled={!isAdmin} />
+          )}
+          <Textarea
+            label="Infos complémentaires"
+            value={customMessage ?? ''}
+            onChange={setCustomMessage}
+            disabled={!isAdmin}
+          />
+          {searchUser && (
+            <>
+              <p>
+                <strong>Équipe :</strong>{' '}
+                {searchUser?.team?.name ?? (
+                  <>
+                    <em className={styles.default}>N'a pas encore d'équipe</em>
+                  </>
+                )}
+              </p>
+              <p>
+                <strong>Tournoi :</strong>{' '}
+                {searchUser?.team?.tournament?.name ?? (
+                  <>
+                    <em className={styles.default}>N'est pas encore inscrit à un tournoi</em>
+                  </>
+                )}
+              </p>
+            </>
+          )}
+        </>
         {isAdmin && (
           <>
             <div className={styles.row}>
@@ -421,17 +416,11 @@ const UserModal = ({
               options={ageOptions}
               value={age?.toString()}
               onChange={(v) => setAge(v as unknown as UserAge)}
-              disabled={
-                !isAdmin ||
-                searchUser.type === UserType.attendant ||
-                (searchUser.hasPaid && searchUser.age === UserAge.child && searchUser.attendant !== null)
-              }></Radio>
-            {searchUser.type !== UserType.attendant && (
-              <>
-                <Input label="Place" value={place} onChange={setPlace} />
-                <Input label="Discord Id" value={discordId} onChange={setDiscordId} disabled={!isAdmin}></Input>
-              </>
-            )}
+              disabled={!isAdmin}></Radio>
+            <>
+              <Input label="Place" value={place} onChange={setPlace} />
+              <Input label="Discord Id" value={discordId} onChange={setDiscordId} disabled={!isAdmin}></Input>
+            </>
           </>
         )}
         {isAdmin && searchUser && displayCarts()}

@@ -40,7 +40,7 @@ const Payment = () => {
     | undefined
   >(undefined);
 
-  // Fetch items, team and checks if user already have an attendant
+  // Fetch items and team members
   useEffect(() => {
     if (user.teamId) {
       dispatch(fetchCurrentTeam());
@@ -52,7 +52,6 @@ const Payment = () => {
           hasPaid: user.hasPaid,
           username: user.username,
           age: user.age,
-          attendant: user.attendant,
           type: user.type,
         } as User,
       ]);
@@ -74,7 +73,6 @@ const Payment = () => {
   }, [team]);
 
   // Checks if the place of the user is already in the cart
-  // Checks if the user already have an attendant
   // Initializes teamMembersWithoutTicket
   // Fills tickets
   useEffect(() => {

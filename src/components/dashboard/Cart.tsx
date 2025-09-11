@@ -28,7 +28,6 @@ const Cart = ({
   /** The function to call when the cart is reset */
   onCartReset: (() => void) | null;
 }) => {
-  const attendantTicket = items.find((ticket) => ticket.id === 'ticket-attendant');
   return (
     <div className={styles.cart}>
       <div className={styles.cartHeader}>
@@ -55,15 +54,6 @@ const Cart = ({
           />
         );
       })}
-      {cart.tickets.attendant && (
-        <CartItem
-          key={attendantTicket!.id}
-          itemName={`${attendantTicket!.name} (${cart.tickets.attendant.firstname} ${cart.tickets.attendant.lastname})`}
-          quantity={1}
-          unitPrice={attendantTicket!.price}
-          onRemove={onTicketRemoved ? () => onTicketRemoved(undefined, undefined) : null}
-        />
-      )}
       {cart.supplements.map((supplement) => {
         const item = items.find((item) => item.id === supplement.itemId);
         return (
@@ -78,7 +68,7 @@ const Cart = ({
         );
       })}
 
-      {cart.tickets.userIds.length === 0 && cart.tickets.attendant === undefined && cart.supplements.length === 0 && (
+      {cart.tickets.userIds.length === 0 && cart.supplements.length === 0 && (
         <p className={styles.emptyCart}>Ton panier est vide</p>
       )}
     </div>
