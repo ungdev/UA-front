@@ -353,7 +353,6 @@ const Shop = () => {
             />
           </div>
           <div className={styles.shopSection}>
-            {team?.lockedAt !== null && (
               <SupplementList
                 items={items}
                 supplementCart={cart.supplements}
@@ -362,8 +361,8 @@ const Shop = () => {
                 onItemPreview={onItemPreview}
                 itemType="rent"
                 shopSectionName="Location"
+                disabled={team?.lockedAt === null ? 'L\'équipe n\'est pas verrouillée, tu ne peux plus louer de matériel.' : undefined}
               />
-            )}
           </div>
         </div>
         <div className={styles.billWrapper}>
