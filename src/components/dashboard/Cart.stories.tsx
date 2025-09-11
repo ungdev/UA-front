@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Cart from './Cart';
-import { UserAge, UserAttendant, UserType } from '@/types';
+import { UserAge, UserType } from '@/types';
 const meta = {
   title: 'Dashboard/Cart',
   component: Cart,
@@ -15,7 +15,6 @@ export const Default: Story = {
     cart: {
       tickets: {
         userIds: ['1'],
-        attendant: undefined,
       },
       supplements: [
         {
@@ -55,9 +54,8 @@ export const Default: Story = {
         teamId: '1',
         askingTeamId: null,
         age: UserAge.adult,
-        attendant: {} as UserAttendant,
         orga: null,
-        ffsuLicense: 'A45D4F4F78'
+        ffsuLicense: 'A45D4F4F78',
       },
     ],
     onItemRemoved: () => {},

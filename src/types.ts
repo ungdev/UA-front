@@ -30,12 +30,6 @@ export interface RegisterUser {
   age: string;
 }
 
-export interface UserAttendant {
-  id: string;
-  firstname: string;
-  lastname: string;
-}
-
 export enum Permission {
   stream = 'stream',
   entry = 'entry',
@@ -88,7 +82,6 @@ export interface User {
   teamId: string | null;
   askingTeamId: string | null;
   ffsuLicense: string | null;
-  attendant: UserAttendant;
   age: UserAge;
   orga: OrgaData | null;
 }
@@ -146,11 +139,6 @@ export interface UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin extends Us
   carts: CartWithCartItemsAdmin[];
 }
 
-export interface AttendantInfo {
-  firstname: string;
-  lastname: string;
-}
-
 export interface Cart {
   id: string;
   userId: string;
@@ -163,7 +151,6 @@ export interface Cart {
   }[];
   tickets: {
     userIds: string[];
-    attendant: AttendantInfo;
   };
 }
 
@@ -184,7 +171,6 @@ export interface CartItem {
 export interface CartPost {
   tickets: {
     userIds: string[];
-    attendant: AttendantInfo | undefined;
   };
   supplements: {
     itemId: string;
@@ -283,7 +269,6 @@ export enum UserType {
   coach = 'coach',
   spectator = 'spectator',
   orga = 'orga',
-  attendant = 'attendant',
 }
 
 export enum UserAge {

@@ -1,8 +1,8 @@
 import styles from './AddPlaceModal.module.scss';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Modal, Button, Input, Select, Radio } from '@/components/UI';
-import { UserType, AttendantInfo, User } from '@/types';
+import { Modal, Button, Select, Radio } from '@/components/UI';
+import { UserType, User } from '@/types';
 
 /** The add place modal */
 const AddPlaceModal = ({
@@ -10,7 +10,6 @@ const AddPlaceModal = ({
   username,
   hasTicket,
   teamMembersWithoutTicket,
-  needsAttendant,
   onQuit,
 }: {
   /** The user id */
@@ -21,23 +20,17 @@ const AddPlaceModal = ({
   hasTicket: boolean;
   /** The team members without ticket */
   teamMembersWithoutTicket: User[];
-  /** If the user needs an attendant */
-  needsAttendant: boolean;
   /** The function to call when the user quits the modal */
-  onQuit: (placeFor: string, placeId: string | AttendantInfo) => void;
+  onQuit: (placeFor: string, placeId: string) => void;
 }) => {
-  // Either 'me', 'other' or 'attendant'
+  // Either 'me' or 'other'
   const [placeFor, setPlaceFor] = useState('');
   // The id of the person.
-  // If placeFor is 'attendant', then placeId is an object with 2 values : 'firstname' and 'lastname'
-  const [placeId, setPlaceId] = useState<AttendantInfo | string | undefined>(undefined);
-  // The user type
+  const [placeId, setPlaceId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!hasTicket) {
       setPlaceFor('me');
-    } else if (needsAttendant) {
-      setPlaceFor('attendant');
     } else if (teamMembersWithoutTicket.length) {
       setPlaceFor('other');
     } else {
@@ -51,7 +44,6 @@ const AddPlaceModal = ({
   const canPayTo = () => {
     const canPayTo = [];
     if (!hasTicket) canPayTo.push({ value: 'me', name: `Moi-même (${username})` });
-    if (needsAttendant) canPayTo.push({ value: 'attendant', name: 'Un accompagnateur (majeur)' });
     if (teamMembersWithoutTicket.length) canPayTo.push({ value: 'other', name: 'Autre utilisateur' });
     return canPayTo;
   };
@@ -67,8 +59,6 @@ const AddPlaceModal = ({
         return;
       }
       setPlaceId(teamMembersWithoutTicket[0].id);
-    } else {
-      setPlaceId({ firstname: '', lastname: '' });
     }
   }, [placeFor]);
 
@@ -79,13 +69,7 @@ const AddPlaceModal = ({
   };
 
   const addPlace = async () => {
-    if (placeFor === 'attendant') {
-      if ((placeId as AttendantInfo).firstname === '' || (placeId as AttendantInfo).lastname === '') {
-        toast.error('Tu dois renseigner le prénom et le nom de ton accompagnateur.');
-        return;
-      }
-    }
-    onQuit(placeFor, placeId);
+    onQuit(placeFor, placeId as string);
   };
 
   return (
@@ -107,20 +91,6 @@ const AddPlaceModal = ({
         onChange={setPlaceFor}
         className={styles.addPlaceInput}
       />
-      {placeFor === 'attendant' && (
-        <>
-          <Input
-            label="Prénom"
-            value={(placeId as AttendantInfo).firstname}
-            onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), firstname: value })}
-          />
-          <Input
-            label="Nom"
-            value={(placeId as AttendantInfo).lastname}
-            onChange={(value) => setPlaceId({ ...(placeId as AttendantInfo), lastname: value })}
-          />
-        </>
-      )}
       {placeFor === 'other' && (
         <Select
           label="Membre"
