@@ -28,7 +28,6 @@ const statusOptions = [
   { name: 'Joueur', value: 'player' },
   { name: 'Spectateur', value: 'spectator' },
   { name: 'Coach', value: 'coach' },
-  { name: 'Accompagnateur', value: 'attendant' },
 ];
 
 const ageOptions = [

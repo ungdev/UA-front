@@ -47,8 +47,6 @@ const format = (users: Array<UserWithTeamAndMessageAndTournamentInfo>) => {
         return 'Coach';
       case UserType.spectator:
         return 'Spectateur';
-      case UserType.attendant:
-        return 'Accompagnateur';
       default:
         return type;
     }
@@ -168,7 +166,6 @@ export const lookupUser =
               place: user.place,
               discordId: user.discordId,
               team: user.team,
-              attendant: user.attendant,
               customMessage: user.customMessage,
               carts: res,
               orga: user.orga,

@@ -32,7 +32,6 @@ const typeOptions = [
   { name: 'Organisateur', value: UserType.orga.toString() },
   { name: 'Coach', value: UserType.coach.toString() },
   { name: 'Spectateur', value: UserType.spectator.toString() },
-  { name: 'Accompagnateur', value: UserType.attendant.toString() },
 ];
 
 const ageOptions = [
@@ -127,7 +126,7 @@ const UserModal = ({
               const [targetUser] = res.data.users;
               return dispatch(lookupUser(targetUser));
             }}>
-            {cartItem.forUser.username ?? `${searchUser!.attendant.firstname} ${searchUser!.attendant.lastname}`}
+            {cartItem.forUser.username}
           </a>
           )
         </li>
@@ -309,13 +308,6 @@ const UserModal = ({
                     </>
                   )}
                 </p>
-                {searchUser.attendant && (
-                  <>
-                    <p>
-                      <strong>Accompagnateur :</strong> {searchUser.attendant.firstname} {searchUser.attendant.lastname}
-                    </p>
-                  </>
-                )}
               </>
             )}
           </>

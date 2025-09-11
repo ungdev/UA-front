@@ -126,11 +126,6 @@ const Entry = () => {
                   </>
                 )}
               </p>
-              {scannedUser.attendant?.id && (
-                <p>
-                  <strong>Accompagnateur :</strong> {scannedUser.attendant.firstname} {scannedUser.attendant.lastname}
-                </p>
-              )}
               <p>
                 <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
               </p>
