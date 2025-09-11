@@ -353,15 +353,17 @@ const Shop = () => {
             />
           </div>
           <div className={styles.shopSection}>
-            <SupplementList
-              items={items}
-              supplementCart={cart.supplements}
-              hasTicket={isPlaceInCart}
-              onSupplementCartChanges={onSupplementCartChanges}
-              onItemPreview={onItemPreview}
-              itemType="rent"
-              shopSectionName="Location de matériel"
-            />
+            {team?.lockedAt !== null && (
+              <SupplementList
+                items={items}
+                supplementCart={cart.supplements}
+                hasTicket={isPlaceInCart}
+                onSupplementCartChanges={onSupplementCartChanges}
+                onItemPreview={onItemPreview}
+                itemType="rent"
+                shopSectionName="Location"
+              />
+            )}
           </div>
         </div>
         <div className={styles.billWrapper}>
@@ -410,7 +412,7 @@ const Shop = () => {
                 veryLong
                 className={styles.shopButton}
                 onClick={onPay}
-                disabled={(!totalPrice && (cart.tickets.userIds.length === 0)) || !isCgvAccepted || hasRequestedPayment}>
+                disabled={(!totalPrice && cart.tickets.userIds.length === 0) || !isCgvAccepted || hasRequestedPayment}>
                 <Icon name={IconName.ShoppingCart} />
                 Payer
               </Button>
