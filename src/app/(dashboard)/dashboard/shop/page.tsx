@@ -12,7 +12,7 @@ import SupplementList from '@/components/dashboard/SupplementList';
 import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { CartItem, Item, User, UserAge, UserType } from '@/types';
+import { CartItem, Item, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
@@ -300,11 +300,7 @@ const Shop = () => {
                 <Button
                   primary
                   onClick={() => {
-                    if (
-                      !user.hasPaid &&
-                      ((teamMembersWithoutTicket.length === 0 && user.age === UserAge.adult) ||
-                        team?.tournamentId === 'lol-ffsu')
-                    ) {
+                    if (!user.hasPaid && (teamMembersWithoutTicket.length === 0 || team?.tournamentId === 'lol-ffsu')) {
                       onAddPlaceModalQuit('me', user.id);
                       return;
                     }
