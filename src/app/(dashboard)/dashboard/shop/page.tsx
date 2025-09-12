@@ -302,8 +302,8 @@ const Shop = () => {
                   onClick={() => {
                     if (
                       !user.hasPaid &&
-                      (teamMembersWithoutTicket.length === 0 || team?.tournamentId === 'lol-ffsu') &&
-                      user.age === UserAge.adult
+                      ((teamMembersWithoutTicket.length === 0 && user.age === UserAge.adult) ||
+                        team?.tournamentId === 'lol-ffsu')
                     ) {
                       onAddPlaceModalQuit('me', user.id);
                       return;
