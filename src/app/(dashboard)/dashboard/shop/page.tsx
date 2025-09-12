@@ -220,7 +220,7 @@ const Shop = () => {
 
   // When the AddPlaceModal is exited.
   // If it was exited by clicking out of the window or by quiting, then placeFor is undefined.
-  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' , and placeId is the id of the user
+  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' , and placeId is the id of the user LALALALALALALALA
   const onAddPlaceModalQuit = async (placeFor: string, placeId: string) => {
     setAddPlaceVisible(false);
     if (placeFor === undefined || (placeFor === '' && placeId === '')) return;
@@ -325,16 +325,20 @@ const Shop = () => {
             />
           </div>
           <div className={styles.shopSection}>
-              <SupplementList
-                items={items}
-                supplementCart={cart.supplements}
-                hasTicket={isPlaceInCart}
-                onSupplementCartChanges={onSupplementCartChanges}
-                onItemPreview={onItemPreview}
-                itemType="rent"
-                shopSectionName="Location"
-                disabled={team?.lockedAt === null ? 'L\'équipe n\'est pas verrouillée, tu ne peux plus louer de matériel.' : undefined}
-              />
+            <SupplementList
+              items={items}
+              supplementCart={cart.supplements}
+              hasTicket={isPlaceInCart}
+              onSupplementCartChanges={onSupplementCartChanges}
+              onItemPreview={onItemPreview}
+              itemType="rent"
+              shopSectionName="Location"
+              disabled={
+                team?.lockedAt === null
+                  ? "L'équipe n'est pas verrouillée, tu ne peux plus louer de matériel."
+                  : undefined
+              }
+            />
           </div>
         </div>
         <div className={styles.billWrapper}>
@@ -388,7 +392,7 @@ const Shop = () => {
           userId={user.id}
           username={user.username}
           hasTicket={isPlaceInCart}
-          teamMembersWithoutTicket={teamMembersWithoutTicket}
+          teamMembersWithoutTicket={team?.tournamentId === 'lol-ffsu' ? [] : teamMembersWithoutTicket}
           onQuit={onAddPlaceModalQuit}
         />
       )}
