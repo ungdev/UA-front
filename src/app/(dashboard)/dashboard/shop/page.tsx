@@ -282,7 +282,7 @@ const Shop = () => {
   };
 
   // Hide the places section if user can't buy any places
-  const placesSectionVisible = !isPlaceInCart || teamMembersWithoutTicket.length;
+  const placesSectionVisible = !isPlaceInCart || (teamMembersWithoutTicket.length && team?.tournamentId !== 'lol-ffsu');
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
