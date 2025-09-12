@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify';
-
 import { API } from '@/utils/api';
 import { UserWithTeamAndMessageAndTournamentInfo } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
@@ -47,22 +46,30 @@ export const registerCashPayment = (): AppThunk => async (dispatch, getState) =>
 export const searchUser =
   (userIdentifiable: string): AppThunk =>
   async (dispatch) => {
-    const { data: list } = await API.get(`admin/users?search=${userIdentifiable}`);
-    if (list?.users?.length !== 1) toast.error("L'utilisateur n'existe pas");
-    else dispatch(setSearchUser(list.users[0]));
+    try {
+      const response = await API.get(`admin/users?search=${userIdentifiable}`);
+      const list = response;
+      if (!list || !Array.isArray(list.users)) {
+        toast.error('Aucun utilisateur trouvé');
+      } else {
+        dispatch(setSearchUser(list.users[0]));
+      }
+    } catch (error) {
+      toast.error("Erreur lors de la recherche de l'utilisateur");
+      console.error(error);
+    }
   };
 
 export const scan =
   (qrcode: string): AppThunk =>
   async (dispatch) => {
     try {
-      const { data: user } = await API.post(`admin/scan`, {
-        qrcode,
-      });
+      const user = await API.post(`admin/scan`, { qrcode });
       toast.success('Utilisateur scanné');
       dispatch(setSearchUser(user));
-    } catch (error: any) {
-      toast.error(error);
+    } catch (error) {
+      toast.error("Erreur lors de la recherche de l'utilisateur");
+      console.error(error);
     }
   };
 
@@ -76,9 +83,14 @@ export const bypassQrScan = (): AppThunk => async (dispatch, getState) => {
     });
     toast.success('Utilisateur scanné');
     dispatch(setSearchUser(user));
-  } catch (error: any) {
-    toast.error(error);
+  } catch (error) {
+    toast.error("Erreur lors de la recherche de l'utilisateur");
+    console.error(error);
   }
+};
+
+export const leavePanel = (): AppThunk => async (dispatch) => {
+  dispatch(setSearchUser(null));
 };
 
 export default userEntrySlice.reducer;

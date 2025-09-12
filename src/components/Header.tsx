@@ -110,7 +110,7 @@ export default function Header({
         </Link>
       ) : (
         <Button
-          secondary
+          primary
           onClick={() => {
             closeBurger();
             dispatch(setLoginModalVisible(true));
@@ -130,7 +130,7 @@ export default function Header({
             <Image src={logo.src} width={72} height={61.5} alt="Logo UA24" />
             {/* For SEO */}
             <Title level={1} className={styles.hidden}>
-              UTT Arena 2024
+              UTT Arena 2025
             </Title>
           </Link>
           <nav>

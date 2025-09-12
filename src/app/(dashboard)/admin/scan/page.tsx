@@ -1,12 +1,11 @@
 'use client';
 import styles from './style.module.scss';
 import { useState, useRef } from 'react';
-
-import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser } from '@/modules/userEntry';
+import base45 from 'base45';
+import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser, leavePanel } from '@/modules/userEntry';
 import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { UserAge, UserType } from '@/types';
-import QrScanner from 'qr-scanner';
 import { IconName } from '@/components/UI/Icon';
 
 const Entry = () => {
@@ -15,11 +14,12 @@ const Entry = () => {
   const lastCode = useRef<string>();
   const dispatch = useAppDispatch();
 
-  const onCodeScanned = (code: QrScanner.ScanResult) => {
-    const base64Code = window.btoa(code.data);
+  const onCodeScanned = (code: { data: string }) => {
+    const binaryData = base45.decode(String(code.data));
+    const base64Code = binaryData.toString('base64');
     if (scannedUser || base64Code === lastCode.current) return;
     lastCode.current = base64Code;
-    return dispatch(scan(base64Code));
+    dispatch(scan(base64Code));
   };
 
   return (
@@ -30,13 +30,40 @@ const Entry = () => {
         </Title>
         <div>
           {!scannedUser ? (
-            <div className={styles.scanner}>
-              <div className={styles.scannerPlaceholder}>
-                <Icon name={IconName.Camera} />
-                Veuillez activer votre caméra
+            <>
+              <div className={styles.scanner}>
+                <div className={styles.scannerPlaceholder}>
+                  <Icon name={IconName.Camera} />
+                  Veuillez activer votre caméra
+                </div>
+                <QRCodeReader
+                  onCode={onCodeScanned}
+                  className={styles.scannerPreview}
+                  autoStart={scannedUser === null} // la caméra démarre dès que scannedUser est null
+                />
               </div>
-              <QRCodeReader onCode={(code) => onCodeScanned(code)} className={styles.scannerPreview}></QRCodeReader>
-            </div>
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (scannedUser) {
+                    dispatch(setSearchUser(null));
+                  } else {
+                    dispatch(searchUser(userIdentifiable));
+                  }
+                }}>
+                <>
+                  <div className="saisie">Saisie manuelle</div>
+                  <Input
+                    label="Entrer le mail de l'utilisateur"
+                    onChange={setUserIdentifiable}
+                    value={userIdentifiable}
+                  />
+                </>
+                <Button primary type="submit">
+                  {scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
+                </Button>
+              </form>
+            </>
           ) : (
             <>
               <p>
@@ -99,17 +126,12 @@ const Entry = () => {
                   </>
                 )}
               </p>
-              {scannedUser.attendant?.id && (
-                <p>
-                  <strong>Accompagnateur :</strong> {scannedUser.attendant.firstname} {scannedUser.attendant.lastname}
-                </p>
-              )}
               <p>
                 <strong>Payé :</strong> {scannedUser.hasPaid ? 'Oui' : 'Non'}
               </p>
               <div className={styles.buttonRow}>
                 <Button primary={true} disabled={scannedUser.hasPaid} onClick={() => dispatch(registerCashPayment())}>
-                  Valider le paiement
+                  Valider le paiement et l'entrée
                 </Button>
                 <Button
                   primary={true}
@@ -117,33 +139,13 @@ const Entry = () => {
                   onClick={() => dispatch(bypassQrScan())}>
                   Valider l'entrée
                 </Button>
+                <Button primary={true} onClick={() => dispatch(leavePanel())}>
+                  Changer de personne
+                </Button>
               </div>
             </>
           )}
           <hr />
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              if (scannedUser) {
-                dispatch(setSearchUser(null));
-              } else {
-                dispatch(searchUser(userIdentifiable));
-              }
-            }}>
-            {!scannedUser && (
-              <>
-                <div>Saisie manuelle</div>
-                <Input
-                  label="Entrer l'adresse mail de l'utilisateur"
-                  onChange={setUserIdentifiable}
-                  value={userIdentifiable}
-                />
-              </>
-            )}
-            <Button primary type="submit">
-              {scannedUser ? 'Scanner un autre billet' : "Rechercher l'utilisateur"}
-            </Button>
-          </form>
         </div>
       </div>
     </div>

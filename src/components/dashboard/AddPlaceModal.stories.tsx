@@ -15,7 +15,6 @@ const meta = {
     username: 'test',
     hasTicket: false,
     teamMembersWithoutTicket: [],
-    needsAttendant: false,
     onQuit: (placeFor, placeId) => {
       console.log(placeFor, placeId);
     },

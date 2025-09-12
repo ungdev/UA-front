@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import TextStroke from '@/components/UI/TextStroke';
 
 export const metadata: Metadata = {
-  title: 'Évènement - UTT Arena 2024 - 6, 7 et 8 décembre 2024',
+  title: 'Évènement - UTT Arena 2025 - 28, 29 et 30 novembre 2025',
 };
 
 export default function Page() {
@@ -27,14 +27,14 @@ export default function Page() {
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
-            L'UTT Arena revient cette année pour sa 22ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
+            L'UTT Arena revient cette année pour sa 23ème édition ! D'une simple salle d'examen de l'UTT à 2250m² de
             gaming au Parc des Expositions de Troyes, le Cube, en passant par l'espace Argence, l'UTT Arena a évolué de
             manière à proposer chaque année des tournois de meilleure qualité à ses joueurs !
           </div>
         </div>
         <div className={`${styles.textAndImage} ${styles.imageRight}`}>
           <div className={styles.text}>
-            À présent l'UTT Arena c'est 416 joueurs, 6 tournois, des prix à gagner et des tournois commentés en direct
+            À présent l'UTT Arena c'est 496 joueurs, 7 tournois, des prix à gagner et des tournois commentés en direct
             par les casteurs ! Et tout cela, c'est grâce à vous, les joueurs, coachs, simples curieux… qui nous faites
             confiance chaque année pour organiser cet évènement dans l'ambiance qu'on lui connaît ! La confiance de nos
             partenaires et leur mobilisation autour de notre évènement contribuent à le rendre exceptionnel ! Un grand
@@ -124,7 +124,7 @@ export default function Page() {
           />
           <div className={styles.text}>
             Halle Sportive UTT <br /> <br />
-            12 rue Marie Curie <br /> <br />
+            12, rue Marie Curie <br /> <br />
             10000 Troyes
           </div>
         </div>
@@ -184,19 +184,13 @@ export default function Page() {
             {
               type: 'Joueur',
               price: '28 €',
-              description:
-                'Pour les joueurs SSBU : 15€. Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
+              description: 'Pour les étudiants UT : réduction de 5€ en utilisant ton adresse mail étudiante',
             },
             {
               type: 'Coach / Manager',
               price: '15 €',
               description:
                 'Un justificatif pourra vous être demandé. Le nombre limite de coachs / managers par équipe sera précisé ultérieurement.',
-            },
-            {
-              type: 'Accompagnateur',
-              price: '10 €',
-              description: 'Réservé aux accompagnateurs de joueurs mineurs',
             },
             {
               type: 'Spectateur',

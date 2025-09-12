@@ -12,10 +12,11 @@ import SupplementList from '@/components/dashboard/SupplementList';
 import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { AttendantInfo, CartItem, Item, User, UserAge, UserType } from '@/types';
+import { CartItem, Item, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
+import { API } from '@/utils/api';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
@@ -33,10 +34,7 @@ const Shop = () => {
   const [isCgvAccepted, setIsCgvAccepted] = useState(false);
   // If the modal to add a place is visible
   const [addPlaceVisible, setAddPlaceVisible] = useState(false);
-  // If the user already paid for his attendant, or the place is in the current cart. If the user is an adult, this value should not be used.
-  const [hasAttendant, setHasAttendant] = useState(!!user.attendant);
   // The structure of the cart is the same as the one we pass to the route POST /users/current/carts
-  //const cartInitialValue = { tickets: { userIds: [], attendant: undefined }, supplements: [] };
   // The content of the current cart. The API doesn't know about this before the player clicks on the pay button
   const [cart, setCart] = useState(loadCart());
   // Wheather or not the ticket is already paid or in the cart. This is used to make sure users don't buy 2 tickets.
@@ -62,7 +60,7 @@ const Shop = () => {
     | undefined
   >(undefined);
 
-  // Fetch items, team and checks if user already have an attendant
+  // Fetch items, team
   useEffect(() => {
     if (user.teamId) {
       dispatch(fetchCurrentTeam());
@@ -74,7 +72,6 @@ const Shop = () => {
           hasPaid: user.hasPaid,
           username: user.username,
           age: user.age,
-          attendant: user.attendant,
           type: user.type,
         } as User,
       ]);
@@ -119,7 +116,6 @@ const Shop = () => {
   }, [cart, items]);
 
   // Checks if the place of the user is already in the cart
-  // Checks if the user already have an attendant
   // Initializes teamMembersWithoutTicket
   // Fills tickets
   useEffect(() => {
@@ -127,10 +123,6 @@ const Shop = () => {
     // Checking if place is in cart
     if (cart.tickets.userIds.find((id) => id === user.id)) {
       setIsPlaceInCart(true);
-    }
-    // Checking if user has an attendant in the cart
-    if (cart.tickets.attendant) {
-      setHasAttendant(true);
     }
     // Initializing teamMembersWithoutTicket
     setTeamMembersWithoutTicket(
@@ -174,31 +166,26 @@ const Shop = () => {
     return null;
   }
 
-  // When the user removes a ticket.
-  // 'user' is either a user object, or undefined if it is the ticket of an attendant
+  // When the user removes a ticket.t
   // 'ticketIndex' is the index of the ticket in the cart if user is not undefined
   const onRemoveTicket = (userOfTicket: User | undefined, ticketIndex: number | undefined) => {
-    if (userOfTicket === undefined) {
-      setHasAttendant(false);
-      setCart({ ...cart, tickets: { ...cart.tickets, attendant: undefined } });
+    if (!userOfTicket) return;
+    // Modify the states
+    if (userOfTicket.id === user.id) {
+      setIsPlaceInCart(false);
     } else {
-      // Modify the states
-      if (userOfTicket.id === user.id) {
-        setIsPlaceInCart(false);
-      } else {
-        const newMembersWithoutTicket = [...teamMembersWithoutTicket];
-        newMembersWithoutTicket.push(userOfTicket);
-        setTeamMembersWithoutTicket(newMembersWithoutTicket);
-      }
-      // Modify the cart
-      const updatedCartTickets = cart.tickets.userIds;
-      updatedCartTickets.splice(ticketIndex!, 1);
-      setCart({ ...cart, tickets: { ...cart.tickets, userIds: updatedCartTickets } });
-      // Remove the item from the tickets
-      const newTickets = { ...tickets } as typeof tickets;
-      delete newTickets[userOfTicket.id];
-      setTickets(newTickets);
+      const newMembersWithoutTicket = [...teamMembersWithoutTicket];
+      newMembersWithoutTicket.push(userOfTicket);
+      setTeamMembersWithoutTicket(newMembersWithoutTicket);
     }
+    // Modify the cart
+    const updatedCartTickets = cart.tickets.userIds;
+    updatedCartTickets.splice(ticketIndex!, 1);
+    setCart({ ...cart, tickets: { ...cart.tickets, userIds: updatedCartTickets } });
+    // Remove the item from the tickets
+    const newTickets = { ...tickets } as typeof tickets;
+    delete newTickets[userOfTicket.id];
+    setTickets(newTickets);
   };
 
   // Removes 1 of the item with id itemId. This is a callback from the Cart node.
@@ -215,12 +202,11 @@ const Shop = () => {
   };
 
   // Compute total price
-  // It is computed in 3 parts : player tickets, the attendant ticket, and supplements
+  // It is computed in 2 parts : player tickets and supplements
   const totalPrice =
     Object.values(tickets).reduce((acc, ticket) => {
       return acc + (ticket.reducedPrice || ticket.price);
     }, 0) +
-    (cart.tickets.attendant ? items.find((item) => item.id === 'ticket-attendant')!.price : 0) +
     cart.supplements.reduce((acc, cartSupplement) => {
       const item = items.find((item) => item.id === cartSupplement.itemId);
       if (!item) {
@@ -234,27 +220,21 @@ const Shop = () => {
 
   // When the AddPlaceModal is exited.
   // If it was exited by clicking out of the window or by quiting, then placeFor is undefined.
-  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' or 'attendant', and placeId is the id of the user
-  // (or an object containing the firstname and the lastname of the person if the ticket is for an attendant)
-  const onAddPlaceModalQuit = async (placeFor: string, placeId: AttendantInfo | string) => {
+  // If it was exited by adding a ticket, then placeFor is either 'me', 'other' , and placeId is the id of the user LALALALALALALALA
+  const onAddPlaceModalQuit = async (placeFor: string, placeId: string) => {
     setAddPlaceVisible(false);
     if (placeFor === undefined || (placeFor === '' && placeId === '')) return;
-    if (placeFor === 'attendant') {
-      setCart({ ...cart, tickets: { ...cart.tickets, attendant: placeId as AttendantInfo } });
-      setHasAttendant(true);
+    setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId as string] } });
+    const newTickets = { ...tickets };
+    newTickets[placeId as string] =
+      placeFor === 'me'
+        ? items.find((item) => item.id === `ticket-${user.type}`)
+        : await getTicketPrice(placeId as string);
+    setTickets(newTickets);
+    if (placeFor === 'me') {
+      setIsPlaceInCart(true);
     } else {
-      setCart({ ...cart, tickets: { ...cart.tickets, userIds: [...cart.tickets.userIds, placeId as string] } });
-      const newTickets = { ...tickets };
-      newTickets[placeId as string] =
-        placeFor === 'me'
-          ? items.find((item) => item.id === `ticket-${user.type}`)
-          : await getTicketPrice(placeId as string);
-      setTickets(newTickets);
-      if (placeFor === 'me') {
-        setIsPlaceInCart(true);
-      } else {
-        setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter((member) => member.id !== placeId));
-      }
+      setTeamMembersWithoutTicket(teamMembersWithoutTicket.filter((member) => member.id !== placeId));
     }
   };
 
@@ -275,9 +255,7 @@ const Shop = () => {
       return teamMembers.find((member) => member.id === ticket);
     }) as User[];
     setTeamMembersWithoutTicket(teamMembersWithoutTicket.concat(membersOfTickets));
-    if (cart.tickets.attendant) {
-      setHasAttendant(false);
-    }
+
     setCart(deleteCart());
     setTickets({});
   };
@@ -293,13 +271,18 @@ const Shop = () => {
   const onPay = async () => {
     setHasRequestedPayment(true);
     deleteCart();
-    const token = await cartPay(cart);
-    dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
+    if (totalPrice) {
+      const token = await cartPay(cart);
+      dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
+    } else {
+      API.post('carts/ffsu').then(() => {
+        dispatch(setRedirect('/dashboard/team'));
+      });
+    }
   };
 
   // Hide the places section if user can't buy any places
-  const placesSectionVisible =
-    !isPlaceInCart || (user.age === UserAge.child && !hasAttendant) || teamMembersWithoutTicket.length;
+  const placesSectionVisible = !isPlaceInCart || (teamMembersWithoutTicket.length && team?.tournamentId !== 'lol-ffsu');
 
   return (
     <div id="dashboard-shop" className={styles.dashboardShop}>
@@ -317,11 +300,7 @@ const Shop = () => {
                 <Button
                   primary
                   onClick={() => {
-                    if (
-                      !user.hasPaid &&
-                      teamMembersWithoutTicket.length === 0 &&
-                      (user.age === UserAge.adult || hasAttendant)
-                    ) {
+                    if (!user.hasPaid && (teamMembersWithoutTicket.length === 0 || team?.tournamentId === 'lol-ffsu')) {
                       onAddPlaceModalQuit('me', user.id);
                       return;
                     }
@@ -353,7 +332,12 @@ const Shop = () => {
               onSupplementCartChanges={onSupplementCartChanges}
               onItemPreview={onItemPreview}
               itemType="rent"
-              shopSectionName="Location de matériel"
+              shopSectionName="Location"
+              disabled={
+                team?.lockedAt === null
+                  ? "L'équipe n'est pas verrouillée, tu ne peux plus louer de matériel."
+                  : undefined
+              }
             />
           </div>
         </div>
@@ -371,14 +355,6 @@ const Shop = () => {
               />
             </div>
             <div className={styles.shopFooter}>
-              {cart.tickets.attendant && (
-                <>
-                  <div className={styles.attendantWarning}>
-                    <span className="fas fa-exclamation-triangle"></span> Si tu cliques sur payer, tu ne pourras plus
-                    modifier ton accompagnateur.
-                  </div>
-                </>
-              )}
               <strong>Total : {(totalPrice / 100).toFixed(2)}€</strong>
               <br />
               <div className={styles.cgv}>
@@ -403,7 +379,7 @@ const Shop = () => {
                 veryLong
                 className={styles.shopButton}
                 onClick={onPay}
-                disabled={!totalPrice || !isCgvAccepted || hasRequestedPayment}>
+                disabled={(!totalPrice && cart.tickets.userIds.length === 0) || !isCgvAccepted || hasRequestedPayment}>
                 <Icon name={IconName.ShoppingCart} />
                 Payer
               </Button>
@@ -416,8 +392,7 @@ const Shop = () => {
           userId={user.id}
           username={user.username}
           hasTicket={isPlaceInCart}
-          teamMembersWithoutTicket={teamMembersWithoutTicket}
-          needsAttendant={user.age === UserAge.child && !hasAttendant}
+          teamMembersWithoutTicket={team?.tournamentId === 'lol-ffsu' ? [] : teamMembersWithoutTicket}
           onQuit={onAddPlaceModalQuit}
         />
       )}

@@ -1,62 +1,109 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import QrScanner from 'qr-scanner';
 import { Button } from '.';
+import { Html5Qrcode } from 'html5-qrcode';
 
-/**
- * Renders a component that allows the user to scan a QR code.
- */
-const QRCodeReader = ({
-  onCode,
-  className = '',
-}: {
-  /** The function to call when a QR code is scanned. */
-  onCode: (code: QrScanner.ScanResult) => void;
-  /** An optional class name to add to the component. */
+interface QRCodeResult {
+  data: string;
+}
+
+interface QRCodeReaderProps {
+  /** Fonction appelée lorsque le QR code est scanné */
+  onCode: (code: QRCodeResult) => void;
+  /** Classe CSS optionnelle */
   className?: string;
-}) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  /** Démarre automatiquement le scanner si true */
+  autoStart?: boolean;
+}
+
+const QRCodeReader = ({ onCode, className = '', autoStart = false }: QRCodeReaderProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
   const [isEnabled, setIsEnabled] = useState(false);
-  const [scanner, setScanner] = useState<QrScanner | null>(null);
+  const [cameraId, setCameraId] = useState<string | null>(null);
 
   useEffect(() => {
-    const video = videoRef.current!;
-    setScanner(
-      new QrScanner(
-        video,
-        (result) => {
-          onCode(result);
-        },
-        {
-          highlightScanRegion: true,
-          highlightCodeOutline: true,
-        },
-      ),
-    );
+    if (!containerRef.current) return;
 
-    scanner?.start().catch((error) => {
-      toast.error("Impossible d'accéder à la caméra.");
-      console.error(error);
-    });
+    containerRef.current.id = 'html5qr-reader';
+    const html5QrCode = new Html5Qrcode('html5qr-reader');
+    html5QrCodeRef.current = html5QrCode;
 
-    return () => scanner?.destroy();
+    Html5Qrcode.getCameras()
+      .then((cameras) => {
+        if (cameras.length > 0) {
+          setCameraId(cameras[0].id);
+        } else {
+          toast.error('Aucune caméra trouvée.');
+        }
+      })
+      .catch((err) => {
+        toast.error('Erreur lors de la récupération des caméras.');
+        console.error(err);
+      });
+
+    return () => {
+      stopScanner();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Surveille l'autoStart : dès que c'est true, et que la caméra est disponible, on démarre le scanner
+  useEffect(() => {
+    if (autoStart && cameraId && !isEnabled) {
+      toggleScanner();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStart, cameraId]);
+
+  const stopScanner = async () => {
+    if (!html5QrCodeRef.current) return;
+
+    try {
+      await html5QrCodeRef.current.stop();
+      setIsEnabled(false);
+    } catch (error) {
+      console.warn("Le scanner n'était pas en cours d'exécution :", error);
+    }
+
+    try {
+      await html5QrCodeRef.current.clear();
+    } catch (error) {
+      console.warn('Erreur lors du nettoyage du scanner :', error);
+    }
+  };
+
+  const toggleScanner = () => {
+    if (!html5QrCodeRef.current || !cameraId) return;
+
+    if (isEnabled) {
+      stopScanner();
+    } else {
+      const config = { fps: 10, qrbox: 250 };
+      html5QrCodeRef.current
+        .start(
+          cameraId,
+          config,
+          (decodedText) => {
+            onCode({ data: decodedText });
+          },
+          () => {},
+        )
+        .then(() => {
+          setIsEnabled(true);
+        })
+        .catch((err) => {
+          toast.error("Impossible d'accéder à la caméra.");
+          console.error(err);
+        });
+    }
+  };
 
   return (
     <div className={className}>
-      <video ref={videoRef}></video>
-      <Button
-        secondary
-        outline
-        onClick={() => {
-          setIsEnabled((prev) => !prev);
-          if (isEnabled) {
-            scanner?.stop();
-          } else {
-            scanner?.start();
-          }
-        }}>
+      <div ref={containerRef} style={{ width: '100%' }}></div>
+      <Button secondary outline onClick={toggleScanner}>
         {isEnabled ? 'Désactiver' : 'Activer'}
       </Button>
     </div>

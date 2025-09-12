@@ -126,6 +126,15 @@ export const editUser =
     dispatch(updateStatus());
   };
 
+export const editUserFfsu =
+  (data: { ffsuLicense: string | null }): AppThunk =>
+  async (dispatch) => {
+    const res = await API.patch(`users/current/ffsu`, data);
+    toast.success('Ton numéro de licence FFSU a été modifié');
+    dispatch(updateUser(res));
+    dispatch(updateStatus());
+  };
+
 export const resetPassword =
   (email: string, resetFields: () => unknown): AppThunk =>
   async (dispatch) => {

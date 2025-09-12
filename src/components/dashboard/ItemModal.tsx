@@ -78,7 +78,7 @@ const ItemModal = ({
                 availableUntil: endDate ? endDate : null,
                 image: image ?? false,
                 // we update the stock through a difference between the current stock and the quantity in order to avoid conflicts if an order is made at the same time
-                left: quantity! - item!.stock! ?? item!.stock!,
+                left: quantity! - item!.stock!,
                 infos: infos ? infos : null,
                 display: display ?? false,
               } as AdminItem;

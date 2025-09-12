@@ -78,7 +78,7 @@ const Mails = () => {
               { label: 'Rejoindre le Discord', value: 'joindiscord' },
               { label: 'Autorisation parental', value: 'minor' },
               { label: 'Joueur non payés', value: 'notpaid' },
-              { label: 'Joueur non payés SSBU', value: 'notpaidssbu' },
+              // { label: 'Joueur non payés SSBU', value: 'notpaidssbu' },
               { label: 'Tickets', value: 'tickets' },
             ]}
             required

@@ -28,13 +28,6 @@ export interface RegisterUser {
   password: string;
   passwordConfirmation?: string;
   age: string;
-  legalRepresentativeAccepted?: 'true' | 'false';
-}
-
-export interface UserAttendant {
-  id: string;
-  firstname: string;
-  lastname: string;
 }
 
 export enum Permission {
@@ -88,7 +81,7 @@ export interface User {
   discordId: string | null;
   teamId: string | null;
   askingTeamId: string | null;
-  attendant: UserAttendant;
+  ffsuLicense: string | null;
   age: UserAge;
   orga: OrgaData | null;
 }
@@ -97,6 +90,10 @@ export interface UserEdit {
   username: string;
   password: string;
   newPassword: string;
+}
+
+export interface UserEditFfsu {
+  ffsuLicense: string | null;
 }
 
 export interface UserRestricted {
@@ -142,11 +139,6 @@ export interface UserWithTeamAndMessageAndTournamentInfoAndCartsAdmin extends Us
   carts: CartWithCartItemsAdmin[];
 }
 
-export interface AttendantInfo {
-  firstname: string;
-  lastname: string;
-}
-
 export interface Cart {
   id: string;
   userId: string;
@@ -159,7 +151,6 @@ export interface Cart {
   }[];
   tickets: {
     userIds: string[];
-    attendant: AttendantInfo;
   };
 }
 
@@ -180,7 +171,6 @@ export interface CartItem {
 export interface CartPost {
   tickets: {
     userIds: string[];
-    attendant: AttendantInfo | undefined;
   };
   supplements: {
     itemId: string;
@@ -228,6 +218,7 @@ export interface Tournament {
   placesLeft: number;
   infos: string | null;
   format: string | null;
+  ffsu: boolean;
   cashprize: number | null;
   cashprizeDetails: string | null;
   casters: Caster[] | null;
@@ -278,7 +269,6 @@ export enum UserType {
   coach = 'coach',
   spectator = 'spectator',
   orga = 'orga',
-  attendant = 'attendant',
 }
 
 export enum UserAge {
