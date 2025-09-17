@@ -79,21 +79,6 @@ const Shop = () => {
     }
   }, [searchParams]);
 
-  /** Fetch the tournaments. */
-  useEffect(() => {
-    if (!tournaments) {
-      dispatch(fetchTournaments());
-    }
-
-    setTournament(
-      tournaments?.find((tournament) => tournament.id === team?.tournamentId)?.name || null,
-    );
-
-    console.log('showShareModal:', showShareModal);
-    console.log('tournament:', tournament);
-    console.log('modal should show:', showShareModal && !!tournament);
-  }, [tournaments, team]);
-
   // Fetch items, team
   useEffect(() => {
     if (user.teamId) {
@@ -131,6 +116,15 @@ const Shop = () => {
       }
     });
   }, []);
+
+  /** Fetch the tournaments. */
+  useEffect(() => {
+    if (!tournaments) {
+      dispatch(fetchTournaments());
+    }
+
+    setTournament(tournaments?.find((tournament) => tournament.id === team?.tournamentId)?.name || null);
+  }, [tournaments, team]);
 
   // Initializing teamMembers
   useEffect(() => {
@@ -449,6 +443,7 @@ const Shop = () => {
       <Modal
         visible={showShareModal && !!tournament}
         onCancel={() => setShowShareModal(false)}
+        buttons={null}
         containerClassName={styles.shareModalContainer}>
         <div className={styles.shareModalContent}>
           <h2>Merci pour ton inscription</h2>
@@ -457,6 +452,8 @@ const Shop = () => {
             nous rejoignent pour ce superbe week-end !
           </p>
           <a
+            rel="noreferrer"
+            target="_blank"
             href={`https://twitter.com/intent/post?text=Salut%2C%20je%20viens%20de%20m'inscrire%20au%20tournoi%20${tournament}%20de%20%40UTTArena%20du%2028%20au%2030%20novembre%202025%20!%20&url=https%3A%2F%2Farena.utt.fr`}>
             <Button primary>Twitter</Button>
           </a>
