@@ -25,6 +25,7 @@ const Payment = () => {
 
       if (paymentIntent.status === 'succeeded') {
         toast.success('Paiement effectué avec succès');
+        router.push('/dashboard/team?payment=success');
       } else if (paymentIntent.status === 'requires_payment_method') {
         toast.error('Le paiement a échoué. Veuillez réessayer.');
       } else if (paymentIntent.status === 'processing') {
@@ -35,7 +36,7 @@ const Payment = () => {
         toast.error("Une erreur inattendue s'est produite lors du paiement.");
       }
 
-      router.push('/dashboard');
+      router.push('/dashboard/shop');
     });
   }, [stripe, clientSecret]);
 

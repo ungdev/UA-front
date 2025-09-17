@@ -91,6 +91,11 @@
     max-width: calc(100vw - 60px);
   }
 
+  .shareModalContainer {
+    width: max-content;
+    max-width: calc(100vw - 60px);
+  }
+
   .itemPreviewImage {
     max-width: 1000px;
     width: 100%;
