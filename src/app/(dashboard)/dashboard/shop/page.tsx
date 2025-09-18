@@ -17,10 +17,14 @@ import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
 import { API } from '@/utils/api';
+import { useSearchParams } from 'next/navigation';
+import { fetchTournaments } from '@/modules/tournament';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
 const Shop = () => {
+  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
   // Informations about the user
   const user = useAppSelector((state) => state.login.user) as User;
@@ -59,6 +63,20 @@ const Shop = () => {
       }
     | undefined
   >(undefined);
+  // If the user is redirected from the payment page
+  const [showShareModal, setShowShareModal] = useState(false);
+  // Fetch the name of the tournament
+  const tournaments = useAppSelector((state) => state.tournament.tournaments);
+  // Name of the tournament of the team
+  const [tournament, setTournament] = useState<string | null>(null);
+
+  // Search for the payment status in the URL
+  useEffect(() => {
+    const paymentStatus = searchParams.get('payment');
+    if (paymentStatus === 'success') {
+      setShowShareModal(true);
+    }
+  }, [searchParams]);
 
   // Fetch items, team
   useEffect(() => {
@@ -97,6 +115,15 @@ const Shop = () => {
       }
     });
   }, []);
+
+  /** Fetch the tournaments. */
+  useEffect(() => {
+    if (!tournaments) {
+      dispatch(fetchTournaments());
+    }
+
+    setTournament(tournaments?.find((tournament) => tournament.id === team?.tournamentId)?.name || null);
+  }, [tournaments, team]);
 
   // Initializing teamMembers
   useEffect(() => {
@@ -276,7 +303,7 @@ const Shop = () => {
       dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
     } else {
       API.post('carts/ffsu').then(() => {
-        dispatch(setRedirect('/dashboard/team'));
+        dispatch(setRedirect('/dashboard/shop?payment=success'));
       });
     }
   };
@@ -411,6 +438,25 @@ const Shop = () => {
             loading="lazy"
           />
         )}
+      </Modal>
+      <Modal
+        visible={showShareModal && !!tournament}
+        onCancel={() => setShowShareModal(false)}
+        buttons={null}
+        containerClassName={styles.shareModalContainer}>
+        <div className={styles.shareModalContent}>
+          <h2>Merci pour ton inscription</h2>
+          <p>
+            Maintenant que tu es inscrit, n'hésite pas à partager cette bonne nouvelle sur Twitter pour que d'autres
+            nous rejoignent pour ce superbe week-end !
+          </p>
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={`https://twitter.com/intent/post?text=Salut%2C%20je%20viens%20de%20m'inscrire%20au%20tournoi%20${tournament}%20de%20%40UTTArena%20du%2028%20au%2030%20novembre%202025%20!%20&url=https%3A%2F%2Farena.utt.fr`}>
+            <Button primary>Twitter</Button>
+          </a>
+        </div>
       </Modal>
     </div>
   );

@@ -25,17 +25,19 @@ const Payment = () => {
 
       if (paymentIntent.status === 'succeeded') {
         toast.success('Paiement effectué avec succès');
+        router.push('/dashboard/shop?payment=success');
       } else if (paymentIntent.status === 'requires_payment_method') {
         toast.error('Le paiement a échoué. Veuillez réessayer.');
+        router.push('/dashboard/shop');
       } else if (paymentIntent.status === 'processing') {
         toast.error(
           'Le paiement est en cours de traitement. Vous recevrez un email de confirmation une fois le paiement effectué.',
         );
+        router.push('/dashboard/shop');
       } else {
         toast.error("Une erreur inattendue s'est produite lors du paiement.");
+        router.push('/dashboard/shop');
       }
-
-      router.push('/dashboard');
     });
   }, [stripe, clientSecret]);
 
