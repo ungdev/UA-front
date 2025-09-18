@@ -447,15 +447,31 @@ const Shop = () => {
         <div className={styles.shareModalContent}>
           <h2>Merci pour ton inscription</h2>
           <p>
-            Maintenant que tu es inscrit, n'hésite pas à partager cette bonne nouvelle sur Twitter pour que d'autres
-            nous rejoignent pour ce superbe week-end !
+            Maintenant que tu es inscrit, n'hésite pas à partager cette bonne nouvelle sur X pour que d'autres nous
+            rejoignent pour ce superbe week-end !
           </p>
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href={`https://twitter.com/intent/post?text=Salut%2C%20je%20viens%20de%20m'inscrire%20au%20tournoi%20${tournament}%20de%20%40UTTArena%20du%2028%20au%2030%20novembre%202025%20!%20&url=https%3A%2F%2Farena.utt.fr`}>
-            <Button primary>Twitter</Button>
-          </a>
+          <br />
+          <div className={styles.shareButton}>
+            <a
+              rel="noreferrer"
+              target="_blank"
+              href={`https://twitter.com/intent/post?text=Je%20viens%20de%20m'inscrire%20au%20tournoi%20${tournament}%20de%20%40UTTArena%20du%2028%20au%2030%20novembre%202025%20!%20H%C3%A2te%20de%20vous%20y%20retrouver%20!&url=https%3A%2F%2Farena.utt.fr`}>
+              <Button primary className={styles.shareXButton}>
+                <Icon name={IconName.Twitter} fill={true} />
+                Partager sur X
+              </Button>
+            </a>
+            <Button
+              primary
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `Je viens de m'inscrire au tournoi ${tournament} de UTT Arena du 28 au 30 novembre 2025 ! Hâte de vous y retrouver ! https://arena.utt.fr`,
+                );
+                toast.success("Le message d'inscription a bien été copié dans ton presse-papier !");
+              }}>
+              Partager le lien d'inscirption
+            </Button>
+          </div>
         </div>
       </Modal>
     </div>
