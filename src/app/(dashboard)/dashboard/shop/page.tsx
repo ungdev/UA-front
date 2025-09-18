@@ -469,7 +469,7 @@ const Shop = () => {
                 );
                 toast.success("Le message d'inscription a bien été copié dans ton presse-papier !");
               }}>
-              Partager le lien d'inscirption
+              Partager le lien d'inscription
             </Button>
           </div>
         </div>
