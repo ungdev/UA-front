@@ -447,8 +447,8 @@ const Shop = () => {
         <div className={styles.shareModalContent}>
           <h2>Merci pour ton inscription</h2>
           <p>
-            Maintenant que tu es inscrit, n'hésite pas à partager cette bonne nouvelle sur X pour que d'autres nous
-            rejoignent pour ce superbe week-end !
+            Maintenant que tu es inscrit, n'hésite pas à partager cette bonne nouvelle pour que d'autres nous rejoignent
+            ce week-end !
           </p>
           <br />
           <div className={styles.shareButton}>
