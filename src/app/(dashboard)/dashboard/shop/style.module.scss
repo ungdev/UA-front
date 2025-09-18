@@ -91,6 +91,25 @@
     max-width: calc(100vw - 60px);
   }
 
+  .shareModalContainer {
+    width: 500px !important;
+
+    .shareButton {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 1rem; 
+
+      .shareXButton {
+        background-color: black !important;
+
+        &:hover {
+          background-color: #313131 !important;
+        }
+      }
+    }
+  }
+
   .itemPreviewImage {
     max-width: 1000px;
     width: 100%;

@@ -83,7 +83,7 @@ const QRCodeReader = ({ onCode, className = '', autoStart = false }: QRCodeReade
       const config = { fps: 10, qrbox: 250 };
       html5QrCodeRef.current
         .start(
-          cameraId,
+          { facingMode: 'environment' },
           config,
           (decodedText) => {
             onCode({ data: decodedText });
