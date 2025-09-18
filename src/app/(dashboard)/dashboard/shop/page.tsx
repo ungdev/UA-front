@@ -17,14 +17,13 @@ import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
 import { API } from '@/utils/api';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { fetchTournaments } from '@/modules/tournament';
 
 // Hello there ! This is a big file (and it's not the only one :P), I commented it as well as I could, I hope you'll understand :)
 
 const Shop = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const dispatch = useAppDispatch();
   // Informations about the user
