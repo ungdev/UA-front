@@ -304,7 +304,7 @@ const Shop = () => {
       dispatch(setRedirect(`/dashboard/payment?stripeToken=${token}&cart=${JSON.stringify(cart)}`));
     } else {
       API.post('carts/ffsu').then(() => {
-        dispatch(setRedirect('/dashboard/team'));
+        dispatch(setRedirect('/dashboard/shop?payment=success'));
       });
     }
   };
