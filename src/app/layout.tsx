@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: uploadsUrl() + '/images/banniere_SEO.png',
+        url: uploadsUrl() + '/images/banniere_embed.png',
         alt: "Logo de l'UTT Arena",
         width: 1500,
         height: 500,
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: uploadsUrl() + '/images/banniere_SEO.png',
+        url: uploadsUrl() + '/images/banniere_embed.png',
         alt: "Bannière de l'UTT Arena 2025, les 28, 29 et 30 novembre 2025",
       },
     ],
