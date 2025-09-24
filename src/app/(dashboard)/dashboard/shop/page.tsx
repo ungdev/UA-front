@@ -456,14 +456,13 @@ const Shop = () => {
               rel="noreferrer"
               target="_blank"
               href={`https://twitter.com/intent/post?text=Je%20viens%20de%20m'inscrire%20au%20tournoi%20${tournament}%20de%20%40UTTArena%20du%2028%20au%2030%20novembre%202025%20!%20H%C3%A2te%20de%20vous%20y%20retrouver%20!&url=https%3A%2F%2Farena.utt.fr`}>
-              <Button primary className={styles.shareXButton} umamiEvent="shareOnX">
+              <Button primary className={styles.shareXButton}>
                 <Icon name={IconName.Twitter} fill={true} />
                 Partager sur X
               </Button>
             </a>
             <Button
               primary
-              data-umami-event="copyShareLink"
               onClick={() => {
                 navigator.clipboard.writeText(
                   `Je viens de m'inscrire au tournoi ${tournament} de UTT Arena du 28 au 30 novembre 2025 ! Hâte de vous y retrouver ! https://arena.utt.fr`,

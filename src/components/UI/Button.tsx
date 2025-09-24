@@ -28,7 +28,6 @@ const Button = ({
   type = 'button',
   disabled = false,
   className = '',
-  umamiEvent = undefined,
 }: {
   /** Whether the button is primary or not. */
   primary?: boolean;
@@ -55,8 +54,6 @@ const Button = ({
   disabled?: boolean;
   /** An optional class name for the button. */
   className?: string;
-  /** The name of the event to send to Umami on click. If not provided, no event is sent. */
-  umamiEvent?: string;
 }) => {
   return (
     <button
@@ -66,7 +63,6 @@ const Button = ({
                   ${large ? styles.large : ''}  ${long ? styles.long : ''} ${veryLong ? styles.veryLong : ''}`}
       onClick={disabled ? undefined : onClick}
       disabled={disabled}>
-      {umamiEvent && <div data-umami-event={umamiEvent}></div>}
       <div className={styles.buttonContainer}>{children}</div>
     </button>
   );
