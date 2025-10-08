@@ -24,15 +24,6 @@ const initialLogin = {
   password: '',
 };
 
-const convertToDateTimeLocalString = (date: Date) => {
-  date = new Date(date);
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const day = date.getDate().toString().padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-};
-
 /**
  * LoginModal component that displays a modal with login, signup and forgot password forms.
  */
@@ -52,13 +43,14 @@ function LoginModal({
   const [loginForm, setLoginForm] = useState(initialLogin);
   const [signupForm, setSignupForm] = useState(initialSignup);
   const [forgotEmail, setForgotEmail] = useState('');
-  const [birthDate, setBirthDate] = useState<Date | null>(null)
+  const [birthDateString, setBirthDateString] = useState('');
 
   const login = () => {
     dispatch(tryLogin(loginForm, admin));
   };
 
   const signup = async () => {
+    const birthDate = birthDateString ? new Date(birthDateString + 'T00:00:00') : null;
     if (birthDate) {
       const UADate = new Date(2025, 10, 28);
       const ageDifMs = UADate.getTime() - birthDate.getTime();
@@ -181,8 +173,20 @@ function LoginModal({
           <Input
             label="Date de naissance"
             type="date"
-            value={birthDate ? convertToDateTimeLocalString(birthDate) : ''}
-            onChange={(value) => {setBirthDate(new Date(value as unknown as number))}}
+            value={birthDateString}
+            onChange={(value) => {
+              // Pas de valeur
+              if (!value) {
+                setBirthDateString('');
+                return;
+              }
+              // Valeur complète (vérification via regex)
+              if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+                setBirthDateString(value);
+              }
+
+              // Pour le reste, on ignore vu que ce ne sera pas utile
+            }}
           />
           <Button primary className={styles.signupModalButton} type="submit">
             S'inscrire

@@ -20,7 +20,7 @@ export default function TeamMember({
 }) {
   let roleDisplayed = '';
   if (commission.id === 'coord') {
-    roleDisplayed = role === 'respo' ? 'Présidente' : 'Coordinateur.e';
+    roleDisplayed = role === 'respo' ? 'Président' : 'Coordinateur.e';
   } else {
     roleDisplayed = role === 'respo' ? 'Responsable' : 'Membre';
   }
