@@ -20,6 +20,7 @@ import spectatorImg from '@/../public/images/register/spectator.webp';
 import joinImg from '@/../public/images/register/join.webp';
 import createImg from '@/../public/images/register/create.webp';
 import Modal from '@/components/UI/Modal';
+import { toast } from 'react-toastify';
 
 const columns = [
   { title: 'Équipe', key: 'team' },
@@ -240,7 +241,15 @@ const Register = () => {
         onClick={() => {
           setStep(step + 1);
           const license = ffsuLicense?.length === 0 ? null : ffsuLicense;
-          dispatch(editUserFfsu({ ffsuLicense: license }));
+          if (!license) {
+            toast.error("Tu dois renseigner ta licence FFSU pour t'inscrire à ce tournoi.");
+            return;
+          }
+          if (license.length !== 10) {
+            toast.error('Le numéro de licence FFSU doit contenir 10 caractères.');
+            return;
+          }
+          const res = dispatch(editUserFfsu({ ffsuLicense: license }));
         }}
         disabled={!user.discordId || !certifyFfsu}>
         {'Valider'}
