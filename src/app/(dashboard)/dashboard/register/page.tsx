@@ -239,7 +239,6 @@ const Register = () => {
       <Button
         primary
         onClick={() => {
-          setStep(step + 1);
           const license = ffsuLicense?.length === 0 ? null : ffsuLicense;
           if (!license) {
             toast.error("Tu dois renseigner ta licence FFSU pour t'inscrire à ce tournoi.");
@@ -250,6 +249,7 @@ const Register = () => {
             return;
           }
           const res = dispatch(editUserFfsu({ ffsuLicense: license }));
+          setStep(step + 1);
         }}
         disabled={!user.discordId || !certifyFfsu}>
         {'Valider'}
