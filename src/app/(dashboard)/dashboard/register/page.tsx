@@ -244,7 +244,7 @@ const Register = () => {
             toast.error("Tu dois renseigner ta licence FFSU pour t'inscrire à ce tournoi.");
             return;
           }
-          if (license.length !== 10) {
+          if (license.length !== 7) {
             toast.error('Le numéro de licence FFSU doit contenir 10 caractères.');
             return;
           }
