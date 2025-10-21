@@ -2,10 +2,9 @@
 import styles from './style.module.scss';
 import { useState } from 'react';
 
-import { Button, Checkbox, Select, Title } from '@/components/UI';
-// eslint-disable-next-line import/named
+import { Button, Checkbox, Input, Select, Textarea, Title } from '@/components/UI';
 import { animated, useTransition } from '@react-spring/web';
-import { sendGeneralMails } from '@/modules/admin';
+import { sendCustomMail, sendGeneralMails } from '@/modules/admin';
 import generalMailImg from '@/../public/images/mails/generalmail.webp';
 import focusedMailImg from '@/../public/images/mails/focusedmail.webp';
 import customMailImg from '@/../public/images/mails/custommail.webp';
@@ -15,6 +14,9 @@ const Mails = () => {
   const [mailContent, setMailContent] = useState<string>('joindiscord');
   //const [mailTemplate, setMailTemplate] = useState<string>('');
   const [preview, setPreview] = useState<boolean>(false);
+  const [mails, setMails] = useState<string>('');
+  const [subject, setSubject] = useState<string>('');
+  const [content, setContent] = useState<string>('');
 
   const transitions = useTransition(step, {
     from: { opacity: 0, transform: `translate3d(100%,0,0)` },
@@ -120,8 +122,28 @@ const Mails = () => {
 
   const Custom = (
     <>
-      <div className="">
-        <Title>Cette features n'est pas encore disponible</Title>
+      <div className={styles.customMail}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendCustomMail({ subject, content }, preview, mails);
+          }}>
+          <Input label='Mails séparé par une ","' value={mails} onChange={setMails} required />
+          <Input label="Sujet" value={subject} onChange={setSubject} required />
+          <Textarea label="Contenu du mail" value={content} onChange={setContent} />
+          <Checkbox
+            className={styles.mailCheckbox}
+            key="preview"
+            label="Preview"
+            value={preview}
+            onChange={setPreview}
+          />
+          <div className={styles.buttonContainer}>
+            <Button primary type="submit">
+              Envoyer les mails
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   );

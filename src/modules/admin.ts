@@ -349,4 +349,20 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
   }
 };
 
+export const sendCustomMail = async (
+  customMail: { subject: string; content: string },
+  preview: boolean,
+  user: string,
+) => {
+  const mails: string[] = user.split(',');
+
+  try {
+    await API.post('admin/emails/custom', { customMail, preview, mails }, 60000);
+
+    toast.success('Les mails ont bien été envoyés');
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export default adminSlice.reducer;
