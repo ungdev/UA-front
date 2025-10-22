@@ -350,18 +350,46 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
 };
 
 export const sendCustomMail = async (
-  customMail: { subject: string; content: string },
-  preview: boolean,
-  user: string,
+  subject: string,
+  highlight: { title: string; intro: string },
+  content: Array<{ title: string; components: any[] }>,
+  emails: string,
+  reason?: string,
+  preview: boolean = false,
 ) => {
-  const mails: string[] = user.split(',');
-
   try {
-    await API.post('admin/emails/custom', { customMail, preview, mails }, 60000);
+    const body: {
+      preview: boolean;
+      subject: string;
+      highlight: { title: string; intro: string };
+      reason?: string;
+      content: Array<{ title: string; components: any[] }>;
+      emails?: string[];
+    } = {
+      preview,
+      subject,
+      highlight,
+      reason,
+      content,
+    };
 
-    toast.success('Les mails ont bien été envoyés');
+    if (emails && !preview) {
+      const emailList = emails
+        .split(/[,\n]/)
+        .map((email) => email.trim())
+        .filter((email) => email.length > 0);
+
+      body.emails = emailList;
+    }
+
+    const response = await API.post('admin/emails/custom', body, 60000);
+
+    toast.success(preview ? 'Mail de preview envoyé' : 'Les mails ont bien été envoyés');
+    return response;
   } catch (err) {
     console.error(err);
+    toast.error("Erreur lors de l'envoi des mails");
+    throw err;
   }
 };
 
