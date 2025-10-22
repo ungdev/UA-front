@@ -349,4 +349,48 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
   }
 };
 
+export const sendCustomMail = async (
+  subject: string,
+  highlight: { title: string; intro: string },
+  content: Array<{ title: string; components: string[] | string }>,
+  emails: string,
+  reason?: string,
+  preview: boolean = false,
+) => {
+  try {
+    const body: {
+      preview: boolean;
+      subject: string;
+      highlight: { title: string; intro: string };
+      reason?: string;
+      content: Array<{ title: string; components: string[] | string }>;
+      emails?: string[];
+    } = {
+      preview,
+      subject,
+      highlight,
+      reason,
+      content,
+    };
+
+    if (emails && !preview) {
+      const emailList = emails
+        .split(/[,\n]/)
+        .map((email) => email.trim())
+        .filter((email) => email.length > 0);
+
+      body.emails = emailList;
+    }
+
+    const response = await API.post('admin/emails/custom', body, 60000);
+
+    toast.success(preview ? 'Mail de preview envoyé' : 'Les mails ont bien été envoyés');
+    return response;
+  } catch (err) {
+    console.error(err);
+    toast.error("Erreur lors de l'envoi des mails");
+    throw err;
+  }
+};
+
 export default adminSlice.reducer;
