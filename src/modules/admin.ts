@@ -352,7 +352,7 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
 export const sendCustomMail = async (
   subject: string,
   highlight: { title: string; intro: string },
-  content: Array<{ title: string; components: any[] }>,
+  content: Array<{ title: string; components: string[] | string }>,
   emails: string,
   reason?: string,
   preview: boolean = false,
@@ -363,7 +363,7 @@ export const sendCustomMail = async (
       subject: string;
       highlight: { title: string; intro: string };
       reason?: string;
-      content: Array<{ title: string; components: any[] }>;
+      content: Array<{ title: string; components: string[] | string }>;
       emails?: string[];
     } = {
       preview,
