@@ -153,11 +153,7 @@ const Mails = () => {
               // Convertir les sections en format attendu par l'API
               const formattedContent = sections.map((section) => ({
                 title: section.title,
-                components: [
-                  `<tr style="color: var(--text-color); font-family: var(--text-font);">
-                   <td>${section.components.replace(/\n/g, '<br>')}</td>
-                 </tr>`,
-                ],
+                components: [section.components],
               }));
 
               await sendCustomMail(
