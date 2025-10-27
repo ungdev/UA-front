@@ -51,7 +51,10 @@ const AdminFaqPage = () => {
               <h3 className={styles.categoryTitle}>{category}</h3>
               {groupedFaqs[category].map((faq) => (
                 <div key={faq.id} className={styles.faqItem}>
-                  <p className={styles.question}>{faq.question}</p>
+                  <p className={styles.question}>
+                    <span className={faq.display ? styles.visible : styles.hidden}>{faq.display ? '✅' : '🚫'}</span>{' '}
+                    {faq.question}
+                  </p>
                   <p className={styles.answer}>{faq.answer}</p>
                   <div className={styles.actions}>
                     <Button onClick={() => setSelectedFaq(faq)}>Modifier</Button>

@@ -13,9 +13,8 @@ import { RootState } from '@/lib/store';
 
 interface Question {
   question: string;
-  answer: React.ReactNode;
+  answer: string | React.ReactNode;
 }
-
 interface FaqByCategory {
   [category: string]: Question[];
 }
@@ -40,7 +39,7 @@ export const useFaq = () => {
         if (!grouped[f.category]) grouped[f.category] = [];
         grouped[f.category].push({
           question: f.question,
-          answer: <>{f.answer}</>, // wrap JSX si nécessaire
+          answer: f.answer,
         });
       });
 
@@ -134,7 +133,11 @@ const Help = () => {
                     .normalize('NFD')
                     .replace(/[\u0300-\u036f]/g, '')}-${index}`
                 }>
-                <div className={styles.answer}>{question.answer}</div>
+                {typeof question.answer === 'string' ? (
+                  <div className={styles.answer} dangerouslySetInnerHTML={{ __html: question.answer }} />
+                ) : (
+                  <div className={styles.answer}>{question.answer}</div>
+                )}
               </Collapse>
             ))}
           </div>
