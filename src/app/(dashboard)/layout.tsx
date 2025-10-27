@@ -51,6 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       menu.push({ title: 'Boutique', href: '/admin/shop' });
       menu.push({ title: 'Partenaires', href: '/admin/partners' });
       menu.push({ title: 'Mails', href: '/admin/mails' });
+      menu.push({ title: 'Faq', href: '/admin/faq' });
       menu.push({ title: 'Paramètres', href: '/admin/settings' });
     }
     if (permissions.includes(Permission.orga)) {

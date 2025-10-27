@@ -1,198 +1,54 @@
 'use client';
 import styles from './style.module.scss';
 import { ReactNode, useEffect, useState } from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { Title, Input, Textarea, Button, Select, Collapse } from '@/components/UI';
 import { sendMessage } from '@/utils/contact';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useAppSelector } from '@/lib/hooks';
 import { uploadsUrl } from '@/utils/environment';
+import { fetchFaqs } from '@/modules/admin';
+import { RootState } from '@/lib/store';
 
 interface Question {
   question: string;
-  answer: ReactNode;
+  answer: React.ReactNode;
 }
 
-interface Faq {
-  [key: string]: Question[];
+interface FaqByCategory {
+  [category: string]: Question[];
 }
 
-const faq: Faq = {
-  Général: [
-    {
-      question: 'Quand commencent les tournois ?',
-      answer: (
-        <>
-          Les tournois commencent le samedi à 10h mais les participants des tournois devront être présents le samedi à
-          9h pour effectuer un check-in.
-        </>
-      ),
-    },
-    {
-      question: "Quel est l'âge minimum pour participer aux tournois ?",
-      answer: (
-        <>
-          Pour participer aux tournois, il faut avoir au minimum <strong>16 ans lors de l'évènement</strong>. Il faudra
-          que tu présentes <strong>l'autorisation parentale</strong>
-          <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2025.pdf`} target="_blank">
-            {' '}
-            disponible ici
-          </a>
-          , <strong>
-            ainsi qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne
-          </strong>{' '}
-          avant d'accéder à l'UTT Arena.
-        </>
-      ),
-    },
-    {
-      question: 'Puis-je streamer pendant les tournois ?',
-      answer: (
-        <>
-          Seulement si tu as reçu un mail t'en donnant l'autorisation suite à ta demande. Un formulaire de demande de
-          streaming est{' '}
-          <a href="https://forms.gle/cTY8xjJojzpvC1Wo9" target="_blank" rel="noopener">
-            disponible ici
-          </a>
-          . L'équipe de l'UTT Arena se réserve le droit d'accepter ou refuser ta demande, et toute personne faisant du
-          streaming sans autorisation validée par l'équipe se verra sanctionnée. L'équipe de l'UTT Arena communiquera
-          prochainement sur les conditions de streaming.
-        </>
-      ),
-    },
-    {
-      question: 'Où puis-je trouver des joueurs pour monter une équipe ?',
-      answer: (
-        <>
-          Sur le discord de l'UTT Arena tu trouveras sûrement d'autres joueurs qui cherchent une équipe.{' '}
-          <a href="https://discord.gg/tkRrVZYXmT">Tu peux rejoindre notre Discord ici.</a>
-        </>
-      ),
-    },
-    {
-      question: "Qui contacter si j'ai des questions avant ou pendant l'UTT Arena ?",
-      answer: (
-        <>
-          N'hésite pas à demander aux responsables de ton tournoi si tu as une quelconque question ! Tu peux les
-          identifier en taguant @Staff tournoi [nom du tournoi] sur le Discord de l'UTT Arena.
-        </>
-      ),
-    },
-    {
-      question: 'Où puis-je trouver les règlements des tournois (formats, règles, ...) ?',
-      answer: (
-        <>
-          Tu pourras télécharger le règlement du tournoi qui t'intéresse dans l'onglet du tournoi concerné. Il est
-          important de le lire attentivement !
-        </>
-      ),
-    },
-    {
-      question: "Puis-je assister à l'UTT Arena en tant que spectateur ?",
-      answer: (
-        <>
-          Cette année, les spectateurs voulant assister à l'UTT Arena devront acheter leur place à la billetterie de
-          l'UTT Arena. Venez profiter de l'ambiance de la scène, du Stand Console, avec diverses activités autour du jeu
-          vidéo, et visiter les stands de nos partenaires. Vous pouvez prendre votre place en vous inscrivant sur ce
-          site. <br />
-          Si tu es mineur et que tu souhaites participer à l'événement, il faudra que tu présentes l'autorisation
-          parentale <a href={`${uploadsUrl()}/Autorisation_parentale_-_UTT_Arena_2025.pdf`}>disponible ici</a>, ainsi
-          qu'une photocopie de la pièce d'identité de ton responsable légal et de la tienne avant d'accéder à l'UTT
-          Arena.
-        </>
-      ),
-    },
-  ],
-  Inscription: [
-    {
-      question: 'Comment savoir si mon équipe est inscrite ?',
-      answer: (
-        <>
-          Il faut que l'équipe soit complète et que <strong>tous</strong> les joueurs de l'équipe aient payé leur place.
-          L'équipe est ensuite verrouillée, le statut dans l'onglet "équipe" devient vert et ton équipe est inscrite.
-          <br />
-          <strong>Attention :</strong> kicker un joueur de l'équipe, quitter ou dissoudre l'équipe la déverrouillera et
-          vous fera perdre votre place.
-        </>
-      ),
-    },
-    {
-      question: 'Combien coûte la participation à un tournoi ?',
-      answer: (
-        <>
-          <ul>
-            {/* <li>15 € pour les joueurs du tournoi Super Smash Bros. Ultimate</li> */}
-            <li>28 € pour les joueurs, tous tournois confondus</li>
-            <li>15 € en tant que coach, manager</li>
-            <li>
-              Pour les étudiants des écoles partenaires (réseau UT) : réduction de 5€. Pense à t'inscrire avec ton
-              adresse mail étudiante.
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      question: "Dans combien de tournois puis-je m'inscrire ?",
-      answer: "Les tournois se jouant en simultané, tu ne peux t'inscrire qu'à un seul tournoi.",
-    },
-  ],
-  Paiement: [
-    {
-      question: 'Puis-je payer en espèces ?',
-      answer:
-        "Payer en espèce sur place n'est possible que pour les places spectateurs. Si vous êtes un joueur, vous devez impérativement payer en ligne via la billetterie.",
-    },
-    {
-      question: 'Puis-je payer par PayPal ?',
-      answer: 'Non, sur le site seul le paiement par carte bancaire est disponible.',
-    },
-    {
-      question: 'Puis-je payer pour toute mon équipe ?',
-      answer:
-        "Oui, cette année il est possible de payer pour d'autres joueurs. Mais il faut qu'ils aient d'abord créé leur compte sur le site de l'UTT Arena et qu'ils aient rejoint ton équipe.",
-    },
-    {
-      question: "J'ai payé ma place, puis-je encore changer de tournoi ?",
-      answer: (
-        <>
-          Oui, tu peux changer librement de tournoi à condition que le tournoi que tu veux rejoindre soit au même prix
-          que la place que tu as déjà payée. Si ce n'est pas le cas, contacte-nous !
-        </>
-      ),
-    },
-  ],
-  // 'Tournoi Super Smash Bros Ultimate': [
-  //   {
-  //     question: 'Dois-je apporter ma console ?',
-  //     answer: (
-  //       <>
-  //         Si tu as coché la case <strong>"Réduction si tu amènes ta propre Nintendo Switch"</strong> à l'inscription au
-  //         tournoi, tu dois en effet apporter ta Nintendo Switch, son dock, le jeu SSBU avec <strong>tous</strong> les
-  //         personnages, <strong>DLCs inclus</strong> et un câble HDMI, et tu bénéficies d'une <strong>réduction</strong>{' '}
-  //         de 3€ sur le prix de ton billet. Cette option est disponible pour les 30 premiers seulement.
-  //         <br />
-  //         Même sans cocher cette case, tu peux apporter ta console pour jouer en freeplay.
-  //         <br />
-  //         <br />
-  //         <strong>
-  //           Si tu as indiqué que tu apportais ta console et que ce n'est pas le cas, un supplément de 6€ te sera facturé
-  //           sur place.
-  //         </strong>
-  //       </>
-  //     ),
-  //   },
-  //   {
-  //     question: 'Puis-je apporter mon PC ?',
-  //     answer: "Non, car tu n'auras pas de place pour installer ton setup.",
-  //   },
-  //   {
-  //     question: 'Dois-je apporter mes manettes ?',
-  //     answer: 'Oui. Tu dois apporter tes manettes de Switch ou ta manette de GameCube sans oublier ton adaptateur.',
-  //   },
-  // ],
-} as Faq;
+export const useFaq = () => {
+  const dispatch = useDispatch<any>();
+  const faqsFromStore = useSelector((state: RootState) => state.admin.faqs || []);
+
+  // ⚡ On garde le même nom `faq` pour ton front
+  const [faq, setFaq] = useState<FaqByCategory>({});
+
+  useEffect(() => {
+    dispatch(fetchFaqs()); // fetch API
+  }, [dispatch]);
+
+  useEffect(() => {
+    const grouped: FaqByCategory = {};
+
+    faqsFromStore
+      .filter((f) => f.display) // uniquement celles affichables
+      .forEach((f) => {
+        if (!grouped[f.category]) grouped[f.category] = [];
+        grouped[f.category].push({
+          question: f.question,
+          answer: <>{f.answer}</>, // wrap JSX si nécessaire
+        });
+      });
+
+    setFaq(grouped);
+  }, [faqsFromStore]);
+
+  return faq;
+};
 
 const Help = () => {
   const [name, setName] = useState('');
@@ -206,6 +62,8 @@ const Help = () => {
 
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
 
+  const faq = useFaq();
+
   const options = tournaments
     ? [...tournaments!.map((tournament) => 'Tournoi ' + tournament.name), 'Problème sur le site', 'Autre']
         // Transform the array to match the requested type of Select component
@@ -214,7 +72,6 @@ const Help = () => {
           value,
         }))
     : [];
-
   useEffect(() => {
     // Scroll to the element if the hash is present in the url
     const hash = window.location.hash;

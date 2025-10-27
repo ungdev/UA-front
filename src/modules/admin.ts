@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@/utils/api';
-import { AdminPartner, AdminTournament, AdminItem, Badge } from '@/types';
+import { AdminPartner, AdminTournament, AdminItem, Badge, Faq} from '@/types';
 import {
   getPartnerLogoName,
   PARTNER_FOLDER,
@@ -22,12 +22,14 @@ export interface AdminAction {
   partners: AdminPartner[] | null;
   tournaments: AdminTournament[] | null;
   items: AdminItem[] | null;
+  faqs:Faq[] | null;
 }
 
 const initialState: AdminAction = {
   partners: null,
   tournaments: null,
   items: null,
+  faqs:null,
 };
 
 export const adminSlice = createSlice({
@@ -75,6 +77,21 @@ export const adminSlice = createSlice({
         return item;
       }) as AdminItem[];
     },
+    setFaqs(state, action) {
+      state.faqs = action.payload;
+    },
+    addFaq: (state, action) => {
+        state.faqs = [...(state.faqs || []), action.payload];
+    },
+    updateFaqState: (state, action) => {
+      state.faqs = state.faqs?.map(f => {
+      if (f.id === action.payload.id) return action.payload;
+     return f;
+     }) as Faq[];
+    },
+    removeFaq: (state, action) => {
+      state.faqs = state.faqs?.filter(f => f.id !== action.payload) as Faq[];
+    },
   },
 });
 
@@ -87,6 +104,10 @@ export const {
   updateAdminTournament,
   setAdminItems,
   updateAdminItem,
+  setFaqs,
+  addFaq,
+  updateFaqState,
+  removeFaq
 } = adminSlice.actions;
 
 export const fetchAdminPartners = (): AppThunk => async (dispatch) => {
@@ -349,4 +370,65 @@ export const sendGeneralMails = async (generalMail: string, preview: boolean) =>
   }
 };
 
+// Get toutes les FAQ
+export const fetchFaqs = (): AppThunk => async (dispatch) => {
+  try {
+    const res = await API.get("admin/faq"); 
+    const data: Faq[] = res;
+    dispatch(setFaqs(data));
+  } catch (err) {
+    console.error("Erreur fetch FAQ :", err);
+    toast.error("Impossible de récupérer les FAQ");
+  }
+};
+
+// Get FAQ par ID
+export const fetchFaqById = (id: string): AppThunk => async (dispatch) => {
+  try {
+    const res = await API.get(`admin/faq/${id}`);
+    const data: Faq = res;
+    dispatch(addFaq(data));
+  } catch (err) {
+    console.error("Erreur fetch FAQ par ID :", err);
+    toast.error("Impossible de récupérer la FAQ");
+  }
+};
+
+// Create FAQ
+export const createFaqApi = (faq: Omit<Faq, "id">): AppThunk => async (dispatch) => {
+  try {
+    const res = await API.post("admin/faq", faq);
+    const data: Faq = res; 
+    dispatch(addFaq(data));
+    toast.success("FAQ créée avec succès !");
+  } catch (err) {
+    console.error("Erreur création FAQ :", err);
+    toast.error("Impossible de créer la FAQ");
+  }
+};
+
+// Update FAQ
+export const updateFaqApi = (id: string, faq: Partial<Omit<Faq, "id">>): AppThunk => async (dispatch) => {
+  try {
+    const res = await API.put(`admin/faq/${id}`, faq);
+    const data: Faq = res;
+    dispatch(updateFaqState(data));
+    toast.success("FAQ mise à jour !");
+  } catch (err) {
+    console.error("Erreur update FAQ :", err);
+    toast.error("Impossible de mettre à jour la FAQ");
+  }
+};
+
+// DELETE FAQ
+export const deleteFaqApi = (id: string): AppThunk => async (dispatch) => {
+  try {
+    await API.delete(`admin/faq/${id}`);
+    dispatch(removeFaq(id));
+    toast.success("FAQ supprimée !");
+  } catch (err) {
+    console.error("Erreur delete FAQ :", err);
+    toast.error("Impossible de supprimer la FAQ");
+  }
+};
 export default adminSlice.reducer;

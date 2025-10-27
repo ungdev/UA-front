@@ -30,6 +30,14 @@ export interface RegisterUser {
   age: string;
 }
 
+export interface Faq {
+  id: string;
+  category: string;
+  question: string;
+  answer: string;
+  display: boolean;
+}
+
 export enum Permission {
   stream = 'stream',
   entry = 'entry',
