@@ -49,6 +49,10 @@ const Title = ({
         <TextStroke className={`${styles.titleContent} ${styles[align]}`} width={12}>
           {children}
         </TextStroke>
+      ) : type === 5 ? (
+        <TextStroke className={`${styles.titleContent} ${styles[align]}`} width={8}>
+          {children}
+        </TextStroke>
       ) : (
         <div className={`${styles.titleContent} ${styles[align]}`}>{children}</div>
       )}

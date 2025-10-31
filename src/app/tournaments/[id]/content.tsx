@@ -12,9 +12,9 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { getTournamentBackgroundLink, getTournamentRulesLink } from '@/utils/uploadLink';
 import { IconName } from '@/components/UI/Icon';
 import logoUA from '@/../public/images/logo-notext.webp';
-import FillingBar from '@/components/UI/FillingBar';
 // TODO: Remove next line
 import { fetchCurrentTeam } from '@/modules/team';
+import DoubleFillingBar from '@/components/UI/DoubleFillingBar';
 
 export function TournamentInformation({ tournamentId, animate = true }: { tournamentId: string; animate?: boolean }) {
   const [goBack, setGoBack] = useState(false);
@@ -39,6 +39,13 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
     '--background-image',
     `url("${getTournamentBackgroundLink(tournament.id)}")`,
   );
+
+  // Calculer les métriques pour la barre de remplissage
+  const lockedTeamsRatio = (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers;
+  const partiallyPaidTeamsCount = tournament.teams.filter((team) =>
+    team.players.some((player) => player.hasPaid) && !team.lockedAt,
+  ).length;
+  const partiallyPaidRatio = (partiallyPaidTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers;
 
   return (
     <TournamentSwitcherAnimation nextPage={goBack ? '' : undefined} previousPage={tournamentId}>
@@ -99,8 +106,8 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             {tournament.casters === undefined || tournament.casters === null
               ? 'À venir'
               : tournament.casters.length === 0
-                ? 'Aucun caster pour ce tournoi'
-                : tournament.casters?.map((caster) => caster.name).join(', ')}
+              ? 'Aucun caster pour ce tournoi'
+              : tournament.casters?.map((caster) => caster.name).join(', ')}
           </BoxContainer>
         </div>
         <>
@@ -108,8 +115,16 @@ export function TournamentInformation({ tournamentId, animate = true }: { tourna
             {tournament.playersPerTeam === 1 ? 'Joueurs inscrits' : 'Équipes inscrites'} : {tournament.lockedTeamsCount}{' '}
             / {tournament.maxPlayers / tournament.playersPerTeam}
           </Title>
-          <FillingBar
-            fullness={animate ? (tournament.lockedTeamsCount * tournament.playersPerTeam) / tournament.maxPlayers : 0}
+          {tournament.playersPerTeam === 5 ? (
+            <Title level={4} type={5} align="center" className={styles.partiallyEnrolledTeams}>
+              {"Équipes en cours d'inscription "} : {' '}
+              {partiallyPaidTeamsCount}
+            </Title>
+          ) : null}
+
+          <DoubleFillingBar
+            fullness={animate ? lockedTeamsRatio : 0}
+            partialFullness={animate ? partiallyPaidRatio + lockedTeamsRatio : 0}
             className={styles.fillingBar}
           />
           <Table

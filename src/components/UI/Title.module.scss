@@ -71,6 +71,14 @@ $radius: 8px;
     font-size: 1.75rem;
   }
 
+  &.title-5 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    font-family: $kanit;
+    text-transform: uppercase;
+  }
+
   .textDivider {
     display: flex;
     width: 100%;
