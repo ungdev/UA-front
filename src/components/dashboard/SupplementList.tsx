@@ -244,7 +244,7 @@ const SupplementList = ({
               outline
               onLightBackground
               onClick={() => {
-                if (supplement.left! <= cartSupplement!.quantity) {
+                if (trueSupplement.left! <= cartSupplement!.quantity) {
                   toast.warn('Le stock de cet item est épuisé');
                   return;
                 }
