@@ -100,6 +100,7 @@ function LoginModal({
       title: 'Connexion',
       content: (
         <>
+          <p>Attention, les comptes sont réinitialisés tous les ans.</p>
           <Input
             label="Pseudo / Email"
             value={loginForm.login}
