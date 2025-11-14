@@ -234,7 +234,7 @@ export const saveUser =
         commissionRole: role.commissionRole,
         commission: role.commission.id,
       })),
-      orgaMainCommission: body.orgaMainCommission?.id,
+      orgaMainCommission: body.orgaMainCommission?.id || null,
     });
     toast.success(`${username} mis à jour`);
     dispatch(
