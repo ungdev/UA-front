@@ -12,7 +12,7 @@ import SupplementList from '@/components/dashboard/SupplementList';
 import Cart from '@/components/dashboard/Cart';
 import { getTicketPrice } from '@/modules/users';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { CartItem, Item, User, UserType } from '@/types';
+import { CartItem, Item, Permission, User, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
 import { setRedirect } from '@/modules/redirect';
 import { getItemImageLink } from '@/utils/uploadLink';
@@ -363,8 +363,8 @@ const Shop = () => {
               itemType="rent"
               shopSectionName="Location"
               disabled={
-                team?.lockedAt === null
-                  ? "L'équipe n'est pas verrouillée, tu ne peux plus louer de matériel."
+                (team?.lockedAt === null || !user.permissions.includes(Permission.orga))
+                  ? "L'équipe n'est pas verrouillée, tu ne peux pas louer de matériel."
                   : undefined
               }
             />
