@@ -1,11 +1,17 @@
 .adminEntry {
-  padding: 3rem 5rem;
-  max-width: 1000px;
+  padding: 1.25rem 1rem;
+  max-width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
 
   .scanner {
     position: relative;
     z-index: 0;
+    width: 100%;
+    height: 300px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
 
     .scannerPlaceholder {
       position: absolute;
@@ -13,15 +19,17 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
-      z-index: -1;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 0 1rem;
 
       .scannerPlaceholderIcon {
         display: block;
-        font-size: 3em;
-        margin-bottom: 14px;
+        font-size: 2.5rem;
+        margin-bottom: 10px;
       }
     }
 
@@ -30,6 +38,98 @@
       width: 100%;
       height: 100%;
       display: block;
+      object-fit: cover;
+    }
+  }
+
+  form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+
+    .saisie {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .buttonRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  p {
+    line-height: 1.35;
+    margin: 0.4rem 0;
+
+    strong {
+      display: inline-block;
+      min-width: 86px;
+      font-weight: 600;
+    }
+  }
+
+  .default {
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Larger screens (tablet & up) */
+@media (min-width: 768px) {
+  .adminEntry {
+    padding: 3rem 5rem;
+    max-width: 1000px;
+
+    .scanner {
+      height: 420px;
+
+      .scannerPlaceholder {
+        z-index: -1; /* original behavior on desktop */
+        color: rgba(0, 0, 0, 0.6);
+
+        .scannerPlaceholderIcon {
+          font-size: 3rem;
+          margin-bottom: 14px;
+        }
+      }
+    }
+
+    form {
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 1rem;
+
+      .saisie {
+        margin-bottom: 0;
+      }
+
+      input,
+      .Input {
+        /* in case your Input component exposes a wrapper class */
+        min-width: 320px;
+      }
+    }
+
+    .buttonRow {
+      flex-direction: row;
+
+      button {
+        width: auto;
+      }
+    }
+
+    p {
+      strong {
+        min-width: 140px;
+      }
     }
   }
 }

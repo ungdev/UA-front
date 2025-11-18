@@ -3,10 +3,11 @@ import styles from './style.module.scss';
 import { useState, useRef } from 'react';
 import base45 from 'base45';
 import { bypassQrScan, registerCashPayment, scan, searchUser, setSearchUser, leavePanel } from '@/modules/userEntry';
-import { Input, Title, Button, QRCodeReader, Icon } from '@/components/UI/index';
+import { Input, Title, Button, Icon } from '@/components/UI/index';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { UserAge, UserType } from '@/types';
 import { IconName } from '@/components/UI/Icon';
+import QrScanner from '@/components/dashboard/QrScanner';
 
 const Entry = () => {
   const scannedUser = useAppSelector((state) => state.userEntry.searchUser);
@@ -36,11 +37,7 @@ const Entry = () => {
                   <Icon name={IconName.Camera} />
                   Veuillez activer votre caméra
                 </div>
-                <QRCodeReader
-                  onCode={onCodeScanned}
-                  className={styles.scannerPreview}
-                  autoStart={scannedUser === null} // la caméra démarre dès que scannedUser est null
-                />
+                <QrScanner onScan={(data) => onCodeScanned({ data })} />
               </div>
               <form
                 onSubmit={(event) => {
