@@ -87,7 +87,7 @@ const Account = () => {
     const data = window.URL.createObjectURL(response);
     const link = document.createElement('a');
     link.href = data;
-    link.download = 'Billet UTT Arena 2024.pdf';
+    link.download = 'Billet UTT Arena 2025.pdf';
     link.click();
   };
 
