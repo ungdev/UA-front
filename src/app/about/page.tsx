@@ -38,7 +38,7 @@ const About = () => {
         <div className={styles.aboutUng}>
           <TextBlock title="UTT Net Group" titleLevel={2} images={[ungImage1.src, ungImage2.src]} left>
             L'UTT Arena (UA) est le plus gros évènement de l'association{' '}
-            <a href="https://ung.utt.fr" target="_blank" className={styles.darkBackground}>
+            <a href="https://uttnetgroup.fr" target="_blank" className={styles.darkBackground}>
               UTT Net Group
             </a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles

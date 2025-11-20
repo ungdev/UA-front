@@ -23,7 +23,7 @@ export default function Page() {
         <div className={`${styles.textAndImage} ${styles.imageLeft}`}>
           <img src={imageLeft.src} alt="Image de gauche" loading="lazy" />
           <div className={styles.text}>
-            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://ung.utt.fr">UTT Net Group</a>{' '}
+            L'UTT Arena (UA) est le plus gros évènement de l'association <a href="https://uttnetgroup.fr">UTT Net Group</a>{' '}
             (UNG). L'UNG a été créée en 1998 pour rassembler tous les passionnés d'informatique et des nouvelles
             technologies de l'Université de Technologie de Troyes (UTT). <br />
             <br />
