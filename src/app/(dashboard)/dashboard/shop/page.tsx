@@ -362,11 +362,11 @@ const Shop = () => {
               onItemPreview={onItemPreview}
               itemType="rent"
               shopSectionName="Location"
-              disabled={
-                (team?.lockedAt === null && !user.permissions.includes(Permission.orga))
-                  ? "L'équipe n'est pas verrouillée, tu ne peux pas louer de matériel."
-                  : undefined
-              }
+              // disabled={
+              //   (team?.lockedAt === null && !user.permissions.includes(Permission.orga))
+              //     ? "L'équipe n'est pas verrouillée, tu ne peux pas louer de matériel."
+              //     : undefined
+              // }
             />
           </div>
         </div>
