@@ -32,7 +32,7 @@
     "base45": "^2.0.1",
     "eslint-plugin-react": "^7.37.5",
     "modern-normalize": "^3.0.1",
-    "next": "^14.2.33",
+    "next": "^14.2.35",
     "qr-scanner": "^1.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
