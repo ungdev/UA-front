@@ -41,7 +41,7 @@ const Legal = () => (
         d'accès, de rectification, de suppression et d'opposition de ses données personnelles. L'Utilisateur peut
         exercer ce droit en effectuant une demande par mail à l’adresse arena@utt.fr
         <br />
-        Le responsable du traitement des données est Matthieu Tourrette.
+        Le responsable du traitement des données est Arthur Dodin.
         <br />
         L’équipe technique et les administrateurs du site pourront accéder aux données.
         <br />
@@ -388,7 +388,7 @@ const Legal = () => (
         En cas de question sur le traitement des données personnelles collectées dans le cadre de l'évènement UTT Arena
         2025, nous vous prions de <br /> contacter :
         <br />
-        Matthieu Tourrette,
+        Arthur Dodin,
         <br />
         Président de l'association UTT Net Group organisant l'évènement UTT Arena 2025 et Délégué à la Protection des
         Données
