@@ -126,7 +126,8 @@ export const fetchUsers =
         !searchFilters.payment &&
         !searchFilters.scan &&
         !searchFilters.permissions &&
-        !searchFilters.age
+        !searchFilters.age &&
+        !searchFilters.commission
           ? ''
           : '&' + new URLSearchParams(searchFilters as Record<string, string>).toString()),
     );

@@ -293,6 +293,7 @@ export interface UserFilters extends Record<string, string | undefined> {
   scan?: string;
   permissions?: string;
   age?: string;
+  commission?: string;
 }
 
 export type BadgeType = 'orgas' | 'custom' | 'single' | 'singlecustom';
