@@ -23,7 +23,7 @@ RUN npm install -g pnpm
 FROM base AS builder
 WORKDIR /srv/app
 
-COPY --chown=node:node package.json pnpm-lock.yaml ./
+COPY --chown=node:node package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
