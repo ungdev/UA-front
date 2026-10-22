@@ -13,7 +13,7 @@ const Mails = () => {
   const [step, setStep] = useState(1);
   const [mailContent, setMailContent] = useState<string>('joindiscord');
   const [preview, setPreview] = useState<boolean>(false);
-  
+
   // États pour le mail custom
   const [subject, setSubject] = useState<string>('');
   const [highlightTitle, setHighlightTitle] = useState<string>('');
@@ -21,13 +21,13 @@ const Mails = () => {
   const [reason, setReason] = useState<string>('');
   const [emails, setEmails] = useState<string>('');
   const [sections, setSections] = useState<Array<{ title: string; components: string }>>([
-    { title: '', components: '' }
+    { title: '', components: '' },
   ]);
 
   const transitions = useTransition(step, {
     from: { opacity: 0, transform: `translate3d(100%,0,0)` },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { position: 'absolute', display: 'none' },
+    leave: { position: 'absolute' as const, display: 'none' as const },
     config: {
       duration: 250,
     },
@@ -162,7 +162,7 @@ const Mails = () => {
                 formattedContent,
                 emails,
                 reason,
-                preview
+                preview,
               );
 
               if (!preview) {
@@ -176,36 +176,21 @@ const Mails = () => {
                 setStep(1);
               }
             } catch (error) {
-              console.error('Erreur lors de l\'envoi du mail custom:', error);
+              console.error("Erreur lors de l'envoi du mail custom:", error);
             }
           }}>
-          
-          <Input 
-            label="Sujet du mail" 
-            value={subject} 
-            onChange={setSubject} 
-            required 
-          />
+          <Input label="Sujet du mail" value={subject} onChange={setSubject} required />
 
-          <Textarea 
-            label="Adresses email des destinataires (si laissé vide, envoie à tous les utilisateurs)" 
-            value={emails} 
+          <Textarea
+            label="Adresses email des destinataires (si laissé vide, envoie à tous les utilisateurs)"
+            value={emails}
             onChange={setEmails}
             placeholder="Séparez les emails par des virgules ou des retours à la ligne&#10;Ex: email1@example.com, email2@example.com&#10;ou&#10;email1@example.com&#10;email2@example.com"
           />
-          
-          <Input 
-            label="Titre principal (highlight)" 
-            value={highlightTitle} 
-            onChange={setHighlightTitle} 
-            required 
-          />
-          
-          <Textarea 
-            label="Introduction (sous le titre)" 
-            value={highlightIntro} 
-            onChange={setHighlightIntro} 
-          />
+
+          <Input label="Titre principal (highlight)" value={highlightTitle} onChange={setHighlightTitle} required />
+
+          <Textarea label="Introduction (sous le titre)" value={highlightIntro} onChange={setHighlightIntro} />
 
           <div className={styles.sectionsContainer}>
             <h3>Sections du mail</h3>
@@ -214,55 +199,47 @@ const Mails = () => {
                 <div className={styles.sectionHeader}>
                   <h4>Section {index + 1}</h4>
                   {sections.length > 1 && (
-                    <Button 
-                      type="button" 
-                      onClick={() => removeSection(index)}
-                      className={styles.removeButton}
-                    >
+                    <Button type="button" onClick={() => removeSection(index)} className={styles.removeButton}>
                       Supprimer
                     </Button>
                   )}
                 </div>
-                
-                <Input 
-                  label="Titre de la section" 
-                  value={section.title} 
+
+                <Input
+                  label="Titre de la section"
+                  value={section.title}
                   onChange={(value) => updateSection(index, 'title', value)}
-                  required 
+                  required
                 />
-                
-                <Textarea 
-                  label="Contenu de la section" 
-                  value={section.components} 
+
+                <Textarea
+                  label="Contenu de la section"
+                  value={section.components}
                   onChange={(value) => updateSection(index, 'components', value)}
                   placeholder="Vous pouvez utiliser du HTML basique (ex: <strong>, <em>, <a href=''>, etc.)"
                 />
               </div>
             ))}
-            
-            <Button 
-              type="button" 
-              onClick={addSection}
-              className={styles.addSectionButton}
-            >
+
+            <Button type="button" onClick={addSection} className={styles.addSectionButton}>
               Ajouter une section
             </Button>
           </div>
 
-          <Textarea 
-            label="Raison d'envoi" 
-            value={reason} 
+          <Textarea
+            label="Raison d'envoi"
+            value={reason}
             onChange={setReason}
             placeholder="Ex: Information importante concernant votre inscription"
           />
-          
+
           <Checkbox
             className={styles.mailCheckbox}
             label="Mode preview (envoi uniquement à moi)"
             value={preview}
             onChange={setPreview}
           />
-          
+
           <div className={styles.buttonContainer}>
             <Button primary type="submit">
               {preview ? 'Envoyer le preview' : 'Envoyer les mails'}

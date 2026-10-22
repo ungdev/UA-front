@@ -127,9 +127,9 @@ export const viewport: Viewport = {
   themeColor: '#202020',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   //Get the nonce from the request headers
-  const nonce = headers().get('x-nonce') || '';
+  const nonce = (await headers()).get('x-nonce') || '';
   return (
     <>
       {process.env.NODE_ENV === 'production' && (

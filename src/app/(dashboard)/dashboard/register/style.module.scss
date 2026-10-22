@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 $stepper-size: 30px;
 
@@ -43,7 +43,7 @@ $stepper-size: 30px;
         counter-increment: step;
         width: $stepper-size;
         line-height: $stepper-size;
-        font-size: $stepper-size / 2;
+        font-size: calc($stepper-size / 2);
         font-weight: bold;
         color: #333;
         background: white;
@@ -57,13 +57,13 @@ $stepper-size: 30px;
 
       li:after {
         content: '';
-        width: calc(100% - $stepper-size);
+        width: calc(100% - #{$stepper-size});
         height: 2px;
         background: white;
         position: absolute;
         left: -50%;
-        margin-left: $stepper-size / 2;
-        top: calc($stepper-size / 2 - 1px);
+        margin-left: calc($stepper-size / 2);
+        top: calc(#{$stepper-size} / 2 - 1px);
         transition: all 0.2s ease-in-out 50ms;
       }
 

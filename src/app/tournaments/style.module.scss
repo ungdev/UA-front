@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .tournamentContainer {
   position: relative;
@@ -74,7 +74,7 @@
           width: 100%;
           color: white;
           height: 3rem;
-          
+
           svg {
             width: 2.5rem;
             height: 2.5rem;
@@ -106,8 +106,8 @@
         padding-right: 100px;
         max-height: 80vh;
         /* Hide scrollbar for IE, Edge and Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
 
         // Mask for the scroll gradient
         --mask-height: 128px;
@@ -115,11 +115,11 @@
         --mask-bottom-color: black;
         --mask-direction: to bottom;
         mask-image: linear-gradient(
-            var(--mask-direction),
-            var(--mask-top-color),
-            black var(--mask-height),
-            black calc(100% - var(--mask-height)),
-            var(--mask-bottom-color)
+          var(--mask-direction),
+          var(--mask-top-color),
+          black var(--mask-height),
+          black calc(100% - var(--mask-height)),
+          var(--mask-bottom-color)
         );
         mask-size: 100% 100%;
         mask-position: 0 0;
@@ -197,7 +197,6 @@
 
 @media screen and (max-width: 1024px) {
   .tournamentContainer {
-
     .pageTitle {
       .divider:nth-of-type(1) {
         margin-left: 10px;

@@ -1,4 +1,5 @@
-@import '@/variables.scss';
+@use "sass:color";
+@use '@/variables.scss' as *;
 
 .button {
   display: inline-block;
@@ -69,12 +70,12 @@
 
     &:not([disabled]):hover {
       &.outline {
-        border-color: darken($accent-color, 10%);
-        color: darken($accent-color, 10%);
+        border-color: color.adjust($accent-color, $lightness: -10%);
+        color: color.adjust($accent-color, $lightness: -10%);
       }
 
       &:not(.outline) {
-        background-color: darken($accent-color, 10%);
+        background-color: color.adjust($accent-color, $lightness: -10%);
       }
     }
   }

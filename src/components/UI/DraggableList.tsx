@@ -41,7 +41,7 @@ const useDraggable = ({
   onReorder,
   enabled,
 }: {
-  parentRef: React.RefObject<HTMLElement>;
+  parentRef: React.RefObject<HTMLElement | null>;
   onReorder: () => void;
   enabled: boolean;
 }) => {

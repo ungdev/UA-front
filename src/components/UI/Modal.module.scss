@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .modal {
   &:not(.active) {
@@ -44,12 +44,12 @@
     box-shadow: 0 3px 10px #2e2e2e;
     z-index: 999;
     border-radius: 10px;
-    transition: scale 0.3s cubic-bezier(.18,.89,.32,1.28);
+    transition: scale 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
 
   &:not(.active) .modalContainer {
     scale: 0;
-    transition: scale 0.3s cubic-bezier(.6,-0.28,.74,.05);
+    transition: scale 0.3s cubic-bezier(0.6, -0.28, 0.74, 0.05);
   }
 
   .modalContent {

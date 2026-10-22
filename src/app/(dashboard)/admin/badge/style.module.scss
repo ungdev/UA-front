@@ -1,4 +1,4 @@
-@import '@/variables';
+@use '@/variables';
 
 .page {
   padding: 5vh 0;
@@ -54,7 +54,7 @@
               }
 
               &.blueColor {
-                background-color: $secondary-background
+                background-color: variables.$secondary-background
               }
             }
           }

@@ -25,7 +25,7 @@ export default function TournamentSwitcherAnimation({
   const [translation, setTranslation] = useState(0);
   // True when the animation is finished
   const [redirecting, setRedirecting] = useState(0);
-  const ref: RefObject<HTMLDivElement> = createRef();
+  const ref: RefObject<HTMLDivElement | null> = createRef();
 
   const animate = () => {
     let startTimestamp: number | null = null;

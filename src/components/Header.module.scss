@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 $scrollingAnimationDuration: 0.5s;
 
@@ -68,15 +68,16 @@ $scrollingAnimationDuration: 0.5s;
             width: 0;
             height: 2px;
             background-color: white;
-            transition: width 0.3s ease-in-out,
-            opacity $scrollingAnimationDuration ease-in-out,
-            bottom $scrollingAnimationDuration ease-in-out,
-            scale $scrollingAnimationDuration ease-in-out;
+            transition:
+              width 0.3s ease-in-out,
+              opacity $scrollingAnimationDuration ease-in-out,
+              bottom $scrollingAnimationDuration ease-in-out,
+              scale $scrollingAnimationDuration ease-in-out;
           }
 
           &.current {
             color: white;
-          } 
+          }
         }
 
         .disconnectIcon {

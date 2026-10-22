@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .topContainer {
   background-color: $primary-background;
@@ -26,7 +26,7 @@
 
       .button {
         width: 328px;
-        height: 66px
+        height: 66px;
       }
     }
   }

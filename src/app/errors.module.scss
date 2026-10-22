@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .notFound {
   height: 80vh;
@@ -37,7 +37,7 @@
 
   // show message only on hover
   .grass {
-    all : unset;
+    all: unset;
     color: transparent;
     transition: color 0.3s;
     font-size: 11px;

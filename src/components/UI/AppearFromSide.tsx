@@ -1,6 +1,6 @@
 'use client';
 import styles from './AppearFromSide.module.scss';
-import { useEffect, useRef, useState, LegacyRef } from 'react';
+import { useEffect, useRef, useState, Ref } from 'react';
 
 /**
  * A component that makes its children appear from the side of the screen when it enters the viewport.
@@ -26,7 +26,7 @@ export default function AppearFromSide({
     position: document.body.clientWidth * (fromRight ? -1 : 1),
     lastOffset: document.body.clientWidth * (fromRight ? 1 : -1),
   });
-  const ref = useRef<HTMLDivElement>();
+  const ref = useRef<HTMLDivElement>(undefined);
 
   const animation = () => {
     // It can be undefined if user changes page while the component is on screen
@@ -75,7 +75,7 @@ export default function AppearFromSide({
   return (
     <div
       className={`${styles.appearFromSide} ${className}`}
-      ref={ref as LegacyRef<HTMLDivElement>}
+      ref={ref as Ref<HTMLDivElement>}
       style={{ transform: deactivated ? undefined : `translateX(${translateXData.offset}px)` }}>
       {children}
     </div>

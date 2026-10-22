@@ -33,8 +33,8 @@ export default function Header({
 
   const isLoginAllowed = useAppSelector((state) => state.settings.login);
   const isVisible = useAppSelector((state) => state.loginModal.visible);
-  const trigger = useRef<HTMLDivElement>();
-  const header = useRef<HTMLDivElement>();
+  const trigger = useRef<HTMLDivElement>(undefined);
+  const header = useRef<HTMLDivElement>(undefined);
 
   useEffect(() => {
     new IntersectionObserver(

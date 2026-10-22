@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .helpContainer {
   padding: 5rem 0;
@@ -7,13 +7,14 @@
     scroll-margin-top: 80px;
   }
 
-  .faq, .contact {
+  .faq,
+  .contact {
     width: clamp(300px, 80%, 1200px);
     margin: auto;
 
-      .darkBackground {
-        color: $primary-color;
-      }
+    .darkBackground {
+      color: $primary-color;
+    }
   }
 
   .faq {
