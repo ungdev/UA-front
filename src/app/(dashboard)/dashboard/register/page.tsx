@@ -75,7 +75,7 @@ const Register = () => {
   const transitions = useTransition(step, {
     from: { opacity: 0, transform: `translate3d(100%,0,0)` },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { position: 'absolute', display: 'none' },
+    leave: { position: 'absolute' as const, display: 'none' as const },
     config: {
       duration: 250,
     },
@@ -190,7 +190,7 @@ const Register = () => {
             setStep(step + 1);
             setTournamentFfsu(true);
           }}
-        />
+        />,
       );
     });
 
@@ -228,8 +228,9 @@ const Register = () => {
         <Checkbox
           label={
             <>
-              En cochant cette case je certifie que le numéro de licence FFSU que j'ai renseigné est valide et que je suis bien licencié(e) 
-              à la FFSU pour la saison en cours. Ce tournoi sera par conséquent gratuit mais ne disposera pas de cashprize.
+              En cochant cette case je certifie que le numéro de licence FFSU que j'ai renseigné est valide et que je
+              suis bien licencié(e) à la FFSU pour la saison en cours. Ce tournoi sera par conséquent gratuit mais ne
+              disposera pas de cashprize.
             </>
           }
           value={certifyFfsu}
@@ -398,7 +399,15 @@ const Register = () => {
         <Button
           primary
           onClick={() =>
-            setStep(userType === UserType.spectator ? step - 4 : tournamentSolo && step === 6 ? step - 3 : step === 5 ? step - 2 : step - 1)
+            setStep(
+              userType === UserType.spectator
+                ? step - 4
+                : tournamentSolo && step === 6
+                  ? step - 3
+                  : step === 5
+                    ? step - 2
+                    : step - 1,
+            )
           }>
           {'Retour'}
         </Button>

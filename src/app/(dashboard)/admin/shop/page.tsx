@@ -3,7 +3,7 @@ import { Button, DraggableList, Loader, Square, Title } from '@/components/UI';
 import ItemModal from '@/components/dashboard/ItemModal';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminItem } from '@/types';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type JSX } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminItems, reorderItems } from '@/modules/admin';
 import { getItemImageLink } from '@/utils/uploadLink';

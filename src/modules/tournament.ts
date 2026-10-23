@@ -43,7 +43,8 @@ export const { setTournaments, updateTournament, setSlots } = tournamentSlice.ac
 
 export const fetchTournaments = (): AppThunk => async (dispatch) => {
   const res = await API.get('tournaments');
-  dispatch(setTournaments(res));
+  const tournaments = Array.isArray(res) ? res : (res?.tournaments ?? res?.data);
+  dispatch(setTournaments(Array.isArray(tournaments) ? tournaments : []));
 };
 
 export const tournamentsId = async (): Promise<string[]> => {

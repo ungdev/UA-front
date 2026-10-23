@@ -32,7 +32,10 @@ const YoutubeVideoContainer = ({
       div.appendChild(iframe);
     }
 
-    const videoId = ref.current!.dataset.id;
+    const container = ref.current;
+    if (!container) return;
+
+    const videoId = container.dataset.id;
     const div = document.createElement('div');
     div.setAttribute('data-id', videoId!);
     const thumbNode = document.createElement('img');
@@ -43,15 +46,17 @@ const YoutubeVideoContainer = ({
     playButton.setAttribute('class', styles.play);
     div.appendChild(playButton);
     div.onclick = function () {
-      labnolIframe(ref.current!);
+      labnolIframe(container);
     };
-    ref.current!.appendChild(div);
+    container.appendChild(div);
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       loadVideo();
     }, 500);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return <div ref={ref} className={`${styles.videoContainer} ${className}`} data-id={id}></div>;

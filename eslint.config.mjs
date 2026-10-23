@@ -1,66 +1,30 @@
 import { defineConfig } from 'eslint/config';
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
-import react from 'eslint-plugin-react';
-import prettier from 'eslint-plugin-prettier';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+import nextTs from 'eslint-config-next/typescript';
+import storybook from 'eslint-plugin-storybook';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
 export default defineConfig([
+  js.configs.recommended,
+  ...nextVitals,
+  ...nextTs,
+  storybook.configs['flat/recommended'],
+  prettierRecommended,
+
   {
-    extends: fixupConfigRules(
-      compat.extends(
-        'plugin:react/recommended',
-        'plugin:import/errors',
-        'plugin:import/warnings',
-        'plugin:import/react',
-        'eslint:recommended',
-        'next/core-web-vitals',
-        'prettier',
-        'plugin:storybook/recommended',
-        'plugin:@typescript-eslint/recommended',
-      ),
-    ),
-
-    plugins: {
-      react: fixupPluginRules(react),
-      prettier,
-      '@typescript-eslint': fixupPluginRules(typescriptEslint),
-    },
-
-    languageOptions: {
-      parser: tsParser,
-      sourceType: 'module',
-      globals: {},
-    },
-
     settings: {
-      react: {
-        version: 'detect',
-      },
+      react: { version: 'detect' },
       'import/parsers': {
         '@typescript-eslint/parser': ['.ts', '.tsx'],
       },
       'import/resolver': {
-        typescript: {}, // active le resolver
-        node: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
+        typescript: {},
+        node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
       },
     },
 
     rules: {
-      'prettier/prettier': ['error'],
       'no-console': 'off',
       'no-alert': 'error',
       'linebreak-style': ['warn', 'unix'],
@@ -73,6 +37,7 @@ export default defineConfig([
       '@next/next/no-img-element': 'off',
     },
   },
+
   {
     files: ['**/*.tsx'],
     ignores: ['**/*.stories.tsx'],

@@ -1,7 +1,7 @@
 'use client';
 import styles from './TournamentList.module.scss';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import React, { LegacyRef, useEffect, useRef } from 'react';
+import React, { Ref, useEffect, useRef } from 'react';
 import { fetchTournaments } from '@/modules/tournament';
 import { getTournamentImageLink } from '@/utils/uploadLink';
 import { Tournament } from '@/types';
@@ -29,7 +29,7 @@ export default function TournamentList({
   const dispatch = useAppDispatch();
   const tournaments = useAppSelector((state) => state.tournament.tournaments);
   /** The ref to the slider. */
-  const cardsRef = useRef<HTMLDivElement>();
+  const cardsRef = useRef<HTMLDivElement | null>(null);
 
   /** Fetch the tournaments. */
   useEffect(() => {
@@ -255,7 +255,7 @@ export default function TournamentList({
   return (
     <div
       className={`${styles.tournamentList} ${className}`}
-      ref={cardsRef as LegacyRef<HTMLDivElement>}
+      ref={cardsRef as Ref<HTMLDivElement>}
       onScroll={onScroll}>
       {tournaments.map((tournament, i) => createCard(tournament, i))}
       {tournaments.map((tournament, i) => createCard(tournament, i + tournaments.length))}

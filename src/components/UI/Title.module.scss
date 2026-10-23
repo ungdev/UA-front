@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 $length: 4px;
 $doubleSize: 8px;

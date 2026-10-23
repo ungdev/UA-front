@@ -1,6 +1,6 @@
 'use client';
 import styles from './Parallax.module.scss';
-import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { Ref, MutableRefObject, useEffect, useRef, useState } from 'react';
 import ParallaxElementSettings from '@/components/parallax/ParallaxElementSettings';
 
 /**
@@ -24,14 +24,14 @@ export default function Parallax({
   const refs: MutableRefObject<HTMLDivElement | undefined>[] = [];
   let error = false;
   for (let i = 0; i < children.length; i++) {
-    if ((children[i]! as React.ReactElement).type !== ParallaxElementSettings) {
+    if ((children[i]! as React.ReactElement<any>).type !== ParallaxElementSettings) {
       console.error('Children of Parallax component should be components of type ParallaxElementSettings');
       error = true;
       continue;
     }
     additionalScrollsInit.push(0);
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    refs.push(useRef<HTMLDivElement>());
+    refs.push(useRef<HTMLDivElement>(undefined));
   }
   const [additionalScrolls, setAdditionalScrolls] = useState(additionalScrollsInit);
 
@@ -52,7 +52,7 @@ export default function Parallax({
         lastScroll = now;
       }
       */
-      additionalScrolls[i] = -window.scrollY * ((children[i]! as React.ReactElement).props.speed - 1);
+      additionalScrolls[i] = -window.scrollY * ((children[i]! as React.ReactElement<any>).props.speed - 1);
     }
     setAdditionalScrolls([...additionalScrolls]);
     setTimeout(() => requestAnimationFrame(parallax), 100);
@@ -67,8 +67,8 @@ export default function Parallax({
       {children.map((child, i) => (
         <div
           key={i}
-          className={`${styles.parallaxElement} ${(child! as React.ReactElement).props.className}`}
-          ref={refs[i] as LegacyRef<HTMLDivElement>}
+          className={`${styles.parallaxElement} ${(child! as React.ReactElement<any>).props.className}`}
+          ref={refs[i] as Ref<HTMLDivElement>}
           style={{
             transform: `translateY(${additionalScrolls[i]}px)`,
           }}>

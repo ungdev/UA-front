@@ -43,7 +43,7 @@ export function generateCsp() {
   return { csp: cspString, nonce };
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // generate CSP and nonce
   const { csp, nonce } = generateCsp();
 

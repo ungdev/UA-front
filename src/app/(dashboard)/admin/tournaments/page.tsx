@@ -4,7 +4,7 @@ import TournamentModal from '@/components/dashboard/TournamentModal';
 import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import { AdminTournament } from '@/types';
 import { getTournamentImageLink } from '@/utils/uploadLink';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type JSX } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminTournaments, reorderTournaments } from '@/modules/admin';
 

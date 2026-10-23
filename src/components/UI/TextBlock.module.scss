@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .informationContainer {
   display: flex;
@@ -34,14 +34,14 @@
     gap: 2rem;
 
     .left {
-        order: 1;
-        width: 100%;
+      order: 1;
+      width: 100%;
     }
 
     .right {
-        width: 100%;
-        margin: 3rem;
-        aspect-ratio: 16/9;
+      width: 100%;
+      margin: 3rem;
+      aspect-ratio: 16/9;
     }
   }
 }

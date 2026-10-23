@@ -1,14 +1,14 @@
-@import 'variables.scss';
+@use 'variables' as *;
 
 /** Export colors for TS **/
 :export {
-    primaryColor: $primary-color;
-    secondaryColor: $secondary-color;
-    tertiaryColor: $tertiary-color;
-    accentColor: $accent-color;
-    filterColor: $filter-color;
-    lightColor: $light-color;
-    darkColor: $dark-color;
-    primaryBackground: $primary-background;
-    secondaryBackground: $secondary-background;
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  tertiaryColor: $tertiary-color;
+  accentColor: $accent-color;
+  filterColor: $filter-color;
+  lightColor: $light-color;
+  darkColor: $dark-color;
+  primaryBackground: $primary-background;
+  secondaryBackground: $secondary-background;
 }

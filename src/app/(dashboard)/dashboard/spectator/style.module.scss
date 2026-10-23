@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .dashboardSpectator {
   padding: 50px;
@@ -50,7 +50,7 @@
   .primaryTitle {
     margin: 0;
   }
-  
+
   .descriptionValue {
     color: $primary-color;
     display: flex;
