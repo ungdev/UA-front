@@ -7,7 +7,7 @@ on:
 
 jobs:
   lint:
-    runs-on: self-hosted
+    runs-on: sia-autoscale-runners
     strategy:
       matrix:
         node-version: [26]
@@ -28,7 +28,7 @@ jobs:
       - run: pnpm lint
 
   build:
-    runs-on: self-hosted
+    runs-on: sia-autoscale-runners
     strategy:
       matrix:
         node-version: [26]
@@ -50,7 +50,7 @@ jobs:
 
   deploy-dev:
     if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/dev') }}
-    runs-on: self-hosted
+    runs-on: sia-static-runners
     needs:
       - lint
       - build
@@ -80,7 +80,7 @@ jobs:
             ${{ secrets.REGISTRY_URL }}/uttarena/front:${{ github.ref == 'refs/heads/master' && 'master' || 'dev' }}
   deploy-prod:
     if: ${{ github.event_name != 'pull_request' && (github.ref == 'refs/heads/master') }}
-    runs-on: self-hosted
+    runs-on: sia-static-runners
     needs:
       - lint
       - build
