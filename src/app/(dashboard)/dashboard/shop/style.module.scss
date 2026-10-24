@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .dashboardShop {
   padding: 50px;
@@ -98,7 +98,7 @@
       display: flex;
       justify-content: center;
       margin-top: 1rem;
-      gap: 1rem; 
+      gap: 1rem;
 
       .shareXButton {
         background-color: black !important;

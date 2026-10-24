@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .fillingBar {
   position: relative;
@@ -7,7 +7,7 @@
   background-color: #e0e0e0;
   border-radius: 10px;
   overflow: hidden;
-  
+
   .partialBar {
     position: absolute;
     top: 0;
@@ -18,7 +18,7 @@
     transition: width 2s ease-in-out;
     border-radius: 10px;
   }
-  
+
   .fullBar {
     position: absolute;
     top: 0;

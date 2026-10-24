@@ -1,76 +1,76 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .userModal {
-    width: 500px !important;
+  width: 500px !important;
 
-    .cart-refused,
-    .cart-canceled,
-    .cart-refunded,
-    .cart-pending {
-      opacity: 0.6;
-    }
+  .cart-refused,
+  .cart-canceled,
+  .cart-refunded,
+  .cart-pending {
+    opacity: 0.6;
+  }
 
-    .cart-refused,
-    .cart-canceled,
-    .cart-refunded {
-      background: repeating-linear-gradient(45deg, $light-color, $light-color 10px, transparent 10px, transparent 20px);
-    }
+  .cart-refused,
+  .cart-canceled,
+  .cart-refunded {
+    background: repeating-linear-gradient(45deg, $light-color, $light-color 10px, transparent 10px, transparent 20px);
+  }
 
-    .cartItems > li {
+  .cartItems > li {
+    margin-bottom: 10px;
+  }
+
+  .linkToSeller {
+    cursor: pointer;
+  }
+
+  em.default {
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  .row {
+    margin: 14px 0;
+    box-sizing: border-box;
+
+    > .key {
+      display: block;
       margin-bottom: 10px;
+      font-weight: bold;
     }
 
-    .linkToSeller {
-      cursor: pointer;
+    > .checkboxContainer {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      gap: 10px;
     }
 
-    em.default {
-      opacity: 0.5;
-      user-select: none;
-    }
-
-    .row {
-      margin: 14px 0;
-      box-sizing: border-box;
-
-      > .key {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-      }
-
-      > .checkboxContainer {
+    > .commissionsList {
+      .orgaRolesRow {
         display: flex;
-        flex-flow: row wrap;
         align-items: center;
         gap: 10px;
-      }
 
-      > .commissionsList {
-        .orgaRolesRow {
-          display: flex;
-          align-items: center;
-          gap: 10px;
+        .mainCommissionIcon {
+          width: 24px;
+          height: 24px;
 
-          .mainCommissionIcon {
-            width: 24px;
-            height: 24px;
-
-            &.selected {
-              color: yellow;
-            }
+          &.selected {
+            color: yellow;
           }
+        }
 
-          .deleteCommission {
-            width: 24px;
-            height: 24px;
+        .deleteCommission {
+          width: 24px;
+          height: 24px;
 
-            &:hover {
-              color: red;
-              cursor: pointer;
-            }
+          &:hover {
+            color: red;
+            cursor: pointer;
           }
         }
       }
     }
+  }
 }

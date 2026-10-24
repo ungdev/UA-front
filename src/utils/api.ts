@@ -72,7 +72,7 @@ const requestAPI = (
         }
 
         if (didTimeOut) return;
-        reject();
+        reject(error);
       });
 
     // Add manual timeout as not supported by fetch

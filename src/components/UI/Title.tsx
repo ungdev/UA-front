@@ -2,6 +2,8 @@ import styles from './Title.module.scss';
 import Divider from '@/components/UI/Divider';
 import TextStroke from '@/components/UI/TextStroke';
 
+import type { JSX } from "react";
+
 /**
  * Renders a title component with the specified level, children, gutterBottom, align, className, and id.
  */

@@ -1,4 +1,4 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .cart {
   .cartHeader {
@@ -19,7 +19,7 @@
     }
   }
 
-  .mainTitle{
+  .mainTitle {
     font-family: $agenor;
     text-transform: uppercase;
     overflow: hidden;

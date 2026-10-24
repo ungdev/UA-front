@@ -11,7 +11,7 @@ import { IconName } from '@/components/UI/Icon';
 const Entry = () => {
   const scannedUser = useAppSelector((state) => state.userEntry.searchUser);
   const [userIdentifiable, setUserIdentifiable] = useState<string>('');
-  const lastCode = useRef<string>();
+  const lastCode = useRef<string>(undefined);
   const dispatch = useAppDispatch();
 
   const onCodeScanned = (code: { data: string }) => {

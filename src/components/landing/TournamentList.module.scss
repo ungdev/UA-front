@@ -1,20 +1,20 @@
-@import '@/variables.scss';
+@use '@/variables.scss' as *;
 
 .tournamentList {
   display: flex;
   align-items: center;
   width: 100%;
   height: auto;
-  aspect-ratio: 5 / 2;  // {1}
+  aspect-ratio: 5 / 2; // {1}
   margin: auto;
-  position: relative;  // The element needs to be positioned to work in the JS
+  position: relative; // The element needs to be positioned to work in the JS
   justify-content: left;
   z-index: initial;
   overflow-x: scroll;
   overflow-y: clip;
   /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 
   &::-webkit-scrollbar {
     display: none;
@@ -22,17 +22,19 @@
 
   .cardPositionner {
     position: relative;
-    min-width: 45%;  // {2}
-    height: 100%;  // {3}
+    min-width: 45%; // {2}
+    height: 100%; // {3}
 
     .card {
       position: absolute;
-      background: linear-gradient(0deg, rgba(black, 0.8) 25%, rgba(black, 0) 70%), var(--background) no-repeat;
+      background:
+        linear-gradient(0deg, rgba(black, 0.8) 25%, rgba(black, 0) 70%),
+        var(--background) no-repeat;
       background-size: cover;
       width: auto;
-      height: 100%;  // {4}
-      left: 5%;  // (1 - {5} * {4} * {3} / {1} / {2}) / 2
-      aspect-ratio: 1 / 1;  // {5}
+      height: 100%; // {4}
+      left: 5%; // (1 - {5} * {4} * {3} / {1} / {2}) / 2
+      aspect-ratio: 1 / 1; // {5}
       border-radius: 5%;
       z-index: calc(var(--visibility) * 10);
       opacity: var(--visibility);

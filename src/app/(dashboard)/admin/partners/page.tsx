@@ -4,7 +4,7 @@ import PartnerModal from '@/components/dashboard/PartnerModal';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { AdminPartner } from '@/types';
 import { getPartnerLogoLink } from '@/utils/uploadLink';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type JSX } from 'react';
 import styles from './style.module.scss';
 import { fetchAdminPartners, reorderPartners } from '@/modules/admin';
 
